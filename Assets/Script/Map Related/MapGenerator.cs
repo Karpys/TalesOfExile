@@ -11,6 +11,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private float m_TileSize = 0;
     [SerializeField] private Tile m_PrefabTile = null;
     [SerializeField] private MapData m_MapData = null;
+    [SerializeField] private BoardEntity m_Character = null;
 
     private void Start()
     {
@@ -47,41 +48,18 @@ public class MapGenerator : MonoBehaviour
         map.Height = m_Height;
         map.Width = m_Width;
         map.Tiles = new Tile[m_Width][];
-
+        
         for (int x = 0; x < m_Width; x++)
         {
             map.Tiles[x] = new Tile[m_Height];
             for (int y = 0; y < m_Height; y++)
             {
-                Tile tile = Instantiate(m_PrefabTile, GetTilePosition(x, y, m_TileSize),Quaternion.identity,m_MapData.transform);
+                Tile tile = Instantiate(m_PrefabTile, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                 tile.Initialize(x,y);
                 map.Tiles[x][y] = tile;
             }
         }
-    }
 
-    private Vector3 GetTilePosition(int x, int y, float tileSize)
-    {
-        return new Vector3(x * tileSize, y * tileSize, 0);
-    }
-}
-
-public class MapDataLibrary : MonoBehaviour
-{
-    
-}
-
-public class BoardEntity : MonoBehaviour
-{
-    [SerializeField] private int m_XPosition = 0;
-    [SerializeField] private int m_YPosition = 0;
-
-    private MapData m_TargetMap = null;
-
-    public void Place(int x, int y, MapData targetMap)
-    {
-        m_XPosition = x;
-        m_YPosition = y;
-        m_TargetMap = targetMap;
+        m_Character.Place(5, 5, m_MapData);
     }
 }
