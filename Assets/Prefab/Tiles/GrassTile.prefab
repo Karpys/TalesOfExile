@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5325969752463358473}
   - component: {fileID: 5334949379457748356}
+  - component: {fileID: 4866493025229363738}
   m_Layer: 0
-  m_Name: GroundTile
+  m_Name: GrassTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb780d4de394f079da74b014ffee970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_XPosition: 0
+  m_YPosition: 0
+--- !u!114 &4866493025229363738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5643769795562184331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4999a37b334df4d4cbedc69c326ba808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Sprite:
+  - {fileID: 21300000, guid: 7a882c8f466d4434c800bf7c13e19b3c, type: 3}
+  - {fileID: 21300000, guid: c939a72a9386b5f4ab580e2ef04b2252, type: 3}
+  - {fileID: 21300000, guid: 23aee72dad3795b42b542faf70e8ba94, type: 3}
+  m_Renderer: {fileID: 5264811421815135885}
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,12 +135,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 88b41ad099ba5204c93b1ed2e66c559d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a882c8f466d4434c800bf7c13e19b3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
