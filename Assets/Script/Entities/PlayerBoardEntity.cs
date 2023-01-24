@@ -6,16 +6,16 @@ public class PlayerBoardEntity : BoardEntity
 {
     [SerializeField] private Transform m_JumpTweenContainer = null;
     [SerializeField] private float m_MovementDuration = 0.1f;
-    public override void MoveTo(int x, int y)
+    
+    protected override void Movement()
     {
-        base.MoveTo(x, y);
-        PlayMovementTween(x,y);
+        JumpAnimation();
     }
 
-    private void PlayMovementTween(int x,int y)
+    void JumpAnimation()
     {
         transform.DoKill();
-        transform.DoMove(m_MovementDuration, m_TargetMap.GetTilePosition(x, y));
+        transform.DoMove(m_MovementDuration, m_TargetMap.GetTilePosition(m_XPosition, m_YPosition));
         JumpTween();
     }
 

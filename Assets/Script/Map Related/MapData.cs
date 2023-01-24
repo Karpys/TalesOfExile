@@ -17,6 +17,142 @@ public class MapData : SingletonMonoBehavior<MapData>
         m_PlayerCharacter = playerReference;
     }
 
+    public Tile FindClosestTile(Vector2Int startPos, Vector2Int playerPos)
+    {
+        Tile startTile = m_Map.Tiles[startPos.x, startPos.y];
+        Tile playerTile = m_Map.Tiles[playerPos.x, playerPos.y];
+        
+        Tile tile = FindPath(startTile, playerTile);
+        Tile currentTile = tile;
+
+        if (currentTile == startTile)
+            return currentTile;
+        while (currentTile.ParentTile != startTile)
+        {
+            currentTile = currentTile.ParentTile;
+        }
+
+        List<Vector2Int> path = new List<Vector2Int>();
+        path.Add(new Vector2Int(currentTile.XPos,currentTile.YPos));
+        return currentTile;
+    }
+
+    public Tile FindPath(Tile startTile, Tile playerTile)
+    {
+        List<Tile> openSet = new List<Tile>();
+        HashSet<Tile> closeSet = new HashSet<Tile>();
+        openSet.Add(startTile);
+
+        while (openSet.Count > 0)
+        {
+            Tile currentTile = openSet[0];
+
+            for (int i = 1; i < openSet.Count; i++)
+            {
+                if (openSet[i].fCost < currentTile.fCost ||
+                    openSet[i].fCost == currentTile.fCost && openSet[i].hCost < currentTile.hCost)
+                {
+                    currentTile = openSet[i];
+                }
+            }
+
+            openSet.Remove(currentTile);
+            closeSet.Add(currentTile);
+
+            /*if (currentTile == playerTile)
+            {
+                DebugTile(startTile,currentTile);
+                return currentTile;
+            }*/
+
+            foreach (Tile neighbour in GetNeighbours(currentTile))
+            {
+                //Player Not Walkable
+                if (neighbour == playerTile)
+                {
+                    /*DebugTile(startTile,currentTile);*/
+                    return currentTile;
+                }
+                
+                if (!neighbour.Walkable || closeSet.Contains(neighbour))
+                    continue;
+
+                int newMovementCost = currentTile.gCost + GetDistance(currentTile, neighbour);
+                if (newMovementCost < neighbour.gCost || !openSet.Contains(neighbour))
+                {
+                    neighbour.gCost = newMovementCost;
+                    neighbour.hCost = GetDistance(neighbour, playerTile);
+                    neighbour.ParentTile = currentTile;
+
+                    if (!openSet.Contains(neighbour))
+                    {
+                        openSet.Add(neighbour);
+                    }
+                }
+            }
+        }
+
+        return startTile;
+    }
+
+    private void DebugTile(Tile start,Tile end)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        Tile currentTile = end;
+
+        while (currentTile != start)
+        {
+            path.Add(new Vector2Int(currentTile.XPos,currentTile.YPos));
+            currentTile = currentTile.ParentTile;
+        }
+        
+        HighlightTilesManager.Instance.GenerateHighlightTiles(path,new Vector2Int(0,0));
+    }
+
+    public int GetDistance(Tile tileStart, Tile tileEnd)
+    {
+        int distX = Mathf.Abs(tileStart.XPos - tileEnd.XPos);
+        int distY = Mathf.Abs(tileStart.YPos - tileEnd.YPos);
+
+        if (distX > distY)
+            return 12 * distY + 10 * (distX - distY);
+        return 12 * distX + 10 * (distY - distX);
+        
+    }
+
+    public List<Tile> GetNeighbours(Tile tile)
+    {
+        List<Tile> neighbours = new List<Tile>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if(x == 0 && y == 0)
+                    continue;
+
+                int checkX = tile.XPos + x;
+                int checkY = tile.YPos + y;
+
+                if (checkX >= 0 && checkX < m_Map.Width && checkY >= 0 && checkY < m_Map.Height)
+                {
+                    neighbours.Add(m_Map.Tiles[checkX,checkY]); 
+                }
+            }
+        }
+
+        return neighbours;
+    }
+
+    public bool IsWalkable(int x, int y)
+    {
+        if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x,y].Walkable)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public Vector3 GetTilePosition(int x, int y)
     {
         return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);

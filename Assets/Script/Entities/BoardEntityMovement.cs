@@ -24,12 +24,14 @@ public class BoardEntityMovement : MonoBehaviour
     private void MoveX(int x)
     {
         Vector2Int movement = m_Entity.EntityPosition;
-        m_Entity.MoveTo(movement.x + x,movement.y);
+        if(MapData.Instance.IsWalkable(movement.x + x,movement.y))
+            m_Entity.MoveTo(movement.x + x,movement.y);
     }
     
     private void MoveY(int y)
     {
         Vector2Int movement = m_Entity.EntityPosition;
-        m_Entity.MoveTo(movement.x ,movement.y + y);
+        if(MapData.Instance.IsWalkable(movement.x,movement.y + y))
+            m_Entity.MoveTo(movement.x ,movement.y + y);
     }
 }

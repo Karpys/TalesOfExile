@@ -204,7 +204,7 @@ MonoBehaviour:
   m_TreeVisual: {fileID: -7738960827800855, guid: 72f4a61944bbd0e4fbe6002d691a490c, type: 3}
   m_MapData: {fileID: 1849714072}
   m_BoardEntities:
-  - Entity: {fileID: 3659391209483108307, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
     BoardSpawnPosition: {x: 2, y: 2}
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 5, y: 5}

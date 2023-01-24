@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BoardEntity : MonoBehaviour
 {
-    [SerializeField] private int m_XPosition = 0;
-    [SerializeField] private int m_YPosition = 0;
+    [SerializeField] protected int m_XPosition = 0;
+    [SerializeField] protected int m_YPosition = 0;
 
     protected MapData m_TargetMap = null;
 
@@ -15,12 +15,21 @@ public class BoardEntity : MonoBehaviour
         m_YPosition = y;
         m_TargetMap = targetMap;
         transform.position = targetMap.GetTilePosition(x, y);
+        m_TargetMap.Map.Tiles[x, y].Walkable = false;
     }
 
     public virtual void MoveTo(int x,int y)
     {
+        m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
         m_XPosition = x;
         m_YPosition = y;
+        m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = false;
+        Movement();
+    }
+
+    protected virtual void Movement()
+    {
+        transform.position = m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     }
     
     public void MoveTo(Vector2Int pos)

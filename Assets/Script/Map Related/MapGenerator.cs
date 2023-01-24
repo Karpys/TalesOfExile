@@ -44,7 +44,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int y = 0; y < m_MapData.Map.Height; y++)
             {
-                Destroy(m_MapData.Map.Tiles[x][y]);
+                Destroy(m_MapData.Map.Tiles[x,y]);
             }
         }
         m_MapData.Map.Tiles = null;
@@ -64,16 +64,15 @@ public class MapGenerator : MonoBehaviour
         //Tiles Initiation//
         map.Height = m_Height;
         map.Width = m_Width;
-        map.Tiles = new Tile[m_Width][];
+        map.Tiles = new Tile[m_Width,m_Height];
         
         for (int x = 0; x < m_Width; x++)
         {
-            map.Tiles[x] = new Tile[m_Height];
             for (int y = 0; y < m_Height; y++)
             {
                 Tile tile = Instantiate(m_GrassGround[Random.Range(0,m_GrassGround.Length)], m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                 tile.Initialize(x,y);
-                map.Tiles[x][y] = tile;
+                map.Tiles[x,y] = tile;
                 
                 if (x == 0 || y == 0 || x == m_Height - 1 || y == m_Width - 1)
                 {
