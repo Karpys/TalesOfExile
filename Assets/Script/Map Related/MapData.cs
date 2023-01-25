@@ -17,12 +17,17 @@ public class MapData : SingletonMonoBehavior<MapData>
         m_PlayerCharacter = playerReference;
     }
 
+    
     public Tile FindClosestTile(Vector2Int startPos, Vector2Int playerPos)
     {
         Tile startTile = m_Map.Tiles[startPos.x, startPos.y];
         Tile playerTile = m_Map.Tiles[playerPos.x, playerPos.y];
-        
-        Tile tile = FindPath(startTile, playerTile);
+
+        return FindClosestTile(startTile, playerTile);
+    }
+    public Tile FindClosestTile(Tile startTile, Tile playerTile)
+    {
+        Tile tile = FindLastTile(startTile, playerTile);
         Tile currentTile = tile;
 
         if (currentTile == startTile)
@@ -37,7 +42,47 @@ public class MapData : SingletonMonoBehavior<MapData>
         return currentTile;
     }
 
-    public Tile FindPath(Tile startTile, Tile playerTile)
+
+    public List<Tile> FindPath(Vector2Int startPos, Vector2Int playerPos)
+    {
+        Tile startTile = m_Map.Tiles[startPos.x, startPos.y];
+        Tile playerTile = m_Map.Tiles[playerPos.x, playerPos.y];
+
+        return FindPath(startTile, playerTile);
+    }
+
+    public List<Tile> FindPath(Tile startTile, Tile playerTile)
+    {
+        Tile lastTile = FindLastTile(startTile, playerTile);
+        List<Tile> path = new List<Tile>();
+        
+        Tile currentTile = lastTile;
+
+        if (currentTile == startTile)
+        {
+            path.Add(playerTile);
+            return path;
+        }
+        
+        while (currentTile != startTile)
+        {
+            path.Add(currentTile);
+            currentTile = currentTile.ParentTile;
+        }
+
+        path.Reverse();
+        path.Add(playerTile);
+        return path;
+    }
+
+    public Tile FindLastTile(Vector2Int startPos, Vector2Int playerPos)
+    {
+        Tile startTile = m_Map.Tiles[startPos.x, startPos.y];
+        Tile playerTile = m_Map.Tiles[playerPos.x, playerPos.y];
+        
+        return FindLastTile(startTile, playerTile);
+    }
+    public Tile FindLastTile(Tile startTile, Tile playerTile)
     {
         List<Tile> openSet = new List<Tile>();
         HashSet<Tile> closeSet = new HashSet<Tile>();
@@ -151,6 +196,11 @@ public class MapData : SingletonMonoBehavior<MapData>
             return true;
         }
         return false;
+    }
+
+    public bool IsWalkable(Vector2Int pos)
+    {
+        return IsWalkable(pos.x, pos.y);
     }
 
     public Vector3 GetTilePosition(int x, int y)

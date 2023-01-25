@@ -76,6 +76,7 @@ public class MapGenerator : MonoBehaviour
                 
                 if (x == 0 || y == 0 || x == m_Height - 1 || y == m_Width - 1)
                 {
+                    map.Tiles[x, y].Walkable = false;
                     SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                     spr.SetSpritePriority(-y);
                 }

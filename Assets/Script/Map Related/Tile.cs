@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour
     //Properties//
     public int XPos => m_XPosition;
     public int YPos => m_YPosition;
+    public Vector2Int TilePosition => new Vector2Int(XPos, YPos);
 
     public bool Walkable
     {
