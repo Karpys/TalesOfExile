@@ -208,10 +208,8 @@ MonoBehaviour:
     BoardSpawnPosition: {x: 2, y: 2}
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 5, y: 5}
-  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
-    BoardSpawnPosition: {x: 20, y: 20}
-  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
-    BoardSpawnPosition: {x: 12, y: 12}
+  - Entity: {fileID: 4581581747124773393, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
+    BoardSpawnPosition: {x: 15, y: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0

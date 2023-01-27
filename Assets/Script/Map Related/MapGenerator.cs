@@ -80,6 +80,15 @@ public class MapGenerator : MonoBehaviour
                     SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                     spr.SetSpritePriority(-y);
                 }
+                else
+                {
+                    if (Random.Range(0, 20) == 10)
+                    {
+                        map.Tiles[x, y].Walkable = false;
+                        SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
+                        spr.SetSpritePriority(-y);
+                    }
+                }
             }
         }
 
