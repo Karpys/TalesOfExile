@@ -5,37 +5,49 @@ using UnityEngine;
 
 public class BoardEnnemyEntity : BoardEntity
 {
-    [SerializeField] private int m_Range = 1; 
+    [SerializeField] private int m_Range = 1;
+
+    protected override void Start()
+    {
+        base.Start();
+        GameManager.Instance.RegisterEnemy(this);
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-           List<Tile> path = m_TargetMap.FindPath(EntityPosition, m_TargetMap.GetPlayerPosition());
+           
+        }
+    }
 
-           List<Vector2Int> paths = new List<Vector2Int>();
+    public virtual void EnemmyAction()
+    {
+        List<Tile> path = m_TargetMap.FindPath(EntityPosition, m_TargetMap.GetPlayerPosition());
+
+        List<Vector2Int> paths = new List<Vector2Int>();
            
-           foreach (Tile tile in path)
-           {
-               paths.Add(new Vector2Int(tile.XPos,tile.YPos));
-           }
+        foreach (Tile tile in path)
+        {
+            paths.Add(new Vector2Int(tile.XPos,tile.YPos));
+        }
            
-           HighlightTilesManager.Instance.GenerateHighlightTiles(paths,Vector2Int.zero);
-           //Check if the path to the player is lower than the range//
-           if (path.Count > m_Range)
-           {
-               //Move toward player//
-               if (MapData.Instance.IsWalkable(path[0].TilePosition))
-               {
-                   MoveTo(path[0].TilePosition);
-               }
-           }
-           else if(path.Count < m_Range)
-           {
-               //Run Away from player if too close//
-               Vector2Int targetPos = BoardUtils.GetOppositePosition(EntityPosition, path[0].TilePosition);
-               if (MapData.Instance.IsWalkable(targetPos))
+        HighlightTilesManager.Instance.GenerateHighlightTiles(paths,Vector2Int.zero);
+        //Check if the path to the player is lower than the range//
+        if (path.Count > m_Range)
+        {
+            //Move toward player//
+            if (MapData.Instance.IsWalkable(path[0].TilePosition))
+            {
+                MoveTo(path[0].TilePosition);
+            }
+        }
+        else if(path.Count < m_Range)
+        {
+            //Run Away from player if too close//
+            Vector2Int targetPos = BoardUtils.GetOppositePosition(EntityPosition, path[0].TilePosition);
+            if (MapData.Instance.IsWalkable(targetPos))
                 MoveTo(targetPos);
-           }
         }
     }
 

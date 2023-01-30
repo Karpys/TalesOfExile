@@ -9,6 +9,12 @@ public class BoardEntity : MonoBehaviour
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
+
+    protected virtual void Start()
+    {
+        Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
+    }
+
     public void Place(int x, int y, MapData targetMap)
     {
         m_XPosition = x;
@@ -24,6 +30,7 @@ public class BoardEntity : MonoBehaviour
         m_XPosition = x;
         m_YPosition = y;
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = false;
+        //OnMove ?//
         Movement();
     }
 

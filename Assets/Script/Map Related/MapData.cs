@@ -5,18 +5,11 @@ public class MapData : SingletonMonoBehavior<MapData>
 {
     [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
     private Map m_Map = null;
-    private PlayerBoardEntity m_PlayerCharacter = null;
     public Map Map
     {
         get { return m_Map; }
         set { m_Map = value; }
     }
-
-    public void InitializeMapData(PlayerBoardEntity playerReference)
-    {
-        m_PlayerCharacter = playerReference;
-    }
-
     
     public Tile FindClosestTile(Vector2Int startPos, Vector2Int playerPos)
     {
@@ -210,6 +203,6 @@ public class MapData : SingletonMonoBehavior<MapData>
 
     public Vector2Int GetPlayerPosition()
     {
-        return m_PlayerCharacter.EntityPosition;
+        return GameManager.Instance.Player.EntityPosition;
     }
 }

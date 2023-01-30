@@ -99,14 +99,6 @@ public class MapGenerator : MonoBehaviour
             BoardEntity entity = Instantiate(boardEntity.Entity, transform.position, Quaternion.identity, m_MapData.transform);
             entity.Place(boardEntity.BoardSpawnPosition.x,boardEntity.BoardSpawnPosition.y,m_MapData);
             m_MapData.Map.EntitiesOnBoard.Add(entity);
-            
-            PlayerBoardEntity playerEntity = entity as PlayerBoardEntity;
-            if (playerEntity)
-            {
-                player = playerEntity;
-            }
         }
-
-        m_MapData.InitializeMapData(player);
     }
 }

@@ -6,7 +6,13 @@ public class PlayerBoardEntity : BoardEntity
 {
     [SerializeField] private Transform m_JumpTweenContainer = null;
     [SerializeField] private float m_MovementDuration = 0.1f;
-    
+
+    protected override void Start()
+    {
+        base.Start();
+        GameManager.Instance.RegisterPlayer(this);
+    }
+
     protected override void Movement()
     {
         JumpAnimation();
