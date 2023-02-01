@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.UI;
 using UnityEngine;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
@@ -27,6 +28,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         m_Player = player;
         m_EntityInputMovement.SetTargetEntity(m_Player);
+        SetTargetEntitySkills(player);
     }
 
     //Add a ennemy base class to the list of all ennemies//
@@ -35,7 +37,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         m_Ennemies.Add(ennemy);
     }
     
-    //OnPlayer Move//
+    //UI Manager//
+    public void SetTargetEntitySkills(BoardEntity entity)
+    {
+        Canvas_Skills.Instance.SetTargetSkills(entity);
+    }
+    //OnPlayer Action//
 
     private void OnPlayerAction(BoardEntity inputEntity)
     {

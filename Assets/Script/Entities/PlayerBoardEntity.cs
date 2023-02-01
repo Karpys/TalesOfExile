@@ -4,6 +4,8 @@ using UnityEngine.Serialization;
 
 public class PlayerBoardEntity : BoardEntity
 {
+    [Header("Player")]
+
     [SerializeField] private Transform m_JumpTweenContainer = null;
     [SerializeField] private float m_MovementDuration = 0.1f;
 

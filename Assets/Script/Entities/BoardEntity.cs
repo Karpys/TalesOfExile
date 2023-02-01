@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardEntity : MonoBehaviour
 {
+    [Header("Base")]
     [SerializeField] protected int m_XPosition = 0;
     [SerializeField] protected int m_YPosition = 0;
+    [SerializeField] protected List<SpellData> m_Spells = new List<SpellData>();
 
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
+    public List<SpellData> Spells => m_Spells;
 
     protected virtual void Start()
     {
