@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapData : SingletonMonoBehavior<MapData>
@@ -115,11 +116,11 @@ public class MapData : SingletonMonoBehavior<MapData>
                 if (!neighbour.Walkable || closeSet.Contains(neighbour))
                     continue;
 
-                int newMovementCost = currentTile.gCost + GetDistance(currentTile, neighbour);
+                float newMovementCost = currentTile.gCost + GetDistance(currentTile, neighbour,false);
                 if (newMovementCost < neighbour.gCost || !openSet.Contains(neighbour))
                 {
                     neighbour.gCost = newMovementCost;
-                    neighbour.hCost = GetDistance(neighbour, playerTile);
+                    neighbour.hCost = GetDistance(neighbour, playerTile,true);
                     neighbour.ParentTile = currentTile;
 
                     if (!openSet.Contains(neighbour))
@@ -147,15 +148,25 @@ public class MapData : SingletonMonoBehavior<MapData>
         HighlightTilesManager.Instance.GenerateHighlightTiles(path);
     }
 
-    public int GetDistance(Tile tileStart, Tile tileEnd)
+    public float GetDistance(Tile tileStart, Tile tileEnd,bool precise)
     {
+        //Source//
+        //http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html//
+        //Base
         int distX = Mathf.Abs(tileStart.XPos - tileEnd.XPos);
         int distY = Mathf.Abs(tileStart.YPos - tileEnd.YPos);
-
-        if (distX > distY)
-            return 12 * distY + 10 * (distX - distY);
-        return 12 * distX + 10 * (distY - distX);
         
+        //Heuristics GOOD : D1 = 1 and D2 = 1.01f//
+        // float D1 = 1;
+        // float D2 = 1.1f;
+        // return D1 * (distX + distY) + (D2 - 2 * D1) * Math.Min(distX, distY);
+
+        //Euclidian Distance Perfect Result.. Higher Cost But thats exactly what i was thinking ^^//
+        return (float)Math.Sqrt(distX * distX + distY * distY);
+
+        // if (distX > distY)
+        //     return D1 * (distX - distY) + D2 * distY;
+        // return D1 * (distY - distX) + D2 * distX;
     }
 
     public List<Tile> GetNeighbours(Tile tile)

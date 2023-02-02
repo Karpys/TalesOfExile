@@ -33,7 +33,7 @@ public class BoardEnnemyEntity : BoardEntity
         }
         
         //Debug//
-        /*HighlightTilesManager.Instance.GenerateHighlightTiles(paths,Vector2Int.zero);*/
+        HighlightTilesManager.Instance.GenerateHighlightTiles(paths);
         
         //Check if the path to the player is lower than the range//
         if (path.Count > m_Range)

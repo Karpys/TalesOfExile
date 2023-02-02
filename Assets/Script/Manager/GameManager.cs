@@ -21,6 +21,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         A_OnPlayerAction += OnPlayerAction;
     }
+    
+    //Debug//
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TriggerAllEnemiesAction();
+        }
+    }
     //INTIALIZATION ENTITY//
     
     //Set the player value//

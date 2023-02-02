@@ -18,11 +18,11 @@ public class Tile : MonoBehaviour
         set => m_Walkable = value;
     }
     //Path Finding//
-    public int gCost;
-    public int hCost;
+    public float gCost;
+    public float hCost;
 
     private Tile m_ParentTile = null;
-    public int fCost => gCost + hCost;
+    public float fCost => gCost + hCost;
 
     public Tile ParentTile
     {
