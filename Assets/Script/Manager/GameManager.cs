@@ -27,7 +27,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            TriggerAllEnemiesAction();
+            TriggerAllEnnemyAction();
         }
     }
     //INTIALIZATION ENTITY//
@@ -54,6 +54,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     //OnPlayer Action//
 
     private void OnPlayerAction(BoardEntity inputEntity)
+    {
+        /*TriggerAllEnnemyAction();*/
+    }
+    
+    //Enemy Action//
+    private void TriggerAllEnnemyAction()
     {
         for (int i = 0; i < m_Ennemies.Count; i++)
         {

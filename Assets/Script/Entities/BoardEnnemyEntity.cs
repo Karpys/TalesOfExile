@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Script.PathFinding;
 using Script.Utils;
 using TweenCustom;
 using UnityEngine;
@@ -23,16 +24,14 @@ public class BoardEnnemyEntity : BoardEntity
 
     public virtual void EnemmyAction()
     {
-        List<Tile> path = m_TargetMap.FindPath(EntityPosition, m_TargetMap.GetPlayerPosition());
+        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetPlayerPosition(),true);
 
+        //Debug//
         List<Vector2Int> paths = new List<Vector2Int>();
-           
         foreach (Tile tile in path)
         {
             paths.Add(new Vector2Int(tile.XPos,tile.YPos));
         }
-        
-        //Debug//
         HighlightTilesManager.Instance.GenerateHighlightTiles(paths);
         
         //Check if the path to the player is lower than the range//

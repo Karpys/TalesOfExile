@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.PathFinding;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -61,6 +62,7 @@ public class MapGenerator : MonoBehaviour
     {
         Map map = new Map();
         m_MapData.Map = map;
+        SetPathFindingMap();
         //Tiles Initiation//
         map.Height = m_Height;
         map.Width = m_Width;
@@ -100,5 +102,10 @@ public class MapGenerator : MonoBehaviour
             entity.Place(boardEntity.BoardSpawnPosition.x,boardEntity.BoardSpawnPosition.y,m_MapData);
             m_MapData.Map.EntitiesOnBoard.Add(entity);
         }
+    }
+
+    private void SetPathFindingMap()
+    {
+        PathFinding.mapData = m_MapData;
     }
 }

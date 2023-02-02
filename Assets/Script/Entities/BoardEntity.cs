@@ -37,14 +37,16 @@ public class BoardEntity : MonoBehaviour
         //OnMove ?//
         Movement();
     }
+    
+    public void MoveTo(Vector2Int pos)
+    {
+        MoveTo(pos.x,pos.y);
+    }
 
     protected virtual void Movement()
     {
         transform.position = m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     }
     
-    public void MoveTo(Vector2Int pos)
-    {
-        MoveTo(pos.x,pos.y);
-    }
+    
 }
