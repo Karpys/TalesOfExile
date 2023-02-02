@@ -144,7 +144,7 @@ public class MapData : SingletonMonoBehavior<MapData>
             currentTile = currentTile.ParentTile;
         }
         
-        HighlightTilesManager.Instance.GenerateHighlightTiles(path,new Vector2Int(0,0));
+        HighlightTilesManager.Instance.GenerateHighlightTiles(path);
     }
 
     public int GetDistance(Tile tileStart, Tile tileEnd)

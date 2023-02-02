@@ -8,9 +8,9 @@ public class SpellDataScriptable : ScriptableObject
     [Header("Spell UI")]
     public Sprite m_SpellIconBorder = null;
     public Sprite m_SpellIcon = null;
+
     [Header("Spell Display In Game Option")]
-    public SpellOrigin Origin = SpellOrigin.Hero;
-    public SpellDisplayType DisplayType = SpellDisplayType.Square;
+    public ZoneSelection m_Selection = null;
     [Header("Base Spell Data")]
     public int Range = 0;
 }
@@ -21,14 +21,20 @@ public class SpellData
     public SpellDataScriptable m_Data = null;
 }
 
+[System.Serializable]
+public class ZoneSelection
+{
+    public ZoneOrigin Origin = ZoneOrigin.Self;
+    public ZoneType DisplayType = ZoneType.Square;
+}
 
-public enum SpellDisplayType
+public enum ZoneType
 {
     Circle,
     Square,
 }
-public enum SpellOrigin
+public enum ZoneOrigin
 {
-    Hero,
+    Self,
     Mouse,
 }

@@ -439,6 +439,49 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &637320841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637320842}
+  - component: {fileID: 637320843}
+  m_Layer: 0
+  m_Name: ZoneTileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &637320842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637320841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1362587457}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &637320843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637320841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8a5b948574720b21a52f981ff0d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1072997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +646,7 @@ Transform:
   - {fileID: 1849714071}
   - {fileID: 101270389}
   - {fileID: 1450611267}
+  - {fileID: 637320842}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -637,6 +681,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HighlightTile: {fileID: 4068747746904219747, guid: 5ad4ed7b136b1674284ca513d807f32c, type: 3}
   m_PoolSize: 100
+  m_SelectionTest:
+    Origin: 0
+    DisplayType: 1
+  range: 3
 --- !u!4 &1450611267
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3e377572164ab480daca4c78e498eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpellData: {fileID: 11400000, guid: ff06f51fb59e2ce47969c90dc3a4876f, type: 2}
 --- !u!4 &2045092500
 Transform:
   m_ObjectHideFlags: 0
