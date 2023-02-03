@@ -17,8 +17,12 @@ public class BoardEntity : MonoBehaviour
     protected virtual void Start()
     {
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
+        
+        //Initi Serialize Spells//
+        RegisterStartSpells();
     }
-
+    
+    //Board Related
     public void Place(int x, int y, MapData targetMap)
     {
         m_XPosition = x;
@@ -48,5 +52,17 @@ public class BoardEntity : MonoBehaviour
         transform.position = m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     }
     
-    
+    //Entity Behaviour Related//
+    private void RegisterStartSpells()
+    {
+        for (int i = 0; i < m_Spells.Count; i++)
+        {
+            RegisterSpell(m_Spells[i]);
+        }
+    }
+
+    protected void RegisterSpell(SpellData spell)
+    {
+        spell.AttachedEntity = this;
+    }
 }

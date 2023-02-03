@@ -10,7 +10,7 @@ public class SpellDataScriptable : ScriptableObject
     public Sprite m_SpellIcon = null;
 
     [Header("Spell Display In Game Option")]
-    public ZoneSelection m_Selection = null;
+    public ZoneSelection[] m_Selection = null;
     [Header("Base Spell Data")]
     public int Range = 0;
 }
@@ -19,6 +19,8 @@ public class SpellDataScriptable : ScriptableObject
 public class SpellData
 {
     public SpellDataScriptable m_Data = null;
+    //Spell Variables//
+    public BoardEntity AttachedEntity = null;
 }
 
 [System.Serializable]
@@ -26,6 +28,9 @@ public class ZoneSelection
 {
     public ZoneOrigin Origin = ZoneOrigin.Self;
     public ZoneType DisplayType = ZoneType.Square;
+    public int Range = 0;
+    public bool NeedValidation = true;
+    public bool ActionSelection = false;
 }
 
 public enum ZoneType

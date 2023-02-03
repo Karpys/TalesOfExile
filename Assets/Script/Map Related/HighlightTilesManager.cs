@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Script.Map_Related;
 using UnityEngine;
 
 public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager>
@@ -16,6 +15,7 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
 
     private List<GameObject> m_CurrentTiles = new List<GameObject>();
 
+    private int m_LockTilesCount = 0;
     private void Start()
     {
         GeneratePool();
@@ -25,7 +25,7 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            GenerateHighlightTiles(ZoneTileManager.Instance.GetSelectionZone(m_SelectionTest,Vector2Int.zero,range));
+            HighlightTiles(ZoneTileManager.Instance.GetSelectionZone(m_SelectionTest,Vector2Int.zero,range));
         }
     }
 
@@ -39,15 +39,30 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         }
     }
 
-    public void GenerateHighlightTiles(List<Vector2Int> tilesPosition)
+    public void HighlightTiles(List<Vector2Int> tilesPosition)
     {
         for (int i = 0; i < tilesPosition.Count; i++)
         {
-            m_CurrentTiles[i].SetActive(true);
-            m_CurrentTiles[i].transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
+            m_CurrentTiles[i + m_LockTilesCount].SetActive(true);
+            m_CurrentTiles[i + m_LockTilesCount].transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
         }
 
-        for (int i = tilesPosition.Count; i < m_CurrentTiles.Count; i++)
+        for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
+        {
+            m_CurrentTiles[i].SetActive(false);
+        }
+    }
+
+    public void LockHighLightTiles(int count)
+    {
+        m_LockTilesCount += count;
+    }
+
+    public void ResetHighlighTilesAndLock()
+    {
+        m_LockTilesCount = 0;
+        
+        for (int i = 0 + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
         {
             m_CurrentTiles[i].SetActive(false);
         }

@@ -26,7 +26,7 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
         if (m_DebugMouseToPlayerTiles)
         {
             List<Vector2Int> PlayerToMouse = PathFinding.FindPath(MapData.Instance.GetPlayerPosition(), m_MouseBoardPosition,true);
-            HighlightTilesManager.Instance.GenerateHighlightTiles(PlayerToMouse);
+            HighlightTilesManager.Instance.HighlightTiles(PlayerToMouse);
         }
     }
 }

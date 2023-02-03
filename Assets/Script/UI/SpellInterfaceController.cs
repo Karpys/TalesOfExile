@@ -19,7 +19,7 @@ namespace Script.UI
             for (int i = 0; i < m_SpellCount; i++)
             {
                 m_IconsHolder[i] = Instantiate(m_SpellUI, m_SpellLayout.transform);
-                m_IconsHolder[i].SetSpellKey(i + 1);
+                m_IconsHolder[i].SetSpellKey(i);
             }
         }
 
@@ -27,8 +27,7 @@ namespace Script.UI
         {
             for (int i = 0; i < entity.Spells.Count; i++)
             {
-                m_IconsHolder[i].SetSpellIcon(entity.Spells[i].m_Data.m_SpellIcon,
-                    entity.Spells[i].m_Data.m_SpellIconBorder);
+                m_IconsHolder[i].SetSpell(entity.Spells[i]);
             }
         }
     }
