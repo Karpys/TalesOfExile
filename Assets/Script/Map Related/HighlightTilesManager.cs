@@ -13,7 +13,7 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
     public int range = 3;
     // Update is called once per frame
 
-    private List<GameObject> m_CurrentTiles = new List<GameObject>();
+    private List<SpriteRenderer> m_CurrentTiles = new List<SpriteRenderer>();
 
     private int m_LockTilesCount = 0;
     private void Start()
@@ -34,22 +34,25 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         for (int i = 0; i < m_PoolSize; i++)
         {
             GameObject tile = Instantiate(m_HighlightTile,transform);
-            m_CurrentTiles.Add(tile);
+            m_CurrentTiles.Add(tile.GetComponent<SpriteRenderer>());
             tile.SetActive(false);
         }
     }
 
-    public void HighlightTiles(List<Vector2Int> tilesPosition)
+    public void HighlightTiles(List<Vector2Int> tilesPosition,Color? targetColor = null)
     {
         for (int i = 0; i < tilesPosition.Count; i++)
         {
-            m_CurrentTiles[i + m_LockTilesCount].SetActive(true);
+            Color color = targetColor ?? Color.white;
+            
+            m_CurrentTiles[i + m_LockTilesCount].gameObject.SetActive(true);
             m_CurrentTiles[i + m_LockTilesCount].transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
+            m_CurrentTiles[i + m_LockTilesCount].color = color;
         }
 
         for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
         {
-            m_CurrentTiles[i].SetActive(false);
+            m_CurrentTiles[i].gameObject.SetActive(false);
         }
     }
 
@@ -64,7 +67,7 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         
         for (int i = 0 + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
         {
-            m_CurrentTiles[i].SetActive(false);
+            m_CurrentTiles[i].gameObject.SetActive(false);
         }
     }
 }

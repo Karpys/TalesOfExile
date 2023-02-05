@@ -15,7 +15,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public Action<BoardEntity> A_OnPlayerAction; 
     //Ennemies//
     private List<BoardEnnemyEntity> m_Ennemies = new List<BoardEnnemyEntity>();
-
+    public List<BoardEnnemyEntity> Ennemies => m_Ennemies;
 
     private void Awake()
     {

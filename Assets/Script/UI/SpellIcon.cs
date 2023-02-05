@@ -15,7 +15,7 @@ public class SpellIcon : MonoBehaviour
     private SpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
 
-    private static int START_ID_KEYCODE = 97;
+    private static int START_ID_KEYCODE = 49;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class SpellIcon : MonoBehaviour
     public void SetSpellKey(int id)
     {
         m_SpellKey.text = id + 1+ "";
-        // m_SpellKeyCode = (KeyCode)START_ID_KEYCODE + id;
+        m_SpellKeyCode = (KeyCode)START_ID_KEYCODE + id;
     }
     public void SetSpell(SpellData spell)
     {
