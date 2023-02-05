@@ -23,4 +23,11 @@ MonoBehaviour:
       NeedValidation: 0
       TargetZoneValidation: -1
     ActionSelection: 0
-  - Origin:
+  - Origin: 1
+    DisplayType: 0
+    Range: 2
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: 0
+    ActionSelection: 1
+  Range: 3
