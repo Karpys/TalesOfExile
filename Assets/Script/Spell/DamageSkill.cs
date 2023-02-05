@@ -8,8 +8,8 @@ public class DamageSkill : BaseSpellTriggerScriptable
     public override void Trigger(SpellData spellData,List<List<Vector2Int>> actionTiles)
     {
         //Compute Spell DamageSources and Damage Values//
-        List<DamageSource> damageSources = new List<DamageSource>();
-        damageSources.Add(new DamageSource(m_DamageParameters.InitialSourceDamage));
+        Dictionary<SubDamageType, DamageSource> damageSources = new Dictionary<SubDamageType, DamageSource>();
+        damageSources.Add(m_DamageParameters.InitialSourceDamage.DamageType,new DamageSource(m_DamageParameters.InitialSourceDamage));
         
         //Todo//
         //Get Additional damageSources//
@@ -19,22 +19,21 @@ public class DamageSkill : BaseSpellTriggerScriptable
 
         for (int i = 0; i < additionalSources.Length; i++)
         {
-            bool contain = false;
-            for (int j = 0; j < damageSources.Count; j++)
+            DamageSource currentSource = null;
+            if (damageSources.TryGetValue(additionalSources[i].DamageType, out currentSource))
             {
-                if (damageSources[j].DamageType == additionalSources[i].DamageType)
-                {
-                    damageSources[j].Damage += additionalSources[i].Damage;
-                    contain = true;
-                }
+                currentSource.Damage += additionalSources[i].Damage;
+            }
+            else
+            {
+                damageSources.Add(additionalSources[i].DamageType,new DamageSource(additionalSources[i]));
             }
             
-            if(!contain)
-                damageSources.Add(new DamageSource(additionalSources[i]));
+            
         }
         //Apply Damage Modifier Base on the entity damageType Modifier//
         //Make sure the modifier are precalculated//
-        foreach (DamageSource source in damageSources)
+        foreach (DamageSource source in damageSources.Values)
         {
             source.Damage *= (spellData.AttachedEntity.EntityStats.GetDamageModifier(source.DamageType) + spellData.AttachedEntity.EntityStats.GetMainTypeModifier(m_DamageParameters.MainDamageType)
                               + 100) / 100;
@@ -51,9 +50,10 @@ public class DamageSkill : BaseSpellTriggerScriptable
                     continue;
                 
                 //Foreach Damage Sources//
-                for (int h = 0; h < damageSources.Count; h++)
+                foreach (DamageSource damageSource in damageSources.Values)
                 {
-                    DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSources[h]); //DamageSource);
+                    DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSource); //DamageSource);
+
                 }
             }
         }
