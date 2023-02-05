@@ -248,9 +248,13 @@ MonoBehaviour:
   m_MapData: {fileID: 1849714072}
   m_BoardEntities:
   - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
-    BoardSpawnPosition: {x: 2, y: 2}
+    BoardSpawnPosition: {x: 15, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 16, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 17, y: 15}
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
-    BoardSpawnPosition: {x: 5, y: 5}
+    BoardSpawnPosition: {x: 6, y: 5}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HighlightTile: {fileID: 4068747746904219747, guid: 5ad4ed7b136b1674284ca513d807f32c, type: 3}
-  m_PoolSize: 100
+  m_PoolSize: 500
   m_SelectionTest:
     Origin: 0
     DisplayType: 1

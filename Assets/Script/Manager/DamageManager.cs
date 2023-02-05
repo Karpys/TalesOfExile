@@ -4,35 +4,16 @@ using UnityEngine;
 
 public class DamageManager : SingletonMonoBehavior<DamageManager>
 {
-    public void TryDamageEnnemy(Vector2Int pos, BoardEntity damageFrom,out BoardEntity damageTo)//Add DamageClass
+    public void TryDamageEnnemy(BoardEntity damageTo, BoardEntity damageFrom,DamageSource damageSource)
     {
-        damageTo = GetEntityAt(pos);
-
-        if (damageTo == null)
-        {
-            Debug.Log("No entity found at :" + pos +" continue");
-            return;
-        }
-
-        DamageStep(damageTo,damageFrom);//Add DamageClass
+        DamageStep(damageTo,damageFrom,damageSource);//Add DamageClass
     }
 
-    private void DamageStep(BoardEntity damageTo,BoardEntity damageFrom)
+    private void DamageStep(BoardEntity damageTo,BoardEntity damageFrom,DamageSource damageSource)
     {
         //Do Something//
         //Do damage//
-        damageTo.MoveTo(10,10);
-    }
-
-    public BoardEntity GetEntityAt(Vector2Int entityPos)
-    {
-        List<BoardEnnemyEntity> boardEntities = GameManager.Instance.Ennemies;
-        
-        for (int i = 0; i < boardEntities.Count; i++)
-        {
-            if (boardEntities[i].EntityPosition == entityPos)
-                return boardEntities[i];
-        }
-        return null;
+        damageTo.ChangeLifeValue(-damageSource.Damage);
+        Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + damageSource.DamageType + " damage");
     }
 }

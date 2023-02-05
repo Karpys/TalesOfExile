@@ -24,15 +24,15 @@ public class BoardEnnemyEntity : BoardEntity
 
     public virtual void EnemmyAction()
     {
-        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetPlayerPosition(),true);
+        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetPlayerPosition(),false);
 
         //Debug//
-        List<Vector2Int> paths = new List<Vector2Int>();
-        foreach (Tile tile in path)
-        {
-            paths.Add(new Vector2Int(tile.XPos,tile.YPos));
-        }
-        HighlightTilesManager.Instance.HighlightTiles(paths);
+        //List<Vector2Int> paths = new List<Vector2Int>();
+        //foreach (Tile tile in path)
+        //{
+        //    paths.Add(new Vector2Int(tile.XPos,tile.YPos));
+        //}
+        //HighlightTilesManager.Instance.HighlightTiles(paths);
         
         //Check if the path to the player is lower than the range//
         if (path.Count > m_Range)

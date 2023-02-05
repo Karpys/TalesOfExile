@@ -50,10 +50,11 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
             m_CurrentTiles[i + m_LockTilesCount].color = color;
         }
 
-        for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
+        //??//
+        /*for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
         {
             m_CurrentTiles[i].gameObject.SetActive(false);
-        }
+        }*/
     }
 
     public void LockHighLightTiles(int count)
