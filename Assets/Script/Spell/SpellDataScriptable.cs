@@ -23,8 +23,16 @@ public class SpellDataScriptable : ScriptableObject
 public class SpellData
 {
     public SpellDataScriptable m_Data = null;
+    //SpellTrigger Class//
+    public BaseSpellTrigger SpellTrigger = null;
     //Spell Variables//
     public BoardEntity AttachedEntity = null;
+
+    public void InitializeTrigger()
+    {
+        SpellTrigger = m_Data.m_SpellTrigger.SetUpTrigger();
+        SpellTrigger.ComputeSpellData(AttachedEntity);
+    }
 }
 
 [System.Serializable]

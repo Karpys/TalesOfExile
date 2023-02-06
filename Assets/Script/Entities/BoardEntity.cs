@@ -115,6 +115,7 @@ public class BoardEntity : MonoBehaviour
     protected void RegisterSpell(SpellData spell)
     {
         spell.AttachedEntity = this;
+        spell.InitializeTrigger();
     }
     
     //Stats Related//
@@ -131,7 +132,10 @@ public class BoardEntity : MonoBehaviour
         List<DamageSource> additionalSources = new List<DamageSource>();
         
         //Test is in local entity
-        additionalSources.Add(m_TestModifier.GetAdditionalDamage(damageType));
+        DamageSource newSource = m_TestModifier.GetAdditionalDamage(damageType);
+        
+        if(newSource != null)
+            additionalSources.Add(newSource);
         return additionalSources.ToArray();
     }
 }

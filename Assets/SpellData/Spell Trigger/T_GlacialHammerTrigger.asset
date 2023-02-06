@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa68ebe261d4ecda0ccc1d688fb9704, type: 3}
   m_Name: T_GlacialHammerTrigger
   m_EditorClassIdentifier: 
-  m_DamageParameters:
+  DamageParameters:
     DamageType:
       MainDamageType: 0
-      SubDamageTypes: 0000000003000000
+      SubDamageTypes: 0300000000000000
     WeaponAdditionalDamagePercentage: 100
     InitialSourceDamage:
-      Damage: 10
+      Damage: 40
       DamageType: 3

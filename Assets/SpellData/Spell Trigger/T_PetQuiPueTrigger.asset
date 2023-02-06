@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa68ebe261d4ecda0ccc1d688fb9704, type: 3}
   m_Name: T_PetQuiPueTrigger
   m_EditorClassIdentifier: 
-  m_DamageParameters:
-    MainDamageType: 2
+  DamageParameters:
+    DamageType:
+      MainDamageType: 2
+      SubDamageTypes: 04000000
     WeaponAdditionalDamagePercentage: 0
-    SubDamageTypes: 04000000
     InitialSourceDamage:
       Damage: 50
       DamageType: 4
