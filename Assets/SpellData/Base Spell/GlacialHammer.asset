@@ -30,4 +30,4 @@ MonoBehaviour:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
-  Range: 2
+  Range: 1

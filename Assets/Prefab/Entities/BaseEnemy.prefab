@@ -45,6 +45,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_XPosition: 0
   m_YPosition: 0
+  m_EntityGroup: 1
+  m_Life: 100
+  m_Stats:
+    MeleeModifier: 0
+    ProjectileModifier: 0
+    SpellModifier: 0
+    ColdDamageModifier: 0
+    HolyDamageModifier: 0
+    FireDamageModifier: 0
+  m_Spells:
+  - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
+    AttachedEntity: {fileID: 0}
+  m_Range: 1
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0

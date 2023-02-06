@@ -71,8 +71,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          {
             //Trigger Spells//
             //Send List of Tiles Action//
-            //The Spell Interpret the data//
-            m_CurrentSpell.SpellTrigger.Trigger(m_CurrentSpell,m_ActionTiles);
+            GameManager.Instance.Player.CastSpell(m_CurrentSpell,m_ActionTiles);
             ResetSpellQueue();
          }
       }

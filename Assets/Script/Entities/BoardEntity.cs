@@ -49,21 +49,30 @@ public class EntityStats
         }
     }
 }
+
+public enum EntityGroup
+{
+    Friendly,
+    Ennemy,
+    Neutral,
+}
 public class BoardEntity : MonoBehaviour
 {
     [Header("Base")]
     [SerializeField] protected int m_XPosition = 0;
     [SerializeField] protected int m_YPosition = 0;
+    [SerializeField] protected EntityGroup m_EntityGroup = EntityGroup.Neutral;
     [SerializeField] protected float m_Life = 100;
     [SerializeField] protected EntityStats m_Stats = null;
     [SerializeField] protected List<SpellData> m_Spells = new List<SpellData>();
-    [SerializeField] protected AddDamageModifier m_TestModifier = null;
+    // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public List<SpellData> Spells => m_Spells;
     public EntityStats EntityStats => m_Stats;
+    public EntityGroup EntityGroup => m_EntityGroup;
 
     protected virtual void Start()
     {
@@ -120,6 +129,40 @@ public class BoardEntity : MonoBehaviour
     
     //Stats Related//
     
+    //Spell Related//
+    //Player Cast Mainly or Controlled Entity//
+    public void CastSpell(SpellData spellData,List<List<Vector2Int>> actionTiles)
+    {
+        spellData.SpellTrigger.Trigger(spellData,actionTiles);
+    }
+
+    //Cast
+    public void CastSpellAt(SpellData spellData,Vector2Int pos)
+    {
+        List<List<Vector2Int>> tilesAction = new List<List<Vector2Int>>();
+
+        for (int i = 0; i < spellData.m_Data.m_Selection.Length; i++)
+        {
+            ZoneSelection currentSelection = spellData.m_Data.m_Selection[i];
+            
+            if (currentSelection.ActionSelection)
+            {  
+                Vector2Int origin = Vector2Int.zero;
+                if (currentSelection.Origin == ZoneOrigin.Self)
+                {
+                    origin = EntityPosition;
+                }
+                else
+                {
+                    origin = pos;
+                }
+                
+                tilesAction.Add(ZoneTileManager.Instance.GetSelectionZone(currentSelection,origin,currentSelection.Range));
+            }
+        }
+        
+        CastSpell(spellData,tilesAction);
+    }
     //Damage Related//
     public void ChangeLifeValue(float value)
     {
@@ -132,10 +175,11 @@ public class BoardEntity : MonoBehaviour
         List<DamageSource> additionalSources = new List<DamageSource>();
         
         //Test is in local entity
-        DamageSource newSource = m_TestModifier.GetAdditionalDamage(damageType);
+        // DamageSource newSource = m_TestModifier.GetAdditionalDamage(damageType);
+        //
+        // if(newSource != null)
+        //     additionalSources.Add(newSource);
         
-        if(newSource != null)
-            additionalSources.Add(newSource);
         return additionalSources.ToArray();
     }
 }

@@ -23,7 +23,7 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
             case ZoneType.Circle:
                 //Circle Display
                 Vector2Int middleZone = Vector2Int.zero;
-
+                
                 for (int x = -range + 1; x < range; x++)
                 {
                     for (int y = -range + 1; y < range; y++)

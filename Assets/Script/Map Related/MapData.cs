@@ -37,15 +37,26 @@ public class MapData : SingletonMonoBehavior<MapData>
         return GameManager.Instance.Player.EntityPosition;
     }
     
-    public BoardEntity GetEntityAt(Vector2Int entityPos)
+    public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
     {
-        List<BoardEnnemyEntity> boardEntities = GameManager.Instance.Ennemies;
-        
-        for (int i = 0; i < boardEntities.Count; i++)
+        if (targetEntityGroup == EntityGroup.Ennemy)
         {
-            if (boardEntities[i].EntityPosition == entityPos)
-                return boardEntities[i];
+            List<BoardEnnemyEntity> boardEntities = GameManager.Instance.Ennemies;
+            
+            for (int i = 0; i < boardEntities.Count; i++)
+            {
+                if (boardEntities[i].EntityPosition == entityPos)
+                    return boardEntities[i];
+            }
+        }else if (targetEntityGroup == EntityGroup.Friendly)
+        {
+            //List friendly entity//
+            if (GetPlayerPosition() == entityPos)
+            {
+                return GameManager.Instance.Player;
+            }
         }
+        
         return null;
     }
 }

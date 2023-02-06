@@ -36,6 +36,7 @@ public class DamageSpellTrigger : BaseSpellTrigger
     //Apply Damage To All Ennemies in the actionTiles
     public override void Trigger(SpellData spellData,List<List<Vector2Int>> actionTiles)
     {
+        EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
         //Apply Damage Modifier Base on the entity damageType Modifier//
         //Make sure the modifier are precalculated//
         foreach (DamageSource source in DamageSources.Values)
@@ -50,7 +51,7 @@ public class DamageSpellTrigger : BaseSpellTrigger
             for (int j = 0; j < actionTiles[i].Count; j++)
             {
                 //Damage Entity At actionTile Pos//
-                BoardEntity damageTo = MapData.Instance.GetEntityAt(actionTiles[i][j]);
+                BoardEntity damageTo = MapData.Instance.GetEntityAt(actionTiles[i][j],targetGroup);
                 if(!damageTo)
                     continue;
                 
@@ -58,7 +59,6 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 foreach (DamageSource damageSource in DamageSources.Values)
                 {
                     DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSource); //DamageSource);
-
                 }
             }
         }

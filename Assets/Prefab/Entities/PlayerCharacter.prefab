@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_XPosition: 0
   m_YPosition: 0
+  m_EntityGroup: 0
   m_Life: 100
   m_Stats:
     MeleeModifier: 0

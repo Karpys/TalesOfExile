@@ -35,6 +35,13 @@ public class BoardEnnemyEntity : BoardEntity
         //HighlightTilesManager.Instance.HighlightTiles(paths);
         
         //Check if the path to the player is lower than the range//
+        for (int i = 0; i < m_Spells.Count; i++)
+        {
+            //TODO
+            //Check First Selection Contain//
+        }
+
+        //Movement Action//
         if (path.Count > m_Range)
         {
             //Move toward player//

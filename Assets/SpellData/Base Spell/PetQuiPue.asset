@@ -18,9 +18,9 @@ MonoBehaviour:
   m_Selection:
   - Origin: 0
     DisplayType: 0
-    Range: 3
+    Range: 2
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: -1
     ActionSelection: 1
-  Range: 3
+  Range: 2
