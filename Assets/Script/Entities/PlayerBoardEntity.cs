@@ -23,18 +23,18 @@ public class PlayerBoardEntity : BoardEntity
     void JumpAnimation()
     {
         transform.DoKill();
-        transform.DoMove(m_MovementDuration, m_TargetMap.GetTilePosition(m_XPosition, m_YPosition));
+        transform.DoMove( m_TargetMap.GetTilePosition(m_XPosition, m_YPosition),m_MovementDuration);
         JumpTween();
     }
 
     private void JumpTween()
     {
-        BaseTween tween = m_JumpTweenContainer.transform.DoLocalMove(m_MovementDuration / 2f, new Vector3(0, 0.2f, 0));
+        BaseTween tween = m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0.2f, 0), m_MovementDuration / 2f);
         tween.m_onComplete += () => {ReleaseJumpTween();};
     }
 
     private void ReleaseJumpTween()
     {
-        m_JumpTweenContainer.transform.DoLocalMove(m_MovementDuration/2f, new Vector3(0, 0, 0));
+        m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0, 0), m_MovementDuration / 2f);
     }
 }

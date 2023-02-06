@@ -9,11 +9,25 @@ namespace TweenCustom
 
         #region DoType
 
-        
 
-        public static BaseTween DoMove(this Transform trans,float duration,Vector3 endValue)
+
+        public static BaseTween DoMove(this Transform trans, Vector3 endValue,float duration)
         {
-            TweenMove baseTween = new TweenMove(trans, duration,endValue);
+            TweenMove baseTween = new TweenMove(trans, endValue,duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
+        public static BaseTween DoMoveX(this Transform trans, float endValue,float duration)
+        {
+            TweenMoveX baseTween = new TweenMoveX(trans, endValue,duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
+        public static BaseTween DoMoveY(this Transform trans, float endValue,float duration)
+        {
+            TweenMoveY baseTween = new TweenMoveY(trans, endValue,duration);
             TweenManager.Instance.AddTween(baseTween);
             return baseTween;
         }
@@ -23,16 +37,16 @@ namespace TweenCustom
             TweenManager.Instance.KillTween(trans);
         }
 
-        public static BaseTween DoLocalMove(this Transform trans, float duration, Vector3 endValue)
+        public static BaseTween DoLocalMove(this Transform trans, Vector3 endValue,float duration)
         {
-            TweenLocalMove baseTween = new TweenLocalMove(trans, duration, endValue);
+            TweenLocalMove baseTween = new TweenLocalMove(trans, endValue, duration);
             TweenManager.Instance.AddTween(baseTween);
             return baseTween;
         }
         
-        public static BaseTween DoRotate(this Transform trans, float duration, Vector3 endValue)
+        public static BaseTween DoRotate(this Transform trans, Vector3 endValue,float duration)
         {
-            TweenRotate baseTween = new TweenRotate(trans, duration, endValue);
+            TweenRotate baseTween = new TweenRotate(trans, endValue, duration);
             TweenManager.Instance.AddTween(baseTween);
             return baseTween;
         }
@@ -88,5 +102,67 @@ namespace TweenCustom
         }
 
         #endregion
+    }
+    
+    public class TweenMoveX: BaseTween
+    {
+        public TweenMoveX(Transform target,float endValue,float duration)
+        {
+            m_Target = target;
+            m_Duration = duration;
+            m_EndValue = new Vector3(endValue,0,0);
+            m_StartValue = target.position;
+        }
+
+        public override void Step()
+        {
+            if(base.IsDelay())return;
+            base.Step();
+            m_Target.position = NextPosition();
+            base.LateStep();
+        }
+
+        public Vector3 NextPosition()
+        {
+            Vector3 newPosition = m_Target.transform.position;
+            newPosition.x = Mathf.LerpUnclamped(m_StartValue.x,m_EndValue.x,(float)Evaluate());
+            return newPosition;
+        }
+
+        public override void TweenRefreshStartValue()
+        {
+            m_StartValue = m_Target.position;
+        }
+    }
+    
+    public class TweenMoveY: BaseTween
+    {
+        public TweenMoveY(Transform target,float endValue,float duration)
+        {
+            m_Target = target;
+            m_Duration = duration;
+            m_EndValue = new Vector3(0,endValue,0);
+            m_StartValue = target.position;
+        }
+
+        public override void Step()
+        {
+            if(base.IsDelay())return;
+            base.Step();
+            m_Target.position = NextPosition();
+            base.LateStep();
+        }
+
+        public Vector3 NextPosition()
+        {
+            Vector3 newPosition = m_Target.transform.position;
+            newPosition.y = Mathf.LerpUnclamped(m_StartValue.y,m_EndValue.y,(float)Evaluate());
+            return newPosition;
+        }
+
+        public override void TweenRefreshStartValue()
+        {
+            m_StartValue = m_Target.position;
+        }
     }
 }

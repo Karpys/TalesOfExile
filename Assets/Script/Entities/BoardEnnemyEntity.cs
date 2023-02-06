@@ -11,7 +11,7 @@ public class BoardEnnemyEntity : BoardEntity
     protected override void Start()
     {
         base.Start();
-        GameManager.Instance.RegisterEnemy(this);
+        GameManager.Instance.RegisterEnnemy(this);
     }
 
     public void Update()
@@ -35,10 +35,9 @@ public class BoardEnnemyEntity : BoardEntity
         //HighlightTilesManager.Instance.HighlightTiles(paths);
         
         //Check if the path to the player is lower than the range//
-        for (int i = 0; i < m_Spells.Count; i++)
+        if (path.Count == 1)
         {
-            //TODO
-            //Check First Selection Contain//
+            CastSpellAt(m_Spells[0],m_TargetMap.GetPlayerPosition());
         }
 
         //Movement Action//
@@ -62,6 +61,15 @@ public class BoardEnnemyEntity : BoardEntity
     protected override void Movement()
     {
         transform.DoKill();
-        transform.DoMove(0.1f, m_TargetMap.GetTilePosition(m_XPosition, m_YPosition));
+        transform.DoMove( m_TargetMap.GetTilePosition(m_XPosition, m_YPosition),0.1f);
+    }
+    
+    //Damage Related
+
+    protected override void TriggerDeath()
+    {
+        GameManager.Instance.UnRegisterEnnemy(this);
+        RemoveFromBoard();
+        Destroy(gameObject);
     }
 }

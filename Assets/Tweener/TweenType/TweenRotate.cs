@@ -5,7 +5,7 @@ namespace TweenCustom
 {
     public class TweenRotate: BaseTween
     {
-        public TweenRotate(Transform target,float duration,Vector3 endValue)
+        public TweenRotate(Transform target,Vector3 endValue,float duration)
         {
             m_Target = target;
             m_Duration = duration;

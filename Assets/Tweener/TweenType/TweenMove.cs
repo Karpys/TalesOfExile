@@ -4,7 +4,7 @@ namespace TweenCustom
 {
     public class TweenMove: BaseTween
     {
-        public TweenMove(Transform target,float duration,Vector3 endValue)
+        public TweenMove(Transform target,Vector3 endValue,float duration)
         {
             m_Target = target;
             m_Duration = duration;

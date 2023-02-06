@@ -32,6 +32,12 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 DamageSources.Add(additionalSources[i].DamageType,new DamageSource(additionalSources[i]));
             }
         }
+        
+        foreach (DamageSource source in DamageSources.Values)
+        {
+            source.Damage *= (entity.EntityStats.GetDamageModifier(source.DamageType) + entity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageParameters.DamageType.MainDamageType)
+                + 100) / 100;
+        }
     }
     //Apply Damage To All Ennemies in the actionTiles
     public override void Trigger(SpellData spellData,List<List<Vector2Int>> actionTiles)
@@ -39,17 +45,15 @@ public class DamageSpellTrigger : BaseSpellTrigger
         EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
         //Apply Damage Modifier Base on the entity damageType Modifier//
         //Make sure the modifier are precalculated//
-        foreach (DamageSource source in DamageSources.Values)
-        {
-            source.Damage *= (spellData.AttachedEntity.EntityStats.GetDamageModifier(source.DamageType) + spellData.AttachedEntity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageParameters.DamageType.MainDamageType)
-                + 100) / 100;
-        }
         
+        
+        /*Color damageColor = ColorHelper.GetDamageBlendColor(DamageSources);*/
         //Apply Damage To All Actions Tiles//
         for (int i = 0; i < actionTiles.Count; i++)
         {
             for (int j = 0; j < actionTiles[i].Count; j++)
             {
+                float totalDamage = 0;
                 //Damage Entity At actionTile Pos//
                 BoardEntity damageTo = MapData.Instance.GetEntityAt(actionTiles[i][j],targetGroup);
                 if(!damageTo)
@@ -58,7 +62,14 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 //Foreach Damage Sources//
                 foreach (DamageSource damageSource in DamageSources.Values)
                 {
-                    DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSource); //DamageSource);
+                    totalDamage += DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSource); //DamageSource);
+                }
+
+                if (targetGroup == EntityGroup.Ennemy)
+                {
+                    Vector3 position = damageTo.transform.position;
+                    position.y += 0.2f;
+                    FloatingTextManager.Instance.SpawnFloatingText(position,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources));
                 }
             }
         }

@@ -72,6 +72,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             //Trigger Spells//
             //Send List of Tiles Action//
             GameManager.Instance.Player.CastSpell(m_CurrentSpell,m_ActionTiles);
+            GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
             ResetSpellQueue();
          }
       }

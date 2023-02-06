@@ -4,7 +4,7 @@ namespace TweenCustom
 {
     public class TweenLocalMove : BaseTween
     {
-        public TweenLocalMove(Transform target, float duration, Vector3 endValue)
+        public TweenLocalMove(Transform target, Vector3 endValue,float duration)
         {
             m_Target = target;
             m_Duration = duration;

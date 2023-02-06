@@ -164,7 +164,7 @@ MonoBehaviour:
     MeleeModifier: 0
     ProjectileModifier: 0
     SpellModifier: 0
-    ColdDamageModifier: 0
+    ColdDamageModifier: 15
     HolyDamageModifier: 0
     FireDamageModifier: 0
   m_Spells:
@@ -172,13 +172,6 @@ MonoBehaviour:
     AttachedEntity: {fileID: 0}
   - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
     AttachedEntity: {fileID: 0}
-  m_TestModifier:
-    TargetDamageType:
-      MainDamageType: 3
-      SubDamageTypes: 03000000
-    AddedDamageSource:
-      Damage: 20
-      DamageType: 2
   m_JumpTweenContainer: {fileID: 1805600238328547132}
   m_MovementDuration: 0.1
 --- !u!1 &9071852352984913702

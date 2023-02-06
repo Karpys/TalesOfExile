@@ -6,7 +6,7 @@ using UnityEngine;
 namespace TweenCustom
 {
     [Serializable]
-    public class BaseTween
+    public abstract class BaseTween
     {
         //Set Values//
         protected Transform m_Target = null;
@@ -148,9 +148,6 @@ namespace TweenCustom
 
         //TweenUtils//
 
-        public virtual void TweenRefreshStartValue()
-        {
-            //
-        }
+        public abstract void TweenRefreshStartValue();
     }
 }

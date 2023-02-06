@@ -44,3 +44,6 @@ TagManager:
   - name: Tree
     uniqueID: 3229156915
     locked: 0
+  - name: FloatingText
+    uniqueID: 1967968127
+    locked: 0

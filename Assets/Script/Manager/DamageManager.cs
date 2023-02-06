@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class DamageManager : SingletonMonoBehavior<DamageManager>
 {
-    public void TryDamageEnnemy(BoardEntity damageTo, BoardEntity damageFrom,DamageSource damageSource)
+    public float TryDamageEnnemy(BoardEntity damageTo, BoardEntity damageFrom,DamageSource damageSource)
     {
-        DamageStep(damageTo,damageFrom,damageSource);//Add DamageClass
+        return DamageStep(damageTo,damageFrom,damageSource);//Add DamageClass
     }
 
-    private void DamageStep(BoardEntity damageTo,BoardEntity damageFrom,DamageSource damageSource)
+    private float DamageStep(BoardEntity damageTo,BoardEntity damageFrom,DamageSource damageSource)
     {
         //Do Something//
         //Do damage//
         damageTo.ChangeLifeValue(-damageSource.Damage);
         Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + damageSource.DamageType + " damage");
+        return -damageSource.Damage;
     }
 }

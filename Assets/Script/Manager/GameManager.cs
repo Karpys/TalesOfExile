@@ -41,9 +41,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
 
     //Add a ennemy base class to the list of all ennemies//
-    public void RegisterEnemy(BoardEnnemyEntity ennemy)
+    public void RegisterEnnemy(BoardEnnemyEntity ennemy)
     {
         m_Ennemies.Add(ennemy);
+    }
+
+    public void UnRegisterEnnemy(BoardEnnemyEntity ennemyEntity)
+    {
+        m_Ennemies.Remove(ennemyEntity);
     }
     
     //UI Manager//
@@ -55,7 +60,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void OnPlayerAction(BoardEntity inputEntity)
     {
-        /*TriggerAllEnnemyAction();*/
+        TriggerAllEnnemyAction();
     }
     
     //Enemy Action//

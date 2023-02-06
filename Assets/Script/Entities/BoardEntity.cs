@@ -107,6 +107,10 @@ public class BoardEntity : MonoBehaviour
         MoveTo(pos.x,pos.y);
     }
 
+    protected void RemoveFromBoard()
+    {
+        m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
+    }
     protected virtual void Movement()
     {
         transform.position = m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
@@ -167,6 +171,13 @@ public class BoardEntity : MonoBehaviour
     public void ChangeLifeValue(float value)
     {
         m_Life += value;
+
+        if (m_Life <= 0)
+            TriggerDeath();
+    }
+
+    protected virtual void TriggerDeath()
+    {
     }
 
     public DamageSource[] GetAdditionalSources(DamageType damageType)
@@ -179,7 +190,6 @@ public class BoardEntity : MonoBehaviour
         //
         // if(newSource != null)
         //     additionalSources.Add(newSource);
-        
         return additionalSources.ToArray();
     }
 }
