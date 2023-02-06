@@ -57,6 +57,7 @@ public class BoardEntity : MonoBehaviour
     [SerializeField] protected float m_Life = 100;
     [SerializeField] protected EntityStats m_Stats = null;
     [SerializeField] protected List<SpellData> m_Spells = new List<SpellData>();
+    [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
     protected MapData m_TargetMap = null;
 
@@ -124,10 +125,11 @@ public class BoardEntity : MonoBehaviour
         m_Life += value;
     }
 
-    public DamageSource[] GetAdditionalSources(MainDamageType mainDamageType,SubDamageType[] subDamageType)
+    public DamageSource[] GetAdditionalSources(DamageType damageType)
     {
+        //Fetch Equipement
         List<DamageSource> additionalSources = new List<DamageSource>();
-        additionalSources.Add(new DamageSource(20,SubDamageType.Fire));
+        additionalSources.Add(m_TestModifier.GetAdditionalDamage(damageType));
         return additionalSources.ToArray();
     }
 }

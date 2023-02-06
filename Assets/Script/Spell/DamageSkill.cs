@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Basic Damage Spell", menuName = "New Spell Trigger", order = 0)]
@@ -15,7 +16,7 @@ public class DamageSkill : BaseSpellTriggerScriptable
         //Get Additional damageSources//
         //AdditionnalSources = spellData.AttachedEntity.GetAdditionnalSources(m_DamageParameters.MainDamageType,m_DamageParameters.SubTypes)//
         //foreachAdditionalSources
-        DamageSource[] additionalSources = spellData.AttachedEntity.GetAdditionalSources(m_DamageParameters.MainDamageType,m_DamageParameters.SubDamageTypes);
+        DamageSource[] additionalSources = spellData.AttachedEntity.GetAdditionalSources(m_DamageParameters.DamageType);
 
         for (int i = 0; i < additionalSources.Length; i++)
         {
@@ -35,7 +36,7 @@ public class DamageSkill : BaseSpellTriggerScriptable
         //Make sure the modifier are precalculated//
         foreach (DamageSource source in damageSources.Values)
         {
-            source.Damage *= (spellData.AttachedEntity.EntityStats.GetDamageModifier(source.DamageType) + spellData.AttachedEntity.EntityStats.GetMainTypeModifier(m_DamageParameters.MainDamageType)
+            source.Damage *= (spellData.AttachedEntity.EntityStats.GetDamageModifier(source.DamageType) + spellData.AttachedEntity.EntityStats.GetMainTypeModifier(m_DamageParameters.DamageType.MainDamageType)
                               + 100) / 100;
         }
         
@@ -64,9 +65,8 @@ public class DamageSkill : BaseSpellTriggerScriptable
 [System.Serializable]
 public class DamageParameters
 {
-    public MainDamageType MainDamageType = MainDamageType.Melee;
+    public DamageType DamageType = null;
     public float WeaponAdditionalDamagePercentage = 0;
-    public SubDamageType[] SubDamageTypes = new SubDamageType[1];
     public DamageSource InitialSourceDamage = null;
 }
 
@@ -89,11 +89,19 @@ public class DamageSource
     }
 }
 
+[System.Serializable]
+public class DamageType
+{
+    public MainDamageType MainDamageType = MainDamageType.Melee;
+    public SubDamageType[] SubDamageTypes = new SubDamageType[1];
+}
+
 public enum MainDamageType
 {
     Melee,
     Projectile,
     Spell,
+    None,
 }
 
 public enum SubDamageType
@@ -104,4 +112,37 @@ public enum SubDamageType
     Cold,
     Holy,
     //Ect ect
+}
+
+[System.Serializable]
+public class Modifier
+{
+
+}
+
+[System.Serializable]
+public class AddDamageModifier:Modifier
+{
+    public DamageType TargetDamageType = null;
+    public DamageSource AddedDamageSource = null;
+
+    public DamageSource GetAdditionalDamage(DamageType initialDamageType)
+    {
+        if (initialDamageType.MainDamageType == TargetDamageType.MainDamageType)
+            return AddedDamageSource;
+
+        for (int i = 0; i < TargetDamageType.SubDamageTypes.Length; i++)
+        {
+            if (initialDamageType.SubDamageTypes.Contains(TargetDamageType.SubDamageTypes[i]))
+                return AddedDamageSource;
+        }
+
+        return null;
+    }
+}
+
+[System.Serializable]
+public class IncreaseDamageModifier : Modifier
+{
+    public DamageType DamageSourceType = null;
 }

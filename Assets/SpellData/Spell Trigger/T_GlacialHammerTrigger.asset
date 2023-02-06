@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: T_GlacialHammerTrigger
   m_EditorClassIdentifier: 
   m_DamageParameters:
-    MainDamageType: 0
+    DamageType:
+      MainDamageType: 0
+      SubDamageTypes: 0000000003000000
     WeaponAdditionalDamagePercentage: 100
-    SubDamageTypes: 03000000
     InitialSourceDamage:
       Damage: 10
       DamageType: 3
