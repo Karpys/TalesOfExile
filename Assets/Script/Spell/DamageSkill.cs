@@ -140,9 +140,3 @@ public class AddDamageModifier:Modifier
         return null;
     }
 }
-
-[System.Serializable]
-public class IncreaseDamageModifier : Modifier
-{
-    public DamageType DamageSourceType = null;
-}

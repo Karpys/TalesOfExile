@@ -127,8 +127,10 @@ public class BoardEntity : MonoBehaviour
 
     public DamageSource[] GetAdditionalSources(DamageType damageType)
     {
-        //Fetch Equipement
+        //Fetch All Additional Sources / From equipement / skill tree
         List<DamageSource> additionalSources = new List<DamageSource>();
+        
+        //Test is in local entity
         additionalSources.Add(m_TestModifier.GetAdditionalDamage(damageType));
         return additionalSources.ToArray();
     }
