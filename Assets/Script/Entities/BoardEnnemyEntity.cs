@@ -7,12 +7,7 @@ using UnityEngine;
 public class BoardEnnemyEntity : BoardEntity
 {
     [SerializeField] private int m_Range = 1;
-
-    protected override void Start()
-    {
-        base.Start();
-        GameManager.Instance.RegisterEnnemy(this);
-    }
+    
 
     public void Update()
     {
@@ -22,7 +17,7 @@ public class BoardEnnemyEntity : BoardEntity
         }
     }
 
-    public virtual void EnemmyAction()
+    public override void EntityAction()
     {
         List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetPlayerPosition(),false);
 
@@ -68,7 +63,7 @@ public class BoardEnnemyEntity : BoardEntity
 
     protected override void TriggerDeath()
     {
-        GameManager.Instance.UnRegisterEnnemy(this);
+        GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
     }

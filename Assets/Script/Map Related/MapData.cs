@@ -39,22 +39,22 @@ public class MapData : SingletonMonoBehavior<MapData>
     
     public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
     {
+        List<BoardEntity> boardEntities = new List<BoardEntity>();
+
+        //Get the selected group list
         if (targetEntityGroup == EntityGroup.Ennemy)
         {
-            List<BoardEnnemyEntity> boardEntities = GameManager.Instance.Ennemies;
-            
-            for (int i = 0; i < boardEntities.Count; i++)
-            {
-                if (boardEntities[i].EntityPosition == entityPos)
-                    return boardEntities[i];
-            }
-        }else if (targetEntityGroup == EntityGroup.Friendly)
+            boardEntities = GameManager.Instance.EnnemiesOnBoard;
+        }
+        else if(targetEntityGroup == EntityGroup.Friendly)
         {
-            //List friendly entity//
-            if (GetPlayerPosition() == entityPos)
-            {
-                return GameManager.Instance.Player;
-            }
+            boardEntities = GameManager.Instance.FriendlyOnBoard;
+        }
+        
+        for (int i = 0; i < boardEntities.Count; i++)
+        {
+            if (boardEntities[i].EntityPosition == entityPos)
+                return boardEntities[i];
         }
         
         return null;

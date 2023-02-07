@@ -14,8 +14,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     
     public Action<BoardEntity> A_OnPlayerAction; 
     //Ennemies//
-    private List<BoardEnnemyEntity> m_Ennemies = new List<BoardEnnemyEntity>();
-    public List<BoardEnnemyEntity> Ennemies => m_Ennemies;
+    private List<BoardEntity> m_EntitiesOnBoard = new List<BoardEntity>();
+    private List<BoardEntity> m_EnnemiesOnBoard = new List<BoardEntity>();
+    private List<BoardEntity> m_FriendlyOnBoard = new List<BoardEntity>();
+    public List<BoardEntity> EntitiesOnBoard => m_EntitiesOnBoard;
+    public List<BoardEntity> EnnemiesOnBoard => m_EnnemiesOnBoard;
+    public List<BoardEntity> FriendlyOnBoard => m_FriendlyOnBoard;
 
     private void Awake()
     {
@@ -40,15 +44,26 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         SetTargetEntitySkills(player);
     }
 
-    //Add a ennemy base class to the list of all ennemies//
-    public void RegisterEnnemy(BoardEnnemyEntity ennemy)
+    //Add a an entity class to the list of all entity//
+    public void RegisterEntity(BoardEntity entity)
     {
-        m_Ennemies.Add(ennemy);
+        m_EntitiesOnBoard.Add(entity);
+        
+        //Sort Entity
+        if(entity.EntityGroup == EntityGroup.Friendly)
+            m_FriendlyOnBoard.Add(entity);
+        else if(entity.EntityGroup == EntityGroup.Ennemy)
+            m_EnnemiesOnBoard.Add(entity);
     }
 
-    public void UnRegisterEnnemy(BoardEnnemyEntity ennemyEntity)
+    public void UnRegisterEntity(BoardEntity entity)
     {
-        m_Ennemies.Remove(ennemyEntity);
+        m_EntitiesOnBoard.Remove(entity);
+        
+        if (entity.EntityGroup == EntityGroup.Ennemy)
+            m_EnnemiesOnBoard.Remove(entity);
+        else if(entity.EntityGroup == EntityGroup.Friendly)
+            m_FriendlyOnBoard.Remove(entity);
     }
     
     //UI Manager//
@@ -66,9 +81,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     //Enemy Action//
     private void TriggerAllEnnemyAction()
     {
-        for (int i = 0; i < m_Ennemies.Count; i++)
+        for (int i = 0; i < m_EntitiesOnBoard.Count; i++)
         {
-            m_Ennemies[i].EnemmyAction();
+            m_EntitiesOnBoard[i].EntityAction();
         }
     }
 }

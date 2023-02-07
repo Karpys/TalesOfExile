@@ -56,7 +56,7 @@ public enum EntityGroup
     Ennemy,
     Neutral,
 }
-public class BoardEntity : MonoBehaviour
+public abstract class BoardEntity : MonoBehaviour
 {
     [Header("Base")]
     [SerializeField] protected int m_XPosition = 0;
@@ -77,12 +77,13 @@ public class BoardEntity : MonoBehaviour
     protected virtual void Start()
     {
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
-        
+        GameManager.Instance.RegisterEntity(this);
         //Initi Serialize Spells//
         RegisterStartSpells();
     }
     
     //Board Related
+    public abstract void EntityAction();
     public void Place(int x, int y, MapData targetMap)
     {
         m_XPosition = x;
@@ -176,9 +177,7 @@ public class BoardEntity : MonoBehaviour
             TriggerDeath();
     }
 
-    protected virtual void TriggerDeath()
-    {
-    }
+    protected abstract void TriggerDeath();
 
     public DamageSource[] GetAdditionalSources(DamageType damageType)
     {

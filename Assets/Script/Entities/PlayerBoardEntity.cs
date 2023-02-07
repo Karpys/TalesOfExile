@@ -15,9 +15,21 @@ public class PlayerBoardEntity : BoardEntity
         GameManager.Instance.RegisterPlayer(this);
     }
 
+    public override void EntityAction()
+    {
+        //TODO:Act as a Base IA/
+        return;
+    }
+
     protected override void Movement()
     {
         JumpAnimation();
+    }
+
+    protected override void TriggerDeath()
+    {
+        //Trigger Lose ?//
+        return;
     }
 
     void JumpAnimation()
