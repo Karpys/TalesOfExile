@@ -134,6 +134,7 @@ namespace TweenCustom
         }
 
         //Set Tween Mode Parameters
+        //TODO:Make this method virtual : ex : this wont work with DoColor//
         public void tweenMode(TweenMode mode)
         {
             switch (mode)
