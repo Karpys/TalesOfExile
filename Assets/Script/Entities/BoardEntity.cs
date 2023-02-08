@@ -6,6 +6,8 @@ using UnityEngine;
 public class EntityStats
 {
     //All the EntitiesStats//
+    public float MaxLife = 100f;
+    public float Life = 100f;
     //From Damage to move speed to base life ?//
     //MainTypeModifier//
     public float MeleeModifier = 0f;
@@ -18,7 +20,11 @@ public class EntityStats
     //Physical
     //Ect ect
 
-
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
+    
     public float GetDamageModifier(SubDamageType subDamageType)
     {
         switch (subDamageType)
@@ -58,21 +64,24 @@ public enum EntityGroup
 }
 public abstract class BoardEntity : MonoBehaviour
 {
-    [Header("Base")]
+    [Header("Base")] 
+    [SerializeField] protected BoardEntityDataScriptable m_EntityDataScriptable = null;
     [SerializeField] protected int m_XPosition = 0;
     [SerializeField] protected int m_YPosition = 0;
-    [SerializeField] protected EntityGroup m_EntityGroup = EntityGroup.Neutral;
-    [SerializeField] protected float m_Life = 100;
-    [SerializeField] protected EntityStats m_Stats = null;
-    [SerializeField] protected List<SpellData> m_Spells = new List<SpellData>();
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
+    public BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
-    public List<SpellData> Spells => m_Spells;
-    public EntityStats EntityStats => m_Stats;
-    public EntityGroup EntityGroup => m_EntityGroup;
+    public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
+    public EntityStats EntityStats => m_EntityData.m_Stats;
+    public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
+
+    protected void Awake()
+    {
+        m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
+    }
 
     protected virtual void Start()
     {
@@ -120,9 +129,9 @@ public abstract class BoardEntity : MonoBehaviour
     //Entity Behaviour Related//
     private void RegisterStartSpells()
     {
-        for (int i = 0; i < m_Spells.Count; i++)
+        for (int i = 0; i < m_EntityData.m_SpellList.m_Spells.Count; i++)
         {
-            RegisterSpell(m_Spells[i]);
+            RegisterSpell(m_EntityData.m_SpellList.m_Spells[i]);
         }
     }
 
@@ -171,9 +180,9 @@ public abstract class BoardEntity : MonoBehaviour
     //Damage Related//
     public void ChangeLifeValue(float value)
     {
-        m_Life += value;
+        m_EntityData.m_Stats.Life += value;
 
-        if (m_Life <= 0)
+        if (m_EntityData.m_Stats.Life <= 0)
             TriggerDeath();
     }
 

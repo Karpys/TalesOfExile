@@ -156,22 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428476c9b66447b49b58ce1841ba982b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EntityDataScriptable: {fileID: 11400000, guid: 4626c31fb9b51eb4684290a555d9178d, type: 2}
   m_XPosition: 0
   m_YPosition: 0
-  m_EntityGroup: 0
-  m_Life: 100
-  m_Stats:
-    MeleeModifier: 0
-    ProjectileModifier: 0
-    SpellModifier: 0
-    ColdDamageModifier: 15
-    HolyDamageModifier: 0
-    FireDamageModifier: 0
-  m_Spells:
-  - m_Data: {fileID: 11400000, guid: b6c22163b72085546bba9b716d0abf53, type: 2}
-    AttachedEntity: {fileID: 0}
-  - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
-    AttachedEntity: {fileID: 0}
   m_JumpTweenContainer: {fileID: 1805600238328547132}
   m_MovementDuration: 0.1
 --- !u!1 &9071852352984913702

@@ -43,20 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3ecb93c9e24a5c8e6278f03d3b21a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_EntityDataScriptable: {fileID: 11400000, guid: 5b32d1267cc1d6c4d93afbd9cc177dd7, type: 2}
   m_XPosition: 0
   m_YPosition: 0
-  m_EntityGroup: 1
-  m_Life: 100
-  m_Stats:
-    MeleeModifier: 0
-    ProjectileModifier: 0
-    SpellModifier: 0
-    ColdDamageModifier: 0
-    HolyDamageModifier: 0
-    FireDamageModifier: 0
-  m_Spells:
-  - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
-    AttachedEntity: {fileID: 0}
+  m_EntityData:
+    m_EntityGroup: 0
+    m_Stats:
+      MaxLife: 100
+      Life: 100
+      MeleeModifier: 0
+      ProjectileModifier: 0
+      SpellModifier: 0
+      ColdDamageModifier: 0
+      HolyDamageModifier: 0
+      FireDamageModifier: 0
+    m_SpellList:
+      m_Spells: []
   m_Range: 1
 --- !u!1 &6165430051826993969
 GameObject:

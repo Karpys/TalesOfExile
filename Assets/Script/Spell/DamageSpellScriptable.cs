@@ -9,7 +9,7 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
     
     public override BaseSpellTrigger SetUpTrigger()
     {
-        Debug.Log("Resturn new Damage Spell Trigger");
+        Debug.Log("Return new Damage Spell Trigger");
         return new DamageSpellTrigger(this);
     }
 }

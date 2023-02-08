@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b491e1dd8a48eca0830a9bfcdcab91, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  m_EntityBaseData:
+    m_EntityGroup: 0
+    m_Stats:
+      MaxLife: 100
+      Life: 100
+      MeleeModifier: 0
+      ProjectileModifier: 0
+      SpellModifier: 0
+      ColdDamageModifier: 0
+      HolyDamageModifier: 0
+      FireDamageModifier: 0
+    m_SpellList:
+      m_Spells:
+      - m_Data: {fileID: 11400000, guid: b6c22163b72085546bba9b716d0abf53, type: 2}
+        AttachedEntity: {fileID: 0}
+      - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
+        AttachedEntity: {fileID: 0}

@@ -32,7 +32,7 @@ public class BoardEnnemyEntity : BoardEntity
         //Check if the path to the player is lower than the range//
         if (path.Count == 1)
         {
-            CastSpellAt(m_Spells[0],m_TargetMap.GetPlayerPosition());
+            CastSpellAt(m_EntityData.m_SpellList.m_Spells[0],m_TargetMap.GetPlayerPosition());
         }
 
         //Movement Action//

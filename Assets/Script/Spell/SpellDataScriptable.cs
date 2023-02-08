@@ -26,12 +26,16 @@ public class SpellData
     //SpellTrigger Class//
     public BaseSpellTrigger SpellTrigger = null;
     //Spell Variables//
-    public BoardEntity AttachedEntity = null;
+    [HideInInspector]public BoardEntity AttachedEntity = null;
 
     public void InitializeTrigger()
     {
         SpellTrigger = m_Data.m_SpellTrigger.SetUpTrigger();
         SpellTrigger.ComputeSpellData(AttachedEntity);
+    }
+    public object Clone()
+    {
+        return MemberwiseClone();
     }
 }
 
