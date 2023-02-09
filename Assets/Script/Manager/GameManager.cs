@@ -8,9 +8,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 {
     //Widget//
     [SerializeField] private BoardEntityMovement m_EntityInputMovement = null;
-    //Player//
-    private PlayerBoardEntity m_Player = null;
-    public PlayerBoardEntity Player => m_Player;
+
+    private PlayerBoardEntity m_PlayerEntity = null;
+    //Controlled Entity//
+    private BoardEntity m_ControlledEntity = null;
+    public BoardEntity ControlledEntity => m_ControlledEntity;
+    public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
     
     public Action<BoardEntity> A_OnPlayerAction; 
     //Ennemies//
@@ -39,9 +42,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     //Set the player value//
     public void RegisterPlayer(PlayerBoardEntity player)
     {
-        m_Player = player;
-        m_EntityInputMovement.SetTargetEntity(m_Player);
-        SetTargetEntitySkills(player);
+        m_PlayerEntity = player;
+    }
+
+    public void SetControlledEntity(BoardEntity entity)
+    {
+        m_ControlledEntity = entity;
+        m_EntityInputMovement.SetTargetEntity(entity);
+        SetTargetEntitySkills(entity);
     }
 
     //Add a an entity class to the list of all entity//

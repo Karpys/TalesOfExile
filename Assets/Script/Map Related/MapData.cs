@@ -32,9 +32,9 @@ public class MapData : SingletonMonoBehavior<MapData>
         return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);
     }
 
-    public Vector2Int GetPlayerPosition()
+    public Vector2Int GetControlledEntityPosition()
     {
-        return GameManager.Instance.Player.EntityPosition;
+        return GameManager.Instance.ControlledEntity.EntityPosition;
     }
     
     public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)

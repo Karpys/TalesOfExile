@@ -71,7 +71,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          {
             //Trigger Spells//
             //Send List of Tiles Action//
-            GameManager.Instance.Player.CastSpell(m_CurrentSpell,m_ActionTiles);
+            GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,m_ActionTiles);
             GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
             ResetSpellQueue();
          }
@@ -118,7 +118,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    {
       if (selection.Origin == ZoneOrigin.Self)
       {
-         return MapData.Instance.GetPlayerPosition();
+         return MapData.Instance.GetControlledEntityPosition();
       }
       else
       {

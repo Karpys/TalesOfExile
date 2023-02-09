@@ -13,6 +13,7 @@ public class PlayerBoardEntity : BoardEntity
     {
         base.Start();
         GameManager.Instance.RegisterPlayer(this);
+        GameManager.Instance.SetControlledEntity(this);
     }
 
     public override void EntityAction()

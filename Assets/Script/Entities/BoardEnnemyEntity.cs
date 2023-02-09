@@ -19,7 +19,7 @@ public class BoardEnnemyEntity : BoardEntity
 
     public override void EntityAction()
     {
-        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetPlayerPosition(),false);
+        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetControlledEntityPosition(),false);
 
         //Debug//
         //List<Vector2Int> paths = new List<Vector2Int>();
@@ -32,7 +32,7 @@ public class BoardEnnemyEntity : BoardEntity
         //Check if the path to the player is lower than the range//
         if (path.Count == 1)
         {
-            CastSpellAt(m_EntityData.m_SpellList.m_Spells[0],m_TargetMap.GetPlayerPosition());
+            CastSpellAt(m_EntityData.m_SpellList.m_Spells[0],m_TargetMap.GetControlledEntityPosition());
         }
 
         //Movement Action//
