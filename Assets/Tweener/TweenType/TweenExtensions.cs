@@ -45,6 +45,13 @@ namespace TweenCustom
             TweenManager.Instance.AddTween(baseTween);
             return baseTween;
         }
+
+        public static BaseTween DoScale(this Transform trans, Vector3 endValue, float duration)
+        {
+            TweenScale baseTween = new TweenScale(trans, endValue, duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
         
         public static BaseTween DoColor(this SpriteRenderer renderer, Color endValue,float duration)
         {
