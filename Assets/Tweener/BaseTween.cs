@@ -88,12 +88,19 @@ namespace TweenCustom
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
+        public virtual bool ReferenceCheck()
+        {
+            if (m_Target == null)
+                return false;
+            return true;
+        }
+        
         protected void CheckForDestroy()
         {
             if (m_Ratio >= 1)
             {
                 Complete();
-                TweenManager.Instance.RemoveTween(this);
+                RemoveTween();
             }
         }
 
@@ -102,6 +109,10 @@ namespace TweenCustom
             m_onComplete?.Invoke();
         }
 
+        protected void RemoveTween()
+        {
+            TweenManager.Instance.RemoveTween(this);
+        }
 
 
         //Ease Evaluate

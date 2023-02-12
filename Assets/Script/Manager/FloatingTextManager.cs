@@ -4,10 +4,10 @@ public class FloatingTextManager : SingletonMonoBehavior<FloatingTextManager>
 {
     [SerializeField] private FloatingTextBurst m_FloatingPrefab = null;
 
-    public void SpawnFloatingText(Vector3 position,float value,Color? color = null)
+    public void SpawnFloatingText(Transform transform,float value,Color? color = null,float delay = 0f)
     {
         Color targetColor = color ?? Color.white;
-        FloatingTextBurst text = Instantiate(m_FloatingPrefab, position,Quaternion.identity);
-        text.LaunchFloat(value,targetColor);
+        FloatingTextBurst text = Instantiate(m_FloatingPrefab, transform);
+        text.LaunchFloat(value,targetColor,delay);
     }
 }

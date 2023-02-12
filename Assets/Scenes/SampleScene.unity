@@ -1856,6 +1856,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityInputMovement: {fileID: 34784935}
+  m_RemoveDelay: 0
+  m_FriendlyBaseWaitTime: 0
+  FriendlyWaitTime: 0
+  EnnemiesWaitTime: 0
 --- !u!1 &2045092498
 GameObject:
   m_ObjectHideFlags: 0

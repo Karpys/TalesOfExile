@@ -15,6 +15,9 @@ public class BoardEntityMovement : MonoBehaviour
     
     public void Update()
     {
+        if(!GameManager.Instance.CanPlay)
+            return;
+        
         if (Input.GetKeyDown(KeyCode.D))
         {
             MoveX(1);

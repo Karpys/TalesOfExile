@@ -10,10 +10,13 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    private bool Validation = false;
    
    private List<List<Vector2Int>> m_DisplayTiles = new List<List<Vector2Int>>();
-   public List<List<Vector2Int>> m_ActionTiles = new List<List<Vector2Int>>();
+   private List<List<Vector2Int>> m_ActionTiles = new List<List<Vector2Int>>();
+   private List<Vector2Int> m_OriginTiles = new List<Vector2Int>();
 
    private SpellData m_CurrentSpell = null;
    private int m_CurrentSpellQueue = 0;
+   
+   private Vector2Int m_OriginTile = Vector2Int.zero;
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
    public void LaunchSpellQueue(SpellData spell)
    {
@@ -44,8 +47,8 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          {
             //Get the current Zone Selection following the ZoneTileManager seleciton rules based on Zone Selection Class//
             ZoneSelection selection = m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue];
-            Vector2Int validationOrigin = GetOrigin(selection);
-            m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, validationOrigin, selection.Range);
+            m_OriginTile = GetOrigin(selection);
+            m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, m_OriginTile, selection.Range);
             
             //Highlight Tiles//
             Color tilesColor = GetColor(selection);
@@ -56,7 +59,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
                FetchSelection();
             }else if (Validation)
             {
-               if (CanValidate(validationOrigin))
+               if (CanValidate(m_OriginTile))
                {
                   FetchSelection();
                   Validation = false;
@@ -71,9 +74,12 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          {
             //Trigger Spells//
             //Send List of Tiles Action//
-            GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,m_ActionTiles);
-            GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
-            ResetSpellQueue();
+            if (GameManager.Instance.CanPlay)
+            {
+               GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,new SpellTiles(m_OriginTiles,m_ActionTiles));
+               GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
+               ResetSpellQueue();
+            }
          }
       }
    }
@@ -132,6 +138,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
       if (m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ActionSelection)
       {
          AddToActionTiles(m_TilesSelection);
+         AddToOriginTiles(m_OriginTile);
       }
       else
       {
@@ -145,6 +152,11 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    private void AddToActionTiles(List<Vector2Int> positions)
    {
       m_ActionTiles.Add(positions);
+   }
+
+   private void AddToOriginTiles(Vector2Int originTile)
+   {
+      m_OriginTiles.Add(originTile);
    }
    
    private void AddToDisplayTiles(List<Vector2Int> positions)

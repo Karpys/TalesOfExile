@@ -74,6 +74,37 @@ namespace TweenCustom
 
         #endregion
 
+        #region DoType Surcharge
+        public static BaseTween DoMove(this Transform trans, BaseTweenData baseData)
+        {
+            TweenMove baseTween = new TweenMove(baseData.TargetTransform, baseData.EndValue,baseData.Duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
+        public static BaseTween DoLocalMove(this Transform trans, BaseTweenData baseData)
+        {
+            TweenLocalMove baseTween = new TweenLocalMove(baseData.TargetTransform, baseData.EndValue, baseData.Duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
+        public static BaseTween DoRotate(this Transform trans, BaseTweenData baseData)
+        {
+            TweenRotate baseTween = new TweenRotate(baseData.TargetTransform, baseData.EndValue, baseData.Duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+
+        public static BaseTween DoScale(this Transform trans, BaseTweenData baseData)
+        {
+            TweenScale baseTween = new TweenScale(baseData.TargetTransform, baseData.EndValue, baseData.Duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+
+
+        #endregion
         #region DoParameters
 
         public static BaseTween SetEase(this BaseTween tween,Ease ease)

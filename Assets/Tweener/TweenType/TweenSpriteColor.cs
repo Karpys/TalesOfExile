@@ -37,5 +37,12 @@ namespace TweenCustom
         {
             m_StartColor = m_Renderer.color.rgba();
         }
+
+        public override bool ReferenceCheck()
+        {
+            if (m_Renderer == null)
+                return false;
+            return true;
+        }
     }
 }

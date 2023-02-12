@@ -24,10 +24,11 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 0
   - Origin: 1
-    DisplayType: 0
-    Range: 2
+    DisplayType: 1
+    Range: 1
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
+  m_OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
   Range: 1

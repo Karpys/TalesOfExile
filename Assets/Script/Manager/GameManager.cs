@@ -8,12 +8,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 {
     //Widget//
     [SerializeField] private BoardEntityMovement m_EntityInputMovement = null;
+    [SerializeField] private bool m_RemoveDelay = false;
 
     private PlayerBoardEntity m_PlayerEntity = null;
     //Controlled Entity//
     private BoardEntity m_ControlledEntity = null;
-    public BoardEntity ControlledEntity => m_ControlledEntity;
-    public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
+    [HideInInspector] public BoardEntity ControlledEntity => m_ControlledEntity;
+    [HideInInspector] public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
     
     //Ennemies//
     private List<BoardEntity> m_EntitiesOnBoard = new List<BoardEntity>();
@@ -23,13 +24,20 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public List<BoardEntity> EnnemiesOnBoard => m_EnnemiesOnBoard;
     public List<BoardEntity> FriendlyOnBoard => m_FriendlyOnBoard;
     
+    //Action Queue//
+    private bool m_CanPlay = true;
+    [SerializeField] private float m_FriendlyBaseWaitTime = 0f;
+    [HideInInspector] public float FriendlyWaitTime = 0f;
+    [HideInInspector] public float EnnemiesWaitTime = 0f;
+
+    public bool CanPlay => m_CanPlay;
     //Action//
     public Action<BoardEntity> A_OnPlayerAction;
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
 
     private void Awake()
     {
-        A_OnPlayerAction += OnPlayerAction;
+        A_OnPlayerAction += LaunchActionQueue;
     }
     
     //Debug//
@@ -88,17 +96,48 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     //OnPlayer Action//
 
-    private void OnPlayerAction(BoardEntity inputEntity)
+    private void LaunchActionQueue(BoardEntity inputEntity)
     {
-        TriggerAllEnnemyAction();
+        IEnumerator I_ActionQueue()
+        {
+            TriggerAllFriendlyActions();
+            yield return new WaitForSeconds(FriendlyWaitTime);
+            TriggerAllEnnemyAction();
+            yield return new WaitForSeconds(EnnemiesWaitTime);
+            ResetActionQueue();
+        }
+
+        if (m_RemoveDelay)
+        {
+            TriggerAllFriendlyActions();
+            TriggerAllEnnemyAction();
+            return;
+        }
+        
+        m_CanPlay = false;
+        StartCoroutine(I_ActionQueue());
     }
-    
+
+    private void ResetActionQueue()
+    {
+        m_CanPlay = true;
+        FriendlyWaitTime = m_FriendlyBaseWaitTime;
+        EnnemiesWaitTime = 0;
+    }
+
     //Enemy Action//
+    private void TriggerAllFriendlyActions()
+    {
+        for (int i = 0; i < m_FriendlyOnBoard.Count; i++)
+        {
+            m_FriendlyOnBoard[i].EntityAction();
+        }
+    }
     private void TriggerAllEnnemyAction()
     {
-        for (int i = 0; i < m_EntitiesOnBoard.Count; i++)
+        for (int i = 0; i < m_EnnemiesOnBoard.Count; i++)
         {
-            m_EntitiesOnBoard[i].EntityAction();
+            m_EnnemiesOnBoard[i].EntityAction();
         }
     }
 }

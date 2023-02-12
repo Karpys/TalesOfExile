@@ -12,6 +12,12 @@ namespace TweenCustom
         {
             for (int i = 0; i < m_Tweeners.Count; i++)
             {
+                if (!m_Tweeners[i].ReferenceCheck())
+                {
+                    m_Tweeners.Remove(m_Tweeners[i]);
+                    i--;
+                    continue;
+                }
                 m_Tweeners[i].Step();
             }
         }

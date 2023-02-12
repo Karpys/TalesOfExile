@@ -20,11 +20,11 @@ public class FloatingTextBurst : MonoBehaviour
     [SerializeField] private TweenParam m_YEndAlignement = null;
 
     private bool fading = false;
-    public void LaunchFloat(float damageValue,Color? color = null)
+    public void LaunchFloat(float damageValue,Color? color = null,float triggerDelay = 0f)
     {
         IEnumerator ILaunchFloat(float delay)
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay + triggerDelay);
             
             Color targetColor = color ?? Color.white;
             m_Text.color = targetColor;

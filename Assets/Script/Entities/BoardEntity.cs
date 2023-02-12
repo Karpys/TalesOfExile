@@ -85,10 +85,11 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected int m_YPosition = 0;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
-    public BoardEntityData m_EntityData = null;
+    [HideInInspector] public BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
+    public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
@@ -165,15 +166,16 @@ public abstract class BoardEntity : MonoBehaviour
     
     //Spell Related//
     //Player Cast Mainly or Controlled Entity//
-    public void CastSpell(SpellData spellData,List<List<Vector2Int>> actionTiles)
+    public void CastSpell(SpellData spellData,SpellTiles spellTiles)
     {
-        spellData.SpellTrigger.Trigger(spellData,actionTiles);
+        spellData.SpellTrigger.Trigger(spellData,spellTiles);
     }
 
     //Cast
     public void CastSpellAt(SpellData spellData,Vector2Int pos)
     {
-        List<List<Vector2Int>> tilesAction = new List<List<Vector2Int>>();
+        List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
+        List<Vector2Int> originTiles = new List<Vector2Int>();
 
         for (int i = 0; i < spellData.m_Data.m_Selection.Length; i++)
         {
@@ -190,12 +192,12 @@ public abstract class BoardEntity : MonoBehaviour
                 {
                     origin = pos;
                 }
-                
-                tilesAction.Add(ZoneTileManager.Instance.GetSelectionZone(currentSelection,origin,currentSelection.Range));
+                tilesActions.Add(ZoneTileManager.Instance.GetSelectionZone(currentSelection,origin,currentSelection.Range));
+                originTiles.Add(origin);
             }
         }
         
-        CastSpell(spellData,tilesAction);
+        CastSpell(spellData,new SpellTiles(originTiles,tilesActions));
     }
     //Damage Related//
     public void TakeDamage(float value)
