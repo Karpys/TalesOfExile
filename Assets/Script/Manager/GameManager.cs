@@ -15,7 +15,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public BoardEntity ControlledEntity => m_ControlledEntity;
     public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
     
-    public Action<BoardEntity> A_OnPlayerAction; 
     //Ennemies//
     private List<BoardEntity> m_EntitiesOnBoard = new List<BoardEntity>();
     private List<BoardEntity> m_EnnemiesOnBoard = new List<BoardEntity>();
@@ -23,6 +22,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public List<BoardEntity> EntitiesOnBoard => m_EntitiesOnBoard;
     public List<BoardEntity> EnnemiesOnBoard => m_EnnemiesOnBoard;
     public List<BoardEntity> FriendlyOnBoard => m_FriendlyOnBoard;
+    
+    //Action//
+    public Action<BoardEntity> A_OnPlayerAction;
+    public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
 
     private void Awake()
     {
@@ -47,9 +50,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void SetControlledEntity(BoardEntity entity)
     {
+        BoardEntity oldControlledEntity = m_ControlledEntity;
+        
         m_ControlledEntity = entity;
         m_EntityInputMovement.SetTargetEntity(entity);
         SetTargetEntitySkills(entity);
+        
+        A_OnControlledEntityChange?.Invoke(oldControlledEntity,entity);
     }
 
     //Add a an entity class to the list of all entity//

@@ -13,7 +13,7 @@ public class DamageManager : SingletonMonoBehavior<DamageManager>
     {
         //Do Something//
         //Do damage//
-        damageTo.ChangeLifeValue(-damageSource.Damage);
+        damageTo.TakeDamage(damageSource.Damage);
         Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + damageSource.DamageType + " damage");
         return -damageSource.Damage;
     }

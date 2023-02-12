@@ -5,9 +5,10 @@ using UnityEngine;
 [Serializable]
 public class EntityStats
 {
+    private BoardEntity m_AttachedEntity = null;
     //All the EntitiesStats//
-    public float MaxLife = 100f;
-    public float Life = 100f;
+    [SerializeField] private float m_MaxLife = 100f;
+    [SerializeField] private float m_Life = 100f;
     //From Damage to move speed to base life ?//
     //MainTypeModifier//
     public float MeleeModifier = 0f;
@@ -19,12 +20,20 @@ public class EntityStats
     public float FireDamageModifier = 0f;
     //Physical
     //Ect ect
+    
+    //Getter
+    public float Life => m_Life;
+    public float MaxLife => m_MaxLife;
 
     public object Clone()
     {
         return MemberwiseClone();
     }
-    
+
+    public void SetEntity(BoardEntity entity)
+    {
+        m_AttachedEntity = entity;
+    }
     public float GetDamageModifier(SubDamageType subDamageType)
     {
         switch (subDamageType)
@@ -54,6 +63,12 @@ public class EntityStats
                 return 0;
         }
     }
+
+    public void ChangeLifeValue(float value)
+    {
+        m_Life -= value;
+        m_AttachedEntity.A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
+    }
 }
 
 public enum EntityGroup
@@ -77,10 +92,15 @@ public abstract class BoardEntity : MonoBehaviour
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
+    
+    //Entity Actions//
+    public Action<float> A_OnEntityDamageTaken;
+    public Action<float,float> A_OnLifeUpdated;
 
     protected void Awake()
     {
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
+        m_EntityData.m_Stats.SetEntity(this);
     }
 
     protected virtual void Start()
@@ -178,9 +198,10 @@ public abstract class BoardEntity : MonoBehaviour
         CastSpell(spellData,tilesAction);
     }
     //Damage Related//
-    public void ChangeLifeValue(float value)
+    public void TakeDamage(float value)
     {
-        m_EntityData.m_Stats.Life += value;
+        m_EntityData.m_Stats.ChangeLifeValue(value);
+        A_OnEntityDamageTaken?.Invoke(value);
 
         if (m_EntityData.m_Stats.Life <= 0)
             TriggerDeath();
