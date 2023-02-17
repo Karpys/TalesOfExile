@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Script.PathFinding;
 using UnityEngine;
 
 public class MousePosition : SingletonMonoBehavior<MousePosition>
@@ -25,7 +23,7 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
 
         if (m_DebugMouseToPlayerTiles)
         {
-            List<Vector2Int> PlayerToMouse = PathFinding.FindPath(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition,true);
+            List<Vector2Int> PlayerToMouse = PathFinding.FindPath(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition);
             HighlightTilesManager.Instance.HighlightTiles(PlayerToMouse);
         }
     }

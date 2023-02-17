@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Script.PathFinding;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
@@ -21,10 +16,12 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private SpriteHelper m_TreeVisual = null;
     [SerializeField] private MapData m_MapData = null;
     [SerializeField] private BoardEntitySpawn[] m_BoardEntities = null;
+    [SerializeField] private MapGenerationData m_GenerationData = null;
 
     private void Start()
     {
         InitializeMap();
+        m_GenerationData.Generate(m_MapData);
     }
 
     public void Update()
@@ -49,13 +46,6 @@ public class MapGenerator : MonoBehaviour
             }
         }
         m_MapData.Map.Tiles = null;
-        
-        //Erase Entities//
-        for (int i = 0; i < m_MapData.Map.EntitiesOnBoard.Count; i++)
-        {
-            Destroy(m_MapData.Map.EntitiesOnBoard[i]);
-        }
-        m_MapData.Map.EntitiesOnBoard.Clear();
     }
 
     private void InitializeMap()
@@ -75,32 +65,34 @@ public class MapGenerator : MonoBehaviour
                 Tile tile = Instantiate(m_GrassGround[Random.Range(0,m_GrassGround.Length)], m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                 tile.Initialize(x,y);
                 map.Tiles[x,y] = tile;
-                
-                if (x == 0 || y == 0 || x == m_Height - 1 || y == m_Width - 1)
-                {
-                    map.Tiles[x, y].Walkable = false;
-                    SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
-                    spr.SetSpritePriority(-y);
-                }
-                else
-                {
-                    if (Random.Range(0, 20) == 10)
-                    {
-                        map.Tiles[x, y].Walkable = false;
-                        SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
-                        spr.SetSpritePriority(-y);
-                    }
-                }
+                /*TryGenerateTree(x,y,map);*/
             }
         }
 
         //Entities Init//
-        PlayerBoardEntity player = null;
         foreach (BoardEntitySpawn boardEntity in m_BoardEntities)
         {
             BoardEntity entity = Instantiate(boardEntity.Entity, transform.position, Quaternion.identity, m_MapData.transform);
             entity.Place(boardEntity.BoardSpawnPosition.x,boardEntity.BoardSpawnPosition.y,m_MapData);
-            m_MapData.Map.EntitiesOnBoard.Add(entity);
+        }
+    }
+
+    private void TryGenerateTree(int x, int y,Map map)
+    {
+        if (x == 0 || y == 0 || x == m_Height - 1 || y == m_Width - 1)
+        {
+            map.Tiles[x, y].Walkable = false;
+            SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
+            spr.SetSpritePriority(-y);
+        }
+        else
+        {
+            if (Random.Range(0, 20) == 10)
+            {
+                map.Tiles[x, y].Walkable = false;
+                SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
+                spr.SetSpritePriority(-y);
+            }
         }
     }
 

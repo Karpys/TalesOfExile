@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Script.PathFinding;
 using Script.Utils;
 using TweenCustom;
 using UnityEngine;
