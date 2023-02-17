@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa68ebe261d4ecda0ccc1d688fb9704, type: 3}
   m_Name: T_GlacialHammerTrigger
   m_EditorClassIdentifier: 
+  OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
   DamageParameters:
     DamageType:
       MainDamageType: 0

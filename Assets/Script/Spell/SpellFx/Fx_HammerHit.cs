@@ -1,14 +1,14 @@
 ﻿using TweenCustom;
 using UnityEngine;
 
-public class Fx_HammerHit : SpellAnimation
+public class Fx_HammerHit : BurstAnimation
 {
     [SerializeField] private SpriteRenderer m_Sprite = null;
     [SerializeField] private BaseTweenData m_RotateTween = null;
     [SerializeField] private float m_FadeDuration = 0.2f;
     protected override float GetAnimationDuration()
     {
-        return  + m_RotateTween.Duration;
+        return m_RotateTween.Duration;
     }
     public override void Animate()
     {

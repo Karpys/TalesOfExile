@@ -16,10 +16,7 @@ public class SpellDataScriptable : ScriptableObject
     
     [Header("Spell Display In Game Option")]
     public ZoneSelection[] m_Selection = null;
-    
-    [Header("Spell Animation")]
-    public SpellAnimation m_OnHitAnimation = null;
-    
+
     [Header("Base Spell Data")]
     public int Range = 0;
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Basic Damage Spell", menuName = "New Spell Trigger", order = 0)]
 public class DamageSpellScriptable : BaseSpellTriggerScriptable
 {
+    [Header("Spell Animation")]
+    public SpellAnimation OnHitAnimation = null;
+    
     public DamageParameters DamageParameters = null;
     
     public override BaseSpellTrigger SetUpTrigger()

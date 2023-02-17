@@ -48,7 +48,7 @@ public class DamageSpellTrigger : BaseSpellTrigger
         EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
         //OnHit Spell Animation//
         float spellAnimDelay = 0;
-        SpellAnimation onHitAnim = spellData.m_Data.m_OnHitAnimation;
+        SpellAnimation onHitAnim = DamageSpellData.OnHitAnimation;
         
         //Apply Damage To All Actions Tiles//
         for (int i = 0; i < spellTiles.ActionTiles.Count; i++)
@@ -69,7 +69,7 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 }
 
                 //Animation And Damage Display
-                if (spellData.m_Data.m_OnHitAnimation)
+                if (DamageSpellData.OnHitAnimation)
                 {
                     spellAnimDelay = onHitAnim.BaseSpellDelay;   
                     onHitAnim.TriggerFx(Vector3.zero,damageTo.transform);
