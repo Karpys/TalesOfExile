@@ -17,6 +17,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    private int m_CurrentSpellQueue = 0;
    
    private Vector2Int m_OriginTile = Vector2Int.zero;
+   private Vector2Int m_CastOriginTile = Vector2Int.zero;
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
    public void LaunchSpellQueue(SpellData spell)
    {
@@ -48,11 +49,12 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             //Get the current Zone Selection following the ZoneTileManager seleciton rules based on Zone Selection Class//
             ZoneSelection selection = m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue];
             m_OriginTile = GetOrigin(selection);
-            m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, m_OriginTile, selection.Range);
+            m_CastOriginTile = m_CurrentSpell.AttachedEntity.EntityPosition;
+            m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, m_OriginTile, selection.Range,m_CastOriginTile);
             
             //Highlight Tiles//
             Color tilesColor = GetColor(selection);
-            bool isDynamicSelection = IsDynamic(m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue]);
+            bool isDynamicSelection = IsDynamic(selection);
             HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
             
             if (!m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
@@ -87,7 +89,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
 
    private bool IsDynamic(ZoneSelection zoneSelection)
    {
-      if (zoneSelection.DisplayType == ZoneType.MouseToPlayer)
+      if (zoneSelection.DisplayType == ZoneType.PlayerToMouse)
          return true;
 
       return false;

@@ -21,14 +21,6 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         GeneratePool();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            HighlightTiles(ZoneTileManager.Instance.GetSelectionZone(m_SelectionTest,Vector2Int.zero,range));
-        }
-    }
-
     private void GeneratePool()
     {
         for (int i = 0; i < m_PoolSize; i++)

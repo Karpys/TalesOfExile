@@ -61,7 +61,7 @@ public enum ZoneType
 {
     Circle,
     Square,
-    MouseToPlayer,
+    PlayerToMouse,
 }
 public enum ZoneOrigin
 {

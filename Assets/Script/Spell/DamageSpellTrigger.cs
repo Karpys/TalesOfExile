@@ -58,6 +58,7 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 float totalDamage = 0;
                 //Damage Entity At actionTile Pos//
                 BoardEntity damageTo = MapData.Instance.GetEntityAt(spellTiles.ActionTiles[i][j],targetGroup);
+                onHitAnim.TriggerFx(MapData.Instance.GetTilePosition(spellTiles.ActionTiles[i][j].x,spellTiles.ActionTiles[i][j].y));
                 
                 if(!damageTo)
                     continue;

@@ -6,7 +6,7 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
 {
     //Maybe need an additional Vector2Int parameter use for spell target selection when two position are needed//
     //ex : Mouse To Player
-    public List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int origin,int range)
+    public List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
     {
         List<Vector2Int> zones = new List<Vector2Int>();
 
@@ -18,7 +18,7 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
                 {
                     for (int y = -range + 1; y < range ; y++)
                     {
-                        zones.Add(new Vector2Int(x,y) + origin);
+                        zones.Add(new Vector2Int(x,y) + selectionOrigin);
                     }
                 }
                 break;
@@ -33,18 +33,25 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
                         Vector2Int vec = new Vector2Int(x, y);
                         if (Vector2Int.Distance(middleZone,vec) <= range - 0.66f)
                         {
-                            zones.Add(vec + origin);
+                            zones.Add(vec + selectionOrigin);
                         }
                     }
                 }
                 break;
-            case ZoneType.MouseToPlayer:
+            case ZoneType.PlayerToMouse:
                 //Player To Mouse Display //
-                List<Vector2Int> playerToMouse = LinePath.GetPathTile(GameManager.Instance.ControlledEntity.EntityPosition,origin).ToPath();
-
-                foreach (Vector2Int pathPoint in playerToMouse)
+                //Need to set the cast origin
+                if (castOrigin.HasValue)
                 {
-                    zones.Add(pathPoint);
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin).ToPath();
+                    foreach (Vector2Int pathPoint in playerToMouse)
+                    {
+                        zones.Add(pathPoint);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Need a cast origin Position");
                 }
                 break;
             default:
