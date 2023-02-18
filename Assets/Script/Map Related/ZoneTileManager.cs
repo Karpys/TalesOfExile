@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
 {
+    //Maybe need an additional Vector2Int parameter use for spell target selection when two position are needed//
+    //ex : Mouse To Player
     public List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int origin,int range)
     {
         List<Vector2Int> zones = new List<Vector2Int>();
@@ -34,6 +36,15 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
                             zones.Add(vec + origin);
                         }
                     }
+                }
+                break;
+            case ZoneType.MouseToPlayer:
+                //Player To Mouse Display //
+                List<Vector2Int> playerToMouse = LinePath.GetPathTile(GameManager.Instance.ControlledEntity.EntityPosition,origin).ToPath();
+
+                foreach (Vector2Int pathPoint in playerToMouse)
+                {
+                    zones.Add(pathPoint);
                 }
                 break;
             default:

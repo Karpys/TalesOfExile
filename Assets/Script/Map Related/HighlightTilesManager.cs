@@ -39,7 +39,7 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         }
     }
 
-    public void HighlightTiles(List<Vector2Int> tilesPosition,Color? targetColor = null)
+    public void HighlightTiles(List<Vector2Int> tilesPosition,Color? targetColor = null,bool isDynamicSelection = false)
     {
         for (int i = 0; i < tilesPosition.Count; i++)
         {
@@ -50,11 +50,14 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
             m_CurrentTiles[i + m_LockTilesCount].color = color;
         }
 
-        //??//
-        /*for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
+        //Refresh unused tiles//
+        if (isDynamicSelection)
         {
-            m_CurrentTiles[i].gameObject.SetActive(false);
-        }*/
+            for (int i = tilesPosition.Count + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
+            {
+                m_CurrentTiles[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     public void LockHighLightTiles(int count)

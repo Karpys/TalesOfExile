@@ -52,7 +52,8 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             
             //Highlight Tiles//
             Color tilesColor = GetColor(selection);
-            HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor);
+            bool isDynamicSelection = IsDynamic(m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue]);
+            HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
             
             if (!m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
             {
@@ -82,6 +83,14 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             }
          }
       }
+   }
+
+   private bool IsDynamic(ZoneSelection zoneSelection)
+   {
+      if (zoneSelection.DisplayType == ZoneType.MouseToPlayer)
+         return true;
+
+      return false;
    }
 
    private bool CanValidate(Vector2Int validationOrigin)

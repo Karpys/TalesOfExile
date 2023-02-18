@@ -16,6 +16,10 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            m_DebugMouseToPlayerTiles = true;
+        }
         Vector3 mousePosition = Input.mousePosition;
         //Warning Camera.main//
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -23,8 +27,9 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
 
         if (m_DebugMouseToPlayerTiles)
         {
-            List<Vector2Int> PlayerToMouse = PathFinding.FindPath(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition);
-            HighlightTilesManager.Instance.HighlightTiles(PlayerToMouse);
+            m_DebugMouseToPlayerTiles = false;
+            List<Tile> PlayerToMouse = LinePath.GetPathTile(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition);
+            HighlightTilesManager.Instance.HighlightTiles(PlayerToMouse.ToPath());
         }
     }
 }

@@ -126,7 +126,7 @@ public static class PathFinding
                 return currentTile;
             }*/
 
-            foreach (Tile neighbour in GetNeighbours(currentTile))
+            foreach (Tile neighbour in TileHelper.GetNeighbours(currentTile,NeighbourType,mapData))
             {
                 //Player Not Walkable
                 if (neighbour == playerTile)
@@ -203,68 +203,4 @@ public static class PathFinding
             return D1 * (distX - distY) + D2 * distY;
          return D1 * (distY - distX) + D2 * distX;*/
     }
-
-    public static List<Tile> GetNeighbours(Tile tile)
-    {
-        List<Tile> neighbours = new List<Tile>();
-
-        if (NeighbourType == NeighbourType.Square)
-        {
-           GetSquareNeighbours(tile,neighbours);
-        }else if (NeighbourType == NeighbourType.Cross)
-        {
-            GetCrossNeighbours(tile,neighbours);
-        }
-        
-
-        return neighbours;
-    }
-
-    private static void GetCrossNeighbours(Tile tile, List<Tile> neighbours)
-    {
-        for (int x = -1; x <= 1; x++)
-        {
-            if(x == 0)
-                continue;
-            
-            int checkX = tile.XPos + x;
-            if (checkX >= 0 && checkX < mapData.Map.Width)
-            {
-                neighbours.Add(mapData.Map.Tiles[checkX,tile.YPos]);
-            }
-        }
-        
-        for (int y = -1; y <= 1; y++)
-        {
-            if(y == 0)
-                continue;
-            
-            int checkY = tile.YPos + y;
-            if (checkY >= 0 && checkY < mapData.Map.Height)
-            {
-                neighbours.Add(mapData.Map.Tiles[tile.XPos,checkY]);
-            }
-        }
-    }
-
-    private static void GetSquareNeighbours(Tile tile, List<Tile> neighbours)
-    {
-        for (int x = -1; x <= 1; x++)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                if(x == 0 && y == 0)
-                    continue;
-
-                int checkX = tile.XPos + x;
-                int checkY = tile.YPos + y;
-
-                if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
-                {
-                    neighbours.Add(mapData.Map.Tiles[checkX,checkY]); 
-                }
-            }
-        }
-    }
-
 }

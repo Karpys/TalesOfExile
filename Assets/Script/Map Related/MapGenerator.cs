@@ -52,7 +52,7 @@ public class MapGenerator : MonoBehaviour
     {
         Map map = new Map();
         m_MapData.Map = map;
-        SetPathFindingMap();
+        InitializeMapData();
         //Tiles Initiation//
         map.Height = m_Height;
         map.Width = m_Width;
@@ -96,8 +96,9 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void SetPathFindingMap()
+    private void InitializeMapData()
     {
         PathFinding.mapData = m_MapData;
+        LinePath.mapData = m_MapData;
     }
 }
