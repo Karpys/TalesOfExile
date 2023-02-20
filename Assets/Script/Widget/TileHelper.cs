@@ -1,9 +1,17 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public static class TileHelper
 {
+    private static Vector2Int[] DirectionalCheck = new Vector2Int[]
+    {
+        new Vector2Int(0, 1),
+        new Vector2Int(1, 0),
+        new Vector2Int(0, -1),
+        new Vector2Int(-1, 0),
+    };
     public static List<Tile> GetNeighbours(Tile tile,NeighbourType type,MapData mapData)
     {
         List<Tile> neighbours = new List<Tile>();
@@ -64,6 +72,41 @@ public static class TileHelper
                     neighbours.Add(mapData.Map.Tiles[checkX,checkY]); 
                 }
             }
+        }
+    }
+
+    private static int GetBitMaskingValue(Tile tile,List<Tile> tiles,MapData mapData)
+    {
+        string bitMask = "";
+        
+        for (int i = DirectionalCheck.Length - 1; i >= 0; i--)
+        {
+            int checkX = tile.XPos + DirectionalCheck[i].x;
+            int checkY = tile.YPos + DirectionalCheck[i].y;
+            
+            if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
+            {
+                if (tiles.Contains(mapData.Map.Tiles[checkX, checkY]))
+                {
+                    bitMask += "1";
+                    continue;
+                }
+            }
+
+            bitMask += "0";
+        }
+
+        Debug.Log(bitMask);
+        return Convert.ToInt32(bitMask, 2);
+    }
+
+    public static void GenerateTileSet(List<Tile> tiles,Sprite[] tileMap,MapData mapData)
+    {
+        foreach (Tile tile in tiles)
+        {
+            Debug.Log(tile.TilePosition);
+            Debug.Log(GetBitMaskingValue(tile,tiles,mapData));
+            tile.GetComponentInChildren<SpriteRenderer>().sprite = tileMap[GetBitMaskingValue(tile, tiles, mapData)];
         }
     }
     

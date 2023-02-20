@@ -4,7 +4,8 @@ using UnityEngine;
 //DAMAGE SPELL TRIGGER need to inherit from BaseTargetEntitySpell abstract class//
 //return a List of Entity and then here apply all the damage source//
 //The animation part can be move to BaseTargetEntitySpell//
-public class DamageSpellTrigger : BaseSpellTrigger
+public class 
+    DamageSpellTrigger : BaseSpellTrigger
 {
     public DamageSpellScriptable DamageSpellData = null;
 
@@ -58,7 +59,6 @@ public class DamageSpellTrigger : BaseSpellTrigger
                 float totalDamage = 0;
                 //Damage Entity At actionTile Pos//
                 BoardEntity damageTo = MapData.Instance.GetEntityAt(spellTiles.ActionTiles[i][j],targetGroup);
-                onHitAnim.TriggerFx(MapData.Instance.GetTilePosition(spellTiles.ActionTiles[i][j].x,spellTiles.ActionTiles[i][j].y));
                 
                 if(!damageTo)
                     continue;

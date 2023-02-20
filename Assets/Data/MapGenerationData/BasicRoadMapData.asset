@@ -16,4 +16,22 @@ MonoBehaviour:
   - {x: 20, y: 10}
   - {x: 30, y: 25}
   - {x: 49, y: 30}
-  m_RoadTile: {fileID: 5334949379457748356, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}
+  m_RoadTileSet:
+    m_TileMap:
+    - {fileID: 789184352611601772, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -1600623689504111734, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 7210736993000508397, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 2572083509716475309, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -1480767711916143703, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 3168195600214551889, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 5931472470712848091, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 5762850282519963132, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -2670440962590792087, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -2587193631579324708, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -7803270093215110062, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -8293761811622429803, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 8927889430853896385, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: 3266456720042607564, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -7628176375240166541, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    - {fileID: -9139160733435274553, guid: b8f63ef1f731fc24eada7cbfe3cc79e3, type: 3}
+    m_TilePrefab: {fileID: 5334949379457748356, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}

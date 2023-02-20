@@ -7,7 +7,7 @@ using UnityEngine;
 public class MapGenerationData : ScriptableObject
 {
     public List<Vector2Int> PivotPoints = new List<Vector2Int>();
-    [SerializeField] private Tile m_RoadTile = null;
+    [SerializeField] private TileSet m_RoadTileSet = null;
 
     private MapData m_MapData = null;
     private Map m_Map = null;
@@ -20,19 +20,27 @@ public class MapGenerationData : ScriptableObject
 
         currentY = Random.Range(0, m_Map.Height);
         currentY = 6;
-        Tile LastTile = PlaceTileAt(m_RoadTile,currentX,currentY);
-
+        
+        //Road Generation and TileSet
+        List<Tile> roadTiles = new List<Tile>();
+        
+        Tile lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab,currentX,currentY);
+        roadTiles.Add(lastTile);
+        
         for (int i = 0; i < PivotPoints.Count; i++)
         {
-            List<Vector2Int> path = PathFinding.FindPath(LastTile, m_Map.Tiles[PivotPoints[i].x, PivotPoints[i].y]);
+            PathFinding.NeighbourType = NeighbourType.Cross;
+            List<Vector2Int> path = PathFinding.FindPath(lastTile, m_Map.Tiles[PivotPoints[i].x, PivotPoints[i].y]);
+            PathFinding.NeighbourType = NeighbourType.Square;
             
             for (int j = 0; j < path.Count; j++)
             {
-                LastTile = PlaceTileAt(m_RoadTile, path[j].x, path[j].y);
-                if(j == 0)
-                    LastTile.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+                lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab, path[j].x, path[j].y);
+                roadTiles.Add(lastTile);
             }
         }
+        
+        TileHelper.GenerateTileSet(roadTiles,m_RoadTileSet.TileMap,m_MapData);
     }
 
     private Tile PlaceTileAt(Tile tilePrefab, int x, int y)
@@ -43,4 +51,14 @@ public class MapGenerationData : ScriptableObject
         m_Map.Tiles[x, y] = tile;
         return tile;
     }
+}
+
+[System.Serializable]
+public class TileSet
+{
+    [SerializeField] private Sprite[] m_TileMap = new Sprite[0];
+    [SerializeField] private Tile m_TilePrefab = null;
+
+    public Tile TilePrefab => m_TilePrefab;
+    public Sprite[] TileMap => m_TileMap;
 }

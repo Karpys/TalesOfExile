@@ -65,7 +65,7 @@ public class MapGenerator : MonoBehaviour
                 Tile tile = Instantiate(m_GrassGround[Random.Range(0,m_GrassGround.Length)], m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
                 tile.Initialize(x,y);
                 map.Tiles[x,y] = tile;
-                /*TryGenerateTree(x,y,map);*/
+                TryGenerateTree(x,y,map);
             }
         }
 
