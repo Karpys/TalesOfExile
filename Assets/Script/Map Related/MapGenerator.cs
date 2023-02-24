@@ -9,11 +9,6 @@ public class BoardEntitySpawn
 }
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private int m_Width = 0;
-    [SerializeField] private int m_Height = 0;
-    [SerializeField] private float m_TileSize = 0;
-    [SerializeField] private Tile[] m_GrassGround = null;
-    [SerializeField] private SpriteHelper m_TreeVisual = null;
     [SerializeField] private MapData m_MapData = null;
     [SerializeField] private BoardEntitySpawn[] m_BoardEntities = null;
     [SerializeField] private MapGenerationData m_GenerationData = null;
@@ -21,31 +16,14 @@ public class MapGenerator : MonoBehaviour
     private void Start()
     {
         InitializeMap();
-        m_GenerationData.Generate(m_MapData);
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            EraseMap();
-            InitializeMap();
+            m_GenerationData.Generate(m_MapData);
         }
-    }
-
-    private void EraseMap()
-    {
-        if(m_MapData.Map.Tiles == null) return;
-        
-        //Erase Tiles//
-        for (int x = 0; x < m_MapData.Map.Width; x++)
-        {
-            for (int y = 0; y < m_MapData.Map.Height; y++)
-            {
-                Destroy(m_MapData.Map.Tiles[x,y]);
-            }
-        }
-        m_MapData.Map.Tiles = null;
     }
 
     private void InitializeMap()
@@ -54,21 +32,9 @@ public class MapGenerator : MonoBehaviour
         m_MapData.Map = map;
         InitializeMapData();
         //Tiles Initiation//
-        map.Height = m_Height;
-        map.Width = m_Width;
-        map.Tiles = new Tile[m_Width,m_Height];
         
-        for (int x = 0; x < m_Width; x++)
-        {
-            for (int y = 0; y < m_Height; y++)
-            {
-                Tile tile = Instantiate(m_GrassGround[Random.Range(0,m_GrassGround.Length)], m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
-                tile.Initialize(x,y);
-                map.Tiles[x,y] = tile;
-                TryGenerateTree(x,y,map);
-            }
-        }
-
+        m_GenerationData.Generate(m_MapData);
+        
         //Entities Init//
         foreach (BoardEntitySpawn boardEntity in m_BoardEntities)
         {
@@ -77,24 +43,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void TryGenerateTree(int x, int y,Map map)
-    {
-        if (x == 0 || y == 0 || x == m_Height - 1 || y == m_Width - 1)
-        {
-            map.Tiles[x, y].Walkable = false;
-            SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
-            spr.SetSpritePriority(-y);
-        }
-        else
-        {
-            if (Random.Range(0, 20) == 10)
-            {
-                map.Tiles[x, y].Walkable = false;
-                SpriteHelper spr = Instantiate(m_TreeVisual, m_MapData.GetTilePosition(x,y),Quaternion.identity,m_MapData.transform);
-                spr.SetSpritePriority(-y);
-            }
-        }
-    }
+    
 
     private void InitializeMapData()
     {

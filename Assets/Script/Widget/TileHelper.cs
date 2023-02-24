@@ -95,8 +95,6 @@ public static class TileHelper
 
             bitMask += "0";
         }
-
-        Debug.Log(bitMask);
         return Convert.ToInt32(bitMask, 2);
     }
 
@@ -104,8 +102,6 @@ public static class TileHelper
     {
         foreach (Tile tile in tiles)
         {
-            Debug.Log(tile.TilePosition);
-            Debug.Log(GetBitMaskingValue(tile,tiles,mapData));
             tile.GetComponentInChildren<SpriteRenderer>().sprite = tileMap[GetBitMaskingValue(tile, tiles, mapData)];
         }
     }

@@ -48,6 +48,10 @@ public static class PathFinding
     public static List<Tile> FindTilePath(Tile startTile, Tile playerTile,bool ignoreWall = false)
     {
         Tile lastTile = FindLastTile(startTile, playerTile,ignoreWall);
+
+        if (ReferenceEquals(lastTile,null))
+            return null;
+        
         List<Tile> path = new List<Tile>();
         
         Tile currentTile = lastTile;
@@ -80,8 +84,12 @@ public static class PathFinding
     public static List<Vector2Int> FindPath(Tile startTile, Tile playerTile, bool ignoreWall = false)
     {
         List<Vector2Int> path = new List<Vector2Int>();
-       
-        foreach (Tile tile in FindTilePath(startTile, playerTile, ignoreWall))
+        List<Tile> tilePath = FindTilePath(startTile, playerTile, ignoreWall);
+
+        if (tilePath == null)
+            return null;
+
+        foreach (Tile tile in tilePath)
         {
             path.Add(new Vector2Int(tile.XPos,tile.YPos));
         }
@@ -125,8 +133,10 @@ public static class PathFinding
                 DebugTile(startTile,currentTile);
                 return currentTile;
             }*/
+            
+            List<Tile> neighbours = TileHelper.GetNeighbours(currentTile, NeighbourType, mapData);
 
-            foreach (Tile neighbour in TileHelper.GetNeighbours(currentTile,NeighbourType,mapData))
+            foreach (Tile neighbour in neighbours)
             {
                 //Player Not Walkable
                 if (neighbour == playerTile)
