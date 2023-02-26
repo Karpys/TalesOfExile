@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
+  m_Name: T_GlacialHammerV2
+  m_EditorClassIdentifier: 
+  OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
+  DamageParameters:
+    DamageType:
+      MainDamageType: 0
+      SubDamageTypes: 000000000300000001000000
+    InitialSourceDamage:
+      Damage: 0
+      DamageType: 3
+  WeaponDamageConvertion: 100

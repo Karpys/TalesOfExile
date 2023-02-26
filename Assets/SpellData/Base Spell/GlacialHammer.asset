@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: a2f2779bd64e0634cac78caaa5af4813, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: bc35a5f5090cf5646ac3476828678529, type: 2}
+  m_SpellTrigger: {fileID: 11400000, guid: 9ef37ae4d458cc5429ac38fafa0f3fcf, type: 2}
   m_Selection:
   - Origin: 0
     DisplayType: 1
@@ -30,5 +30,4 @@ MonoBehaviour:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
-  m_OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
   Range: 1

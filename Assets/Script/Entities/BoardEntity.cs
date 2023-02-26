@@ -223,4 +223,10 @@ public abstract class BoardEntity : MonoBehaviour
         //     additionalSources.Add(newSource);
         return additionalSources.ToArray();
     }
+
+    public float GetMainWeaponDamage()
+    {
+        //TODo: Return the main damage weapon damage
+        return 100f;
+    }
 }

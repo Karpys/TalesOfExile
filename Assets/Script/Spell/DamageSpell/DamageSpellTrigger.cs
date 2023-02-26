@@ -8,7 +8,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 {
     public DamageSpellScriptable DamageSpellData = null;
 
-    private Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
+    protected Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
     //public void ComputeAdditional Sources//
     public DamageSpellTrigger(DamageSpellScriptable damageSpellData)
     {
@@ -69,7 +69,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         if (DamageSpellData.OnHitAnimation)
         {
             m_SpellAnimDelay = onHitAnim.BaseSpellDelay;   
-            onHitAnim.TriggerFx(Vector3.zero,entity.transform);
+            onHitAnim.TriggerFx(entity.WorldPosition);
         }
 
         /*Text Display */

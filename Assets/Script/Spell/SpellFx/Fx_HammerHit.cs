@@ -4,15 +4,15 @@ using UnityEngine;
 public class Fx_HammerHit : BurstAnimation
 {
     [SerializeField] private SpriteRenderer m_Sprite = null;
-    [SerializeField] private BaseTweenData m_RotateTween = null;
+    [SerializeField] private BaseTweenData m_ScaleTween = null;
     [SerializeField] private float m_FadeDuration = 0.2f;
     protected override float GetAnimationDuration()
     {
-        return m_RotateTween.Duration;
+        return m_ScaleTween.Duration * 2;
     }
     public override void Animate()
     {
-        transform.DoRotate(m_RotateTween).SetMode(TweenMode.ADDITIVE);
+        m_ScaleTween.TargetTransform.DoScale(m_ScaleTween).OnComplete((() => m_ScaleTween.TargetTransform.DoScale(new Vector3(1,1,1),m_ScaleTween.Duration)));
     }
 
     public override void DestroySelf(float time)

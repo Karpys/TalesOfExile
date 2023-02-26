@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 2072107463
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34775b40e051ce0429e3b50a79a00bbc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_Color: {r: 0.50352436, g: 0.7429481, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,10 +129,6 @@ MonoBehaviour:
   m_Sprite: {fileID: 1119914872239381813}
   m_ScaleTween:
     TargetTransform: {fileID: 974638068750772250}
-    EndValue: {x: 1, y: 1, z: 1}
-    Duration: 1
-  m_RotateTween:
-    TargetTransform: {fileID: 974638068750772250}
-    EndValue: {x: 0, y: 0, z: -90}
-    Duration: 0.2
+    EndValue: {x: 1.2, y: 1.2, z: 1.2}
+    Duration: 0.1
   m_FadeDuration: 0.2

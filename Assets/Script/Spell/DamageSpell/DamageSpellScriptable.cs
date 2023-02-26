@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Basic Damage Spell", menuName = "New Spell Trigger", order = 0)]
+[CreateAssetMenu(fileName = "SpellDamage", menuName = "Trigger/Basic Damage", order = 0)]
 public class DamageSpellScriptable : BaseSpellTriggerScriptable
 {
     [Header("Spell Animation")]
@@ -16,6 +16,7 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
         return new DamageSpellTrigger(this);
     }
 }
+
 
 [System.Serializable]
 public class Modifier
