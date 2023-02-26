@@ -1,0 +1,42 @@
+﻿using UnityEngine;
+
+public abstract class SelectionSpellTrigger:BaseSpellTrigger
+{
+    protected abstract void TileHit(Vector2Int tilePosition);
+    protected abstract void EntityHit(BoardEntity entity,SpellData spellData,EntityGroup targetGroup);
+    public override void Trigger(SpellData spellData, SpellTiles spellTiles)
+    {
+        m_SpellAnimDelay = 0;
+        EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
+
+        for (int i = 0; i < spellTiles.ActionTiles.Count; i++)
+        {
+            for (int j = 0; j < spellTiles.ActionTiles[i].Count; j++)
+            {
+                TileHit(new Vector2Int(i,j));
+                
+                BoardEntity entityHit = MapData.Instance.GetEntityAt(spellTiles.ActionTiles[i][j],targetGroup);
+                
+                if(!entityHit)
+                    continue;
+                
+                EntityHit(entityHit,spellData,targetGroup);
+                //Foreach Damage Sources//
+            }
+        }
+        
+        if (spellData.AttachedEntity.m_EntityData.m_EntityGroup == EntityGroup.Friendly)
+        {
+            GameManager.Instance.FriendlyWaitTime = m_SpellAnimDelay;
+        }
+        else
+        {
+            GameManager.Instance.EnnemiesWaitTime = m_SpellAnimDelay;
+        }
+    }
+
+    public override void ComputeSpellData(BoardEntity entity)
+    {
+        
+    }
+}

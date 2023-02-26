@@ -4,8 +4,7 @@ using UnityEngine;
 //DAMAGE SPELL TRIGGER need to inherit from BaseTargetEntitySpell abstract class//
 //return a List of Entity and then here apply all the damage source//
 //The animation part can be move to BaseTargetEntitySpell//
-public class 
-    DamageSpellTrigger : BaseSpellTrigger
+public class DamageSpellTrigger : SelectionSpellTrigger
 {
     public DamageSpellScriptable DamageSpellData = null;
 
@@ -44,55 +43,40 @@ public class
         }
     }
     //Apply Damage To All Ennemies in the actionTiles
+    
     public override void Trigger(SpellData spellData,SpellTiles spellTiles)
     {
-        EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
-        //OnHit Spell Animation//
-        float spellAnimDelay = 0;
-        SpellAnimation onHitAnim = DamageSpellData.OnHitAnimation;
-        
-        //Apply Damage To All Actions Tiles//
-        for (int i = 0; i < spellTiles.ActionTiles.Count; i++)
-        {
-            for (int j = 0; j < spellTiles.ActionTiles[i].Count; j++)
-            {
-                float totalDamage = 0;
-                //Damage Entity At actionTile Pos//
-                BoardEntity damageTo = MapData.Instance.GetEntityAt(spellTiles.ActionTiles[i][j],targetGroup);
-                
-                if(!damageTo)
-                    continue;
-                
-                //Foreach Damage Sources//
-                foreach (DamageSource damageSource in DamageSources.Values)
-                {
-                    totalDamage += DamageManager.Instance.TryDamageEnnemy(damageTo, spellData.AttachedEntity,damageSource); //DamageSource);
-                }
-
-                //Animation And Damage Display
-                if (DamageSpellData.OnHitAnimation)
-                {
-                    spellAnimDelay = onHitAnim.BaseSpellDelay;   
-                    onHitAnim.TriggerFx(Vector3.zero,damageTo.transform);
-                }
-
-                /*Text Display */
-                if (targetGroup == EntityGroup.Ennemy)
-                {
-                    FloatingTextManager.Instance.SpawnFloatingText(damageTo.transform,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),spellAnimDelay);
-                }
-            }
-        }
-
-        //Wait time
-        if (spellData.AttachedEntity.m_EntityData.m_EntityGroup == EntityGroup.Friendly)
-        {
-            GameManager.Instance.FriendlyWaitTime = spellAnimDelay;
-        }
-        else
-        {
-            GameManager.Instance.EnnemiesWaitTime = spellAnimDelay;
-        }
+        base.Trigger(spellData,spellTiles);
+    }
+    
+    protected override void TileHit(Vector2Int tilePosition)
+    {
         return;
     }
+
+    protected override void EntityHit(BoardEntity entity,SpellData spellData,EntityGroup targetGroup)
+    {
+        SpellAnimation onHitAnim = DamageSpellData.OnHitAnimation;
+        
+        float totalDamage = 0;
+        //Foreach Damage Sources//
+        foreach (DamageSource damageSource in DamageSources.Values)
+        {
+            totalDamage += DamageManager.Instance.TryDamageEnnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
+        }
+
+        //Animation And Damage Display
+        if (DamageSpellData.OnHitAnimation)
+        {
+            m_SpellAnimDelay = onHitAnim.BaseSpellDelay;   
+            onHitAnim.TriggerFx(Vector3.zero,entity.transform);
+        }
+
+        /*Text Display */
+        if (targetGroup == EntityGroup.Ennemy)
+        {
+            FloatingTextManager.Instance.SpawnFloatingText(entity.transform,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
+        }
+    }
+
 }
