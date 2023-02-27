@@ -85,7 +85,7 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected int m_YPosition = 0;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
-    [HideInInspector] public BoardEntityData m_EntityData = null;
+    public BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
@@ -152,34 +152,34 @@ public abstract class BoardEntity : MonoBehaviour
     {
         for (int i = 0; i < m_EntityData.m_SpellList.m_Spells.Count; i++)
         {
-            RegisterSpell(m_EntityData.m_SpellList.m_Spells[i]);
+            m_EntityData.m_SpellList.m_Spells[i] = RegisterSpell(m_EntityData.m_SpellList.m_Spells[i]);
         }
     }
 
-    protected void RegisterSpell(SpellData spell)
+    protected SpellData RegisterSpell(SpellData spell)
     {
         spell.AttachedEntity = this;
-        spell.InitializeTrigger();
+        return spell.Initialize();
     }
     
     //Stats Related//
     
     //Spell Related//
     //Player Cast Mainly or Controlled Entity//
-    public void CastSpell(SpellData spellData,SpellTiles spellTiles)
+    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
         spellData.SpellTrigger.Trigger(spellData,spellTiles);
     }
 
     //Cast
-    public void CastSpellAt(SpellData spellData,Vector2Int pos)
+    public void CastSpellAt(TriggerSpellData spellData,Vector2Int pos)
     {
         List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
         List<Vector2Int> originTiles = new List<Vector2Int>();
 
-        for (int i = 0; i < spellData.m_Data.m_Selection.Length; i++)
+        for (int i = 0; i < spellData.TriggerData.m_Selection.Length; i++)
         {
-            ZoneSelection currentSelection = spellData.m_Data.m_Selection[i];
+            ZoneSelection currentSelection = spellData.TriggerData.m_Selection[i];
             
             if (currentSelection.ActionSelection)
             {  

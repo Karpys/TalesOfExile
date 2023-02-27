@@ -12,7 +12,7 @@ public class SpellIcon : MonoBehaviour
     [SerializeField] private TMP_Text m_SpellKey = null;
     [SerializeField] private Button m_ButtonSpellTrigger = null;
 
-    private SpellData m_CurrentSpellData = null;
+    private TriggerSpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
 
     private static int START_ID_KEYCODE = 49;
@@ -46,12 +46,12 @@ public class SpellIcon : MonoBehaviour
         m_SpellKey.text = id + 1+ "";
         m_SpellKeyCode = (KeyCode)START_ID_KEYCODE + id;
     }
-    public void SetSpell(SpellData spell)
+    public void SetSpell(TriggerSpellData spell)
     {
         m_CurrentSpellData = spell;
         EnableIcon(true);
-        m_SpellIcon.sprite = spell.m_Data.m_SpellIcon;
-        m_SpellIconBorder.sprite = spell.m_Data.m_SpellIconBorder;
+        m_SpellIcon.sprite = spell.TriggerData.m_SpellIcon;
+        m_SpellIconBorder.sprite = spell.TriggerData.m_SpellIconBorder;
     }
 
     public void EnableIcon(bool enable)

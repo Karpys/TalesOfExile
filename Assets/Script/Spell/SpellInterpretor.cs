@@ -13,13 +13,13 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    private List<List<Vector2Int>> m_ActionTiles = new List<List<Vector2Int>>();
    private List<Vector2Int> m_OriginTiles = new List<Vector2Int>();
 
-   private SpellData m_CurrentSpell = null;
+   private TriggerSpellData m_CurrentSpell = null;
    private int m_CurrentSpellQueue = 0;
    
    private Vector2Int m_OriginTile = Vector2Int.zero;
    private Vector2Int m_CastOriginTile = Vector2Int.zero;
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
-   public void LaunchSpellQueue(SpellData spell)
+   public void LaunchSpellQueue(TriggerSpellData spell)
    {
       ResetSpellQueue();
       
@@ -44,10 +44,10 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    {
       if (m_CurrentSpell != null)
       {
-         if (m_CurrentSpellQueue < m_CurrentSpell.m_Data.m_Selection.Length)
+         if (m_CurrentSpellQueue < m_CurrentSpell.TriggerData.m_Selection.Length)
          {
             //Get the current Zone Selection following the ZoneTileManager seleciton rules based on Zone Selection Class//
-            ZoneSelection selection = m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue];
+            ZoneSelection selection = m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue];
             m_OriginTile = GetOrigin(selection);
             m_CastOriginTile = m_CurrentSpell.AttachedEntity.EntityPosition;
             m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, m_OriginTile, selection.Range,m_CastOriginTile);
@@ -57,7 +57,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             bool isDynamicSelection = IsDynamic(selection);
             HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
             
-            if (!m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
+            if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
             {
                FetchSelection();
             }else if (Validation)
@@ -97,11 +97,11 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
 
    private bool CanValidate(Vector2Int validationOrigin)
    {
-      if (m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation == -1)
+      if (m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation == -1)
          return true;
 
       //if the origin is in the display list of the id => Valid current selection//
-      if (m_DisplayTiles[m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation]
+      if (m_DisplayTiles[m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation]
           .Contains(validationOrigin))
       {
          return true;
@@ -146,7 +146,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    public void FetchSelection()
    {
       //Add it to the action selection...Future use for spell trigger damage / effect//
-      if (m_CurrentSpell.m_Data.m_Selection[m_CurrentSpellQueue].ActionSelection)
+      if (m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ActionSelection)
       {
          AddToActionTiles(m_TilesSelection);
          AddToOriginTiles(m_OriginTile);

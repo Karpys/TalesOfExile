@@ -3,8 +3,8 @@
 public abstract class SelectionSpellTrigger:BaseSpellTrigger
 {
     protected abstract void TileHit(Vector2Int tilePosition);
-    protected abstract void EntityHit(BoardEntity entity,SpellData spellData,EntityGroup targetGroup);
-    public override void Trigger(SpellData spellData, SpellTiles spellTiles)
+    protected abstract void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup);
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         m_SpellAnimDelay = 0;
         EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
