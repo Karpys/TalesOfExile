@@ -27,7 +27,12 @@ namespace Script.UI
         {
             for (int i = 0; i < entity.Spells.Count; i++)
             {
-                m_IconsHolder[i].SetSpell(entity.Spells[i]);
+                TriggerSpellData triggerSpell = entity.Spells[i] as TriggerSpellData;
+                
+                if(triggerSpell == null)
+                    return;
+                
+                m_IconsHolder[i].SetSpell(triggerSpell);
             }
         }
     }

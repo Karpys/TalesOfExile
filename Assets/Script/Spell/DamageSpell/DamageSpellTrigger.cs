@@ -44,7 +44,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     }
     //Apply Damage To All Ennemies in the actionTiles
     
-    public override void Trigger(SpellData spellData,SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData,SpellTiles spellTiles)
     {
         base.Trigger(spellData,spellTiles);
     }
@@ -54,7 +54,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         return;
     }
 
-    protected override void EntityHit(BoardEntity entity,SpellData spellData,EntityGroup targetGroup)
+    protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
     {
         SpellAnimation onHitAnim = DamageSpellData.OnHitAnimation;
         

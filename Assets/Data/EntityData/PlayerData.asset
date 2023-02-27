@@ -25,9 +25,9 @@ MonoBehaviour:
       FireDamageModifier: 0
     m_SpellList:
       m_Spells:
-      - m_Data: {fileID: 11400000, guid: b6c22163b72085546bba9b716d0abf53, type: 2}
+      - Data: {fileID: 11400000, guid: b6c22163b72085546bba9b716d0abf53, type: 2}
         AttachedEntity: {fileID: 0}
-      - m_Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
+      - Data: {fileID: 11400000, guid: bbff991a996179847bc7c06390feae75, type: 2}
         AttachedEntity: {fileID: 0}
-      - m_Data: {fileID: 11400000, guid: ff06f51fb59e2ce47969c90dc3a4876f, type: 2}
+      - Data: {fileID: 11400000, guid: ff06f51fb59e2ce47969c90dc3a4876f, type: 2}
         AttachedEntity: {fileID: 0}
