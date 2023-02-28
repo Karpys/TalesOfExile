@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SpellTest
   m_EditorClassIdentifier: 
+  SpellType: 0
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: bc35a5f5090cf5646ac3476828678529, type: 2}
+  m_SpellTrigger: {fileID: 11400000, guid: c5f9064b0e8664ea4a3b2e769c816504, type: 2}
   m_Selection:
   - Origin: 0
     DisplayType: 0
@@ -24,8 +25,8 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 0
   - Origin: 1
-    DisplayType: 2
-    Range: -1
+    DisplayType: 1
+    Range: 1
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0

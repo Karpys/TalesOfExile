@@ -49,7 +49,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         base.Trigger(spellData,spellTiles);
     }
     
-    protected override void TileHit(Vector2Int tilePosition)
+    protected override void TileHit(Vector2Int tilePosition,TriggerSpellData spellData)
     {
         return;
     }

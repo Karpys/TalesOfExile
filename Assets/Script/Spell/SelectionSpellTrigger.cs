@@ -2,7 +2,7 @@
 
 public abstract class SelectionSpellTrigger:BaseSpellTrigger
 {
-    protected abstract void TileHit(Vector2Int tilePosition);
+    protected abstract void TileHit(Vector2Int tilePosition,TriggerSpellData spellData);
     protected abstract void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup);
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
@@ -13,7 +13,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
         {
             for (int j = 0; j < spellTiles.ActionTiles[i].Count; j++)
             {
-                TileHit(new Vector2Int(i,j));
+                TileHit(spellTiles.ActionTiles[i][j],spellData);
                 
                 BoardEntity entityHit = MapData.Instance.GetEntityAt(spellTiles.ActionTiles[i][j],targetGroup);
                 
