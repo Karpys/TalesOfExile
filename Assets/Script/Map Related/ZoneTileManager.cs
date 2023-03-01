@@ -54,6 +54,35 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
                     Debug.LogError("Need a cast origin Position");
                 }
                 break;
+            case ZoneType.PlayerToMouseSquareRange:
+                //Player To Mouse Display //
+                //Need to set the cast origin
+                if (castOrigin.HasValue)
+                {
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin).ToPath();
+                    
+                    for (int i = 0; i < playerToMouse.Count; i++)
+                    {
+                        Vector2Int pathPoint = playerToMouse[i];
+                        if (!zones.Contains(pathPoint))
+                            zones.Add(pathPoint);
+
+                        if (i >= playerToMouse.Count - range + 1)
+                            continue;
+                        
+                        List<Vector2Int> pathLenght = GetSelectionZone(new ZoneSelection(ZoneType.Square, range), pathPoint, range);
+                        foreach (Vector2Int pathAdd in pathLenght)
+                        {
+                            if (!zones.Contains(pathAdd))
+                                zones.Add(pathAdd);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Need a cast origin Position");
+                }
+                break;
             default:
                 break;
         }

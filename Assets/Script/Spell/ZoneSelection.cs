@@ -6,4 +6,10 @@ public class ZoneSelection
     public int Range = 0;
     public ValidationType ValidationType = null;
     public bool ActionSelection = false;
+
+    public ZoneSelection(ZoneType type, int range)
+    {
+        DisplayType = type;
+        Range = range;
+    }
 }
