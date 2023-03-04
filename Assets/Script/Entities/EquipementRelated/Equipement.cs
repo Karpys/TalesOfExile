@@ -8,12 +8,12 @@ public class Equipement
     public EquipementType Type = EquipementType.Null;
     public List<Modifier> Modifiers = new List<Modifier>();
 
-    public Equipement(string description, EquipementType type, List<Modifier> modifiers)
+    public Equipement(Equipement equipement)
     {
-        Description = description;
-        Type = type;
+        Description = equipement.Description;
+        Type = equipement.Type;
 
-        foreach (Modifier modifier in modifiers)
+        foreach (Modifier modifier in equipement.Modifiers)
         {
             Modifiers.Add(new Modifier(modifier.Type,modifier.Value));
         }

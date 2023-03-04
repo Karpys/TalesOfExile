@@ -109,11 +109,11 @@ public abstract class BoardEntity : MonoBehaviour
         
         //Equipement
         m_Equipement = GetComponent<EntityEquipement>();
+        m_Equipement.InitEquipement(m_EntityDataScriptable.m_StartEquipement);
     }
 
     protected virtual void Start()
     {
-        m_Equipement.InitEquipement();
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
         GameManager.Instance.RegisterEntity(this);
         //Initi Serialize Spells//

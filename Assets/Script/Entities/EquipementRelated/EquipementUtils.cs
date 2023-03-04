@@ -14,6 +14,12 @@ public static class EquipementUtils
                 targetSocket = socket;
             }
         }
+
+        if (targetSocket == null)
+        {
+            Debug.Log("No More Free Space for this type : " + equipement.Type);
+            return;
+        }
         
         targetSocket.Equipement = equipement;
         ApplyEquipementStats(equipement,entity);
