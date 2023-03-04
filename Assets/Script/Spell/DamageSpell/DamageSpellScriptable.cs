@@ -8,7 +8,7 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
     [Header("Spell Animation")]
     public SpellAnimation OnHitAnimation = null;
     
-    public DamageParameters DamageParameters = null;
+    public DamageParameters BaseDamageParameters = null;
     
     public override BaseSpellTrigger SetUpTrigger()
     {

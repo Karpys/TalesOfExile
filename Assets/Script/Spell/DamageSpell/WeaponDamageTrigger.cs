@@ -1,15 +1,14 @@
 ﻿public class WeaponDamageTrigger : DamageSpellTrigger
 {
-    private WeaponDamageSpellScriptable WeaponData = null;
+    public float WeaponDamageConvertion = 100f;
     public WeaponDamageTrigger(WeaponDamageSpellScriptable weaponDamageData):base(weaponDamageData)
     {
-        DamageSpellData = weaponDamageData;
-        WeaponData = weaponDamageData;
+        WeaponDamageConvertion = weaponDamageData.BaseWeaponDamageConvertion;
     }
 
     public override void ComputeSpellData(BoardEntity entity)
     {
-        DamageSpellData.DamageParameters.InitialSourceDamage.Damage = entity.GetMainWeaponDamage() / WeaponData.WeaponDamageConvertion * 100;
+        DamageSpellData.InitialSourceDamage.Damage = entity.GetMainWeaponDamage() / WeaponDamageConvertion * 100;
         base.ComputeSpellData(entity);
     }
 }

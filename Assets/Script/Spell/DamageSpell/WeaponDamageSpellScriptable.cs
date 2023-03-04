@@ -4,7 +4,7 @@
 public class WeaponDamageSpellScriptable : DamageSpellScriptable
 {
     [Header("Weapon Damage")]
-    public float WeaponDamageConvertion = 100f;
+    public float BaseWeaponDamageConvertion = 100f;
     
     public override BaseSpellTrigger SetUpTrigger()
     {

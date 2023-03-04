@@ -6,13 +6,17 @@ using UnityEngine;
 //The animation part can be move to BaseTargetEntitySpell//
 public class DamageSpellTrigger : SelectionSpellTrigger
 {
-    public DamageSpellScriptable DamageSpellData = null;
+    private SpellAnimation OnHitAnimation = null;
+    
+    public DamageParameters DamageSpellData = null;
 
     protected Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
     //public void ComputeAdditional Sources//
     public DamageSpellTrigger(DamageSpellScriptable damageSpellData)
     {
-        DamageSpellData = damageSpellData;
+        Debug.Log("Call Base Damage Spell Trigger");
+        OnHitAnimation = damageSpellData.OnHitAnimation;
+        DamageSpellData = new DamageParameters(damageSpellData.BaseDamageParameters);
     }
 
     public override void ComputeSpellData(BoardEntity entity)
@@ -20,8 +24,8 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         //Compute Spell Damage
         DamageSources.Clear();
         
-        DamageSources.Add(DamageSpellData.DamageParameters.InitialSourceDamage.DamageType,new DamageSource(DamageSpellData.DamageParameters.InitialSourceDamage));
-        DamageSource[] additionalSources = entity.GetAdditionalSources(DamageSpellData.DamageParameters.DamageType);
+        DamageSources.Add(DamageSpellData.InitialSourceDamage.DamageType,new DamageSource(DamageSpellData.InitialSourceDamage));
+        DamageSource[] additionalSources = entity.GetAdditionalSources(DamageSpellData.DamageType);
         
         for (int i = 0; i < additionalSources.Length; i++)
         {
@@ -38,7 +42,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         
         foreach (DamageSource source in DamageSources.Values)
         {
-            source.Damage *= (entity.EntityStats.GetDamageModifier(source.DamageType) + entity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageParameters.DamageType.MainDamageType)
+            source.Damage *= (entity.EntityStats.GetDamageModifier(source.DamageType) + entity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageType.MainDamageType)
                 + 100) / 100;
         }
     }
@@ -56,7 +60,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 
     protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
     {
-        SpellAnimation onHitAnim = DamageSpellData.OnHitAnimation;
+        SpellAnimation onHitAnim = OnHitAnimation;
         
         float totalDamage = 0;
         //Foreach Damage Sources//
@@ -66,7 +70,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         }
 
         //Animation And Damage Display
-        if (DamageSpellData.OnHitAnimation)
+        if (OnHitAnimation)
         {
             m_SpellAnimDelay = onHitAnim.BaseSpellDelay;   
             onHitAnim.TriggerFx(entity.WorldPosition);
