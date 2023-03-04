@@ -18,14 +18,10 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
 }
 
 
-[System.Serializable]
-public class Modifier
-{
 
-}
-
+//Can be created via Modifier by type
 [System.Serializable]
-public class AddDamageModifier:Modifier
+public class AddDamageModifier
 {
     public DamageType TargetDamageType = null;
     public DamageSource AddedDamageSource = null;

@@ -85,14 +85,17 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected int m_YPosition = 0;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
-    public BoardEntityData m_EntityData = null;
+    protected BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
+    protected EntityEquipement m_Equipement = null;
 
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
+    public BoardEntityData EntityData => m_EntityData;
+    public EntityEquipement EntityEquipement => m_Equipement;
     
     //Entity Actions//
     public Action<float> A_OnEntityDamageTaken;
@@ -100,12 +103,17 @@ public abstract class BoardEntity : MonoBehaviour
 
     protected void Awake()
     {
+        //Copy Base Entity Data
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
         m_EntityData.m_Stats.SetEntity(this);
+        
+        //Equipement
+        m_Equipement = GetComponent<EntityEquipement>();
     }
 
     protected virtual void Start()
     {
+        m_Equipement.InitEquipement();
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
         GameManager.Instance.RegisterEntity(this);
         //Initi Serialize Spells//

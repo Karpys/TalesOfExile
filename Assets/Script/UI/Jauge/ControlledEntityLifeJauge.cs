@@ -25,7 +25,7 @@ namespace Script.UI.Jauge
             newEntity.A_OnLifeUpdated += UpdateJaugeFillValue;
             m_CurrentEntity = newEntity;
             
-            EntityStats stats = m_CurrentEntity.m_EntityData.m_Stats;
+            EntityStats stats = m_CurrentEntity.EntityData.m_Stats;
             UpdateJaugeFillValue(stats.Life,stats.MaxLife);
         }
 

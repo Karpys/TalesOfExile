@@ -25,7 +25,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
             }
         }
         
-        if (spellData.AttachedEntity.m_EntityData.m_EntityGroup == EntityGroup.Friendly)
+        if (spellData.AttachedEntity.EntityData.m_EntityGroup == EntityGroup.Friendly)
         {
             GameManager.Instance.FriendlyWaitTime = m_SpellAnimDelay;
         }

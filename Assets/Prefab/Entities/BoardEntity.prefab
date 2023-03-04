@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068509225359419660}
+  - component: {fileID: 8915308864731957502}
   m_Layer: 0
   m_Name: BoardEntity
   m_TagString: Untagged
@@ -30,3 +31,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8915308864731957502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980381498483754554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7032f85e0bec46a5b02aa309f3a4c7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Equipements:
+  - Type: 1
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 2
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 2
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 3
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 5
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 5
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 7
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 8
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 8
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 4
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []
+  - Type: 9
+    Equipement:
+      Description: 
+      Type: 0
+      Modifiers: []

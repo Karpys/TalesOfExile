@@ -46,19 +46,6 @@ MonoBehaviour:
   m_EntityDataScriptable: {fileID: 11400000, guid: 5b32d1267cc1d6c4d93afbd9cc177dd7, type: 2}
   m_XPosition: 0
   m_YPosition: 0
-  m_EntityData:
-    m_EntityGroup: 0
-    m_Stats:
-      MaxLife: 100
-      Life: 100
-      MeleeModifier: 0
-      ProjectileModifier: 0
-      SpellModifier: 0
-      ColdDamageModifier: 0
-      HolyDamageModifier: 0
-      FireDamageModifier: 0
-    m_SpellList:
-      m_Spells: []
   m_Range: 1
 --- !u!1 &6165430051826993969
 GameObject:
@@ -227,6 +214,26 @@ PrefabInstance:
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_TestEquipement.Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_TestEquipement.Description
+      value: Coucou
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_TestEquipement.Modifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_TestEquipement.Modifiers.Array.data[0].Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_TestEquipement.Modifiers.Array.data[0].Value
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
