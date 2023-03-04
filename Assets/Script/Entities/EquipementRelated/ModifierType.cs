@@ -3,5 +3,6 @@
     UpFire,
     UpCold,
     UpPhysical,
+    SpellAddition,
     //Ect
 }

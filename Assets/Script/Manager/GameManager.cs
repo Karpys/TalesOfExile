@@ -62,7 +62,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         
         m_ControlledEntity = entity;
         m_EntityInputMovement.SetTargetEntity(entity);
-        SetTargetEntitySkills(entity);
+        RefreshTargetEntitySkills();
         
         A_OnControlledEntityChange?.Invoke(oldControlledEntity,entity);
     }
@@ -90,9 +90,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     
     //UI Manager//
-    public void SetTargetEntitySkills(BoardEntity entity)
+    public void RefreshTargetEntitySkills()
     {
-        Canvas_Skills.Instance.SetTargetSkills(entity);
+        Canvas_Skills.Instance.SetTargetSkills(m_ControlledEntity);
     }
     //OnPlayer Action//
 

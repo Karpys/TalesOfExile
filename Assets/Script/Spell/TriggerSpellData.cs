@@ -8,7 +8,7 @@ public class TriggerSpellData:SpellData
     public BaseSpellTrigger SpellTrigger = null;
     //Spell Variables//
 
-    public TriggerSpellData(SpellData spellData)
+    public TriggerSpellData(SpellData spellData) : base(spellData)
     {
         AttachedEntity = spellData.AttachedEntity;
         Data = spellData.Data;
@@ -33,5 +33,9 @@ public class SupportSpellData:SpellData
     {
         Debug.Log("Init Support Spell");
         return this;
+    }
+
+    public SupportSpellData(SpellData baseSpellData) : base(baseSpellData)
+    {
     }
 }

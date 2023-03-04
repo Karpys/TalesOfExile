@@ -1939,6 +1939,7 @@ Transform:
   - {fileID: 809050817}
   - {fileID: 2045092500}
   - {fileID: 1450611267}
+  - {fileID: 1936871635}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2856,6 +2857,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MapDataLibrary: {fileID: 101270388}
+--- !u!1 &1936871634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936871635}
+  - component: {fileID: 1936871636}
+  m_Layer: 0
+  m_Name: SpellLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1936871635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936871634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1140441088}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936871636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936871634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e504539db14a42698d412d33be15e532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpellList:
+  - Data: {fileID: 11400000, guid: dedf0988c775ddd4db405b1bb9fccd95, type: 2}
+    AttachedEntity: {fileID: 0}
+    ConnectedSpellData:
+      m_Spells: []
 --- !u!1 &1937265413
 GameObject:
   m_ObjectHideFlags: 0

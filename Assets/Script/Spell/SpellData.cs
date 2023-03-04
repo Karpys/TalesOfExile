@@ -24,6 +24,14 @@ public class SpellData
                 return this;
         }
     }
+
+    public SpellData(SpellData baseSpellData)
+    {
+        Data = baseSpellData.Data;
+        AttachedEntity = baseSpellData.AttachedEntity;
+        ConnectedSpellData = baseSpellData.ConnectedSpellData.Clone();
+    }
+    
     public virtual object Clone()
     {
         return MemberwiseClone();

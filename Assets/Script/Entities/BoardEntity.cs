@@ -18,6 +18,7 @@ public class EntityStats
     public float ColdDamageModifier = 0f;
     public float HolyDamageModifier = 0f;
     public float FireDamageModifier = 0f;
+    public float PhysicalDamageModifier = 0f;
     //Physical
     //Ect ect
     
@@ -168,6 +169,15 @@ public abstract class BoardEntity : MonoBehaviour
     {
         spell.AttachedEntity = this;
         return spell.Initialize();
+    }
+
+    public void AddSpellToSpellList(SpellData spell)
+    {
+        m_EntityData.m_SpellList.m_Spells.Add(spell);
+        RegisterSpell(spell);
+        spell.ConnectedSpellData.m_Spells.Clear();
+        if(this == GameManager.Instance.ControlledEntity)
+            GameManager.Instance.RefreshTargetEntitySkills();
     }
     
     //Stats Related//
