@@ -98,15 +98,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void LaunchActionQueue(BoardEntity inputEntity)
     {
-        IEnumerator I_ActionQueue()
-        {
-            TriggerAllFriendlyActions();
-            yield return new WaitForSeconds(FriendlyWaitTime);
-            TriggerAllEnnemyAction();
-            yield return new WaitForSeconds(EnnemiesWaitTime);
-            ResetActionQueue();
-        }
-
         if (m_RemoveDelay)
         {
             TriggerAllFriendlyActions();
@@ -116,6 +107,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         
         m_CanPlay = false;
         StartCoroutine(I_ActionQueue());
+        
+        IEnumerator I_ActionQueue()
+        {
+            TriggerAllFriendlyActions();
+            yield return new WaitForSeconds(FriendlyWaitTime);
+            TriggerAllEnnemyAction();
+            yield return new WaitForSeconds(EnnemiesWaitTime);
+            ResetActionQueue();
+        }
     }
 
     private void ResetActionQueue()

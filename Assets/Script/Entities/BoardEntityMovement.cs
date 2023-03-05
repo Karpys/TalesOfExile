@@ -7,7 +7,11 @@ public class BoardEntityMovement : MonoBehaviour
     //Probleme : ?
     // => Faire bouger/Attaquer le joueur en A* ou avec une IA//
     private BoardEntity m_Entity = null;
+    
+    private Vector2Int m_ComputedInput = Vector2Int.zero;
 
+    private float m_InputTiming = 0.05f;
+    private float m_CurrentFecthInputTimer = 0f;
     public void SetTargetEntity(BoardEntity target)
     {
         m_Entity = target;
@@ -15,41 +19,62 @@ public class BoardEntityMovement : MonoBehaviour
     
     public void Update()
     {
-        if(!GameManager.Instance.CanPlay)
-            return;
-        
         if (Input.GetKeyDown(KeyCode.D))
         {
-            MoveX(1);
-        }else if (Input.GetKeyDown(KeyCode.Q))
+            m_ComputedInput.x = 1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            MoveX(-1);
-        }else if (Input.GetKeyDown(KeyCode.Z))
+            m_ComputedInput.x = -1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            MoveY(1);
-        }else if (Input.GetKeyDown(KeyCode.S))
+            m_ComputedInput.y = 1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            MoveY(-1);
+            m_ComputedInput.y = -1;
+            TryLaunchInputFecth();
+        }
+
+        if (m_CurrentFecthInputTimer >= 0)
+        {
+            m_CurrentFecthInputTimer -= Time.deltaTime;
+
+            if (m_CurrentFecthInputTimer < 0)
+            {
+                TryMoveTo(m_ComputedInput);
+            }
         }
     }
 
-    private void MoveX(int x)
+    private void TryLaunchInputFecth()
     {
-        Vector2Int movement = m_Entity.EntityPosition;
-        if (MapData.Instance.IsWalkable(movement.x + x, movement.y))
-        {
-            m_Entity.MoveTo(movement.x + x,movement.y);
-            GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
-        }
+        if(m_CurrentFecthInputTimer < 0)
+            m_CurrentFecthInputTimer = m_InputTiming;
     }
-    
-    private void MoveY(int y)
+    private void TryMoveTo(Vector2Int pos)
     {
-        Vector2Int movement = m_Entity.EntityPosition;
-        if (MapData.Instance.IsWalkable(movement.x, movement.y + y))
+        if (!GameManager.Instance.CanPlay)
         {
-            m_Entity.MoveTo(movement.x ,movement.y + y);
+            m_ComputedInput = Vector2Int.zero;
+            return;
+        }
+        
+        Vector2Int entityPosition = m_Entity.EntityPosition;
+
+        if (MapData.Instance.IsWalkable(entityPosition.x + pos.x, entityPosition.y + pos.y))
+        {
+            m_Entity.MoveTo(entityPosition.x + pos.x,entityPosition.y + pos.y);
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
+        
+        m_ComputedInput = Vector2Int.zero;
     }
 }

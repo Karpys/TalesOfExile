@@ -9,17 +9,21 @@ public class ForestGenerationData : MapGenerationData
     [SerializeField] private Tile m_TreeTile = null;
 
 
-    public override void Generate(MapData mapData)
+    public override GenerationMapInfo Generate(MapData mapData)
     {
+        GenerationMapInfo mapInfo = new GenerationMapInfo();
         base.Generate(mapData);
         int currentY = 0;
         int currentX = 0;
 
         currentY = Random.Range(0, m_Map.Height);
+
+        mapInfo.StartPosition = new Vector2Int(currentX, currentY);
         
         //Road Generation and TileSet
         GenerateRoad(currentX,currentY);
 
+        return mapInfo;
     }
     
     protected override void OnGenerateBaseTile(int x, int y)

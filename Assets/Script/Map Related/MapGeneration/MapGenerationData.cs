@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewMapData", menuName = "Forest Map", order = 0)]
 //Make this abstract
 public abstract class MapGenerationData : ScriptableObject
 {
@@ -13,7 +12,7 @@ public abstract class MapGenerationData : ScriptableObject
     protected MapData m_MapData = null;
     protected Map m_Map = null;
 
-    public virtual void Generate(MapData mapData)
+    public virtual GenerationMapInfo Generate(MapData mapData)
     {
         m_MapData = mapData;
         m_Map = mapData.Map;
@@ -31,6 +30,8 @@ public abstract class MapGenerationData : ScriptableObject
                 OnGenerateBaseTile(x,y);
             }
         }
+
+        return new GenerationMapInfo(new Vector2Int(0,0));
     }
 
     protected virtual void OnGenerateBaseTile(int x, int y)
@@ -47,4 +48,6 @@ public abstract class MapGenerationData : ScriptableObject
         m_Map.Tiles[x, y] = tile;
         return tile;
     }
+
+   
 }
