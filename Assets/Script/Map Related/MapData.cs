@@ -32,6 +32,11 @@ public class MapData : SingletonMonoBehavior<MapData>
         return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);
     }
 
+    public Vector3 GetTilePosition(Vector2Int pos)
+    {
+        return GetTilePosition(pos.x, pos.y);
+    }
+
     public Vector2Int GetControlledEntityPosition()
     {
         return GameManager.Instance.ControlledEntity.EntityPosition;

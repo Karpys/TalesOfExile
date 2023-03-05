@@ -8,8 +8,8 @@ public class JumpTrigger : SelectionSpellTrigger
         spellData.AttachedEntity.MoveTo(tilePosition.x,tilePosition.y);
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,Vector2Int origin)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

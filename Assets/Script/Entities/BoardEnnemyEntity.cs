@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Script.Utils;
 using TweenCustom;
 using UnityEngine;
 
@@ -52,7 +51,7 @@ public class BoardEnnemyEntity : BoardEntity
         else if(path.Count < m_Range)
         {
             //Run Away from player if too close//
-            Vector2Int targetPos = BoardUtils.GetOppositePosition(EntityPosition, path[0].TilePosition);
+            Vector2Int targetPos = TileHelper.GetOppositePosition(EntityPosition, path[0].TilePosition);
             if (MapData.Instance.IsWalkable(targetPos))
                 MoveTo(targetPos);
         }

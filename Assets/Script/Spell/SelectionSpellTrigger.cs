@@ -3,7 +3,7 @@
 public abstract class SelectionSpellTrigger:BaseSpellTrigger
 {
     protected abstract void TileHit(Vector2Int tilePosition,TriggerSpellData spellData);
-    protected abstract void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup);
+    protected abstract void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin);
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         m_SpellAnimDelay = 0;
@@ -20,7 +20,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
                 if(!entityHit)
                     continue;
                 
-                EntityHit(entityHit,spellData,targetGroup);
+                EntityHit(entityHit,spellData,targetGroup,spellTiles.OriginTiles[i]);
                 //Foreach Damage Sources//
             }
         }

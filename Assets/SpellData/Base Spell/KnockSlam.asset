@@ -10,25 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: SpellTest
+  m_Name: KnockSlam
   m_EditorClassIdentifier: 
-  SpellType: 1
-  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  SpellKey: KnockSlam
+  SpellType: 0
+  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: c5f9064b0e8664ea4a3b2e769c816504, type: 2}
+  m_SpellTrigger: {fileID: 11400000, guid: eb025c6215c680b4996d4c76eae093a0, type: 2}
   m_Selection:
   - Origin: 0
-    DisplayType: 0
-    Range: 5
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
-  - Origin: 1
     DisplayType: 1
-    Range: 1
+    Range: 2
     ValidationType:
       NeedValidation: 1
-      TargetZoneValidation: 0
+      TargetZoneValidation: -1
     ActionSelection: 1
   Range: 1

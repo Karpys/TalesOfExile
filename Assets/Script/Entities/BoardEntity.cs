@@ -132,19 +132,20 @@ public abstract class BoardEntity : MonoBehaviour
         m_TargetMap.Map.Tiles[x, y].Walkable = false;
     }
 
-    public virtual void MoveTo(int x,int y)
+    public virtual void MoveTo(int x, int y, bool movement = true)
     {
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
         m_XPosition = x;
         m_YPosition = y;
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = false;
         //OnMove ?//
-        Movement();
+        if(movement)
+            Movement();
     }
     
-    public void MoveTo(Vector2Int pos)
+    public void MoveTo(Vector2Int pos,bool movement = true)
     {
-        MoveTo(pos.x,pos.y);
+        MoveTo(pos.x,pos.y,movement);
     }
 
     protected void RemoveFromBoard()

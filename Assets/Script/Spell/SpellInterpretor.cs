@@ -115,6 +115,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
       m_CurrentSpell = null;
       m_CurrentSpellQueue = 0;
       m_ActionTiles.Clear();
+      m_OriginTiles.Clear();
       m_DisplayTiles.Clear();
       HighlightTilesManager.Instance.ResetHighlighTilesAndLock();
    }

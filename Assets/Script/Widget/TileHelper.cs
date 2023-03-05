@@ -12,6 +12,13 @@ public static class TileHelper
         new Vector2Int(0, -1),
         new Vector2Int(-1, 0),
     };
+    
+    public static Vector2Int GetOppositePosition(Vector2Int pivotPos, Vector2Int oppositeBasePos)
+    {
+        Vector2Int pivoToOppo = new Vector2Int(oppositeBasePos.x - pivotPos.x, oppositeBasePos.y - pivotPos.y);
+        return pivotPos - pivoToOppo;
+    }
+    
     public static List<Tile> GetNeighbours(Tile tile,NeighbourType type,MapData mapData)
     {
         List<Tile> neighbours = new List<Tile>();
@@ -74,7 +81,31 @@ public static class TileHelper
             }
         }
     }
+    
 
+    public static Vector2Int GetOppositePositionFrom(Vector2Int currentTile, Vector2Int tileFrom)
+    {
+        if (currentTile == tileFrom)
+        {
+            Debug.LogError("GetOppositePositionFrom : Method call with same position");   
+            return currentTile;
+        }
+        
+        List<Tile> path = LinePath.GetPathTile(currentTile, tileFrom);
+        Vector2Int oppositePosition = Vector2Int.zero;
+        
+        if (path.Count > 0)
+        {
+            oppositePosition = GetOppositePosition(currentTile, path[0].TilePosition);
+        }
+        else
+        {
+            oppositePosition = GetOppositePosition(currentTile, tileFrom);
+        }
+
+        return oppositePosition;
+    }
+    
     private static int GetBitMaskingValue(Tile tile,List<Tile> tiles,MapData mapData)
     {
         string bitMask = "";

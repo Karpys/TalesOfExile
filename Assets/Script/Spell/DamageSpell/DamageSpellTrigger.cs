@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TweenCustom;
 using UnityEngine;
 
 //DAMAGE SPELL TRIGGER need to inherit from BaseTargetEntitySpell abstract class//
@@ -58,7 +59,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         return;
     }
 
-    protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
+    protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int origin)
     {
         SpellAnimation onHitAnim = OnHitAnimation;
         
@@ -72,7 +73,9 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         //Animation And Damage Display
         if (OnHitAnimation)
         {
-            m_SpellAnimDelay = onHitAnim.BaseSpellDelay;   
+            if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
+                m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
+            
             onHitAnim.TriggerFx(entity.WorldPosition);
         }
 
@@ -83,4 +86,37 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         }
     }
 
+}
+
+public class KnockBackTrigger : DamageSpellTrigger
+{
+    private List<BoardEntity> m_EntityHits = new List<BoardEntity>();
+    public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
+    {}
+
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    {
+        m_EntityHits.Clear();
+        base.Trigger(spellData, spellTiles);
+    }
+
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,Vector2Int origin)
+    {
+        if(m_EntityHits.Contains(entity))
+            return;
+        
+        m_EntityHits.Add(entity);
+        Vector2Int opposite = TileHelper.GetOppositePositionFrom(entity.EntityPosition, spellData.AttachedEntity.EntityPosition);
+        
+        if (MapData.Instance.IsWalkable(opposite))
+        {
+            entity.MoveTo(opposite,false);
+            entity.transform.DoMove(MapData.Instance.GetTilePosition(entity.EntityPosition),0.1f);
+            m_SpellAnimDelay = 0.1f;
+        }
+        else
+        {
+            base.EntityHit(entity, spellData, targetGroup,origin);
+        }
+    }
 }

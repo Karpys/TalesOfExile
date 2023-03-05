@@ -30,6 +30,10 @@ MonoBehaviour:
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []
+      - Data: {fileID: 11400000, guid: ff06f51fb59e2ce47969c90dc3a4876f, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
   m_StartEquipement:
   - Description: Hermes Boots
     Type: 4
