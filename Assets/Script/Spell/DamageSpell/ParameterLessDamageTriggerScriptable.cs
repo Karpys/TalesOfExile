@@ -8,13 +8,22 @@ public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable
     
     public override BaseSpellTrigger SetUpTrigger()
     {
-        Type triggerClass = Type.GetType(m_TriggerClassName);
+        string className = m_TriggerClassName;
+        Type triggerClass = Type.GetType(className.Split(':')[0]);
         
         if(triggerClass == null)
             Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
 
-        object[] attributes = new object[1];
+        string[] spellVariation = StringUtils.ExtractParameterLessVariable(className);
+        object[] attributes = new object[1+spellVariation.Length];
+        
         attributes[0] = this;
-        return (DamageSpellTrigger)Activator.CreateInstance(triggerClass,attributes);
+
+        for (int i = 0; i < spellVariation.Length; i++)
+        {
+            attributes[i + 1] = spellVariation[i];
+        }
+        
+        return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);
     }
 }

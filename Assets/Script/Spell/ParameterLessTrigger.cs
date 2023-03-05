@@ -8,11 +8,20 @@ public class ParameterLessTrigger : BaseSpellTriggerScriptable
 
     public override BaseSpellTrigger SetUpTrigger()
     {
-        Type triggerClass = Type.GetType(m_TriggerClassName);
+        string className = m_TriggerClassName;
+        Type triggerClass = Type.GetType(className.Split(':')[0]);
         
         if(triggerClass == null)
             Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
         
-        return (BaseSpellTrigger)Activator.CreateInstance(triggerClass);
+        string[] spellVariation = StringUtils.ExtractParameterLessVariable(className);
+        object[] attributes = new object[spellVariation.Length];
+
+        for (int i = 0; i < spellVariation.Length; i++)
+        {
+            attributes[i] = spellVariation[i];
+        }
+        
+        return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);
     }
 }
