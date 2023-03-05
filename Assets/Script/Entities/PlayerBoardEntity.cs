@@ -1,4 +1,5 @@
-﻿using TweenCustom;
+﻿using System;
+using TweenCustom;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,14 @@ public class PlayerBoardEntity : BoardEntity
         base.Start();
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.SetControlledEntity(this);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            EquipementUtils.Unequip(m_Equipement.EquipementSockets[9],this);
+        }
     }
 
     public override void EntityAction()

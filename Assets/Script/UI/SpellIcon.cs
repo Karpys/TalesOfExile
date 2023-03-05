@@ -54,6 +54,12 @@ public class SpellIcon : MonoBehaviour
         m_SpellIconBorder.sprite = spell.TriggerData.m_SpellIconBorder;
     }
 
+    public void ClearIcon()
+    {
+        EnableIcon(false);
+        m_CurrentSpellData = null;
+    }
+
     public void EnableIcon(bool enable)
     {
         

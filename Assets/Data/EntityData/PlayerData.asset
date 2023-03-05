@@ -36,3 +36,5 @@ MonoBehaviour:
     Modifiers:
     - Type: 3
       Value: LesserLeap
+    - Type: 1
+      Value: 10

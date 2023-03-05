@@ -176,8 +176,40 @@ public abstract class BoardEntity : MonoBehaviour
         m_EntityData.m_SpellList.m_Spells.Add(spell);
         RegisterSpell(spell);
         spell.ConnectedSpellData.m_Spells.Clear();
+        
         if(this == GameManager.Instance.ControlledEntity)
             GameManager.Instance.RefreshTargetEntitySkills();
+    }
+
+    public void RemoveSpellToSpellList(SpellData spell)
+    {
+        m_EntityData.m_SpellList.m_Spells.Remove(spell);
+
+        if(this == GameManager.Instance.ControlledEntity)
+            GameManager.Instance.RefreshTargetEntitySkills();
+    }
+
+    public SpellData GetSpellViaKey(string spellKey)
+    {
+        foreach (SpellData spellData in Spells)
+        {
+            if (spellData.Data.SpellKey == spellKey)
+                return spellData;
+        }
+        return null;
+    }
+
+    //Need to be used when the entity is buffed / Equip / Unequip items//
+    public void ComputeAllSpells()
+    {
+        foreach (SpellData spellData in Spells)
+        {
+            if(spellData.Data.SpellType == SpellType.Support)
+                continue;
+            
+            TriggerSpellData triggerSpell = spellData as TriggerSpellData;
+            triggerSpell.SpellTrigger.ComputeSpellData(this);
+        }
     }
     
     //Stats Related//

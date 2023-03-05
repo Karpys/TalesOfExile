@@ -34,6 +34,11 @@ namespace Script.UI
                 
                 m_IconsHolder[i].SetSpell(triggerSpell);
             }
+
+            for (int i = entity.Spells.Count; i < m_SpellCount; i++)
+            {
+                m_IconsHolder[i].ClearIcon();
+            }
         }
     }
 }
