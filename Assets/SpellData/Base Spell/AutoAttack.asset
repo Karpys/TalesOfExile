@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
+  m_Name: AutoAttack
+  m_EditorClassIdentifier: 
+  SpellKey: AutoAttack
+  SpellType: 0
+  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: ea8c9b01aa8abba40bef7ea4a3edf05f, type: 2}
+  m_Selection:
+  - Origin: 0
+    DisplayType: 1
+    Range: 2
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 0
+  - Origin: 1
+    DisplayType: 1
+    Range: 1
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: 0
+    ActionSelection: 1
+  Range: 0
