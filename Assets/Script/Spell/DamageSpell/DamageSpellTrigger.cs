@@ -6,6 +6,7 @@ using UnityEngine;
 //The animation part can be move to BaseTargetEntitySpell//
 public class DamageSpellTrigger : SelectionSpellTrigger
 {
+    private bool AdditionalDatasAnimation = false;
     private SpellAnimation OnHitAnimation = null;
     
     public DamageParameters DamageSpellData = null;
@@ -17,6 +18,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         Debug.Log("Call Base Damage Spell Trigger");
         OnHitAnimation = damageSpellData.OnHitAnimation;
         DamageSpellData = new DamageParameters(damageSpellData.BaseDamageParameters);
+        AdditionalDatasAnimation = damageSpellData.AdditionalAnimDatas;
     }
 
     public override void ComputeSpellData(BoardEntity entity)
@@ -74,14 +76,23 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         {
             if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
                 m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
+
+            if (AdditionalDatasAnimation)
+            {
+                object[] additionalData = {spellData, entity};
+                onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
+            }
+            else
+            {
+                onHitAnim.TriggerFx(entity.WorldPosition);
+            }
             
-            onHitAnim.TriggerFx(entity.WorldPosition);
         }
 
         /*Text Display */
         if (targetGroup == EntityGroup.Ennemy)
         {
-            FloatingTextManager.Instance.SpawnFloatingText(entity.transform,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
+            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
         }
     }
 

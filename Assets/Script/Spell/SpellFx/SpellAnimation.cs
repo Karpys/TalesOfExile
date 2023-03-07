@@ -4,19 +4,28 @@ using UnityEngine;
 public abstract class SpellAnimation : MonoBehaviour
 {
     public float BaseSpellDelay => GetAnimationDuration();
-
+    protected object[] m_Datas = null;
     
-
-    public void TriggerFx(Vector3 position,Transform targetEntity = null)
+    public void TriggerFx(Vector3 position,Transform targetEntity = null,object[] args = null)
     {
+        SpellAnimation anim = null;
+
         if (targetEntity)
         {
-            GameObject obj = Instantiate(gameObject, targetEntity);
-            obj.transform.localPosition = position;
-            return;   
+            anim = Instantiate(this, targetEntity);
         }
+        else
+        {
+            anim = Instantiate(this, position, Quaternion.identity);
+        }
+        
+        anim.transform.localPosition = position;
+        anim.SetArgs(args);
+    }
 
-        Instantiate(gameObject, position, Quaternion.identity);
+    private void SetArgs(object[] args)
+    {
+        m_Datas = args;
     }
 
     protected abstract float GetAnimationDuration();
@@ -26,7 +35,7 @@ public abstract class SpellAnimation : MonoBehaviour
 
 public class BurstAnimation : SpellAnimation
 {
-    private void Awake()
+    private void Start()
     {
         Animate();
         DestroySelf(GetAnimationDuration());

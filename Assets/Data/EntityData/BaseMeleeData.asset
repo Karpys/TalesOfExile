@@ -15,15 +15,19 @@ MonoBehaviour:
   m_EntityBaseData:
     m_EntityGroup: 1
     m_Stats:
-      m_MaxLife: 500
-      m_Life: 500
+      m_MaxLife: 50000
+      m_Life: 50000
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
       ColdDamageModifier: 0
       HolyDamageModifier: 0
       FireDamageModifier: 0
+      PhysicalDamageModifier: 0
     m_SpellList:
       m_Spells:
       - Data: {fileID: 11400000, guid: b6c22163b72085546bba9b716d0abf53, type: 2}
         AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
+  m_StartEquipement: []

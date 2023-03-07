@@ -68,10 +68,26 @@ public class BoardEntityMovement : MonoBehaviour
         }
         
         Vector2Int entityPosition = m_Entity.EntityPosition;
+        Vector2Int targetPosition = m_Entity.EntityPosition + m_ComputedInput;
 
-        if (MapData.Instance.IsWalkable(entityPosition.x + pos.x, entityPosition.y + pos.y))
+        if (MapData.Instance.IsWalkable(targetPosition))
         {
-            m_Entity.MoveTo(entityPosition.x + pos.x,entityPosition.y + pos.y);
+            m_Entity.MoveTo(targetPosition);
+            GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
+        }
+        else
+        {
+            SpellData autoAttack = m_Entity.GetSpellViaKey("AutoAttack");
+            
+            if(autoAttack == null)
+                return;
+
+            BoardEntity entity = MapData.Instance.GetEntityAt(targetPosition, EntityHelper.GetInverseEntityGroup(m_Entity.EntityGroup));
+            
+            if(entity == null)
+                return;
+            
+            m_Entity.CastSpellAt(autoAttack as TriggerSpellData,targetPosition);
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
         

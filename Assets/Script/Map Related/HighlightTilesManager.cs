@@ -9,9 +9,8 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
     [SerializeField] private GameObject m_HighlightTile = null;
     [SerializeField] private int m_PoolSize = 50;
 
-    public ZoneSelection m_SelectionTest = null;
-    public int range = 3;
     // Update is called once per frame
+    private int m_CurrentSorting = 1; 
 
     private List<SpriteRenderer> m_CurrentTiles = new List<SpriteRenderer>();
 
@@ -36,10 +35,12 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         for (int i = 0; i < tilesPosition.Count; i++)
         {
             Color color = targetColor ?? Color.white;
-            
-            m_CurrentTiles[i + m_LockTilesCount].gameObject.SetActive(true);
-            m_CurrentTiles[i + m_LockTilesCount].transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
-            m_CurrentTiles[i + m_LockTilesCount].color = color;
+
+            SpriteRenderer renderer = m_CurrentTiles[i + m_LockTilesCount];
+            renderer.gameObject.SetActive(true);
+            renderer.transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
+            renderer.color = color;
+            renderer.sortingOrder = m_CurrentSorting;
         }
 
         //Refresh unused tiles//
@@ -54,12 +55,14 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
 
     public void LockHighLightTiles(int count)
     {
+        m_CurrentSorting += 1;
         m_LockTilesCount += count;
     }
 
     public void ResetHighlighTilesAndLock()
     {
         m_LockTilesCount = 0;
+        m_CurrentSorting = 1;
         
         for (int i = 0 + m_LockTilesCount; i < m_CurrentTiles.Count; i++)
         {

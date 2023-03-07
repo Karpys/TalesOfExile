@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
   m_Name: T_AutoAttack
   m_EditorClassIdentifier: 
-  OnHitAnimation: {fileID: 0}
+  OnHitAnimation: {fileID: 3908413993525435510, guid: ca025f6319c2ed9438a23d33a681d2f9, type: 3}
+  AdditionalAnimDatas: 1
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0

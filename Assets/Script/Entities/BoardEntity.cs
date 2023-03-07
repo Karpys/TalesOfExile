@@ -84,6 +84,7 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected BoardEntityDataScriptable m_EntityDataScriptable = null;
     [SerializeField] protected int m_XPosition = 0;
     [SerializeField] protected int m_YPosition = 0;
+    [SerializeField] protected Transform m_VisualTransform = null;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
     protected BoardEntityData m_EntityData = null;
@@ -97,6 +98,7 @@ public abstract class BoardEntity : MonoBehaviour
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
     public BoardEntityData EntityData => m_EntityData;
     public EntityEquipement EntityEquipement => m_Equipement;
+    public Transform VisualTransform => m_VisualTransform;
     
     //Entity Actions//
     public Action<float> A_OnEntityDamageTaken;

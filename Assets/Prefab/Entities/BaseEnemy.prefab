@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EntityDataScriptable: {fileID: 11400000, guid: 5b32d1267cc1d6c4d93afbd9cc177dd7, type: 2}
   m_XPosition: 0
   m_YPosition: 0
+  m_VisualTransform: {fileID: 1778751248556589878}
   m_Range: 1
 --- !u!1 &6165430051826993969
 GameObject:

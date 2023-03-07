@@ -7,6 +7,7 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
 {
     [Header("Spell Animation")]
     public SpellAnimation OnHitAnimation = null;
+    public bool AdditionalAnimDatas = false;
     
     public DamageParameters BaseDamageParameters = null;
     
