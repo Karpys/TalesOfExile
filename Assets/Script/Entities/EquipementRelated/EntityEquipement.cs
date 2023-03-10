@@ -8,13 +8,13 @@ public class EntityEquipement : MonoBehaviour
     private BoardEntity m_Entity = null;
     public EquipementSocket[] EquipementSockets => m_Equipements;
 
-    public void InitEquipement(Equipement[] startEquipement)
+    public void InitEquipement(EquipementInventoryObjectScriptable[] startEquipement)
     {
         m_Entity = GetComponent<BoardEntity>();
         
-        foreach (Equipement equipement in startEquipement)
+        foreach (EquipementInventoryObjectScriptable equipement in startEquipement)
         {
-            EquipementUtils.InitEquip(new Equipement(equipement),m_Entity);
+            EquipementUtils.InitEquip(equipement.ToIventoryObject() as Equipement, m_Entity);
         }
     }
 }

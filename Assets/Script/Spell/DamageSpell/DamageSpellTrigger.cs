@@ -97,3 +97,16 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     }
 
 }
+
+public class LeapCrashTrigger : DamageSpellTrigger
+{
+    public LeapCrashTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
+    {
+    }
+
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    {
+        spellData.AttachedEntity.MoveTo(spellTiles.OriginTiles[0]);
+        base.Trigger(spellData, spellTiles);
+    }
+}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Equipement
+public class Equipement:InventoryObject
 {
     public string Description = String.Empty;
     public EquipementType Type = EquipementType.Null;

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_KnockSlam
+  m_Name: T_LeapCrash
   m_EditorClassIdentifier: 
-  OnHitAnimation: {fileID: 9140524552017338541, guid: 82f032896e7d86a4b967fe391a122e40, type: 3}
+  OnHitAnimation: {fileID: 3738675870536089882, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
+  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
@@ -20,4 +21,4 @@ MonoBehaviour:
     InitialSourceDamage:
       Damage: 100
       DamageType: 0
-  m_TriggerClassName: KnockBackTrigger
+  m_TriggerClassName: LeapCrashTrigger

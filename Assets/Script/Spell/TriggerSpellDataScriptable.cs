@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Spell", menuName = "New Trigger Spell", order = 0)]
+[CreateAssetMenu(fileName = "Spell", menuName = "Trigger/A_TriggerSpell", order = 0)]
 public class TriggerSpellDataScriptable : SpellDataScriptable
 {
     //FIX PARAMETERS//
