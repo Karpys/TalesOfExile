@@ -50,6 +50,7 @@ public class BoardEntityMovement : MonoBehaviour
             if (m_CurrentFecthInputTimer < 0)
             {
                 TryMoveTo(m_ComputedInput);
+                m_ComputedInput = Vector2Int.zero;
             }
         }
     }
@@ -63,7 +64,6 @@ public class BoardEntityMovement : MonoBehaviour
     {
         if (!GameManager.Instance.CanPlay)
         {
-            m_ComputedInput = Vector2Int.zero;
             return;
         }
         
@@ -90,7 +90,5 @@ public class BoardEntityMovement : MonoBehaviour
             m_Entity.CastSpellAt(autoAttack as TriggerSpellData,targetPosition);
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
-        
-        m_ComputedInput = Vector2Int.zero;
     }
 }
