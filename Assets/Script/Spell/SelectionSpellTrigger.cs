@@ -2,8 +2,50 @@
 
 public abstract class SelectionSpellTrigger:BaseSpellTrigger
 {
-    protected abstract void TileHit(Vector2Int tilePosition,TriggerSpellData spellData);
-    protected abstract void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin);
+    protected bool AdditionalDatasAnimation = false;
+    protected SpellAnimation OnHitAnimation = null;
+    protected SpellAnimation TileHitAnimation = null;
+
+    public SelectionSpellTrigger(BaseSpellTriggerScriptable baseScriptable)
+    {
+        OnHitAnimation = baseScriptable.OnHitAnimation;
+        TileHitAnimation = baseScriptable.OnTileHitAnimation;
+        AdditionalDatasAnimation = baseScriptable.AdditionalAnimDatas;
+    }
+
+    protected virtual void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
+    {
+        SpellAnimation tileHitAnim = TileHitAnimation;
+        
+        if (tileHitAnim)
+        {
+            if(tileHitAnim.BaseSpellDelay > m_SpellAnimDelay)
+                m_SpellAnimDelay = tileHitAnim.BaseSpellDelay;
+
+            tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition));
+        }
+    }
+    protected virtual void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin)
+    {
+        SpellAnimation onHitAnim = OnHitAnimation;
+
+        //Animation
+        if (onHitAnim)
+        {
+            if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
+                m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
+
+            if (AdditionalDatasAnimation)
+            {
+                object[] additionalData = {spellData, entity};
+                onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
+            }
+            else
+            {
+                onHitAnim.TriggerFx(entity.WorldPosition);
+            }
+        }
+    }
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         m_SpellAnimDelay = 0;

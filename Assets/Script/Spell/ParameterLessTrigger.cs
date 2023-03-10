@@ -15,11 +15,13 @@ public class ParameterLessTrigger : BaseSpellTriggerScriptable
             Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
         
         string[] spellVariation = StringUtils.ExtractParameterLessVariable(className);
-        object[] attributes = new object[spellVariation.Length];
+        object[] attributes = new object[spellVariation.Length + 1];
+
+        attributes[0] = this;
 
         for (int i = 0; i < spellVariation.Length; i++)
         {
-            attributes[i] = spellVariation[i];
+            attributes[i + 1] = spellVariation[i];
         }
         
         return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);

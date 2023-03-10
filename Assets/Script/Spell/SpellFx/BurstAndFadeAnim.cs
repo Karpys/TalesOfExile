@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class BurstAndFadeAnim : BurstAnimation
 {
-    [SerializeField] private SpriteRenderer m_Sprite = null;
-    [SerializeField] private float m_FadeDuration = 0.2f;
-    [SerializeField] private float m_AnimDuration = 0.2f;
+    [SerializeField] protected SpriteRenderer m_Sprite = null;
+    [SerializeField] protected float m_FadeDuration = 0.2f;
+    [SerializeField] protected float m_AnimDuration = 0.2f;
 
 
-    public override void Animate()
+    protected override void Animate()
     {
         base.Animate();
         m_Sprite.gameObject.SetActive(true);
@@ -19,7 +19,7 @@ public class BurstAndFadeAnim : BurstAnimation
         return m_AnimDuration;
     }
     
-    public override void DestroySelf(float time)
+    protected override void DestroySelf(float time)
     {
         m_Sprite.DoColor(new Color(1, 1, 1, 0), m_FadeDuration);
         Destroy(gameObject,m_FadeDuration + 0.1f);

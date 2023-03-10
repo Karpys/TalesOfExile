@@ -11,7 +11,7 @@ public class Fx_AutoAttack : BurstAnimation
         return m_AnimDuration;
     }
 
-    public override void Animate()
+    protected override void Animate()
     {
         base.Animate();
         SpellData spellData = m_Datas[0] as SpellData;
@@ -25,7 +25,7 @@ public class Fx_AutoAttack : BurstAnimation
         }));
     }
     
-    public override void DestroySelf(float time)
+    protected override void DestroySelf(float time)
     {
         m_HitFx.DoColor(new Color(1, 1, 1, 0), 0.2f).SetDelay(time);
         Destroy(gameObject,time + 0.2f);

@@ -30,8 +30,8 @@ public abstract class SpellAnimation : MonoBehaviour
     }
 
     protected abstract float GetAnimationDuration();
-    public abstract void Animate();
-    public abstract void DestroySelf(float time);
+    protected abstract void Animate();
+    protected abstract void DestroySelf(float time);
 }
 
 public class BurstAnimation : SpellAnimation
@@ -57,12 +57,12 @@ public class BurstAnimation : SpellAnimation
     }
     protected override float GetAnimationDuration()
     {
-        return 0;
+        return m_SpellAnimFixeDelay;
     }
 
-    public override void Animate() {}
+    protected override void Animate() {}
 
-    public override void DestroySelf(float time)
+    protected override void DestroySelf(float time)
     {
         Destroy(gameObject,time);
     }

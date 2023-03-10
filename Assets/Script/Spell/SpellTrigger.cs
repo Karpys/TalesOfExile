@@ -2,6 +2,9 @@
 
 public abstract class BaseSpellTriggerScriptable : ScriptableObject
 {
-    //Damage Class Parameter//
+    [Header("Spell Animation")]
+    public SpellAnimation OnTileHitAnimation = null;
+    public SpellAnimation OnHitAnimation = null;
+    public bool AdditionalAnimDatas = false;
     public abstract BaseSpellTrigger SetUpTrigger();
 }

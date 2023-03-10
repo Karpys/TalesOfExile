@@ -15,8 +15,8 @@ MonoBehaviour:
   m_EntityBaseData:
     m_EntityGroup: 1
     m_Stats:
-      m_MaxLife: 250
-      m_Life: 250
+      m_MaxLife: 2500
+      m_Life: 2500
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0

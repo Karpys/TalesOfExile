@@ -2276,15 +2276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HighlightTile: {fileID: 4068747746904219747, guid: 5ad4ed7b136b1674284ca513d807f32c, type: 3}
   m_PoolSize: 500
-  m_SelectionTest:
-    Origin: 0
-    DisplayType: 1
-    Range: 0
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
-  range: 3
 --- !u!4 &1450611267
 Transform:
   m_ObjectHideFlags: 0

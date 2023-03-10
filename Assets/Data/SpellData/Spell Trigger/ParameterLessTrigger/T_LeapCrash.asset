@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
   m_Name: T_LeapCrash
   m_EditorClassIdentifier: 
-  OnHitAnimation: {fileID: 3738675870536089882, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
+  OnTileHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
+  OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:

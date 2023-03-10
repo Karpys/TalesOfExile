@@ -6,19 +6,14 @@ using UnityEngine;
 //The animation part can be move to BaseTargetEntitySpell//
 public class DamageSpellTrigger : SelectionSpellTrigger
 {
-    private bool AdditionalDatasAnimation = false;
-    private SpellAnimation OnHitAnimation = null;
-    
     public DamageParameters DamageSpellData = null;
 
     protected Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
     //public void ComputeAdditional Sources//
-    public DamageSpellTrigger(DamageSpellScriptable damageSpellData)
+    public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
     {
         Debug.Log("Call Base Damage Spell Trigger");
-        OnHitAnimation = damageSpellData.OnHitAnimation;
         DamageSpellData = new DamageParameters(damageSpellData.BaseDamageParameters);
-        AdditionalDatasAnimation = damageSpellData.AdditionalAnimDatas;
     }
 
     public override void ComputeSpellData(BoardEntity entity)
@@ -57,12 +52,12 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     
     protected override void TileHit(Vector2Int tilePosition,TriggerSpellData spellData)
     {
-        return;
+        base.TileHit(tilePosition, spellData);
     }
 
     protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int origin)
     {
-        SpellAnimation onHitAnim = OnHitAnimation;
+        base.EntityHit(entity,spellData,targetGroup,origin);
         
         float totalDamage = 0;
         //Foreach Damage Sources//
@@ -70,25 +65,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         {
             totalDamage += DamageManager.Instance.TryDamageEnnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
         }
-
-        //Animation And Damage Display
-        if (OnHitAnimation)
-        {
-            if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
-                m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
-
-            if (AdditionalDatasAnimation)
-            {
-                object[] additionalData = {spellData, entity};
-                onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
-            }
-            else
-            {
-                onHitAnim.TriggerFx(entity.WorldPosition);
-            }
-            
-        }
-
+        
         /*Text Display */
         if (targetGroup == EntityGroup.Ennemy)
         {
@@ -102,6 +79,14 @@ public class LeapCrashTrigger : DamageSpellTrigger
 {
     public LeapCrashTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
     {
+    }
+
+    protected override void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
+    {
+        if(tilePosition == spellData.AttachedEntity.EntityPosition)
+            return;
+        
+        base.TileHit(tilePosition, spellData);
     }
 
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
