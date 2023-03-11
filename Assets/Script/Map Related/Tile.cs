@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile
 {
-    [SerializeField] private int m_XPosition = 0;
-    [SerializeField] private int m_YPosition = 0;
-    [SerializeField] private bool m_Walkable = true;
+    private int m_XPosition = 0;
+    private int m_YPosition = 0;
+    private bool m_Walkable = true;
+    private WorldTile m_WorldTile = null;
 
     //Properties//
     public int XPos => m_XPosition;
     public int YPos => m_YPosition;
     public Vector2Int TilePosition => new Vector2Int(XPos, YPos);
+    public WorldTile WorldTile => m_WorldTile;
 
     public bool Walkable
     {
@@ -29,9 +31,15 @@ public class Tile : MonoBehaviour
         set => m_ParentTile = value;
     }
     //
-    public void Initialize(int x,int y)
+
+    public Tile(int x, int y)
     {
         m_XPosition = x;
         m_YPosition = y;
+    }
+
+    public void SetWorldTile(WorldTile worldTile)
+    {
+        m_WorldTile = worldTile;
     }
 }

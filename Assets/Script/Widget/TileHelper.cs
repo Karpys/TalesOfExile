@@ -106,18 +106,18 @@ public static class TileHelper
         return oppositePosition;
     }
     
-    private static int GetBitMaskingValue(Tile tile,List<Tile> tiles,MapData mapData)
+    private static int GetBitMaskingValue(WorldTile tile,List<WorldTile> tiles,MapData mapData)
     {
         string bitMask = "";
         
         for (int i = DirectionalCheck.Length - 1; i >= 0; i--)
         {
-            int checkX = tile.XPos + DirectionalCheck[i].x;
-            int checkY = tile.YPos + DirectionalCheck[i].y;
+            int checkX = tile.Tile.XPos + DirectionalCheck[i].x;
+            int checkY = tile.Tile.YPos + DirectionalCheck[i].y;
             
             if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
             {
-                if (tiles.Contains(mapData.Map.Tiles[checkX, checkY]))
+                if (tiles.Contains(mapData.Map.Tiles[checkX, checkY].WorldTile))
                 {
                     bitMask += "1";
                     continue;
@@ -129,9 +129,9 @@ public static class TileHelper
         return Convert.ToInt32(bitMask, 2);
     }
 
-    public static void GenerateTileSet(List<Tile> tiles,Sprite[] tileMap,MapData mapData)
+    public static void GenerateTileSet(List<WorldTile> tiles,Sprite[] tileMap,MapData mapData)
     {
-        foreach (Tile tile in tiles)
+        foreach (WorldTile tile in tiles)
         {
             tile.GetComponentInChildren<SpriteRenderer>().sprite = tileMap[GetBitMaskingValue(tile, tiles, mapData)];
         }

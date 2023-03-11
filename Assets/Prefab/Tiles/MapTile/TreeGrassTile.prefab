@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeGrassTile
       objectReference: {fileID: 0}
+    - target: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      propertyPath: m_Walkable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
 --- !u!4 &2888361720356455830 stripped

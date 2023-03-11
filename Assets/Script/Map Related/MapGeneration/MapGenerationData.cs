@@ -6,7 +6,7 @@ public abstract class MapGenerationData : ScriptableObject
     [Header("Base Map Data")] 
     [SerializeField] protected int m_Width = 50;
     [SerializeField] protected int m_Height = 50;
-    [SerializeField] protected Tile m_BaseTile = null;
+    [SerializeField] protected WorldTile m_BaseTile = null;
     
     
     protected MapData m_MapData = null;
@@ -26,6 +26,7 @@ public abstract class MapGenerationData : ScriptableObject
         {
             for (int y = 0; y < m_Height; y++)
             {
+                m_Map.Tiles[x, y] = new Tile(x,y);
                 PlaceTileAt(m_BaseTile, x, y);
                 OnGenerateBaseTile(x,y);
             }
@@ -38,15 +39,14 @@ public abstract class MapGenerationData : ScriptableObject
     {
         return;
     }
-    protected Tile PlaceTileAt(Tile tilePrefab, int x, int y)
+    protected WorldTile PlaceTileAt(WorldTile tilePrefab, int x, int y)
     {
-        if(m_Map.Tiles[x,y])
-            Destroy(m_Map.Tiles[x,y].gameObject);
+        if(m_Map.Tiles[x,y].WorldTile)
+            Destroy(m_Map.Tiles[x,y].WorldTile.gameObject);
         
-        Tile tile = Instantiate(tilePrefab, m_MapData.GetTilePosition(x, y), Quaternion.identity, m_MapData.transform);
-        tile.Initialize(x, y);
-        m_Map.Tiles[x, y] = tile;
-        return tile;
+        WorldTile worldTile = Instantiate(tilePrefab, m_MapData.GetTilePosition(x, y), Quaternion.identity, m_MapData.transform);
+        worldTile.SetTile(m_Map.Tiles[x,y]);
+        return worldTile;
     }
 
    

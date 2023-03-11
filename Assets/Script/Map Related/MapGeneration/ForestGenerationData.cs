@@ -6,7 +6,7 @@ public class ForestGenerationData : MapGenerationData
 {
     [SerializeField] List<FloatPercentageSlider> m_RoadPivots = new List<FloatPercentageSlider>();
     [SerializeField] private TileSet m_RoadTileSet = null;
-    [SerializeField] private Tile m_TreeTile = null;
+    [SerializeField] private WorldTile m_TreeTile = null;
 
 
     public override GenerationMapInfo Generate(MapData mapData)
@@ -34,9 +34,9 @@ public class ForestGenerationData : MapGenerationData
     
     public void GenerateRoad(int x,int y)
     {
-        List<Tile> roadTiles = new List<Tile>();
+        List<WorldTile> roadTiles = new List<WorldTile>();
     
-        Tile lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab,x,y);
+        WorldTile lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab,x,y);
         roadTiles.Add(lastTile);
     
         for (int i = 0; i < m_RoadPivots.Count; i++)
@@ -50,10 +50,10 @@ public class ForestGenerationData : MapGenerationData
 
             int loopCount = 0;
 
-            List<Tile> pathTile = LinePath.GetPathTile(new Vector2Int(lastTile.XPos, lastTile.YPos), new Vector2Int(x, y));
-            pathTile.Add(lastTile);
+            List<Tile> pathTile = LinePath.GetPathTile(new Vector2Int(lastTile.Tile.XPos, lastTile.Tile.YPos), new Vector2Int(x, y));
+            pathTile.Add(lastTile.Tile);
             RemoveUnreachableTileOnPath(pathTile);
-            path = PathFinding.FindPath(lastTile, m_Map.Tiles[x,y]);
+            path = PathFinding.FindPath(lastTile.Tile, m_Map.Tiles[x,y]);
             
             PathFinding.NeighbourType = NeighbourType.Square;
         
@@ -101,7 +101,7 @@ public class ForestGenerationData : MapGenerationData
 
     private void GenerateTree(int x,int y)
     {
-        Tile tree = PlaceTileAt(m_TreeTile, x, y);
+        WorldTile tree = PlaceTileAt(m_TreeTile, x, y);
         tree.GetComponentInChildren<SpriteHelper>().SetSpritePriority(-y);
     }
 }
@@ -110,8 +110,8 @@ public class ForestGenerationData : MapGenerationData
 public class TileSet
 {
     [SerializeField] private Sprite[] m_TileMap = new Sprite[0];
-    [SerializeField] private Tile m_TilePrefab = null;
+    [SerializeField] private WorldTile m_TilePrefab = null;
 
-    public Tile TilePrefab => m_TilePrefab;
+    public WorldTile TilePrefab => m_TilePrefab;
     public Sprite[] TileMap => m_TileMap;
 }

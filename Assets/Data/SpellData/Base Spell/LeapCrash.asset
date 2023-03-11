@@ -27,7 +27,7 @@ MonoBehaviour:
     ActionSelection: 0
   - Origin: 1
     DisplayType: 0
-    Range: 2
+    Range: 8
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0
