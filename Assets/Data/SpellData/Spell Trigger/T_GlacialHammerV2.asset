@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
   m_Name: T_GlacialHammerV2
   m_EditorClassIdentifier: 
+  OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
+  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
       SubDamageTypes: 000000000100000003000000
     InitialSourceDamage:
-      Damage: 0
+      Damage: 20
       DamageType: 3
   BaseWeaponDamageConvertion: 100

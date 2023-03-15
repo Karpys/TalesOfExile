@@ -9,52 +9,72 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     public DamageParameters DamageSpellData = null;
 
     protected Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
-    //public void ComputeAdditional Sources//
     public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
     {
         Debug.Log("Call Base Damage Spell Trigger");
         DamageSpellData = new DamageParameters(damageSpellData.BaseDamageParameters);
     }
 
+    #region ComputePart
+
+    
+
     public override void ComputeSpellData(BoardEntity entity)
     {
-        //Compute Spell Damage
         DamageSources.Clear();
-        
-        DamageSources.Add(DamageSpellData.InitialSourceDamage.DamageType,new DamageSource(DamageSpellData.InitialSourceDamage));
-        DamageSource[] additionalSources = entity.GetAdditionalSources(DamageSpellData.DamageType);
-        
-        for (int i = 0; i < additionalSources.Length; i++)
-        {
-            DamageSource currentSource = null;
-            if (DamageSources.TryGetValue(additionalSources[i].DamageType, out currentSource))
-            {
-                currentSource.Damage += additionalSources[i].Damage;
-            }
-            else
-            {
-                DamageSources.Add(additionalSources[i].DamageType,new DamageSource(additionalSources[i]));
-            }
-        }
-        
+        ComputeSpellDamage(entity);
+        ApplyDamageModifier(entity);
+        ComputeSpellPriority();
+    }
+
+    private void ApplyDamageModifier(BoardEntity entity)
+    {
         foreach (DamageSource source in DamageSources.Values)
         {
             source.Damage *= (entity.EntityStats.GetDamageModifier(source.DamageType) + entity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageType.MainDamageType)
                 + 100) / 100;
         }
     }
-    //Apply Damage To All Ennemies in the actionTiles
-    
-    public override void Trigger(TriggerSpellData spellData,SpellTiles spellTiles)
+
+    protected void AddDamageSource(DamageSource damageSource)
     {
-        base.Trigger(spellData,spellTiles);
-    }
-    
-    protected override void TileHit(Vector2Int tilePosition,TriggerSpellData spellData)
-    {
-        base.TileHit(tilePosition, spellData);
+        DamageSource currentSource = null;
+        if (DamageSources.TryGetValue(damageSource.DamageType, out currentSource))
+        {
+            currentSource.Damage += damageSource.Damage;
+        }
+        else
+        {
+            DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
+        }
     }
 
+    protected virtual void ComputeSpellDamage(BoardEntity entity)
+    {
+        DamageSources.Add(DamageSpellData.InitialSourceDamage.DamageType,new DamageSource(DamageSpellData.InitialSourceDamage));
+        DamageSource[] additionalSources = entity.GetAdditionalSources(DamageSpellData.DamageType);
+        
+        for (int i = 0; i < additionalSources.Length; i++)
+        {
+            AddDamageSource(additionalSources[i]);
+        }
+    }
+    
+    //Spell Priority
+    public override void ComputeSpellPriority()
+    {
+        int damagePriority = 0;
+        
+        foreach (KeyValuePair<SubDamageType,DamageSource> damageSource in DamageSources)
+        {
+            damagePriority += (int)damageSource.Value.Damage;
+        }
+
+        m_SpellPriority = damagePriority;
+    }
+    
+    #endregion
+    //Apply Damage To All Ennemies in the actionTiles
     protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int origin)
     {
         base.EntityHit(entity,spellData,targetGroup,origin);
@@ -71,27 +91,5 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         {
             FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
         }
-    }
-
-}
-
-public class LeapCrashTrigger : DamageSpellTrigger
-{
-    public LeapCrashTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
-    {
-    }
-
-    protected override void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
-    {
-        if(tilePosition == spellData.AttachedEntity.EntityPosition)
-            return;
-        
-        base.TileHit(tilePosition, spellData);
-    }
-
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
-    {
-        spellData.AttachedEntity.MoveTo(spellTiles.OriginTiles[0]);
-        base.Trigger(spellData, spellTiles);
     }
 }

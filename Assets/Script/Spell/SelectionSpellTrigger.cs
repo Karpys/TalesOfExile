@@ -79,6 +79,6 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
 
     public override void ComputeSpellData(BoardEntity entity)
     {
-        
+        ComputeSpellPriority();
     }
 }
