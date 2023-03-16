@@ -32,4 +32,7 @@ MonoBehaviour:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
-  Range: 2
+  m_MainSelection: 0
+  SpellRestrictions:
+  - SelectionId: 1
+    Type: 0

@@ -31,8 +31,43 @@ public static class TileHelper
             GetCrossNeighbours(tile,neighbours,mapData);
         }
         
-
         return neighbours;
+    }
+
+    public static Tile GetFreeClosestAround(Tile aroundTile,Vector3 entityWorldPosition)
+    {
+        List<Tile> neighbours = GetNeighbours(aroundTile,NeighbourType.Square, MapData.Instance);
+
+        for (int i = neighbours.Count - 1; i >= 0; i--)
+        {
+            if (!neighbours[i].Walkable)
+            {
+                neighbours.RemoveAt(i);
+            }
+        }
+
+        if (neighbours.Count == 0)
+        {
+            Debug.LogError("NO FREE WALKABLE TILE ? ERROR");
+            return null;
+        }
+
+        Tile closest = neighbours[0];
+        float minDistance = Vector3.Distance(closest.WorldTile.transform.position,
+            entityWorldPosition);
+        
+        for(int i = 1; i < neighbours.Count; i++)
+        {
+            float distance = Vector3.Distance(neighbours[i].WorldTile.transform.position,entityWorldPosition);
+
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closest = neighbours[i];
+            }
+        }
+
+        return closest;
     }
 
     private static void GetCrossNeighbours(Tile tile, List<Tile> neighbours,MapData mapData)

@@ -62,7 +62,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
                FetchSelection();
             }else if (Validation)
             {
-               if (CanValidate(m_OriginTile))
+               if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile))
                {
                   FetchSelection();
                   Validation = false;
@@ -101,13 +101,34 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          return true;
 
       //if the origin is in the display list of the id => Valid current selection//
-      if (m_DisplayTiles[m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation]
-          .Contains(validationOrigin))
+      if (m_DisplayTiles[m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation].Contains(validationOrigin))
       {
          return true;
       }
       else
          return false;
+   }
+
+   private bool IsRestricted(Vector2Int validationOrigin)
+   {
+      if (m_CurrentSpell.TriggerData.SpellRestrictions.Count == 0)
+         return false;
+
+      SpellRestriction spellRestriction = null;
+
+      foreach (SpellRestriction restriction in m_CurrentSpell.TriggerData.SpellRestrictions)
+      {
+         if (restriction.SelectionId == m_CurrentSpellQueue)
+         {
+            spellRestriction = restriction;
+            break;
+         }
+      }
+
+      if (spellRestriction == null)
+         return false;
+
+      return SpellCastUtils.IsRestricted(spellRestriction.Type, validationOrigin, m_CurrentSpell);
    }
 
    private void ResetSpellQueue()

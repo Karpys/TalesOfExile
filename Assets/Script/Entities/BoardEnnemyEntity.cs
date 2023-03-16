@@ -33,16 +33,22 @@ public class BoardEnnemyEntity : BoardEntity
     }
     public override void EntityAction()
     {
-
         //Check if the path to the player is lower than the range//
+        Vector2Int targetPosition = m_TargetMap.GetControlledEntityPosition();
         for (int i = 0; i < m_SpellIdPriority.Length; i++)
         {
             TriggerSpellData triggerSpellData = Spells[m_SpellIdPriority[i]] as TriggerSpellData;
-
-            if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData, m_TargetMap.GetControlledEntityPosition()))
+            if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData,targetPosition))
             {
-                CastSpellAt(triggerSpellData,m_TargetMap.GetControlledEntityPosition());
-                return;
+                if (SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
+                {
+                    CastSpellAt(triggerSpellData,targetPosition);
+                    return;
+                }
+                else
+                {
+                    continue;
+                }
             }
         }
         //Movement Action//
