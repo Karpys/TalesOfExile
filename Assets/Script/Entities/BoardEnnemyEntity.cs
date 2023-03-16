@@ -5,41 +5,27 @@ using UnityEngine;
 public class BoardEnnemyEntity : BoardEntity
 {
     [SerializeField] private int m_Range = 1;
-    
 
-    public void Update()
+    private int[] m_SpellPriorityCompute = null;
+
+
+    private void ComputeSpellPriority()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-           
-        }
+       // m_SpellPriorityCompute =
     }
-
     public override void EntityAction()
     {
-        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetControlledEntityPosition(),false);
+        TriggerSpellData triggerSpellData = m_EntityData.m_SpellList.m_Spells[0] as TriggerSpellData;
 
-        //Debug//
-        //List<Vector2Int> paths = new List<Vector2Int>();
-        //foreach (Tile tile in path)
-        //{
-        //    paths.Add(new Vector2Int(tile.XPos,tile.YPos));
-        //}
-        //HighlightTilesManager.Instance.HighlightTiles(paths);
-        
         //Check if the path to the player is lower than the range//
-        if (path.Count == 1)
+        if (ZoneTileManager.IsInRange(triggerSpellData, m_TargetMap.GetControlledEntityPosition()))
         {
-            //TEMP !!//
-            TriggerSpellData triggerSpellData = m_EntityData.m_SpellList.m_Spells[0] as TriggerSpellData;
-            
-            if(triggerSpellData == null)
-                return;
-            
             CastSpellAt(triggerSpellData,m_TargetMap.GetControlledEntityPosition());
         }
-
         //Movement Action//
+        return;
+        
+        List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetControlledEntityPosition(),false);
         if (path.Count > m_Range)
         {
             //Move toward player//

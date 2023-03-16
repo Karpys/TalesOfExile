@@ -15,7 +15,8 @@ public class TriggerSpellDataScriptable : SpellDataScriptable
     
     [Header("Spell Display In Game Option")]
     public ZoneSelection[] m_Selection = null;
-
+    [SerializeField] private int m_MainSelection = 0;
+    public int MainSelection => m_MainSelection;
     [Header("Base Spell Data")]
     public int Range = 0;
 }

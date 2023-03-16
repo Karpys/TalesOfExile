@@ -50,7 +50,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
             ZoneSelection selection = m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue];
             m_OriginTile = GetOrigin(selection);
             m_CastOriginTile = m_CurrentSpell.AttachedEntity.EntityPosition;
-            m_TilesSelection = ZoneTileManager.Instance.GetSelectionZone(selection, m_OriginTile, selection.Range,m_CastOriginTile);
+            m_TilesSelection = ZoneTileManager.GetSelectionZone(selection, m_OriginTile, selection.Range,m_CastOriginTile);
             
             //Highlight Tiles//
             Color tilesColor = GetColor(selection);

@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
+public static class ZoneTileManager
 {
     //Maybe need an additional Vector2Int parameter use for spell target selection when two position are needed//
     //ex : Mouse To Player
-    public List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
+    private const float CIRCLE_TOLERANCE = 0.66f;
+    public static List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
     {
         List<Vector2Int> zones = new List<Vector2Int>();
 
@@ -31,7 +32,7 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
                     for (int y = -range + 1; y < range; y++)
                     {
                         Vector2Int vec = new Vector2Int(x, y);
-                        if (Vector2Int.Distance(middleZone,vec) <= range - 0.66f)
+                        if (Vector2Int.Distance(middleZone,vec) <= range - CIRCLE_TOLERANCE)
                         {
                             zones.Add(vec + selectionOrigin);
                         }
@@ -88,5 +89,36 @@ public class ZoneTileManager : SingletonMonoBehavior<ZoneTileManager>
         }
         
         return zones;
+    }
+
+    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition)
+    {
+        ZoneSelection zoneSelection = spellData.GetMainSelection();
+        Vector2Int origin = spellData.AttachedEntity.EntityPosition;
+
+        switch (zoneSelection.DisplayType)
+        {
+            case ZoneType.Square:
+                int diffX = Mathf.Abs(origin.x - castPosition.x);
+                int diffY = Mathf.Abs(origin.y - castPosition.y);
+                int biggestDiff = diffX;
+
+                if (diffY > biggestDiff)
+                    biggestDiff = diffY;
+
+                if (zoneSelection.Range - 1 >= biggestDiff)
+                    return true;
+
+                return false;
+            
+            case ZoneType.Circle:
+                if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range -CIRCLE_TOLERANCE)
+                {
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 }

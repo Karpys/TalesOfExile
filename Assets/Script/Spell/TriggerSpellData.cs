@@ -25,6 +25,11 @@ public class TriggerSpellData:SpellData
     {
         return MemberwiseClone();
     }
+
+    public ZoneSelection GetMainSelection()
+    {
+        return TriggerData.m_Selection[TriggerData.MainSelection];
+    }
 }
 
 public class SupportSpellData:SpellData
