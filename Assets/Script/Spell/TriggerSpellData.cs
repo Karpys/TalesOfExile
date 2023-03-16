@@ -30,6 +30,12 @@ public class TriggerSpellData:SpellData
     {
         return TriggerData.m_Selection[TriggerData.MainSelection];
     }
+
+    //TODO: Need to Implemente the CooldownSystem
+    public bool IsCooldownReady()
+    {
+        return true;
+    }
 }
 
 public class SupportSpellData:SpellData

@@ -119,7 +119,6 @@ public abstract class BoardEntity : MonoBehaviour
     {
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
         GameManager.Instance.RegisterEntity(this);
-        //Initi Serialize Spells//
         RegisterStartSpells();
     }
     
