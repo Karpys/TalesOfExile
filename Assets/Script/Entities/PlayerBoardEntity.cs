@@ -27,6 +27,7 @@ public class PlayerBoardEntity : BoardEntity
 
     public override void EntityAction()
     {
+        ReduceAllCooldown();
         //TODO:Act as a Base IA/
         return;
     }

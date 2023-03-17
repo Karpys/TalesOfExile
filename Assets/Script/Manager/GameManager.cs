@@ -33,6 +33,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public bool CanPlay => m_CanPlay;
     //Action//
     public Action<BoardEntity> A_OnPlayerAction;
+    public Action A_OnEnPlayerTurn;
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
 
     private void Awake()
@@ -112,6 +113,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             TriggerAllFriendlyActions();
             yield return new WaitForSeconds(FriendlyWaitTime);
+            A_OnEnPlayerTurn?.Invoke();
             TriggerAllEnnemyAction();
             yield return new WaitForSeconds(EnnemiesWaitTime);
             ResetActionQueue();
@@ -124,13 +126,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         FriendlyWaitTime = m_FriendlyBaseWaitTime;
         EnnemiesWaitTime = 0;
     }
-
-    // :/
-    public void ReduceControlledEntityCooldown()
-    {
-        m_ControlledEntity.ReduceAllCooldown();
-    }
-
     //Enemy Action//
     private void TriggerAllFriendlyActions()
     {

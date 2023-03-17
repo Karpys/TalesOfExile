@@ -9,6 +9,9 @@ public class TriggerSpellData:SpellData
     //Spell Variables//
     private int m_BaseCooldown = 0;
     private int m_CurrentCooldown = 0;
+    
+    //Intern Params//
+    private bool m_HasBeenUsed = false;
     public TriggerSpellData(SpellData spellData) : base(spellData)
     {
         AttachedEntity = spellData.AttachedEntity;
@@ -37,6 +40,7 @@ public class TriggerSpellData:SpellData
     //TODO: Need to Implemente the CooldownSystem
     public void Cast(TriggerSpellData spellData, SpellTiles spellTiles)
     {
+        m_HasBeenUsed = true;
         SpellTrigger.Trigger(spellData,spellTiles);
         LaunchCooldown();
     }
@@ -48,6 +52,12 @@ public class TriggerSpellData:SpellData
 
     public void ReduceCooldown()
     {
+        if (m_HasBeenUsed)
+        {
+            m_HasBeenUsed = false;
+            return;
+        }
+        
         if(m_CurrentCooldown == 0)
             return;
         
@@ -57,6 +67,14 @@ public class TriggerSpellData:SpellData
     public bool IsCooldownReady()
     {
         return m_CurrentCooldown <= 0;
+    }
+
+    public float GetCooldownRatio()
+    {
+        if (m_BaseCooldown == 0)
+            return 0;
+        
+        return (float)m_CurrentCooldown / m_BaseCooldown;
     }
 }
 

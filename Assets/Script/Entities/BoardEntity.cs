@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Script.UI;
 using UnityEngine;
 
 [Serializable]
@@ -209,7 +210,7 @@ public abstract class BoardEntity : MonoBehaviour
             {
                 triggerData.ReduceCooldown();       
             }
-        }   
+        }
     }
 
     //Need to be used when the entity is buffed / Equip / Unequip items//
@@ -231,9 +232,6 @@ public abstract class BoardEntity : MonoBehaviour
     //Player Cast Mainly or Controlled Entity//
     public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
-        if(spellData.AttachedEntity == GameManager.Instance.ControlledEntity)
-            spellData.AttachedEntity.ReduceAllCooldown();
-        
         spellData.Cast(spellData,spellTiles);
     }
 

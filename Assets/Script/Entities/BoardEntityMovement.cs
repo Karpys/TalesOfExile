@@ -73,7 +73,6 @@ public class BoardEntityMovement : MonoBehaviour
         if (MapData.Instance.IsWalkable(targetPosition))
         {
             m_Entity.MoveTo(targetPosition);
-            GameManager.Instance.ReduceControlledEntityCooldown();
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
         else

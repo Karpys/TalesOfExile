@@ -44,12 +44,22 @@ public class BoardEnnemyEntity : BoardEntity
             return;
         }
 
-        ReduceAllCooldown();
-        
-        if(TriggerAction())
+        if (TriggerAction())
+        {
+            ReduceAllCooldown();
             return;
+        }
         //Movement Action//
+        if (MovementAction())
+        {
+            ReduceAllCooldown();
+            return;
+        }
         
+    }
+
+    private bool MovementAction()
+    {
         List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetControlledEntityPosition(),false);
         if (path.Count > m_Range)
         {
@@ -66,6 +76,8 @@ public class BoardEnnemyEntity : BoardEntity
             if (MapData.Instance.IsWalkable(targetPos))
                 MoveTo(targetPos);
         }
+
+        return true;
     }
     private bool TriggerAction()
     {

@@ -7,6 +7,8 @@ public class SpellIcon : MonoBehaviour
 {
     //Spell Data to use//
     //Retrieve spell display//
+    [SerializeField] private GameObject m_DisplayContainer = null;
+    [SerializeField] private Image m_CdFillAmount = null;
     [SerializeField] private Image m_SpellIcon = null;
     [SerializeField] private Image m_SpellIconBorder = null;
     [SerializeField] private TMP_Text m_SpellKey = null;
@@ -14,6 +16,8 @@ public class SpellIcon : MonoBehaviour
 
     private TriggerSpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
+
+    public TriggerSpellData SpellData => m_CurrentSpellData;
 
     private static int START_ID_KEYCODE = 49;
 
@@ -52,18 +56,23 @@ public class SpellIcon : MonoBehaviour
         EnableIcon(true);
         m_SpellIcon.sprite = spell.TriggerData.m_SpellIcon;
         m_SpellIconBorder.sprite = spell.TriggerData.m_SpellIconBorder;
+        UpdateCooldownVisual();
     }
 
     public void ClearIcon()
     {
         EnableIcon(false);
         m_CurrentSpellData = null;
+        m_CdFillAmount.fillAmount = 0;
+    }
+
+    public void UpdateCooldownVisual()
+    {
+        m_CdFillAmount.fillAmount = m_CurrentSpellData.GetCooldownRatio();
     }
 
     public void EnableIcon(bool enable)
     {
-        
-        m_SpellIcon.gameObject.SetActive(enable);
-        m_SpellIconBorder.gameObject.SetActive(enable);
+        m_DisplayContainer.SetActive(enable);
     }
 }
