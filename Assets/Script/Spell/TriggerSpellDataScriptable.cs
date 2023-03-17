@@ -13,6 +13,7 @@ public class TriggerSpellDataScriptable : SpellDataScriptable
     [Header("Spell Trigger Options")]
     //Add spell type enum : Passif / Usable Spell(show only them in the spell bar) ect ect...
     public BaseSpellTriggerScriptable m_SpellTrigger = null;
+    public int m_BaseCooldown = 0;
     
     [Header("Spell Display In Game Option")]
     public ZoneSelection[] m_Selection = null;

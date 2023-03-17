@@ -201,6 +201,17 @@ public abstract class BoardEntity : MonoBehaviour
         return null;
     }
 
+    public void ReduceAllCooldown()
+    {
+        foreach (SpellData spellData in Spells)
+        {
+            if (spellData is TriggerSpellData triggerData)
+            {
+                triggerData.ReduceCooldown();       
+            }
+        }   
+    }
+
     //Need to be used when the entity is buffed / Equip / Unequip items//
     public void ComputeAllSpells()
     {
@@ -220,7 +231,10 @@ public abstract class BoardEntity : MonoBehaviour
     //Player Cast Mainly or Controlled Entity//
     public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
-        spellData.SpellTrigger.Trigger(spellData,spellTiles);
+        if(spellData.AttachedEntity == GameManager.Instance.ControlledEntity)
+            spellData.AttachedEntity.ReduceAllCooldown();
+        
+        spellData.Cast(spellData,spellTiles);
     }
 
     //Cast
@@ -279,6 +293,6 @@ public abstract class BoardEntity : MonoBehaviour
     public virtual float GetMainWeaponDamage()
     {
         //TODo: Return the main damage weapon damage
-        return 100f;
+        return 50f;
     }
 }

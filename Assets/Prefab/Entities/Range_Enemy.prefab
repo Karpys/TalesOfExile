@@ -43,11 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3ecb93c9e24a5c8e6278f03d3b21a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EntityDataScriptable: {fileID: 11400000, guid: 5b32d1267cc1d6c4d93afbd9cc177dd7, type: 2}
+  m_EntityDataScriptable: {fileID: 11400000, guid: 997d03ce7c0065e41a697c243d6822e0, type: 2}
   m_XPosition: 0
   m_YPosition: 0
   m_VisualTransform: {fileID: 1778751248556589878}
-  m_Range: 6
+  m_Range: 4
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,17 +21,19 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
    public void LaunchSpellQueue(TriggerSpellData spell)
    {
+      
       ResetSpellQueue();
       
+      if(!spell.IsCooldownReady())
+         return;
       m_CurrentSpell = spell;
       m_CurrentSpellQueue = 0;
       //Launch Spell Queue
-
    }
 
    public void Update()
    {
-      if (Input.GetKeyDown(KeyCode.V))
+      if (Input.GetMouseButtonDown(0))
       {
          Validation = true;
       }
@@ -133,6 +135,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
 
    private void ResetSpellQueue()
    {
+      Validation = false;
       m_CurrentSpell = null;
       m_CurrentSpellQueue = 0;
       m_ActionTiles.Clear();

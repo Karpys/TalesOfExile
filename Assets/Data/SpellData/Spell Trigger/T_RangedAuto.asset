@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_Rush
+  m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
+  m_Name: T_RangedAuto
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 7aa250665202fa041adab3b1d0c026f2, type: 3}
   AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
-      MainDamageType: 0
+      MainDamageType: 1
       SubDamageTypes: 00000000
     InitialSourceDamage:
-      Damage: 50
+      Damage: 0
       DamageType: 0
-  m_TriggerClassName: RushTrigger
+  BaseWeaponDamageConvertion: 80

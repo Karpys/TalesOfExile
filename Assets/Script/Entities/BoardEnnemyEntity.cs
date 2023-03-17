@@ -8,6 +8,9 @@ public class BoardEnnemyEntity : BoardEntity
     [SerializeField] private int m_Range = 1;
 
     private int[] m_SpellIdPriority = null;
+    private bool m_IsActive = false;
+
+    private const int ACTIVE_TOLERANCE = 23;
     protected override void Start()
     {
         base.Start();
@@ -31,26 +34,20 @@ public class BoardEnnemyEntity : BoardEntity
 
         m_SpellIdPriority = sortedIndexes;
     }
+    
+    //ACTION PART
     public override void EntityAction()
     {
-        //Check if the path to the player is lower than the range//
-        Vector2Int targetPosition = m_TargetMap.GetControlledEntityPosition();
-        for (int i = 0; i < m_SpellIdPriority.Length; i++)
+        if (!m_IsActive)
         {
-            TriggerSpellData triggerSpellData = Spells[m_SpellIdPriority[i]] as TriggerSpellData;
-            if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData,targetPosition))
-            {
-                if (SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
-                {
-                    CastSpellAt(triggerSpellData,targetPosition);
-                    return;
-                }
-                else
-                {
-                    continue;
-                }
-            }
+            CheckForActive();
+            return;
         }
+
+        ReduceAllCooldown();
+        
+        if(TriggerAction())
+            return;
         //Movement Action//
         
         List<Tile> path = PathFinding.FindTilePath(EntityPosition, m_TargetMap.GetControlledEntityPosition(),false);
@@ -70,6 +67,37 @@ public class BoardEnnemyEntity : BoardEntity
                 MoveTo(targetPos);
         }
     }
+    private bool TriggerAction()
+    {
+        Vector2Int targetPosition = m_TargetMap.GetControlledEntityPosition();
+        for (int i = 0; i < m_SpellIdPriority.Length; i++)
+        {
+            TriggerSpellData triggerSpellData = Spells[m_SpellIdPriority[i]] as TriggerSpellData;
+            if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData,targetPosition))
+            {
+                if (SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
+                {
+                    CastSpellAt(triggerSpellData,targetPosition);
+                    return true;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void CheckForActive()
+    {
+        if (Vector3.Distance(GameManager.Instance.ControlledEntity.transform.position, transform.position) <
+            ACTIVE_TOLERANCE)
+        {
+            m_IsActive = true;
+        }
+    }
 
     protected override void Movement()
     {
@@ -78,11 +106,15 @@ public class BoardEnnemyEntity : BoardEntity
     }
     
     //Damage Related
-
     protected override void TriggerDeath()
     {
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
+    }
+
+    public override float GetMainWeaponDamage()
+    {
+        return 35;
     }
 }

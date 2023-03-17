@@ -691,7 +691,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+  - Entity: {fileID: 4581581747124773393, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
     BoardSpawnPosition: {x: 10, y: 5}
   m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
 --- !u!4 &343337510
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EntityInputMovement: {fileID: 34784935}
   m_RemoveDelay: 0
-  m_FriendlyBaseWaitTime: 0
+  m_FriendlyBaseWaitTime: 0.1
   FriendlyWaitTime: 0
   EnnemiesWaitTime: 0
 --- !u!1 &2045092498

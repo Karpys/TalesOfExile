@@ -125,6 +125,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         EnnemiesWaitTime = 0;
     }
 
+    // :/
+    public void ReduceControlledEntityCooldown()
+    {
+        m_ControlledEntity.ReduceAllCooldown();
+    }
+
     //Enemy Action//
     private void TriggerAllFriendlyActions()
     {
