@@ -2,12 +2,13 @@
 using UnityEngine;
 
 
+[CreateAssetMenu(menuName = "Map/Forest", fileName = "New ForestMap", order = 0)]
 public class ForestGenerationData : MapGenerationData
 {
     [SerializeField] List<FloatPercentageSlider> m_RoadPivots = new List<FloatPercentageSlider>();
     [SerializeField] private TileSet m_RoadTileSet = null;
     [SerializeField] private WorldTile m_TreeTile = null;
-
+    [SerializeField] private MonsterGeneration m_MonsterGeneration = null;
 
     public override GenerationMapInfo Generate(MapData mapData)
     {
@@ -22,7 +23,7 @@ public class ForestGenerationData : MapGenerationData
         
         //Road Generation and TileSet
         GenerateRoad(currentX,currentY);
-
+        MonsterGeneration();
         return mapInfo;
     }
     
@@ -65,6 +66,19 @@ public class ForestGenerationData : MapGenerationData
         }
     
         TileHelper.GenerateTileSet(roadTiles,m_RoadTileSet.TileMap,m_MapData);
+    }
+
+    private void MonsterGeneration()
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        foreach (Tile tile in m_MapData.Map.Tiles)
+        {
+            if(tile.Walkable)
+                tiles.Add(tile);
+        }
+
+        m_MonsterGeneration.GenerateEnemies(tiles,m_MapData);
     }
 
     private void RemoveUnreachableTileOnPath(List<Tile> tiles)

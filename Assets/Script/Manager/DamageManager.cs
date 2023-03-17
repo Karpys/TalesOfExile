@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageManager : SingletonMonoBehavior<DamageManager>
 {
-    public float TryDamageEnnemy(BoardEntity damageTo, BoardEntity damageFrom,DamageSource damageSource)
+    public float TryDamageEnemy(BoardEntity damageTo, BoardEntity damageFrom,DamageSource damageSource)
     {
         return DamageStep(damageTo,damageFrom,damageSource);//Add DamageClass
     }

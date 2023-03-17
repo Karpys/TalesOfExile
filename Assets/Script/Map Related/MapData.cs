@@ -52,7 +52,7 @@ public class MapData : SingletonMonoBehavior<MapData>
         List<BoardEntity> boardEntities = new List<BoardEntity>();
 
         //Get the selected group list
-        if (targetEntityGroup == EntityGroup.Ennemy)
+        if (targetEntityGroup == EntityGroup.Enemy)
         {
             boardEntities = GameManager.Instance.EnnemiesOnBoard;
         }

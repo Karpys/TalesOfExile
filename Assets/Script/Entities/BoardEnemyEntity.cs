@@ -3,7 +3,7 @@ using System.Linq;
 using TweenCustom;
 using UnityEngine;
 
-public class BoardEnnemyEntity : BoardEntity
+public class BoardEnemyEntity : BoardEntity
 {
     [SerializeField] private int m_Range = 1;
 
@@ -41,7 +41,9 @@ public class BoardEnnemyEntity : BoardEntity
         if (!m_IsActive)
         {
             CheckForActive();
-            return;
+
+            if (!m_IsActive)
+                return;
         }
 
         if (TriggerAction())
@@ -124,6 +126,7 @@ public class BoardEnnemyEntity : BoardEntity
         RemoveFromBoard();
         Destroy(gameObject);
     }
+    
 
     public override float GetMainWeaponDamage()
     {

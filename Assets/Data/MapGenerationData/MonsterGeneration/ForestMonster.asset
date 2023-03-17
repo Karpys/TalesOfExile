@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d745f1b4e34cb59b0d19eea58867be, type: 3}
+  m_Name: ForestMonster
+  m_EditorClassIdentifier: 
+  m_WeightEnemies:
+    m_Enemies:
+    - m_Weight: 80
+      m_Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    - m_Weight: 20
+      m_Entity: {fileID: 4581581747124773393, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
+  m_TargetEnemiesCount: 20

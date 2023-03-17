@@ -83,11 +83,11 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         //Foreach Damage Sources//
         foreach (DamageSource damageSource in DamageSources.Values)
         {
-            totalDamage += DamageManager.Instance.TryDamageEnnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
+            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
         }
         
         /*Text Display */
-        if (targetGroup == EntityGroup.Ennemy)
+        if (targetGroup == EntityGroup.Enemy)
         {
             FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
         }

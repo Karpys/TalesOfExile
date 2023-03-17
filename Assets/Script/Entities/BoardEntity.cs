@@ -76,7 +76,7 @@ public class EntityStats
 public enum EntityGroup
 {
     Friendly,
-    Ennemy,
+    Enemy,
     Neutral,
 }
 public abstract class BoardEntity : MonoBehaviour
@@ -274,6 +274,10 @@ public abstract class BoardEntity : MonoBehaviour
     }
 
     protected abstract void TriggerDeath();
+    public void ForceDeath()
+    {
+        TriggerDeath();
+    }
 
     public DamageSource[] GetAdditionalSources(DamageType damageType)
     {

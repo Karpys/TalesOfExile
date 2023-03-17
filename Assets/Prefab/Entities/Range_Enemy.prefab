@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityDataScriptable: {fileID: 11400000, guid: 997d03ce7c0065e41a697c243d6822e0, type: 2}
-  m_XPosition: 0
-  m_YPosition: 0
+  m_XPosition: 48
+  m_YPosition: 5
   m_VisualTransform: {fileID: 1778751248556589878}
   m_Range: 4
 --- !u!1 &6165430051826993969
@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalPosition.z

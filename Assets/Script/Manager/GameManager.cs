@@ -46,7 +46,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            TriggerAllEnnemyAction();
+            TriggerAllEnemyAction();
         }
     }
     //INTIALIZATION ENTITY//
@@ -76,7 +76,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         //Sort Entity
         if(entity.EntityGroup == EntityGroup.Friendly)
             m_FriendlyOnBoard.Add(entity);
-        else if(entity.EntityGroup == EntityGroup.Ennemy)
+        else if(entity.EntityGroup == EntityGroup.Enemy)
             m_EnnemiesOnBoard.Add(entity);
     }
 
@@ -84,7 +84,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         m_EntitiesOnBoard.Remove(entity);
         
-        if (entity.EntityGroup == EntityGroup.Ennemy)
+        if (entity.EntityGroup == EntityGroup.Enemy)
             m_EnnemiesOnBoard.Remove(entity);
         else if(entity.EntityGroup == EntityGroup.Friendly)
             m_FriendlyOnBoard.Remove(entity);
@@ -102,7 +102,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (m_RemoveDelay)
         {
             TriggerAllFriendlyActions();
-            TriggerAllEnnemyAction();
+            TriggerAllEnemyAction();
             return;
         }
         
@@ -114,7 +114,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             TriggerAllFriendlyActions();
             yield return new WaitForSeconds(FriendlyWaitTime);
             A_OnEnPlayerTurn?.Invoke();
-            TriggerAllEnnemyAction();
+            TriggerAllEnemyAction();
             yield return new WaitForSeconds(EnnemiesWaitTime);
             ResetActionQueue();
         }
@@ -134,7 +134,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             m_FriendlyOnBoard[i].EntityAction();
         }
     }
-    private void TriggerAllEnnemyAction()
+    private void TriggerAllEnemyAction()
     {
         for (int i = 0; i < m_EnnemiesOnBoard.Count; i++)
         {

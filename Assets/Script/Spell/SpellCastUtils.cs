@@ -22,7 +22,7 @@ public static class SpellCastUtils
         {
             case SpellRestrictionType.OriginOnWalkable:
                 return !MapData.Instance.IsWalkable(targetPosition);
-            case SpellRestrictionType.FreeTileAroundEnnemyTarget:
+            case SpellRestrictionType.FreeTileAroundEnemyTarget:
                 
                 BoardEntity target = MapData.Instance.GetEntityAt(targetPosition, EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup));
 

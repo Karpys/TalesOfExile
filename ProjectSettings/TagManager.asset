@@ -44,6 +44,9 @@ TagManager:
   - name: Tree
     uniqueID: 3229156915
     locked: 0
+  - name: HighlightTile
+    uniqueID: 3223451079
+    locked: 0
   - name: Fx
     uniqueID: 2072107463
     locked: 0

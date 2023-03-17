@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private BoardEntitySpawn[] m_BoardEntities = null;
     [SerializeField] private MapGenerationData m_GenerationData = null;
 
+    private bool m_FirstGeneration = true;
     private void Start()
     {
         InitializeMap();
@@ -22,7 +25,32 @@ public class MapGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            m_GenerationData.Generate(m_MapData);
+            EraseMap();
+            GenerateMap();
+        }
+    }
+
+    private void EraseMap()
+    {
+        List<BoardEntity> entity = GameManager.Instance.EntitiesOnBoard;
+        
+        int entityCount = entity.Count;
+        int min = 0;
+
+        for (int i = 0; i < entityCount; i++)
+        {
+            if (entity[min] as PlayerBoardEntity)
+            {
+                min += 1;
+                continue;
+            }
+            
+            entity[min].ForceDeath();
+        }
+
+        foreach (Tile tile in m_MapData.Map.Tiles)
+        {
+            Destroy(tile.WorldTile.gameObject);
         }
     }
 
@@ -32,22 +60,35 @@ public class MapGenerator : MonoBehaviour
         m_MapData.Map = map;
         InitializeMapData();
         //Tiles Initiation//
-        
+        GenerateMap();
+
+    }
+
+    private void GenerateMap()
+    {
         GenerationMapInfo info = m_GenerationData.Generate(m_MapData);
         
         //Entities Init//
-        foreach (BoardEntitySpawn boardEntity in m_BoardEntities)
+        if (m_FirstGeneration)
         {
-            BoardEntity entity = Instantiate(boardEntity.Entity, transform.position, Quaternion.identity, m_MapData.transform);
-
-            if (entity as PlayerBoardEntity)
+            foreach (BoardEntitySpawn boardEntity in m_BoardEntities)
             {
-                entity.Place(info.StartPosition.x,info.StartPosition.y,m_MapData);
-                continue;
+                BoardEntity entity = Instantiate(boardEntity.Entity, transform.position, Quaternion.identity, m_MapData.transform);
+
+                if (entity as PlayerBoardEntity)
+                {
+                    entity.Place(info.StartPosition.x,info.StartPosition.y,m_MapData);
+                    continue;
+                }
             }
-            
-            entity.Place(boardEntity.BoardSpawnPosition.x,boardEntity.BoardSpawnPosition.y,m_MapData);
         }
+        else
+        {
+            Debug.Log("Move Player");
+            GameManager.Instance.PlayerEntity.MoveTo(info.StartPosition,false);   
+        }
+
+        m_FirstGeneration = false;
     }
 
     

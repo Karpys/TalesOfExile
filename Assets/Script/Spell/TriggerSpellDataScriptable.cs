@@ -33,5 +33,5 @@ public class SpellRestriction
 public enum SpellRestrictionType
 {
     OriginOnWalkable,
-    FreeTileAroundEnnemyTarget,
+    FreeTileAroundEnemyTarget,
 }
