@@ -12,7 +12,8 @@ public class Canvas_Skills : SingletonMonoBehavior<Canvas_Skills>
 
     private void OnDestroy()
     {
-        GameManager.Instance.A_OnEnPlayerTurn -= RefreshCooldown;
+        if(GameManager.Instance)
+            GameManager.Instance.A_OnEnPlayerTurn -= RefreshCooldown;
     }
 
     public void SetTargetSkills(BoardEntity entity)

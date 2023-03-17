@@ -699,6 +699,16 @@ MonoBehaviour:
     BoardSpawnPosition: {x: 30, y: 10}
   - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
     BoardSpawnPosition: {x: 20, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 20, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 20, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 20, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 20, y: 15}
+  - Entity: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+    BoardSpawnPosition: {x: 20, y: 15}
   m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
 --- !u!4 &343337510
 Transform:
