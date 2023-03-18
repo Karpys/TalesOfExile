@@ -34,12 +34,13 @@ MonoBehaviour:
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []
-      - Data: {fileID: 11400000, guid: dedf0988c775ddd4db405b1bb9fccd95, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
       - Data: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []
-  m_StartEquipement: []
+      - Data: {fileID: 11400000, guid: 621f6eb7796553a4bae033f303e9d33b, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
+  m_StartEquipement:
+  - {fileID: 11400000, guid: dc4745e9193844bf5a5221e4c394e5c5, type: 2}

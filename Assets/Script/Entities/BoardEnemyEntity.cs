@@ -97,10 +97,6 @@ public class BoardEnemyEntity : BoardEntity
                     CastSpellAt(triggerSpellData,targetPosition);
                     return true;
                 }
-                else
-                {
-                    continue;
-                }
             }
         }
 

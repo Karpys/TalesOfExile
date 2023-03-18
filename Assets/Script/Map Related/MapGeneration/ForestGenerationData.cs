@@ -37,7 +37,7 @@ public class ForestGenerationData : MapGenerationData
     {
         List<WorldTile> roadTiles = new List<WorldTile>();
     
-        WorldTile lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab,x,y);
+        WorldTile lastTile = m_Map.PlaceTileAt(m_RoadTileSet.TilePrefab,x,y);
         roadTiles.Add(lastTile);
     
         for (int i = 0; i < m_RoadPivots.Count; i++)
@@ -60,7 +60,7 @@ public class ForestGenerationData : MapGenerationData
         
             for (int j = 0; j < path.Count; j++)
             { 
-                lastTile = PlaceTileAt(m_RoadTileSet.TilePrefab, path[j].x, path[j].y);
+                lastTile = m_Map.PlaceTileAt(m_RoadTileSet.TilePrefab, path[j].x, path[j].y);
                 roadTiles.Add(lastTile);
             }
         }
@@ -99,7 +99,7 @@ public class ForestGenerationData : MapGenerationData
             {
                 foreach (Tile tile in neighours)
                 {
-                    PlaceTileAt(m_BaseTile, tile.XPos, tile.YPos);
+                    m_Map.PlaceTileAt(m_BaseTile, tile.XPos, tile.YPos);
                 }
             }
         }
@@ -115,7 +115,7 @@ public class ForestGenerationData : MapGenerationData
 
     private void GenerateTree(int x,int y)
     {
-        WorldTile tree = PlaceTileAt(m_TreeTile, x, y);
+        WorldTile tree = m_Map.PlaceTileAt(m_TreeTile, x, y);
         tree.GetComponentInChildren<SpriteHelper>().SetSpritePriority(-y);
     }
 }

@@ -27,7 +27,7 @@ public abstract class MapGenerationData : ScriptableObject
             for (int y = 0; y < m_Height; y++)
             {
                 m_Map.Tiles[x, y] = new Tile(x,y);
-                PlaceTileAt(m_BaseTile, x, y);
+                m_Map.PlaceTileAt(m_BaseTile, x, y);
                 OnGenerateBaseTile(x,y);
             }
         }
@@ -39,15 +39,7 @@ public abstract class MapGenerationData : ScriptableObject
     {
         return;
     }
-    protected WorldTile PlaceTileAt(WorldTile tilePrefab, int x, int y)
-    {
-        if(m_Map.Tiles[x,y].WorldTile)
-            Destroy(m_Map.Tiles[x,y].WorldTile.gameObject);
-        
-        WorldTile worldTile = Instantiate(tilePrefab, m_MapData.GetTilePosition(x, y), Quaternion.identity, m_MapData.transform);
-        worldTile.SetTile(m_Map.Tiles[x,y]);
-        return worldTile;
-    }
+    
 
    
 }

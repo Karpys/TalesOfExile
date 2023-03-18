@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: RangeAuto
+  m_Name: IceWall
   m_EditorClassIdentifier: 
-  SpellKey: RangeAuto
+  SpellKey: IceWall
   SpellType: 0
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: 28bea24876e1bd1489e60412b9a7d6a3, type: 2}
-  m_BaseCooldown: 1
+  m_SpellIcon: {fileID: 21300000, guid: 295890e99efaa874caf2a066716bb71e, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: 522f06d3583556842a0230c070145dc5, type: 2}
+  m_BaseCooldown: 5
   m_Selection:
   - Origin: 0
-    DisplayType: 0
-    Range: 6
+    DisplayType: 1
+    Range: 4
     ValidationType:
       NeedValidation: 0
-      TargetZoneValidation: -1
+      TargetZoneValidation: 0
     ActionSelection: 0
   - Origin: 1
     DisplayType: 1
-    Range: 1
+    Range: 2
     ValidationType:
       NeedValidation: 1
-      TargetZoneValidation: 0
+      TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions: []

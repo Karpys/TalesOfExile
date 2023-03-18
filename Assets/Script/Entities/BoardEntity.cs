@@ -46,7 +46,10 @@ public class EntityStats
                 return HolyDamageModifier;
             case SubDamageType.Fire:
                 return FireDamageModifier;
+            case SubDamageType.Physical:
+                return PhysicalDamageModifier;
             default:
+                Debug.LogError("Sub Damage type not set up :" + subDamageType);
                 return 0;
         }
     }
