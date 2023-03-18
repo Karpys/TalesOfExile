@@ -9,7 +9,7 @@ public class MonsterGeneration : ScriptableObject
 
     public void GenerateEnemies(List<Tile> targetTiles,MapData map)
     {
-        float monsterSpawnChance = m_TargetEnemiesCount * 100 / 1250;
+        float monsterSpawnChance = m_TargetEnemiesCount * 100 / targetTiles.Count;
         
         foreach (Tile tile in targetTiles)
         {

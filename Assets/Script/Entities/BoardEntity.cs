@@ -295,6 +295,6 @@ public abstract class BoardEntity : MonoBehaviour
     public virtual float GetMainWeaponDamage()
     {
         //TODo: Return the main damage weapon damage
-        return 50f;
+        return 75f;
     }
 }

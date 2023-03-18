@@ -10,7 +10,8 @@ public class BoardEnemyEntity : BoardEntity
     private int[] m_SpellIdPriority = null;
     private bool m_IsActive = false;
 
-    private const int ACTIVE_TOLERANCE = 23;
+    private const int X_ACTIVE_TOLERANCE = 19;
+    private const int Y_ACTIVE_TOLERANCE = 11;
     protected override void Start()
     {
         base.Start();
@@ -84,9 +85,11 @@ public class BoardEnemyEntity : BoardEntity
     private bool TriggerAction()
     {
         Vector2Int targetPosition = m_TargetMap.GetControlledEntityPosition();
+        
         for (int i = 0; i < m_SpellIdPriority.Length; i++)
         {
             TriggerSpellData triggerSpellData = Spells[m_SpellIdPriority[i]] as TriggerSpellData;
+            
             if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData,targetPosition))
             {
                 if (SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
@@ -106,11 +109,13 @@ public class BoardEnemyEntity : BoardEntity
 
     private void CheckForActive()
     {
-        if (Vector3.Distance(GameManager.Instance.ControlledEntity.transform.position, transform.position) <
-            ACTIVE_TOLERANCE)
-        {
+        Vector2Int entityPos = GameManager.Instance.ControlledEntity.EntityPosition;
+
+        int XDiff = Mathf.Abs(entityPos.x - m_XPosition);
+        int YDiff = Mathf.Abs(entityPos.y - m_YPosition);
+
+        if (XDiff < X_ACTIVE_TOLERANCE && YDiff < Y_ACTIVE_TOLERANCE)
             m_IsActive = true;
-        }
     }
 
     protected override void Movement()
