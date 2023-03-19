@@ -16,4 +16,11 @@ public static class StringUtils
 
         return variables;
     }
+    
+    public static string[] Parameters(string parameter)
+    {
+        string[] parameters = parameter.Split(':');
+        
+        return parameters;
+    }
 }
