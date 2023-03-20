@@ -15,7 +15,7 @@ MonoBehaviour:
   SpellKey: RangeAuto
   SpellType: 0
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 6dbce669734acd245a062cc5a0807892, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 28bea24876e1bd1489e60412b9a7d6a3, type: 2}
   m_BaseCooldown: 1
   m_Selection:

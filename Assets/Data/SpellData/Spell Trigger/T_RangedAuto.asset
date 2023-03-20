@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: T_RangedAuto
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 9140524552017338541, guid: 7aa250665202fa041adab3b1d0c026f2, type: 3}
-  AdditionalAnimDatas: 0
+  OnHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
+  AdditionalAnimDatas: 1
   BaseDamageParameters:
     DamageType:
       MainDamageType: 1

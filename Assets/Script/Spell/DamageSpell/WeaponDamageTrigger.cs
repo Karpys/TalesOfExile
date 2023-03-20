@@ -8,7 +8,7 @@
     protected override void ComputeSpellDamage(BoardEntity entity)
     {
         base.ComputeSpellDamage(entity);
-        DamageSource weaponDamageSource = new DamageSource(entity.GetMainWeaponDamage() / WeaponDamageConvertion * 100,
+        DamageSource weaponDamageSource = new DamageSource(entity.GetMainWeaponDamage() * WeaponDamageConvertion / 100,
             DamageSpellData.InitialSourceDamage.DamageType);
         AddDamageSource(weaponDamageSource);
     }
