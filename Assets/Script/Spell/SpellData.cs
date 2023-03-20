@@ -20,7 +20,11 @@ public class SpellData
             case SpellType.Trigger:
                 TriggerSpellData triggerSpellData = new TriggerSpellData(this);
                 return triggerSpellData.Initialize();
+            case SpellType.Buff:
+                TriggerSpellData buffSpellData = new TriggerSpellData(this);
+                return buffSpellData.Initialize();
             default:
+                Debug.LogError("Missing SpellType Implementation");
                 return this;
         }
     }

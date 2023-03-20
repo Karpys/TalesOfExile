@@ -23,6 +23,7 @@ public class TriggerSpellData:SpellData
     {
         m_BaseCooldown = TriggerData.m_BaseCooldown;
         SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
+        SpellTrigger.SetAttachedSpell(this);
         SpellTrigger.ComputeSpellData(AttachedEntity);
         return this;
     }

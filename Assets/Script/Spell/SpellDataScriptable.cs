@@ -11,4 +11,5 @@ public enum SpellType
 {
     Trigger,
     Support,
+    Buff,
 }

@@ -12,11 +12,21 @@ public class BoardEnemyEntity : BoardEntity
 
     private const int X_ACTIVE_TOLERANCE = 19;
     private const int Y_ACTIVE_TOLERANCE = 11;
+
+    private int m_TriggerSelfBuffCount = 0;
     protected override void Start()
     {
         base.Start();
         ComputeSpellPriority();
+        m_TriggerSelfBuffCount = SelfBuffCount();
     }
+    
+    private int SelfBuffCount()
+    {
+        int count = Spells.Count(s => s.Data.SpellType == SpellType.Buff);
+        return count;
+    }
+    
     private void ComputeSpellPriority()
     {
         //Source : See Chat Gpt Conv "ComputeSpellPriority"//
@@ -35,7 +45,6 @@ public class BoardEnemyEntity : BoardEntity
 
         m_SpellIdPriority = sortedIndexes;
     }
-    
     //ACTION PART
     public override void EntityAction()
     {
@@ -47,18 +56,42 @@ public class BoardEnemyEntity : BoardEntity
                 return;
         }
 
-        if (TriggerAction())
+        bool triggerAction = false;
+
+        if (!triggerAction && m_TriggerSelfBuffCount != 0)
         {
-            ReduceAllCooldown();
-            return;
+            triggerAction = SelfBuffAction();
         }
-        //Movement Action//
-        if (MovementAction())
+
+        if (!triggerAction)
         {
-            ReduceAllCooldown();
-            return;
+            triggerAction = TriggerAction();
         }
         
+        if (!triggerAction)
+        {
+            triggerAction = MovementAction();
+        }
+        
+        ReduceAllCooldown();
+    }
+
+    private bool SelfBuffAction()
+    {
+        List<TriggerSpellData> buffs = Spells
+            .Where(s => s.Data.SpellType == SpellType.Buff)
+            .Cast<TriggerSpellData>()
+            .Where(s => s.IsCooldownReady())
+            .OrderByDescending(s => s.SpellTrigger.SpellPriority)
+            .ToList();
+
+        if (buffs.Count == 0 || buffs[0].SpellTrigger.SpellPriority <= 0)
+            return false;
+        
+        Debug.Log("TRIGGER REGENERATION");
+        Vector2Int targetPosition = m_TargetMap.GetControlledEntityPosition();
+        CastSpellAt(buffs[0],targetPosition);
+        return true;
     }
 
     private bool MovementAction()

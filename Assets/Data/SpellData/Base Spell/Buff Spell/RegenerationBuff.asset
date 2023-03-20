@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RegenerationBuff
   m_EditorClassIdentifier: 
   SpellKey: RegenBuff
-  SpellType: 0
+  SpellType: 2
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 562908e905cf3434fb339b4b14cc9ce0, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 522e464b535d1b64984977dd94f5afe0, type: 2}
   m_BaseCooldown: 10
   m_Selection: []

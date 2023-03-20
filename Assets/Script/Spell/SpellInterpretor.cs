@@ -79,13 +79,25 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
          {
             //Trigger Spells//
             //Send List of Tiles Action//
-            if (GameManager.Instance.CanPlay)
-            {
-               GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,new SpellTiles(m_OriginTiles,m_ActionTiles));
-               GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
-               ResetSpellQueue();
-            }
+            CastSpell();
+            return;
          }
+
+         if (m_CurrentSpellQueue >= m_CurrentSpell.TriggerData.m_Selection.Length)
+         {
+            CastSpell();
+            return;
+         }
+      }
+   }
+
+   private void CastSpell()
+   {
+      if (GameManager.Instance.CanPlay)
+      {
+         GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,new SpellTiles(m_OriginTiles,m_ActionTiles));
+         GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
+         ResetSpellQueue();
       }
    }
 

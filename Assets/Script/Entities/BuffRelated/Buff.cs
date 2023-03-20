@@ -38,6 +38,7 @@ public abstract class Buff : MonoBehaviour
             {
                 m_AttachedEntity.Buffs.RemoveBuff(this);
                 UnApply();
+                Destroy(gameObject);
             }
         }
     }

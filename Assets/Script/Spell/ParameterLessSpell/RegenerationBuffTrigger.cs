@@ -21,8 +21,17 @@
         base.Trigger(spellData, spellTiles);
     }
 
+    protected override int GetSpellPriority()
+    {
+        BoardEntity entity = m_AttachedSpell.AttachedEntity;
+        if (entity.Life.Life < entity.Life.MaxLife)
+            return 1;
+        
+        return 0;
+    }
+
     public override void ComputeSpellPriority()
     {
-        m_SpellPriority = m_RegenerationDuration * (int)m_RegenerationValue;
+        m_SpellPriority = 0;
     }
 }

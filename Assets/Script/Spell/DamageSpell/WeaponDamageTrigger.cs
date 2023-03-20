@@ -5,12 +5,6 @@
     {
         WeaponDamageConvertion = weaponDamageData.BaseWeaponDamageConvertion;
     }
-
-    public override void ComputeSpellData(BoardEntity entity)
-    {
-        base.ComputeSpellData(entity);
-    }
-
     protected override void ComputeSpellDamage(BoardEntity entity)
     {
         base.ComputeSpellDamage(entity);
