@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityDataScriptable: {fileID: 11400000, guid: 997d03ce7c0065e41a697c243d6822e0, type: 2}
-  m_XPosition: 48
-  m_YPosition: 5
+  m_XPosition: 0
+  m_YPosition: 0
   m_VisualTransform: {fileID: 1778751248556589878}
   m_Range: 4
 --- !u!1 &6165430051826993969

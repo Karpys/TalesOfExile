@@ -8,8 +8,9 @@ public class EntityStats
 {
     private BoardEntity m_AttachedEntity = null;
     //All the EntitiesStats//
-    [SerializeField] private float m_MaxLife = 100f;
-    [SerializeField] private float m_Life = 100f;
+    public float MaxLife = 100f;
+    public float Life = 100f;
+    public float LifeRegeneration = 0;
     //From Damage to move speed to base life ?//
     //MainTypeModifier//
     public float MeleeModifier = 0f;
@@ -23,9 +24,7 @@ public class EntityStats
     //Physical
     //Ect ect
     
-    //Getter
-    public float Life => m_Life;
-    public float MaxLife => m_MaxLife;
+    
 
     public object Clone()
     {
@@ -68,12 +67,6 @@ public class EntityStats
                 return 0;
         }
     }
-
-    public void ChangeLifeValue(float value)
-    {
-        m_Life -= value;
-        m_AttachedEntity.A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
-    }
 }
 
 public enum EntityGroup
@@ -94,7 +87,9 @@ public abstract class BoardEntity : MonoBehaviour
     protected BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
     protected EntityEquipement m_Equipement = null;
-
+    protected EntityBuffs m_Buffs = null;
+    protected BoardEntityLife m_EntityLife = null;
+    
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
@@ -103,10 +98,11 @@ public abstract class BoardEntity : MonoBehaviour
     public BoardEntityData EntityData => m_EntityData;
     public EntityEquipement EntityEquipement => m_Equipement;
     public Transform VisualTransform => m_VisualTransform;
+    public EntityBuffs Buffs => m_Buffs;
+    public BoardEntityLife Life => m_EntityLife;
     
     //Entity Actions//
     public Action<float> A_OnEntityDamageTaken;
-    public Action<float,float> A_OnLifeUpdated;
 
     protected void Awake()
     {
@@ -114,9 +110,15 @@ public abstract class BoardEntity : MonoBehaviour
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
         m_EntityData.m_Stats.SetEntity(this);
         
+        //Life
+        m_EntityLife = GetComponent<BoardEntityLife>();
+        m_EntityLife.Initalize(this, m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
         //Equipement
         m_Equipement = GetComponent<EntityEquipement>();
         m_Equipement.InitEquipement(m_EntityDataScriptable.m_StartEquipement);
+        
+        //Buffs
+        m_Buffs = GetComponent<EntityBuffs>();
     }
 
     protected virtual void Start()
@@ -269,10 +271,10 @@ public abstract class BoardEntity : MonoBehaviour
     //Damage Related//
     public void TakeDamage(float value)
     {
-        m_EntityData.m_Stats.ChangeLifeValue(value);
+        m_EntityLife.ChangeLifeValue(-value);
         A_OnEntityDamageTaken?.Invoke(value);
 
-        if (m_EntityData.m_Stats.Life <= 0)
+        if (m_EntityLife.Life <= 0)
             TriggerDeath();
     }
 

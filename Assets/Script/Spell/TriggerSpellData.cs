@@ -33,6 +33,9 @@ public class TriggerSpellData:SpellData
 
     public ZoneSelection GetMainSelection()
     {
+        if (TriggerData.m_Selection.Length == 0)
+            return null;
+        
         return TriggerData.m_Selection[TriggerData.MainSelection];
     }
 

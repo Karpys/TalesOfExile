@@ -15,8 +15,9 @@ MonoBehaviour:
   m_EntityBaseData:
     m_EntityGroup: 0
     m_Stats:
-      m_MaxLife: 400
-      m_Life: 400
+      MaxLife: 450
+      Life: 450
+      LifeRegeneration: 0
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
@@ -39,6 +40,10 @@ MonoBehaviour:
         ConnectedSpellData:
           m_Spells: []
       - Data: {fileID: 11400000, guid: 621f6eb7796553a4bae033f303e9d33b, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
+      - Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []

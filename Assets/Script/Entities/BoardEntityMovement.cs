@@ -11,7 +11,7 @@ public class BoardEntityMovement : MonoBehaviour
     private Vector2Int m_ComputedInput = Vector2Int.zero;
 
     private float m_InputTiming = 0.05f;
-    private float m_CurrentFecthInputTimer = 0f;
+    private float m_CurrentFecthInputTimer = -1;
     public void SetTargetEntity(BoardEntity target)
     {
         m_Entity = target;

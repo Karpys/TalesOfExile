@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2068509225359419660}
   - component: {fileID: 8915308864731957502}
+  - component: {fileID: 7272982574942465325}
+  - component: {fileID: -7181156257391147878}
   m_Layer: 0
   m_Name: BoardEntity
   m_TagString: Untagged
@@ -99,3 +101,28 @@ MonoBehaviour:
       Description: 
       Type: 0
       Modifiers: []
+--- !u!114 &7272982574942465325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980381498483754554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5019f57c38426ca02c072f3b3ab88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Buffs: []
+--- !u!114 &-7181156257391147878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980381498483754554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aee8a9719b4aa1b98d446afb302f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

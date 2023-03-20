@@ -94,6 +94,10 @@ public static class ZoneTileManager
     public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition)
     {
         ZoneSelection zoneSelection = spellData.GetMainSelection();
+        
+        if (zoneSelection == null)
+            return true;
+        
         Vector2Int origin = spellData.AttachedEntity.EntityPosition;
 
         switch (zoneSelection.DisplayType)

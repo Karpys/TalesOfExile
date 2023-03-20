@@ -22,75 +22,29 @@ public static class EquipementUtils
         }
         
         targetSocket.Equipement = equipement;
-        ApplyEquipementStats(equipement,entity);
+        ApplyEquipementStats(equipement,entity,false);
     }
 
-    public static void ApplyEquipementStats(Equipement equipement, BoardEntity entity)
+    public static void ApplyEquipementStats(Equipement equipement, BoardEntity entity, bool recomputeStats = true)
     {
         foreach (Modifier modifier in equipement.Modifiers)
         {
-            switch (modifier.Type)
-            {
-                case ModifierType.UpCold:
-                    entity.EntityStats.ColdDamageModifier += modifier.FloatValue;
-                    break;
-                case ModifierType.UpFire:
-                    entity.EntityStats.FireDamageModifier += modifier.FloatValue;
-                    break;
-                case ModifierType.UpPhysical:
-                    entity.EntityStats.PhysicalDamageModifier += modifier.FloatValue;
-                    break;
-                case ModifierType.SpellAddition:
-                    SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(modifier.Value);
-                    entity.AddSpellToSpellList(spellToAdd);
-                    break;
-                default:
-                    Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");
-                    break;
-            }
+            ModifierUtils.ApplyModifier(modifier,entity);
         }
+        
+        if(recomputeStats)
+            entity.ComputeAllSpells();
     }
     
     public static void UnapplyEquipementStats(Equipement equipement, BoardEntity entity)
     {
-        bool needRecompute = false;
         
         foreach (Modifier modifier in equipement.Modifiers)
         {
-            switch (modifier.Type)
-            {
-                case ModifierType.UpCold:
-                    entity.EntityStats.ColdDamageModifier -= modifier.FloatValue;
-                    needRecompute = true;
-                    break;
-                case ModifierType.UpFire:
-                    entity.EntityStats.FireDamageModifier -= modifier.FloatValue;
-                    needRecompute = true;
-                    break;
-                case ModifierType.UpPhysical:
-                    entity.EntityStats.PhysicalDamageModifier -= modifier.FloatValue;
-                    needRecompute = true;
-                    break;
-                case ModifierType.SpellAddition:
-                    SpellData spellToAdd = entity.GetSpellViaKey(modifier.Value);
-                    
-                    if (spellToAdd == null)
-                    {
-                        Debug.Log("No Spell key to remove found :" + modifier.Value);
-                        break;
-                    }
-                    
-                    entity.RemoveSpellToSpellList(spellToAdd);
-                    needRecompute = true;
-                    break;
-                default:
-                    Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");
-                    break;
-            }
+            ModifierUtils.UnapplyModifier(modifier,entity);
         }
         
-        if(needRecompute)
-            entity.ComputeAllSpells();
+        entity.ComputeAllSpells();
     }
 
     public static void Unequip(EquipementSocket socket,BoardEntity entity)

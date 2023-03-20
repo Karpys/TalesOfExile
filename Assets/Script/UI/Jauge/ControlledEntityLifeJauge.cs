@@ -14,19 +14,18 @@ namespace Script.UI.Jauge
 
         private void OnDestroy()
         {
-            m_CurrentEntity.A_OnLifeUpdated -= UpdateJaugeFillValue;
+            m_CurrentEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
         }
 
         private void SetLifeListenerToNewEntity(BoardEntity oldEntity,BoardEntity newEntity)
         {
             if(oldEntity)
-                oldEntity.A_OnLifeUpdated -= UpdateJaugeFillValue;
+                oldEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
             
-            newEntity.A_OnLifeUpdated += UpdateJaugeFillValue;
             m_CurrentEntity = newEntity;
+            m_CurrentEntity.Life.A_OnLifeUpdated += UpdateJaugeFillValue;
             
-            EntityStats stats = m_CurrentEntity.EntityData.m_Stats;
-            UpdateJaugeFillValue(stats.Life,stats.MaxLife);
+            UpdateJaugeFillValue(m_CurrentEntity.Life.Life,m_CurrentEntity.Life.MaxLife);
         }
 
         protected override void UpdateJaugeFillValue(float currentValue, float maxValue)
