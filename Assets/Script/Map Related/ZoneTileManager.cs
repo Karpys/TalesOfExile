@@ -84,7 +84,23 @@ public static class ZoneTileManager
                     Debug.LogError("Need a cast origin Position");
                 }
                 break;
+            case ZoneType.OuterCircle:
+                Vector2Int originCircle = Vector2Int.zero;
+                
+                for (int x = -range + 1; x < range; x++)
+                {
+                    for (int y = -range + 1; y < range; y++)
+                    {
+                        Vector2Int vec = new Vector2Int(x, y);
+                        if (Vector2Int.Distance(originCircle,vec) <= range - CIRCLE_TOLERANCE && Vector2Int.Distance(originCircle,vec) >= range - 1 - CIRCLE_TOLERANCE)
+                        {
+                            zones.Add(vec + selectionOrigin);
+                        }
+                    }
+                }
+                break;
             default:
+                Debug.LogError("Zone selection type not register");
                 break;
         }
         

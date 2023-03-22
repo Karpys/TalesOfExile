@@ -113,6 +113,26 @@ Transform:
   m_Father: {fileID: 790934946185552068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858355229776126828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868885018205819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fa70efa47f6f14f832056efcc42d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightProjection:
+    Origin: 0
+    DisplayType: 4
+    Range: 7
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 0
 --- !u!114 &2318941865701268292
 MonoBehaviour:
   m_ObjectHideFlags: 0

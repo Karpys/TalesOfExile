@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class WorldTile : MonoBehaviour
 {
     [SerializeField] private bool m_Walkable = true;
     private Tile m_AttachedTile = null;
+    private LightTile m_LightTile = null;
 
     public Tile Tile => m_AttachedTile;
+    public LightTile LightTile => m_LightTile;
+
+    private void Start()
+    {
+        m_LightTile = GetComponent<LightTile>();
+    }
 
     public void SetTile(Tile tile)
     {
