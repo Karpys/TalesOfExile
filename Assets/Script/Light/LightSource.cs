@@ -18,6 +18,8 @@ public class LightSource : MonoBehaviour
     public List<LightTile> ApplyLight()
     {
         List<LightTile> lightTile = new List<LightTile>();
+        List<LightTile> forceShadowTile = new List<LightTile>();
+        
         List<Vector2Int> lightable = ZoneTileManager.GetSelectionZone(m_LightProjection,
             m_AttachedEntity.EntityPosition, m_LightProjection.Range);
 
@@ -42,25 +44,40 @@ public class LightSource : MonoBehaviour
         foreach (Vector2Int pos in lightable)
         {
             Vector2Int clampedPos = MapData.Instance.MapClampedPosition(pos);
-            
-            
-            LinePath.NeighbourType = NeighbourType.Cross;
+
             List<WorldTile> worldTiles = LinePath.GetPathTile(lightOrigin, clampedPos).Select(s => s.WorldTile).ToList();
-            LinePath.NeighbourType = NeighbourType.Square;
 
             if(worldTiles.Count == 0)
                 continue;
             
-            if (!worldTiles[0].Tile.Walkable)
-                worldTiles = PreciseLight(closeTile,originTile,lightOrigin,clampedPos);
+            //if (!worldTiles[0].Tile.Walkable)
+              //  worldTiles = PreciseLight(closeTile,originTile,lightOrigin,clampedPos);
 
+            bool inShadow = false;
             foreach (WorldTile worldTile in worldTiles)
             {
                 //TODO:ADD Bool Parameter LightThrough//
-                lightTile.Add(worldTile.LightTile);
-                
+                if (!inShadow)
+                {
+                    lightTile.Add(worldTile.LightTile);
+                }
+                else
+                {
+                    forceShadowTile.Add(worldTile.LightTile);
+                }
+
                 if (!worldTile.Tile.Walkable)
-                    break;
+                {
+                    inShadow = true;
+                }
+            }
+        }
+
+        foreach (LightTile tile in forceShadowTile)
+        {
+            if (lightTile.Contains(tile))
+            {
+                lightTile.Remove(tile);
             }
         }
 

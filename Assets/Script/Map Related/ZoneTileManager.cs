@@ -99,6 +99,18 @@ public static class ZoneTileManager
                     }
                 }
                 break;
+            case ZoneType.OuterSquare:
+                for (int x = -range + 1; x <range; x++)
+                {
+                    for (int y = -range + 1; y < range ; y++)
+                    {
+                        if (x == -range + 1 || y == -range + 1 || x == range - 1 || y == range - 1)
+                        {
+                            zones.Add(new Vector2Int(x,y) + selectionOrigin);
+                        }
+                    }
+                }
+                break;
             default:
                 Debug.LogError("Zone selection type not register");
                 break;

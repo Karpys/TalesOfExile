@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightProjection:
     Origin: 0
-    DisplayType: 4
-    Range: 12
+    DisplayType: 5
+    Range: 7
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1
