@@ -6,6 +6,7 @@ using UnityEngine;
 public class LightSource : MonoBehaviour
 {
     [SerializeField] private ZoneSelection m_LightProjection = null;
+    [SerializeField] private ZoneSelection m_CircleReduction = null;
     [SerializeField] private float m_LightForce = 1;
 
     private BoardEntity m_AttachedEntity = null;
@@ -27,7 +28,7 @@ public class LightSource : MonoBehaviour
         Tile originTile = MapData.Instance.Map.Tiles[lightOrigin.x, lightOrigin.y];
 
         List<Tile> closeTile = TileHelper.GetNeighbours(originTile, NeighbourType.Square, MapData.Instance);
-
+        originTile.WorldTile.LightTile.AddLight();
         lightTile.Add(originTile.WorldTile.LightTile);
 
         for (int i = closeTile.Count - 1; i > 0; i--)
@@ -51,19 +52,21 @@ public class LightSource : MonoBehaviour
                 continue;
             
             //if (!worldTiles[0].Tile.Walkable)
-              //  worldTiles = PreciseLight(closeTile,originTile,lightOrigin,clampedPos);
+               //worldTiles = PreciseLight(closeTile,originTile,lightOrigin,clampedPos);
 
             bool inShadow = false;
             foreach (WorldTile worldTile in worldTiles)
             {
-                //TODO:ADD Bool Parameter LightThrough//
+                lightTile.Add(worldTile.LightTile);
+                
                 if (!inShadow)
                 {
-                    lightTile.Add(worldTile.LightTile);
+                    worldTile.LightTile.AddLight();
                 }
                 else
                 {
-                    forceShadowTile.Add(worldTile.LightTile);
+                    worldTile.LightTile.AddShadow();
+                    //forceShadowTile.Add(worldTile.LightTile);
                 }
 
                 if (!worldTile.Tile.Walkable)
@@ -73,13 +76,22 @@ public class LightSource : MonoBehaviour
             }
         }
 
-        foreach (LightTile tile in forceShadowTile)
+        List<Vector2Int> circleSelection =
+            ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
+
+        List<LightTile> outerCircle = lightTile.Where(t => !circleSelection.Contains(t.Tile.TilePosition)).ToList();
+
+        foreach (LightTile tile in outerCircle)
         {
-            if (lightTile.Contains(tile))
-            {
-                lightTile.Remove(tile);
-            }
+            tile.ResetLight();
         }
+        // foreach (LightTile tile in forceShadowTile)
+        // {
+        //     if (lightTile.Contains(tile))
+        //     {
+        //         lightTile.Remove(tile);
+        //     }
+        // }
 
         return lightTile;
     }

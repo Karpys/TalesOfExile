@@ -13,6 +13,7 @@ public class WorldTile : MonoBehaviour
     private void Start()
     {
         m_LightTile = GetComponent<LightTile>();
+        m_LightTile.Init(m_AttachedTile);
     }
 
     public void SetTile(Tile tile)

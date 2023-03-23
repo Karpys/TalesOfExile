@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LightManager : SingletonMonoBehavior<LightManager>
@@ -41,6 +42,16 @@ public class LightManager : SingletonMonoBehavior<LightManager>
         foreach (LightSource source in m_LightSources)
         {
             newHighlightedTiles.AddRange(source.ApplyLight());
+        }
+
+        for (int i = 0; i < newHighlightedTiles.Count; i++)
+        {
+            if (newHighlightedTiles[i].IsShadow)
+            {
+                newHighlightedTiles[i].ResetLight();
+                newHighlightedTiles.Remove(newHighlightedTiles[i]);
+                i--;
+            }
         }
 
         foreach (LightTile lightTile in m_PreviousHighlightedTiles)
