@@ -128,7 +128,7 @@ MonoBehaviour:
   m_LightProjection:
     Origin: 0
     DisplayType: 5
-    Range: 7
+    Range: 14
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_CircleReduction:
     Origin: 0
     DisplayType: 0
-    Range: 6
+    Range: 13
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1

@@ -37,34 +37,54 @@ public class LightManager : SingletonMonoBehavior<LightManager>
 
     private void RebuildLights()
     {
+        foreach (LightTile lightTile in m_PreviousHighlightedTiles)
+        {
+            lightTile.ApplyLight(false);
+        }
+        
         List<LightTile> newHighlightedTiles = new List<LightTile>();
 
         foreach (LightSource source in m_LightSources)
         {
-            newHighlightedTiles.AddRange(source.ApplyLight());
+            newHighlightedTiles.AddRange(source.ApplyLightV2());
         }
 
+        newHighlightedTiles = newHighlightedTiles.Distinct().ToList();
+
+        foreach (LightTile lightTile in newHighlightedTiles)
+        {
+            if (lightTile.IsShadow)
+            {
+                lightTile.ApplyLight(false);
+            }
+            else
+            {
+                lightTile.ApplyLight(true);
+            }
+        }
+        
+        m_PreviousHighlightedTiles = newHighlightedTiles;
+        return;
         for (int i = 0; i < newHighlightedTiles.Count; i++)
         {
             if (newHighlightedTiles[i].IsShadow)
             {
-                newHighlightedTiles[i].ResetLight();
+                newHighlightedTiles[i].ApplyLight(false);
                 newHighlightedTiles.Remove(newHighlightedTiles[i]);
                 i--;
             }
         }
 
-        foreach (LightTile lightTile in m_PreviousHighlightedTiles)
+        /*foreach (LightTile lightTile in m_PreviousHighlightedTiles)
         {
             if(!newHighlightedTiles.Contains(lightTile))
-                lightTile.ApplyLight(true,m_MidLightedTiles);
-        }
+                lightTile.ApplyLight(false);
+        }*/
 
         foreach (LightTile lightTile in newHighlightedTiles)
         {
-            lightTile.ApplyLight(true,1);
+            lightTile.ApplyLight(true);
         }
 
-        m_PreviousHighlightedTiles = newHighlightedTiles;
     }
 }

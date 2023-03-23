@@ -19,7 +19,6 @@ public class LightSource : MonoBehaviour
     public List<LightTile> ApplyLight()
     {
         List<LightTile> lightTile = new List<LightTile>();
-        List<LightTile> forceShadowTile = new List<LightTile>();
         
         List<Vector2Int> lightable = ZoneTileManager.GetSelectionZone(m_LightProjection,
             m_AttachedEntity.EntityPosition, m_LightProjection.Range);
@@ -76,9 +75,7 @@ public class LightSource : MonoBehaviour
             }
         }
 
-        List<Vector2Int> circleSelection =
-            ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
-
+        List<Vector2Int> circleSelection = ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
         List<LightTile> outerCircle = lightTile.Where(t => !circleSelection.Contains(t.Tile.TilePosition)).ToList();
 
         foreach (LightTile tile in outerCircle)
@@ -93,6 +90,52 @@ public class LightSource : MonoBehaviour
         //     }
         // }
 
+        return lightTile;
+    }
+
+    public List<LightTile> ApplyLightV2()
+    {
+        List<LightTile> lightTile = new List<LightTile>();
+        Vector2Int lightOrigin = m_AttachedEntity.EntityPosition;
+        List<Vector2Int> outerSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, lightOrigin, m_LightProjection.Range);
+
+        LinePath.NeighbourType = NeighbourType.Cross;
+        foreach (Vector2Int outSelect in outerSelection)
+        {
+            Vector2Int outSelectClamped = MapData.Instance.MapClampedPosition(outSelect);
+            List<WorldTile> worldTiles = LinePath.GetPathTile(lightOrigin, outSelectClamped, out var roundTiles).Select(t => t.WorldTile).ToList();
+            
+            bool inShadow = false;
+            foreach (WorldTile worldTile in worldTiles)
+            {
+                lightTile.Add(worldTile.LightTile);
+                
+                if (!inShadow)
+                {
+                    worldTile.LightTile.AddLight();
+                }
+                else
+                {
+                    worldTile.LightTile.AddShadow();
+                }
+
+                if (!worldTile.Tile.Walkable && !roundTiles.Contains(worldTile.Tile))
+                {
+                    inShadow = true;
+                }
+            }
+        }
+        //Shrunk Circle
+        List<Vector2Int> shrunkSelection = ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
+        List<LightTile> shrunkedSelection = lightTile.Where(t => !shrunkSelection.Contains(t.Tile.TilePosition)).ToList();
+
+        foreach (LightTile tile in shrunkedSelection)
+        {
+            tile.ApplyLight(false);
+            lightTile.Remove(tile);
+        }
+        
+        LinePath.NeighbourType = NeighbourType.Square;
         return lightTile;
     }
 
