@@ -39,6 +39,10 @@ public class SpellIcon : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A) && START_ID_KEYCODE == 49)
+        {
+            TryUseSpell();
+        }
         if (Input.GetKeyDown(m_SpellKeyCode))
         {
             TryUseSpell();

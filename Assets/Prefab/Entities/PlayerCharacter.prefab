@@ -128,11 +128,12 @@ MonoBehaviour:
   m_LightProjection:
     Origin: 0
     DisplayType: 4
-    Range: 7
+    Range: 12
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1
     ActionSelection: 0
+  m_LightForce: 1
 --- !u!114 &2318941865701268292
 MonoBehaviour:
   m_ObjectHideFlags: 0

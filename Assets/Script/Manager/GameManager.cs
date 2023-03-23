@@ -36,6 +36,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public Action A_OnEndTurn;
     public Action A_OnEndPlayerTurn;
     public Action A_OnEndEnemyTurn;
+    public Action A_OnNewTurnBegin;
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
 
     private void Awake()
@@ -121,6 +122,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             A_OnEndEnemyTurn?.Invoke();
             A_OnEndTurn?.Invoke();
             ResetActionQueue();
+            A_OnNewTurnBegin?.Invoke();
         }
     }
 

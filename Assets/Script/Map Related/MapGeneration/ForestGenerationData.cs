@@ -111,6 +111,7 @@ public class ForestGenerationData : MapGenerationData
         {
             GenerateTree(x, y);
         }
+
     }
 
     private void GenerateTree(int x,int y)

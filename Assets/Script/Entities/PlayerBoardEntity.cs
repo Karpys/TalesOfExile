@@ -15,6 +15,7 @@ public class PlayerBoardEntity : BoardEntity
         base.Start();
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.SetControlledEntity(this);
+        LightManager.Instance.AddLightSource(GetComponent<LightSource>(),true);
     }
     
     public override void EntityAction()
