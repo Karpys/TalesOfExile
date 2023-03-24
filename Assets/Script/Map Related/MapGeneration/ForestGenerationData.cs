@@ -51,7 +51,7 @@ public class ForestGenerationData : MapGenerationData
 
             int loopCount = 0;
 
-            List<Tile> pathTile = LinePath.GetPathTile(new Vector2Int(lastTile.Tile.XPos, lastTile.Tile.YPos), new Vector2Int(x, y));
+            List<Tile> pathTile = LinePath.GetPathTile(new Vector2Int(lastTile.Tile.XPos, lastTile.Tile.YPos), new Vector2Int(x, y)).ToTile();
             pathTile.Add(lastTile.Tile);
             RemoveUnreachableTileOnPath(pathTile);
             path = PathFinding.FindPath(lastTile.Tile, m_Map.Tiles[x,y]);

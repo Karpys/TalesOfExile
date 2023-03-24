@@ -13,6 +13,7 @@ public class LightManager : SingletonMonoBehavior<LightManager>
     private List<LightSource> m_LightSources = new List<LightSource>();
     private void Start()
     {
+        return;
         GameManager.Instance.A_OnNewTurnBegin += RebuildLights;
     }
     
@@ -25,9 +26,14 @@ public class LightManager : SingletonMonoBehavior<LightManager>
     public void AddLightSource(LightSource source, bool rebuild = false)
     {
         m_LightSources.Add(source);
-        
-        if(rebuild)
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
             RebuildLights();
+        }
     }
 
     public void RemoveLightSource(LightSource source)
@@ -46,45 +52,14 @@ public class LightManager : SingletonMonoBehavior<LightManager>
 
         foreach (LightSource source in m_LightSources)
         {
-            newHighlightedTiles.AddRange(source.ApplyLightV2());
+            newHighlightedTiles.AddRange(source.ApplyLightV3());
         }
 
-        newHighlightedTiles = newHighlightedTiles.Distinct().ToList();
-
-        foreach (LightTile lightTile in newHighlightedTiles)
+        foreach (LightTile highlightedTile in newHighlightedTiles)
         {
-            if (lightTile.IsShadow)
-            {
-                lightTile.ApplyLight(false);
-            }
-            else
-            {
-                lightTile.ApplyLight(true);
-            }
+            highlightedTile.ApplyLight(true);
         }
-        
+
         m_PreviousHighlightedTiles = newHighlightedTiles;
-        return;
-        for (int i = 0; i < newHighlightedTiles.Count; i++)
-        {
-            if (newHighlightedTiles[i].IsShadow)
-            {
-                newHighlightedTiles[i].ApplyLight(false);
-                newHighlightedTiles.Remove(newHighlightedTiles[i]);
-                i--;
-            }
-        }
-
-        /*foreach (LightTile lightTile in m_PreviousHighlightedTiles)
-        {
-            if(!newHighlightedTiles.Contains(lightTile))
-                lightTile.ApplyLight(false);
-        }*/
-
-        foreach (LightTile lightTile in newHighlightedTiles)
-        {
-            lightTile.ApplyLight(true);
-        }
-
     }
 }

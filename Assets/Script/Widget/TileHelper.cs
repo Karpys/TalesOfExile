@@ -126,7 +126,7 @@ public static class TileHelper
             return currentTile;
         }
         
-        List<Tile> path = LinePath.GetPathTile(currentTile, tileFrom);
+        List<Tile> path = LinePath.GetPathTile(currentTile, tileFrom).ToTile();
         Vector2Int oppositePosition = Vector2Int.zero;
         
         if (path.Count > 0)
@@ -182,5 +182,17 @@ public static class TileHelper
         }
 
         return path;
+    }
+    
+    public static List<Tile> ToTile(this List<Vector2Int> path)
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            tiles.Add(MapData.Instance.GetTile(path[i]));
+        }
+
+        return tiles;
     }
 }

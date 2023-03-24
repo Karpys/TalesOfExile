@@ -28,7 +28,7 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
         if (m_DebugMouseToPlayerTiles)
         {
             m_DebugMouseToPlayerTiles = false;
-            List<Tile> PlayerToMouse = LinePath.GetPathTile(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition);
+            List<Tile> PlayerToMouse = LinePath.GetPathTile(MapData.Instance.GetControlledEntityPosition(), m_MouseBoardPosition).ToTile();
             HighlightTilesManager.Instance.HighlightTiles(PlayerToMouse.ToPath());
         }
     }

@@ -69,11 +69,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f4a61944bbd0e4fbe6002d691a490c, type: 3}
---- !u!212 &8189713884436240308 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7258251039932401077, guid: 72f4a61944bbd0e4fbe6002d691a490c, type: 3}
-  m_PrefabInstance: {fileID: 1521594068615811585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6450829926508696146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,12 +130,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6793044419162328021, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
       propertyPath: m_LightAffectedRenderer.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6793044419162328021, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
       propertyPath: m_LightAffectedRenderer.Array.data[1]
       value: 
-      objectReference: {fileID: 8189713884436240308}
+      objectReference: {fileID: 0}
     - target: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
       propertyPath: m_Walkable
       value: 0

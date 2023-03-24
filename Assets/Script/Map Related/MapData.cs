@@ -39,7 +39,12 @@ public class MapData : SingletonMonoBehavior<MapData>
 
     public Tile GetTile(Vector2Int pos)
     {
-        return Map.Tiles[pos.x, pos.y];
+        if (pos.x >= 0 && pos.x < m_Map.Width && pos.y >= 0 && pos.y < m_Map.Height)
+        {
+            return Map.Tiles[pos.x, pos.y];
+        }
+
+        return null;
     }
 
     public Vector2Int GetControlledEntityPosition()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,160 +9,80 @@ public class LightSource : MonoBehaviour
     [SerializeField] private ZoneSelection m_LightProjection = null;
     [SerializeField] private ZoneSelection m_CircleReduction = null;
     [SerializeField] private float m_LightForce = 1;
-
+    [SerializeField] private bool m_UseDistinct = false;
     private BoardEntity m_AttachedEntity = null;
+
+    private List<Vector2Int> m_OuterSelection = new List<Vector2Int>();
+    private List<List<Vector2Int>> m_LineTraces = new List<List<Vector2Int>>();
     void Start()
     {
         m_AttachedEntity = GetComponent<BoardEntity>();
+        ComputeLineTrace();
+
+    }
+    
+    private void ComputeLineTrace()
+    {
+        m_LineTraces.Clear();
+        m_OuterSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, Vector2Int.zero, m_LightProjection.Range);
+
+        foreach (Vector2Int select in m_OuterSelection)
+        {
+            LinePath.NeighbourType = NeighbourType.Cross;
+            m_LineTraces.Add(LinePath.GetPathTile(Vector2Int.zero, select));
+            LinePath.NeighbourType = NeighbourType.Square;
+        }
     }
 
     // Update is called once per frame
-    public List<LightTile> ApplyLight()
+    public List<LightTile> ApplyLightV3()
     {
-        List<LightTile> lightTile = new List<LightTile>();
-        
-        List<Vector2Int> lightable = ZoneTileManager.GetSelectionZone(m_LightProjection,
-            m_AttachedEntity.EntityPosition, m_LightProjection.Range);
-
+        List<LightTile> lightTiles = new List<LightTile>();
+        List<LightTile> shadowTiles = new List<LightTile>();
         Vector2Int lightOrigin = m_AttachedEntity.EntityPosition;
-        Tile originTile = MapData.Instance.Map.Tiles[lightOrigin.x, lightOrigin.y];
 
-        List<Tile> closeTile = TileHelper.GetNeighbours(originTile, NeighbourType.Square, MapData.Instance);
-        originTile.WorldTile.LightTile.AddLight();
-        lightTile.Add(originTile.WorldTile.LightTile);
-
-        for (int i = closeTile.Count - 1; i > 0; i--)
-        { 
-            closeTile.RemoveAt(i);
-        }
-
-        foreach (Tile tile in closeTile)
+        foreach (List<Vector2Int> lineTrace in m_LineTraces)
         {
-            lightTile.Add(tile.WorldTile.LightTile);
-        }
-        
-        
-        foreach (Vector2Int pos in lightable)
-        {
-            Vector2Int clampedPos = MapData.Instance.MapClampedPosition(pos);
-
-            List<WorldTile> worldTiles = LinePath.GetPathTile(lightOrigin, clampedPos).Select(s => s.WorldTile).ToList();
-
-            if(worldTiles.Count == 0)
-                continue;
-            
-            //if (!worldTiles[0].Tile.Walkable)
-               //worldTiles = PreciseLight(closeTile,originTile,lightOrigin,clampedPos);
-
             bool inShadow = false;
-            foreach (WorldTile worldTile in worldTiles)
+            foreach (Vector2Int pos in lineTrace)
             {
-                lightTile.Add(worldTile.LightTile);
-                
-                if (!inShadow)
+                Tile targetTile = MapData.Instance.GetTile(pos + lightOrigin);
+
+                if (targetTile != null)
                 {
-                    worldTile.LightTile.AddLight();
+                    lightTiles.Add(targetTile.WorldTile.LightTile);
+
+                    if (!inShadow)
+                    {
+                        targetTile.WorldTile.LightTile.AddLight();
+                        if (!targetTile.Walkable)
+                        {
+                            inShadow = true;
+                        }
+                    }
+                    else
+                    {
+                        targetTile.WorldTile.LightTile.AddShadow();
+                    }
                 }
                 else
                 {
-                    worldTile.LightTile.AddShadow();
-                    //forceShadowTile.Add(worldTile.LightTile);
-                }
-
-                if (!worldTile.Tile.Walkable)
-                {
-                    inShadow = true;
+                    break;
                 }
             }
         }
 
-        List<Vector2Int> circleSelection = ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
-        List<LightTile> outerCircle = lightTile.Where(t => !circleSelection.Contains(t.Tile.TilePosition)).ToList();
+        lightTiles = lightTiles.Distinct().ToList();
 
-        foreach (LightTile tile in outerCircle)
-        {
-            tile.ResetLight();
-        }
-        // foreach (LightTile tile in forceShadowTile)
-        // {
-        //     if (lightTile.Contains(tile))
-        //     {
-        //         lightTile.Remove(tile);
-        //     }
-        // }
-
-        return lightTile;
-    }
-
-    public List<LightTile> ApplyLightV2()
-    {
-        List<LightTile> lightTile = new List<LightTile>();
-        Vector2Int lightOrigin = m_AttachedEntity.EntityPosition;
-        List<Vector2Int> outerSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, lightOrigin, m_LightProjection.Range);
-
-        LinePath.NeighbourType = NeighbourType.Cross;
-        foreach (Vector2Int outSelect in outerSelection)
-        {
-            Vector2Int outSelectClamped = MapData.Instance.MapClampedPosition(outSelect);
-            List<WorldTile> worldTiles = LinePath.GetPathTile(lightOrigin, outSelectClamped, out var roundTiles).Select(t => t.WorldTile).ToList();
-            
-            bool inShadow = false;
-            foreach (WorldTile worldTile in worldTiles)
-            {
-                lightTile.Add(worldTile.LightTile);
-                
-                if (!inShadow)
-                {
-                    worldTile.LightTile.AddLight();
-                }
-                else
-                {
-                    worldTile.LightTile.AddShadow();
-                }
-
-                if (!worldTile.Tile.Walkable && !roundTiles.Contains(worldTile.Tile))
-                {
-                    inShadow = true;
-                }
-            }
-        }
-        //Shrunk Circle
-        List<Vector2Int> shrunkSelection = ZoneTileManager.GetSelectionZone(m_CircleReduction, lightOrigin, m_CircleReduction.Range);
-        List<LightTile> shrunkedSelection = lightTile.Where(t => !shrunkSelection.Contains(t.Tile.TilePosition)).ToList();
-
-        foreach (LightTile tile in shrunkedSelection)
-        {
-            tile.ApplyLight(false);
-            lightTile.Remove(tile);
-        }
+        shadowTiles = lightTiles.Where(t => t.IsShadow || m_OuterSelection.Contains(t.Tile.TilePosition - lightOrigin)).ToList();
         
-        LinePath.NeighbourType = NeighbourType.Square;
-        return lightTile;
-    }
-
-    private List<WorldTile> PreciseLight(List<Tile> closeTile,Tile originTile,Vector2Int origin,Vector2Int clampedPos)
-    {
-        //Apply Light Based on closest tiles//
-        Tile clampedTile = MapData.Instance.GetTile(clampedPos);
-        float closestDistance = Vector3.Distance(originTile.WorldTile.transform.position,clampedTile.WorldTile.transform.position);;
-        foreach (Tile tile in closeTile)
+        foreach (LightTile tile in shadowTiles)
         {
-            if(!tile.Walkable)
-                continue;
-                
-            float currentDist = Vector3.Distance(clampedTile.WorldTile.transform.position,
-                tile.WorldTile.transform.position); 
-            if (currentDist < closestDistance)
-            {
-                origin = tile.TilePosition;
-                closestDistance = currentDist;
-            }
+            if (lightTiles.Contains(tile))
+                lightTiles.Remove(tile);
+            tile.OnShadow();
         }
 
-        LinePath.NeighbourType = NeighbourType.Cross;
-        List<WorldTile> worldTiles = LinePath.GetPathTile(origin, clampedPos).Select(s => s.WorldTile).ToList();
-        LinePath.NeighbourType = NeighbourType.Square;
-
-        return worldTiles;
+        return lightTiles;
     }
 }
