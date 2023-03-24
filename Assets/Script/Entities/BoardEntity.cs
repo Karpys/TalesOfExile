@@ -89,6 +89,7 @@ public abstract class BoardEntity : MonoBehaviour
     protected EntityEquipement m_Equipement = null;
     protected EntityBuffs m_Buffs = null;
     protected BoardEntityLife m_EntityLife = null;
+    protected BoardEntityEventHandler m_EntityEvent = null;
     
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
@@ -100,7 +101,7 @@ public abstract class BoardEntity : MonoBehaviour
     public Transform VisualTransform => m_VisualTransform;
     public EntityBuffs Buffs => m_Buffs;
     public BoardEntityLife Life => m_EntityLife;
-    
+    public BoardEntityEventHandler EntityEvent => m_EntityEvent;
     //Entity Actions//
     public Action<float> A_OnEntityDamageTaken;
 
@@ -109,6 +110,9 @@ public abstract class BoardEntity : MonoBehaviour
         //Copy Base Entity Data
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
         m_EntityData.m_Stats.SetEntity(this);
+        
+        //Event//
+        m_EntityEvent = GetComponent<BoardEntityEventHandler>();
         
         //Life
         m_EntityLife = GetComponent<BoardEntityLife>();

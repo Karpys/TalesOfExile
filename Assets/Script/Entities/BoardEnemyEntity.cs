@@ -58,14 +58,18 @@ public class BoardEnemyEntity : BoardEntity
 
         bool triggerAction = false;
 
-        if (!triggerAction && m_TriggerSelfBuffCount != 0)
+        if (CanCastSpell())
         {
-            triggerAction = SelfBuffAction();
-        }
+            
+            if (!triggerAction && m_TriggerSelfBuffCount != 0)
+            {
+                triggerAction = SelfBuffAction();
+            }
 
-        if (!triggerAction)
-        {
-            triggerAction = TriggerAction();
+            if (!triggerAction)
+            {
+                triggerAction = TriggerAction();
+            }
         }
         
         if (!triggerAction)
@@ -74,6 +78,13 @@ public class BoardEnemyEntity : BoardEntity
         }
         
         ReduceAllCooldown();
+    }
+
+    private bool CanCastSpell()
+    {
+        IntSocket blockSpellCount = new IntSocket(0);
+        m_EntityEvent.OnRequestBlockSpell?.Invoke(blockSpellCount);
+        return blockSpellCount.Value <= 0;
     }
 
     private bool SelfBuffAction()

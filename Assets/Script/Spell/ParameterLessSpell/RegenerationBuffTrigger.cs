@@ -15,7 +15,7 @@
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         Buff buff = BuffLibrary.Instance.GetBuffViaKey(BuffType.RegenerationBuff,spellData.AttachedEntity);
-        buff.InitializeBuff(spellData.AttachedEntity,m_RegenerationDuration,m_RegenerationValue);
+        buff.InitializeBuff(spellData.AttachedEntity,spellData.AttachedEntity,m_RegenerationDuration,m_RegenerationValue);
         
         m_SpellAnimDelay = 0.1f;
         base.Trigger(spellData, spellTiles);
