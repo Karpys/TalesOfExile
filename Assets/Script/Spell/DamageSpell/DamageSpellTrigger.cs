@@ -86,10 +86,12 @@ public class DamageSpellTrigger : SelectionSpellTrigger
             totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
         }
         
+        entity.TakeDamage(totalDamage);
+
         /*Text Display */
         if (targetGroup == EntityGroup.Enemy)
         {
-            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,-totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
+            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
         }
     }
 }
