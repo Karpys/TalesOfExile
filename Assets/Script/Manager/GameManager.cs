@@ -26,6 +26,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     
     //Action Queue//
     private bool m_CanPlay = true;
+    private bool m_InCallBackExecution = false;
     [SerializeField] private float m_FriendlyBaseWaitTime = 0f;
     [HideInInspector] public float FriendlyWaitTime = 0f;
     [HideInInspector] public float EnnemiesWaitTime = 0f;
@@ -37,6 +38,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public Action A_OnEndPlayerTurn;
     public Action A_OnEndEnemyTurn;
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
+    private Action A_CallBackEndAction;
 
     private void Awake()
     {
@@ -115,13 +117,44 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             TriggerAllFriendlyActions();
             yield return new WaitForSeconds(FriendlyWaitTime);
+            FriendlyWaitTime = 0;
             A_OnEndPlayerTurn?.Invoke();
+
+            m_InCallBackExecution = true;
+            A_CallBackEndAction?.Invoke();
+            m_InCallBackExecution = false;
+            yield return new WaitForSeconds(FriendlyWaitTime);
+            ClearCallBackAction();
+            
             TriggerAllEnemyAction();
             yield return new WaitForSeconds(EnnemiesWaitTime);
+            
+            EnnemiesWaitTime = 0;
             A_OnEndEnemyTurn?.Invoke();
+            
+            m_InCallBackExecution = true;
+            A_CallBackEndAction?.Invoke();
+            m_InCallBackExecution = false;
+            yield return new WaitForSeconds(EnnemiesWaitTime);
+            ClearCallBackAction();
+            
             A_OnEndTurn?.Invoke();
             ResetActionQueue();
         }
+    }
+
+    private void ClearCallBackAction()
+    {
+        A_CallBackEndAction = null;
+    }
+
+    public bool AddCallBackAction(Action action, bool force = false)
+    {
+        if(m_InCallBackExecution && force == false)
+            return false;
+        
+        A_CallBackEndAction += action;
+        return true;
     }
 
     private void ResetActionQueue()

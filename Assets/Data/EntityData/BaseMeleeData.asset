@@ -31,4 +31,8 @@ MonoBehaviour:
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []
+      - Data: {fileID: 11400000, guid: 0d38b00532de4a1468bab9a4e8a4b8ce, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
   m_StartEquipement: []

@@ -177,7 +177,7 @@ public abstract class BoardEntity : MonoBehaviour
         }
     }
 
-    protected SpellData RegisterSpell(SpellData spell)
+    public SpellData RegisterSpell(SpellData spell)
     {
         spell.AttachedEntity = this;
         return spell.Initialize();

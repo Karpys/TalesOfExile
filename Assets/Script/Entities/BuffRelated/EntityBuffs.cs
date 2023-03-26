@@ -31,7 +31,6 @@ public class EntityBuffs : MonoBehaviour
     {
         for (int i = m_Buffs.Count - 1; i >= 0; i--)
         {
-            Debug.Log("Buff id" + i);
             m_Buffs[i].ReduceCooldown();
         }
     }

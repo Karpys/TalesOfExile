@@ -32,4 +32,5 @@ public enum BuffType
     ModifierBuff,
     RegenerationBuff,
     SilenceDebuff,
+    RockThrowBuff,
 }

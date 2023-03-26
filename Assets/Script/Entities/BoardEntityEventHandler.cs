@@ -4,6 +4,7 @@ using UnityEngine;
 public class BoardEntityEventHandler : MonoBehaviour
 {
     public Action<IntSocket> OnRequestBlockSpell = null;
+    public Action<BoardEntity,BoardEntity> OnPhysicalDamageDone = null;
 }
 
 public class IntSocket

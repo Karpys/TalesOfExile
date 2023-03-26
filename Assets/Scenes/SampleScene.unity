@@ -2796,6 +2796,8 @@ MonoBehaviour:
     Type: 2
   - Buff: {fileID: 5730924036560442381, guid: c72cc454d6c10ca499e775ecc4136aba, type: 3}
     Type: 3
+  - Buff: {fileID: 4660877025933574833, guid: 03ba28ecb696b094b99d0f90746f7235, type: 3}
+    Type: 4
 --- !u!1 &1817704154
 GameObject:
   m_ObjectHideFlags: 0
