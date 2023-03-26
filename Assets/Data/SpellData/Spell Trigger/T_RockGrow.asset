@@ -17,7 +17,7 @@ MonoBehaviour:
   AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
-      MainDamageType: 0
+      MainDamageType: 2
       SubDamageTypes: 00000000
     InitialSourceDamage:
       Damage: 80

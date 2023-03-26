@@ -8,15 +8,18 @@ public class EntityStats
 {
     private BoardEntity m_AttachedEntity = null;
     //All the EntitiesStats//
+    [Header("Life Stats")]
     public float MaxLife = 100f;
     public float Life = 100f;
     public float LifeRegeneration = 0;
     //From Damage to move speed to base life ?//
     //MainTypeModifier//
+    [Header("Main Damage Modifier")]
     public float MeleeModifier = 0f;
     public float ProjectileModifier = 0f;
     public float SpellModifier = 0f;
     //SubTypeModifier//
+    [Header("Sub Damage Modifier")]
     public float ColdDamageModifier = 0f;
     public float HolyDamageModifier = 0f;
     public float FireDamageModifier = 0f;
@@ -24,7 +27,17 @@ public class EntityStats
     //Physical
     //Ect ect
     
-    
+    //DEFENSE//
+    [Header("Flat Main Damage Type Reduction")]
+    public float FlatMeleeDamageReduction = 0;
+    public float FlatProjectileDamageReduction = 0;
+    public float FlatSpellDamageReduction = 0;
+
+    [Header("Sub DamageType Percentage Reduction")]
+    public float ColdDamageReduction = 0; 
+    public float HolyDamageReduction = 0; 
+    public float FireDamageReduction = 0; 
+    public float PhysicalDamageReduction = 0; 
 
     public object Clone()
     {
@@ -51,6 +64,49 @@ public class EntityStats
                 Debug.LogError("Sub Damage type not set up :" + subDamageType);
                 return 0;
         }
+    }
+
+    public Vector2 GetDamageReduction(MainDamageType mainDamageType,SubDamageType subDamageType)
+    {
+        float flatReduction = 0;
+        float percentageReduction = 0;
+
+        switch (mainDamageType)
+        {
+            case MainDamageType.Melee:
+                flatReduction = FlatMeleeDamageReduction;
+                break;
+            case MainDamageType.Spell:
+                flatReduction = FlatSpellDamageReduction;
+                break;
+            case MainDamageType.Projectile:
+                flatReduction = FlatSpellDamageReduction;
+                break;
+            default:
+                Debug.LogError("Flat reduction has not been set up");
+                break;
+        }
+
+        switch (subDamageType)
+        {
+            case SubDamageType.Cold:
+                percentageReduction = ColdDamageReduction;
+                break;
+            case SubDamageType.Holy:
+                percentageReduction = HolyDamageReduction;
+                break;
+            case SubDamageType.Fire:
+                percentageReduction = FireDamageReduction;
+                break;
+            case SubDamageType.Physical:
+                percentageReduction = PhysicalDamageReduction;
+                break;
+            default:
+                Debug.LogError("Sub Damage type not set up :" + subDamageType);
+                break;
+        }
+
+        return new Vector2(flatReduction, percentageReduction);
     }
     
     public float GetMainTypeModifier(MainDamageType mainDamageType)

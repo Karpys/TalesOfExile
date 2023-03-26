@@ -80,10 +80,11 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         base.EntityHit(entity,spellData,targetGroup,origin);
         
         float totalDamage = 0;
+        MainDamageType mainDamageType = DamageSpellData.DamageType.MainDamageType;
         //Foreach Damage Sources//
         foreach (DamageSource damageSource in DamageSources.Values)
         {
-            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource); //DamageSource);
+            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource,mainDamageType); //DamageSource);
         }
         
         entity.TakeDamage(totalDamage);
