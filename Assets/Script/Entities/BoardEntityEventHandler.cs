@@ -4,7 +4,18 @@ using UnityEngine;
 public class BoardEntityEventHandler : MonoBehaviour
 {
     public Action<IntSocket> OnRequestBlockSpell = null;
-    public Action<BoardEntity,BoardEntity> OnPhysicalDamageDone = null;
+    public Action<BoardEntity,DamageSource> OnGetDamageFrom = null;
+    public Action<BoardEntity,DamageSource> OnDoDamageTo = null;
+
+    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource)
+    {
+        OnGetDamageFrom?.Invoke(damageFrom,damageSource);
+    }
+
+    public void TriggerDoDamageAction(BoardEntity damageTo, DamageSource damageSource)
+    {
+        OnDoDamageTo?.Invoke(damageTo,damageSource);
+    }
 }
 
 public class IntSocket

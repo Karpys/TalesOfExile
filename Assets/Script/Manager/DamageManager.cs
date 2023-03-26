@@ -17,12 +17,11 @@ public class DamageManager : SingletonMonoBehavior<DamageManager>
         //x => Flat / y => Percentage//
         Vector2 damageReduction = damageTo.EntityStats.GetDamageReduction(mainDamageType, damageSource.DamageType);
         mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage - damageReduction.x) * (1 - damageReduction.y / 100);
+
+        damageTo.EntityEvent.TriggerGetDamageAction(damageFrom,damageSource);
+        damageFrom.EntityEvent.TriggerDoDamageAction(damageTo,damageSource);
         
-        //Trigger Event link to the damageSourceType / mainDamageSourceType//
-        //CALL BACK DAMAGE DONE SYSTEM TEST//
-        if(mitigiedDamageSource.DamageType == SubDamageType.Physical)
-            damageFrom.EntityEvent.OnPhysicalDamageDone?.Invoke(damageFrom,damageTo);
-        Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + damageSource.DamageType + " damage");
+        Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + mitigiedDamageSource.DamageType + " damage");
         return mitigiedDamageSource.Damage;
     }
 }

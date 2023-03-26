@@ -9,11 +9,14 @@ public class RockThrowBuff : Buff
     protected override void Apply()
     {
         m_TriggerSpellData = m_Receiver.RegisterSpell(m_TriggerSpellData);
-        m_Receiver.EntityEvent.OnPhysicalDamageDone += AddRockThrowCallBack;
+        m_Receiver.EntityEvent.OnDoDamageTo += AddRockThrowCallBack;
     }
 
-    private void AddRockThrowCallBack(BoardEntity _, BoardEntity receiver)
+    private void AddRockThrowCallBack(BoardEntity receiver,DamageSource damageSource)
     {
+        if(damageSource.DamageType != SubDamageType.Physical)
+            return;
+        
         if(GameManager.Instance.AddCallBackAction(ThrowRocks))
             m_RockReceiver.Add(receiver);
     }
@@ -33,6 +36,6 @@ public class RockThrowBuff : Buff
 
     protected override void UnApply()
     {
-        m_Receiver.EntityEvent.OnPhysicalDamageDone -= AddRockThrowCallBack;
+        m_Receiver.EntityEvent.OnDoDamageTo -= AddRockThrowCallBack;
     }
 }
