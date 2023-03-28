@@ -16,7 +16,7 @@ public class SpellIcon : MonoBehaviour
 
     private TriggerSpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
-
+    private bool m_IsControlKey = false;
     public TriggerSpellData SpellData => m_CurrentSpellData;
 
     private static int START_ID_KEYCODE = 49;
@@ -45,9 +45,13 @@ public class SpellIcon : MonoBehaviour
         }
     }
 
-    public void SetSpellKey(int id)
+    public void SetSpellKey(int id,bool isControlKey)
     {
-        m_SpellKey.text = id + 1+ "";
+        m_IsControlKey = isControlKey;
+        string controlKey = isControlKey ? "C" : "";
+        id -= isControlKey ? 9 : 0;
+
+        m_SpellKey.text = controlKey + (id + 1);
         m_SpellKeyCode = (KeyCode)START_ID_KEYCODE + id;
     }
     public void SetSpell(TriggerSpellData spell)

@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpellUI: {fileID: 6837714218827805255, guid: 2325e73628d3eee47b3fdc18c169bbc5, type: 3}
-  m_SpellCount: 9
+  m_SpellCount: 18
   m_SpellLayout: {fileID: 1553008921}
 --- !u!222 &474328539
 CanvasRenderer:

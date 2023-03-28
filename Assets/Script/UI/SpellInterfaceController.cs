@@ -12,12 +12,12 @@ public class SpellInterfaceController : MonoBehaviour
     //List des spells attribue au spell ui icon//
     private void Awake()
     {
-        //Initalize tiles depend on screen and tile size//
+        //Initialize tiles depend on screen and tile size//
         m_IconsHolder = new SpellIcon[m_SpellCount];
         for (int i = 0; i < m_SpellCount; i++)
         {
             m_IconsHolder[i] = Instantiate(m_SpellUI, m_SpellLayout.transform);
-            m_IconsHolder[i].SetSpellKey(i);
+            m_IconsHolder[i].SetSpellKey(i,i > 8);
         }
     }
 
