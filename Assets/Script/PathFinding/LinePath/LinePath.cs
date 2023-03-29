@@ -5,7 +5,6 @@ using UnityEngine;
 
 public static class LinePath
 {
-    public static MapData mapData = null;
     public static NeighbourType NeighbourType = NeighbourType.Square;
     
     public static List<Vector2Int> GetPathTile(Vector2Int from, Vector2Int to)

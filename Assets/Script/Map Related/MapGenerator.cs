@@ -96,6 +96,5 @@ public class MapGenerator : MonoBehaviour
     private void InitializeMapData()
     {
         PathFinding.mapData = m_MapData;
-        LinePath.mapData = m_MapData;
     }
 }
