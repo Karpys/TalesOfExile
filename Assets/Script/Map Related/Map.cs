@@ -17,4 +17,11 @@ public class Map
         worldTile.SetTile(Tiles[x,y]);
         return worldTile;
     }
+    
+    public VisualTile InsertVisualTile(VisualTile visual, WorldTile tile)
+    {
+        VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
+            Quaternion.identity, tile.transform);
+        return visualTile;
+    }
 }

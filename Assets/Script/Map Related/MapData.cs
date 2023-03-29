@@ -72,4 +72,11 @@ public class MapData : SingletonMonoBehavior<MapData>
         
         return null;
     }
+    
+    public Vector2Int MapClampedPosition(Vector2Int pos)
+    {
+        int clampedX = Mathf.Clamp(pos.x, 0,m_Map.Width - 1);
+        int clampedY = Mathf.Clamp(pos.y,0, m_Map.Height - 1);
+        return new Vector2Int(clampedX, clampedY);
+    }
 }

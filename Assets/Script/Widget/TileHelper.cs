@@ -161,15 +161,7 @@ public static class TileHelper
 
             bitMask += "0";
         }
-        Debug.Log("Bit Masking" + Convert.ToInt32(bitMask,2));
         return Convert.ToInt32(bitMask, 2);
-    }
-
-    public static VisualTile InsertVisualTile(VisualTile visual, WorldTile tile)
-    {
-        VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
-            Quaternion.identity, tile.transform);
-        return visualTile;
     }
 
     public static void GenerateTileSet(List<WorldTile> tiles,List<SpriteRenderer> renderers,Sprite[] tileMap,MapData mapData)
@@ -203,5 +195,17 @@ public static class TileHelper
         }
 
         return tiles;
+    }
+    
+    public static List<WorldTile> ToWorldTile(this List<Tile> tiles)
+    {
+        List<WorldTile> worldTiles = new List<WorldTile>();
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            worldTiles.Add(tiles[i].WorldTile);
+        }
+
+        return worldTiles;
     }
 }

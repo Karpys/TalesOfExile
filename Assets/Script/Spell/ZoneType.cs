@@ -3,5 +3,7 @@ public enum ZoneType
     Circle,
     Square,
     PlayerToMouse,
-    PlayerToMouseSquareRange
+    PlayerToMouseSquareRange,
+    OuterCircle,
+    OuterSquare,
 }

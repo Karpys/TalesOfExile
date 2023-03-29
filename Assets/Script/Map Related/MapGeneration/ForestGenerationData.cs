@@ -40,7 +40,7 @@ public class ForestGenerationData : MapGenerationData
 
         WorldTile lastTile = m_Map.Tiles[x, y].WorldTile;
         roadTiles.Add(lastTile);
-        roadRenderers.Add(TileHelper.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
+        roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
     
         for (int i = 0; i < m_RoadPivots.Count; i++)
         {
@@ -64,7 +64,7 @@ public class ForestGenerationData : MapGenerationData
             { 
                 lastTile = m_Map.Tiles[path[j].x,path[j].y].WorldTile;
                 roadTiles.Add(lastTile);
-                roadRenderers.Add(TileHelper.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
+                roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
             }
         }
     

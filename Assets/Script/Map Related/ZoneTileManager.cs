@@ -44,7 +44,9 @@ public static class ZoneTileManager
                 //Need to set the cast origin
                 if (castOrigin.HasValue)
                 {
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin);
+                    LinePath.NeighbourType = NeighbourType.Cross;
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value, selectionOrigin);
+                    LinePath.NeighbourType = NeighbourType.Square;
                     foreach (Vector2Int pathPoint in playerToMouse)
                     {
                         zones.Add(pathPoint);
@@ -60,7 +62,7 @@ public static class ZoneTileManager
                 //Need to set the cast origin
                 if (castOrigin.HasValue)
                 {
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value, selectionOrigin);
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin);
                     
                     for (int i = 0; i < playerToMouse.Count; i++)
                     {
@@ -84,7 +86,35 @@ public static class ZoneTileManager
                     Debug.LogError("Need a cast origin Position");
                 }
                 break;
+            case ZoneType.OuterCircle:
+                Vector2Int originCircle = Vector2Int.zero;
+                
+                for (int x = -range + 1; x < range; x++)
+                {
+                    for (int y = -range + 1; y < range; y++)
+                    {
+                        Vector2Int vec = new Vector2Int(x, y);
+                        if (Vector2Int.Distance(originCircle,vec) <= range  && Vector2Int.Distance(originCircle,vec) >= range - 1 - CIRCLE_TOLERANCE)
+                        {
+                            zones.Add(vec + selectionOrigin);
+                        }
+                    }
+                }
+                break;
+            case ZoneType.OuterSquare:
+                for (int x = -range + 1; x <range; x++)
+                {
+                    for (int y = -range + 1; y < range ; y++)
+                    {
+                        if (x == -range + 1 || y == -range + 1 || x == range - 1 || y == range - 1)
+                        {
+                            zones.Add(new Vector2Int(x,y) + selectionOrigin);
+                        }
+                    }
+                }
+                break;
             default:
+                Debug.LogError("Zone selection type not register");
                 break;
         }
         

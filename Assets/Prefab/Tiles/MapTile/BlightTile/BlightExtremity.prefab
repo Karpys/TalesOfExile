@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5325969752463358473}
-  - component: {fileID: 3883403197821595345}
+  - component: {fileID: 3172464639933556891}
   m_Layer: 0
-  m_Name: RoadTile
+  m_Name: BlightExtremity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3883403197821595345
+--- !u!114 &3172464639933556891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5643769795562184331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f658aabf14c343af9bc598a5facdd367, type: 3}
+  m_Script: {fileID: 11500000, guid: c1aec800583d45929973c25ecd410c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Renderer: {fileID: 5264811421815135885}
+  m_Walkable: 0
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,15 +113,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -735918729
-  m_SortingLayer: 1
+  m_SortingLayerID: -1065810381
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5878180710631057457, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d9fa11271ed2d3544bd9d29c9f43b8af, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

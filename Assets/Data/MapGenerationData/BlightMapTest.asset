@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08aca3f81d154f9d9fbb498e3635b36a, type: 3}
+  m_Name: BlightMapTest
+  m_EditorClassIdentifier: 
+  m_Width: 50
+  m_Height: 50
+  m_BaseTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+  m_BlightCore: {fileID: 4064285589753235025, guid: ab538045631bf644d9803c4d1189b5da, type: 3}

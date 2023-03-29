@@ -38,6 +38,9 @@ public static class LinePath
         
         while (fromPosition != toPosition)
         {
+            if(NeighbourType == NeighbourType.Cross)
+                path.Add(new Vector2Int(fromPosition.x,fromPosition.y + dir.y));
+            
             fromPosition += dir;
             path.Add(fromPosition);
         }
