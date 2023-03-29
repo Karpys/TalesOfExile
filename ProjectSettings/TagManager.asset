@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Road
+    uniqueID: 3559048567
+    locked: 0
+  - name: Entities
+    uniqueID: 455326569
+    locked: 0
   - name: Tree
     uniqueID: 3229156915
     locked: 0

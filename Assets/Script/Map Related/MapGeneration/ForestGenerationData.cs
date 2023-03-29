@@ -36,9 +36,11 @@ public class ForestGenerationData : MapGenerationData
     public void GenerateRoad(int x,int y)
     {
         List<WorldTile> roadTiles = new List<WorldTile>();
-    
-        WorldTile lastTile = m_Map.PlaceTileAt(m_RoadTileSet.TilePrefab,x,y);
+        List<SpriteRenderer> roadRenderers = new List<SpriteRenderer>();
+
+        WorldTile lastTile = m_Map.Tiles[x, y].WorldTile;
         roadTiles.Add(lastTile);
+        roadRenderers.Add(TileHelper.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
     
         for (int i = 0; i < m_RoadPivots.Count; i++)
         {
@@ -60,12 +62,13 @@ public class ForestGenerationData : MapGenerationData
         
             for (int j = 0; j < path.Count; j++)
             { 
-                lastTile = m_Map.PlaceTileAt(m_RoadTileSet.TilePrefab, path[j].x, path[j].y);
+                lastTile = m_Map.Tiles[path[j].x,path[j].y].WorldTile;
                 roadTiles.Add(lastTile);
+                roadRenderers.Add(TileHelper.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
             }
         }
     
-        TileHelper.GenerateTileSet(roadTiles,m_RoadTileSet.TileMap,m_MapData);
+        TileHelper.GenerateTileSet(roadTiles,roadRenderers,m_RoadTileSet.TileMap,m_MapData);
     }
 
     private void MonsterGeneration()
@@ -124,8 +127,8 @@ public class ForestGenerationData : MapGenerationData
 public class TileSet
 {
     [SerializeField] private Sprite[] m_TileMap = new Sprite[0];
-    [SerializeField] private WorldTile m_TilePrefab = null;
+    [SerializeField] private VisualTile m_TilePrefab = null;
 
-    public WorldTile TilePrefab => m_TilePrefab;
+    public VisualTile TilePrefab => m_TilePrefab;
     public Sprite[] TileMap => m_TileMap;
 }
