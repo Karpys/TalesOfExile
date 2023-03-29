@@ -868,6 +868,7 @@ MonoBehaviour:
   m_SpellUI: {fileID: 6837714218827805255, guid: 2325e73628d3eee47b3fdc18c169bbc5, type: 3}
   m_SpellCount: 18
   m_SpellLayout: {fileID: 1553008921}
+  m_Interpretor: {fileID: 2045092499}
 --- !u!222 &474328539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1927,6 +1928,7 @@ Transform:
   - {fileID: 809050817}
   - {fileID: 2045092500}
   - {fileID: 1450611267}
+  - {fileID: 1345723052}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2080,6 +2082,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215913432}
   m_CullTransparentMesh: 1
+--- !u!1 &1345723051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1345723052}
+  - component: {fileID: 1345723053}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1345723052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345723051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1140441088}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1345723053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345723051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9eae9c863048a89d6ad34eba4e9590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1362587456
 GameObject:
   m_ObjectHideFlags: 0

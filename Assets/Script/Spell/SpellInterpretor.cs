@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
+public class SpellInterpretor : MonoBehaviour
 {
    [SerializeField] private Color m_ActionColor = Color.white;
    [SerializeField] private Color m_DisplayColor = Color.white;
@@ -180,7 +180,7 @@ public class SpellInterpretor:SingletonMonoBehavior<SpellInterpretor>
       }
    }
 
-   public void FetchSelection()
+   private void FetchSelection()
    {
       //Add it to the action selection...Future use for spell trigger damage / effect//
       if (m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ActionSelection)

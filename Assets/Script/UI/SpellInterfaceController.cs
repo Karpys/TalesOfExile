@@ -6,8 +6,10 @@ public class SpellInterfaceController : MonoBehaviour
     [SerializeField] private SpellIcon m_SpellUI = null;
     [SerializeField] private int m_SpellCount = 0;
     [SerializeField] private RectTransform m_SpellLayout = null;
+    [SerializeField] private SpellInterpretor m_Interpretor = null;
     private SpellIcon[] m_IconsHolder;
 
+    public SpellInterpretor Interpretor => m_Interpretor;
     //Spell Data Part//
     //List des spells attribue au spell ui icon//
     private void Awake()
@@ -17,6 +19,7 @@ public class SpellInterfaceController : MonoBehaviour
         for (int i = 0; i < m_SpellCount; i++)
         {
             m_IconsHolder[i] = Instantiate(m_SpellUI, m_SpellLayout.transform);
+            m_IconsHolder[i].Initialize(this);
             m_IconsHolder[i].SetSpellKey(i,i > 8);
         }
     }

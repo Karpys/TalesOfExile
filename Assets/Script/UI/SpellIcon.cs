@@ -14,6 +14,8 @@ public class SpellIcon : MonoBehaviour
     [SerializeField] private TMP_Text m_SpellKey = null;
     [SerializeField] private Button m_ButtonSpellTrigger = null;
 
+    private SpellInterfaceController m_InterfaceController = null;
+    
     private TriggerSpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
     private bool m_IsControlKey = false;
@@ -26,6 +28,11 @@ public class SpellIcon : MonoBehaviour
         m_ButtonSpellTrigger.onClick.AddListener(TryUseSpell);
     }
 
+    public void Initialize(SpellInterfaceController controller)
+    {
+        m_InterfaceController = controller;
+    }
+
     private void TryUseSpell()
     {
         //Conditionnal Spell Check//
@@ -34,14 +41,28 @@ public class SpellIcon : MonoBehaviour
         //Stun check ? Mana check ect//
         //Do it in entity class or exterior manager class//
         Debug.Log("Try Use Spell");
-        SpellInterpretor.Instance.LaunchSpellQueue(m_CurrentSpellData);
+        m_InterfaceController.Interpretor.LaunchSpellQueue(m_CurrentSpellData);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(m_SpellKeyCode))
+        if (CheckForUse())
         {
             TryUseSpell();
+        }
+    }
+
+    private bool CheckForUse()
+    {
+        if (m_IsControlKey)
+        {
+            return Input.GetKeyDown(m_SpellKeyCode) && InputManager.Instance.IsControlPressed;
+        }
+        else
+        {
+            if (InputManager.Instance.IsControlPressed)
+                return false;
+            return Input.GetKeyDown(m_SpellKeyCode);
         }
     }
 
