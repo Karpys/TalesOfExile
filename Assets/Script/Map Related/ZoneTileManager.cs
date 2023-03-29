@@ -44,7 +44,7 @@ public static class ZoneTileManager
                 //Need to set the cast origin
                 if (castOrigin.HasValue)
                 {
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin).ToPath();
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin);
                     foreach (Vector2Int pathPoint in playerToMouse)
                     {
                         zones.Add(pathPoint);
@@ -60,7 +60,7 @@ public static class ZoneTileManager
                 //Need to set the cast origin
                 if (castOrigin.HasValue)
                 {
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value,selectionOrigin).ToPath();
+                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value, selectionOrigin);
                     
                     for (int i = 0; i < playerToMouse.Count; i++)
                     {

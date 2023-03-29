@@ -39,6 +39,9 @@ public class MapData : SingletonMonoBehavior<MapData>
 
     public Tile GetTile(Vector2Int pos)
     {
+        if (pos.x < 0 || pos.y < 0 || pos.x > m_Map.Width - 1 || pos.y > m_Map.Height - 1)
+            return null;
+        
         return Map.Tiles[pos.x, pos.y];
     }
 
