@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TweenCustom;
 using UnityEngine;
@@ -75,7 +76,7 @@ public class BlightCore : WorldTile
     {
         WorldTile lastWorldTile = branchPath[branchPath.Count - 1];
         BlightSpawner blightSpawner = (BlightSpawner)map.PlaceTileAt(m_BlightSpawner, lastWorldTile.Tile.XPos, lastWorldTile.Tile.YPos);
-        blightSpawner.Initialize(branchPath.ToTile(),this);
+        blightSpawner.Initialize(branchPath.ToTile(),this,map);
         branchPath[branchPath.Count - 1] = blightSpawner;
         m_Spawners[id] = blightSpawner;
         
@@ -162,6 +163,20 @@ public class BlightCore : WorldTile
         {
             branchPath.Renderer.DoColor(new Color(0, 0, 0, 0), fadeDuration).SetDelay(addDelay);
             addDelay += delay;
+        }
+
+        StartCoroutine(CO_PopBlightChest());
+        
+        IEnumerator CO_PopBlightChest()
+        {
+            yield return new WaitForSeconds(addDelay + 0.5f);
+
+            for (int i = 0; i < m_Spawners.Length; i++)
+            {
+                m_Spawners[i].PopBlightChest();
+            }
+            
+            //TODO:Loot From Blight Core and blight spawner//
         }
     }
 }

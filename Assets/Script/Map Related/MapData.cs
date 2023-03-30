@@ -6,6 +6,7 @@ public class MapData : SingletonMonoBehavior<MapData>
 {
     [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
     private Map m_Map = null;
+    
     public Map Map
     {
         get { return m_Map; }

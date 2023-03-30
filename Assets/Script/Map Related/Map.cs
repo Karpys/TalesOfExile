@@ -7,6 +7,12 @@ public class Map
     public int Height = 0;
     public int Width = 0;
     public Tile[,] Tiles = null;
+
+    private MapGenerator m_Generator = null;
+    public Map(MapGenerator generator)
+    {
+        m_Generator = generator;
+    }
     
     public WorldTile PlaceTileAt(WorldTile tilePrefab, int x, int y)
     {
@@ -23,5 +29,10 @@ public class Map
         VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
             Quaternion.identity, tile.transform);
         return visualTile;
+    }
+    
+    public WorldTile GetDefaultMapTile()
+    {
+        return m_Generator.GenerationData.DefaultTile;
     }
 }

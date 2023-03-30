@@ -16,12 +16,15 @@ public class BlightSpawner:WorldTile
     private BlightCore m_BlightCore = null;
 
     public BlightCore BlightCore => m_BlightCore;
-    
-    public void Initialize(List<Tile> branchPath,BlightCore core)
+
+    private Map m_Map = null;
+
+    public void Initialize(List<Tile> branchPath, BlightCore core,Map map)
     {
         m_BlightCore = core;
         m_BranchPath = branchPath;
         m_BranchPath.Reverse();
+        m_Map = map;
     }
     
     private void Start()
@@ -65,5 +68,11 @@ public class BlightSpawner:WorldTile
         if (id >= m_BranchPath.Count - 1)
             return null;
         return m_BranchPath[id + 1];
+    }
+
+    public void PopBlightChest()
+    {
+        Debug.Log("¨Pop Blight Chest");
+        WorldTile defaultTile = m_Map.PlaceTileAt(m_Map.GetDefaultMapTile(), Tile.XPos, Tile.YPos);
     }
 }

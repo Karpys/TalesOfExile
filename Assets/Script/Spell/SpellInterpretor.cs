@@ -21,7 +21,6 @@ public class SpellInterpretor : MonoBehaviour
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
    public void LaunchSpellQueue(TriggerSpellData spell)
    {
-      
       ResetSpellQueue();
       
       if(!spell.IsCooldownReady())

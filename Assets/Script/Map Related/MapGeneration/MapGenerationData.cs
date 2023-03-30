@@ -12,6 +12,8 @@ public abstract class MapGenerationData : ScriptableObject
     protected MapData m_MapData = null;
     protected Map m_Map = null;
 
+    public WorldTile DefaultTile => m_BaseTile;
+
     public virtual GenerationMapInfo Generate(MapData mapData)
     {
         m_MapData = mapData;

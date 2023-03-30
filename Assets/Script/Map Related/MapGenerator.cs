@@ -16,6 +16,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private MapGenerationData m_GenerationData = null;
 
     private bool m_FirstGeneration = true;
+    public MapGenerationData GenerationData => m_GenerationData;
     private void Start()
     {
         InitializeMap();
@@ -56,7 +57,7 @@ public class MapGenerator : MonoBehaviour
 
     private void InitializeMap()
     {
-        Map map = new Map();
+        Map map = new Map(this);
         m_MapData.Map = map;
         InitializeMapData();
         //Tiles Initiation//
