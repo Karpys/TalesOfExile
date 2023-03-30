@@ -4,15 +4,15 @@ using UnityEngine.Assertions.Must;
 [CreateAssetMenu(menuName = "Map/Blight", fileName = "BlightMapGeneration", order = 0)]
 public class BlightMapGeneration : MapGenerationData
 {
-    [SerializeField] private BlightTile m_BlightCore = null;
+    [SerializeField] private BlightCore m_BlightCore = null;
 
-    private BlightTile m_BlightCoreGenerated = null;
+    private BlightCore m_BlightCoreGenerated = null;
     protected override void OnGenerateBaseTile(int x, int y)
     {
         if (x == m_Width / 2 && y == m_Height / 2)
         {
-            BlightTile blightTile = (BlightTile)m_Map.PlaceTileAt(m_BlightCore,x,y);
-            m_BlightCoreGenerated = blightTile;
+            BlightCore blightCore = (BlightCore)m_Map.PlaceTileAt(m_BlightCore,x,y);
+            m_BlightCoreGenerated = blightCore;
         }
         
         base.OnGenerateBaseTile(x, y);

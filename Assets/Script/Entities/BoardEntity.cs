@@ -160,9 +160,8 @@ public abstract class BoardEntity : MonoBehaviour
     public EntityBuffs Buffs => m_Buffs;
     public BoardEntityLife Life => m_EntityLife;
     public BoardEntityEventHandler EntityEvent => m_EntityEvent;
-    //Entity Actions//
-    public Action<float> A_OnEntityDamageTaken;
 
+    private bool m_IsDead = false;
     protected virtual void Awake()
     {
         //Copy Base Entity Data
@@ -339,13 +338,19 @@ public abstract class BoardEntity : MonoBehaviour
     public void TakeDamage(float value)
     {
         m_EntityLife.ChangeLifeValue(-value);
-        A_OnEntityDamageTaken?.Invoke(value);
 
         if (m_EntityLife.Life <= 0)
             TriggerDeath();
     }
 
-    protected abstract void TriggerDeath();
+    protected virtual void TriggerDeath()
+    {
+        if (m_IsDead)
+            return;
+        
+        m_IsDead = true;
+        m_EntityEvent.OnDeath?.Invoke();
+    }
     public void ForceDeath()
     {
         TriggerDeath();

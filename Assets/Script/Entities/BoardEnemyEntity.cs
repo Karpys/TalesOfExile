@@ -41,6 +41,7 @@ public class BoardEnemyEntity : BoardEntity
     //Damage Related
     protected override void TriggerDeath()
     {
+        base.TriggerDeath();
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);

@@ -9,9 +9,21 @@ public class BlightSpawner:WorldTile
     [SerializeField] private Vector2Int m_Clock = new Vector2Int(2,5);
     [SerializeField] private int m_BlightMonsterCount = 10;
 
+    public int MonsterCount => m_BlightMonsterCount; 
     private int m_CurrentClock = 0;
     private bool m_IsActive = false;
     private List<Tile> m_BranchPath = null;
+    private BlightCore m_BlightCore = null;
+
+    public BlightCore BlightCore => m_BlightCore;
+    
+    public void Initialize(List<Tile> branchPath,BlightCore core)
+    {
+        m_BlightCore = core;
+        m_BranchPath = branchPath;
+        m_BranchPath.Reverse();
+    }
+    
     private void Start()
     {
         GameManager.Instance.A_OnEndTurn += TrySpawnBlightMonster;
@@ -27,11 +39,7 @@ public class BlightSpawner:WorldTile
     {
         m_IsActive = active;
     }
-    public void SetPath(List<Tile> branchPath)
-    {
-        m_BranchPath = branchPath;
-        m_BranchPath.Reverse();
-    }
+    
     private void TrySpawnBlightMonster()
     {
         if(!m_IsActive || m_BlightMonsterCount <= 0)
@@ -41,10 +49,13 @@ public class BlightSpawner:WorldTile
         
         if (m_CurrentClock < 0)
         {
-            BoardEntity entity = EntityHelper.SpawnEntityOnMap(m_BlightMonster, Tile.XPos, Tile.YPos, MapData.Instance);
-            entity.SetEntityBehaviour(new BlightBehaviour(entity,this));
-            m_CurrentClock = Random.Range(m_Clock.x, m_Clock.y);
-            m_BlightMonsterCount -= 1;
+            if (Tile.Walkable)
+            {
+                BoardEntity entity = EntityHelper.SpawnEntityOnMap(m_BlightMonster, Tile.XPos, Tile.YPos, MapData.Instance);
+                entity.SetEntityBehaviour(new BlightBehaviour(entity,this));
+                m_CurrentClock = Random.Range(m_Clock.x, m_Clock.y);
+                m_BlightMonsterCount -= 1;
+            }
         }
 
     }

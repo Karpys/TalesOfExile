@@ -39,6 +39,7 @@ namespace TweenCustom
                 if (m_Tweeners[i].Target == trans)
                 {
                     RemoveTween(m_Tweeners[i]);
+                    i--;
                 }
             }
         }
