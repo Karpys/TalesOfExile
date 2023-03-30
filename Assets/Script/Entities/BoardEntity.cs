@@ -140,13 +140,15 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected Transform m_VisualTransform = null;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
 
+    protected EntityBehaviour m_EntityBehaviour = null;
     protected BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
     protected EntityEquipement m_Equipement = null;
     protected EntityBuffs m_Buffs = null;
     protected BoardEntityLife m_EntityLife = null;
     protected BoardEntityEventHandler m_EntityEvent = null;
-    
+
+    public MapData Map => m_TargetMap;
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
@@ -161,7 +163,7 @@ public abstract class BoardEntity : MonoBehaviour
     //Entity Actions//
     public Action<float> A_OnEntityDamageTaken;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         //Copy Base Entity Data
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
@@ -213,6 +215,11 @@ public abstract class BoardEntity : MonoBehaviour
     public void MoveTo(Vector2Int pos,bool movement = true)
     {
         MoveTo(pos.x,pos.y,movement);
+    }
+
+    public void SetEntityBehaviour(EntityBehaviour entityBehaviour)
+    {
+        m_EntityBehaviour = entityBehaviour;
     }
 
     protected void RemoveFromBoard()

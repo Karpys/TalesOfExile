@@ -18,8 +18,7 @@ public class MonsterGeneration : ScriptableObject
             if (random <= monsterSpawnChance)
             {
                 //Weight Ennemy
-                BoardEntity enemy = Instantiate(m_WeightEnemies.Draw(),map.transform);
-                enemy.Place(tile.XPos,tile.YPos,map);
+                EntityHelper.SpawnEntityOnMap(m_WeightEnemies.Draw(), tile.XPos, tile.YPos, map);
             }
         }
     }

@@ -6,7 +6,7 @@ public class BlightTile : WorldTile
     [SerializeField] private ZoneSelection m_OuterZoneSelection = null;
     [SerializeField] private TileSet m_BranchTileSet = null;
     [SerializeField] private int m_BranchCount = 1;
-    [SerializeField] private WorldTile m_BlightSpawner = null;
+    [SerializeField] private BlightSpawner m_BlightSpawner = null;
 
     private WorldTile[] m_Spawners = null;
 
@@ -45,7 +45,8 @@ public class BlightTile : WorldTile
     private void InsertBranchExtremity(List<WorldTile> branchPath,int id,Map map)
     {
         WorldTile lastWorldTile = branchPath[branchPath.Count - 1];
-        WorldTile blightSpawner = map.PlaceTileAt(m_BlightSpawner, lastWorldTile.Tile.XPos, lastWorldTile.Tile.YPos);
+        BlightSpawner blightSpawner = (BlightSpawner)map.PlaceTileAt(m_BlightSpawner, lastWorldTile.Tile.XPos, lastWorldTile.Tile.YPos);
         branchPath[branchPath.Count - 1] = blightSpawner;
+        blightSpawner.SetPath(branchPath.ToTile());
     }
 }

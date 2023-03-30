@@ -5,7 +5,7 @@ public class RockThrowBuff : Buff
 {
     [SerializeField] private SpellData m_TriggerSpellData = null;
     private TriggerSpellData Trigger => m_TriggerSpellData as TriggerSpellData;
-    private List<BoardEntity> m_RockReceiver = new List<BoardEntity>();
+    private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
     protected override void Apply()
     {
         m_TriggerSpellData = m_Receiver.RegisterSpell(m_TriggerSpellData);
@@ -18,17 +18,16 @@ public class RockThrowBuff : Buff
             return;
         
         if(GameManager.Instance.AddCallBackAction(ThrowRocks))
-            m_RockReceiver.Add(receiver);
+            m_RockReceiver.Add(receiver.EntityPosition);
     }
 
     private void ThrowRocks()
     {
         for (int i = 0; i < m_RockReceiver.Count; i++)
         {
-            BoardEntity receiver = m_RockReceiver[i];
+            Vector2Int receiver = m_RockReceiver[i];
             
-            if(receiver)
-                m_Receiver.CastSpellAt(Trigger, receiver.EntityPosition);
+            m_Receiver.CastSpellAt(Trigger, receiver);
         }
 
         m_RockReceiver.Clear();

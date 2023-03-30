@@ -71,16 +71,7 @@ public class MapGenerator : MonoBehaviour
         //Entities Init//
         if (m_FirstGeneration)
         {
-            foreach (BoardEntitySpawn boardEntity in m_BoardEntities)
-            {
-                BoardEntity entity = Instantiate(boardEntity.Entity, transform.position, Quaternion.identity, m_MapData.transform);
-
-                if (entity as PlayerBoardEntity)
-                {
-                    entity.Place(info.StartPosition.x,info.StartPosition.y,m_MapData);
-                    continue;
-                }
-            }
+            EntityHelper.SpawnEntityOnMap(m_BoardEntities[0].Entity, info.StartPosition.x, info.StartPosition.y, m_MapData);
         }
         else
         {

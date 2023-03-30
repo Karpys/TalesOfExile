@@ -197,6 +197,18 @@ public static class TileHelper
         return tiles;
     }
     
+    public static List<Tile> ToTile(this List<WorldTile> path)
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            tiles.Add(path[i].Tile);
+        }
+
+        return tiles;
+    }
+    
     public static List<WorldTile> ToWorldTile(this List<Tile> tiles)
     {
         List<WorldTile> worldTiles = new List<WorldTile>();
