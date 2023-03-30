@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Walkable: 1
   m_BlightMonster: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+  m_Clock: {x: 2, y: 5}
+  m_BlightMonsterCount: 10
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

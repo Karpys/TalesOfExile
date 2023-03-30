@@ -40,6 +40,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
     private Action A_CallBackEndAction;
 
+    //Lock//
+    private int m_LockCount = 0;
     private void Awake()
     {
         A_OnPlayerAction += LaunchActionQueue;
@@ -110,7 +112,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             return;
         }
         
-        m_CanPlay = false;
+        AddLock();
         StartCoroutine(I_ActionQueue());
         
         IEnumerator I_ActionQueue()
@@ -159,9 +161,23 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void ResetActionQueue()
     {
-        m_CanPlay = true;
+        ReleaseLock();
         FriendlyWaitTime = m_FriendlyBaseWaitTime;
         EnnemiesWaitTime = 0;
+    }
+
+    public void AddLock()
+    {
+        m_LockCount += 1;
+        if (m_LockCount > 0)
+            m_CanPlay = false;
+    }
+
+    public void ReleaseLock()
+    {
+        m_LockCount -= 1;
+        if (m_LockCount <= 0)
+            m_CanPlay = true;
     }
     //Enemy Action//
     private void TriggerAllFriendlyActions()
