@@ -19,6 +19,8 @@ public class BlightCore : WorldTile
     private bool m_BlightPopupShow = false;
     private bool m_BlightStarted = false;
 
+    private List<VisualTile> m_BranchPathRenderers = new List<VisualTile>();
+
     private int m_BlightMonsterCount = 0;
     private void Start()
     {
@@ -55,7 +57,9 @@ public class BlightCore : WorldTile
 
             foreach (WorldTile branchTile in branchPath)
             {
-                branchRenderers.Add(map.InsertVisualTile(m_BranchTileSet.TilePrefab,branchTile).Renderer);
+                VisualTile branchVisual = map.InsertVisualTile(m_BranchTileSet.TilePrefab, branchTile); 
+                branchRenderers.Add(branchVisual.Renderer);
+                m_BranchPathRenderers.Add(branchVisual);
             }
             
             InsertBranchExtremity(branchPath,i,map);
@@ -71,9 +75,11 @@ public class BlightCore : WorldTile
     {
         WorldTile lastWorldTile = branchPath[branchPath.Count - 1];
         BlightSpawner blightSpawner = (BlightSpawner)map.PlaceTileAt(m_BlightSpawner, lastWorldTile.Tile.XPos, lastWorldTile.Tile.YPos);
-        branchPath[branchPath.Count - 1] = blightSpawner;
         blightSpawner.Initialize(branchPath.ToTile(),this);
+        branchPath[branchPath.Count - 1] = blightSpawner;
         m_Spawners[id] = blightSpawner;
+        
+        m_BranchPathRenderers.RemoveAt(m_BranchPathRenderers.Count - 1);
     }
 
     private void CheckForActive()
@@ -148,6 +154,14 @@ public class BlightCore : WorldTile
 
     private void TriggerBlightWin()
     {
-        
+        float delay = 0.03f;
+        float fadeDuration = 0.5f;
+        float addDelay = 0;
+
+        foreach (VisualTile branchPath in m_BranchPathRenderers)
+        {
+            branchPath.Renderer.DoColor(new Color(0, 0, 0, 0), fadeDuration).SetDelay(addDelay);
+            addDelay += delay;
+        }
     }
 }
