@@ -4,18 +4,20 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Equipement:InventoryObject
 {
-    public string Description = String.Empty;
-    public EquipementType Type = EquipementType.Null;
-    public List<Modifier> Modifiers = new List<Modifier>();
+    private string m_Description = String.Empty;
+    private EquipementType m_Type = EquipementType.Null;
+    private List<Modifier> m_Modifiers = new List<Modifier>();
 
-    public Equipement(Equipement equipement)
+    public List<Modifier> Modifiers => m_Modifiers;
+    public EquipementType Type => m_Type;
+    public Equipement(Equipement equipement):base(null)
     {
-        Description = equipement.Description;
-        Type = equipement.Type;
+        m_Description = equipement.m_Description;
+        m_Type = equipement.m_Type;
 
-        foreach (Modifier modifier in equipement.Modifiers)
+        foreach (Modifier modifier in equipement.m_Modifiers)
         {
-            Modifiers.Add(new Modifier(modifier.Type,modifier.Value));
+            m_Modifiers.Add(new Modifier(modifier.Type,modifier.Value));
         }
     }
 }
