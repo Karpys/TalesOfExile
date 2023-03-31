@@ -15,11 +15,13 @@ public class PlayerBoardEntity : BoardEntity
         base.Start();
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.SetControlledEntity(this);
+        SetEntityBehaviour(new PLayerAutoPlayEntity(this));
     }
     
     public override void EntityAction()
     {
         ReduceAllCooldown();
+        m_EntityBehaviour.Behave();
         //TODO:Act as a Base IA/
         return;
     }

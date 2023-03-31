@@ -26,9 +26,14 @@ public class MapGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            EraseMap();
-            GenerateMap();
+            ReloadMap();
         }
+    }
+
+    public void ReloadMap()
+    {
+        EraseMap();
+        GenerateMap();
     }
 
     private void EraseMap()
@@ -77,7 +82,7 @@ public class MapGenerator : MonoBehaviour
         else
         {
             Debug.Log("Move Player");
-            GameManager.Instance.PlayerEntity.MoveTo(info.StartPosition,false);   
+            GameManager.Instance.PlayerEntity.MoveTo(info.StartPosition);   
         }
 
         m_FirstGeneration = false;

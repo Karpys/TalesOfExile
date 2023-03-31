@@ -5,25 +5,10 @@ using UnityEngine;
 
 public class BoardEnemyEntity : BoardEntity
 {
-    [SerializeField] private int m_Range = 1;
-
-    private EnemyEntityBehaviour Behaviour => m_EntityBehaviour as EnemyEntityBehaviour;
-
-    public int Range => m_Range;
-
     protected override void Awake()
     {
         base.Awake();
         SetEntityBehaviour(new EnemyEntityBehaviour(this));
-    }
-    protected override void Start()
-    {
-        base.Start();
-        if (Behaviour != null)
-        {
-            Behaviour.ComputeSpellPriority();
-            Behaviour.SelfBuffCount();
-        }
     }
 
     public override void EntityAction()
@@ -41,7 +26,11 @@ public class BoardEnemyEntity : BoardEntity
     //Damage Related
     protected override void TriggerDeath()
     {
+        if(m_IsDead)
+            return;
+        
         base.TriggerDeath();
+        GameManager.Instance.UnRegisterActiveEnemy(this);
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);

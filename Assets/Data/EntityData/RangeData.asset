@@ -15,6 +15,7 @@ MonoBehaviour:
   m_EntityBaseData:
     m_EntityGroup: 1
     m_Stats:
+      CombatRange: 4
       MaxLife: 100
       Life: 100
       LifeRegeneration: 0
@@ -25,6 +26,13 @@ MonoBehaviour:
       HolyDamageModifier: 0
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
+      FlatMeleeDamageReduction: 0
+      FlatProjectileDamageReduction: 0
+      FlatSpellDamageReduction: 0
+      ColdDamageReduction: 0
+      HolyDamageReduction: 0
+      FireDamageReduction: 0
+      PhysicalDamageReduction: 0
     m_SpellList:
       m_Spells:
       - Data: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}

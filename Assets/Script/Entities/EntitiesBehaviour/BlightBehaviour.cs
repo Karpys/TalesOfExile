@@ -7,6 +7,7 @@ public class BlightBehaviour:EntityBehaviour
     public BlightBehaviour(BoardEntity entity,BlightSpawner blightSpawner) : base(entity)
     {
         m_BlightSpawner = blightSpawner;
+        GameManager.Instance.RegisterActiveEnemy(entity);
         entity.EntityEvent.OnDeath += ReduceBlightCount;
     }
 

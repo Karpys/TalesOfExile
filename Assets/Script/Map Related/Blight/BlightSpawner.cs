@@ -72,7 +72,7 @@ public class BlightSpawner:WorldTile
 
     public void PopBlightChest()
     {
-        Debug.Log("¨Pop Blight Chest");
+        Debug.Log("Pop Blight Chest");
         WorldTile defaultTile = m_Map.PlaceTileAt(m_Map.GetDefaultMapTile(), Tile.XPos, Tile.YPos);
     }
 }

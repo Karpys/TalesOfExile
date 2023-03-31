@@ -15,6 +15,7 @@ MonoBehaviour:
   m_EntityBaseData:
     m_EntityGroup: 0
     m_Stats:
+      CombatRange: 1
       MaxLife: 450
       Life: 450
       LifeRegeneration: 0
@@ -51,10 +52,6 @@ MonoBehaviour:
         ConnectedSpellData:
           m_Spells: []
       - Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []

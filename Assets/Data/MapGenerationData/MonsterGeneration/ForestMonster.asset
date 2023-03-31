@@ -20,4 +20,4 @@ MonoBehaviour:
       m_Entity: {fileID: 4581581747124773393, guid: b0c10f5bb8e1bd74ab61a0c3d9e95c55, type: 3}
     - m_Weight: 20
       m_Entity: {fileID: 4581581747124773393, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
-  m_TargetEnemiesCount: 20
+  m_TargetEnemiesCount: 200

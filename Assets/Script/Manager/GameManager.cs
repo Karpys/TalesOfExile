@@ -18,11 +18,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     
     //Ennemies//
     private List<BoardEntity> m_EntitiesOnBoard = new List<BoardEntity>();
-    private List<BoardEntity> m_EnnemiesOnBoard = new List<BoardEntity>();
+    private List<BoardEntity> m_EnemiesOnBoard = new List<BoardEntity>();
     private List<BoardEntity> m_FriendlyOnBoard = new List<BoardEntity>();
+    private List<BoardEntity> m_ActiveEnemiesOnBoard = new List<BoardEntity>();
     public List<BoardEntity> EntitiesOnBoard => m_EntitiesOnBoard;
-    public List<BoardEntity> EnnemiesOnBoard => m_EnnemiesOnBoard;
+    public List<BoardEntity> EnemiesOnBoard => m_EnemiesOnBoard;
     public List<BoardEntity> FriendlyOnBoard => m_FriendlyOnBoard;
+    public List<BoardEntity> ActiveEnemiesOnBoard => m_ActiveEnemiesOnBoard;
     
     //Action Queue//
     private bool m_CanPlay = true;
@@ -42,6 +44,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     //Lock//
     private int m_LockCount = 0;
+    
+    //Test Auto Play//
+    private bool m_AutoPlay = false;
     private void Awake()
     {
         A_OnPlayerAction += LaunchActionQueue;
@@ -52,7 +57,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            TriggerAllEnemyAction();
+            m_AutoPlay = !m_AutoPlay;
+        }
+
+        if (m_AutoPlay && m_CanPlay)
+        {
+            LaunchActionQueue(m_ControlledEntity);
         }
     }
     //INTIALIZATION ENTITY//
@@ -75,6 +85,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
 
     //Add a an entity class to the list of all entity//
+    public void RegisterActiveEnemy(BoardEntity entity)
+    {
+        m_ActiveEnemiesOnBoard.Add(entity);
+    }
+    
+    public void UnRegisterActiveEnemy(BoardEntity entity)
+    {
+        m_ActiveEnemiesOnBoard.Remove(entity);
+    }
     public void RegisterEntity(BoardEntity entity)
     {
         m_EntitiesOnBoard.Add(entity);
@@ -83,7 +102,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if(entity.EntityGroup == EntityGroup.Friendly)
             m_FriendlyOnBoard.Add(entity);
         else if(entity.EntityGroup == EntityGroup.Enemy)
-            m_EnnemiesOnBoard.Add(entity);
+            m_EnemiesOnBoard.Add(entity);
     }
 
     public void UnRegisterEntity(BoardEntity entity)
@@ -91,7 +110,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         m_EntitiesOnBoard.Remove(entity);
         
         if (entity.EntityGroup == EntityGroup.Enemy)
-            m_EnnemiesOnBoard.Remove(entity);
+            m_EnemiesOnBoard.Remove(entity);
         else if(entity.EntityGroup == EntityGroup.Friendly)
             m_FriendlyOnBoard.Remove(entity);
     }
@@ -108,7 +127,17 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (m_RemoveDelay)
         {
             TriggerAllFriendlyActions();
+            A_OnEndPlayerTurn?.Invoke();
+            m_InCallBackExecution = true;
+            A_CallBackEndAction?.Invoke();
+            m_InCallBackExecution = false;
             TriggerAllEnemyAction();
+            A_OnEndEnemyTurn?.Invoke();
+            m_InCallBackExecution = true;
+            A_CallBackEndAction?.Invoke();
+            m_InCallBackExecution = false;
+            ClearCallBackAction();
+            A_OnEndTurn?.Invoke();
             return;
         }
         
@@ -189,9 +218,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void TriggerAllEnemyAction()
     {
-        for (int i = 0; i < m_EnnemiesOnBoard.Count; i++)
+        for (int i = 0; i < m_EnemiesOnBoard.Count; i++)
         {
-            m_EnnemiesOnBoard[i].EntityAction();
+            m_EnemiesOnBoard[i].EntityAction();
         }
     }
 }

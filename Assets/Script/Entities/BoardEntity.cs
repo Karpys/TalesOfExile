@@ -8,6 +8,8 @@ public class EntityStats
 {
     private BoardEntity m_AttachedEntity = null;
     //All the EntitiesStats//
+    [Header("IA Stats")]
+    public int CombatRange = 1;
     [Header("Life Stats")]
     public float MaxLife = 100f;
     public float Life = 100f;
@@ -161,7 +163,7 @@ public abstract class BoardEntity : MonoBehaviour
     public BoardEntityLife Life => m_EntityLife;
     public BoardEntityEventHandler EntityEvent => m_EntityEvent;
 
-    private bool m_IsDead = false;
+    protected bool m_IsDead = false;
     protected virtual void Awake()
     {
         //Copy Base Entity Data
@@ -180,13 +182,15 @@ public abstract class BoardEntity : MonoBehaviour
         
         //Buffs
         m_Buffs = GetComponent<EntityBuffs>();
+        
+        //Spells
+        RegisterStartSpells();
     }
 
     protected virtual void Start()
     {
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
         GameManager.Instance.RegisterEntity(this);
-        RegisterStartSpells();
     }
     
     //Board Related

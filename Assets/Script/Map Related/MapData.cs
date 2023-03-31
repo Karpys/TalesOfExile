@@ -58,7 +58,7 @@ public class MapData : SingletonMonoBehavior<MapData>
         //Get the selected group list
         if (targetEntityGroup == EntityGroup.Enemy)
         {
-            boardEntities = GameManager.Instance.EnnemiesOnBoard;
+            boardEntities = GameManager.Instance.ActiveEnemiesOnBoard;
         }
         else if(targetEntityGroup == EntityGroup.Friendly)
         {

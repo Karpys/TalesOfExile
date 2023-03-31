@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266f5c37051494d9c7d14b7284a6bd0, type: 3}
   m_Name: Forest Map
   m_EditorClassIdentifier: 
-  m_Width: 70
+  m_Width: 700
   m_Height: 25
   m_BaseTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
   m_RoadPivots:
