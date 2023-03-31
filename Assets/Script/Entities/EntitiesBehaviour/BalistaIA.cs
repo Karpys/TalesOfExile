@@ -2,15 +2,7 @@
 
 public class BalistaIA : BaseEntityIA
 {
-    public BalistaIA(BoardEntity entity) : base(entity)
-    {
-    }
-
-    public override void Behave()
-    {
-        Debug.Log("BALISTA BEHAVE");
-        base.Behave();
-    }
+    public BalistaIA(BoardEntity entity) : base(entity){}
 
     protected override bool MovementAction()
     {

@@ -2,6 +2,6 @@
 {
     protected override void InitalizeEntityBehaviour()
     {
-        SetEntityBehaviour(new BaseEntityIA(this));
+        SetEntityBehaviour(new BalistaIA(this));
     }
 }
