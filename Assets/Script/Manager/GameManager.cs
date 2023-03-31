@@ -213,6 +213,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         for (int i = 0; i < m_FriendlyOnBoard.Count; i++)
         {
+            if (m_FriendlyOnBoard[i] == m_ControlledEntity && !m_AutoPlay)
+            {
+                m_FriendlyOnBoard[i].ReduceAllCooldown();
+                continue;
+            }
+            
             m_FriendlyOnBoard[i].EntityAction();
         }
     }

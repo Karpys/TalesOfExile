@@ -105,7 +105,6 @@ public class BaseEntityIA:EntityBehaviour
         if (buffs.Count == 0 || buffs[0].SpellTrigger.SpellPriority <= 0)
             return false;
         
-        Debug.Log("TRIGGER REGENERATION");
         Vector2Int targetPosition = m_Target.EntityPosition;
         m_AttachedEntity.CastSpellAt(buffs[0],targetPosition);
         return true;

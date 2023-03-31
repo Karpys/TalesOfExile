@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class BoardEnemyEntity : BoardEntity
 {
-    protected override void Awake()
+    protected override void InitalizeEntityBehaviour()
     {
-        base.Awake();
         SetEntityBehaviour(new EnemyEntityBehaviour(this));
+    }
+
+    protected override void RegisterEntity()
+    {
+        GameManager.Instance.RegisterEntity(this);
     }
 
     public override void EntityAction()

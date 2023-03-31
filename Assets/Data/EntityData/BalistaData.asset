@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b491e1dd8a48eca0830a9bfcdcab91, type: 3}
-  m_Name: PlayerData
+  m_Name: BalistaData
   m_EditorClassIdentifier: 
   m_EntityBaseData:
     m_EntityGroup: 0
     m_Stats:
-      CombatRange: 1
-      MaxLife: 450
-      Life: 450
+      CombatRange: 4
+      MaxLife: 100
+      Life: 100
       LifeRegeneration: 0
       MeleeModifier: 0
       ProjectileModifier: 0
@@ -35,27 +35,7 @@ MonoBehaviour:
       PhysicalDamageReduction: 0
     m_SpellList:
       m_Spells:
-      - Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 0d38b00532de4a1468bab9a4e8a4b8ce, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: adbe993e0101ea642a6c6f77ae417925, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 5e93558ea657d594588b0d3c1931c957, type: 2}
+      - Data: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
         AttachedEntity: {fileID: 0}
         ConnectedSpellData:
           m_Spells: []

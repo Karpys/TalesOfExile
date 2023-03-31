@@ -10,20 +10,21 @@ public class PlayerBoardEntity : BoardEntity
     [SerializeField] private Transform m_JumpTweenContainer = null;
     [SerializeField] private float m_MovementDuration = 0.1f;
 
-    protected override void Start()
+    protected override void InitalizeEntityBehaviour()
     {
-        base.Start();
+        SetEntityBehaviour(new PLayerAutoPlayEntity(this));
+    }
+
+    protected override void RegisterEntity()
+    {
+        GameManager.Instance.RegisterEntity(this);
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.SetControlledEntity(this);
-        SetEntityBehaviour(new PLayerAutoPlayEntity(this));
     }
     
     public override void EntityAction()
     {
-        ReduceAllCooldown();
         m_EntityBehaviour.Behave();
-        //TODO:Act as a Base IA/
-        return;
     }
 
     protected override void Movement()

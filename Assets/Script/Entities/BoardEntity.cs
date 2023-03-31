@@ -185,13 +185,22 @@ public abstract class BoardEntity : MonoBehaviour
         
         //Spells
         RegisterStartSpells();
+        
+        //Entity Behaviour//
+        InitalizeEntityBehaviour();
+        
+        //Entity Registration//
+        RegisterEntity();
     }
 
-    protected virtual void Start()
+    private void Start()
     {
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
-        GameManager.Instance.RegisterEntity(this);
     }
+
+    protected abstract void InitalizeEntityBehaviour();
+    protected abstract void RegisterEntity();
+    
     
     //Board Related
     public abstract void EntityAction();
