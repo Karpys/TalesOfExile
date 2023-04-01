@@ -11,7 +11,7 @@ public class InventoryObjectHolder : MonoBehaviour
     public void SetInventoryObject(InventoryObject inventoryObject)
     {
         m_InventoryObject = inventoryObject;
-        m_InWorldVisual.sprite = m_InventoryObject.VisualData.InWorldVisual;
+        m_InWorldVisual.sprite = m_InventoryObject.DataData.InWorldVisual;
     }
     public void DisplayWorldVisual()
     {
