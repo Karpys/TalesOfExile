@@ -2,12 +2,12 @@ using UnityEngine;
 
 public abstract class InventoryObject
 {
-    [SerializeField] protected InventoryObjectData MDataData = null;
+    [SerializeField] protected InventoryObjectData m_Data = null;
 
-    public InventoryObjectData DataData => MDataData;
-    public InventoryObject(InventoryObjectData dataData)
+    public InventoryObjectData Data => m_Data;
+    public InventoryObject(InventoryObjectData data)
     {
-        MDataData = dataData;
+        m_Data = data;
     }
 }
 

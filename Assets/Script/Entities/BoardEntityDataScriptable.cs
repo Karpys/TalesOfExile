@@ -7,8 +7,6 @@ public class BoardEntityDataScriptable : ScriptableObject
 {
     [Header("Base Entity Data")]
     public BoardEntityData m_EntityBaseData;
-    [Header("Base Start Equipement")]
-    public EquipementInventoryObjectScriptable[] m_StartEquipement = new EquipementInventoryObjectScriptable[0];
 }
 
 [System.Serializable]

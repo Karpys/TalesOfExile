@@ -178,8 +178,7 @@ public abstract class BoardEntity : MonoBehaviour
         m_EntityLife.Initalize(this, m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
         //Equipement
         m_Equipement = GetComponent<EntityEquipement>();
-        m_Equipement.InitEquipement(m_EntityDataScriptable.m_StartEquipement);
-        
+
         //Buffs
         m_Buffs = GetComponent<EntityBuffs>();
         

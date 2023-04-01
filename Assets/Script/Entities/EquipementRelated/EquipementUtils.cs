@@ -2,14 +2,14 @@
 
 public static class EquipementUtils
 {
-    public static void InitEquip(Equipement equipement,BoardEntity entity)
+    public static void InitEquip(EquipementObject equipementObject,BoardEntity entity)
     {
         EntityEquipement entityEquipement = entity.EntityEquipement;
         EquipementSocket targetSocket = null;
 
         foreach (EquipementSocket socket in entityEquipement.EquipementSockets)
         {
-            if (socket.Type == equipement.Type && socket.Empty)
+            if (socket.Type == equipementObject.Type && socket.Empty)
             {
                 targetSocket = socket;
             }
@@ -17,17 +17,17 @@ public static class EquipementUtils
 
         if (targetSocket == null)
         {
-            Debug.Log("No More Free Space for this type : " + equipement.Type);
+            Debug.Log("No More Free Space for this type : " + equipementObject.Type);
             return;
         }
         
-        targetSocket.Equipement = equipement;
-        ApplyEquipementStats(equipement,entity,false);
+        targetSocket.equipementObject = equipementObject;
+        ApplyEquipementStats(equipementObject,entity,false);
     }
 
-    public static void ApplyEquipementStats(Equipement equipement, BoardEntity entity, bool recomputeStats = true)
+    public static void ApplyEquipementStats(EquipementObject equipementObject, BoardEntity entity, bool recomputeStats = true)
     {
-        foreach (Modifier modifier in equipement.Modifiers)
+        foreach (Modifier modifier in equipementObject.Modifiers)
         {
             ModifierUtils.ApplyModifier(modifier,entity);
         }
@@ -36,10 +36,10 @@ public static class EquipementUtils
             entity.ComputeAllSpells();
     }
     
-    public static void UnapplyEquipementStats(Equipement equipement, BoardEntity entity)
+    public static void UnapplyEquipementStats(EquipementObject equipementObject, BoardEntity entity)
     {
         
-        foreach (Modifier modifier in equipement.Modifiers)
+        foreach (Modifier modifier in equipementObject.Modifiers)
         {
             ModifierUtils.UnapplyModifier(modifier,entity);
         }
@@ -50,7 +50,7 @@ public static class EquipementUtils
     public static void Unequip(EquipementSocket socket,BoardEntity entity)
     {
         //TODO:Sent Equipement to Inventory to entity => Inventory Only Player//
-        UnapplyEquipementStats(socket.Equipement,entity);
-        socket.Equipement = null;
+        UnapplyEquipementStats(socket.equipementObject,entity);
+        socket.equipementObject = null;
     }
 }

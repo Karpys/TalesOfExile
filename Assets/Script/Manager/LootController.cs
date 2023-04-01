@@ -7,7 +7,7 @@ public class LootController : SingletonMonoBehavior<LootController>
     public void SpawnLootAt(InventoryObject inventoryObject,int x,int y)
     {
         InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,MapData.Instance.GetTilePosition(x, y),Quaternion.identity,MapData.Instance.transform);
-        worldHolder.SetInventoryObject(inventoryObject);
+        worldHolder.InitalizeHolder(inventoryObject);
         worldHolder.DisplayWorldVisual();
     }
 }

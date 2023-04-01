@@ -38,7 +38,7 @@ public class BoardEnemyEntity : BoardEntity
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
-        //SpawnLoot();
+        SpawnLoot();
     }
 
     private void SpawnLoot()
