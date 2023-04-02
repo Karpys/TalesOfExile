@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class TileHelper
@@ -31,6 +32,23 @@ public static class TileHelper
             GetCrossNeighbours(tile,neighbours,mapData);
         }
         
+        return neighbours;
+    }
+    
+    public static List<Tile> GetNeighboursWalkable(Tile tile,NeighbourType type,MapData mapData)
+    {
+        List<Tile> neighbours = new List<Tile>();
+
+        if (type == NeighbourType.Square)
+        {
+            GetSquareNeighbours(tile,neighbours,mapData);
+        }else if (type == NeighbourType.Cross)
+        {
+            GetCrossNeighbours(tile,neighbours,mapData);
+        }
+
+        neighbours = neighbours.Where(n => n.Walkable).ToList();
+        Debug.Log("Walkable Neighours :" + neighbours.Count);
         return neighbours;
     }
 

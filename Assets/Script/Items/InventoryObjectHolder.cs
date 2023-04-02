@@ -3,20 +3,16 @@
 public class InventoryObjectHolder : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer m_InWorldVisual = null;
+    [SerializeField] private Transform m_JumpHolder = null;
     
     private InventoryObject m_InventoryObject = null;
+    public Transform JumpHolder => m_JumpHolder;
     public InventoryObject InventoryObject => m_InventoryObject;
 
     //Grab Item Player Inventory//
     public void InitalizeHolder(InventoryObject inventoryObject)
     {
         m_InventoryObject = inventoryObject;
-
-        EquipementObject equipementObject = inventoryObject as EquipementObject;
-        foreach (Modifier modifier in equipementObject.Modifiers)
-        {
-            Debug.Log("Modifier value: " + modifier.Value);
-        }
     }
     public void DisplayWorldVisual()
     {

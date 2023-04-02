@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: IceCrown
   m_EditorClassIdentifier: 
   m_ObjectType: 1
-  m_InWorldVisual: {fileID: 21300000, guid: 295890e99efaa874caf2a066716bb71e, type: 3}
-  m_InUIVisual: {fileID: 21300000, guid: 295890e99efaa874caf2a066716bb71e, type: 3}
+  m_InWorldVisual: {fileID: 21300000, guid: 1e1a0ec2a10a4a6418b9509757d20df2, type: 3}
+  m_InUIVisual: {fileID: 21300000, guid: 1e1a0ec2a10a4a6418b9509757d20df2, type: 3}
   m_ObjectName: Ice Crown
   m_Description: A magical crown with a cold touch
   m_EquipementType: 1

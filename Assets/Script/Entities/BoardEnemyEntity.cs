@@ -46,7 +46,9 @@ public class BoardEnemyEntity : BoardEntity
         //Todo:Real Loot system//
         //Pre compute the loot instead of calling the LootLibrary here//
         //Foreach ? Multiple Loot ?//
-        LootController.Instance.SpawnLootAt(LootLibrary.Instance.GetDropTest(),EntityPosition.x,EntityPosition.y);
+        List<InventoryObject> lootObjects = new List<InventoryObject>();
+        lootObjects.Add(LootLibrary.Instance.GetDropTest());
+        LootController.Instance.SpawnLootFrom(lootObjects,EntityPosition);
     }
     
 

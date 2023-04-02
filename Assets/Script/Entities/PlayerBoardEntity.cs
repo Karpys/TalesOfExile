@@ -47,8 +47,7 @@ public class PlayerBoardEntity : BoardEntity
 
     private void JumpTween()
     {
-        BaseTween tween = m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0.2f, 0), m_MovementDuration / 2f);
-        tween.m_onComplete += () => {ReleaseJumpTween();};
+        m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0.2f, 0), m_MovementDuration / 2f).OnComplete(ReleaseJumpTween);
     }
 
     private void ReleaseJumpTween()
