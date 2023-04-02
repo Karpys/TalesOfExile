@@ -6,10 +6,8 @@ public class LootController : SingletonMonoBehavior<LootController>
 {
     [SerializeField] private InventoryObjectHolder m_BaseInventoryHolder = null;
     [SerializeField] private float m_YJumpForce = 1;
-    [SerializeField] private AnimationCurve m_YJumpCurve = null;
     [SerializeField] private float m_YJumpDuration = 1;
     [SerializeField] private float m_XMovementDuration = 1;
-    [SerializeField] private AnimationCurve m_XMovementCurve = null;
 
     public void SpawnLootFrom(List<InventoryObject> inventoryObjects,Vector2Int position)
     {
@@ -37,10 +35,10 @@ public class LootController : SingletonMonoBehavior<LootController>
     private void LootJumpTo(InventoryObjectHolder worldHolder,Tile tile)
     {
         Vector3 worldTilePosition = tile.WorldTile.transform.position;
-        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration).SetCurve(m_XMovementCurve);
-        worldHolder.JumpHolder.transform.DoLocalMove(new Vector3(0,m_YJumpForce,0),m_YJumpDuration/2).SetCurve(m_YJumpCurve).OnComplete(() =>
+        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration);
+        worldHolder.JumpHolder.transform.DoLocalMove(new Vector3(0,m_YJumpForce,0),m_YJumpDuration/2).OnComplete(() =>
         {
-            worldHolder.JumpHolder.transform.DoLocalMove(Vector3.zero, m_YJumpDuration/2).SetCurve(m_YJumpCurve);
+            worldHolder.JumpHolder.transform.DoLocalMove(Vector3.zero, m_YJumpDuration / 2);
         });
     }
 }
