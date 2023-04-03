@@ -1,21 +1,74 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LootLibrary : SingletonMonoBehavior<LootLibrary>
 {
-    [SerializeField] private InventoryObjectData m_TestObjectData = null;
+    [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
 
-    //Replace that with a real library and use new InventoryObject instead of library class//
-    public InventoryObject GetDropTest()
+    private InventoryObject ToInventoryObject(InventoryObjectData objectData)
     {
-        switch (m_TestObjectData.ObjectType)
+        switch (objectData.ObjectType)
         {
             case ObjectType.DefaultObject:
-                return new DefaultInventoryObject(m_TestObjectData);
+                return new DefaultInventoryObject(objectData);
             case ObjectType.Equipement:
-                return new EquipementObject(m_TestObjectData as EquipementObjectData);
+                return new EquipementObject(objectData as EquipementObjectData);
             default:
-                Debug.LogError("Equipement Object Data type not set up" + m_TestObjectData.ObjectType);
+                Debug.LogError("Equipement Object Data type not set up" + objectData.ObjectType);
                 return null;
         }
+    }
+
+    public List<InventoryObject> ItemRequest(ItemPoolType poolType,int drawCount)
+    {
+        List<InventoryObjectData> inventoryObjectDatas = new List<InventoryObjectData>();
+        
+        switch (poolType)
+        {
+            case ItemPoolType.Tier1Items:
+                inventoryObjectDatas = m_Tier1PoolObject.Draw(drawCount);
+                break;
+            case ItemPoolType.None:
+                break;
+            default:
+                Debug.LogError("Item Pool Type has not been set up" + poolType);
+                break;
+        }
+
+        return inventoryObjectDatas.Select(ToInventoryObject).ToList();
+    }
+}
+
+public enum ItemPoolType
+{
+    Tier1Items,
+    None,
+}
+
+[System.Serializable]
+public class InventoryPoolObject
+{
+    [SerializeField] private WeightElementDraw<InventoryObjectData> m_ObjectDataPool = null;
+    [Range(0,100)]
+    [SerializeField] private float m_DrawChance = 50f;
+
+    public List<InventoryObjectData> Draw(int drawCount)
+    {
+        List<InventoryObjectData> itemDrawn = new List<InventoryObjectData>();
+
+        for (int i = 0; i < drawCount; i++)
+        {
+            float shouldDraw = Random.Range(0, 100);
+
+            if (shouldDraw < m_DrawChance)
+            {
+                itemDrawn.Add(m_ObjectDataPool.Draw());
+            }
+        }
+
+        return itemDrawn;
     }
 }

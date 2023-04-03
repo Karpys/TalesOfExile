@@ -12,19 +12,17 @@ public class LootController : SingletonMonoBehavior<LootController>
     public void SpawnLootFrom(List<InventoryObject> inventoryObjects,Tile originTile,List<Tile> tiles)
     {
         int tilesCount = tiles.Count;
+        float delay = 0;
+        
         foreach (InventoryObject inventoryObject in inventoryObjects)
         {
-            float delay = 0;
-            foreach (Tile tile in tiles)
-            {
-                //Tile targetTile = tiles[Random.Range(0, tilesCount - 1)];
-                Tile targetTile = tile;
-                InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
-            
-                worldHolder.InitalizeHolder(inventoryObject);
-                LootJumpTo(worldHolder,targetTile,delay);
-                delay += 0.1f;
-            }
+            Tile targetTile = tiles[Random.Range(0, tilesCount - 1)];
+            //Tile targetTile = tile;
+            InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
+        
+            worldHolder.InitalizeHolder(inventoryObject);
+            LootJumpTo(worldHolder,targetTile,delay);
+            delay += 0.1f;
         }
     }
 

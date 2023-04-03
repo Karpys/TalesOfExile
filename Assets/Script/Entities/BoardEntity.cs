@@ -365,6 +365,8 @@ public abstract class BoardEntity : MonoBehaviour
     }
     public void ForceDeath()
     {
+        //Remove Death Event / Remove Loot Spawn on map Reload
+        m_EntityEvent.OnDeath = null;
         TriggerDeath();
     }
 

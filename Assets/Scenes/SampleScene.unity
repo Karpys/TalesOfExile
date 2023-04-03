@@ -725,7 +725,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -1915,7 +1915,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6290220d6755496786142974d5b1a2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TestObjectData: {fileID: 11400000, guid: a5ea70bed4b02b145afb69ab477a4e42, type: 2}
+  m_Tier1PoolObject:
+    m_ObjectDataPool:
+      m_WeightElement:
+      - m_Weight: 100
+        m_Object: {fileID: 11400000, guid: a5ea70bed4b02b145afb69ab477a4e42, type: 2}
+    m_DrawChance: 12
 --- !u!1 &1072997882
 GameObject:
   m_ObjectHideFlags: 0

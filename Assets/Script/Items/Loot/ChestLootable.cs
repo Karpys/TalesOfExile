@@ -2,6 +2,8 @@
 
 public class ChestLootable : StaticLootable
 {
+    [SerializeField] private int m_DrawCount = 10;
+    [SerializeField] private ItemPoolType m_ItemPoolType = ItemPoolType.Tier1Items;
     private WorldTile m_WorldTile = null;
 
     private void Start()
@@ -13,7 +15,7 @@ public class ChestLootable : StaticLootable
     protected override void ComputeLoot()
     {
         base.ComputeLoot();
-        m_LootObjects.Add(LootLibrary.Instance.GetDropTest());
+        m_LootObjects = LootLibrary.Instance.ItemRequest(m_ItemPoolType,m_DrawCount);
     }
 
     protected override Vector2Int GetOriginPosition()
