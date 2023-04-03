@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Canvas_Skills : SingletonMonoBehavior<Canvas_Skills>
+public class Canvas_Skills : MonoBehaviour
 {
     [SerializeField] private SpellInterfaceController m_SpellInterface = null;
 

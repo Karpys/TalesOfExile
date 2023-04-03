@@ -6,10 +6,11 @@ using UnityEngine.Serialization;
 public class PlayerBoardEntity : BoardEntity
 {
     [Header("Player")]
-
+    [SerializeField] private PlayerInventory m_PlayerInventory = null;
     [SerializeField] private Transform m_JumpTweenContainer = null;
     [SerializeField] private float m_MovementDuration = 0.1f;
 
+    public PlayerInventory PlayerInventory => m_PlayerInventory;
     protected override void InitalizeEntityBehaviour()
     {
         SetEntityBehaviour(new PLayerAutoPlayEntity(this));

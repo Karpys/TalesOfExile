@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-[System.Serializable]
 public class EquipementObject:InventoryObject
 {
     private EquipementType m_Type = EquipementType.Null;

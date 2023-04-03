@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
+    [Header("UI reference")]
+    [SerializeField] private Canvas_Skills m_CanvasSkills = null;
+    [SerializeField] private Canvas_Inventory m_CanvasInventory = null;
     //Widget//
     [SerializeField] private BoardEntityMovement m_EntityInputMovement = null;
     [SerializeField] private bool m_RemoveDelay = false;
@@ -71,6 +74,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public void RegisterPlayer(PlayerBoardEntity player)
     {
         m_PlayerEntity = player;
+        m_CanvasInventory.SetPlayerInventory(player.PlayerInventory);
     }
 
     public void SetControlledEntity(BoardEntity entity)
@@ -118,7 +122,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     //UI Manager//
     public void RefreshTargetEntitySkills()
     {
-        Canvas_Skills.Instance.SetTargetSkills(m_ControlledEntity);
+        m_CanvasSkills.SetTargetSkills(m_ControlledEntity);
     }
     //OnPlayer Action//
 
