@@ -9,36 +9,32 @@ public class LootController : SingletonMonoBehavior<LootController>
     [SerializeField] private float m_YJumpDuration = 1;
     [SerializeField] private float m_XMovementDuration = 1;
 
-    public void SpawnLootFrom(List<InventoryObject> inventoryObjects,Vector2Int position)
+    public void SpawnLootFrom(List<InventoryObject> inventoryObjects,Tile originTile,List<Tile> tiles)
     {
-        Debug.Log("Entity Positon : +" + position);
-        MapData mapData = MapData.Instance;
-
-        Tile originTile = mapData.GetTile(position);
-        List<Tile> neightboursWalkableTiles = TileHelper.GetNeighboursWalkable(originTile,NeighbourType.Square,mapData);
-        neightboursWalkableTiles.Add(originTile);
-        int tilesCount = neightboursWalkableTiles.Count;
-        
+        int tilesCount = tiles.Count;
         foreach (InventoryObject inventoryObject in inventoryObjects)
         {
-       
-            Tile targetTile = neightboursWalkableTiles[Random.Range(0, tilesCount - 1)];
-            InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
-        
-            worldHolder.InitalizeHolder(inventoryObject);
-            worldHolder.DisplayWorldVisual();
-            LootJumpTo(worldHolder,targetTile);
-
+            float delay = 0;
+            foreach (Tile tile in tiles)
+            {
+                //Tile targetTile = tiles[Random.Range(0, tilesCount - 1)];
+                Tile targetTile = tile;
+                InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
+            
+                worldHolder.InitalizeHolder(inventoryObject);
+                LootJumpTo(worldHolder,targetTile,delay);
+                delay += 0.1f;
+            }
         }
     }
 
-    private void LootJumpTo(InventoryObjectHolder worldHolder,Tile tile)
+    private void LootJumpTo(InventoryObjectHolder worldHolder,Tile tile,float delay)
     {
         Vector3 worldTilePosition = tile.WorldTile.transform.position;
-        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration);
+        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration).SetDelay(delay).OnStart(worldHolder.DisplayWorldVisual);
         worldHolder.JumpHolder.transform.DoLocalMove(new Vector3(0,m_YJumpForce,0),m_YJumpDuration/2).OnComplete(() =>
         {
             worldHolder.JumpHolder.transform.DoLocalMove(Vector3.zero, m_YJumpDuration / 2);
-        });
+        }).SetDelay(delay);
     }
 }

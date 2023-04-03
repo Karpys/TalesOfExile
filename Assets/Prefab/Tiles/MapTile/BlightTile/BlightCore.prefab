@@ -307,7 +307,7 @@ MonoBehaviour:
     - {fileID: 8553087812322520743, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
     - {fileID: 6585557202405382515, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
     m_TilePrefab: {fileID: 3883403197821595345, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}
-  m_BranchCount: 6
+  m_BranchCount: 2
   m_BlightSpawner: {fileID: 1860958626234145663, guid: 8eff3233f79c2d54ca9ac0e98a797b6c, type: 3}
   m_BlightPopup: {fileID: 906123569922711807}
   m_BeginBlightButton: {fileID: 5927380370196387693}

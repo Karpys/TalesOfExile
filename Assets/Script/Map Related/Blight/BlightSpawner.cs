@@ -8,6 +8,7 @@ public class BlightSpawner:WorldTile
     [SerializeField] private BoardEntity m_BlightMonster = null;
     [SerializeField] private Vector2Int m_Clock = new Vector2Int(2,5);
     [SerializeField] private int m_BlightMonsterCount = 10;
+    [SerializeField] private ChestLootable m_ChestLoot = null;
 
     public int MonsterCount => m_BlightMonsterCount; 
     private int m_CurrentClock = 0;
@@ -72,7 +73,7 @@ public class BlightSpawner:WorldTile
 
     public void PopBlightChest()
     {
-        Debug.Log("Pop Blight Chest");
+        m_ChestLoot.OpenChest();
         WorldTile defaultTile = m_Map.PlaceTileAt(m_Map.GetDefaultMapTile(), Tile.XPos, Tile.YPos);
     }
 }

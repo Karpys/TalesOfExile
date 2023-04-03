@@ -38,20 +38,7 @@ public class BoardEnemyEntity : BoardEntity
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
-        SpawnLoot();
     }
-
-    private void SpawnLoot()
-    {
-        //Todo:Real Loot system//
-        //Pre compute the loot instead of calling the LootLibrary here//
-        //Foreach ? Multiple Loot ?//
-        List<InventoryObject> lootObjects = new List<InventoryObject>();
-        lootObjects.Add(LootLibrary.Instance.GetDropTest());
-        LootController.Instance.SpawnLootFrom(lootObjects,EntityPosition);
-    }
-    
-
     public override float GetMainWeaponDamage()
     {
         return 35;

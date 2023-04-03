@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: Balista
   SpellType: 0
-  m_SpellIconBorder: {fileID: 21300000, guid: 32e25172680b58b44a9d3232adf7a63c, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 32e25172680b58b44a9d3232adf7a63c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 2e11d91c872de684fbba6c40276d8f6e, type: 2}
   m_BaseCooldown: 15
   m_Selection:
