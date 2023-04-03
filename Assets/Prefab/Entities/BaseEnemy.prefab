@@ -52,7 +52,7 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 0
   m_IsStatic: 0
-  m_DrawCount: 2
+  m_DrawCount: 1
   m_ItemPoolType: 0
 --- !u!114 &4581581747124773393
 MonoBehaviour:

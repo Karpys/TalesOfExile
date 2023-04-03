@@ -71,6 +71,17 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 0
   m_IsStatic: 1
+  m_DrawCount: 10
+  m_ChestObjectPool:
+    m_ObjectDataPool:
+      m_WeightElement:
+      - m_Weight: 33
+        m_Object: {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
+      - m_Weight: 33
+        m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
+      - m_Weight: 33
+        m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
+    m_DrawChance: 100
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

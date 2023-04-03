@@ -40,6 +40,12 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
 
         return inventoryObjectDatas.Select(ToInventoryObject).ToList();
     }
+    
+    public List<InventoryObject> ItemRequest(InventoryPoolObject objectPool,int drawCount)
+    {
+        List<InventoryObjectData> inventoryObjectDatas =  objectPool.Draw(drawCount);
+        return inventoryObjectDatas.Select(ToInventoryObject).ToList();
+    }
 }
 
 public enum ItemPoolType
