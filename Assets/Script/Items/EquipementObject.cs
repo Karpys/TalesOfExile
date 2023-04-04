@@ -25,15 +25,13 @@ public class EquipementObject:InventoryObject
     { 
         List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton();
         itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
-        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
-        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
-        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
-        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
         return itemButtonParameters;
     }
 
     private void TryEquip()
     {
+        //Todo:Add Equip stats check ?
+        EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         Debug.Log("Try Equip");
     }
 }

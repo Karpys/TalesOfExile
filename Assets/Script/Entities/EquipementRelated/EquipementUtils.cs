@@ -2,29 +2,6 @@
 
 public static class EquipementUtils
 {
-    public static void InitEquip(EquipementObject equipementObject,BoardEntity entity)
-    {
-        EntityEquipement entityEquipement = entity.EntityEquipement;
-        EquipementSocket targetSocket = null;
-
-        foreach (EquipementSocket socket in entityEquipement.EquipementSockets)
-        {
-            if (socket.Type == equipementObject.Type && socket.Empty)
-            {
-                targetSocket = socket;
-            }
-        }
-
-        if (targetSocket == null)
-        {
-            Debug.Log("No More Free Space for this type : " + equipementObject.Type);
-            return;
-        }
-        
-        targetSocket.equipementObject = equipementObject;
-        ApplyEquipementStats(equipementObject,entity,false);
-    }
-
     public static void ApplyEquipementStats(EquipementObject equipementObject, BoardEntity entity, bool recomputeStats = true)
     {
         foreach (Modifier modifier in equipementObject.Modifiers)
@@ -47,6 +24,29 @@ public static class EquipementUtils
         entity.ComputeAllSpells();
     }
 
+    public static void Equip(EquipementObject equipementObject, BoardEntity entity)
+    {
+        EntityEquipement entityEquipement = entity.EntityEquipement;
+        EquipementSocket targetSocket = null;
+
+        //Todo:Need to Handle Main/OffHand System Here
+        foreach (EquipementSocket socket in entityEquipement.EquipementSockets)
+        {
+            if (socket.Type == equipementObject.Type)
+            {
+                targetSocket = socket;
+                break;
+            }
+        }
+        
+        if (!targetSocket.Empty)
+        {
+            Unequip(targetSocket,entity);
+        }
+        
+        ApplyEquipementStats(equipementObject,entity);
+        targetSocket.equipementObject = equipementObject;
+    }
     public static void Unequip(EquipementSocket socket,BoardEntity entity)
     {
         //TODO:Sent Equipement to Inventory to entity => Inventory Only Player//

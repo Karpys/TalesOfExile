@@ -19,5 +19,5 @@ MonoBehaviour:
   m_Description: A leather gloves that protect you against monsters
   m_EquipementType: 4
   m_EquipementBaseModifiers:
-  - Type: 1
+  - Type: 2
     Value: 10

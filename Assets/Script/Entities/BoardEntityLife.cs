@@ -41,6 +41,13 @@ public class BoardEntityLife : MonoBehaviour
         A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
     }
 
+    public void ChangeMaxLifeValue(float value)
+    {
+        m_MaxLife += value;
+        
+        A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
+    }
+
     private void ApplyRegeneration()
     {
         if(m_LifeRegeneration == 0)

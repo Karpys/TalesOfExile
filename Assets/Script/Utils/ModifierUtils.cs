@@ -19,6 +19,9 @@ public static class ModifierUtils
                 SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(modifier.Value);
                 entity.AddSpellToSpellList(spellToAdd);
                 break;
+            case ModifierType.IncreaseMaxLife:
+                entity.Life.ChangeMaxLifeValue(modifier.FloatValue);
+                break;
             default:
                 Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
                 break;
@@ -48,6 +51,9 @@ public static class ModifierUtils
                 }
                 
                 entity.RemoveSpellToSpellList(spellToAdd);
+                break;
+            case ModifierType.IncreaseMaxLife:
+                entity.Life.ChangeMaxLifeValue(-modifier.FloatValue);
                 break;
             default:
                 Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");

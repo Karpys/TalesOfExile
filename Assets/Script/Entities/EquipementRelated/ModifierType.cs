@@ -4,5 +4,6 @@
     UpCold,
     UpPhysical,
     SpellAddition,
+    IncreaseMaxLife,
     //Ect
 }
