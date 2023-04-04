@@ -22,7 +22,8 @@ public class InventoryObjectHolder : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.A_OnEndTurn -= CheckForPickUp;
+        if(GameManager.Instance)
+            GameManager.Instance.A_OnEndTurn -= CheckForPickUp;
     }
 
     //Grab Item Player Inventory//

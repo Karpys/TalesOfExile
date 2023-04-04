@@ -11,6 +11,7 @@ public class Canvas_Inventory : MonoBehaviour
     [SerializeField] private Transform m_ItemLayoutContainer = null;
     [SerializeField] private ViewportAdaptativeSize m_ScrollViewSize = null;
     [SerializeField] private int m_StartPoolHolder = 20;
+    [SerializeField] private ItemButtonOptionController m_ButtonOptionController = null;
 
     private PlayerInventory m_Inventory = null;
     private List<InventoryUIHolder> m_PoolHolder = new List<InventoryUIHolder>();
@@ -70,6 +71,8 @@ public class Canvas_Inventory : MonoBehaviour
         {
             m_InventoryContainer.gameObject.SetActive(false);
         });
+        
+        m_ButtonOptionController.Clear();
     }
 
     private void DisplayInventory()

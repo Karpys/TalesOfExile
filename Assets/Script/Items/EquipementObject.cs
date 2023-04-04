@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EquipementObject:InventoryObject
 {
@@ -18,5 +19,21 @@ public class EquipementObject:InventoryObject
         {
             m_Modifiers.Add(new Modifier(modifier.Type,modifier.Value));
         }
+    }
+
+    public override List<ItemButtonUIParameters> ButtonRequestOptionButton()
+    { 
+        List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton();
+        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        return itemButtonParameters;
+    }
+
+    private void TryEquip()
+    {
+        Debug.Log("Try Equip");
     }
 }

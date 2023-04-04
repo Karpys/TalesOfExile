@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,18 @@ public class InventoryUIHolder:MonoBehaviour
     [SerializeField] private TMP_Text m_SellPrice = null;
     [SerializeField] private Image m_IsEquiped = null;
 
-    private InventoryObjectData m_ObjectBase = null;
+    private InventoryObject m_InventoryObject = null;
     public void InitalizeUIHolder(InventoryObject inventoryObject)
     {
-        m_ObjectBase = inventoryObject.Data;
+        m_InventoryObject = inventoryObject;
 
-        m_ObjectVisual.sprite = m_ObjectBase.InUIVisual;
-        m_ObjectName.text = m_ObjectBase.ObjectName;
-        m_Category.text = m_ObjectBase.ObjectType.ToString();
+        m_ObjectVisual.sprite = m_InventoryObject.Data.InUIVisual;
+        m_ObjectName.text = m_InventoryObject.Data.ObjectName;
+        m_Category.text = m_InventoryObject.Data.ObjectType.ToString();
+    }
+
+    public void DisplayItemUseOption()
+    {
+        ItemButtonOptionController.Instance.DisplayButtonOption(m_InventoryObject);
     }
 }
