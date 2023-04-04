@@ -9,6 +9,7 @@ public class Canvas_Inventory : MonoBehaviour
     [SerializeField] private InventoryUIHolder m_InventoryHolder = null;
     [SerializeField] private Transform m_InventoryContainer = null;
     [SerializeField] private Transform m_ItemLayoutContainer = null;
+    [SerializeField] private ViewportAdaptativeSize m_ScrollViewSize = null;
     [SerializeField] private int m_StartPoolHolder = 20;
 
     private PlayerInventory m_Inventory = null;
@@ -59,6 +60,7 @@ public class Canvas_Inventory : MonoBehaviour
         m_InventoryContainer.transform.localScale = Vector3.zero;
         m_InventoryContainer.transform.DoScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.EASE_OUT_SIN);
         DisplayInventory();
+        m_ScrollViewSize.AdaptSize();
     }
 
     private void Hide()
