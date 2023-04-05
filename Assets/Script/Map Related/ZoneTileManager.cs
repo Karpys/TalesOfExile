@@ -45,7 +45,7 @@ public static class ZoneTileManager
                 if (castOrigin.HasValue)
                 {
                     LinePath.NeighbourType = NeighbourType.Cross;
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value, selectionOrigin);
+                    List<Vector2Int> playerToMouse = Bresenhams.Bresenhams.GetPath(castOrigin.Value, selectionOrigin);
                     LinePath.NeighbourType = NeighbourType.Square;
                     foreach (Vector2Int pathPoint in playerToMouse)
                     {

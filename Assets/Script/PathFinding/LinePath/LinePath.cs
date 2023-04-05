@@ -9,6 +9,14 @@ public static class LinePath
     
     public static List<Vector2Int> GetPathTile(Vector2Int from, Vector2Int to)
     {
+        //Use Brensenhams found in rogue bassin for squareNeightboursType//
+        if (NeighbourType == NeighbourType.Square)
+        {
+            return Bresenhams.Bresenhams.GetPath(from, to);
+        }
+        
+        //Use Custom Algo for cross NeightboursType//
+        
         List<Vector2Int> path = new List<Vector2Int>();
         Vector2Int fromPosition = from;
         Vector2Int toPosition = to;

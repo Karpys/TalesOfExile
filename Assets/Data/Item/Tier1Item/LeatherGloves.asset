@@ -17,7 +17,7 @@ MonoBehaviour:
   m_InUIVisual: {fileID: 21300000, guid: 753ef0d8e9468c2498515781f16738f5, type: 3}
   m_ObjectName: Leather Gloves
   m_Description: A leather gloves that protect you against monsters
-  m_EquipementType: 4
+  m_EquipementType: 3
   m_EquipementBaseModifiers:
   - Type: 2
     Value: 10

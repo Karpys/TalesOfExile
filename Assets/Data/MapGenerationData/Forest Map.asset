@@ -18,7 +18,7 @@ MonoBehaviour:
   m_RoadPivots:
   - Value: 10
   - Value: 50
-  - Value: 99
+  - Value: 100
   m_RoadTileSet:
     m_TileMap:
     - {fileID: 5878180710631057457, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}

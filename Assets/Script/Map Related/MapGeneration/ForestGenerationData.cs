@@ -35,38 +35,57 @@ public class ForestGenerationData : MapGenerationData
     
     public void GenerateRoad(int x,int y)
     {
-        List<WorldTile> roadTiles = new List<WorldTile>();
+        List<Tile> roadTiles = new List<Tile>();
         List<SpriteRenderer> roadRenderers = new List<SpriteRenderer>();
 
-        WorldTile lastTile = m_Map.Tiles[x, y].WorldTile;
+        Tile lastTile = m_Map.Tiles[x, y];
         roadTiles.Add(lastTile);
-        roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
-    
+        roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
+        
+        bool lastPivot = false;
+
         for (int i = 0; i < m_RoadPivots.Count; i++)
         {
             x = (int)(m_RoadPivots[i].Value / 100 * m_Width);
             y = Random.Range(0, m_Height);
+            lastPivot = i == m_RoadPivots.Count - 1;
+
+            if (lastPivot)
+                x = m_Width - 1;
             
             //TODO:Method in Path finding
             PathFinding.NeighbourType = NeighbourType.Cross;
+            LinePath.NeighbourType = NeighbourType.Cross;
+            
             List<Vector2Int> path = null;
 
             int loopCount = 0;
 
-            List<Tile> pathTile = LinePath.GetPathTile(new Vector2Int(lastTile.Tile.XPos, lastTile.Tile.YPos), new Vector2Int(x, y)).ToTile();
-            pathTile.Add(lastTile.Tile);
+            List<Tile> pathTile = new List<Tile>();
+            pathTile.AddRange(LinePath.GetPathTile(new Vector2Int(lastTile.XPos, lastTile.YPos), new Vector2Int(x, y)).ToTile());
+
             RemoveUnreachableTileOnPath(pathTile);
-            path = PathFinding.FindPath(lastTile.Tile, m_Map.Tiles[x,y]);
             
+            if (lastPivot)
+                m_Map.PlaceTileAt(m_BaseTile, x, y);
+
+            path = new List<Vector2Int>();
+            path.Add(new Vector2Int(lastTile.XPos,lastTile.YPos));
+            path.AddRange(PathFinding.FindPath(lastTile, m_Map.Tiles[x,y]));
+            
+            LinePath.NeighbourType = NeighbourType.Cross;
             PathFinding.NeighbourType = NeighbourType.Square;
         
             for (int j = 0; j < path.Count; j++)
-            { 
-                lastTile = m_Map.Tiles[path[j].x,path[j].y].WorldTile;
+            {
+                lastTile = m_Map.Tiles[path[j].x,path[j].y];
                 roadTiles.Add(lastTile);
-                roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile).Renderer);
+                roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
             }
+            
         }
+        
+        
     
         TileHelper.GenerateTileSet(roadTiles,roadRenderers,m_RoadTileSet.TileMap,m_MapData);
     }
@@ -91,7 +110,9 @@ public class ForestGenerationData : MapGenerationData
         for (int i = 0; i < tilesCount; i++)
         {
             bool reachable = false;
+            
             List<Tile> neighours = TileHelper.GetNeighbours(tiles[i], NeighbourType.Cross, m_MapData);
+            
             foreach(Tile neighbour in neighours)
             {
                 if (neighbour.Walkable)
@@ -110,6 +131,7 @@ public class ForestGenerationData : MapGenerationData
 
     private void TryGenerateTree(int x, int y)
     {
+
         if (Random.Range(0, 20) == 10)
         {
             GenerateTree(x, y);

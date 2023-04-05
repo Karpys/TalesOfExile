@@ -69,7 +69,7 @@ public class BlightCore : WorldTile
             branchTiles.AddRange(branchPath);
         }
         
-        TileHelper.GenerateTileSet(branchTiles,branchRenderers,m_BranchTileSet.TileMap,MapData.Instance);
+        TileHelper.GenerateTileSet(branchTiles.ToTile(),branchRenderers,m_BranchTileSet.TileMap,MapData.Instance);
     }
 
     private void InsertBranchExtremity(List<WorldTile> branchPath,int id,Map map)
