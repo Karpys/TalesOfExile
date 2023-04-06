@@ -14,6 +14,8 @@ public class InventoryUIHolder:MonoBehaviour
     [SerializeField] private Image m_IsEquiped = null;
 
     private InventoryObject m_InventoryObject = null;
+    public InventoryObject InventoryObject => m_InventoryObject;
+    
     public void InitalizeUIHolder(InventoryObject inventoryObject)
     {
         m_InventoryObject = inventoryObject;
@@ -25,6 +27,6 @@ public class InventoryUIHolder:MonoBehaviour
 
     public void DisplayItemUseOption()
     {
-        ItemButtonOptionController.Instance.DisplayButtonOption(m_InventoryObject);
+        ItemButtonOptionController.Instance.DisplayButtonOption(this);
     }
 }
