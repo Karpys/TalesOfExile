@@ -1,9 +1,11 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
-public class InventoryUIHolder:MonoBehaviour
+public class InventoryUIHolder:MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [SerializeField] private Image m_RarityImage = null;
     [SerializeField] private Image m_ObjectVisual = null;
@@ -28,5 +30,16 @@ public class InventoryUIHolder:MonoBehaviour
     public void DisplayItemUseOption()
     {
         ItemButtonOptionController.Instance.DisplayButtonOption(this);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //Add RecordUI
+    }
+
+    //In RecordUIManager? time same rinventoryUIHolder => case display item//
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        //Remove Record UI
     }
 }
