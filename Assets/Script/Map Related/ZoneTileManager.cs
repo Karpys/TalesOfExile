@@ -121,10 +121,8 @@ public static class ZoneTileManager
         return zones;
     }
 
-    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition)
+    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition,ZoneSelection zoneSelection)
     {
-        ZoneSelection zoneSelection = spellData.GetMainSelection();
-        
         if (zoneSelection == null)
             return true;
         

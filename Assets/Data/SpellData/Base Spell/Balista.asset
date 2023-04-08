@@ -37,3 +37,12 @@ MonoBehaviour:
   SpellRestrictions:
   - SelectionId: 1
     Type: 0
+  AllowedCastSelection:
+    Origin: 0
+    DisplayType: 0
+    Range: 6
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 0
+  OriginSelection: 2

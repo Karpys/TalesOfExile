@@ -56,7 +56,7 @@ public class BaseEntityIA:EntityBehaviour
             return;
         }
 
-        m_Target = entities.OrderBy(e => DistanceUtils.GetSquareDistance(m_AttachedEntity.EntityPosition, e.EntityPosition)).First();
+        m_Target = EntityHelper.GetClosestEntity(entities,m_AttachedEntity.EntityPosition);
     }
 
     protected virtual void EntityAction()
@@ -133,15 +133,24 @@ public class BaseEntityIA:EntityBehaviour
     }
     private bool TriggerAction()
     {
-        Vector2Int targetPosition = m_Target.EntityPosition;
         
         for (int i = 0; i < m_SpellIdPriority.Length; i++)
         {
+            Vector2Int targetPosition = m_Target.EntityPosition;
             TriggerSpellData triggerSpellData = m_AttachedEntity.Spells[m_SpellIdPriority[i]] as TriggerSpellData;
             
-            if (triggerSpellData.IsCooldownReady() && ZoneTileManager.IsInRange(triggerSpellData,targetPosition))
+            if (triggerSpellData.IsCooldownReady())
             {
-                if (SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
+                ZoneSelection allowedCastSelection = triggerSpellData.TriggerData.AllowedCastSelection;
+                if (allowedCastSelection.DisplayType != ZoneType.NONE)
+                {
+                    if(!ZoneTileManager.IsInRange(triggerSpellData,targetPosition,allowedCastSelection))
+                        continue;
+                }
+                
+                SpellCastUtils.GetSpellTargetOrigin(triggerSpellData,ref targetPosition);
+                
+                if (ZoneTileManager.IsInRange(triggerSpellData,targetPosition,triggerSpellData.GetMainSelection()) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
                 {
                     m_AttachedEntity.CastSpellAt(triggerSpellData,targetPosition);
                     return true;

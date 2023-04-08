@@ -2,7 +2,7 @@
 public class ZoneSelection
 {
     public ZoneOrigin Origin = ZoneOrigin.Self;
-    public ZoneType DisplayType = ZoneType.Square;
+    public ZoneType DisplayType = ZoneType.NONE;
     public int Range = 0;
     public ValidationType ValidationType = null;
     public bool ActionSelection = false;

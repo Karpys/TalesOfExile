@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -21,6 +22,10 @@ public class TriggerSpellDataScriptable : SpellDataScriptable
     public int MainSelection => m_MainSelection;
     [Header("Spell Restriction")]
     public List<SpellRestriction> SpellRestrictions = new List<SpellRestriction>();
+
+    [Header("Spell Rules / Used By Enemy")]
+    public ZoneSelection AllowedCastSelection = null;
+    public SpellOriginType OriginSelection = SpellOriginType.ClosestEnemy;
 }
 
 [System.Serializable]
@@ -34,4 +39,13 @@ public enum SpellRestrictionType
 {
     OriginOnWalkable,
     FreeTileAroundEnemyTarget,
+}
+
+public enum SpellOriginType
+{
+    //Closest Enemy default//
+    ClosestEnemy,
+    ClosestAlly,
+    RandomWalkableInsideMainSelection,
+    ClosestInverseAtDistance,
 }

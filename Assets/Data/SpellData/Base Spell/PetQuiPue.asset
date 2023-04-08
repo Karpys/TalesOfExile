@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: PetQuiPue
   m_EditorClassIdentifier: 
+  SpellKey: 
+  SpellType: 0
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 389b615d7ecece64ca65cf180fcd5536, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: badfbaa34c33531448c5b5b4ac0d9af9, type: 2}
+  m_BaseCooldown: 0
   m_Selection:
   - Origin: 0
     DisplayType: 0
@@ -23,4 +26,14 @@ MonoBehaviour:
       NeedValidation: 1
       TargetZoneValidation: -1
     ActionSelection: 1
-  Range: 2
+  m_MainSelection: 0
+  SpellRestrictions: []
+  AllowedCastSelection:
+    Origin: 0
+    DisplayType: -1
+    Range: 0
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 0
+  OriginSelection: 0
