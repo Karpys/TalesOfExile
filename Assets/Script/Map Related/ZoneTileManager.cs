@@ -44,7 +44,7 @@ public static class ZoneTileManager
                 //Need to set the cast origin
                 if (castOrigin.HasValue)
                 {
-                    List<Vector2Int> playerToMouse = LinePath.GetPathTile(castOrigin.Value, selectionOrigin);
+                    List<Vector2Int> playerToMouse = Bresenhams.Bresenhams.GetPath(castOrigin.Value, selectionOrigin);
                     foreach (Vector2Int pathPoint in playerToMouse)
                     {
                         zones.Add(pathPoint);

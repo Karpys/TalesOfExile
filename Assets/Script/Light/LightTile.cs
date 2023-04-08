@@ -96,10 +96,6 @@ public class LightTile : MonoBehaviour
 
     private bool IsConsideredShadow()
     {
-        //if (m_ShadowCount > 0)
-            //return true;
-        if (m_ShadowCount + m_HasBeenShadowAtLeastOnce > m_LightCount + m_HasBeenLightAtLeastOnce)
-            return true;
-        return false;
+        return m_ShadowCount >= m_LightCount;
     }
 }

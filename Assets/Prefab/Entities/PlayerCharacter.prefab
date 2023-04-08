@@ -159,7 +159,7 @@ MonoBehaviour:
   m_LightProjection:
     Origin: 0
     DisplayType: 4
-    Range: 14
+    Range: 10
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1
@@ -264,7 +264,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

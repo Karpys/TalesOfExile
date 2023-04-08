@@ -24,14 +24,21 @@ public class LightSource : MonoBehaviour
     private void ComputeLineTrace()
     {
         m_LineTraces.Clear();
-        m_OuterSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, Vector2Int.zero, m_LightProjection.Range);
+        
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(0, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(1, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(2, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(3, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(4, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(5, 10)));
+        /*m_OuterSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, Vector2Int.zero, m_LightProjection.Range);
 
         foreach (Vector2Int select in m_OuterSelection)
         {
             LinePath.NeighbourType = NeighbourType.Cross;
             m_LineTraces.Add(LinePath.GetPathTile(Vector2Int.zero, select));
             LinePath.NeighbourType = NeighbourType.Square;
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -82,6 +89,103 @@ public class LightSource : MonoBehaviour
                 lightTiles.Remove(tile);
             tile.OnShadow();
         }
+
+        return lightTiles;
+    }
+
+    public List<LightTile> ApplyLightV4()
+    {
+        List<LightTile> lightTiles = new List<LightTile>();
+        Vector2Int lightOrigin = m_AttachedEntity.EntityPosition;
+        
+        //Left Right Octan//
+        foreach (List<Vector2Int> lineTrace in m_LineTraces)
+        {
+            bool inShadow = false;
+
+            int xDiff = lineTrace[lineTrace.Count - 1].x;
+            int allowedStep = xDiff;
+            int allowedStepCooldown = 10/(xDiff + 1);
+            int lastXPos = lightOrigin.x;
+            int forcedStepCount = 0;
+            int allowedStepCdTimer = 0;
+
+            foreach (Vector2Int lightCheckPosition in lineTrace)
+            {
+                //Check For Normal AllowedStep
+                Vector2Int lightCheckClamped = new Vector2Int(Math.Min(lightOrigin.x + lightCheckPosition.x + forcedStepCount, xDiff + lightOrigin.x), lightCheckPosition.y + lightOrigin.y);
+                
+                if (lastXPos != lightCheckClamped.x)
+                {
+                    allowedStep -= 1;
+                    lastXPos = lightCheckClamped.x;
+                    allowedStepCdTimer = allowedStepCooldown; 
+                }
+                
+                Tile tile = MapData.Instance.GetTile(lightCheckClamped);
+
+                if (tile == null)
+                    break;
+                
+                if (!tile.Walkable)
+                {
+                    if (allowedStep > 0 && allowedStepCdTimer <= 0)
+                    {
+                        //ForceStep//
+                        allowedStep -= 1;
+                        forcedStepCount += 1;
+                        
+                        Tile tileForce = MapData.Instance.GetTile(lightCheckClamped + new Vector2Int(1,0));
+
+                        if (!tileForce.Walkable)
+                        {
+                            inShadow = true;
+                        }
+                        else
+                        {
+                            if (inShadow)
+                            {
+                                tileForce.WorldTile.LightTile.AddShadow();
+                            }
+                            else
+                            {
+                                tileForce.WorldTile.LightTile.AddLight();
+                            }
+                            lightTiles.Add(tileForce.WorldTile.LightTile);
+                        }
+                    }
+                    else
+                    {
+                        inShadow = true;
+                    }
+                }
+
+                allowedStepCdTimer -= 1;
+                lightTiles.Add(tile.WorldTile.LightTile);
+
+                if (inShadow)
+                {
+                    tile.WorldTile.LightTile.AddShadow();
+                }
+                else
+                {
+                    tile.WorldTile.LightTile.AddLight();
+                }
+            }
+        }
+
+        lightTiles = lightTiles.Distinct().ToList();
+        for (int i = 0; i < lightTiles.Count; i++)
+        {
+            LightTile lightTile = lightTiles[i];
+            if (lightTile.IsShadow)
+            {
+                lightTile.ResetLight();
+                lightTiles.Remove(lightTile);
+                i--;
+            }
+        }
+
 
         return lightTiles;
     }
