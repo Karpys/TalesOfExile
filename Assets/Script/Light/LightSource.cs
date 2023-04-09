@@ -14,11 +14,40 @@ public class LightSource : MonoBehaviour
 
     private List<Vector2Int> m_OuterSelection = new List<Vector2Int>();
     private List<List<Vector2Int>> m_LineTraces = new List<List<Vector2Int>>();
+
+    private Visibility m_visibility = null;
+    private List<LightTile> m_LightTiles = new List<LightTile>();
     void Start()
     {
         m_AttachedEntity = GetComponent<BoardEntity>();
         ComputeLineTrace();
+        m_visibility = new MyVisibility(BlockLight, SetVisible, GetDistance);
+    }
 
+    private bool BlockLight(int x,int y)
+    {
+        Tile tile = MapData.Instance.GetTile(new Vector2Int(x, y));
+        if (tile == null)
+        {
+            return true;
+        }
+        else
+        {
+            return !tile.Walkable;
+        }
+    }
+    
+    private void SetVisible(int x,int y)
+    {
+        Tile tile = MapData.Instance.GetTile(new Vector2Int(x, y));
+        
+        if(tile != null)
+            m_LightTiles.Add(tile.WorldTile.LightTile);
+    }
+
+    private int GetDistance(int x,int y)
+    {
+        return (int) Vector3.Distance(new Vector3(x, y), new Vector3(0, 0));
     }
     
     private void ComputeLineTrace()
@@ -31,6 +60,11 @@ public class LightSource : MonoBehaviour
         m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(3, 10)));
         m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(4, 10)));
         m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(5, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-1, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-2, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-3, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-4, 10)));
+        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-5, 10)));
         /*m_OuterSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, Vector2Int.zero, m_LightProjection.Range);
 
         foreach (Vector2Int select in m_OuterSelection)
@@ -103,9 +137,9 @@ public class LightSource : MonoBehaviour
         {
             bool inShadow = false;
 
-            int xDiff = lineTrace[lineTrace.Count - 1].x;
+            int xDiff = Mathf.Abs(lineTrace[lineTrace.Count - 1].x);
             int allowedStep = xDiff;
-            int allowedStepCooldown = 10/(xDiff + 1);
+            int allowedStepCooldown = xDiff > 0 ? 10/(xDiff) : 0;
             int lastXPos = lightOrigin.x;
             int forcedStepCount = 0;
             int allowedStepCdTimer = 0;
@@ -188,5 +222,13 @@ public class LightSource : MonoBehaviour
 
 
         return lightTiles;
+    }
+    public List<LightTile> ApplyLightV5()
+    {
+        m_LightTiles.Clear();
+        
+        m_visibility.Compute(m_AttachedEntity.EntityPosition,10);
+
+        return m_LightTiles;
     }
 }

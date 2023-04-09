@@ -52,7 +52,7 @@ public class LightManager : SingletonMonoBehavior<LightManager>
 
         foreach (LightSource source in m_LightSources)
         {
-            newHighlightedTiles.AddRange(source.ApplyLightV4());
+            newHighlightedTiles.AddRange(source.ApplyLightV5());
         }
 
         foreach (LightTile highlightedTile in newHighlightedTiles)
