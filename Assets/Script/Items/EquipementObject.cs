@@ -34,4 +34,10 @@ public class EquipementObject:InventoryObject
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         Debug.Log("Try Equip");
     }
+
+    //Save Part
+    public override string GetSaveData()
+    {
+        return base.GetSaveData();
+    }
 }

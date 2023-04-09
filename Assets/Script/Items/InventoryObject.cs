@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InventoryObject
+public abstract class InventoryObject:ISavable
 {
     protected InventoryObjectData m_Data = null;
 
@@ -23,4 +23,29 @@ public abstract class InventoryObject
     {
         Debug.Log(m_Data.ObjectName);
     }
+    
+    //Save Part//
+    public virtual string GetSaveData()
+    {
+        return m_Data.ObjectName;
+    }
+}
+
+public interface ISavable
+{
+    public string GetSaveData();
+}
+
+public interface ILoadable
+{
+    public void LoadData(string saveData);
+}
+
+public interface ISaver
+{
+    public string GetSaveName();
+
+    public string[] FecthSaveData();
+    public void WriteSaveData(string saveName, string[] datas);
+
 }

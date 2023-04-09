@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055576b2c7aa4ca8b9570492c2f02558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SaveName: InventorySave.txt
 --- !u!1 &9071852352984913702
 GameObject:
   m_ObjectHideFlags: 0
