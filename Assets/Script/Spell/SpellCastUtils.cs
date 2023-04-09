@@ -21,8 +21,8 @@ public static class SpellCastUtils
         switch (spellData.TriggerData.OriginSelection)
         {
             case SpellOriginType.RandomWalkableInsideMainSelection:
-                List<Vector2Int> selection = ZoneTileManager.GetSelectionZone(spellData.GetMainSelection(),
-                    spellData.AttachedEntity.EntityPosition, spellData.GetMainSelection().Range);
+                List<Vector2Int> selection = ZoneTileManager.GetSelectionZone(spellData.GetMainSelection().Zone,
+                    spellData.AttachedEntity.EntityPosition, spellData.GetMainSelection().Zone.Range);
 
                 List<Tile> tileSelection = new List<Tile>();
                 foreach (Vector2Int pos in selection)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Lootable:MonoBehaviour
 {
-    [SerializeField] protected ZoneSelection m_LootZoneSelection = null;
+    [SerializeField] protected Zone m_LootZoneSelection = null;
     [SerializeField] protected bool m_IsStatic = false;
     
     protected List<Vector2Int> m_LootZones = new List<Vector2Int>();

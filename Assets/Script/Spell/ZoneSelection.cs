@@ -2,12 +2,20 @@
 public class ZoneSelection
 {
     public ZoneOrigin Origin = ZoneOrigin.Self;
-    public ZoneType DisplayType = ZoneType.NONE;
-    public int Range = 0;
+    public Zone Zone = null;
     public ValidationType ValidationType = null;
     public bool ActionSelection = false;
 
-    public ZoneSelection(ZoneType type, int range)
+    
+}
+
+[System.Serializable]
+public class Zone
+{
+    public ZoneType DisplayType = ZoneType.NONE;
+    public int Range = 0;
+    
+    public Zone(ZoneType type, int range)
     {
         DisplayType = type;
         Range = range;

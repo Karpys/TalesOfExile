@@ -51,7 +51,7 @@ public class SpellInterpretor : MonoBehaviour
             ZoneSelection selection = m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue];
             m_OriginTile = GetOrigin(selection);
             m_CastOriginTile = m_CurrentSpell.AttachedEntity.EntityPosition;
-            m_TilesSelection = ZoneTileManager.GetSelectionZone(selection, m_OriginTile, selection.Range,m_CastOriginTile);
+            m_TilesSelection = ZoneTileManager.GetSelectionZone(selection.Zone, m_OriginTile, selection.Zone.Range,m_CastOriginTile);
             
             //Highlight Tiles//
             Color tilesColor = GetColor(selection);
@@ -102,7 +102,7 @@ public class SpellInterpretor : MonoBehaviour
 
    private bool IsDynamic(ZoneSelection zoneSelection)
    {
-      if (zoneSelection.DisplayType == ZoneType.PlayerToMouse)
+      if (zoneSelection.Zone.DisplayType == ZoneType.PlayerToMouse)
          return true;
 
       return false;

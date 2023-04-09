@@ -141,16 +141,16 @@ public class BaseEntityIA:EntityBehaviour
             
             if (triggerSpellData.IsCooldownReady())
             {
-                ZoneSelection allowedCastSelection = triggerSpellData.TriggerData.AllowedCastSelection;
-                if (allowedCastSelection.DisplayType != ZoneType.NONE)
+                Zone allowedCastZone = triggerSpellData.TriggerData.AllowedCastZone;
+                if (allowedCastZone.DisplayType != ZoneType.NONE)
                 {
-                    if(!ZoneTileManager.IsInRange(triggerSpellData,targetPosition,allowedCastSelection))
+                    if(!ZoneTileManager.IsInRange(triggerSpellData,targetPosition,allowedCastZone))
                         continue;
                 }
                 
                 SpellCastUtils.GetSpellTargetOrigin(triggerSpellData,ref targetPosition);
                 
-                if (ZoneTileManager.IsInRange(triggerSpellData,targetPosition,triggerSpellData.GetMainSelection()) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
+                if (ZoneTileManager.IsInRange(triggerSpellData,targetPosition,triggerSpellData.GetMainSelection().Zone) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
                 {
                     m_AttachedEntity.CastSpellAt(triggerSpellData,targetPosition);
                     return true;

@@ -20,15 +20,17 @@ MonoBehaviour:
   m_BaseCooldown: 10
   m_Selection:
   - Origin: 0
-    DisplayType: 0
-    Range: 6
+    Zone:
+      DisplayType: 0
+      Range: 6
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: -1
     ActionSelection: 0
   - Origin: 1
-    DisplayType: 1
-    Range: 1
+    Zone:
+      DisplayType: 1
+      Range: 1
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0
@@ -37,12 +39,7 @@ MonoBehaviour:
   SpellRestrictions:
   - SelectionId: 1
     Type: 1
-  AllowedCastSelection:
-    Origin: 0
+  AllowedCastZone:
     DisplayType: -1
     Range: 0
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
   OriginSelection: 0

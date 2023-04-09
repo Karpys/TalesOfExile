@@ -24,7 +24,7 @@ public class TriggerSpellDataScriptable : SpellDataScriptable
     public List<SpellRestriction> SpellRestrictions = new List<SpellRestriction>();
 
     [Header("Spell Rules / Used By Enemy")]
-    public ZoneSelection AllowedCastSelection = null;
+    public Zone AllowedCastZone = null;
     public SpellOriginType OriginSelection = SpellOriginType.ClosestEnemy;
 }
 

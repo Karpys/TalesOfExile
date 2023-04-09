@@ -7,7 +7,7 @@ public static class ZoneTileManager
     //Maybe need an additional Vector2Int parameter use for spell target selection when two position are needed//
     //ex : Mouse To Player
     private const float CIRCLE_TOLERANCE = 0.66f;
-    public static List<Vector2Int> GetSelectionZone(ZoneSelection zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
+    public static List<Vector2Int> GetSelectionZone(Zone zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
     {
         List<Vector2Int> zones = new List<Vector2Int>();
 
@@ -73,7 +73,7 @@ public static class ZoneTileManager
                         if (i >= playerToMouse.Count - range + 1)
                             continue;
                         
-                        List<Vector2Int> pathLenght = GetSelectionZone(new ZoneSelection(ZoneType.Square, range), pathPoint, range);
+                        List<Vector2Int> pathLenght = GetSelectionZone(new Zone(ZoneType.Square, range), pathPoint, range);
                         foreach (Vector2Int pathAdd in pathLenght)
                         {
                             if (!zones.Contains(pathAdd))
@@ -121,7 +121,7 @@ public static class ZoneTileManager
         return zones;
     }
 
-    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition,ZoneSelection zoneSelection)
+    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition,Zone zoneSelection)
     {
         if (zoneSelection == null)
             return true;

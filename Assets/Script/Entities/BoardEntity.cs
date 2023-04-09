@@ -339,7 +339,7 @@ public abstract class BoardEntity : MonoBehaviour
                 {
                     origin = pos;
                 }
-                tilesActions.Add(ZoneTileManager.GetSelectionZone(currentSelection,origin,currentSelection.Range,EntityPosition));
+                tilesActions.Add(ZoneTileManager.GetSelectionZone(currentSelection.Zone,origin,currentSelection.Zone.Range,EntityPosition));
                 originTiles.Add(origin);
             }
         }

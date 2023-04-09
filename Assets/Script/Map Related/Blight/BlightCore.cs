@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class BlightCore : WorldTile
 {
-    [SerializeField] private ZoneSelection m_OuterZoneSelection = null;
+    [SerializeField] private Zone m_OuterZoneSelection = null;
     [SerializeField] private TileSet m_BranchTileSet = null;
     [SerializeField] private int m_BranchCount = 1;
     [SerializeField] private BlightSpawner m_BlightSpawner = null;
