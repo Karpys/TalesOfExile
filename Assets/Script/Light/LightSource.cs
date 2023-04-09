@@ -53,18 +53,6 @@ public class LightSource : MonoBehaviour
     private void ComputeLineTrace()
     {
         m_LineTraces.Clear();
-        
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(0, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(1, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(2, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(3, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(4, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(5, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-1, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-2, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-3, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-4, 10)));
-        m_LineTraces.Add(Bresenhams.Bresenhams.GetPath(new Vector2Int(0, 0), new Vector2Int(-5, 10)));
         /*m_OuterSelection = ZoneTileManager.GetSelectionZone(m_LightProjection, Vector2Int.zero, m_LightProjection.Range);
 
         foreach (Vector2Int select in m_OuterSelection)
@@ -230,5 +218,48 @@ public class LightSource : MonoBehaviour
         m_visibility.Compute(m_AttachedEntity.EntityPosition,10);
 
         return m_LightTiles;
+    }
+    public List<LightTile> ApplyLightV6()
+    {
+        List<LightTile> lightTiles = new List<LightTile>();
+        FOV(m_AttachedEntity.EntityPosition,10,lightTiles);
+
+        lightTiles = lightTiles.Distinct().ToList();
+
+        return lightTiles;
+    }
+    
+    void FOV(Vector2Int originPosition,int viewRadius,List<LightTile> lightTiles)
+    {
+        float x,y;
+        int i;
+        //CLEAR_MAP_TO_NOT_VISIBLE();//Initially set all tiles to not visible.
+        for(i=0;i<360;i++)
+        {
+            x=Mathf.Cos(i*0.01745f);
+            y= (float)Math.Sin(i*0.01745f);
+            DoFov(x,y,originPosition,viewRadius,lightTiles);
+        }
+    }
+
+    void DoFov(float x,float y,Vector2Int originPosition,int viewRadius,List<LightTile> lightTiles)
+    {
+        int i;
+        float ox,oy;
+        ox = originPosition.x+0.5f;
+        oy = originPosition.y+0.5f;
+        for(i=0;i<viewRadius;i++)
+        {
+            Tile tile = MapData.Instance.GetTile(new Vector2Int((int)ox, (int) oy));
+
+            if (tile == null) 
+                return;
+            
+            lightTiles.Add(tile.WorldTile.LightTile);
+            if(!tile.Walkable && tile.TilePosition != originPosition)
+                return;
+            ox+=x;
+            oy+=y;
+        }
     }
 }
