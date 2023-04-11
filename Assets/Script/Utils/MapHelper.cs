@@ -12,4 +12,15 @@ public static class MapHelper
             map.TryPlaceTileAt(tilePrefab, pos);
         }
     }
+
+    public static void InsertMapInsideMap(Map originalMap, Map insertMap, Vector2Int insertOriginPosition)
+    {
+        foreach (Tile mapTile in insertMap.Tiles)
+        {
+            if(!mapTile.WorldTile)
+                continue;
+
+            originalMap.TryInsertWorldTileAt(mapTile.WorldTile, mapTile.TilePosition + insertOriginPosition);
+        }
+    }
 }

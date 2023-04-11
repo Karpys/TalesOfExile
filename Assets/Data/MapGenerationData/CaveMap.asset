@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CaveMap
   m_EditorClassIdentifier: 
   m_Width: 50
-  m_Height: 50
-  m_BaseTile: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
+  m_Height: 60
+  m_BaseTile: {fileID: 7124269101175009985, guid: c42f9d2416269b34baec42fbb918a886, type: 3}
   m_HoleTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
-  m_StartPosition: {x: 25, y: 5}
+  m_StartPosition: {x: 12, y: 5}
   m_StartZone:
     DisplayType: 0
     Range: 3

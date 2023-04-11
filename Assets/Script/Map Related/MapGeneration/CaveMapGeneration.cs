@@ -14,19 +14,20 @@ public class CaveMapGeneration : MapGenerationData
 
         MapHelper.ZoneTryPlaceTile(m_HoleTile,m_StartZone,m_StartPosition,m_Map);
 
-        Room testRoom = new OuterSquareDigRoom(new Map(25, 25), m_HoleTile, new Zone(ZoneType.Circle, 9),
-            new Zone(ZoneType.OuterCircle, 9), new Zone(ZoneType.Circle, 4), 20);
-        
-        testRoom.Generate();
-        
-        foreach (Tile mapTile in testRoom.Map.Tiles)
-        {
-            if(!mapTile.WorldTile)
-                continue;
-
-            m_Map.InsertWorldTileAt(mapTile.WorldTile, mapTile.TilePosition + new Vector2Int(25/2,m_StartPosition.y + (m_StartZone.Range)));
-        }
+        InsertOuterSquareRoom(new Vector2Int(0,0));
+        InsertOuterSquareRoom(new Vector2Int(25,0));
+        InsertOuterSquareRoom(new Vector2Int(0,25));
+        InsertOuterSquareRoom(new Vector2Int(25,25));
         
         return info;
+    }
+
+    private void InsertOuterSquareRoom(Vector2Int offSet)
+    {
+        Room outerSquareDigRoom = new OuterSquareDigRoom(new Map(25, 25), m_HoleTile, new Zone(ZoneType.Circle, 9),
+            new Zone(ZoneType.OuterCircle, 9), new Zone(ZoneType.Circle, 4), 20);
+        outerSquareDigRoom.Generate();
+        
+        MapHelper.InsertMapInsideMap(m_Map,outerSquareDigRoom.Map,new Vector2Int(0, m_StartPosition.y + m_StartZone.Range) + offSet);
     }
 }

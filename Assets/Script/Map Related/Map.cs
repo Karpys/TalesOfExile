@@ -44,7 +44,15 @@ public class Map
         return PlaceTileAt(tilePrefab, pos.x, pos.y);
     }
     
-    public WorldTile InsertWorldTileAt(WorldTile worldTile, int x,int y)
+    public WorldTile TryPlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
+    {
+        if (InMapBounds(pos))
+            return PlaceTileAt(tilePrefab, pos);
+
+        return null;
+    }
+    
+    private WorldTile InsertWorldTileAt(WorldTile worldTile, int x,int y)
     {
         if(Tiles[x,y].WorldTile)
             GameObject.Destroy(Tiles[x,y].WorldTile.gameObject);
@@ -53,19 +61,15 @@ public class Map
         worldTile.transform.position = MapData.Instance.GetTilePosition(x, y);
         return worldTile;
     }
-    
-    public WorldTile InsertWorldTileAt(WorldTile worldTile, Vector2Int pos)
-    {
-        return InsertWorldTileAt(worldTile, pos.x, pos.y);
-    }
 
-    public WorldTile TryPlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
+    public WorldTile TryInsertWorldTileAt(WorldTile worldTile, Vector2Int pos)
     {
         if (InMapBounds(pos))
-            return PlaceTileAt(tilePrefab, pos);
+            return InsertWorldTileAt(worldTile, pos.x,pos.y);
 
         return null;
     }
+    
     
     public VisualTile InsertVisualTile(VisualTile visual, WorldTile tile)
     {

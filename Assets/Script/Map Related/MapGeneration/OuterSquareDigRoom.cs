@@ -19,7 +19,7 @@ public class OuterSquareDigRoom:Room
         m_ShrinkZone = shrinkZone;
         m_ShrinkChance = shrinkChance;
     }
-    public  override void Generate()
+    public override void Generate()
     {
         DigHole();
         Shrink();
