@@ -13,6 +13,21 @@ public class Map
     {
         m_Generator = generator;
     }
+
+    public Map(int width, int height)
+    {
+        Height = height;
+        Width = width;
+        Tiles = new Tile[Width,Height];
+        
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                Tiles[x, y] = new Tile(x,y);
+            }
+        }
+    }
     
     public WorldTile PlaceTileAt(WorldTile tilePrefab, int x, int y)
     {
@@ -27,6 +42,21 @@ public class Map
     public WorldTile PlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
     {
         return PlaceTileAt(tilePrefab, pos.x, pos.y);
+    }
+    
+    public WorldTile InsertWorldTileAt(WorldTile worldTile, int x,int y)
+    {
+        if(Tiles[x,y].WorldTile)
+            GameObject.Destroy(Tiles[x,y].WorldTile.gameObject);
+
+        worldTile.SetTile(Tiles[x,y]);
+        worldTile.transform.position = MapData.Instance.GetTilePosition(x, y);
+        return worldTile;
+    }
+    
+    public WorldTile InsertWorldTileAt(WorldTile worldTile, Vector2Int pos)
+    {
+        return InsertWorldTileAt(worldTile, pos.x, pos.y);
     }
 
     public WorldTile TryPlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
