@@ -7,8 +7,9 @@ public static class LinePath
 {
     public static NeighbourType NeighbourType = NeighbourType.Square;
     
-    public static List<Vector2Int> GetPathTile(Vector2Int from, Vector2Int to)
+    public static List<Vector2Int> GetPathTile(Vector2Int from, Vector2Int to,NeighbourType neighbourType)
     {
+        NeighbourType = neighbourType;
         //Use Brensenhams found in rogue bassin for squareNeightboursType//
         if (NeighbourType == NeighbourType.Square)
         {

@@ -23,6 +23,19 @@ public class Map
         worldTile.SetTile(Tiles[x,y]);
         return worldTile;
     }
+
+    public WorldTile PlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
+    {
+        return PlaceTileAt(tilePrefab, pos.x, pos.y);
+    }
+
+    public WorldTile TryPlaceTileAt(WorldTile tilePrefab, Vector2Int pos)
+    {
+        if (InMapBounds(pos))
+            return PlaceTileAt(tilePrefab, pos);
+
+        return null;
+    }
     
     public VisualTile InsertVisualTile(VisualTile visual, WorldTile tile)
     {
@@ -34,5 +47,17 @@ public class Map
     public WorldTile GetDefaultMapTile()
     {
         return m_Generator.GenerationData.DefaultTile;
+    }
+    
+    public bool InMapBounds(Vector2Int pos)
+    {
+        return InMapBounds(pos.x, pos.y);
+    }
+    public bool InMapBounds(int x,int y)
+    {
+        if (x < 0 || y < 0 || x > Width - 1 || y > Height - 1)
+            return false;
+
+        return true;
     }
 }

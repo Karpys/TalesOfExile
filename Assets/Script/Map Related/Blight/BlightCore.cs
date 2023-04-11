@@ -49,12 +49,10 @@ public class BlightCore : WorldTile
         {
             int randomOuterSelection = Random.Range(0, m_outerSelection.Count);
             Vector2Int outerPosition = MapData.Instance.MapClampedPosition(m_outerSelection[randomOuterSelection]);
-
-            LinePath.NeighbourType = NeighbourType.Cross;
+            
             List<WorldTile> branchPath = new List<WorldTile>();
             branchPath.Add(this);
-            branchPath.AddRange(LinePath.GetPathTile(Tile.TilePosition,outerPosition).ToTile().ToWorldTile());
-            LinePath.NeighbourType = NeighbourType.Square;
+            branchPath.AddRange(LinePath.GetPathTile(Tile.TilePosition,outerPosition,NeighbourType.Cross).ToTile().ToWorldTile());
 
             foreach (WorldTile branchTile in branchPath)
             {

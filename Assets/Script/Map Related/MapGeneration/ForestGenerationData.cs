@@ -55,14 +55,13 @@ public class ForestGenerationData : MapGenerationData
             
             //TODO:Method in Path finding
             PathFinding.NeighbourType = NeighbourType.Cross;
-            LinePath.NeighbourType = NeighbourType.Cross;
-            
+
             List<Vector2Int> path = null;
 
             int loopCount = 0;
 
             List<Tile> pathTile = new List<Tile>();
-            pathTile.AddRange(LinePath.GetPathTile(new Vector2Int(lastTile.XPos, lastTile.YPos), new Vector2Int(x, y)).ToTile());
+            pathTile.AddRange(LinePath.GetPathTile(new Vector2Int(lastTile.XPos, lastTile.YPos), new Vector2Int(x, y),NeighbourType.Cross).ToTile());
 
             RemoveUnreachableTileOnPath(pathTile);
             
@@ -73,7 +72,6 @@ public class ForestGenerationData : MapGenerationData
             path.Add(new Vector2Int(lastTile.XPos,lastTile.YPos));
             path.AddRange(PathFinding.FindPath(lastTile, m_Map.Tiles[x,y]));
             
-            LinePath.NeighbourType = NeighbourType.Cross;
             PathFinding.NeighbourType = NeighbourType.Square;
         
             for (int j = 0; j < path.Count; j++)

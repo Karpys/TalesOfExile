@@ -144,7 +144,7 @@ public static class TileHelper
             return currentTile;
         }
         
-        List<Tile> path = LinePath.GetPathTile(currentTile, tileFrom).ToTile();
+        List<Tile> path = LinePath.GetPathTile(currentTile, tileFrom,NeighbourType.Square).ToTile();
         Vector2Int oppositePosition = Vector2Int.zero;
         
         if (path.Count > 0)
