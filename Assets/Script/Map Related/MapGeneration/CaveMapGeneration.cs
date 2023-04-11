@@ -3,31 +3,39 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Map/Room/Cave", fileName = "New CaveMap", order = 0)]
 public class CaveMapGeneration : MapGenerationData
 {
+    [Header("World Tile")]
+    [SerializeField] protected WorldTile m_DoorTile = null;
     [SerializeField] protected WorldTile m_HoleTile = null;
+    [Header("Generation Parameters")]
     [SerializeField] private Vector2Int m_StartPosition = Vector2Int.zero;
     [SerializeField] private Zone m_StartZone = null;
 
+    [SerializeField] private Vector2Int m_RoomDimension = Vector2Int.zero;
     public override GenerationMapInfo Generate(MapData mapData)
     {
         GenerationMapInfo info = base.Generate(mapData);
         info.StartPosition = m_StartPosition;
-
-        MapHelper.ZoneTryPlaceTile(m_HoleTile,m_StartZone,m_StartPosition,m_Map);
-
-        InsertOuterSquareRoom(new Vector2Int(0,0));
-        InsertOuterSquareRoom(new Vector2Int(25,0));
-        InsertOuterSquareRoom(new Vector2Int(0,25));
-        InsertOuterSquareRoom(new Vector2Int(25,25));
         
+        SpawnPositionGeneration();
+        
+        InsertOuterSquareRoom(new Vector2Int(0,0),m_RoomDimension,70);
+
         return info;
     }
 
-    private void InsertOuterSquareRoom(Vector2Int offSet)
+    private void SpawnPositionGeneration()
     {
-        Room outerSquareDigRoom = new OuterSquareDigRoom(new Map(25, 25), m_HoleTile, new Zone(ZoneType.Circle, 9),
-            new Zone(ZoneType.OuterCircle, 9), new Zone(ZoneType.Circle, 4), 20);
-        outerSquareDigRoom.Generate();
+        MapHelper.ZoneTryPlaceTile(m_HoleTile,m_StartZone,m_StartPosition,m_Map);
+        m_Map.TryPlaceTileAt(m_DoorTile, m_StartPosition + new Vector2Int(0,m_StartZone.Range));
+    }
+
+    private void InsertOuterSquareRoom(Vector2Int offSet,Vector2Int roomDimension,float fillPercentage,float shrinkChance = 20f)
+    {
+        Vector2Int originPosition = new Vector2Int(0, m_StartPosition.y + m_StartZone.Range) + offSet;
+        Room room = new OuterSquareDigRoom(new Map(roomDimension.x,roomDimension.y), m_HoleTile, fillPercentage, ZoneType.Circle, shrinkChance);
+        room.Generate();
+        GizmosViewerManager.Instance.CreateCube(MapData.Instance.GetTilePosition(originPosition + (roomDimension/2)),new Vector3(roomDimension.x,roomDimension.y),Color.white);
         
-        MapHelper.InsertMapInsideMap(m_Map,outerSquareDigRoom.Map,new Vector2Int(0, m_StartPosition.y + m_StartZone.Range) + offSet);
+        MapHelper.InsertMapInsideMap(m_Map,room.Map,originPosition);
     }
 }

@@ -153,4 +153,17 @@ public static class ZoneTileManager
                 return false;
         }
     }
+
+    public static ZoneType GetOuter(ZoneType type)
+    {
+        switch (type)
+        {
+            case ZoneType.Circle:
+                return ZoneType.OuterCircle;
+            case ZoneType.Square:
+                return ZoneType.Square;
+            default:
+                return ZoneType.OuterSquare;
+        }
+    }
 }

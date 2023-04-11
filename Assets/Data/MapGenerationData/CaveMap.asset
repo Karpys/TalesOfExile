@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Width: 50
   m_Height: 60
-  m_BaseTile: {fileID: 7124269101175009985, guid: c42f9d2416269b34baec42fbb918a886, type: 3}
-  m_HoleTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+  m_BaseTile: {fileID: 7124269101175009985, guid: f5a6ee25d703ad44eb5fcacd3a980745, type: 3}
+  m_DoorTile: {fileID: 7124269101175009985, guid: 09e293ba1cdf2cc4b903e090c3ec4be1, type: 3}
+  m_HoleTile: {fileID: 7124269101175009985, guid: e805d6f1a75f08242920cfe7ebffeae9, type: 3}
   m_StartPosition: {x: 12, y: 5}
   m_StartZone:
     DisplayType: 0
     Range: 3
+  m_RoomDimension: {x: 25, y: 25}

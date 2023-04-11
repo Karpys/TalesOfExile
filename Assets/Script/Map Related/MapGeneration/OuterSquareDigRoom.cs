@@ -19,6 +19,18 @@ public class OuterSquareDigRoom:Room
         m_ShrinkZone = shrinkZone;
         m_ShrinkChance = shrinkChance;
     }
+
+    public OuterSquareDigRoom(Map map, WorldTile holeTile, float fillPercentage, ZoneType fillType, float shrinkChance):base(map)
+    {
+        m_HoleTile = holeTile;
+        m_ShrinkChance = shrinkChance;
+        fillPercentage /= 100; 
+        int fillValue = Mathf.CeilToInt(map.Width * fillPercentage / 2);
+        m_HoleSelection = new Zone(fillType, fillValue);
+        m_ShrinkSelection = new Zone(ZoneTileManager.GetOuter(fillType), fillValue);
+        int shrinkZone =Mathf.CeilToInt(m_Map.Width * 0.15f);
+        m_ShrinkZone = new Zone(fillType, shrinkZone);
+    }
     public override void Generate()
     {
         DigHole();
@@ -43,17 +55,4 @@ public class OuterSquareDigRoom:Room
             }
         }
     }
-}
-
-public abstract class Room
-{
-    protected Map m_Map = null;
-
-    public Map Map => m_Map;
-    public Room(Map map)
-    {
-        m_Map = map;
-    }
-
-    public abstract void Generate();
 }
