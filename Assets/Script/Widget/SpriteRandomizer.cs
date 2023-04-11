@@ -5,11 +5,11 @@ using UnityEngine;
 public class SpriteRandomizer : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private Sprite[] m_Sprite;
+    [SerializeField] private WeightElementDraw<Sprite> m_SpriteDraw = null;
     [SerializeField] private SpriteRenderer m_Renderer;
     void Awake()
     {
-        m_Renderer.sprite = m_Sprite[Random.Range(0, m_Sprite.Length)];
+        m_Renderer.sprite = m_SpriteDraw.Draw();
     }
 
 }

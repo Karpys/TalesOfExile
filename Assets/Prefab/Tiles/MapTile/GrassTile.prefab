@@ -45,10 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4999a37b334df4d4cbedc69c326ba808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Sprite:
-  - {fileID: 21300000, guid: 7a882c8f466d4434c800bf7c13e19b3c, type: 3}
-  - {fileID: 21300000, guid: c939a72a9386b5f4ab580e2ef04b2252, type: 3}
-  - {fileID: 21300000, guid: 23aee72dad3795b42b542faf70e8ba94, type: 3}
+  m_SpriteDraw:
+    m_WeightElement:
+    - m_Weight: 33
+      m_Object: {fileID: 21300000, guid: 7a882c8f466d4434c800bf7c13e19b3c, type: 3}
+    - m_Weight: 33
+      m_Object: {fileID: 21300000, guid: c939a72a9386b5f4ab580e2ef04b2252, type: 3}
+    - m_Weight: 33
+      m_Object: {fileID: 21300000, guid: 23aee72dad3795b42b542faf70e8ba94, type: 3}
   m_Renderer: {fileID: 5264811421815135885}
 --- !u!114 &7124269101175009985
 MonoBehaviour:
@@ -62,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1aec800583d45929973c25ecd410c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Walkable: 1
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0
