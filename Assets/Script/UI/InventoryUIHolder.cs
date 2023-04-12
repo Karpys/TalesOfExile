@@ -21,15 +21,32 @@ public class InventoryUIHolder:MonoBehaviour,IPointerEnterHandler,IPointerExitHa
     public void InitalizeUIHolder(InventoryObject inventoryObject)
     {
         m_InventoryObject = inventoryObject;
-
         m_ObjectVisual.sprite = m_InventoryObject.Data.InUIVisual;
         m_ObjectName.text = m_InventoryObject.Data.ObjectName;
         m_Category.text = m_InventoryObject.Data.ObjectType.ToString();
+        RefreshEquipedState();
+        
+        m_InventoryObject.SetHolder(this);
     }
 
     public void DisplayItemUseOption()
     {
         ItemButtonOptionController.Instance.DisplayButtonOption(this);
+    }
+    
+    //Button Action//
+    public void RefreshEquipedState()
+    {
+        EquipementObject equipementObject = m_InventoryObject as EquipementObject;
+
+        if (equipementObject == null)
+        {
+            m_IsEquiped.color = Color.gray;
+        }
+        else
+        {
+            m_IsEquiped.color = equipementObject.IsEquiped ? Color.green : Color.red;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -42,4 +59,6 @@ public class InventoryUIHolder:MonoBehaviour,IPointerEnterHandler,IPointerExitHa
     {
         //Remove Record UI
     }
+
+    
 }

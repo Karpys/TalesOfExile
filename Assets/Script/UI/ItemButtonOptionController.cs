@@ -57,12 +57,12 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         Clear();
        
         
-        List<ItemButtonUIParameters> buttonParameters = inventoryUI.InventoryObject.ButtonRequestOptionButton();
+        List<ItemButtonUIParameters> buttonParameters = inventoryUI.InventoryObject.ButtonRequestOptionButton(inventoryUI);
 
         foreach (ItemButtonUIParameters buttonUIParameters in buttonParameters)
         {
             ItemButtonUI button = Instantiate(m_ButtonPrefab, m_ButtonHolder);
-            button.InitalizeButton(inventoryUI.InventoryObject,buttonUIParameters.OnClickAction,buttonUIParameters.ButtonText);
+            button.InitalizeButton(buttonUIParameters.OnClickAction,buttonUIParameters.ButtonText);
             m_PreviousButton.Add(button);
         }
         
