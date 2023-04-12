@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 
+
+/// <summary>
+/// Use StaticWeightElementDraw if called multiple times
+/// </summary>
 [System.Serializable]
 public class WeightElementDraw<T> where T:Object
 {
     [SerializeField] private WeightElement<T>[] m_WeightElement = null;
-    
+
     public T Draw()
     {
-        float totalWeight = 0;
-
-        foreach (WeightElement<T> element in m_WeightElement)
-        {
-            totalWeight += element.Weight;
-        }
-
+        float totalWeight = GetTotalWeight();
         float drawWeight = Random.Range(0f, totalWeight);
         int elementId = 0;
         float currentWeight = 0;
@@ -32,5 +30,17 @@ public class WeightElementDraw<T> where T:Object
         }
         
         return (T)m_WeightElement[elementId].Object;
+    }
+
+    protected virtual float GetTotalWeight()
+    {
+        float totalWeight = 0;
+        
+        foreach (WeightElement<T> element in m_WeightElement)
+        {
+            totalWeight += element.Weight;
+        }
+
+        return totalWeight;
     }
 }

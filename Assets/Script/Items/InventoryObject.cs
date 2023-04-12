@@ -12,6 +12,12 @@ public abstract class InventoryObject:ISavable
         m_Data = data;
     }
 
+    //Save Load Constructor
+    public InventoryObject(string[] saveArgs)
+    {
+        Debug.Log("Unique Id" + saveArgs[1]);
+    }
+
     public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton()
     {
         List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
@@ -27,7 +33,7 @@ public abstract class InventoryObject:ISavable
     //Save Part//
     public virtual string GetSaveData()
     {
-        return m_Data.ObjectName;
+        return GetType() + " " + m_Data.UniqueId;
     }
 }
 
@@ -43,9 +49,6 @@ public interface ILoadable
 
 public interface ISaver
 {
-    public string GetSaveName();
-
-    public string[] FecthSaveData();
-    public void WriteSaveData(string saveName, string[] datas);
-
+    public string[] FetchSaveData();
+    public void WriteSaveData(string saveName, string[] data);
 }

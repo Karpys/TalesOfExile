@@ -57,7 +57,7 @@ public enum ItemPoolType
 [System.Serializable]
 public class InventoryPoolObject
 {
-    [SerializeField] private WeightElementDraw<InventoryObjectData> m_ObjectDataPool = null;
+    [SerializeField] private StaticWeightElementDraw<InventoryObjectData> m_ObjectDataPool = null;
     [Range(0,100)]
     [SerializeField] private float m_DrawChance = 50f;
 

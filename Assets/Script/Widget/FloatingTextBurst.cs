@@ -29,7 +29,7 @@ public class FloatingTextBurst : MonoBehaviour
             Color targetColor = color ?? Color.white;
             m_Text.color = targetColor;
             m_XAlignement.Target.localPosition = new Vector3(Random.Range(-m_RangeRandom,m_RangeRandom), 0, 0);
-            m_Text.text = damageValue + "";
+            m_Text.text = (int)damageValue + "";
             transform.DoMoveX(m_XAlignement.Target.position.x, m_XAlignement.Duration).SetCurve(m_XAlignement.Curve);
             transform.DoMoveY(m_YEndAlignement.Target.position.y, m_YEndAlignement.Duration).SetCurve(m_YEndAlignement.Curve);
             Invoke("LaunchFade",m_YEndAlignement.Duration * 0.8f);

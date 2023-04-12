@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "InventoryData", menuName = "Inventory/InventoryData", order = 0)]
 public class InventoryObjectData : ScriptableObject
 {
+    [Header("UNIQUE TO EACH BASE ITEM")]
+    [SerializeField] private int m_UniqueId = -1;
     [Header("Object Type")]
     [SerializeField] private ObjectType m_ObjectType = ObjectType.DefaultObject;
     [Header("Visual Data")]
@@ -12,6 +14,7 @@ public class InventoryObjectData : ScriptableObject
     [SerializeField] private string m_ObjectName = null;
     [SerializeField] private string m_Description = null;
 
+    public int UniqueId => m_UniqueId;
     public ObjectType ObjectType => m_ObjectType;
     public Sprite InWorldVisual => m_InWorldVisual;
     public Sprite InUIVisual => m_InUIVisual;

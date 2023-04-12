@@ -24,30 +24,33 @@ public class PlayerInventory : MonoBehaviour,ISaver
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            WriteSaveData(GetSaveName(),FecthSaveData());
+            WriteSaveData(m_SaveName,FetchSaveData());
+        }else if (Input.GetKeyDown(KeyCode.W))
+        {
+            InterpretSave();
         }
     }
 
-    public void WriteSaveData(string saveName, string[] datas)
+    private void InterpretSave()
     {
-        string savePath = SaveUtils.GetSaveDirectory() + saveName;
-        File.WriteAllLines(savePath,datas);
+        string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
+        List<InventoryObject> saveObjects = SaveUtils.InterpretSave<InventoryObject>(data);
     }
     
-    public string GetSaveName()
+    public void WriteSaveData(string saveName, string[] data)
     {
-        return m_SaveName;
+        SaveUtils.WriteSave(saveName,data);
     }
 
-    public string[] FecthSaveData()
+    public string[] FetchSaveData()
     {
-        string[] itemDatasSaves = new string[m_PlayerInventory.Count];
+        string[] itemDataSaves = new string[m_PlayerInventory.Count];
 
         for (int i = 0; i < m_PlayerInventory.Count; i++)
         {
-            itemDatasSaves[i] = m_PlayerInventory[i].GetSaveData();
+            itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
         }
         
-        return itemDatasSaves;
+        return itemDataSaves;
     }
 }

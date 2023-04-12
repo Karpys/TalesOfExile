@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "MonsterGeneration", menuName = "Monster/ClassicGeneration", order = 0)]
 public class MonsterGeneration : ScriptableObject
 {
-    [SerializeField] private WeightElementDraw<BoardEntity> m_WeightEnemies = null;
+    [SerializeField] private StaticWeightElementDraw<BoardEntity> m_WeightEnemies = null;
     [SerializeField] private float m_TargetEnemiesCount = 10;
 
     public void GenerateEnemies(List<Tile> targetTiles,MapData map)
