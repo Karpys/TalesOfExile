@@ -7,6 +7,8 @@ public class ForestGenerationData : MapGenerationData
 {
     [SerializeField] List<FloatPercentageSlider> m_RoadPivots = new List<FloatPercentageSlider>();
     [SerializeField] private TileSet m_RoadTileSet = null;
+    [Range(0,100)]
+    [SerializeField] private float m_TreeChance = 10;
     [SerializeField] private WorldTile m_TreeTile = null;
     [SerializeField] private MonsterGeneration m_MonsterGeneration = null;
 
@@ -129,10 +131,11 @@ public class ForestGenerationData : MapGenerationData
 
     private void TryGenerateTree(int x, int y)
     {
+        float random = Random.Range(0, 100f);
 
-        if (Random.Range(0, 20) == 10)
+        if (random < m_TreeChance)
         {
-            GenerateTree(x, y);
+            GenerateTree(x,y);
         }
     }
 
