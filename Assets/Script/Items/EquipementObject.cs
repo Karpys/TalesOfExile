@@ -5,19 +5,24 @@ using UnityEngine;
 public class EquipementObject:InventoryObject
 {
     private EquipementType m_Type = EquipementType.Null;
-    private List<Modifier> m_Modifiers = new List<Modifier>();
-
+    private Modifier[] m_ItemBaseModifiers = null;
+    private Modifier[] m_AdditionalModifiers = null;
+    
     public EquipementObjectData BaseEquipementData => Data as EquipementObjectData;
-    public List<Modifier> Modifiers => m_Modifiers;
+    public Modifier[] ItemModifiers => GetAllModifiers();
+    
     public EquipementType Type => m_Type;
 
     public EquipementObject(EquipementObjectData data) : base(data)
     {
         m_Type = data.EquipementType;
 
-        foreach (Modifier modifier in data.EquipementBaseModifiers)
+        m_ItemBaseModifiers = new Modifier[data.EquipementBaseModifiers.Count];
+
+        for (int i = 0; i < data.EquipementBaseModifiers.Count; i++)
         {
-            m_Modifiers.Add(new Modifier(modifier.Type,modifier.Value));
+            Modifier modifier = data.EquipementBaseModifiers[i];
+            m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
         }
     }
 
@@ -33,6 +38,23 @@ public class EquipementObject:InventoryObject
         //Todo:Add Equip stats check ?
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         Debug.Log("Try Equip");
+    }
+    
+    private Modifier[] GetAllModifiers()
+    {
+        Modifier[] modifiers = new Modifier[m_ItemBaseModifiers.Length + m_AdditionalModifiers.Length];
+
+        for (int i = 0; i < m_ItemBaseModifiers.Length; i++)
+        {
+            modifiers[i] = m_ItemBaseModifiers[i];
+        }
+
+        for (int i = 0; i < m_AdditionalModifiers.Length; i++)
+        {
+            modifiers[i + m_ItemBaseModifiers.Length] = m_AdditionalModifiers[i];
+        }
+
+        return modifiers;
     }
 
     //Save Part

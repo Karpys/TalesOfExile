@@ -4,7 +4,7 @@ public static class EquipementUtils
 {
     public static void ApplyEquipementStats(EquipementObject equipementObject, BoardEntity entity, bool recomputeStats = true)
     {
-        foreach (Modifier modifier in equipementObject.Modifiers)
+        foreach (Modifier modifier in equipementObject.ItemModifiers)
         {
             ModifierUtils.ApplyModifier(modifier,entity);
         }
@@ -16,7 +16,7 @@ public static class EquipementUtils
     public static void UnapplyEquipementStats(EquipementObject equipementObject, BoardEntity entity)
     {
         
-        foreach (Modifier modifier in equipementObject.Modifiers)
+        foreach (Modifier modifier in equipementObject.ItemModifiers)
         {
             ModifierUtils.UnapplyModifier(modifier,entity);
         }
