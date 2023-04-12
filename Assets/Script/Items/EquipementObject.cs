@@ -6,8 +6,9 @@ public class EquipementObject:InventoryObject
 {
     private EquipementType m_Type = EquipementType.Null;
     private Modifier[] m_ItemBaseModifiers = null;
-    private Modifier[] m_AdditionalModifiers = null;
-    
+    private Modifier[] m_AdditionalModifiers = Array.Empty<Modifier>();
+
+    private bool m_IsEquiped = false;
     public EquipementObjectData BaseEquipementData => Data as EquipementObjectData;
     public Modifier[] ItemModifiers => GetAllModifiers();
     
@@ -37,9 +38,15 @@ public class EquipementObject:InventoryObject
     {
         //Todo:Add Equip stats check ?
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
+        m_IsEquiped = true;
         Debug.Log("Try Equip");
     }
-    
+
+    public void UnEquip()
+    {
+        m_IsEquiped = false;
+    }
+
     private Modifier[] GetAllModifiers()
     {
         Modifier[] modifiers = new Modifier[m_ItemBaseModifiers.Length + m_AdditionalModifiers.Length];
@@ -60,6 +67,8 @@ public class EquipementObject:InventoryObject
     //Save Part
     public override string GetSaveData()
     {
-        return base.GetSaveData();
+        string saveData = base.GetSaveData();
+        saveData += " " + m_IsEquiped;
+        return saveData;
     }
 }

@@ -27,7 +27,7 @@ public abstract class InventoryObject:ISavable
     //Save Part//
     public virtual string GetSaveData()
     {
-        return m_Data.ObjectName;
+        return GetType() + " " + m_Data.UniqueId;
     }
 }
 
@@ -43,9 +43,6 @@ public interface ILoadable
 
 public interface ISaver
 {
-    public string GetSaveName();
-
-    public string[] FecthSaveData();
-    public void WriteSaveData(string saveName, string[] datas);
-
+    public string[] FetchSaveData();
+    public void WriteSaveData(string saveName, string[] data);
 }

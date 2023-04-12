@@ -41,16 +41,17 @@ public static class EquipementUtils
         
         if (!targetSocket.Empty)
         {
-            Unequip(targetSocket,entity);
+            UnEquip(targetSocket,entity);
         }
         
         ApplyEquipementStats(equipementObject,entity);
         targetSocket.equipementObject = equipementObject;
     }
-    public static void Unequip(EquipementSocket socket,BoardEntity entity)
+    public static void UnEquip(EquipementSocket socket,BoardEntity entity)
     {
         //TODO:Sent Equipement to Inventory to entity => Inventory Only Player//
         UnapplyEquipementStats(socket.equipementObject,entity);
+        socket.equipementObject.UnEquip();
         socket.equipementObject = null;
     }
 }

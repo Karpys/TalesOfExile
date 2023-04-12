@@ -17,4 +17,10 @@ public static class SaveUtils
             return Application.dataPath + SAVE_DIRECTORY;
         }
     }
+
+    public static void WriteSave(string saveName,string[] datas)
+    {
+        string savePath = GetSaveDirectory() + saveName;
+        File.WriteAllLines(savePath,datas);
+    }
 }
