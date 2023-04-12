@@ -23,4 +23,24 @@ public static class StringUtils
         
         return parameters;
     }
+
+    public static object[] StringsToObjects(string[] data)
+    {
+        object[] objects = new object[data.Length];
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            objects[i] = data[i];
+        }
+
+        return objects;
+    }
+
+    public static Type GetTypeViaClassName(string className)
+    {
+        Type classType = Type.GetType(className);
+        if(classType == null)
+            Debug.LogError("Class Name Dont exist " + className);
+        return classType;
+    }
 }

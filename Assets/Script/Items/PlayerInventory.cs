@@ -25,9 +25,18 @@ public class PlayerInventory : MonoBehaviour,ISaver
         if (Input.GetKeyDown(KeyCode.X))
         {
             WriteSaveData(m_SaveName,FetchSaveData());
+        }else if (Input.GetKeyDown(KeyCode.W))
+        {
+            InterpretSave();
         }
     }
 
+    private void InterpretSave()
+    {
+        string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
+        List<InventoryObject> saveObjects = SaveUtils.InterpretSave<InventoryObject>(data);
+    }
+    
     public void WriteSaveData(string saveName, string[] data)
     {
         SaveUtils.WriteSave(saveName,data);

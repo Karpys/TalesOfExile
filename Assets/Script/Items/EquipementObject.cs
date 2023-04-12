@@ -65,6 +65,9 @@ public class EquipementObject:InventoryObject
     }
 
     //Save Part
+    
+    //Save Load Constructor
+    public EquipementObject(string[] saveArgs):base(saveArgs){}
     public override string GetSaveData()
     {
         string saveData = base.GetSaveData();

@@ -12,6 +12,12 @@ public abstract class InventoryObject:ISavable
         m_Data = data;
     }
 
+    //Save Load Constructor
+    public InventoryObject(string[] saveArgs)
+    {
+        Debug.Log("Unique Id" + saveArgs[1]);
+    }
+
     public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton()
     {
         List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
