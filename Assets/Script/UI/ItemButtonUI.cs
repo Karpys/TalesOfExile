@@ -21,6 +21,7 @@ public class ItemButtonUI:MonoBehaviour
     private void TriggerButtonAction()
     {
         m_FunctionCallOnClick?.Invoke();
+        ItemButtonOptionController.Instance.Clear();
     }
 }
 
