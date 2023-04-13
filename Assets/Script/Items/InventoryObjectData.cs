@@ -22,6 +22,7 @@ public class InventoryObjectData : ScriptableObject
     public Sprite InUIVisual => m_InUIVisual;
     public string ObjectName => m_ObjectName;
     public string Description => m_Description;
+    public Rarity Rarity => m_BaseRarity;
 }
 
 public enum ObjectType
@@ -36,4 +37,5 @@ public enum Rarity
     Uncommon,
     Rare,
     Legendary,
+    Null,
 }
