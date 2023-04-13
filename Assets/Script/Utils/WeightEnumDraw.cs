@@ -1,16 +1,9 @@
-﻿using System;
 using UnityEngine;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
-
-/// <summary>
-/// Use StaticWeightElementDraw if called multiple times
-/// </summary>
 [System.Serializable]
-public class WeightElementDraw<T> where T:Object
+public class WeightEnumDraw<T> where T:struct
 {
-    [SerializeField] private WeightElement<T>[] m_WeightElement = null;
+    [SerializeField] private WeightEnum<T>[] m_WeightEnum = null;
 
     public T Draw()
     {
@@ -19,9 +12,9 @@ public class WeightElementDraw<T> where T:Object
         int elementId = 0;
         float currentWeight = 0;
         
-        while (elementId < m_WeightElement.Length - 1)
+        while (elementId < m_WeightEnum.Length - 1)
         {
-            currentWeight += m_WeightElement[elementId].Weight;
+            currentWeight += m_WeightEnum[elementId].Weight;
             if (drawWeight < currentWeight)
             {
                 break;
@@ -32,14 +25,14 @@ public class WeightElementDraw<T> where T:Object
             }
         }
         
-        return (T)m_WeightElement[elementId].Object;
+        return m_WeightEnum[elementId].Enum;
     }
 
     protected virtual float GetTotalWeight()
     {
         float totalWeight = 0;
         
-        foreach (WeightElement<T> element in m_WeightElement)
+        foreach (WeightEnum<T> element in m_WeightEnum)
         {
             totalWeight += element.Weight;
         }
