@@ -26,6 +26,8 @@ public class EquipementObject:InventoryObject
             Modifier modifier = data.EquipementBaseModifiers[i];
             m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
         }
+        
+        //Rarity => Modifier Draw here depend on data tierType + EquipementType
     }
 
     public override List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
