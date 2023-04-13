@@ -5,11 +5,18 @@ using UnityEngine;
 public abstract class InventoryObject:ISavable
 {
     protected InventoryObjectData m_Data = null;
+    protected InventoryUIHolder m_UIHolder = null;
 
     public InventoryObjectData Data => m_Data;
+    public InventoryUIHolder UIHolder => m_UIHolder;
     public InventoryObject(InventoryObjectData data)
     {
         m_Data = data;
+    }
+
+    public void SetHolder(InventoryUIHolder holder)
+    {
+        m_UIHolder = holder;
     }
 
     //Save Load Constructor
@@ -18,7 +25,7 @@ public abstract class InventoryObject:ISavable
         Debug.Log("Unique Id" + saveArgs[1]);
     }
 
-    public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton()
+    public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
     {
         List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
         newItemButton.Add(new ItemButtonUIParameters(DisplayName,"Display Name"));

@@ -13,6 +13,7 @@ public class EquipementObject:InventoryObject
     public Modifier[] ItemModifiers => GetAllModifiers();
     
     public EquipementType Type => m_Type;
+    public bool IsEquiped => m_IsEquiped;
 
     public EquipementObject(EquipementObjectData data) : base(data)
     {
@@ -27,24 +28,24 @@ public class EquipementObject:InventoryObject
         }
     }
 
-    public override List<ItemButtonUIParameters> ButtonRequestOptionButton()
+    public override List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
     { 
-        List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton();
+        List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton(inventoryUI);
         itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
         return itemButtonParameters;
     }
 
     private void TryEquip()
     {
-        //Todo:Add Equip stats check ?
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         m_IsEquiped = true;
-        Debug.Log("Try Equip");
+        m_UIHolder.RefreshEquipedState();
     }
 
     public void UnEquip()
     {
         m_IsEquiped = false;
+        m_UIHolder.RefreshEquipedState();
     }
 
     private Modifier[] GetAllModifiers()

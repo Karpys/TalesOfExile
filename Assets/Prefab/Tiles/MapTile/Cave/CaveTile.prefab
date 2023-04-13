@@ -45,9 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4999a37b334df4d4cbedc69c326ba808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Sprite:
-  - {fileID: 21300000, guid: f4c2c0048a2590b4ab094f513e611443, type: 3}
-  - {fileID: 21300000, guid: 1c3d75a154353354fa5630766a801354, type: 3}
+  m_SpriteDraw:
+    m_WeightElement:
+    - m_Weight: 70
+      m_Object: {fileID: 21300000, guid: 1c3d75a154353354fa5630766a801354, type: 3}
+    - m_Weight: 29
+      m_Object: {fileID: 21300000, guid: f4c2c0048a2590b4ab094f513e611443, type: 3}
+    - m_Weight: 1
+      m_Object: {fileID: 21300000, guid: 032f2ea0d7a88fb4496784d12e414ffb, type: 3}
   m_Renderer: {fileID: 5264811421815135885}
 --- !u!114 &7124269101175009985
 MonoBehaviour:
