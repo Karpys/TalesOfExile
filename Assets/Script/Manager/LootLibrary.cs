@@ -7,29 +7,16 @@ using Random = UnityEngine.Random;
 public class LootLibrary : SingletonMonoBehavior<LootLibrary>
 {
     [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
-
-    private InventoryObject ToInventoryObject(InventoryObjectData objectData)
-    {
-        switch (objectData.ObjectType)
-        {
-            case ObjectType.DefaultObject:
-                return new DefaultInventoryObject(objectData);
-            case ObjectType.Equipement:
-                return new EquipementObject(objectData as EquipementObjectData);
-            default:
-                Debug.LogError("Equipement Object Data type not set up" + objectData.ObjectType);
-                return null;
-        }
-    }
+    
 
     public List<InventoryObject> ItemRequest(ItemPoolType poolType,int drawCount)
     {
-        List<InventoryObjectData> inventoryObjectDatas = new List<InventoryObjectData>();
+        List<InventoryObject> inventoryObject = new List<InventoryObject>();
         
         switch (poolType)
         {
             case ItemPoolType.Tier1Items:
-                inventoryObjectDatas = m_Tier1PoolObject.Draw(drawCount);
+                inventoryObject = m_Tier1PoolObject.Draw(drawCount);
                 break;
             case ItemPoolType.None:
                 break;
@@ -38,13 +25,13 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
                 break;
         }
 
-        return inventoryObjectDatas.Select(ToInventoryObject).ToList();
+        return inventoryObject;
     }
     
     public List<InventoryObject> ItemRequest(InventoryPoolObject objectPool,int drawCount)
     {
-        List<InventoryObjectData> inventoryObjectDatas =  objectPool.Draw(drawCount);
-        return inventoryObjectDatas.Select(ToInventoryObject).ToList();
+        List<InventoryObject> inventoryObjects =  objectPool.Draw(drawCount);
+        return inventoryObjects;
     }
 }
 
@@ -60,10 +47,10 @@ public class InventoryPoolObject
     [SerializeField] private StaticWeightElementDraw<InventoryObjectData> m_ObjectDataPool = null;
     [Range(0,100)]
     [SerializeField] private float m_DrawChance = 50f;
-
-    public List<InventoryObjectData> Draw(int drawCount)
+    [SerializeField] private WeightEnumDraw<Rarity> m_RarityDraw = null;
+    public List<InventoryObject> Draw(int drawCount)
     {
-        List<InventoryObjectData> itemDrawn = new List<InventoryObjectData>();
+        List<InventoryObject> itemDrawn = new List<InventoryObject>();
 
         for (int i = 0; i < drawCount; i++)
         {
@@ -71,7 +58,14 @@ public class InventoryPoolObject
 
             if (shouldDraw < m_DrawChance)
             {
-                itemDrawn.Add(m_ObjectDataPool.Draw());
+                InventoryObject item = m_ObjectDataPool.Draw().ToInventoryObject();
+                itemDrawn.Add(item);
+
+                //Additional Modifier based on rarity drawn
+                if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
+                {
+                    
+                }
             }
         }
 

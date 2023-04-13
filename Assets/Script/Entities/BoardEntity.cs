@@ -307,6 +307,8 @@ public abstract class BoardEntity : MonoBehaviour
             TriggerSpellData triggerSpell = spellData as TriggerSpellData;
             triggerSpell.SpellTrigger.ComputeSpellData(this);
         }
+
+        m_EntityEvent.OnSpellRecompute?.Invoke(this);
     }
     
     //Stats Related//

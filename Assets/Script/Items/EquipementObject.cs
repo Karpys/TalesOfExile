@@ -18,16 +18,7 @@ public class EquipementObject:InventoryObject
     public EquipementObject(EquipementObjectData data) : base(data)
     {
         m_Type = data.EquipementType;
-
-        m_ItemBaseModifiers = new Modifier[data.EquipementBaseModifiers.Count];
-
-        for (int i = 0; i < data.EquipementBaseModifiers.Count; i++)
-        {
-            Modifier modifier = data.EquipementBaseModifiers[i];
-            m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
-        }
-        
-        //Rarity => Modifier Draw here depend on data tierType + EquipementType
+        InitializeBaseModifier();
     }
 
     public override List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
@@ -37,6 +28,7 @@ public class EquipementObject:InventoryObject
         return itemButtonParameters;
     }
 
+    #region Equip
     private void TryEquip()
     {
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
@@ -49,7 +41,20 @@ public class EquipementObject:InventoryObject
         m_IsEquiped = false;
         m_UIHolder.RefreshEquipedState();
     }
+    #endregion
 
+    #region Modifiers
+
+    private void InitializeBaseModifier()
+    {
+        m_ItemBaseModifiers = new Modifier[BaseEquipementData.EquipementBaseModifiers.Count];
+
+        for (int i = 0; i < BaseEquipementData.EquipementBaseModifiers.Count; i++)
+        {
+            Modifier modifier = BaseEquipementData.EquipementBaseModifiers[i];
+            m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
+        }
+    }
     private Modifier[] GetAllModifiers()
     {
         Modifier[] modifiers = new Modifier[m_ItemBaseModifiers.Length + m_AdditionalModifiers.Length];
@@ -66,6 +71,7 @@ public class EquipementObject:InventoryObject
 
         return modifiers;
     }
+    #endregion
 
     //Save Part
     

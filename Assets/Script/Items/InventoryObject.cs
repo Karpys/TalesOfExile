@@ -5,20 +5,23 @@ using UnityEngine;
 public abstract class InventoryObject:ISavable
 {
     protected InventoryObjectData m_Data = null;
-
-    protected Rarity m_ItemRarity = Rarity.Null;
     protected InventoryUIHolder m_UIHolder = null;
+    public Rarity Rarity => GetRarity();
     public InventoryObjectData Data => m_Data;
     public InventoryUIHolder UIHolder => m_UIHolder;
     public InventoryObject(InventoryObjectData data)
     {
         m_Data = data;
-        m_ItemRarity = data.Rarity;
     }
 
     public void SetHolder(InventoryUIHolder holder)
     {
         m_UIHolder = holder;
+    }
+
+    protected virtual Rarity GetRarity()
+    {
+        return m_Data.Rarity;
     }
 
     //Save Load Constructor
@@ -42,7 +45,7 @@ public abstract class InventoryObject:ISavable
     //Save Part//
     public virtual string GetSaveData()
     {
-        return GetType() + " " + m_Data.UniqueId + " " + (int)m_ItemRarity;
+        return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity;
     }
 }
 

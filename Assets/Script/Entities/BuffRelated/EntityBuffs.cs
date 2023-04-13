@@ -49,4 +49,5 @@ public enum BuffCooldown
 {
     Cooldown,
     Toggle,
+    Passive,
 }
