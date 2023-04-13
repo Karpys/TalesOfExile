@@ -8,9 +8,11 @@ namespace Script.UI
     {
         Vertical,
         Horizontal,
+        Both,
     }
     public class AdaptUILayoutSize : MonoBehaviour
     {
+        [SerializeField] private bool m_AdaptOnStart = true;
         [SerializeField] private LayoutGroup m_LayoutGroup = null;
         [SerializeField] private LayoutType m_Type = LayoutType.Vertical;
         [SerializeField] private float m_Spacing = 0;
@@ -25,7 +27,8 @@ namespace Script.UI
 
         private void Start()
         {
-            AdaptSize();
+            if(m_AdaptOnStart)
+                AdaptSize();
         }
 
         public void AdaptSize()

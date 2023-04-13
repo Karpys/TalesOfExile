@@ -8,14 +8,11 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
     [SerializeField] private ItemButtonUI m_ButtonPrefab = null;
     [SerializeField] private Transform m_ButtonHolder = null;
     [SerializeField] private RectTransform m_LayoutMask = null;
-    [SerializeField] private AnimationCurve DisplayCurve = null;
+    [SerializeField] private MaskScroll m_MaskScroll = null;
     [SerializeField] private float m_OpenLayoutTime = 0.25f;
 
     private List<ItemButtonUI> m_PreviousButton = new List<ItemButtonUI>();
-
-    private bool m_OpenLayout = false;
-    private float m_OpenLayoutTimer = 0;
-    private float m_MaskLayoutTargetSize = 0;
+    
     private Vector2 m_ButtonRectDimension = Vector2.zero;
 
     private void Start()
@@ -26,30 +23,13 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
 
     private void Update()
     {
-        if (m_OpenLayout)
-        {
-            m_LayoutMask.sizeDelta = new Vector2(75,Mathf.Lerp(0,m_MaskLayoutTargetSize , DisplayCurve.Evaluate(m_OpenLayoutTimer / m_OpenLayoutTime)));
-            m_OpenLayoutTimer += Time.deltaTime;
-            
-            if(m_OpenLayoutTimer >= m_OpenLayoutTime)
-                StopLayoutScroll();
-        }
-        
         if(Input.GetMouseButtonDown(1) || Input.mouseScrollDelta != Vector2.zero)
             Clear();
     }
 
     private void StartLayoutScroll()
     {
-        m_OpenLayoutTimer = 0;
-        m_LayoutMask.sizeDelta = new Vector2(75,0);
-        m_OpenLayout = true;
-        m_MaskLayoutTargetSize = ((RectTransform) m_ButtonPrefab.transform).rect.height * m_PreviousButton.Count;
-    }
-
-    private void StopLayoutScroll()
-    {
-        m_OpenLayout = false;
+        m_MaskScroll.LaunchScroll(((RectTransform)m_ButtonPrefab.transform).rect.height * m_PreviousButton.Count,m_OpenLayoutTime);
     }
 
     public void DisplayButtonOption(InventoryUIHolder inventoryUI)

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3002867983865441647}
   - component: {fileID: 4234595193582578988}
   - component: {fileID: 5213692417657375502}
+  - component: {fileID: 8772921381283945451}
   m_Layer: 5
   m_Name: InventoryUIHolder
   m_TagString: Untagged
@@ -204,6 +205,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8772921381283945451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2425855149346927930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e8e04ddb404da39c78a177930c22de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ItemHolder: {fileID: 4234595193582578988}
+  m_DisplayerPrefab: {fileID: 5972372290465015533, guid: 31b4f0dbd8796f348bbb1e6673c551e7, type: 3}
+  m_DisplayDuration: 0.2
 --- !u!1 &4184459877013437778
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -874,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

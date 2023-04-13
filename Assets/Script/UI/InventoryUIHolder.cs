@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class InventoryUIHolder:MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class InventoryUIHolder:MonoBehaviour
 {
     [SerializeField] private Image m_RarityImage = null;
     [SerializeField] private Image m_ObjectVisual = null;
@@ -48,17 +48,4 @@ public class InventoryUIHolder:MonoBehaviour,IPointerEnterHandler,IPointerExitHa
             m_IsEquiped.color = equipementObject.IsEquiped ? Color.green : Color.red;
         }
     }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //Add RecordUI
-    }
-
-    //In RecordUIManager? time same rinventoryUIHolder => case display item//
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //Remove Record UI
-    }
-
-    
 }

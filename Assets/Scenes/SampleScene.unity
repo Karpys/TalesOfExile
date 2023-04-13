@@ -3301,6 +3301,8 @@ MonoBehaviour:
       - m_Weight: 25
         m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
     m_DrawChance: 12
+    m_RarityDraw:
+      m_WeightEnum: []
 --- !u!1 &1023104584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,6 +4639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a61f018613342f593b5f32816d35fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AdaptOnStart: 1
   m_LayoutGroup: {fileID: 1553008922}
   m_Type: 1
   m_Spacing: 4
@@ -5748,6 +5751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2124817921}
   - component: {fileID: 2124817922}
+  - component: {fileID: 2124817923}
   m_Layer: 5
   m_Name: ItemOptionController
   m_TagString: Untagged
@@ -5790,7 +5794,22 @@ MonoBehaviour:
   m_ButtonPrefab: {fileID: 6970876327951975307, guid: bdfe568e3b00076469223f7d47be7d1f, type: 3}
   m_ButtonHolder: {fileID: 1341947229}
   m_LayoutMask: {fileID: 843646071}
-  DisplayCurve:
+  m_MaskScroll: {fileID: 2124817923}
+  m_OpenLayoutTime: 0.5
+--- !u!114 &2124817923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124817920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea3eef3351e49d49377fc7649bc09d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TargetTransform: {fileID: 843646071}
+  m_DisplayCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -5814,7 +5833,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_OpenLayoutTime: 0.5
 --- !u!1001 &3780216408175863681
 PrefabInstance:
   m_ObjectHideFlags: 0
