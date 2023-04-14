@@ -9,6 +9,11 @@ public class ItemDescriptionDisplayer : MonoBehaviour
     [SerializeField] private AdaptUISize m_SelfSize = null;
     [SerializeField] private AdaptUILayoutSize m_ContainerLayout = null;
 
+    private void Update()
+    {
+        transform.position = Input.mousePosition;
+    }
+
     public virtual void Initialize(InventoryObject inventoryObject)
     {
         m_ContainerLayout.AdaptSize();
