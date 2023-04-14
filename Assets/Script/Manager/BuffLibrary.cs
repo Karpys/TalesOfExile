@@ -1,22 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BuffLibrary : SingletonMonoBehavior<BuffLibrary>
 {
-    public BuffKey[] Library = null;
-    
+    [SerializeField] private GenericObjectLibrary<Buff, BuffType> Library = null;
+
+    private void Awake()
+    {
+        Library.InitializeDictionary();
+    }
+
     public Buff GetBuffViaKey(BuffType type,BoardEntity entity)
     {
-        foreach (BuffKey buffKey in Library)
-        {
-            if (buffKey.Type == type)
-            {
-                Buff buff = Instantiate(buffKey.Buff,entity.transform);
-                return buff;
-            }
-        }
+        Buff buff = Library.GetViaKey(type);
 
-        Debug.LogError("No Buff Type Found " + type);
-        return null;
+        if (buff != null)
+        {
+            return Instantiate(buff, entity.transform);
+        }
+        else
+        {
+            Debug.LogError("No Buff Type Found " + type);
+            return null;
+        }
     }
 }
 

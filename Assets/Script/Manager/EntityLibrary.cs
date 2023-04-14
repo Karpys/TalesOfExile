@@ -1,21 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
 {
-    public EntityKey[] Library = null;
-    
+    [SerializeField] private GenericObjectLibrary<BoardEntity, EntityType> Library = null;
+
+    private void Awake()
+    {
+        Library.InitializeDictionary();
+    }
+
     public BoardEntity GetEntityViaKey(EntityType type)
     {
-        foreach (EntityKey entityKey in Library)
-        {
-            if (entityKey.Type == type)
-            {
-                return entityKey.Entity;
-            }
-        }
-
-        Debug.LogError("No Entity Type Found " + type);
-        return null;
+        BoardEntity entity =  Library.GetViaKey(type);
+        
+        if(entity == null)
+            Debug.LogError("No Entity Type Found " + type);
+        
+        return entity;
     }
 }
 
@@ -23,7 +25,7 @@ public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
 public class EntityKey
 {
     public BoardEntity Entity = null;
-    public EntityType Type = EntityType.Balista;
+    public EntityType Type = EntityType.None;
 }
 
 public enum EntityType

@@ -9,6 +9,7 @@ public class EquipementObject:InventoryObject
     private Modifier[] m_AdditionalModifiers = Array.Empty<Modifier>();
 
     private bool m_IsEquiped = false;
+    private Rarity m_EquipementRarity = Rarity.Null;
     public EquipementObjectData BaseEquipementData => Data as EquipementObjectData;
     public Modifier[] ItemModifiers => GetAllModifiers();
     
@@ -27,6 +28,20 @@ public class EquipementObject:InventoryObject
         itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
         return itemButtonParameters;
     }
+    
+    #region Rarity
+    
+    public void SetRarity(Rarity rarity)
+    {
+        m_EquipementRarity = rarity;
+    }
+
+    protected override Rarity GetRarity()
+    {
+        global::Rarity itemRarity = m_EquipementRarity == Rarity.Null ? Data.Rarity : m_EquipementRarity;
+        return itemRarity;
+    }
+    #endregion
 
     #region Equip
     private void TryEquip()

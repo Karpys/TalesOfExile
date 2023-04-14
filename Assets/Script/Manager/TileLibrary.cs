@@ -1,19 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class TileLibrary : SingletonMonoBehavior<TileLibrary>
 {
-    [SerializeField] private TileKey[] m_TileKeys = null;
+    [SerializeField] private GenericObjectLibrary<WorldTile, TileType> m_TileLibrary = null;
+
+    private void Awake()
+    {
+        m_TileLibrary.InitializeDictionary();
+    }
 
     public WorldTile GetTileViaKey(TileType type)
     {
-        foreach (TileKey key in m_TileKeys)
-        {
-            if (key.Type == type)
-                return key.Tile;
-        }
-        
-        Debug.LogError("Tile Not found : " + type);
-        return null;
+        return m_TileLibrary.GetViaKey(type);
     }
 }
 

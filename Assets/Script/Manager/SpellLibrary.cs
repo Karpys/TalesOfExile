@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
 {
     [SerializeField] private List<SpellData> m_SpellList = new List<SpellData>();
-
     public Dictionary<string, SpellData> Spells = new Dictionary<string, SpellData>();
 
     private void Awake()
