@@ -3,11 +3,12 @@
 public class ItemHolderPointer : UIPointer
 {
     [SerializeField] private InventoryUIHolder m_ItemHolder = null;
-    [SerializeField] private EquipementItemDescriptionDisplayer m_DisplayerPrefab = null; 
+    [SerializeField] private EquipementItemDescriptionDisplayer m_EquipementDisplayer = null; 
+    [SerializeField] private ItemDescriptionDisplayer m_ItemDisplayer = null; 
     [SerializeField] private float m_DisplayDuration = 1f;
 
     private Clock m_EventClock = null;
-    private EquipementItemDescriptionDisplayer m_Displayer = null;
+    private ItemDescriptionDisplayer m_Displayer = null;
     private void Update()
     {
         if(m_EventClock != null)
@@ -33,7 +34,21 @@ public class ItemHolderPointer : UIPointer
 
     private void DisplayItemDescription()
     {
-        m_Displayer = Instantiate(m_DisplayerPrefab, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
-        m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+        switch (m_ItemHolder.InventoryObject.Data.ObjectType)
+        {
+            case ObjectType.DefaultObject:
+                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+                break;
+            case ObjectType.Equipement:
+                m_Displayer = Instantiate(m_EquipementDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+                break;
+            default:
+                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+                Debug.LogError("Display type displayer not implemented" + m_ItemHolder.InventoryObject.Data.ObjectType);
+                break;
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EquipementItemDescriptionDisplayer : ItemDescriptionDisplayer
 {
+    [Header("Equipement Parameters")]
     [SerializeField] private AdaptUILayoutSize m_ModifierLayout = null;
     [SerializeField] private TMP_Text m_ModifierTextPrefab = null; 
 

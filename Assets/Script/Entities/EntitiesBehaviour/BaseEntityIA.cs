@@ -99,14 +99,34 @@ public class BaseEntityIA:EntityBehaviour
             .Where(s => s.Data.SpellType == SpellType.Buff)
             .Cast<TriggerSpellData>()
             .Where(s => s.IsCooldownReady())
+            .Where(s => s.SpellTrigger.SpellPriority > 0)
             .OrderByDescending(s => s.SpellTrigger.SpellPriority)
             .ToList();
 
         if (buffs.Count == 0 || buffs[0].SpellTrigger.SpellPriority <= 0)
             return false;
+
+        int buffId = 0;
+        Vector2Int targetPosition = Vector2Int.zero;
         
-        Vector2Int targetPosition = m_Target.EntityPosition;
-        m_AttachedEntity.CastSpellAt(buffs[0],targetPosition);
+        for (; buffId < buffs.Count; buffId++)
+        {
+            Zone allowedCastZone = buffs[buffId].TriggerData.AllowedCastZone;
+            SpellCastUtils.GetSpellTargetOrigin(buffs[buffId],ref targetPosition);
+            
+            if (allowedCastZone.DisplayType != ZoneType.NONE)
+            {
+                if(!ZoneTileManager.IsInRange(buffs[buffId],m_Target.EntityPosition,allowedCastZone))
+                    continue;
+            }
+            
+            break;
+        }
+
+        if (buffId >= buffs.Count)
+            return false;
+        
+        m_AttachedEntity.CastSpellAt(buffs[buffId],targetPosition);
         return true;
     }
 

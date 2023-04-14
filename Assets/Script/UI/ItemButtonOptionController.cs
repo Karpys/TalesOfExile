@@ -47,12 +47,13 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         }
         
         StartLayoutScroll();
-        Place((RectTransform)inventoryUI.transform);
+        Place(inventoryUI.OptionButtonPosition);
     }
 
     private void Place(RectTransform inventoryUIObject)
     {
-        transform.position = inventoryUIObject.position + new Vector3(inventoryUIObject.rect.width / 2, 0, 0) + new Vector3(m_ButtonRectDimension.x / 2, m_ButtonRectDimension.y / 2);
+        //transform.position = inventoryUIObject.position + new Vector3(inventoryUIObject.rect.width / 2, 0, 0) + new Vector3(m_ButtonRectDimension.x / 2, m_ButtonRectDimension.y / 2);
+        transform.position = inventoryUIObject.position;
     }
 
     public void Clear()

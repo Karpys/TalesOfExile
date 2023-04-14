@@ -38,7 +38,11 @@ public static class SpellCastUtils
                 
                 newOrigin = tileSelection[Random.Range(0, tileSelection.Count)].TilePosition;
                 break;
+            //Default Target position
+            case SpellOriginType.ClosestEnemy:
+                break;
             default:
+                Debug.LogError("Return target position per default due to spell target origin not implemented");
                 break;
         }
     }

@@ -15,8 +15,11 @@ public class InventoryUIHolder:MonoBehaviour
     [SerializeField] private TMP_Text m_SellPrice = null;
     [SerializeField] private Image m_IsEquiped = null;
 
+    [Header("Option Button Transform")] 
+    [SerializeField] private RectTransform m_OptionButtonPosition = null;
     private InventoryObject m_InventoryObject = null;
     public InventoryObject InventoryObject => m_InventoryObject;
+    public RectTransform OptionButtonPosition => m_OptionButtonPosition;
     
     public void InitalizeUIHolder(InventoryObject inventoryObject)
     {
