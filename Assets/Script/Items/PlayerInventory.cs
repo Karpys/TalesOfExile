@@ -15,6 +15,13 @@ public class PlayerInventory : MonoBehaviour,ISaver
     public void PickUp(InventoryObject inventoryObject)
     {
         m_PlayerInventory.Add(inventoryObject);
+        PrintItemPickUp(inventoryObject);
+    }
+
+    private void PrintItemPickUp(InventoryObject inventoryObject)
+    {
+        string colorCode = ColorUtility.ToHtmlStringRGB(RarityLibrary.Instance.GetParametersViaKey(inventoryObject.Rarity).RarityColor);
+        Debug.Log("<color=#"+ colorCode+">" + inventoryObject.Data.ObjectName + " Item picked up : "+ inventoryObject.Rarity + "</color>");
     }
 
     

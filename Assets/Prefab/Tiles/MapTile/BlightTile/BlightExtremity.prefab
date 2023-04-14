@@ -63,13 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LootZoneSelection:
-    Origin: 0
     DisplayType: 0
     Range: 4
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
   m_IsStatic: 1
   m_DrawCount: 10
   m_ChestObjectPool:
@@ -84,6 +79,16 @@ MonoBehaviour:
       - m_Weight: 33
         m_Object: {fileID: 11400000, guid: ea1d3f6286e1ed44eb11610431fe664b, type: 2}
     m_DrawChance: 100
+    m_RarityDraw:
+      m_WeightEnum:
+      - m_Weight: 65
+        m_Enum: 0
+      - m_Weight: 20
+        m_Enum: 1
+      - m_Weight: 10
+        m_Enum: 2
+      - m_Weight: 5
+        m_Enum: 3
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

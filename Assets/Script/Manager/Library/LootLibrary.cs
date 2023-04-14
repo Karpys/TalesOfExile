@@ -62,6 +62,7 @@ public class InventoryPoolObject
                 itemDrawn.Add(item);
 
                 //Additional Modifier based on rarity drawn
+                Debug.Log("Try set rarity");
                 if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
                 {
                     ((EquipementObject)item).SetRarity(m_RarityDraw.Draw());

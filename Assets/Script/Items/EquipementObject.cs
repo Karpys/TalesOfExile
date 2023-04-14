@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.iOS;
 
 public class EquipementObject:InventoryObject
 {
@@ -38,7 +39,7 @@ public class EquipementObject:InventoryObject
 
     protected override Rarity GetRarity()
     {
-        global::Rarity itemRarity = m_EquipementRarity == Rarity.Null ? Data.Rarity : m_EquipementRarity;
+        Rarity itemRarity = m_EquipementRarity == Rarity.Null ? Data.Rarity : m_EquipementRarity;
         return itemRarity;
     }
     #endregion
