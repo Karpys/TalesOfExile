@@ -84,7 +84,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         //Foreach Damage Sources//
         foreach (DamageSource damageSource in DamageSources.Values)
         {
-            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource,mainDamageType); //DamageSource);
+            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource,mainDamageType,spellData); //DamageSource);
         }
         
         entity.TakeDamage(totalDamage);

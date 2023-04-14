@@ -5,17 +5,18 @@ public class BoardEntityEventHandler : MonoBehaviour
 {
     public Action<IntSocket> OnRequestBlockSpell = null;
     public Action OnDeath = null;
-    public Action<BoardEntity,DamageSource> OnGetDamageFrom = null;
-    public Action<BoardEntity,DamageSource> OnDoDamageTo = null;
+    //TriggerSpellData can be null
+    public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFrom = null;
+    public Action<BoardEntity,DamageSource,TriggerSpellData> OnDoDamageTo = null;
     public Action<BoardEntity> OnSpellRecompute = null;
-    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource)
+    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource,TriggerSpellData spellDamage)
     {
-        OnGetDamageFrom?.Invoke(damageFrom,damageSource);
+        OnGetDamageFrom?.Invoke(damageFrom,damageSource,spellDamage);
     }
 
-    public void TriggerDoDamageAction(BoardEntity damageTo, DamageSource damageSource)
+    public void TriggerDoDamageAction(BoardEntity damageTo, DamageSource damageSource,TriggerSpellData spellDamage)
     {
-        OnDoDamageTo?.Invoke(damageTo,damageSource);
+        OnDoDamageTo?.Invoke(damageTo,damageSource,spellDamage);
     }
 }
 

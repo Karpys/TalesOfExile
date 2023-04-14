@@ -13,7 +13,7 @@ public class RockThrowBuff : Buff
         m_Receiver.EntityEvent.OnSpellRecompute += Trigger.SpellTrigger.ComputeSpellData;
     }
 
-    private void AddRockThrowCallBack(BoardEntity receiver,DamageSource damageSource)
+    private void AddRockThrowCallBack(BoardEntity receiver,DamageSource damageSource,TriggerSpellData _)
     {
         if(damageSource.DamageType != SubDamageType.Physical)
             return;
