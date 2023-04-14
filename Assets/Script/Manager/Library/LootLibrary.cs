@@ -66,6 +66,7 @@ public class InventoryPoolObject
                 if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
                 {
                     ((EquipementObject)item).SetRarity(m_RarityDraw.Draw());
+                    
                 }
             }
         }

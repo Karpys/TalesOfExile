@@ -37,15 +37,15 @@ public class ItemHolderPointer : UIPointer
         switch (m_ItemHolder.InventoryObject.Data.ObjectType)
         {
             case ObjectType.DefaultObject:
-                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
                 m_Displayer.Initialize(m_ItemHolder.InventoryObject);
                 break;
             case ObjectType.Equipement:
-                m_Displayer = Instantiate(m_EquipementDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer = Instantiate(m_EquipementDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
                 m_Displayer.Initialize(m_ItemHolder.InventoryObject);
                 break;
             default:
-                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, transform.parent.transform.parent);
+                m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
                 m_Displayer.Initialize(m_ItemHolder.InventoryObject);
                 Debug.LogError("Display type displayer not implemented" + m_ItemHolder.InventoryObject.Data.ObjectType);
                 break;

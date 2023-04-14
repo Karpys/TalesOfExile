@@ -1305,6 +1305,7 @@ Transform:
   - {fileID: 1768161518}
   - {fileID: 1493676827}
   - {fileID: 457633353}
+  - {fileID: 908946939}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1341,7 +1342,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -3150,6 +3151,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906939485}
   m_CullTransparentMesh: 1
+--- !u!1 &908946938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908946939}
+  - component: {fileID: 908946940}
+  m_Layer: 0
+  m_Name: ModifierPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &908946939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908946938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 313424675}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &908946940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908946938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d69d7b8ff6240cf937ff801e5254f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TierPool:
+    m_Keys:
+    - Object: {fileID: 11400000, guid: 28108cce97e679547bf241a22113b69e, type: 2}
+      Type: 1
 --- !u!1 &968307416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,6 +3489,7 @@ GameObject:
   - component: {fileID: 1072997885}
   - component: {fileID: 1072997884}
   - component: {fileID: 1072997883}
+  - component: {fileID: 1072997887}
   m_Layer: 5
   m_Name: GlobalCanvas
   m_TagString: Untagged
@@ -3533,6 +3582,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1072997887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072997882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb819017deb4ae8b7c176d62a14ff78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1140441087
 GameObject:
   m_ObjectHideFlags: 0

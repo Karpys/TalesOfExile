@@ -35,6 +35,7 @@ public class EquipementObject:InventoryObject
     public void SetRarity(Rarity rarity)
     {
         m_EquipementRarity = rarity;
+        ModifierUtils.GiveModifier(this,BaseEquipementData.EquipementTier);
     }
 
     protected override Rarity GetRarity()
@@ -70,6 +71,11 @@ public class EquipementObject:InventoryObject
             Modifier modifier = BaseEquipementData.EquipementBaseModifiers[i];
             m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
         }
+    }
+
+    public void SetAdditionalModifiers(Modifier[] modifiers)
+    {
+        m_AdditionalModifiers = modifiers;
     }
     private Modifier[] GetAllModifiers()
     {

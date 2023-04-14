@@ -60,4 +60,19 @@ public static class ModifierUtils
                 break;
         }
     }
+
+    //Need to be call with a modifier count
+    //Cant draww same modifier twice
+    public static void GiveModifier(EquipementObject equipementObject, Tier targetTier)
+    {
+        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier);
+        RangeModifier rangedModifier = targetPool.Modifier.Draw();
+        
+        //Add Switch Case for non float/int modifier like spell addition
+        Modifier[] modifiers = new Modifier[1];
+        
+        string modifierValue = ((int) Random.Range(rangedModifier.Range.x, rangedModifier.Range.y + 1)).ToString();
+        modifiers[0] = new Modifier(rangedModifier.Type, modifierValue);
+        equipementObject.SetAdditionalModifiers(modifiers);
+    }
 }

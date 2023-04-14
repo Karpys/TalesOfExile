@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 /// Use StaticWeightElementDraw if called multiple times
 /// </summary>
 [System.Serializable]
-public class WeightElementDraw<T> where T:Object
+public class WeightElementDraw<T> where T:class
 {
     [SerializeField] private WeightElement<T>[] m_WeightElement = null;
 
