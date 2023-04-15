@@ -25,8 +25,8 @@ public class ModifierLibraryController : SingletonMonoBehavior<ModifierLibraryCo
 [System.Serializable]
 public class ModifierPool
 {
-    [SerializeField] private WeightElementDraw<RangeModifier> m_Modifiers = new WeightElementDraw<RangeModifier>();
-    public  WeightElementDraw<RangeModifier>  Modifier => m_Modifiers;
+    [SerializeField] private MultipleWeightElementDraw<RangeModifier> m_Modifiers = new MultipleWeightElementDraw<RangeModifier>();
+    public  MultipleWeightElementDraw<RangeModifier>  Modifier => m_Modifiers;
 }
 
 [System.Serializable]

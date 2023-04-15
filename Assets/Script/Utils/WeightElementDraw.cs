@@ -10,8 +10,7 @@ using Random = UnityEngine.Random;
 [System.Serializable]
 public class WeightElementDraw<T> where T:class
 {
-    [SerializeField] private WeightElement<T>[] m_WeightElement = null;
-
+    [SerializeField] protected WeightElement<T>[] m_WeightElement = null;
     public T Draw()
     {
         float totalWeight = GetTotalWeight();

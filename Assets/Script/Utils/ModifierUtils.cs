@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public static class ModifierUtils
 {
@@ -63,16 +65,18 @@ public static class ModifierUtils
 
     //Need to be call with a modifier count
     //Cant draww same modifier twice
-    public static void GiveModifier(EquipementObject equipementObject, Tier targetTier)
+    public static void GiveModifierBasedOnRarity(EquipementObject equipementObject,int modifierCount,Tier targetTier)
     {
         ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier);
-        RangeModifier rangedModifier = targetPool.Modifier.Draw();
-        
-        //Add Switch Case for non float/int modifier like spell addition
-        Modifier[] modifiers = new Modifier[1];
-        
-        string modifierValue = ((int) Random.Range(rangedModifier.Range.x, rangedModifier.Range.y + 1)).ToString();
-        modifiers[0] = new Modifier(rangedModifier.Type, modifierValue);
+
+        Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();
         equipementObject.SetAdditionalModifiers(modifiers);
+    }
+
+    public static Modifier RangeToModifier(this RangeModifier rangeModifier)
+    {
+        //Add Switch Case for non float/int modifier like spell addition
+        string modifierValue = ((int) Random.Range(rangeModifier.Range.x, rangeModifier.Range.y + 1)).ToString();
+        return new Modifier(rangeModifier.Type, modifierValue);
     }
 }

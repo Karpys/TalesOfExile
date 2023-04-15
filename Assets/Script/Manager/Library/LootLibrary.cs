@@ -65,7 +65,8 @@ public class InventoryPoolObject
                 Debug.Log("Try set rarity");
                 if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
                 {
-                    ((EquipementObject)item).SetRarity(m_RarityDraw.Draw());
+                    Rarity rarityDrawn = m_RarityDraw.Draw();
+                    ((EquipementObject)item).InitializeRarity(rarityDrawn,RarityLibrary.Instance.GetParametersViaKey(rarityDrawn));
                     
                 }
             }

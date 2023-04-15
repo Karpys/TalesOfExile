@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -1587,21 +1587,25 @@ MonoBehaviour:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 0}
         m_RarityColor: {r: 0.26326096, g: 0.3564067, b: 0.6415094, a: 1}
+        m_RarityModifierDrawCount: 1
       Type: 0
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 0}
         m_RarityColor: {r: 0.28773582, g: 1, b: 0.42846793, a: 1}
+        m_RarityModifierDrawCount: 2
       Type: 1
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 0}
         m_RarityColor: {r: 0.96592265, g: 0.48584908, b: 1, a: 1}
+        m_RarityModifierDrawCount: 3
       Type: 2
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 0}
         m_RarityColor: {r: 1, g: 0.89594764, b: 0.514151, a: 1}
+        m_RarityModifierDrawCount: 5
       Type: 3
 --- !u!1 &460652342
 GameObject:
