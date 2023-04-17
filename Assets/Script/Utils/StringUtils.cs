@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 
 public static class StringUtils
@@ -42,5 +43,25 @@ public static class StringUtils
         if(classType == null)
             Debug.LogError("Class Name Dont exist " + className);
         return classType;
+    }
+
+    public static void GetConstructorsFields(Type targetClass,out string[] fieldsName,int constructor,int ignoreParamCount)
+    {
+        if (targetClass.GetConstructors().Length <= constructor)
+        {
+            fieldsName = Array.Empty<string>();
+            return;
+        }
+                
+        ConstructorInfo constructorInfo = targetClass.GetConstructors()[constructor];
+        
+        fieldsName = new string[constructorInfo.GetParameters().Length - ignoreParamCount];
+        ParameterInfo[] infos = constructorInfo.GetParameters();
+            
+        for (var i = 0; i < infos.Length - ignoreParamCount; i++)
+        {
+            var parameterInfo = infos[i + ignoreParamCount];
+            fieldsName[i] = char.ToUpper(parameterInfo.Name[0]) + parameterInfo.Name.Substring(1);//+ " " + parameterInfo.ParameterType;
+        }
     }
 }

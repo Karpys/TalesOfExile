@@ -5,6 +5,16 @@ using UnityEngine;
 public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable
 {
     [SerializeField] private string m_TriggerClassName = string.Empty;
+    #region Editor Use Only
+    [SerializeField][HideInInspector] private string[] m_AdditionalParameters = null;
+
+    public string TriggerClassName => m_TriggerClassName;
+    public string[] AdditionalParameters
+    {
+        set => m_AdditionalParameters = value;
+        get => m_AdditionalParameters;
+    }
+    #endregion
     
     public override BaseSpellTrigger SetUpTrigger()
     {
@@ -14,14 +24,13 @@ public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable
         if(triggerClass == null)
             Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
 
-        string[] spellVariation = StringUtils.ExtractParameterLessVariable(className);
-        object[] attributes = new object[1+spellVariation.Length];
+        object[] attributes = new object[1+m_AdditionalParameters.Length];
         
         attributes[0] = this;
 
-        for (int i = 0; i < spellVariation.Length; i++)
+        for (int i = 0; i < m_AdditionalParameters.Length; i++)
         {
-            attributes[i + 1] = spellVariation[i];
+            attributes[i + 1] = m_AdditionalParameters[i];
         }
         
         return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);

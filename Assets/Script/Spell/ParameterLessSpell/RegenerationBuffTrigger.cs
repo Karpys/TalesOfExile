@@ -1,4 +1,6 @@
-﻿public class RegenerationBuffTrigger : SelectionSpellTrigger
+﻿using UnityEngine;
+
+public class RegenerationBuffTrigger : SelectionSpellTrigger
 {
     private int m_RegenerationDuration = 0;
     private float m_RegenerationValue = 0;

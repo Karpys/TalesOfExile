@@ -7,13 +7,13 @@ public class KnockBackTrigger : DamageSpellTrigger
     private List<BoardEntity> m_EntityHits = new List<BoardEntity>();
     private int m_RepulseForce = 2;
 
+    
+    
+    public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
+    
     public KnockBackTrigger(DamageSpellScriptable damageSpellData, string repulseForce) : base(damageSpellData)
     {
         m_RepulseForce = int.Parse(repulseForce);
-    }
-    
-    public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
-    {
     }
     
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)

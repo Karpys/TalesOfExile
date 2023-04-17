@@ -16,3 +16,4 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
   m_TriggerClassName: IceWallTrigger
+  m_AdditionalParameters: []

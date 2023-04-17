@@ -15,4 +15,5 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
-  m_TriggerClassName: RegenerationBuffTrigger:6:50
+  m_TriggerClassName: RegenerationBuffTrigger
+  m_AdditionalParameters: []
