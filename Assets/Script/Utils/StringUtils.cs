@@ -45,23 +45,27 @@ public static class StringUtils
         return classType;
     }
 
-    public static void GetConstructorsFields(Type targetClass,out string[] fieldsName,int constructor,int ignoreParamCount)
+    public static void GetConstructorsFields(Type targetClass,out string[] fieldsName,out FieldValue[] fieldsValues,int constructor,int ignoreParamCount)
     {
         if (targetClass.GetConstructors().Length <= constructor)
         {
             fieldsName = Array.Empty<string>();
+            fieldsValues = Array.Empty<FieldValue>();
             return;
         }
                 
         ConstructorInfo constructorInfo = targetClass.GetConstructors()[constructor];
+        FieldValue fieldConstructor = new FieldValue(FieldType.Empty,"empty");
         
         fieldsName = new string[constructorInfo.GetParameters().Length - ignoreParamCount];
+        fieldsValues = new FieldValue[fieldsName.Length];
         ParameterInfo[] infos = constructorInfo.GetParameters();
             
         for (var i = 0; i < infos.Length - ignoreParamCount; i++)
         {
-            var parameterInfo = infos[i + ignoreParamCount];
+            ParameterInfo parameterInfo = infos[i + ignoreParamCount];
             fieldsName[i] = char.ToUpper(parameterInfo.Name[0]) + parameterInfo.Name.Substring(1);//+ " " + parameterInfo.ParameterType;
+            fieldsValues[i] = fieldConstructor.GetField(parameterInfo.ParameterType.ToString());
         }
     }
 }

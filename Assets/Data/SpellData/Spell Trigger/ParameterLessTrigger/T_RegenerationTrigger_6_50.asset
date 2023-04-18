@@ -16,4 +16,8 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
   m_TriggerClassName: RegenerationBuffTrigger
-  m_AdditionalParameters: []
+  m_AdditionalParameters:
+  - Type: 0
+    Value: 6
+  - Type: 1
+    Value: 50

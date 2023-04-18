@@ -6,10 +6,10 @@ public class ParameterLessTrigger : BaseSpellTriggerScriptable
 {
     [SerializeField] private string m_TriggerClassName = string.Empty;
     #region Editor Use Only
-    [SerializeField][HideInInspector] private string[] m_AdditionalParameters = null;
+    [SerializeField] private FieldValue[] m_AdditionalParameters = Array.Empty<FieldValue>();
 
     public string TriggerClassName => m_TriggerClassName;
-    public string[] AdditionalParameters
+    public FieldValue[] AdditionalParameters
     {
         set => m_AdditionalParameters = value;
         get => m_AdditionalParameters;
@@ -31,7 +31,7 @@ public class ParameterLessTrigger : BaseSpellTriggerScriptable
 
         for (int i = 0; i < m_AdditionalParameters.Length; i++)
         {
-            attributes[i + 1] = m_AdditionalParameters[i];
+            attributes[i + 1] = m_AdditionalParameters[i].GetValue();
         }
         
         return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);

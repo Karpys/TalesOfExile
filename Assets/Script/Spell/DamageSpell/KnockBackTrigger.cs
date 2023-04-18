@@ -11,9 +11,9 @@ public class KnockBackTrigger : DamageSpellTrigger
     
     public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
     
-    public KnockBackTrigger(DamageSpellScriptable damageSpellData, string repulseForce) : base(damageSpellData)
+    public KnockBackTrigger(DamageSpellScriptable damageSpellData, int repulseForce) : base(damageSpellData)
     {
-        m_RepulseForce = int.Parse(repulseForce);
+        m_RepulseForce = repulseForce;
     }
     
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)

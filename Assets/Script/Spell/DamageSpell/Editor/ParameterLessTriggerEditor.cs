@@ -10,7 +10,7 @@ public class ParameterLessTriggerEditor : Editor
     private string m_className = string.Empty;
 
     private string[] m_FieldsName = null;
-    private string[] m_Fields = null;
+    private FieldValue[] m_FieldValues = null;
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -19,8 +19,7 @@ public class ParameterLessTriggerEditor : Editor
 
         for (int i = 0; i < m_FieldsName.Length; i++)
         {
-            string field = m_Fields[i];
-            AddStringField(field,i);
+            AddField(m_FieldValues[i],i);
         }
         
         
@@ -29,7 +28,9 @@ public class ParameterLessTriggerEditor : Editor
         
         if(GUILayout.Button("Send values"))
         {
-            m_ParameterLessTrigger.AdditionalParameters = m_Fields;
+            m_ParameterLessTrigger.AdditionalParameters = m_FieldValues;
+            EditorUtility.SetDirty(target);
+            serializedObject.ApplyModifiedProperties();
         }
     }
 
@@ -42,26 +43,39 @@ public class ParameterLessTriggerEditor : Editor
         
         if (triggerClass != null)
         {
-            StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, 1, 1);
+            StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, out m_FieldValues, 1, 1);
 
             if (m_ParameterLessTrigger.AdditionalParameters.Length > 0)
             {
-                m_Fields = new string[m_FieldsName.Length];
                 for (int i = 0; i < m_FieldsName.Length; i++)
                 {
-                    m_Fields[i] =m_ParameterLessTrigger.AdditionalParameters[i];
+                    m_FieldValues[i].Value = m_ParameterLessTrigger.AdditionalParameters[i].Value;
                 }
-            }
-            else
-            {
-                m_Fields = new string[m_FieldsName.Length];
             }
         }
     }
 
-    private void AddStringField(string paramName,int id)
+    private void AddField(FieldValue field,int id)
     {
         EditorGUILayout.LabelField(m_FieldsName[id]);
-        m_Fields[id] = EditorGUILayout.TextField(paramName);
+
+        switch (field.Type)
+        {
+            case FieldType.Int:
+                field.Value = EditorGUILayout.IntField(int.Parse(field.Value)).ToString();
+                break;
+            case FieldType.Float:
+                field.Value = EditorGUILayout.FloatField(float.Parse(field.Value)).ToString();
+                break;
+            case FieldType.String:
+                field.Value = EditorGUILayout.TextField(field.Value);
+                break;
+            case FieldType.Enum:
+                EnumFieldValue enumFieldValue = field as EnumFieldValue;
+                Enum targetEnum = Enum.Parse(enumFieldValue.EnumType,enumFieldValue.Value) as Enum;
+
+                enumFieldValue.Value = EditorGUILayout.EnumPopup(targetEnum).ToString();
+                break;
+        }
     }
 }

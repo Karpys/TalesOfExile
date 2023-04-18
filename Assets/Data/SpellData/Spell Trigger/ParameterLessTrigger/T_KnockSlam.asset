@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
   m_Name: T_KnockSlam
   m_EditorClassIdentifier: 
+  OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 82f032896e7d86a4b967fe391a122e40, type: 3}
   AdditionalAnimDatas: 0
   BaseDamageParameters:
@@ -22,3 +23,6 @@ MonoBehaviour:
       Damage: 100
       DamageType: 0
   m_TriggerClassName: KnockBackTrigger
+  m_AdditionalParameters:
+  - Type: 0
+    Value: 2

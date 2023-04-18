@@ -16,3 +16,6 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
   m_TriggerClassName: RockThrowBuffTrigger
+  m_AdditionalParameters:
+  - Type: 0
+    Value: 10

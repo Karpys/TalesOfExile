@@ -5,9 +5,9 @@
     {
     }
     
-    public RockThrowBuffTrigger(BaseSpellTriggerScriptable baseScriptable,string duration) : base(baseScriptable)
+    public RockThrowBuffTrigger(BaseSpellTriggerScriptable baseScriptable,int duration) : base(baseScriptable)
     {
-        m_Duration = int.Parse(duration);
+        m_Duration = duration;
     }
 
     protected override int GetSpellPriority()

@@ -8,10 +8,10 @@ public class RegenerationBuffTrigger : SelectionSpellTrigger
     {
     }
     
-    public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, string regenerationCooldown,string regenerationValue) : base(baseScriptable)
+    public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, int regenerationCooldown,float regenerationValue) : base(baseScriptable)
     {
-        m_RegenerationDuration = int.Parse(regenerationCooldown);
-        m_RegenerationValue = float.Parse(regenerationValue);
+        m_RegenerationDuration = regenerationCooldown;
+        m_RegenerationValue = regenerationValue;
     }
 
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
