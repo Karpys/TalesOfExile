@@ -14,10 +14,13 @@ public class InventoryObjectHolder : MonoBehaviour
     private Vector2Int m_HolderMapPosition = Vector2Int.zero;
     public Transform JumpHolder => m_JumpHolder;
 
+    private DestroyObjectCleaner m_Cleaner = null;
+
     private void Start()
     {
         m_PlayerControllerEntity = GameManager.Instance.PlayerEntity;
         GameManager.Instance.A_OnEndTurn += CheckForPickUp;
+        m_Cleaner = new DestroyObjectCleaner(gameObject);
     }
 
     private void OnDestroy()
@@ -44,5 +47,10 @@ public class InventoryObjectHolder : MonoBehaviour
     {
         m_InWorldVisual.sprite = m_InventoryObject.Data.InWorldVisual;
         m_InWorldVisual.gameObject.SetActive(true);
+    }
+
+    public void OnJumpEnd()
+    {
+        Instantiate(RarityLibrary.Instance.GetParametersViaKey(m_InventoryObject.Rarity).WorldFx, transform);
     }
 }

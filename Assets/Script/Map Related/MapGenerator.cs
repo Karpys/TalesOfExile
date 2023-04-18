@@ -26,6 +26,7 @@ public class MapGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            MapCleaner.Instance.Clean();
             ReloadMap();
         }
     }

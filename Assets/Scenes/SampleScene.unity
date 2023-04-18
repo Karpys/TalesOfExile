@@ -1538,6 +1538,49 @@ MonoBehaviour:
   m_YJumpForce: 1
   m_YJumpDuration: 0.25
   m_XMovementDuration: 0.25
+--- !u!1 &443443101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443443102}
+  - component: {fileID: 443443103}
+  m_Layer: 0
+  m_Name: Cleaner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443443102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443443101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443443103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443443101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10c340d7f644b66b2ace9d5681cd2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &457633352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,25 +1628,31 @@ MonoBehaviour:
     m_Keys:
     - Object:
         m_RaritySprite: {fileID: 0}
-        m_RarityWorldFx: {fileID: 0}
+        m_RarityWorldFx: {fileID: 3845423893102236448, guid: f66e3ffc549ed7b45ad0486bbb6427a1, type: 3}
+        m_RarityColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+        m_RarityModifierDrawCount: 5
+      Type: 5
+    - Object:
+        m_RaritySprite: {fileID: 0}
+        m_RarityWorldFx: {fileID: 3845423893102236448, guid: 1b8105d4689a06642918d77876469efe, type: 3}
         m_RarityColor: {r: 0.26326096, g: 0.3564067, b: 0.6415094, a: 1}
         m_RarityModifierDrawCount: 1
       Type: 0
     - Object:
         m_RaritySprite: {fileID: 0}
-        m_RarityWorldFx: {fileID: 0}
+        m_RarityWorldFx: {fileID: 3845423893102236448, guid: 5023af66a6fe4ca45828a49970f04798, type: 3}
         m_RarityColor: {r: 0.28773582, g: 1, b: 0.42846793, a: 1}
         m_RarityModifierDrawCount: 2
       Type: 1
     - Object:
         m_RaritySprite: {fileID: 0}
-        m_RarityWorldFx: {fileID: 0}
+        m_RarityWorldFx: {fileID: 3845423893102236448, guid: e30efb560e5fec04e8f75239a7da31d6, type: 3}
         m_RarityColor: {r: 0.96592265, g: 0.48584908, b: 1, a: 1}
         m_RarityModifierDrawCount: 3
       Type: 2
     - Object:
         m_RaritySprite: {fileID: 0}
-        m_RarityWorldFx: {fileID: 0}
+        m_RarityWorldFx: {fileID: 3845423893102236448, guid: 83244cb55cef3a04b8ecc83d6ba7e9ad, type: 3}
         m_RarityColor: {r: 1, g: 0.89594764, b: 0.514151, a: 1}
         m_RarityModifierDrawCount: 5
       Type: 3
@@ -3421,13 +3470,15 @@ MonoBehaviour:
     m_DrawChance: 12
     m_RarityDraw:
       m_WeightEnum:
-      - m_Weight: 65
+      - m_Weight: 50
+        m_Enum: 5
+      - m_Weight: 25
         m_Enum: 0
-      - m_Weight: 20
+      - m_Weight: 15
         m_Enum: 1
-      - m_Weight: 10
+      - m_Weight: 9
         m_Enum: 2
-      - m_Weight: 5
+      - m_Weight: 1
         m_Enum: 3
 --- !u!1 &1023104584
 GameObject:

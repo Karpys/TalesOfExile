@@ -67,6 +67,9 @@ public static class ModifierUtils
     //Cant draww same modifier twice
     public static void GiveModifierBasedOnRarity(EquipementObject equipementObject,int modifierCount,Tier targetTier)
     {
+        if(modifierCount <= 0)
+            return;
+        
         ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier);
 
         Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();

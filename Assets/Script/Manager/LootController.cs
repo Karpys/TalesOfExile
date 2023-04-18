@@ -32,7 +32,7 @@ public class LootController : SingletonMonoBehavior<LootController>
     private void LootJumpTo(InventoryObjectHolder worldHolder,Tile tile,float delay)
     {
         Vector3 worldTilePosition = tile.WorldTile.transform.position;
-        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration).SetDelay(delay).OnStart(worldHolder.DisplayWorldVisual);
+        worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration).SetDelay(delay).OnStart(worldHolder.DisplayWorldVisual).OnComplete(worldHolder.OnJumpEnd);
         worldHolder.JumpHolder.transform.DoLocalMove(new Vector3(0,m_YJumpForce,0),m_YJumpDuration/2).OnComplete(() =>
         {
             worldHolder.JumpHolder.transform.DoLocalMove(Vector3.zero, m_YJumpDuration / 2);
