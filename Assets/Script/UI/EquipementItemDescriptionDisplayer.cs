@@ -17,7 +17,7 @@ public class EquipementItemDescriptionDisplayer : ItemDescriptionDisplayer
         for (int i = 0; i < modifiers.Length; i++)
         {
             TMP_Text modifierText = Instantiate(m_ModifierTextPrefab, m_ModifierLayout.transform);
-            modifierText.text = modifiers[i].Type.ToString() + " " + modifiers[i].Value;
+            modifierText.text = ModifierUtils.GetModifierDescription(modifiers[i]);
         }
         
         m_ModifierLayout.AdaptSize();

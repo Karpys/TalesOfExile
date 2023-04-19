@@ -18,4 +18,4 @@ MonoBehaviour:
   m_TriggerClassName: IceWallTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: IceWall
+    Value: TileType IceWall

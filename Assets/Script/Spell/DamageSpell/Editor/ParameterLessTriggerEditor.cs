@@ -28,7 +28,14 @@ public class ParameterLessTriggerEditor : Editor
         
         if(GUILayout.Button("Send values"))
         {
-            m_ParameterLessTrigger.AdditionalParameters = m_FieldValues;
+            m_ParameterLessTrigger.AdditionalParameters = new FieldValue[m_FieldValues.Length];
+            
+            for (int i = 0; i < m_FieldValues.Length; i++)
+            {
+                FieldValue fieldValue = m_FieldValues[i];
+                m_ParameterLessTrigger.AdditionalParameters[i] = new FieldValue(fieldValue.Type, fieldValue.Value);
+            }
+
             EditorUtility.SetDirty(target);
             serializedObject.ApplyModifiedProperties();
         }
@@ -72,9 +79,9 @@ public class ParameterLessTriggerEditor : Editor
                 break;
             case FieldType.Enum:
                 EnumFieldValue enumFieldValue = field as EnumFieldValue;
-                Enum targetEnum = Enum.Parse(enumFieldValue.EnumType,enumFieldValue.Value) as Enum;
+                Enum targetEnum = Enum.Parse(enumFieldValue.EnumType,enumFieldValue.Value.Split()[1]) as Enum;
 
-                enumFieldValue.Value = EditorGUILayout.EnumPopup(targetEnum).ToString();
+                enumFieldValue.Value = enumFieldValue.EnumType + " " + EditorGUILayout.EnumPopup(targetEnum).ToString();
                 break;
         }
     }

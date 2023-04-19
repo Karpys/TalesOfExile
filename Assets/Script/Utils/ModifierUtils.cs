@@ -63,6 +63,35 @@ public static class ModifierUtils
         }
     }
 
+    /*switch (modifier.Type)
+    {
+        case ModifierType.UpCold:
+        case ModifierType.UpFire:
+        case ModifierType.UpPhysical:
+        case ModifierType.IncreaseMaxLife:
+        case ModifierType.SpellAddition:
+    }*/
+    
+    public static string GetModifierDescription(Modifier modifier)
+    {
+        switch (modifier.Type)
+        {
+            case ModifierType.UpCold:
+                return "+" + modifier.Value + "% Cold damage";
+            case ModifierType.UpFire:
+                return "+" + modifier.Value + "% Fire damage";
+            case ModifierType.UpPhysical:
+                return "+" + modifier.Value + "% Physical damage";
+            case ModifierType.IncreaseMaxLife:
+                return "+" + modifier.Value + " Maximum life";
+            case ModifierType.SpellAddition:
+                return "Add " + modifier.Value + " spell";
+            default:
+                Debug.LogError("Modifier type has not been set up " + modifier.Type);
+                return "Not Recognised";
+        }
+    }
+
     //Need to be call with a modifier count
     //Cant draww same modifier twice
     public static void GiveModifierBasedOnRarity(EquipementObject equipementObject,int modifierCount,Tier targetTier)

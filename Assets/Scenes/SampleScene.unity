@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,7 +1630,7 @@ MonoBehaviour:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: f66e3ffc549ed7b45ad0486bbb6427a1, type: 3}
         m_RarityColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
-        m_RarityModifierDrawCount: 5
+        m_RarityModifierDrawCount: 0
       Type: 5
     - Object:
         m_RaritySprite: {fileID: 0}

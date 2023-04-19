@@ -22,7 +22,7 @@ public class FieldValue
                 System.Type enumType = System.Type.GetType(type);
                 if (enumType != null)
                 {
-                    return new EnumFieldValue(FieldType.Enum, "0", type);
+                    return new EnumFieldValue(FieldType.Enum, "0 0", type);
                 }else
                 {
                     Debug.LogError("Type has not been implemented");
@@ -46,8 +46,8 @@ public class FieldValue
             case FieldType.Float:
                 return float.Parse(Value);
             case FieldType.Enum:
-                EnumFieldValue enumFieldValue = this as EnumFieldValue;
-                return Enum.Parse(enumFieldValue.EnumType, Value);
+                System.Type enumType = System.Type.GetType(Value.Split()[0]);
+                return Enum.Parse(enumType, Value.Split()[1]);
             case FieldType.String:
                 return Value;
             default:

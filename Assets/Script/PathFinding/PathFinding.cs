@@ -10,6 +10,7 @@ public enum NeighbourType
 }
 public static class PathFinding
 {
+    private const int MAX_ITERATION_COUNT = 100;
     public static MapData mapData = null;
     public static NeighbourType NeighbourType = NeighbourType.Square;
     public static Tile FindClosestTile(Vector2Int startPos, Vector2Int playerPos,bool ignoreWall = false)
@@ -108,12 +109,17 @@ public static class PathFinding
     //Core//
     public static Tile FindLastTile(Tile startTile, Tile playerTile,bool ignoreWall = false)
     {
+        int iterationCount = 0;
         List<Tile> openSet = new List<Tile>();
         HashSet<Tile> closeSet = new HashSet<Tile>();
         openSet.Add(startTile);
 
         while (openSet.Count > 0)
         {
+            if (iterationCount >= MAX_ITERATION_COUNT)
+                return openSet[0]; 
+                    
+            iterationCount += 1;
             Tile currentTile = openSet[0];
 
             for (int i = 1; i < openSet.Count; i++)
@@ -162,6 +168,7 @@ public static class PathFinding
                 }
             }
         }
+        Debug.Log("Iteration count: " + iterationCount);
 
         return startTile;
     }
