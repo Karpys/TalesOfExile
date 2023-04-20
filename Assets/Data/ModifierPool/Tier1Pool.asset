@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Tier1Pool
   m_EditorClassIdentifier: 
   m_ModifierPool:
-    m_Tier: 1
     m_Modifiers:
       m_WeightElement:
       - m_Weight: 25
@@ -30,5 +29,5 @@ MonoBehaviour:
           m_Range: {x: 10, y: 20}
       - m_Weight: 25
         m_Object:
-          m_Type: 4
+          m_Type: 21
           m_Range: {x: 20, y: 50}

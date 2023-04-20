@@ -34,9 +34,12 @@ public class BuffKey
 }
 public enum BuffType
 {
-    None,
-    ModifierBuff,
-    RegenerationBuff,
-    SilenceDebuff,
-    RockThrowBuff,
+    None = -1,
+    //Buff type// 0 => 100//
+    ModifierBuff = 0,
+    RegenerationBuff = 1,
+    RockThrowBuff = 2,
+    //Debuff// 101 => 200//
+    SilenceDebuff = 101,
+    //Mark / Misc// 201 +//
 }
