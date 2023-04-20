@@ -35,7 +35,6 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         for (int i = 0; i < tilesPosition.Count; i++)
         {
             Color color = targetColor ?? Color.white;
-
             SpriteRenderer renderer = m_CurrentTiles[i + m_LockTilesCount];
             renderer.gameObject.SetActive(true);
             renderer.transform.position = MapData.Instance.GetTilePosition(tilesPosition[i].x,tilesPosition[i].y);
@@ -68,5 +67,11 @@ public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager
         {
             m_CurrentTiles[i].gameObject.SetActive(false);
         }
+    }
+
+    public void DebugHighlight(Vector2Int position,float alpha = 1)
+    {
+        GameObject obj = Instantiate(m_HighlightTile, MapData.Instance.GetTilePosition(position), Quaternion.identity, transform);
+        obj.GetComponent<SpriteRenderer>().color = obj.GetComponent<SpriteRenderer>().color.setAlpha(alpha);
     }
 }

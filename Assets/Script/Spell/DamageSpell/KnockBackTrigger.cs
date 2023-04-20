@@ -7,7 +7,7 @@ public class KnockBackTrigger : DamageSpellTrigger
     private List<BoardEntity> m_EntityHits = new List<BoardEntity>();
     private int m_RepulseForce = 2;
 
-    
+    private TriggerSpellData m_RangeAutoTrigger = null;
     
     public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
     
@@ -19,6 +19,7 @@ public class KnockBackTrigger : DamageSpellTrigger
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         m_EntityHits.Clear();
+        m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto") as TriggerSpellData;
         base.Trigger(spellData, spellTiles);
     }
 
@@ -34,7 +35,9 @@ public class KnockBackTrigger : DamageSpellTrigger
 
         for (int i = 0; i < m_RepulseForce; i++)
         {
+            Debug.Log("Entity position :" + entity.EntityPosition);
             Vector2Int opposite = TileHelper.GetOppositePositionFrom(entity.EntityPosition, spellData.AttachedEntity.EntityPosition);
+            
             
             if (MapData.Instance.IsWalkable(opposite))
             {
@@ -47,7 +50,10 @@ public class KnockBackTrigger : DamageSpellTrigger
                 break;
             }
         }
-
+        
+        if(m_RangeAutoTrigger != null)
+            spellData.AttachedEntity.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition);
+        
         UpdateEntityPosition(entity);
     }
 

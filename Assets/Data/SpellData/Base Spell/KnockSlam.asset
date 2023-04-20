@@ -17,11 +17,11 @@ MonoBehaviour:
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: eb025c6215c680b4996d4c76eae093a0, type: 2}
-  m_BaseCooldown: 0
+  m_BaseCooldown: 8
   m_Selection:
   - Origin: 0
     Zone:
-      DisplayType: 1
+      DisplayType: 0
       Range: 3
     ValidationType:
       NeedValidation: 1

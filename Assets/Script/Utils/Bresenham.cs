@@ -17,7 +17,7 @@ namespace Bresenhams
 
         public static List<Vector2Int> GetPath(Vector2Int from, Vector2Int to)
         {
-            return GetPath(from.x, from.y,to.x, to.y);
+            return GetPathDDA(from.x, from.y,to.x, to.y);
         }
         public static List<Vector2Int> GetPath(int x0, int y0, int x1, int y1)
         {
@@ -41,6 +41,38 @@ namespace Bresenhams
 
             points.Remove(startPath);
             return points;
+        }
+
+        public static List<Vector2Int> GetPathDDA(int x0, int y0, int x1, int y1)
+        {
+            List<Vector2Int> vertices = new List<Vector2Int>();
+
+            int deltaX = x1 - x0;
+            int deltaY = y1 - y0;
+            if (deltaX == deltaY && deltaX * deltaY == 0) return vertices;
+
+        
+            int step = Math.Abs(deltaX) > Math.Abs(deltaY) ? Math.Abs(deltaX) : Math.Abs(deltaY);
+
+            // x(k + 1) = xk + x'
+            double stepX = deltaX * 1.0 / step;
+            double stepY = deltaY * 1.0 / step;
+
+            //vertices.Add(new Vector2Int(x0, y0));
+
+            double xCurrent = x0;
+            double yCurrent = y0;
+
+
+            for (int i = 0; i < step; i++)
+            {
+                xCurrent += stepX;
+                yCurrent += stepY;
+
+                vertices.Add(new Vector2Int((int)Math.Round(xCurrent), (int)Math.Round(yCurrent)));
+            }
+     
+            return vertices;
         }
     }
 }
