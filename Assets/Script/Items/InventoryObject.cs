@@ -45,7 +45,7 @@ public abstract class InventoryObject:ISavable
     //Save Part//
     public virtual string GetSaveData()
     {
-        return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity;
+        return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
     }
 }
 
