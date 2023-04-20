@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 443443102}
   - component: {fileID: 443443103}
   m_Layer: 0
-  m_Name: Cleaner
+  m_Name: Map Cleaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1562,11 +1562,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443443101}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1140441088}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &443443103
@@ -1631,31 +1631,31 @@ MonoBehaviour:
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: f66e3ffc549ed7b45ad0486bbb6427a1, type: 3}
         m_RarityColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
         m_RarityModifierDrawCount: 0
-      Type: 5
+      Type: 0
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: 1b8105d4689a06642918d77876469efe, type: 3}
         m_RarityColor: {r: 0.26326096, g: 0.3564067, b: 0.6415094, a: 1}
         m_RarityModifierDrawCount: 1
-      Type: 0
+      Type: 1
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: 5023af66a6fe4ca45828a49970f04798, type: 3}
         m_RarityColor: {r: 0.28773582, g: 1, b: 0.42846793, a: 1}
         m_RarityModifierDrawCount: 2
-      Type: 1
+      Type: 2
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: e30efb560e5fec04e8f75239a7da31d6, type: 3}
         m_RarityColor: {r: 0.96592265, g: 0.48584908, b: 1, a: 1}
         m_RarityModifierDrawCount: 3
-      Type: 2
+      Type: 3
     - Object:
         m_RaritySprite: {fileID: 0}
         m_RarityWorldFx: {fileID: 3845423893102236448, guid: 83244cb55cef3a04b8ecc83d6ba7e9ad, type: 3}
         m_RarityColor: {r: 1, g: 0.89594764, b: 0.514151, a: 1}
         m_RarityModifierDrawCount: 5
-      Type: 3
+      Type: 4
 --- !u!1 &460652342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,15 +3471,15 @@ MonoBehaviour:
     m_RarityDraw:
       m_WeightEnum:
       - m_Weight: 50
-        m_Enum: 5
-      - m_Weight: 25
         m_Enum: 0
-      - m_Weight: 15
+      - m_Weight: 25
         m_Enum: 1
-      - m_Weight: 9
+      - m_Weight: 15
         m_Enum: 2
-      - m_Weight: 1
+      - m_Weight: 9
         m_Enum: 3
+      - m_Weight: 1
+        m_Enum: 4
 --- !u!1 &1023104584
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,6 +3683,7 @@ Transform:
   - {fileID: 2045092500}
   - {fileID: 1450611267}
   - {fileID: 1345723052}
+  - {fileID: 443443102}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5185,13 +5186,13 @@ MonoBehaviour:
   Library:
     m_Keys:
     - Object: {fileID: 2312158413251994410, guid: 00cbfb186c5355a4094f91e6486d1318, type: 3}
-      Type: 2
-    - Object: {fileID: 4660877025933574833, guid: 03ba28ecb696b094b99d0f90746f7235, type: 3}
-      Type: 4
-    - Object: {fileID: 6665203865748588912, guid: 8507a27e52540cb4fba138afe76034bf, type: 3}
       Type: 1
+    - Object: {fileID: 4660877025933574833, guid: 03ba28ecb696b094b99d0f90746f7235, type: 3}
+      Type: 2
+    - Object: {fileID: 6665203865748588912, guid: 8507a27e52540cb4fba138afe76034bf, type: 3}
+      Type: 0
     - Object: {fileID: 5730924036560442381, guid: c72cc454d6c10ca499e775ecc4136aba, type: 3}
-      Type: 3
+      Type: 101
 --- !u!1 &1789233859
 GameObject:
   m_ObjectHideFlags: 0

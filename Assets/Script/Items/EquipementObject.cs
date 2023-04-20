@@ -105,7 +105,7 @@ public class EquipementObject:InventoryObject
     public override string GetSaveData()
     {
         string saveData = base.GetSaveData();
-        saveData += " " + m_IsEquiped;
+        saveData += m_IsEquiped;
         return saveData;
     }
 }

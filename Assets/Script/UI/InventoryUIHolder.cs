@@ -23,12 +23,15 @@ public class InventoryUIHolder:MonoBehaviour
     
     public void InitalizeUIHolder(InventoryObject inventoryObject)
     {
+        RarityParameter rarityParameter = RarityLibrary.Instance.GetParametersViaKey(inventoryObject.Rarity);
+        
         m_InventoryObject = inventoryObject;
         m_ObjectVisual.sprite = m_InventoryObject.Data.InUIVisual;
         m_ObjectName.text = m_InventoryObject.Data.ObjectName;
         m_Category.text = m_InventoryObject.Data.ObjectType.ToString();
-        RefreshEquipedState();
+        m_RarityImage.color = rarityParameter.RarityColor;
         
+        RefreshEquipedState();
         m_InventoryObject.SetHolder(this);
     }
 

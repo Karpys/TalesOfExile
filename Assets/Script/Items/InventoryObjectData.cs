@@ -14,7 +14,7 @@ public class InventoryObjectData : ScriptableObject
     [SerializeField] private string m_ObjectName = null;
     [SerializeField] private string m_Description = null;
     [Header("Rarity")]
-    [SerializeField] private Rarity m_BaseRarity = Rarity.Common;
+    [SerializeField] private Rarity m_BaseRarity = Rarity.Normal;
 
     public int UniqueId => m_UniqueId;
     public ObjectType ObjectType => m_ObjectType;
@@ -33,10 +33,10 @@ public enum ObjectType
 
 public enum Rarity
 {
-    Common,
-    Uncommon,
-    Rare,
-    Legendary,
-    Null,
-    Normal,
+    Null = -1,
+    Normal = 0,
+    Common = 1,
+    Uncommon = 2,
+    Rare = 3,
+    Legendary = 4,
 }

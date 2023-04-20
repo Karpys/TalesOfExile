@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2072107463
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1353478079274f16a421f11f72d853ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BuffGroup: 0
+  m_BuffGroup: 1
   m_BuffCooldown: 0
   m_TriggerSpellData:
     Data: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}

@@ -25,6 +25,7 @@ public static class SaveUtils
     {
         string savePath = GetSaveDirectory() + saveName;
         File.WriteAllLines(savePath,datas);
+        Debug.Log("File write at :" + savePath);
     }
     
     public static string GetSavePath(string saveName)

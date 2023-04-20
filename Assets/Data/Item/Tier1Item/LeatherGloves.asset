@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700a24467d844641b5024d7986db23d9, type: 3}
   m_Name: LeatherGloves
   m_EditorClassIdentifier: 
-  m_UniqueId: -1
+  m_UniqueId: 4
   m_ObjectType: 1
   m_InWorldVisual: {fileID: 21300000, guid: 753ef0d8e9468c2498515781f16738f5, type: 3}
   m_InUIVisual: {fileID: 21300000, guid: 753ef0d8e9468c2498515781f16738f5, type: 3}
   m_ObjectName: Leather Gloves
   m_Description: A leather gloves that protect you against monsters
-  m_BaseRarity: 4
+  m_BaseRarity: -1
   m_EquipementType: 3
+  m_EquipementTier: 1
   m_EquipementBaseModifiers:
-  - Type: 2
+  - Type: 21
     Value: 10
