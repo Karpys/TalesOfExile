@@ -9,8 +9,6 @@ public class KnockBackTrigger : DamageSpellTrigger
 
     private TriggerSpellData m_RangeAutoTrigger = null;
     
-    public KnockBackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
-    
     public KnockBackTrigger(DamageSpellScriptable damageSpellData, int repulseForce) : base(damageSpellData)
     {
         m_RepulseForce = repulseForce;

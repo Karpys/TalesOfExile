@@ -6,17 +6,20 @@ public abstract class Buff : MonoBehaviour
     [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
     [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
 
+    [Header("Enemy Specific")]
+    [SerializeField] protected bool m_EnemyBuffIgnoreFirstCooldown = false;
+
     protected BoardEntity m_Caster = null;
     protected BoardEntity m_Receiver = null;
     protected int m_Cooldown = 0;
     protected float m_BuffValue = 0;
 
-    private bool m_IgnoreCoodldownOnInit = false;
+    private bool m_IgnoreCooldownOnInit = false;
 
     public virtual void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
     {
-        if (receiver.EntityGroup == EntityGroup.Enemy)
-            m_IgnoreCoodldownOnInit = true;
+        if (receiver.EntityGroup == EntityGroup.Enemy && m_EnemyBuffIgnoreFirstCooldown)
+            m_IgnoreCooldownOnInit = true;
         
         m_Receiver = receiver;
         m_Caster = caster;
@@ -30,8 +33,11 @@ public abstract class Buff : MonoBehaviour
 
     public void ReduceCooldown()
     {
-        if (m_IgnoreCoodldownOnInit)
-            m_IgnoreCoodldownOnInit = false;
+        if (m_IgnoreCooldownOnInit)
+        {
+            m_IgnoreCooldownOnInit = false;
+            return;
+        }
         
         if (m_BuffCooldown == BuffCooldown.Cooldown)
         {

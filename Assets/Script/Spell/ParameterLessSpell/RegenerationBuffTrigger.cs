@@ -4,10 +4,7 @@ public class RegenerationBuffTrigger : SelectionSpellTrigger
 {
     private int m_RegenerationDuration = 0;
     private float m_RegenerationValue = 0;
-    public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
-    {
-    }
-    
+
     public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, int regenerationCooldown,float regenerationValue) : base(baseScriptable)
     {
         m_RegenerationDuration = regenerationCooldown;

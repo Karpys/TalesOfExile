@@ -3,12 +3,8 @@
 public class IceWallTrigger : SelectionSpellTrigger
 {
     private TileType m_TileType = TileType.None;
-    public IceWallTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
-    {
-    }
     
-    public IceWallTrigger(BaseSpellTriggerScriptable baseScriptable,TileType tileType)
-        : base(baseScriptable)
+    public IceWallTrigger(BaseSpellTriggerScriptable baseScriptable,TileType tileType) : base(baseScriptable)
     {
         m_TileType = tileType;
     }

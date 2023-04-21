@@ -15,11 +15,13 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
-  m_TriggerClassName: BuffGiverTrigger
+  m_TriggerClassName: SkeletonCurseBuffGiverTrigger
   m_AdditionalParameters:
   - Type: 3
     Value: BuffType SkeletonCurse
   - Type: 0
     Value: 10
   - Type: 1
-    Value: 0
+    Value: 10
+  - Type: 0
+    Value: 3

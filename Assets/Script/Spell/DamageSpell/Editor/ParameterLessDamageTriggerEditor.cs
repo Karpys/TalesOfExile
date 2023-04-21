@@ -49,7 +49,7 @@ public class ParameterLessDamageTriggerScriptableEditor : Editor
         
         if (triggerClass != null)
         {
-            StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, out m_FieldValues, 1, 1);
+            StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, out m_FieldValues, 0, 1);
 
             if (m_ParameterLessTrigger.AdditionalParameters.Length > 0)
             {

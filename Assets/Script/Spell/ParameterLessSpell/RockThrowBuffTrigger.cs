@@ -1,10 +1,7 @@
 ﻿public class RockThrowBuffTrigger : SelectionSpellTrigger
 {
     private int m_Duration = 5;
-    public RockThrowBuffTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
-    {
-    }
-    
+
     public RockThrowBuffTrigger(BaseSpellTriggerScriptable baseScriptable,int duration) : base(baseScriptable)
     {
         m_Duration = duration;

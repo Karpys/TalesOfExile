@@ -46,3 +46,4 @@ MonoBehaviour:
   m_BuffType: 0
   m_BuffGroup: 1
   m_BuffCooldown: 0
+  m_EnemyBuffIgnoreFirstCooldown: 1

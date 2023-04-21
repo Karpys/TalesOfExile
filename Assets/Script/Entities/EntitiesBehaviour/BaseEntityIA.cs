@@ -44,6 +44,7 @@ public class BaseEntityIA:EntityBehaviour
         SetTarget();
         EntityAction();
         m_AttachedEntity.ReduceAllCooldown();
+        m_AttachedEntity.EntityEvent.OnBehave?.Invoke();
     }
 
     protected virtual void SetTarget()
