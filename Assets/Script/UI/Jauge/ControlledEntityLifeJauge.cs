@@ -14,7 +14,8 @@ namespace Script.UI.Jauge
 
         private void OnDestroy()
         {
-            m_CurrentEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
+            if(m_CurrentEntity)
+                m_CurrentEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
         }
 
         private void SetLifeListenerToNewEntity(BoardEntity oldEntity,BoardEntity newEntity)
