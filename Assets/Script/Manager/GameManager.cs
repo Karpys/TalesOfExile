@@ -215,22 +215,39 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     //Enemy Action//
     private void TriggerAllFriendlyActions()
     {
-        for (int i = 0; i < m_FriendlyOnBoard.Count; i++)
+        List<BoardEntity> friendly = new List<BoardEntity>(m_FriendlyOnBoard);
+        
+        for (int i = 0; i < friendly.Count; i++)
         {
-            if (m_FriendlyOnBoard[i] == m_ControlledEntity && !m_AutoPlay)
+            BoardEntity entity = friendly[i];
+
+            if (!entity)
             {
-                m_FriendlyOnBoard[i].ReduceAllCooldown();
+                Debug.LogError("Entity dead Continue");   
                 continue;
             }
             
-            m_FriendlyOnBoard[i].EntityAction();
+            if (entity == m_ControlledEntity && !m_AutoPlay)
+            {
+                entity.ReduceAllCooldown();
+                continue;
+            }
+            
+            friendly[i].EntityAction();
         }
     }
     private void TriggerAllEnemyAction()
     {
-        for (int i = 0; i < m_EnemiesOnBoard.Count; i++)
+        List<BoardEntity> enemies = new List<BoardEntity>(m_EnemiesOnBoard);
+        
+        for (int i = 0; i < enemies.Count; i++)
         {
-            m_EnemiesOnBoard[i].EntityAction();
+            BoardEntity entity = enemies[i];
+            
+            if(!entity)
+                return;
+            
+            entity.EntityAction();
         }
     }
 }

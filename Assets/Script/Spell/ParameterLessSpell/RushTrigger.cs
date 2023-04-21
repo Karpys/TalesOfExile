@@ -8,8 +8,8 @@ public class RushTrigger : DamageSpellTrigger
 
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
-        base.Trigger(spellData, spellTiles);
         MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
+        base.Trigger(spellData, spellTiles);
     }
 
     protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int origin)
