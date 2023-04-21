@@ -16,8 +16,8 @@ MonoBehaviour:
     m_EntityGroup: 0
     m_Stats:
       CombatRange: 1
-      MaxLife: 120
-      Life: 120
+      MaxLife: 80
+      Life: 80
       LifeRegeneration: 0
       MeleeModifier: 0
       ProjectileModifier: 0

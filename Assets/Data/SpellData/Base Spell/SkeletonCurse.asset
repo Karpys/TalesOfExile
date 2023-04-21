@@ -15,7 +15,7 @@ MonoBehaviour:
   SpellKey: SkeletonCurse
   SpellType: 0
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 64e102a294c2833479f8dd74316ad200, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 3460c83ccb671454ebd062cb429a9b47, type: 2}
   m_BaseCooldown: 8
   m_Selection:
