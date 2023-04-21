@@ -16,15 +16,14 @@ public class ParameterLessDamageTriggerScriptableEditor : Editor
         DrawDefaultInspector();
 
         EditorGUILayout.Space(10);
+        
+        if(m_FieldsName == null || m_FieldsName.Length == 0)
+            return;
 
         for (int i = 0; i < m_FieldsName.Length; i++)
         {
             AddField(m_FieldValues[i],i);
         }
-        
-        
-        if(m_FieldsName.Length == 0)
-            return;
         
         if(GUILayout.Button("Send values"))
         {

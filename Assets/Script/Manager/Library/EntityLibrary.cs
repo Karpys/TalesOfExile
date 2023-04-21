@@ -21,15 +21,9 @@ public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
     }
 }
 
-[System.Serializable]
-public class EntityKey
-{
-    public BoardEntity Entity = null;
-    public EntityType Type = EntityType.None;
-}
-
 public enum EntityType
 {
     None,
     Balista,
+    Skeleton,
 }

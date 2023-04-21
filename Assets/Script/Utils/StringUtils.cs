@@ -40,8 +40,11 @@ public static class StringUtils
     public static Type GetTypeViaClassName(string className)
     {
         Type classType = Type.GetType(className);
-        if(classType == null)
+        if (classType == null)
+        {
             Debug.LogError("Class Name Dont exist " + className);
+            return null;
+        }
         return classType;
     }
 

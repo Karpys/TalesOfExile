@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b491e1dd8a48eca0830a9bfcdcab91, type: 3}
+  m_Name: LesserSkeleton
+  m_EditorClassIdentifier: 
+  m_EntityBaseData:
+    m_EntityGroup: 0
+    m_Stats:
+      CombatRange: 1
+      MaxLife: 120
+      Life: 120
+      LifeRegeneration: 0
+      MeleeModifier: 0
+      ProjectileModifier: 0
+      SpellModifier: 0
+      ColdDamageModifier: 0
+      HolyDamageModifier: 0
+      FireDamageModifier: 0
+      PhysicalDamageModifier: 0
+      FlatMeleeDamageReduction: 0
+      FlatProjectileDamageReduction: 0
+      FlatSpellDamageReduction: 0
+      ColdDamageReduction: 0
+      HolyDamageReduction: 0
+      FireDamageReduction: 0
+      PhysicalDamageReduction: 0
+    m_SpellList:
+      m_Spells:
+      - Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []
+      - Data: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
+        AttachedEntity: {fileID: 0}
+        ConnectedSpellData:
+          m_Spells: []

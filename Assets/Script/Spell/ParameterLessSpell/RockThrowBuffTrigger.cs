@@ -22,7 +22,7 @@
     
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
-        Buff buff = BuffLibrary.Instance.GetBuffViaKey(BuffType.RockThrowBuff,spellData.AttachedEntity);
+        Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff,spellData.AttachedEntity);
         buff.InitializeBuff(spellData.AttachedEntity,spellData.AttachedEntity,m_Duration,0);
         base.Trigger(spellData, spellTiles);
     }

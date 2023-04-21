@@ -10,7 +10,7 @@ public class BuffLibrary : SingletonMonoBehavior<BuffLibrary>
         Library.InitializeDictionary();
     }
 
-    public Buff GetBuffViaKey(BuffType type,BoardEntity entity)
+    public Buff AddBuffToViaKey(BuffType type,BoardEntity entity)
     {
         Buff buff = Library.GetViaKey(type);
 
@@ -42,4 +42,5 @@ public enum BuffType
     //Debuff// 101 => 200//
     SilenceDebuff = 101,
     //Mark / Misc// 201 +//
+    SkeletonCurse = 201,
 }

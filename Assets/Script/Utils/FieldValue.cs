@@ -14,7 +14,7 @@ public class FieldValue
             case "System.Int32":
                 return new FieldValue(FieldType.Int, "0");
             case "System.Single":
-                return new FieldValue(FieldType.Float, "0.5");
+                return new FieldValue(FieldType.Float, "0");
             case "System.String":
                 return new FieldValue(FieldType.String, "Empty");
             default:

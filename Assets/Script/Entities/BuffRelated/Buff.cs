@@ -2,6 +2,7 @@
 
 public abstract class Buff : MonoBehaviour
 {
+    [SerializeField] protected BuffType m_BuffType = BuffType.None;
     [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
     [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
 

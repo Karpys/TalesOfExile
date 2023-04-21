@@ -33,11 +33,11 @@ public class BoardEnemyEntity : BoardEntity
         if(m_IsDead)
             return;
         
-        base.TriggerDeath();
         GameManager.Instance.UnRegisterActiveEnemy(this);
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
+        base.TriggerDeath();
     }
     public override float GetMainWeaponDamage()
     {

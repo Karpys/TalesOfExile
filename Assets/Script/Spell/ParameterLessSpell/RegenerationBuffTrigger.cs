@@ -16,7 +16,7 @@ public class RegenerationBuffTrigger : SelectionSpellTrigger
 
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
-        Buff buff = BuffLibrary.Instance.GetBuffViaKey(BuffType.RegenerationBuff,spellData.AttachedEntity);
+        Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RegenerationBuff,spellData.AttachedEntity);
         buff.InitializeBuff(spellData.AttachedEntity,spellData.AttachedEntity,m_RegenerationDuration,m_RegenerationValue);
         
         m_SpellAnimDelay = 0.1f;

@@ -4882,6 +4882,8 @@ MonoBehaviour:
     m_Keys:
     - Object: {fileID: 2791941695343476331, guid: 88747e47e1ea93a4e97fef206c0b55ba, type: 3}
       Type: 1
+    - Object: {fileID: 8352278647295106307, guid: 83ca59d24d0c2004d8174ef0dcc1a3fa, type: 3}
+      Type: 2
 --- !u!1 &1519718826
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,6 +5195,8 @@ MonoBehaviour:
       Type: 0
     - Object: {fileID: 5730924036560442381, guid: c72cc454d6c10ca499e775ecc4136aba, type: 3}
       Type: 101
+    - Object: {fileID: -2338606584451329593, guid: 3fc525be3987f0e4d9d34fae86e0ae72, type: 3}
+      Type: 201
 --- !u!1 &1789233859
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
-﻿public class FriendlyEntity : BoardEntity
+﻿using TweenCustom;
+
+public class FriendlyEntity : BoardEntity
 {
     protected override void InitalizeEntityBehaviour()
     {
@@ -20,9 +22,15 @@
         if (m_IsDead)
             return;
                 
-        base.TriggerDeath();
         GameManager.Instance.UnRegisterEntity(this);
         RemoveFromBoard();
         Destroy(gameObject);
+        base.TriggerDeath();
+    }
+    
+    protected override void Movement()
+    {
+        transform.DoKill();
+        transform.DoMove( m_TargetMap.GetTilePosition(m_XPosition, m_YPosition),0.1f);
     }
 }
