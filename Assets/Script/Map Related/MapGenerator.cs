@@ -26,13 +26,13 @@ public class MapGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            MapCleaner.Instance.Clean();
             ReloadMap();
         }
     }
 
     public void ReloadMap()
     {
+        MapCleaner.Instance.Clean();
         EraseMap();
         GenerateMap();
     }

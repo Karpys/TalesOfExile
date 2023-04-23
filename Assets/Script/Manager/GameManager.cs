@@ -245,7 +245,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             BoardEntity entity = enemies[i];
             
             if(!entity)
-                return;
+                continue;
             
             entity.EntityAction();
         }
