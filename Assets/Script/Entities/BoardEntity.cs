@@ -259,8 +259,9 @@ public abstract class BoardEntity : MonoBehaviour
 
     public void AddSpellToSpellList(SpellData spell)
     {
-        m_EntityData.m_SpellList.m_Spells.Add(spell);
-        RegisterSpell(spell);
+        Debug.Log("Add spell : "  + spell.Data.SpellKey);
+        m_EntityData.m_SpellList.m_Spells.Add(RegisterSpell(spell));
+        
         spell.ConnectedSpellData.m_Spells.Clear();
         
         if(this == GameManager.Instance.ControlledEntity)

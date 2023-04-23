@@ -38,7 +38,7 @@ public class EquipementObject:InventoryObject
     public void InitializeRarity(Rarity rarity,RarityParameter parameter)
     {
         SetRarity(rarity);
-        ModifierUtils.GiveModifierBasedOnRarity(this, parameter.ModifierDrawCount, BaseEquipementData.EquipementTier);
+        ModifierUtils.GiveModifierBasedOnRarityAndType(this, parameter.ModifierDrawCount, BaseEquipementData.EquipementTier);
     }
 
     protected override Rarity GetRarity()

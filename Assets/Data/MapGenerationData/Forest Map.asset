@@ -38,5 +38,6 @@ MonoBehaviour:
     - {fileID: 8553087812322520743, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
     - {fileID: 6585557202405382515, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
     m_TilePrefab: {fileID: 3883403197821595345, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}
+  m_TreeChance: 10
   m_TreeTile: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
   m_MonsterGeneration: {fileID: 11400000, guid: 3c34cdf956ae7ba43b5d5c291eb377e2, type: 2}

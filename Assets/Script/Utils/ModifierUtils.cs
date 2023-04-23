@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class ModifierUtils
 {
@@ -94,12 +96,12 @@ public static class ModifierUtils
 
     //Need to be call with a modifier count
     //Cant draww same modifier twice
-    public static void GiveModifierBasedOnRarity(EquipementObject equipementObject,int modifierCount,Tier targetTier)
+    public static void GiveModifierBasedOnRarityAndType(EquipementObject equipementObject,int modifierCount,Tier targetTier)
     {
         if(modifierCount <= 0)
             return;
         
-        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier);
+        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier,equipementObject.BaseEquipementData.EquipementType);
 
         Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();
         equipementObject.SetAdditionalModifiers(modifiers);
@@ -108,7 +110,20 @@ public static class ModifierUtils
     public static Modifier RangeToModifier(this RangeModifier rangeModifier)
     {
         //Add Switch Case for non float/int modifier like spell addition
-        string modifierValue = ((int) Random.Range(rangeModifier.Range.x, rangeModifier.Range.y + 1)).ToString();
+        string modifierValue;
+        
+        switch (rangeModifier.Type)
+        {
+            //String type
+            //Maybe need a split + random to have a range of random spell addition ?//
+            case ModifierType.SpellAddition:
+                modifierValue = rangeModifier.Params;
+                break;
+            default:
+                modifierValue = ((int) Random.Range(rangeModifier.Range.x, rangeModifier.Range.y + 1)).ToString();
+                break;
+        }
+        
         return new Modifier(rangeModifier.Type, modifierValue);
     }
 }
