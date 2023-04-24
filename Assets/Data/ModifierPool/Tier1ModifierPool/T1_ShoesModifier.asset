@@ -17,6 +17,26 @@ MonoBehaviour:
       m_WeightElement:
       - m_Weight: 25
         m_Object:
+          m_Type: 0
+          m_Range: {x: 10, y: 20}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
+          m_Type: 1
+          m_Range: {x: 10, y: 20}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
+          m_Type: 2
+          m_Range: {x: 10, y: 20}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
+          m_Type: 21
+          m_Range: {x: 20, y: 50}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
           m_Type: 51
           m_Range: {x: 20, y: 50}
           m_Params: LesserLeap
