@@ -15,13 +15,13 @@ public class BoardEntityLife : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.A_OnEndTurn += ApplyRegeneration;
+        GameManager.Instance.A_OnPreEndTurn += ApplyRegeneration;
     }
 
     private void OnDestroy()
     {
         if(GameManager.Instance)
-            GameManager.Instance.A_OnEndTurn -= ApplyRegeneration;
+            GameManager.Instance.A_OnPreEndTurn -= ApplyRegeneration;
     }
 
     public void Initalize(BoardEntity entity, float maxLife, float life, float lifeRegeneration)

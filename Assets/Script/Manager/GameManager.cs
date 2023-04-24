@@ -39,6 +39,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public bool CanPlay => m_CanPlay;
     //Action//
     public Action<BoardEntity> A_OnPlayerAction;
+    public Action A_OnPreEndTurn;
     public Action A_OnEndTurn;
     public Action A_OnEndPlayerTurn;
     public Action A_OnEndEnemyTurn;
@@ -141,6 +142,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             A_CallBackEndAction?.Invoke();
             m_InCallBackExecution = false;
             ClearCallBackAction();
+            A_OnPreEndTurn?.Invoke();
             A_OnEndTurn?.Invoke();
             return;
         }
@@ -172,7 +174,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             m_InCallBackExecution = false;
             yield return new WaitForSeconds(EnnemiesWaitTime);
             ClearCallBackAction();
-            
+            A_OnPreEndTurn?.Invoke();
             A_OnEndTurn?.Invoke();
             ResetActionQueue();
         }
