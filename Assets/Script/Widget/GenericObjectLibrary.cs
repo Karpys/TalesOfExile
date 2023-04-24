@@ -7,21 +7,22 @@ using Object = UnityEngine.Object;
 public class GenericObjectLibrary<O,K> where O : class where K : struct
 {
     [SerializeField] private LibraryKey<O, K>[] m_Keys = null;
-    private Dictionary<K,O> Keys = new Dictionary<K,O>();
+    private Dictionary<K,O> m_Dictionary = new Dictionary<K,O>();
 
+    public Dictionary<K, O> Dictionary => m_Dictionary;
 
     public void InitializeDictionary()
     {
         foreach (LibraryKey<O,K> key in m_Keys)
         {
-            Keys.Add(key.Type,key.Object);
+            m_Dictionary.Add(key.Type,key.Object);
         }            
     }
     
     public O GetViaKey(K type)
     {
         O obj = null;
-        Keys.TryGetValue(type,out obj);
+        m_Dictionary.TryGetValue(type,out obj);
 
         if (obj == null)
         {
