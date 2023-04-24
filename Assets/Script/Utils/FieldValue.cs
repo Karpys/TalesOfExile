@@ -42,9 +42,9 @@ public class FieldValue
         switch (Type)
         {
             case FieldType.Int:
-                return int.Parse(Value);
+                return Value.ToInt();
             case FieldType.Float:
-                return float.Parse(Value);
+                return Value.ToFloat();
             case FieldType.Enum:
                 System.Type enumType = System.Type.GetType(Value.Split()[0]);
                 return Enum.Parse(enumType, Value.Split()[1]);

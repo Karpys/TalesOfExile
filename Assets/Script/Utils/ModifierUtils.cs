@@ -93,23 +93,20 @@ public static class ModifierUtils
                 return "Not Recognised";
         }
     }
-
-    //Need to be call with a modifier count
-    //Cant draww same modifier twice
-    public static void GiveModifierBasedOnRarityAndType(EquipementObject equipementObject,int modifierCount,Tier targetTier)
+    
+    public static void GiveModifierBasedOnRarityAndType(EquipementItem equipementItem,int modifierCount,Tier targetTier)
     {
         if(modifierCount <= 0)
             return;
         
-        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier,equipementObject.BaseEquipementData.EquipementType);
+        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier,equipementItem.BaseEquipementData.EquipementType);
 
         Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();
-        equipementObject.SetAdditionalModifiers(modifiers);
+        equipementItem.SetAdditionalModifiers(modifiers);
     }
 
-    public static Modifier RangeToModifier(this RangeModifier rangeModifier)
+    private static Modifier RangeToModifier(this RangeModifier rangeModifier)
     {
-        //Add Switch Case for non float/int modifier like spell addition
         string modifierValue;
         
         switch (rangeModifier.Type)

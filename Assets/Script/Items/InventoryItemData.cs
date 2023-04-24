@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventoryData", menuName = "Inventory/InventoryData", order = 0)]
-public class InventoryObjectData : ScriptableObject
+[CreateAssetMenu(fileName = "ItemData", menuName = "Inventory/ItemData", order = 0)]
+public class InventoryItemData : ScriptableObject
 {
     [Header("UNIQUE TO EACH BASE ITEM")]
     [SerializeField] private int m_UniqueId = -1;

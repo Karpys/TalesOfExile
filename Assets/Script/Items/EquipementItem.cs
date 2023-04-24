@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class EquipementObject:InventoryObject
+public class EquipementItem:Item
 {
     private EquipementType m_Type = EquipementType.Null;
     private Modifier[] m_ItemBaseModifiers = null;
@@ -9,13 +9,13 @@ public class EquipementObject:InventoryObject
 
     private bool m_IsEquiped = false;
     private Rarity m_EquipementRarity = Rarity.Null;
-    public EquipementObjectData BaseEquipementData => Data as EquipementObjectData;
+    public EquipementItemData BaseEquipementData => Data as EquipementItemData;
     public Modifier[] ItemModifiers => GetAllModifiers();
     
     public EquipementType Type => m_Type;
     public bool IsEquiped => m_IsEquiped;
 
-    public EquipementObject(EquipementObjectData data) : base(data)
+    public EquipementItem(EquipementItemData data) : base(data)
     {
         m_Type = data.EquipementType;
         InitializeBaseModifier();
@@ -53,13 +53,17 @@ public class EquipementObject:InventoryObject
     {
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         m_IsEquiped = true;
-        m_UIHolder.RefreshEquipedState();
+        
+        if(m_UIHolder)
+            m_UIHolder.RefreshEquipedState();
     }
 
     public void UnEquip()
     {
         m_IsEquiped = false;
-        m_UIHolder.RefreshEquipedState();
+        
+        if(m_UIHolder)
+            m_UIHolder.RefreshEquipedState();
     }
     #endregion
 
@@ -101,11 +105,58 @@ public class EquipementObject:InventoryObject
     //Save Part
     
     //Save Load Constructor
-    public EquipementObject(string[] saveArgs):base(saveArgs){}
+    public EquipementItem(string[] saveArgs) : base(saveArgs)
+    {
+        m_EquipementRarity = (Rarity)saveArgs[2].ToInt();
+        m_IsEquiped = bool.Parse(saveArgs[3]);
+
+        string additionalParameterSave = saveArgs[4];
+
+        if (additionalParameterSave != "null")
+        {
+            string[] modifierSave = additionalParameterSave.Split('-');
+            Modifier[] additionalModifier = new Modifier[modifierSave.Length];
+
+            for (int i = 0; i < modifierSave.Length; i++)
+            {
+                additionalModifier[i] = new Modifier(modifierSave[i]);
+            }
+
+            SetAdditionalModifiers(additionalModifier);
+        }
+        
+        //Base Constructor//
+        m_Type = BaseEquipementData.EquipementType;
+        InitializeBaseModifier();
+        
+        if(m_IsEquiped)
+            TryEquip();
+    }
     public override string GetSaveData()
     {
-        string saveData = base.GetSaveData();
-        saveData += m_IsEquiped;
-        return saveData;
+        string baseSaveData = base.GetSaveData();
+        baseSaveData += m_IsEquiped + " ";
+        
+        string additionalModifierSave = String.Empty;
+
+        if (m_AdditionalModifiers.Length == 0)
+        {
+            additionalModifierSave = "null";
+        }
+        else
+        {
+            for (int i = 0; i < m_AdditionalModifiers.Length; i++)
+            {
+                Modifier additionalModifier = m_AdditionalModifiers[i];
+                additionalModifierSave += additionalModifier.ToSave();
+
+                if (i != m_AdditionalModifiers.Length - 1)
+                    additionalModifierSave += "-";
+            }
+        }
+
+        baseSaveData += additionalModifierSave;
+
+        return baseSaveData;
     }
 }

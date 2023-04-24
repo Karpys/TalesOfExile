@@ -8,7 +8,7 @@ public abstract class Lootable:MonoBehaviour
     [SerializeField] protected bool m_IsStatic = false;
     
     protected List<Vector2Int> m_LootZones = new List<Vector2Int>();
-    protected List<InventoryObject> m_LootObjects = new List<InventoryObject>();
+    protected List<Item> m_LootObjects = new List<Item>();
     protected List<Tile> m_LootTiles = new List<Tile>();
 
 

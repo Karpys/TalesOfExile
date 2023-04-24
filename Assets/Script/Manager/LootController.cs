@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LootController : SingletonMonoBehavior<LootController>
 {
-    [SerializeField] private InventoryObjectHolder m_BaseInventoryHolder = null;
+    [SerializeField] private ItemWorldHolder m_BaseInventoryHolder = null;
     [SerializeField] private float m_YJumpForce = 1;
     [SerializeField] private float m_YJumpDuration = 1;
     [SerializeField] private float m_XMovementDuration = 1;
 
-    public void SpawnLootFrom(List<InventoryObject> inventoryObjects,Tile originTile,List<Tile> tiles)
+    public void SpawnLootFrom(List<Item> inventoryObjects,Tile originTile,List<Tile> tiles)
     {
         if(tiles.Count == 0)
             tiles.Add(originTile);
@@ -17,11 +17,11 @@ public class LootController : SingletonMonoBehavior<LootController>
         int tilesCount = tiles.Count;
         float delay = 0;
         
-        foreach (InventoryObject inventoryObject in inventoryObjects)
+        foreach (Item inventoryObject in inventoryObjects)
         {
             Tile targetTile = tiles[Random.Range(0, tilesCount - 1)];
             //Tile targetTile = tile;
-            InventoryObjectHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
+            ItemWorldHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
         
             worldHolder.InitalizeHolder(inventoryObject,targetTile.TilePosition);
             LootJumpTo(worldHolder,targetTile,delay);
@@ -29,7 +29,7 @@ public class LootController : SingletonMonoBehavior<LootController>
         }
     }
 
-    private void LootJumpTo(InventoryObjectHolder worldHolder,Tile tile,float delay)
+    private void LootJumpTo(ItemWorldHolder worldHolder,Tile tile,float delay)
     {
         Vector3 worldTilePosition = tile.WorldTile.transform.position;
         worldHolder.transform.DoMove(worldTilePosition, m_XMovementDuration).SetDelay(delay).OnStart(worldHolder.DisplayWorldVisual).OnComplete(worldHolder.OnJumpEnd);

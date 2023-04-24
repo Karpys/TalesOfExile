@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InventoryObject:ISavable
+public abstract class Item:ISavable
 {
-    protected InventoryObjectData m_Data = null;
+    protected InventoryItemData m_Data = null;
     protected InventoryUIHolder m_UIHolder = null;
     public Rarity Rarity => GetRarity();
-    public InventoryObjectData Data => m_Data;
+    public InventoryItemData Data => m_Data;
     public InventoryUIHolder UIHolder => m_UIHolder;
-    public InventoryObject(InventoryObjectData data)
+    public Item(InventoryItemData data)
     {
         m_Data = data;
     }
@@ -25,9 +25,9 @@ public abstract class InventoryObject:ISavable
     }
 
     //Save Load Constructor
-    public InventoryObject(string[] saveArgs)
+    public Item(string[] saveArgs)
     {
-        Debug.Log("Unique Id" + saveArgs[1]);
+        m_Data = ItemLibrary.Instance.GetBaseDataViaId(saveArgs[1].ToInt());
     }
 
     public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)

@@ -8,11 +8,10 @@ public class EquipementItemDescriptionDisplayer : ItemDescriptionDisplayer
     [SerializeField] private AdaptUILayoutSize m_ModifierLayout = null;
     [SerializeField] private TMP_Text m_ModifierTextPrefab = null; 
 
-    public override void Initialize(InventoryObject inventoryObject)
+    public override void Initialize(Item item)
     {
-        Debug.Log("Init");
-        EquipementObject equipementObject = (EquipementObject) inventoryObject;
-        Modifier[] modifiers = equipementObject.ItemModifiers;
+        EquipementItem equipementItem = (EquipementItem) item;
+        Modifier[] modifiers = equipementItem.ItemModifiers;
 
         for (int i = 0; i < modifiers.Length; i++)
         {
@@ -21,6 +20,6 @@ public class EquipementItemDescriptionDisplayer : ItemDescriptionDisplayer
         }
         
         m_ModifierLayout.AdaptSize();
-        base.Initialize(inventoryObject);
+        base.Initialize(item);
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class InventoryObjectHolder : MonoBehaviour
+public class ItemWorldHolder : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer m_InWorldVisual = null;
     [SerializeField] private Transform m_JumpHolder = null;
 
-    private InventoryObject m_InventoryObject = null;
-    public InventoryObject InventoryObject => m_InventoryObject;
+    private Item m_Item = null;
+    public Item Item => m_Item;
     
     //Pick up variables
     private PlayerBoardEntity m_PlayerControllerEntity = null;
@@ -34,23 +34,23 @@ public class InventoryObjectHolder : MonoBehaviour
     {
         if (m_PlayerControllerEntity.EntityPosition == m_HolderMapPosition)
         {
-            m_PlayerControllerEntity.PlayerInventory.PickUp(m_InventoryObject);
+            m_PlayerControllerEntity.PlayerInventory.PickUp(m_Item);
             Destroy(gameObject);
         }
     }
-    public void InitalizeHolder(InventoryObject inventoryObject,Vector2Int mapPosition)
+    public void InitalizeHolder(Item item,Vector2Int mapPosition)
     {
-        m_InventoryObject = inventoryObject;
+        m_Item = item;
         m_HolderMapPosition = mapPosition;
     }
     public void DisplayWorldVisual()
     {
-        m_InWorldVisual.sprite = m_InventoryObject.Data.InWorldVisual;
+        m_InWorldVisual.sprite = m_Item.Data.InWorldVisual;
         m_InWorldVisual.gameObject.SetActive(true);
     }
 
     public void OnJumpEnd()
     {
-        Instantiate(RarityLibrary.Instance.GetParametersViaKey(m_InventoryObject.Rarity).WorldFx, transform);
+        Instantiate(RarityLibrary.Instance.GetParametersViaKey(m_Item.Rarity).WorldFx, transform);
     }
 }

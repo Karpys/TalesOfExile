@@ -8,23 +8,22 @@ public class PlayerInventory : MonoBehaviour,ISaver
 {
     [SerializeField] private string m_SaveName = string.Empty;
     
-    private List<InventoryObject> m_PlayerInventory = new List<InventoryObject>();
+    private List<Item> m_PlayerInventory = new List<Item>();
 
-    public List<InventoryObject> Inventory => m_PlayerInventory;
+    public List<Item> Inventory => m_PlayerInventory;
 
-    public void PickUp(InventoryObject inventoryObject)
+    public void PickUp(Item item)
     {
-        m_PlayerInventory.Add(inventoryObject);
-        PrintItemPickUp(inventoryObject);
+        m_PlayerInventory.Add(item);
+        PrintItemPickUp(item);
     }
 
-    private void PrintItemPickUp(InventoryObject inventoryObject)
+    private void PrintItemPickUp(Item item)
     {
-        string colorCode = ColorUtility.ToHtmlStringRGB(RarityLibrary.Instance.GetParametersViaKey(inventoryObject.Rarity).RarityColor);
-        Debug.Log("<color=#"+ colorCode+">" + inventoryObject.Data.ObjectName + " Item picked up : "+ inventoryObject.Rarity + "</color>");
+        string colorCode = ColorUtility.ToHtmlStringRGB(RarityLibrary.Instance.GetParametersViaKey(item.Rarity).RarityColor);
+        Debug.Log("<color=#"+ colorCode+">" + item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
     }
 
-    
     //Save Part
 
     private void Update()
@@ -41,7 +40,8 @@ public class PlayerInventory : MonoBehaviour,ISaver
     private void InterpretSave()
     {
         string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
-        List<InventoryObject> saveObjects = SaveUtils.InterpretSave<InventoryObject>(data);
+        List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
+        m_PlayerInventory = saveObjects;
     }
     
     public void WriteSaveData(string saveName, string[] data)

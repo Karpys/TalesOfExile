@@ -37,7 +37,7 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         Clear();
        
         
-        List<ItemButtonUIParameters> buttonParameters = inventoryUI.InventoryObject.ButtonRequestOptionButton(inventoryUI);
+        List<ItemButtonUIParameters> buttonParameters = inventoryUI.Item.ButtonRequestOptionButton(inventoryUI);
 
         foreach (ItemButtonUIParameters buttonUIParameters in buttonParameters)
         {

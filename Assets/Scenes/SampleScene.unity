@@ -1307,6 +1307,7 @@ Transform:
   - {fileID: 1493676827}
   - {fileID: 457633353}
   - {fileID: 908946939}
+  - {fileID: 1559713266}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1343,7 +1344,7 @@ MonoBehaviour:
   m_BoardEntities:
   - Entity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
     BoardSpawnPosition: {x: 6, y: 5}
-  m_GenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
+  m_GenerationData: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -5113,6 +5114,55 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1559713265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1559713266}
+  - component: {fileID: 1559713267}
+  m_Layer: 0
+  m_Name: ItemLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1559713266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559713265}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 313424675}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1559713267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559713265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef607b8a6a048cda8e6d23c4e05efd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BaseObjectScriptable:
+  - {fileID: 11400000, guid: ea1d3f6286e1ed44eb11610431fe664b, type: 2}
+  - {fileID: 11400000, guid: a5ea70bed4b02b145afb69ab477a4e42, type: 2}
+  - {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
+  - {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
+  - {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
 --- !u!1 &1606533802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5721,7 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5dbe5f23ccb41b080c30034dad2669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseMobileInput: 1
+  m_UseMobileInput: 0
   m_EntityMovement: {fileID: 34784935}
 --- !u!4 &2023090590
 Transform:

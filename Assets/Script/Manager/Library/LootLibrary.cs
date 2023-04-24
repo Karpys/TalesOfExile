@@ -9,9 +9,9 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
     
 
-    public List<InventoryObject> ItemRequest(ItemPoolType poolType,int drawCount)
+    public List<Item> ItemRequest(ItemPoolType poolType,int drawCount)
     {
-        List<InventoryObject> inventoryObject = new List<InventoryObject>();
+        List<Item> inventoryObject = new List<Item>();
         
         switch (poolType)
         {
@@ -28,9 +28,9 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
         return inventoryObject;
     }
     
-    public List<InventoryObject> ItemRequest(InventoryPoolObject objectPool,int drawCount)
+    public List<Item> ItemRequest(InventoryPoolObject objectPool,int drawCount)
     {
-        List<InventoryObject> inventoryObjects =  objectPool.Draw(drawCount);
+        List<Item> inventoryObjects =  objectPool.Draw(drawCount);
         return inventoryObjects;
     }
 }
@@ -44,13 +44,13 @@ public enum ItemPoolType
 [System.Serializable]
 public class InventoryPoolObject
 {
-    [SerializeField] private StaticWeightElementDraw<InventoryObjectData> m_ObjectDataPool = null;
+    [SerializeField] private StaticWeightElementDraw<InventoryItemData> m_ObjectDataPool = null;
     [Range(0,100)]
     [SerializeField] private float m_DrawChance = 50f;
     [SerializeField] private WeightEnumDraw<Rarity> m_RarityDraw = null;
-    public List<InventoryObject> Draw(int drawCount)
+    public List<Item> Draw(int drawCount)
     {
-        List<InventoryObject> itemDrawn = new List<InventoryObject>();
+        List<Item> itemDrawn = new List<Item>();
 
         for (int i = 0; i < drawCount; i++)
         {
@@ -58,7 +58,7 @@ public class InventoryPoolObject
 
             if (shouldDraw < m_DrawChance)
             {
-                InventoryObject item = m_ObjectDataPool.Draw().ToInventoryObject();
+                Item item = m_ObjectDataPool.Draw().ToInventoryObject();
                 itemDrawn.Add(item);
 
                 //Additional Modifier based on rarity drawn
@@ -66,7 +66,7 @@ public class InventoryPoolObject
                 if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
                 {
                     Rarity rarityDrawn = m_RarityDraw.Draw();
-                    ((EquipementObject)item).InitializeRarity(rarityDrawn,RarityLibrary.Instance.GetParametersViaKey(rarityDrawn));
+                    ((EquipementItem)item).InitializeRarity(rarityDrawn,RarityLibrary.Instance.GetParametersViaKey(rarityDrawn));
                     
                 }
             }

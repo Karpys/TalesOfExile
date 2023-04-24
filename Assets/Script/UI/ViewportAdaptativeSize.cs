@@ -8,9 +8,7 @@ public class ViewportAdaptativeSize : MonoBehaviour
 
     public void AdaptSize()
     {
-
         float contentSize = 0;
-        Debug.Log(m_TargetContainer.childCount);
 
         for (int i = 0; i < m_TargetContainer.childCount; i++)
         {

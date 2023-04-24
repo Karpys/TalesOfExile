@@ -4,27 +4,6 @@ using UnityEngine;
 
 public static class StringUtils
 {
-    //Change to string : Obsolete *:(//
-    public static string[] ExtractParameterLessVariable(string name)
-    {
-        string[] parameters = name.Split(':');
-        string[] variables = new string[parameters.Length-1];
-
-        for (int i = 1; i < parameters.Length; i++)
-        {
-            variables[i - 1] = parameters[i];
-        }
-
-        return variables;
-    }
-    
-    public static string[] Parameters(string parameter)
-    {
-        string[] parameters = parameter.Split(':');
-        
-        return parameters;
-    }
-
     public static object[] StringsToObjects(string[] data)
     {
         object[] objects = new object[data.Length];
@@ -70,5 +49,15 @@ public static class StringUtils
             fieldsName[i] = char.ToUpper(parameterInfo.Name[0]) + parameterInfo.Name.Substring(1);//+ " " + parameterInfo.ParameterType;
             fieldsValues[i] = fieldConstructor.GetField(parameterInfo.ParameterType.ToString());
         }
+    }
+
+    public static int ToInt(this string value)
+    {
+        return int.Parse(value);
+    }
+
+    public static float ToFloat(this string value)
+    {
+        return float.Parse(value);
     }
 }

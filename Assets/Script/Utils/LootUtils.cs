@@ -2,16 +2,16 @@ using UnityEngine;
 
 public static class LootUtils
 {
-    public static InventoryObject ToInventoryObject(this InventoryObjectData objectData)
+    public static Item ToInventoryObject(this InventoryItemData itemData)
     {
-        switch (objectData.ObjectType)
+        switch (itemData.ObjectType)
         {
             case ObjectType.DefaultObject:
-                return new DefaultInventoryObject(objectData);
+                return new DefaultItem(itemData);
             case ObjectType.Equipement:
-                return new EquipementObject(objectData as EquipementObjectData);
+                return new EquipementItem(itemData as EquipementItemData);
             default:
-                Debug.LogError("Equipement Object Data type not set up" + objectData.ObjectType);
+                Debug.LogError("Equipement Object Data type not set up" + itemData.ObjectType);
                 return null;
         }
     }

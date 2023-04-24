@@ -68,10 +68,10 @@ public class ParameterLessTriggerEditor : Editor
         switch (field.Type)
         {
             case FieldType.Int:
-                field.Value = EditorGUILayout.IntField(int.Parse(field.Value)).ToString();
+                field.Value = EditorGUILayout.IntField(field.Value.ToInt()).ToString();
                 break;
             case FieldType.Float:
-                field.Value = EditorGUILayout.FloatField(float.Parse(field.Value)).ToString();
+                field.Value = EditorGUILayout.FloatField(field.Value.ToFloat()).ToString();
                 break;
             case FieldType.String:
                 field.Value = EditorGUILayout.TextField(field.Value);

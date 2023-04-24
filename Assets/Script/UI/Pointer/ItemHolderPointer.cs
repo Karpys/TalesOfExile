@@ -34,20 +34,20 @@ public class ItemHolderPointer : UIPointer
 
     private void DisplayItemDescription()
     {
-        switch (m_ItemHolder.InventoryObject.Data.ObjectType)
+        switch (m_ItemHolder.Item.Data.ObjectType)
         {
             case ObjectType.DefaultObject:
                 m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
-                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+                m_Displayer.Initialize(m_ItemHolder.Item);
                 break;
             case ObjectType.Equipement:
                 m_Displayer = Instantiate(m_EquipementDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
-                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
+                m_Displayer.Initialize(m_ItemHolder.Item);
                 break;
             default:
                 m_Displayer = Instantiate(m_ItemDisplayer, Input.mousePosition, Quaternion.identity, GlobalCanvas.Instance.transform);
-                m_Displayer.Initialize(m_ItemHolder.InventoryObject);
-                Debug.LogError("Display type displayer not implemented" + m_ItemHolder.InventoryObject.Data.ObjectType);
+                m_Displayer.Initialize(m_ItemHolder.Item);
+                Debug.LogError("Display type displayer not implemented" + m_ItemHolder.Item.Data.ObjectType);
                 break;
         }
     }

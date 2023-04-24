@@ -2,9 +2,9 @@
 
 public static class EquipementUtils
 {
-    public static void ApplyEquipementStats(EquipementObject equipementObject, BoardEntity entity, bool recomputeStats = true)
+    public static void ApplyEquipementStats(EquipementItem equipementItem, BoardEntity entity, bool recomputeStats = true)
     {
-        foreach (Modifier modifier in equipementObject.ItemModifiers)
+        foreach (Modifier modifier in equipementItem.ItemModifiers)
         {
             ModifierUtils.ApplyModifier(modifier,entity);
         }
@@ -13,10 +13,10 @@ public static class EquipementUtils
             entity.ComputeAllSpells();
     }
     
-    public static void UnapplyEquipementStats(EquipementObject equipementObject, BoardEntity entity)
+    public static void UnapplyEquipementStats(EquipementItem equipementItem, BoardEntity entity)
     {
         
-        foreach (Modifier modifier in equipementObject.ItemModifiers)
+        foreach (Modifier modifier in equipementItem.ItemModifiers)
         {
             ModifierUtils.UnapplyModifier(modifier,entity);
         }
@@ -24,7 +24,7 @@ public static class EquipementUtils
         entity.ComputeAllSpells();
     }
 
-    public static void Equip(EquipementObject equipementObject, BoardEntity entity)
+    public static void Equip(EquipementItem equipementItem, BoardEntity entity)
     {
         EntityEquipement entityEquipement = entity.EntityEquipement;
         EquipementSocket targetSocket = null;
@@ -32,7 +32,7 @@ public static class EquipementUtils
         //Todo:Need to Handle Main/OffHand System Here
         foreach (EquipementSocket socket in entityEquipement.EquipementSockets)
         {
-            if (socket.Type == equipementObject.Type)
+            if (socket.Type == equipementItem.Type)
             {
                 targetSocket = socket;
                 break;
@@ -44,14 +44,14 @@ public static class EquipementUtils
             UnEquip(targetSocket,entity);
         }
         
-        ApplyEquipementStats(equipementObject,entity);
-        targetSocket.equipementObject = equipementObject;
+        ApplyEquipementStats(equipementItem,entity);
+        targetSocket.EquipementItem = equipementItem;
     }
     public static void UnEquip(EquipementSocket socket,BoardEntity entity)
     {
         //TODO:Sent Equipement to Inventory to entity => Inventory Only Player//
-        UnapplyEquipementStats(socket.equipementObject,entity);
-        socket.equipementObject.UnEquip();
-        socket.equipementObject = null;
+        UnapplyEquipementStats(socket.EquipementItem,entity);
+        socket.EquipementItem.UnEquip();
+        socket.EquipementItem = null;
     }
 }

@@ -22,10 +22,10 @@ public class ItemDescriptionDisplayer : MonoBehaviour
         transform.position = Input.mousePosition;
     }
 
-    public virtual void Initialize(InventoryObject inventoryObject)
+    public virtual void Initialize(Item item)
     {
-        m_NameText.text = inventoryObject.Data.ObjectName;
-        m_DescriptionText.text = inventoryObject.Data.Description;
+        m_NameText.text = item.Data.ObjectName;
+        m_DescriptionText.text = item.Data.Description;
         m_SizeFilter.SetLayoutVertical();
         
         m_ContainerLayout.AdaptSize();

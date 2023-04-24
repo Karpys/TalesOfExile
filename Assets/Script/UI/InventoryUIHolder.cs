@@ -17,22 +17,22 @@ public class InventoryUIHolder:MonoBehaviour
 
     [Header("Option Button Transform")] 
     [SerializeField] private RectTransform m_OptionButtonPosition = null;
-    private InventoryObject m_InventoryObject = null;
-    public InventoryObject InventoryObject => m_InventoryObject;
+    private Item m_Item = null;
+    public Item Item => m_Item;
     public RectTransform OptionButtonPosition => m_OptionButtonPosition;
     
-    public void InitalizeUIHolder(InventoryObject inventoryObject)
+    public void InitalizeUIHolder(Item item)
     {
-        RarityParameter rarityParameter = RarityLibrary.Instance.GetParametersViaKey(inventoryObject.Rarity);
+        RarityParameter rarityParameter = RarityLibrary.Instance.GetParametersViaKey(item.Rarity);
         
-        m_InventoryObject = inventoryObject;
-        m_ObjectVisual.sprite = m_InventoryObject.Data.InUIVisual;
-        m_ObjectName.text = m_InventoryObject.Data.ObjectName;
-        m_Category.text = m_InventoryObject.Data.ObjectType.ToString();
+        m_Item = item;
+        m_ObjectVisual.sprite = m_Item.Data.InUIVisual;
+        m_ObjectName.text = m_Item.Data.ObjectName;
+        m_Category.text = m_Item.Data.ObjectType.ToString();
         m_RarityImage.color = rarityParameter.RarityColor;
         
         RefreshEquipedState();
-        m_InventoryObject.SetHolder(this);
+        m_Item.SetHolder(this);
     }
 
     public void DisplayItemUseOption()
@@ -43,15 +43,15 @@ public class InventoryUIHolder:MonoBehaviour
     //Button Action//
     public void RefreshEquipedState()
     {
-        EquipementObject equipementObject = m_InventoryObject as EquipementObject;
+        EquipementItem equipementItem = m_Item as EquipementItem;
 
-        if (equipementObject == null)
+        if (equipementItem == null)
         {
             m_IsEquiped.color = Color.gray;
         }
         else
         {
-            m_IsEquiped.color = equipementObject.IsEquiped ? Color.green : Color.red;
+            m_IsEquiped.color = equipementItem.IsEquiped ? Color.green : Color.red;
         }
     }
 }

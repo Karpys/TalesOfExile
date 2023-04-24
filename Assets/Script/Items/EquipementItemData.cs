@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventoryData", menuName = "Inventory/EquipementData", order = 0)]
-public class EquipementObjectData : InventoryObjectData
+[CreateAssetMenu(fileName = "EquipementItemData", menuName = "Inventory/EquipementItemData", order = 0)]
+public class EquipementItemData : InventoryItemData
 {
     [Header("Equipement Data")]
     [SerializeField] private EquipementType m_EquipementType = EquipementType.Null;
