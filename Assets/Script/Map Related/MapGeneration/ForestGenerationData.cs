@@ -85,8 +85,7 @@ public class ForestGenerationData : MapGenerationData
             
         }
         
-        
-    
+        MapDataLibrary.Instance.AddReloaderAt(lastTile.TilePosition);
         TileHelper.GenerateTileSet(roadTiles,roadRenderers,m_RoadTileSet.TileMap,m_MapData);
     }
 
