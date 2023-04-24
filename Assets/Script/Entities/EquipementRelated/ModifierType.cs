@@ -10,5 +10,10 @@
     
     //Misc// 51 +//
     SpellAddition = 51,
+    AddThrowRockPassif = 52,
     //Ect
 }
+
+
+//For everything that need to sub/unsub to the attached event pass throught create a passive buff//
+//Key system to know the buff that come from wich equipement, for the key use EquipementSaveName => Fix string//

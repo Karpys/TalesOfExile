@@ -35,3 +35,8 @@ MonoBehaviour:
           m_Type: 21
           m_Range: {x: 20, y: 50}
           m_Params: 
+      - m_Weight: 5
+        m_Object:
+          m_Type: 52
+          m_Range: {x: 30, y: 60}
+          m_Params: 

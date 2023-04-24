@@ -4848,6 +4848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1eeb2d5e20149b9bf266ca766513c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_VisualTransform: {fileID: 6227236463798049032}
   m_BuffType: 1
   m_BuffGroup: 1
   m_BuffCooldown: 0
+  m_EnemyBuffIgnoreFirstCooldown: 0

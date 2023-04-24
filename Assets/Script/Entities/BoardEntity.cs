@@ -316,13 +316,13 @@ public abstract class BoardEntity : MonoBehaviour
     
     //Spell Related//
     //Player Cast Mainly or Controlled Entity//
-    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
+    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,bool freeCast = false)
     {
-        spellData.Cast(spellData,spellTiles);
+        spellData.Cast(spellData,spellTiles,freeCast);
     }
 
     //Cast
-    public void CastSpellAt(TriggerSpellData spellData,Vector2Int pos)
+    public void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,bool freeCast = false)
     {
         List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
         List<Vector2Int> originTiles = new List<Vector2Int>();
@@ -347,7 +347,7 @@ public abstract class BoardEntity : MonoBehaviour
             }
         }
         
-        CastSpell(spellData,new SpellTiles(originTiles,tilesActions));
+        CastSpell(spellData,new SpellTiles(originTiles,tilesActions),freeCast);
     }
     //Damage Related//
     public void TakeDamage(float value)

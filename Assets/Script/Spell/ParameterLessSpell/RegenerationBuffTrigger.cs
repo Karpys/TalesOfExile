@@ -1,21 +1,13 @@
 ﻿using UnityEngine;
 
-public class RegenerationBuffTrigger : SelectionSpellTrigger
+public class RegenerationBuffTrigger : BuffGiverTrigger
 {
-    private int m_RegenerationDuration = 0;
-    private float m_RegenerationValue = 0;
-
-    public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, int regenerationCooldown,float regenerationValue) : base(baseScriptable)
+    public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup, BuffType buffType, int buffDuration, float buffValue) : base(baseScriptable, buffGroup, buffType, buffDuration, buffValue)
     {
-        m_RegenerationDuration = regenerationCooldown;
-        m_RegenerationValue = regenerationValue;
     }
-
+    
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
-        Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RegenerationBuff,spellData.AttachedEntity);
-        buff.InitializeBuff(spellData.AttachedEntity,spellData.AttachedEntity,m_RegenerationDuration,m_RegenerationValue);
-        
         m_SpellAnimDelay = 0.1f;
         base.Trigger(spellData, spellTiles);
     }
@@ -33,4 +25,6 @@ public class RegenerationBuffTrigger : SelectionSpellTrigger
     {
         m_SpellPriority = 0;
     }
+
+    
 }

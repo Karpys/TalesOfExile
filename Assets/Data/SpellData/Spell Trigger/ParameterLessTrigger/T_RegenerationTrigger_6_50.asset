@@ -17,6 +17,10 @@ MonoBehaviour:
   AdditionalAnimDatas: 0
   m_TriggerClassName: RegenerationBuffTrigger
   m_AdditionalParameters:
+  - Type: 3
+    Value: BuffGroup Buff
+  - Type: 3
+    Value: BuffType RegenerationBuff
   - Type: 0
     Value: 6
   - Type: 1

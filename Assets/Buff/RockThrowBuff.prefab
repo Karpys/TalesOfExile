@@ -4848,6 +4848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1353478079274f16a421f11f72d853ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_VisualTransform: {fileID: 6227236463798049032}
   m_BuffType: 2
   m_BuffGroup: 1
   m_BuffCooldown: 0

@@ -18,6 +18,8 @@ MonoBehaviour:
   m_TriggerClassName: SkeletonCurseBuffGiverTrigger
   m_AdditionalParameters:
   - Type: 3
+    Value: BuffGroup Debuff
+  - Type: 3
     Value: BuffType SkeletonCurse
   - Type: 0
     Value: 10

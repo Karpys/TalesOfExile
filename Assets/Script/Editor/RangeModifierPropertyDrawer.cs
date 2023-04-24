@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,9 +15,12 @@ public class RangeModifierPropertyDrawer : PropertyDrawer
         SerializedProperty typeProperty = property.FindPropertyRelative("m_Type");
         
         string[] enumNames = Enum.GetNames(typeof(ModifierType));
-        int spellAdditionIndex = Array.IndexOf(enumNames, ModifierType.SpellAddition.ToString());
 
-        if (typeProperty.enumValueIndex == spellAdditionIndex)
+        ModifierType[] modifierTypes = new ModifierType[] {ModifierType.SpellAddition};
+        
+        List<int> stringParamModifier = StringParamModifierType(enumNames,modifierTypes);
+
+        if (stringParamModifier.Contains(typeProperty.enumValueIndex))
         {
             position.y += 20;
             EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Params"), true);
@@ -28,6 +32,18 @@ public class RangeModifierPropertyDrawer : PropertyDrawer
         }
         
         EditorGUI.EndProperty();
+    }
+
+    private List<int> StringParamModifierType(string[] enumNames,ModifierType[] modifierTypes)
+    {
+        List<int> stringParamModifierType = new List<int>();
+
+        foreach (ModifierType type in modifierTypes)
+        {
+            stringParamModifierType.Add(Array.IndexOf(enumNames, type.ToString()));
+        }
+
+        return stringParamModifierType;
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

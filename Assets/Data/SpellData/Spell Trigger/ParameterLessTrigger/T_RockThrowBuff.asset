@@ -15,7 +15,13 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
-  m_TriggerClassName: RockThrowBuffTrigger
+  m_TriggerClassName: BuffGiverTrigger
   m_AdditionalParameters:
+  - Type: 3
+    Value: BuffGroup Buff
+  - Type: 3
+    Value: BuffType RockThrowBuff
   - Type: 0
     Value: 10
+  - Type: 1
+    Value: 50

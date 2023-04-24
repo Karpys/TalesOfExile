@@ -19,12 +19,18 @@ public static class ModifierUtils
             case ModifierType.UpPhysical:
                 entity.EntityStats.PhysicalDamageModifier += modifier.FloatValue;
                 break;
+            case ModifierType.IncreaseMaxLife:
+                entity.Life.ChangeMaxLifeValue(modifier.FloatValue);
+                break;
             case ModifierType.SpellAddition:
                 SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(modifier.Value);
                 entity.AddSpellToSpellList(spellToAdd);
                 break;
-            case ModifierType.IncreaseMaxLife:
-                entity.Life.ChangeMaxLifeValue(modifier.FloatValue);
+            case ModifierType.AddThrowRockPassif:
+                Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, entity);
+                buff.InitializeBuff(entity,entity,0,modifier.FloatValue);
+                buff.SetBuffType(BuffGroup.Buff,BuffCooldown.Passive);
+                buff.EnableVisual(false);
                 break;
             default:
                 Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
@@ -45,6 +51,9 @@ public static class ModifierUtils
             case ModifierType.UpPhysical:
                 entity.EntityStats.PhysicalDamageModifier -= modifier.FloatValue;
                 break;
+            case ModifierType.IncreaseMaxLife:
+                entity.Life.ChangeMaxLifeValue(-modifier.FloatValue);
+                break;
             case ModifierType.SpellAddition:
                 SpellData spellToAdd = entity.GetSpellViaKey(modifier.Value);
                 
@@ -56,8 +65,8 @@ public static class ModifierUtils
                 
                 entity.RemoveSpellToSpellList(spellToAdd);
                 break;
-            case ModifierType.IncreaseMaxLife:
-                entity.Life.ChangeMaxLifeValue(-modifier.FloatValue);
+            case ModifierType.AddThrowRockPassif:
+                entity.Buffs.TryRemovePassiveOffTypeAndValue(BuffType.RockThrowBuff,modifier.FloatValue);
                 break;
             default:
                 Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");
@@ -88,6 +97,8 @@ public static class ModifierUtils
                 return "+" + modifier.Value + " Maximum life";
             case ModifierType.SpellAddition:
                 return "Add " + modifier.Value + " spell";
+            case ModifierType.AddThrowRockPassif:
+                return "Throw Rock dealing " + modifier.Value + " damage";
             default:
                 Debug.LogError("Modifier type has not been set up " + modifier.Type);
                 return "Not Recognised";

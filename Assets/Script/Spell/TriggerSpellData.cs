@@ -42,10 +42,14 @@ public class TriggerSpellData:SpellData
 
     //Use and Cooldown Part
     //TODO: Need to Implemente the CooldownSystem
-    public void Cast(TriggerSpellData spellData, SpellTiles spellTiles)
+    public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool freeCast = false)
     {
-        m_HasBeenUsed = true;
         SpellTrigger.Trigger(spellData,spellTiles);
+        
+        if(freeCast)
+            return;
+        
+        m_HasBeenUsed = true;
         LaunchCooldown();
     }
 

@@ -95,4 +95,9 @@ public class DamageSpellTrigger : SelectionSpellTrigger
             FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
         }
     }
+
+    public void SetInitialDamageSource(float initialDamageSource)
+    {
+        DamageSpellData.InitialSourceDamage.Damage = initialDamageSource;
+    }
 }

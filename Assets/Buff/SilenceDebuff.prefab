@@ -4815,7 +4815,7 @@ GameObject:
   - component: {fileID: 1340844535513894891}
   - component: {fileID: 5730924036560442381}
   m_Layer: 0
-  m_Name: SilenceBuff
+  m_Name: SilenceDebuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4848,6 +4848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e214c8c4eaae48c29bc037393652044a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_VisualTransform: {fileID: 6227236463798049032}
   m_BuffType: 101
   m_BuffGroup: 2
   m_BuffCooldown: 0
+  m_EnemyBuffIgnoreFirstCooldown: 0

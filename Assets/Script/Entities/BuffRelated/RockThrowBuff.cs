@@ -6,9 +6,14 @@ public class RockThrowBuff : Buff
     [SerializeField] private SpellData m_TriggerSpellData = null;
     private TriggerSpellData Trigger => m_TriggerSpellData as TriggerSpellData;
     private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
+    
     protected override void Apply()
     {
         m_TriggerSpellData = m_Receiver.RegisterSpell(m_TriggerSpellData);
+        
+        ((DamageSpellTrigger)Trigger.SpellTrigger).SetInitialDamageSource(m_BuffValue);
+        Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
+        
         m_Receiver.EntityEvent.OnDoDamageTo += AddRockThrowCallBack;
         m_Receiver.EntityEvent.OnSpellRecompute += Trigger.SpellTrigger.ComputeSpellData;
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EntityBuffs : MonoBehaviour
@@ -32,6 +33,20 @@ public class EntityBuffs : MonoBehaviour
         for (int i = m_Buffs.Count - 1; i >= 0; i--)
         {
             m_Buffs[i].ReduceCooldown();
+        }
+    }
+
+    public void TryRemovePassiveOffTypeAndValue(BuffType buffType, float buffValue)
+    {
+        for (int i = 0; i < m_Buffs.Count; i++)
+        {
+            Debug.Log(m_Buffs[i].BuffType);
+            if (m_Buffs[i].BuffType == buffType && m_Buffs[i].BuffValue == buffValue &&
+                m_Buffs[i].BuffCooldown == BuffCooldown.Passive)
+            {
+                m_Buffs[i].RemovePassive();
+                return;
+            }
         }
     }
 }

@@ -49,7 +49,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
     {
         m_SpellAnimDelay = 0;
-        EntityGroup targetGroup = EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
+        EntityGroup targetGroup = GetEntityGroup(spellData);
 
         for (int i = 0; i < spellTiles.ActionTiles.Count; i++)
         {
@@ -75,6 +75,11 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
         {
             GameManager.Instance.EnnemiesWaitTime = m_SpellAnimDelay;
         }
+    }
+
+    protected virtual EntityGroup GetEntityGroup(TriggerSpellData spellData)
+    {
+        return EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
     }
 
     public override void ComputeSpellData(BoardEntity entity)

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Buff : MonoBehaviour
 {
+    [SerializeField] protected Transform m_VisualTransform = null;
     [SerializeField] protected BuffType m_BuffType = BuffType.None;
     [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
     [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
@@ -15,6 +17,11 @@ public abstract class Buff : MonoBehaviour
     protected float m_BuffValue = 0;
 
     private bool m_IgnoreCooldownOnInit = false;
+    private string m_BuffKey = String.Empty;
+
+    public BuffCooldown BuffCooldown => m_BuffCooldown;
+    public BuffType BuffType => m_BuffType;
+    public float BuffValue => m_BuffValue;
 
     public virtual void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
     {
@@ -56,5 +63,18 @@ public abstract class Buff : MonoBehaviour
     {
         m_BuffGroup = group;
         m_BuffCooldown = cooldown;
+    }
+
+    public void EnableVisual(bool enable)
+    {
+        if(m_VisualTransform)
+            m_VisualTransform.gameObject.SetActive(enable); 
+    }
+
+    public void RemovePassive()
+    {
+        m_Receiver.Buffs.RemoveBuff(this);
+        UnApply();
+        Destroy(gameObject);
     }
 }
