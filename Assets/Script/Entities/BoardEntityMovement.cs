@@ -60,15 +60,15 @@ public class BoardEntityMovement : MonoBehaviour
         if(m_CurrentFecthInputTimer < 0)
             m_CurrentFecthInputTimer = m_InputTiming;
     }
-    private void TryMoveTo(Vector2Int pos)
+    
+    public void TryMoveTo(Vector2Int pos)
     {
         if (!GameManager.Instance.CanPlay)
         {
             return;
         }
         
-        Vector2Int entityPosition = m_Entity.EntityPosition;
-        Vector2Int targetPosition = m_Entity.EntityPosition + m_ComputedInput;
+        Vector2Int targetPosition = m_Entity.EntityPosition + pos;
 
         if (MapData.Instance.IsWalkable(targetPosition))
         {
