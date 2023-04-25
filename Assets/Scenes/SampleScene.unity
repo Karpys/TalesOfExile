@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5078627}
   - component: {fileID: 5078626}
   m_Layer: 5
-  m_Name: InventoryContainer
+  m_Name: (Obsolete)InventoryContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
