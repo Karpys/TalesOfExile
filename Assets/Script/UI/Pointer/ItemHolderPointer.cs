@@ -17,6 +17,9 @@ public class ItemHolderPointer : UIPointer
 
     protected override void OnEnter()
     {
+        m_ItemHolder.MouseOn = true;
+        ItemUIController.Instance.SetCurrentMouseHolder(m_ItemHolder);
+        
         if(m_ItemHolder.Item == null)
             return;
         
@@ -25,8 +28,8 @@ public class ItemHolderPointer : UIPointer
 
     protected override void OnExit()
     {
+        m_ItemHolder.MouseOn = false;
         m_EventClock = null;
-
         if (m_Displayer)
         {
             Destroy(m_Displayer.gameObject);

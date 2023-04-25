@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 155981258}
   - component: {fileID: 155981259}
   - component: {fileID: 155981260}
+  - component: {fileID: 155981261}
   m_Layer: 5
   m_Name: CNV_Inventory
   m_TagString: Untagged
@@ -1077,6 +1078,18 @@ MonoBehaviour:
   m_ItemGroup: {fileID: 1518460462}
   m_ItemCount: 50
   m_ItemUIHolderPrefab: {fileID: -1504634944583198235, guid: 22db7de2a000d44178d7154b24a7e66c, type: 3}
+--- !u!114 &155981261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155981257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b0b733394db0845a5d2875c9cbe68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216174544
 GameObject:
   m_ObjectHideFlags: 0

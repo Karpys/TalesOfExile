@@ -5,20 +5,13 @@ using UnityEngine;
 public abstract class Item:ISavable
 {
     protected InventoryItemData m_Data = null;
-    protected InventoryUIHolder m_UIHolder = null;
     public Rarity Rarity => GetRarity();
     public InventoryItemData Data => m_Data;
-    public InventoryUIHolder UIHolder => m_UIHolder;
     public Item(InventoryItemData data)
     {
         m_Data = data;
     }
-
-    public void SetHolder(InventoryUIHolder holder)
-    {
-        m_UIHolder = holder;
-    }
-
+    
     protected virtual Rarity GetRarity()
     {
         return m_Data.Rarity;

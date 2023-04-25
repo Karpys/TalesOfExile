@@ -10,11 +10,25 @@ public class ItemUIHolder : MonoBehaviour
     [SerializeField] private Image m_ItemRarityBorder = null;
 
     private Item m_AttachedItem = null;
+    private bool m_MouseOn = false;
 
     public Item Item => m_AttachedItem;
 
-    public void InitializeHolder(Item item)
+    public bool MouseOn
     {
+        get => m_MouseOn;
+        set => m_MouseOn = value;
+    }
+
+
+    public void SetItem(Item item)
+    {
+        if (item == null)
+        {
+            DefaultDisplay();
+            return;
+        }
+        
         m_AttachedItem = item;
         m_ItemVisual.sprite = item.Data.InUIVisual;
         m_ItemVisual.color = Color.white;
@@ -28,9 +42,8 @@ public class ItemUIHolder : MonoBehaviour
     {
         m_AttachedItem = null;
         //Set to default sprite
-        m_ItemVisual.color = Color.white.setAlpha(0);
-        
         m_ItemRarityBorder.sprite = m_DefaultItemBorder;
+        m_ItemRarityBorder.color = Color.white;
     }
     
     public void DisplayItemUseOption()

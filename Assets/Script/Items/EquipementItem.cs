@@ -53,17 +53,11 @@ public class EquipementItem:Item
     {
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         m_IsEquiped = true;
-        
-        if(m_UIHolder)
-            m_UIHolder.RefreshEquipedState();
     }
 
     public void UnEquip()
     {
         m_IsEquiped = false;
-        
-        if(m_UIHolder)
-            m_UIHolder.RefreshEquipedState();
     }
     #endregion
 

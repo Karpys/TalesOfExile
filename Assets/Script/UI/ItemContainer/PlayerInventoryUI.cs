@@ -24,14 +24,7 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         for (int i = 0; i < m_ItemContainer.Length; i++)
         {
-            if (m_Inventory.Inventory[i] == null)
-            {
-                m_ItemContainer[i].DefaultDisplay();
-            }
-            else
-            {
-                m_ItemContainer[i].InitializeHolder(m_Inventory.Inventory[i]);   
-            }
+            m_ItemContainer[i].SetItem(m_Inventory.Inventory[i]);
         }
     }
 
