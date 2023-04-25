@@ -53,6 +53,13 @@ namespace TweenCustom
             return baseTween;
         }
         
+        public static BaseTween DoUIPosition(this Transform trans, Vector3 endValue, float duration)
+        {
+            TweenUIPosition baseTween = new TweenUIPosition(trans, endValue, duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
         public static BaseTween DoColor(this SpriteRenderer renderer, Color endValue,float duration)
         {
             TweenSpriteColor baseTween = new TweenSpriteColor(renderer, endValue.rgba(), duration);
