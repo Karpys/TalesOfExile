@@ -30,6 +30,7 @@ public static class ModifierUtils
                 Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, entity);
                 buff.InitializeBuff(entity,entity,0,modifier.FloatValue);
                 buff.SetBuffType(BuffGroup.Buff,BuffCooldown.Passive);
+                buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + modifier.Value);
                 buff.EnableVisual(false);
                 break;
             default:
@@ -66,7 +67,7 @@ public static class ModifierUtils
                 entity.RemoveSpellToSpellList(spellToAdd);
                 break;
             case ModifierType.AddThrowRockPassif:
-                entity.Buffs.TryRemovePassiveOffTypeAndValue(BuffType.RockThrowBuff,modifier.FloatValue);
+                entity.Buffs.TryRemoveBuffViaKey((int)BuffType.RockThrowBuff + " " + modifier.Value);
                 break;
             default:
                 Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");

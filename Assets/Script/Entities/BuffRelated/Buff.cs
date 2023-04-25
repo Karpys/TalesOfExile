@@ -22,6 +22,7 @@ public abstract class Buff : MonoBehaviour
     public BuffCooldown BuffCooldown => m_BuffCooldown;
     public BuffType BuffType => m_BuffType;
     public float BuffValue => m_BuffValue;
+    public string BuffKey => m_BuffKey;
 
     public virtual void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
     {
@@ -63,6 +64,11 @@ public abstract class Buff : MonoBehaviour
     {
         m_BuffGroup = group;
         m_BuffCooldown = cooldown;
+    }
+
+    public void SetBuffKey(string buffKey)
+    {
+        m_BuffKey = buffKey;
     }
 
     public void EnableVisual(bool enable)

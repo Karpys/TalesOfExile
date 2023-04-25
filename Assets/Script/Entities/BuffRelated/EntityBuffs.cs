@@ -49,6 +49,18 @@ public class EntityBuffs : MonoBehaviour
             }
         }
     }
+    
+    public void TryRemoveBuffViaKey(string buffKey)
+    {
+        for (int i = 0; i < m_Buffs.Count; i++)
+        {
+            if (m_Buffs[i].BuffKey == buffKey)
+            {
+                m_Buffs[i].RemovePassive();
+                return;
+            }
+        }
+    }
 }
 
 [System.Serializable]

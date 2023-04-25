@@ -5835,7 +5835,7 @@ MonoBehaviour:
   m_CanvasSkills: {fileID: 1946549652}
   m_CanvasInventory: {fileID: 155981259}
   m_EntityInputMovement: {fileID: 34784935}
-  m_RemoveDelay: 1
+  m_RemoveDelay: 0
   m_FriendlyBaseWaitTime: 0.1
   FriendlyWaitTime: 0
   EnnemiesWaitTime: 0
