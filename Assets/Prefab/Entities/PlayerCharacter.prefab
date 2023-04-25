@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SaveName: InventorySave.txt
+  m_InventoryItemCount: 50
 --- !u!1 &9071852352984913702
 GameObject:
   m_ObjectHideFlags: 0

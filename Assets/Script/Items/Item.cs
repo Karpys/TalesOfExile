@@ -30,7 +30,7 @@ public abstract class Item:ISavable
         m_Data = ItemLibrary.Instance.GetBaseDataViaId(saveArgs[1].ToInt());
     }
 
-    public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
+    public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
     {
         List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
         newItemButton.Add(new ItemButtonUIParameters(DisplayName,"Display Name"));

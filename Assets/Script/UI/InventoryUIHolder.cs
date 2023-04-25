@@ -37,7 +37,7 @@ public class InventoryUIHolder:MonoBehaviour
 
     public void DisplayItemUseOption()
     {
-        ItemButtonOptionController.Instance.DisplayButtonOption(this);
+       // ItemButtonOptionController.Instance.DisplayButtonOption(this);
     }
     
     //Button Action//

@@ -21,7 +21,7 @@ public class EquipementItem:Item
         InitializeBaseModifier();
     }
 
-    public override List<ItemButtonUIParameters> ButtonRequestOptionButton(InventoryUIHolder inventoryUI)
+    public override List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
     { 
         List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton(inventoryUI);
         itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));

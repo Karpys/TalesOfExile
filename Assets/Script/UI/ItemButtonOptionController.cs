@@ -32,7 +32,7 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         m_MaskScroll.LaunchScroll(((RectTransform)m_ButtonPrefab.transform).rect.height * m_PreviousButton.Count,m_OpenLayoutTime);
     }
 
-    public void DisplayButtonOption(InventoryUIHolder inventoryUI)
+    public void DisplayButtonOption(ItemUIHolder inventoryUI)
     {
         Clear();
        
@@ -47,7 +47,7 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         }
         
         StartLayoutScroll();
-        Place(inventoryUI.OptionButtonPosition);
+        Place(inventoryUI.transform as RectTransform);
     }
 
     private void Place(RectTransform inventoryUIObject)
@@ -63,7 +63,8 @@ public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOption
         {
             Destroy(m_PreviousButton[i].gameObject);
         }
-        
+
+        transform.position = new Vector3(0, 0);
         m_PreviousButton.Clear();
     }
 }

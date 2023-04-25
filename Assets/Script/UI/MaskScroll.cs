@@ -16,6 +16,13 @@ public class MaskScroll : MonoBehaviour
     {
         if (m_OnScroll)
         {
+            if (m_OpenScrollTime == 0)
+            {
+                m_TargetTransform.sizeDelta = new Vector2(m_TargetTransform.sizeDelta.x, m_TargetSize);
+                m_OnScroll = false;
+                return;
+            }
+            
             m_TargetTransform.sizeDelta = new Vector2(m_TargetTransform.sizeDelta.x,Mathf.Lerp(0,m_TargetSize , m_DisplayCurve.Evaluate(m_OpenScrollTimer / m_OpenScrollTime)));
             m_OpenScrollTimer += Time.deltaTime;
 

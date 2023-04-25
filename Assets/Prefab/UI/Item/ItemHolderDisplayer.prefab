@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaskScroll: {fileID: 4466214428389810489}
-  m_ScrollTime: 0.5
+  m_ScrollTime: 0
   m_SelfSize: {fileID: 2758601523248952924}
   m_ContainerLayout: {fileID: 2758601524196555718}
   m_SizeFilter: {fileID: 3490790394701267881}

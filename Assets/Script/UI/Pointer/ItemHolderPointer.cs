@@ -2,7 +2,7 @@
 
 public class ItemHolderPointer : UIPointer
 {
-    [SerializeField] private InventoryUIHolder m_ItemHolder = null;
+    [SerializeField] private ItemUIHolder m_ItemHolder = null;
     [SerializeField] private EquipementItemDescriptionDisplayer m_EquipementDisplayer = null; 
     [SerializeField] private ItemDescriptionDisplayer m_ItemDisplayer = null; 
     [SerializeField] private float m_DisplayDuration = 1f;
@@ -11,13 +11,15 @@ public class ItemHolderPointer : UIPointer
     private ItemDescriptionDisplayer m_Displayer = null;
     private void Update()
     {
-        if(m_EventClock != null)
-            m_EventClock.UpdateClock();
+        m_EventClock?.UpdateClock();
     }
 
 
     protected override void OnEnter()
     {
+        if(m_ItemHolder.Item == null)
+            return;
+        
         m_EventClock = new Clock(m_DisplayDuration, DisplayItemDescription);
     }
 
@@ -34,6 +36,9 @@ public class ItemHolderPointer : UIPointer
 
     private void DisplayItemDescription()
     {
+        if(m_ItemHolder.Item == null)
+            return;
+        
         switch (m_ItemHolder.Item.Data.ObjectType)
         {
             case ObjectType.DefaultObject:

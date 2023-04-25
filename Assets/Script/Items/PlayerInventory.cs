@@ -7,14 +7,28 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour,ISaver
 {
     [SerializeField] private string m_SaveName = string.Empty;
+    [SerializeField] private int m_InventoryItemCount = 0;
     
-    private List<Item> m_PlayerInventory = new List<Item>();
+    private Item[] m_PlayerInventory = null;
 
-    public List<Item> Inventory => m_PlayerInventory;
+    public Item[] Inventory => m_PlayerInventory;
+
+    private void Awake()
+    {
+        m_PlayerInventory = new Item[m_InventoryItemCount];
+    }
 
     public void PickUp(Item item)
     {
-        m_PlayerInventory.Add(item);
+        for (int i = 0; i < m_PlayerInventory.Length; i++)
+        {
+            if (m_PlayerInventory[i] == null)
+            {
+                m_PlayerInventory[i] = item;
+                break;
+            }
+        } 
+        //m_PlayerInventory.Add(item);
         PrintItemPickUp(item);
     }
 
@@ -41,7 +55,7 @@ public class PlayerInventory : MonoBehaviour,ISaver
     {
         string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
         List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
-        m_PlayerInventory = saveObjects;
+        //m_PlayerInventory = saveObjects;
     }
     
     public void WriteSaveData(string saveName, string[] data)
@@ -51,13 +65,14 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     public string[] FetchSaveData()
     {
-        string[] itemDataSaves = new string[m_PlayerInventory.Count];
-
-        for (int i = 0; i < m_PlayerInventory.Count; i++)
-        {
-            itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
-        }
-        
-        return itemDataSaves;
+        // string[] itemDataSaves = new string[m_PlayerInventory.Count];
+        //
+        // for (int i = 0; i < m_PlayerInventory.Count; i++)
+        // {
+        //     itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
+        // }
+        //
+        // return itemDataSaves;
+        return null;
     }
 }
