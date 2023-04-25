@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemUIController : SingletonMonoBehavior<ItemUIController>
 {
+    [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
     private ItemUIHolder m_OnClickHolder = null;
     private ItemUIHolder m_OnMouseHolder = null;
 
@@ -29,7 +30,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
             {
                 if (m_OnMouseHolder != m_OnClickHolder && m_OnMouseHolder.MouseOn)
                 {
-                    SwapHolder(m_OnMouseHolder,m_OnClickHolder);
+                    m_PlayerInventoryUI.SwapItem(m_OnMouseHolder.Id,m_OnClickHolder.Id);
                 }
                 else
                 {
@@ -44,12 +45,5 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
     public void SetCurrentMouseHolder(ItemUIHolder itemHolder)
     {
         m_OnMouseHolder = itemHolder;
-    }
-    
-    private void SwapHolder(ItemUIHolder holder1, ItemUIHolder holder2)
-    {
-        Item itemTemp = holder1.Item;
-        holder1.SetItem(holder2.Item);
-        holder2.SetItem(itemTemp);
     }
 }

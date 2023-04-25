@@ -11,16 +11,20 @@ public class ItemUIHolder : MonoBehaviour
 
     private Item m_AttachedItem = null;
     private bool m_MouseOn = false;
-
+    private int m_Id = -1;
     public Item Item => m_AttachedItem;
-
+    public int Id => m_Id;
     public bool MouseOn
     {
         get => m_MouseOn;
         set => m_MouseOn = value;
     }
-
-
+    
+    public void SetId(int id)
+    {
+        m_Id = id;
+    }
+    
     public void SetItem(Item item)
     {
         if (item == null)
@@ -38,7 +42,7 @@ public class ItemUIHolder : MonoBehaviour
         m_ItemRarityBorder.color = rarityParameter.RarityColor;
     }
 
-    public void DefaultDisplay()
+    private void DefaultDisplay()
     {
         m_AttachedItem = null;
         //Set to default sprite

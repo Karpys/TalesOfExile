@@ -10,14 +10,14 @@ public class PlayerInventory : MonoBehaviour,ISaver
     [SerializeField] private int m_InventoryItemCount = 0;
     
     private Item[] m_PlayerInventory = null;
-
     public Item[] Inventory => m_PlayerInventory;
 
+    public Action A_OnPickUp = null;
     private void Awake()
     {
         m_PlayerInventory = new Item[m_InventoryItemCount];
     }
-
+    
     public bool TryPickUp(Item item)
     {
         bool onPickUp = false;
@@ -27,6 +27,7 @@ public class PlayerInventory : MonoBehaviour,ISaver
             {
                 m_PlayerInventory[i] = item;
                 onPickUp = true;
+                A_OnPickUp?.Invoke();
                 break;
             }
         } 
@@ -42,6 +43,10 @@ public class PlayerInventory : MonoBehaviour,ISaver
         Debug.Log("<color=#"+ colorCode+">" + item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
     }
 
+    public void SwapItem(int id1, int id2)
+    {
+        (m_PlayerInventory[id1], m_PlayerInventory[id2]) = (m_PlayerInventory[id2], m_PlayerInventory[id1]);
+    }
     //Save Part
 
     private void Update()

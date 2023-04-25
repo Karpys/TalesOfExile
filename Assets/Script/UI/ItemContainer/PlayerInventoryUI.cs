@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerInventoryUI : MonoBehaviour
@@ -13,14 +14,22 @@ public class PlayerInventoryUI : MonoBehaviour
     private void Awake()
     {
         m_ItemContainer = new ItemUIHolder[m_ItemCount];
+        
         for (int i = 0; i < m_ItemCount; i++)
         {
             ItemUIHolder itemHolder = Instantiate(m_ItemUIHolderPrefab, m_ItemGroup);
+            itemHolder.SetId(i);
             m_ItemContainer[i] = itemHolder;
         }
     }
-    
-    public void DisplayInventory()
+
+    private void OnDestroy()
+    {
+        if (m_Inventory)
+            m_Inventory.A_OnPickUp -= RefreshWhenOpen;
+    }
+
+    public void RefreshInventoryDisplay()
     {
         for (int i = 0; i < m_ItemContainer.Length; i++)
         {
@@ -28,8 +37,26 @@ public class PlayerInventoryUI : MonoBehaviour
         }
     }
 
+    private void RefreshWhenOpen()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+        RefreshInventoryDisplay();
+    }
+
     public void SetPlayerInventory(PlayerInventory inventory)
     {
+        if (m_Inventory)
+            m_Inventory.A_OnPickUp -= RefreshWhenOpen;
+        
         m_Inventory = inventory;
+        m_Inventory.A_OnPickUp += RefreshWhenOpen;
+    }
+    
+    public void SwapItem(int idHolder1, int idHolder2)
+    {
+        m_Inventory.SwapItem(idHolder1, idHolder2);
+        m_ItemContainer[idHolder1].SetItem(m_Inventory.Inventory[idHolder1]);
+        m_ItemContainer[idHolder2].SetItem(m_Inventory.Inventory[idHolder2]);
     }
 }
