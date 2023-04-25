@@ -34,8 +34,8 @@ public class ItemWorldHolder : MonoBehaviour
     {
         if (m_PlayerControllerEntity.EntityPosition == m_HolderMapPosition)
         {
-            m_PlayerControllerEntity.PlayerInventory.PickUp(m_Item);
-            Destroy(gameObject);
+            if(m_PlayerControllerEntity.PlayerInventory.TryPickUp(m_Item))
+                Destroy(gameObject);
         }
     }
     public void InitalizeHolder(Item item,Vector2Int mapPosition)

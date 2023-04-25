@@ -18,18 +18,22 @@ public class PlayerInventory : MonoBehaviour,ISaver
         m_PlayerInventory = new Item[m_InventoryItemCount];
     }
 
-    public void PickUp(Item item)
+    public bool TryPickUp(Item item)
     {
+        bool onPickUp = false;
         for (int i = 0; i < m_PlayerInventory.Length; i++)
         {
             if (m_PlayerInventory[i] == null)
             {
                 m_PlayerInventory[i] = item;
+                onPickUp = true;
                 break;
             }
         } 
         //m_PlayerInventory.Add(item);
         PrintItemPickUp(item);
+
+        return onPickUp;
     }
 
     private void PrintItemPickUp(Item item)
