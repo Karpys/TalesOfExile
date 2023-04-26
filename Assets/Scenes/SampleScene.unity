@@ -653,7 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5dbe5f23ccb41b080c30034dad2669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseMobileInput: 1
+  m_UseMobileInput: 0
   m_EntityMovement: {fileID: 34784935}
 --- !u!4 &456935964
 Transform:
