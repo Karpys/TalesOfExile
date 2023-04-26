@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour,ISaver
 {
+    [SerializeField] private EntityEquipement m_Equipement = null;
     [SerializeField] private string m_SaveName = string.Empty;
     [SerializeField] private int m_InventoryItemCount = 0;
+    [SerializeField] private int m_EquipementItemCount = 0;
     
     private Item[] m_PlayerInventory = null;
     public Item[] Inventory => m_PlayerInventory;
+    public Item[] Equipement => m_Equipement.Equipement;
 
     public Action A_OnPickUp = null;
     private void Awake()

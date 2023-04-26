@@ -9,11 +9,13 @@ public class ItemUIHolder : MonoBehaviour
     [SerializeField] private Image m_ItemVisual = null;
     [SerializeField] private Image m_ItemRarityBorder = null;
 
+    [SerializeField] private ItemHolderGroup m_HolderGroup = ItemHolderGroup.Stash;
     private Item m_AttachedItem = null;
     private bool m_MouseOn = false;
     private int m_Id = -1;
     public Item Item => m_AttachedItem;
     public int Id => m_Id;
+    public ItemHolderGroup HolderGroup => m_HolderGroup;
     public bool MouseOn
     {
         get => m_MouseOn;
@@ -23,6 +25,11 @@ public class ItemUIHolder : MonoBehaviour
     public void SetId(int id)
     {
         m_Id = id;
+    }
+
+    public void SetGroup(ItemHolderGroup holderGroup)
+    {
+        m_HolderGroup = holderGroup;
     }
     
     public void SetItem(Item item)
@@ -57,4 +64,12 @@ public class ItemUIHolder : MonoBehaviour
         
         ItemButtonOptionController.Instance.DisplayButtonOption(this);
     }
+}
+
+
+public enum ItemHolderGroup
+{
+    PlayerInventory = 1,
+    PlayerEquipement = 2,
+    Stash = 4,
 }

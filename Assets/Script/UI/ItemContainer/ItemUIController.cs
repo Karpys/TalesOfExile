@@ -17,11 +17,14 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
             if(m_OnMouseHolder == null)
                 return;
             
-            if (Input.GetMouseButtonDown(0) && m_OnMouseHolder.MouseOn && m_OnMouseHolder.Item != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Select item : " + m_OnMouseHolder.Item.Data.ObjectName);
-                m_OnClickHolder = m_OnMouseHolder;
-                m_DragBegin = true;
+                if (m_OnMouseHolder.MouseOn && m_OnMouseHolder.Item != null)
+                {
+                    Debug.Log("Select item : " + m_OnMouseHolder.Item.Data.ObjectName);
+                    m_OnClickHolder = m_OnMouseHolder;
+                    m_DragBegin = true;
+                }
             }
         }
         else
@@ -30,7 +33,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
             {
                 if (m_OnMouseHolder != m_OnClickHolder && m_OnMouseHolder.MouseOn)
                 {
-                    m_PlayerInventoryUI.SwapItem(m_OnMouseHolder.Id,m_OnClickHolder.Id);
+                    PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                 }
                 else
                 {
@@ -39,6 +42,46 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
 
                 m_DragBegin = false;
             }
+        }
+    }
+
+    private void PerformHolderAction(ItemUIHolder holder1,ItemUIHolder holder2)
+    {
+        int holderActionType = (int)holder1.HolderGroup + (int)holder2.HolderGroup;
+
+        if (holderActionType == 2)
+        {
+            m_PlayerInventoryUI.SwapItem(m_OnMouseHolder.Id,m_OnClickHolder.Id);
+        }else if (holderActionType == 3)
+        {
+            //Player equipement to inventory context//
+            ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
+            ItemUIHolder equipementHolder = holder1.HolderGroup == ItemHolderGroup.PlayerEquipement ? holder1 : holder2;
+            
+            if (inventoryHolder.Item is EquipementItem itemToEquip)
+            {
+                //Equip the item and swap position with equipement existent One//
+                
+                //Add Conditional Check like equipement type to holder type//
+                itemToEquip.Equip();
+
+                if (equipementHolder.Item is EquipementItem itemEquiped)
+                {
+                    itemEquiped.UnEquip();
+                }
+                
+                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
+            }
+            else if(inventoryHolder.Item == null)
+            {
+                //UnEquip item and place to blank space//
+                ((EquipementItem)equipementHolder.Item).UnEquip(); 
+                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
+            }
+        }
+        else if(holderActionType == 5)
+        {
+            //Player inventory to stash context// 
         }
     }
 

@@ -159,7 +159,8 @@ public class BlightCore : WorldTile
 
         foreach (VisualTile branchPath in m_BranchPathRenderers)
         {
-            branchPath.Renderer.DoColor(new Color(0, 0, 0, 0), fadeDuration).SetDelay(addDelay);
+            if(branchPath.Renderer)
+                branchPath.Renderer.DoColor(new Color(0, 0, 0, 0), fadeDuration).SetDelay(addDelay);
             addDelay += delay;
         }
 

@@ -24,7 +24,7 @@ public class EquipementItem:Item
     public override List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
     { 
         List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton(inventoryUI);
-        itemButtonParameters.Add(new ItemButtonUIParameters(TryEquip,"Equip"));
+        itemButtonParameters.Add(new ItemButtonUIParameters(Equip,"Equip"));
         return itemButtonParameters;
     }
     
@@ -49,7 +49,7 @@ public class EquipementItem:Item
     #endregion
 
     #region Equip
-    private void TryEquip()
+    public void Equip()
     {
         EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
         m_IsEquiped = true;
@@ -57,6 +57,7 @@ public class EquipementItem:Item
 
     public void UnEquip()
     {
+        EquipementUtils.UnEquip(this,GameManager.Instance.PlayerEntity);
         m_IsEquiped = false;
     }
     #endregion
@@ -124,7 +125,7 @@ public class EquipementItem:Item
         InitializeBaseModifier();
         
         if(m_IsEquiped)
-            TryEquip();
+            Equip();
     }
     public override string GetSaveData()
     {
