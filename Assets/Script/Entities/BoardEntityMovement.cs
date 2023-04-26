@@ -19,25 +19,25 @@ public class BoardEntityMovement : MonoBehaviour
     
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             m_ComputedInput.x = 1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
             m_ComputedInput.x = -1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
             m_ComputedInput.y = 1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             m_ComputedInput.y = -1;
             TryLaunchInputFecth();
