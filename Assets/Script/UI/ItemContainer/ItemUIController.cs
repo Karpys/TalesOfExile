@@ -52,7 +52,8 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
         if (holderActionType == 2)
         {
             m_PlayerInventoryUI.SwapItem(m_OnMouseHolder.Id,m_OnClickHolder.Id);
-        }else if (holderActionType == 3)
+        }
+        else if (holderActionType == 3)
         {
             //Player equipement to inventory context//
             ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
@@ -61,6 +62,16 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
             if (inventoryHolder.Item is EquipementItem itemToEquip)
             {
                 //Equip the item and swap position with equipement existent One//
+                EquipementItemUIHolder equipementItemUIHolder = equipementHolder as EquipementItemUIHolder;
+
+                if (!equipementItemUIHolder)
+                {
+                    Debug.LogError("Equipement item holder cast failed");
+                    return;
+                }
+
+                if(!CanPlaceEquipement(itemToEquip,equipementItemUIHolder.EquipementType))
+                    return;
                 
                 //Add Conditional Check like equipement type to holder type//
                 itemToEquip.Equip();
@@ -83,6 +94,12 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
         {
             //Player inventory to stash context// 
         }
+    }
+
+    private bool CanPlaceEquipement(EquipementItem equipementItem, EquipementType equipementType)
+    {
+        //Todo:Add Conditional Check for Weapon / Two handed weapon//
+        return equipementItem.BaseEquipementData.EquipementType == equipementType;
     }
 
     public void SetCurrentMouseHolder(ItemUIHolder itemHolder)

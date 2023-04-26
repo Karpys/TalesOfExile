@@ -6,7 +6,7 @@ public class ItemUIHolder : MonoBehaviour
     [SerializeField] private Sprite m_DefaultItemBorder = null;
     [SerializeField] private Sprite m_ItemBorder = null;
     
-    [SerializeField] private Image m_ItemVisual = null;
+    [SerializeField] protected Image m_ItemVisual = null;
     [SerializeField] private Image m_ItemRarityBorder = null;
 
     [SerializeField] private ItemHolderGroup m_HolderGroup = ItemHolderGroup.Stash;
@@ -49,7 +49,7 @@ public class ItemUIHolder : MonoBehaviour
         m_ItemRarityBorder.color = rarityParameter.RarityColor;
     }
 
-    private void DefaultDisplay()
+    protected virtual void DefaultDisplay()
     {
         m_AttachedItem = null;
         //Set to default sprite
