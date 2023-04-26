@@ -12,6 +12,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
     private ItemUIHolder m_OnMouseHolder = null;
 
     private bool m_DragBegin = false;
+    public ItemUIHolder OnMouseHolder => m_OnMouseHolder;
     private void Update()
     {
         if (!m_DragBegin)

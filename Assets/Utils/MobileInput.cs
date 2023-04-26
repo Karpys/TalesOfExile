@@ -30,6 +30,10 @@ public class MobileInput : MonoBehaviour
         if(Vector2.Distance(m_ReleasePosition,m_PressPosition) < 100)
             return;
         
+        //Lock Check//
+        if(ItemUIController.Instance.OnMouseHolder && ItemUIController.Instance.OnMouseHolder.MouseOn)
+            return;
+        
         float angle = Get360AngleFrom(m_PressPosition, m_ReleasePosition);
         m_EntityMovement.TryMoveTo(AngleToVector2OctoDirection(angle));
     }
