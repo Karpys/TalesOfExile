@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ItemHolder: {fileID: -1504634944583198235}
-  m_EquipementDisplayer: {fileID: 5972372290465015533, guid: 31b4f0dbd8796f348bbb1e6673c551e7, type: 3}
-  m_ItemDisplayer: {fileID: 5972372290465015533, guid: 8196309d10c4748258372935272bd55a, type: 3}
+  m_EquipementDisplayer: {fileID: 3961351851861013653, guid: d30124f4e89df18488332a6984e2b8ef, type: 3}
+  m_ItemDisplayer: {fileID: 4171249557127927363, guid: 1e9a277db6516b44e847ecf86f18c0a6, type: 3}
   m_DisplayDuration: 0.2
 --- !u!114 &3190536084572496084
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7466389195956169627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 

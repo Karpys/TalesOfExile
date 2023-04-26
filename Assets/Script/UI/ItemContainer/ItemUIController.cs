@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemUIController : SingletonMonoBehavior<ItemUIController>
 {
     [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
+    [SerializeField] private ItemFade m_ItemFade = null;
     private ItemUIHolder m_OnClickHolder = null;
     private ItemUIHolder m_OnMouseHolder = null;
 
@@ -23,6 +25,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
                 {
                     Debug.Log("Select item : " + m_OnMouseHolder.Item.Data.ObjectName);
                     m_OnClickHolder = m_OnMouseHolder;
+                    m_ItemFade.Initialize(m_OnClickHolder.Item.Data.InUIVisual);
                     m_DragBegin = true;
                 }
             }
@@ -35,12 +38,9 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
                 {
                     PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                 }
-                else
-                {
-                    //Cancel Swap / Reset selected visual state//
-                }
 
                 m_DragBegin = false;
+                m_ItemFade.Clear();
             }
         }
     }

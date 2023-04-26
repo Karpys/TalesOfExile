@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 public class ItemHolderPointer : UIPointer
 {
@@ -9,11 +11,21 @@ public class ItemHolderPointer : UIPointer
 
     private Clock m_EventClock = null;
     private ItemDescriptionDisplayer m_Displayer = null;
+
+    private bool needReset = false;
     private void Update()
     {
         m_EventClock?.UpdateClock();
     }
 
+    private void LateUpdate()
+    {
+        if (needReset)
+        {
+            needReset = false;
+            m_ItemHolder.MouseOn = false;
+        }
+    }
 
     protected override void OnEnter()
     {
@@ -28,13 +40,15 @@ public class ItemHolderPointer : UIPointer
 
     protected override void OnExit()
     {
-        m_ItemHolder.MouseOn = false;
         m_EventClock = null;
         if (m_Displayer)
         {
             Destroy(m_Displayer.gameObject);
             m_Displayer = null;
         }
+
+        needReset = true;
+        //=> m_ItemHolder.MouseOn = false;
     }
 
     private void DisplayItemDescription()

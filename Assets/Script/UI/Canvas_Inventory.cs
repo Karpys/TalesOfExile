@@ -17,20 +17,25 @@ public class Canvas_Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (m_IsShown)
-            {
-                Hide();
-            }
-            else
-            {
-                Show();
-            }
-
-            m_IsShown = !m_IsShown;
+            OpenInventory();
         }
     }
+
+    public void OpenInventory()
+    {
+        if (m_IsShown)
+        {
+            Hide();
+        }
+        else
+        {
+            Show();
+        }
+
+        m_IsShown = !m_IsShown;
+    }
     
-    private void Show()
+    public void Show()
     {
         //Inventory
         m_InventoryContainer.transform.DoKill();
