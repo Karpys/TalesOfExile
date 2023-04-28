@@ -33,7 +33,7 @@ public class SpawnSkeletonCurse : Buff
             int targetTile = Random.Range(0, freeTile.Count);
             Vector2Int spawnPosition = freeTile[targetTile].TilePosition;
             
-            BoardEntity entity = EntityHelper.SpawnEntityOnMap(EntityLibrary.Instance.GetEntityViaKey(EntityType.Skeleton),spawnPosition.x, spawnPosition.y, MapData.Instance);
+            BoardEntity entity = EntityHelper.SpawnEntityOnMap(spawnPosition,EntityLibrary.Instance.GetEntityViaKey(EntityType.Skeleton),new BaseEntityIA(),m_Caster.EntityGroup);
             entity.gameObject.AddComponent<EntityLifeTurn>().SetTurnCount((int)m_BuffValue);
 
             freeTile.RemoveAt(targetTile);

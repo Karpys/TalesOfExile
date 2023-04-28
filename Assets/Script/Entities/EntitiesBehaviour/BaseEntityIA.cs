@@ -8,10 +8,13 @@ public class BaseEntityIA:EntityBehaviour
     private int m_TriggerSelfBuffCount = 0;
 
     protected BoardEntity m_Target = null;
-    public BaseEntityIA(BoardEntity entity) : base(entity)
+    protected override void InitializeEntityBehaviour()
     {
         SelfBuffCount();
         ComputeSpellPriority();
+        
+        if(m_AttachedEntity.EntityGroup == EntityGroup.Enemy)
+            GameManager.Instance.RegisterActiveEnemy(m_AttachedEntity);
     }
     public void SelfBuffCount()
     {
@@ -127,7 +130,7 @@ public class BaseEntityIA:EntityBehaviour
         if (buffId >= buffs.Count)
             return false;
         
-        m_AttachedEntity.CastSpellAt(buffs[buffId],targetPosition);
+        SpellCastUtils.CastSpellAt(buffs[buffId],targetPosition,m_AttachedEntity.EntityPosition);
         return true;
     }
 
@@ -173,7 +176,7 @@ public class BaseEntityIA:EntityBehaviour
                 
                 if (ZoneTileManager.IsInRange(triggerSpellData,targetPosition,triggerSpellData.GetMainSelection().Zone) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
                 {
-                    m_AttachedEntity.CastSpellAt(triggerSpellData,targetPosition);
+                    SpellCastUtils.CastSpellAt(triggerSpellData,targetPosition,m_AttachedEntity.EntityPosition);
                     return true;
                 }
             }

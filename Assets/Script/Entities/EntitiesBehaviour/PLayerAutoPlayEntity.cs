@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PLayerAutoPlayEntity : BaseEntityIA
 {
-    public PLayerAutoPlayEntity(BoardEntity entity) : base(entity)
-    {
-    }
-
     protected override void SetTarget()
     {
         List<BoardEntity> entities = m_AttachedEntity.EntityGroup == EntityGroup.Friendly ? GameManager.Instance.EnemiesOnBoard : GameManager.Instance.FriendlyOnBoard;

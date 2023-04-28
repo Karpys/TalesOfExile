@@ -4,11 +4,15 @@ public class BlightBehaviour:EntityBehaviour
 {
     private BlightSpawner m_BlightSpawner = null;
     private int m_PathId = 0;
-    public BlightBehaviour(BoardEntity entity,BlightSpawner blightSpawner) : base(entity)
+    public BlightBehaviour(BlightSpawner blightSpawner)
     {
         m_BlightSpawner = blightSpawner;
-        GameManager.Instance.RegisterActiveEnemy(entity);
-        entity.EntityEvent.OnDeath += ReduceBlightCount;
+    }
+
+    protected override void InitializeEntityBehaviour()
+    {
+        GameManager.Instance.RegisterActiveEnemy(m_AttachedEntity);
+        m_AttachedEntity.EntityEvent.OnDeath += ReduceBlightCount;
     }
 
     ~BlightBehaviour()

@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 1778751248556589878}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4581581747124773393
+--- !u!114 &-1552969435183735199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2481496948592758787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff3ecb93c9e24a5c8e6278f03d3b21a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 70357edf8b7e40aa8e323a06a53d59c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityDataScriptable: {fileID: 11400000, guid: 047ce22e4be0cad4688f43d9b38648e0, type: 2}
@@ -60,13 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LootZoneSelection:
-    Origin: 0
     DisplayType: 1
     Range: 2
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
   m_IsStatic: 0
   m_DrawCount: 2
   m_ItemPoolType: 0

@@ -2,9 +2,13 @@
 {
     protected BoardEntity m_AttachedEntity = null;
     
-    protected EntityBehaviour(BoardEntity entity)
-    {
-        m_AttachedEntity = entity;
-    }
     public abstract void Behave();
+
+    public void SetEntity(BoardEntity boardEntity)
+    {
+        m_AttachedEntity = boardEntity;
+        InitializeEntityBehaviour();
+    }
+
+    protected abstract void InitializeEntityBehaviour();
 }

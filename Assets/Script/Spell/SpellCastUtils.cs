@@ -72,4 +72,38 @@ public static class SpellCastUtils
                 return false;
         }
     }
+    
+    public static void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,bool freeCast = false)
+    {
+        spellData.Cast(spellData,spellTiles,freeCast);
+    }
+    
+    public static void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition,bool freeCast = false)
+    {
+        List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
+        List<Vector2Int> originTiles = new List<Vector2Int>();
+
+        for (int i = 0; i < spellData.TriggerData.m_Selection.Length; i++)
+        {
+            ZoneSelection currentSelection = spellData.TriggerData.m_Selection[i];
+            
+            if (currentSelection.ActionSelection)
+            {  
+                Vector2Int origin = Vector2Int.zero;
+                if (currentSelection.Origin == ZoneOrigin.Self)
+                {
+                    origin = originPosition;
+                }
+                else
+                {
+                    origin = pos;
+                }
+                
+                tilesActions.Add(ZoneTileManager.GetSelectionZone(currentSelection.Zone,origin,currentSelection.Zone.Range,originPosition));
+                originTiles.Add(origin);
+            }
+        }
+        
+        CastSpell(spellData,new SpellTiles(originTiles,tilesActions),freeCast);
+    }
 }

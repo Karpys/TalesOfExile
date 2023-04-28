@@ -132,6 +132,7 @@ public enum EntityGroup
     Friendly,
     Enemy,
     Neutral,
+    None,
 }
 public abstract class BoardEntity : MonoBehaviour
 {
@@ -158,6 +159,7 @@ public abstract class BoardEntity : MonoBehaviour
     public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
+    public EntityGroup TargetEntityGroup => m_EntityData.m_TargetEntityGroup;
     public BoardEntityData EntityData => m_EntityData;
     public EntityEquipement EntityEquipement => m_Equipement;
     public Transform VisualTransform => m_VisualTransform;
@@ -165,11 +167,17 @@ public abstract class BoardEntity : MonoBehaviour
     public BoardEntityLife Life => m_EntityLife;
     public BoardEntityEventHandler EntityEvent => m_EntityEvent;
 
-    protected virtual void Awake()
+    //Need to be called when an entity is created//
+    public void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
     {
+        
         //Copy Base Entity Data
         m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
         m_EntityData.m_Stats.SetEntity(this);
+        m_EntityData.m_EntityGroup = entityGroup;
+        m_EntityData.m_TargetEntityGroup = targetEntityGroup == EntityGroup.None
+            ? EntityHelper.GetInverseEntityGroup(entityGroup)
+            : targetEntityGroup;
         
         //Event//
         m_EntityEvent = GetComponent<BoardEntityEventHandler>();
@@ -187,7 +195,7 @@ public abstract class BoardEntity : MonoBehaviour
         RegisterStartSpells();
         
         //Entity Behaviour//
-        InitializeEntityBehaviour();
+        InitializeEntityBehaviour(entityIa);
         
         //Entity Registration//
         RegisterEntity();
@@ -198,12 +206,23 @@ public abstract class BoardEntity : MonoBehaviour
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
     }
 
-    protected abstract void InitializeEntityBehaviour();
-    protected abstract void RegisterEntity();
+    protected virtual void InitializeEntityBehaviour(EntityBehaviour entityIa)
+    {
+        SetEntityBehaviour(entityIa);
+    }
+
+    protected virtual void RegisterEntity()
+    {
+        GameManager.Instance.RegisterEntity(this);
+    }
     
     
     //Board Related
-    public abstract void EntityAction();
+    public virtual void EntityAction()
+    {
+        if(m_CanBehave)
+            m_EntityBehaviour.Behave();   
+    }
     public void Place(int x, int y, MapData targetMap)
     {
         m_XPosition = x;
@@ -232,8 +251,9 @@ public abstract class BoardEntity : MonoBehaviour
     public void SetEntityBehaviour(EntityBehaviour entityBehaviour)
     {
         m_EntityBehaviour = entityBehaviour;
+        m_EntityBehaviour.SetEntity(this);
     }
-
+    
     protected void RemoveFromBoard()
     {
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
@@ -318,43 +338,6 @@ public abstract class BoardEntity : MonoBehaviour
         m_EntityEvent.OnSpellRecompute?.Invoke(this);
     }
     
-    //Stats Related//
-    
-    //Spell Related//
-    //Player Cast Mainly or Controlled Entity//
-    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,bool freeCast = false)
-    {
-        spellData.Cast(spellData,spellTiles,freeCast);
-    }
-
-    //Cast
-    public void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,bool freeCast = false)
-    {
-        List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
-        List<Vector2Int> originTiles = new List<Vector2Int>();
-
-        for (int i = 0; i < spellData.TriggerData.m_Selection.Length; i++)
-        {
-            ZoneSelection currentSelection = spellData.TriggerData.m_Selection[i];
-            
-            if (currentSelection.ActionSelection)
-            {  
-                Vector2Int origin = Vector2Int.zero;
-                if (currentSelection.Origin == ZoneOrigin.Self)
-                {
-                    origin = EntityPosition;
-                }
-                else
-                {
-                    origin = pos;
-                }
-                tilesActions.Add(ZoneTileManager.GetSelectionZone(currentSelection.Zone,origin,currentSelection.Zone.Range,EntityPosition));
-                originTiles.Add(origin);
-            }
-        }
-        
-        CastSpell(spellData,new SpellTiles(originTiles,tilesActions),freeCast);
-    }
     //Damage Related//
     public void TakeDamage(float value)
     {
@@ -370,7 +353,15 @@ public abstract class BoardEntity : MonoBehaviour
             return;
         
         m_IsDead = true;
+        
+        if(m_EntityData.m_EntityGroup == EntityGroup.Enemy)
+            GameManager.Instance.UnRegisterActiveEnemy(this);
+        GameManager.Instance.UnRegisterEntity(this);
+        
+        RemoveFromBoard();
         m_EntityEvent.OnDeath?.Invoke();
+        
+        Destroy(gameObject);
     }
     public void ForceDeath(bool triggerDeathEvent = false)
     {
@@ -397,6 +388,6 @@ public abstract class BoardEntity : MonoBehaviour
     public virtual float GetMainWeaponDamage()
     {
         //TODo: Return the main damage weapon damage
-        return 75f;
+        return 35f;
     }
 }

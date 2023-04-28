@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyEntityBehaviour : BaseEntityIA
+public class MapEnemyEntityBehaviour : BaseEntityIA
 {
-    private BoardEnemyEntity AttachedEnemy => m_AttachedEntity as BoardEnemyEntity;
     private bool m_IsActive = false;
 
     private const int X_ACTIVE_TOLERANCE = 19;
     private const int Y_ACTIVE_TOLERANCE = 11;
-    public EnemyEntityBehaviour(BoardEntity entity) : base(entity)
-    {
-    }
     
+    protected override void InitializeEntityBehaviour()
+    {
+        SelfBuffCount();
+        ComputeSpellPriority();
+    }
     
     private void CheckForActive()
     {

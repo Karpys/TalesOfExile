@@ -94,7 +94,7 @@ public class SpellInterpretor : MonoBehaviour
    {
       if (GameManager.Instance.CanPlay)
       {
-         GameManager.Instance.ControlledEntity.CastSpell(m_CurrentSpell,new SpellTiles(m_OriginTiles,m_ActionTiles));
+         SpellCastUtils.CastSpell(m_CurrentSpell,new SpellTiles(m_OriginTiles,m_ActionTiles));
          GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
          ResetSpellQueue();
       }

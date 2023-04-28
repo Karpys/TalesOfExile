@@ -12,7 +12,8 @@ public class BoardEntityDataScriptable : ScriptableObject
 [System.Serializable]
 public class BoardEntityData
 {
-    public EntityGroup m_EntityGroup = EntityGroup.Friendly;
+    public EntityGroup m_EntityGroup = EntityGroup.Neutral;
+    public EntityGroup m_TargetEntityGroup = EntityGroup.Neutral;
     public EntityStats m_Stats = null;
     public SpellList m_SpellList = null;
     //Deep Copy => source : Good exemple with the difference between Deep and Shallow

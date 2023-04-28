@@ -2,7 +2,7 @@
 
 public class BalistaIA : BaseEntityIA
 {
-    public BalistaIA(BoardEntity entity) : base(entity){}
+    protected override void InitializeEntityBehaviour(){}
 
     protected override bool MovementAction()
     {

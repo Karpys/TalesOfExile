@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2791941695343476331
+--- !u!114 &-4246224396354935666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2877731213849115536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c41211a8c34a16b9dff28510f51e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 70357edf8b7e40aa8e323a06a53d59c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityDataScriptable: {fileID: 11400000, guid: 22c9073a50f9917409174cd622682ae1, type: 2}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 455326569
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 32e25172680b58b44a9d3232adf7a63c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

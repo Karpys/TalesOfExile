@@ -11,14 +11,9 @@ public class PlayerBoardEntity : BoardEntity
     [SerializeField] private float m_MovementDuration = 0.1f;
 
     public PlayerInventory PlayerInventory => m_PlayerInventory;
-    protected override void InitializeEntityBehaviour()
-    {
-        SetEntityBehaviour(new PLayerAutoPlayEntity(this));
-    }
-
     protected override void RegisterEntity()
     {
-        GameManager.Instance.RegisterEntity(this);
+        base.RegisterEntity();
         GameManager.Instance.RegisterPlayer(this);
         GameManager.Instance.SetControlledEntity(this);
     }
@@ -54,5 +49,10 @@ public class PlayerBoardEntity : BoardEntity
     private void ReleaseJumpTween()
     {
         m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0, 0), m_MovementDuration / 2f);
+    }
+
+    public override float GetMainWeaponDamage()
+    {
+        return 75f;
     }
 }

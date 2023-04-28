@@ -8,7 +8,7 @@ public class SpawnBalistaTrigger : SelectionSpellTrigger
 
     protected override void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
     {
-        EntityHelper.SpawnEntityOnMap(EntityLibrary.Instance.GetEntityViaKey(EntityType.Balista), tilePosition.x,tilePosition.y, spellData.AttachedEntity.Map);
+        EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(EntityType.Balista),new BalistaIA(),spellData.AttachedEntity.EntityGroup);
         base.TileHit(tilePosition, spellData);
     }
 

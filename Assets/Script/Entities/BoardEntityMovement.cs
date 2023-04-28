@@ -82,8 +82,9 @@ public class BoardEntityMovement : MonoBehaviour
             
             if(entity == null)
                 return;
+            
             Debug.Log("Auto Attack");
-            m_Entity.CastSpellAt(autoAttack as TriggerSpellData,targetPosition);
+            SpellCastUtils.CastSpellAt(autoAttack as TriggerSpellData,targetPosition,m_Entity.EntityPosition);
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
     }

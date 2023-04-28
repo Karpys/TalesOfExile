@@ -55,8 +55,8 @@ public class BlightSpawner:WorldTile
         {
             if (Tile.Walkable)
             {
-                BoardEntity entity = EntityHelper.SpawnEntityOnMap(m_BlightMonster, Tile.XPos, Tile.YPos, MapData.Instance);
-                entity.SetEntityBehaviour(new BlightBehaviour(entity,this));
+                BoardEntity entity = EntityHelper.SpawnEntityOnMap(Tile.TilePosition,m_BlightMonster,new BlightBehaviour(this),EntityGroup.Enemy);
+                
                 m_CurrentClock = Random.Range(m_Clock.x, m_Clock.y);
                 m_BlightMonsterCount -= 1;
             }

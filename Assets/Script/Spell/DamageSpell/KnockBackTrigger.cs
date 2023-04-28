@@ -50,7 +50,7 @@ public class KnockBackTrigger : DamageSpellTrigger
         }
         
         if(m_RangeAutoTrigger != null)
-            spellData.AttachedEntity.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,true);
+            SpellCastUtils.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,spellData.AttachedEntity.EntityPosition,true);
         
         UpdateEntityPosition(entity);
     }

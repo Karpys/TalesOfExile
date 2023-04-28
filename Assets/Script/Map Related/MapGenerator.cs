@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour
         //Entities Init//
         if (m_FirstGeneration)
         {
-            EntityHelper.SpawnEntityOnMap(m_BoardEntities[0].Entity, info.StartPosition.x, info.StartPosition.y, m_MapData);
+            EntityHelper.SpawnEntityOnMap(info.StartPosition,m_BoardEntities[0].Entity,new PLayerAutoPlayEntity(),EntityGroup.Friendly);
         }
         else
         {

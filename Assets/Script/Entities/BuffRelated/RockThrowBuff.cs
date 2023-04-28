@@ -33,7 +33,7 @@ public class RockThrowBuff : Buff
         {
             Vector2Int receiver = m_RockReceiver[i];
             
-            m_Receiver.CastSpellAt(Trigger, receiver);
+            SpellCastUtils.CastSpellAt(Trigger, receiver,m_Receiver.EntityPosition);
         }
 
         m_RockReceiver.Clear();

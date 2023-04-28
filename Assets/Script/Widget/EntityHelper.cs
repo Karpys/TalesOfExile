@@ -13,10 +13,13 @@ public static class EntityHelper
         return EntityGroup.Neutral;
     }
 
-    public static BoardEntity SpawnEntityOnMap(BoardEntity entity,int x,int y,MapData map)
+    public static BoardEntity SpawnEntityOnMap(Vector2Int pos,BoardEntity entityPrefabBase,EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
     {
-        BoardEntity boardEntity = GameObject.Instantiate(entity,map.transform);
-        boardEntity.Place(x,y,map);
+        MapData mapData = MapData.Instance;
+        
+        BoardEntity boardEntity = GameObject.Instantiate(entityPrefabBase,mapData.transform);
+        boardEntity.EntityInitialization(entityIa,entityGroup,targetEntityGroup);
+        boardEntity.Place(pos.x,pos.y,mapData);
         return boardEntity;
     }
     
