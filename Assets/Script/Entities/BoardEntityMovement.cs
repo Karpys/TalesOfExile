@@ -2,10 +2,6 @@
 
 public class BoardEntityMovement : MonoBehaviour
 {
-    //Pourquoi pas PlayerEntityMovement//
-    //Si on veut bouger une invocation on pourra se servir de se script//
-    //Probleme : ?
-    // => Faire bouger/Attaquer le joueur en A* ou avec une IA//
     private BoardEntity m_Entity = null;
     
     private Vector2Int m_ComputedInput = Vector2Int.zero;
@@ -19,25 +15,25 @@ public class BoardEntityMovement : MonoBehaviour
     
     public void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             m_ComputedInput.x = 1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             m_ComputedInput.x = -1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_ComputedInput.y = 1;
             TryLaunchInputFecth();
         }
         
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             m_ComputedInput.y = -1;
             TryLaunchInputFecth();

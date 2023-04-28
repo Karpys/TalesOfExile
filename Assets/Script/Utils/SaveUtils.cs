@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -31,7 +32,21 @@ public static class SaveUtils
     public static string GetSavePath(string saveName)
     {
         string savePath = GetSaveDirectory() + saveName;
+
         return savePath;
+    }
+
+    public static string[] ReadData(string saveName,DefaultSave defaultSave)
+    {
+        string savePath = GetSavePath(saveName);
+        
+        if (!File.Exists(savePath))
+        {
+            string[] data = Enumerable.Repeat(defaultSave.DefaultSaveData,defaultSave.DefaultSaveSize).ToArray();
+            File.WriteAllLines(savePath,data);
+        }
+        
+        return File.ReadAllLines(savePath);
     }
 
     public static List<T> InterpretSave<T>(string[] data)
@@ -53,5 +68,17 @@ public static class SaveUtils
         }
 
         return saveObjects;
+    }
+}
+
+public struct DefaultSave
+{
+    public string DefaultSaveData;
+    public int DefaultSaveSize;
+
+    public DefaultSave(string defaultSaveData, int defaultSaveDataSize)
+    {
+        DefaultSaveData = defaultSaveData;
+        DefaultSaveSize = defaultSaveDataSize;
     }
 }

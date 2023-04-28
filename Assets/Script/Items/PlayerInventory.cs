@@ -17,11 +17,29 @@ public class PlayerInventory : MonoBehaviour,ISaver
     public Item[] Equipement => m_Equipement.Equipement;
 
     public Action A_OnPickUp = null;
+
+    private int EquipementLenght => Equipement.Length + m_PlayerInventory.Length;
     private void Awake()
     {
         m_PlayerInventory = new Item[m_InventoryItemCount];
     }
+
+    private void Start()
+    {
+        InterpretSave();
+    }
+
+    private void OnApplicationQuit()
+    {
+        WriteSaveData(m_SaveName,FetchSaveData());
+    }
     
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+            ClearPlayerInventory();
+    }
+
     public bool TryPickUp(Item item)
     {
         bool onPickUp = false;
@@ -52,21 +70,16 @@ public class PlayerInventory : MonoBehaviour,ISaver
         (m_PlayerInventory[id1], m_PlayerInventory[id2]) = (m_PlayerInventory[id2], m_PlayerInventory[id1]);
     }
     //Save Part
-
-    private void Update()
+    private void ClearPlayerInventory()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            WriteSaveData(m_SaveName,FetchSaveData());
-        }else if (Input.GetKeyDown(KeyCode.W))
-        {
-            InterpretSave();
-        }
+        string[] data = Enumerable.Repeat("none",EquipementLenght).ToArray();
+        SaveUtils.WriteSave(m_SaveName,data);
+        InterpretSave();
     }
 
     private void InterpretSave()
     {
-        string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
+        string[] data = SaveUtils.ReadData(m_SaveName,new DefaultSave("none",EquipementLenght));
         List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
         
         m_PlayerInventory = saveObjects.GetRange(0,m_PlayerInventory.Length).ToArray();
@@ -80,7 +93,7 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     public string[] FetchSaveData()
     {
-        string[] itemDataSaves = new string[m_PlayerInventory.Length + Equipement.Length];
+        string[] itemDataSaves = new string[EquipementLenght];
         
         for (int i = 0; i < m_PlayerInventory.Length; i++)
         {
