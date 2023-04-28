@@ -40,6 +40,12 @@ public static class SaveUtils
         
         foreach (string objectData in data)
         {
+            if (objectData == "none")
+            {
+                saveObjects.Add(default);
+                continue;
+            }
+            
             Type classType = StringUtils.GetTypeViaClassName(objectData.Split()[0]);
             object[] container = new object[1];
             container[0] = objectData.Split();

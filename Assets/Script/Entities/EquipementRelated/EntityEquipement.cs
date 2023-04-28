@@ -3,7 +3,12 @@
 
 public class EntityEquipement : MonoBehaviour
 {
-    private EquipementItem[] m_Equipement = new EquipementItem[11];
+    private Item[] m_Equipement = new Item[11];
 
-    public EquipementItem[] Equipement => m_Equipement;
+    public Item[] Equipement => m_Equipement;
+
+    public void SetSaveEquipement(Item[] item)
+    {
+        m_Equipement = item;
+    }
 }

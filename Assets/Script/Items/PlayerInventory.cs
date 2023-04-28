@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -67,7 +68,9 @@ public class PlayerInventory : MonoBehaviour,ISaver
     {
         string[] data = File.ReadAllLines(SaveUtils.GetSavePath(m_SaveName));
         List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
-        //m_PlayerInventory = saveObjects;
+        
+        m_PlayerInventory = saveObjects.GetRange(0,m_PlayerInventory.Length).ToArray();
+        m_Equipement.SetSaveEquipement(saveObjects.GetRange(m_PlayerInventory.Length,m_Equipement.Equipement.Length).ToArray());
     }
     
     public void WriteSaveData(string saveName, string[] data)
@@ -77,14 +80,32 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     public string[] FetchSaveData()
     {
-        // string[] itemDataSaves = new string[m_PlayerInventory.Count];
-        //
-        // for (int i = 0; i < m_PlayerInventory.Count; i++)
-        // {
-        //     itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
-        // }
-        //
-        // return itemDataSaves;
-        return null;
+        string[] itemDataSaves = new string[m_PlayerInventory.Length + Equipement.Length];
+        
+        for (int i = 0; i < m_PlayerInventory.Length; i++)
+        {
+            if (m_PlayerInventory[i] != null)
+            {
+                itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
+            }
+            else
+            {
+                itemDataSaves[i] = "none";
+            }
+        }
+
+        for (int i = 0; i < Equipement.Length; i++)
+        {
+            if (Equipement[i] != null)
+            {
+                itemDataSaves[i + m_PlayerInventory.Length] = Equipement[i].GetSaveData();
+            }
+            else
+            {
+                itemDataSaves[i + m_PlayerInventory.Length] = "none";
+            }
+        }
+        
+        return itemDataSaves;
     }
 }
