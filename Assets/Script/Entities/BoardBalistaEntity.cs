@@ -1,6 +1,6 @@
 ﻿public class BoardBalistaEntity : FriendlyEntity
 {
-    protected override void InitalizeEntityBehaviour()
+    protected override void InitializeEntityBehaviour()
     {
         SetEntityBehaviour(new BalistaIA(this));
     }

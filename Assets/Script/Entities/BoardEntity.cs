@@ -141,7 +141,9 @@ public abstract class BoardEntity : MonoBehaviour
     [SerializeField] protected int m_YPosition = 0;
     [SerializeField] protected Transform m_VisualTransform = null;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
-
+    protected bool m_CanBehave = true;
+    protected bool m_IsDead = false;
+    
     protected EntityBehaviour m_EntityBehaviour = null;
     protected BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
@@ -163,7 +165,6 @@ public abstract class BoardEntity : MonoBehaviour
     public BoardEntityLife Life => m_EntityLife;
     public BoardEntityEventHandler EntityEvent => m_EntityEvent;
 
-    protected bool m_IsDead = false;
     protected virtual void Awake()
     {
         //Copy Base Entity Data
@@ -186,7 +187,7 @@ public abstract class BoardEntity : MonoBehaviour
         RegisterStartSpells();
         
         //Entity Behaviour//
-        InitalizeEntityBehaviour();
+        InitializeEntityBehaviour();
         
         //Entity Registration//
         RegisterEntity();
@@ -197,7 +198,7 @@ public abstract class BoardEntity : MonoBehaviour
         Debug.Log("New entity created: " + gameObject.name + "at :" + EntityPosition);
     }
 
-    protected abstract void InitalizeEntityBehaviour();
+    protected abstract void InitializeEntityBehaviour();
     protected abstract void RegisterEntity();
     
     
@@ -243,6 +244,11 @@ public abstract class BoardEntity : MonoBehaviour
     }
     
     //Entity Behaviour Related//
+    public void SetBehaveState(bool canBehave)
+    {
+        m_CanBehave = canBehave;
+    }
+    
     private void RegisterStartSpells()
     {
         for (int i = 0; i < m_EntityData.m_SpellList.m_Spells.Count; i++)

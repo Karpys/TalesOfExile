@@ -11,7 +11,7 @@ public class PlayerBoardEntity : BoardEntity
     [SerializeField] private float m_MovementDuration = 0.1f;
 
     public PlayerInventory PlayerInventory => m_PlayerInventory;
-    protected override void InitalizeEntityBehaviour()
+    protected override void InitializeEntityBehaviour()
     {
         SetEntityBehaviour(new PLayerAutoPlayEntity(this));
     }

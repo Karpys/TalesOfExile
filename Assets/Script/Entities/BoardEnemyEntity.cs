@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BoardEnemyEntity : BoardEntity
 {
-    protected override void InitalizeEntityBehaviour()
+    protected override void InitializeEntityBehaviour()
     {
         SetEntityBehaviour(new EnemyEntityBehaviour(this));
     }
@@ -17,7 +17,8 @@ public class BoardEnemyEntity : BoardEntity
 
     public override void EntityAction()
     {
-        m_EntityBehaviour.Behave();
+        if(m_CanBehave)
+            m_EntityBehaviour.Behave();
     }
     
 

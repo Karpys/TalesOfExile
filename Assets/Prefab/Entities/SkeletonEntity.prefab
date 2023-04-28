@@ -16,6 +16,18 @@ MonoBehaviour:
   m_XPosition: 0
   m_YPosition: 0
   m_VisualTransform: {fileID: 5450277291349366440}
+--- !u!114 &7021049853220798022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877731213849115536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a92425343534d0c8fd26e64811f0749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3400312404597722597
 GameObject:
   m_ObjectHideFlags: 0
