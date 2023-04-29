@@ -39,10 +39,25 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
                 {
                     PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                 }
+                else
+                {
+                    PerformSingleHolderAction(m_OnClickHolder);
+                }
 
                 m_DragBegin = false;
                 m_ItemFade.Clear();
             }
+        }
+    }
+
+
+    private void PerformSingleHolderAction(ItemUIHolder holder)
+    {
+        int holderActionType = (int) holder.HolderGroup;
+        
+        if (holderActionType == 1)
+        {
+            m_PlayerInventoryUI.DropInventoryItem(m_OnClickHolder);
         }
     }
 

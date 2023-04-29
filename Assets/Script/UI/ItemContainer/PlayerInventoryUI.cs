@@ -96,6 +96,19 @@ public class PlayerInventoryUI : MonoBehaviour
         RefreshInventoryDisplay();
     }
 
+    public void DropInventoryItem(ItemUIHolder inventoryHolder)
+    {
+        Tile playerTile = MapData.Instance.GetTile(GameManager.Instance.PlayerEntity.EntityPosition);
+        Tile freeTile = TileHelper.GetFreeClosestAround(playerTile, MousePosition.Instance.MouseWorldPosition);
+        
+        if(freeTile == null)
+            return;
+        
+        LootController.Instance.SpawnLoot(inventoryHolder.Item,playerTile,freeTile);
+        m_Inventory.Inventory[inventoryHolder.Id] = null;
+        m_ItemContainer[inventoryHolder.Id].SetItem(null);
+    }
+
     private Item[] GetItemArrayViaGroup(ItemHolderGroup targetGroup)
     {
         switch (targetGroup)

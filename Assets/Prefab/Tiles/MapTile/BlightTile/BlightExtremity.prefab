@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Walkable: 1
-  m_BlightMonster: {fileID: 4581581747124773393, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+  m_BlightMonster: {fileID: -4592490546126341204, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
   m_Clock: {x: 2, y: 5}
   m_BlightMonsterCount: 10
   m_ChestLoot: {fileID: 5216652156126334685}

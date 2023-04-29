@@ -6,8 +6,10 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
     // Start is called before the first frame update
     [SerializeField] private bool m_DebugMouseToPlayerTiles = false;
     private Vector2Int m_MouseBoardPosition = Vector2Int.zero;
+    private Vector3 m_MouseWorldPosition = Vector3.zero;
 
     public Vector2Int MouseBoardPosition => m_MouseBoardPosition;
+    public Vector3 MouseWorldPosition => m_MouseWorldPosition;
     void Start()
     {
         
@@ -21,8 +23,9 @@ public class MousePosition : SingletonMonoBehavior<MousePosition>
             m_DebugMouseToPlayerTiles = true;
         }
         Vector3 mousePosition = Input.mousePosition;
-        //Warning Camera.main//
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        
+        m_MouseWorldPosition = mousePosition;
         m_MouseBoardPosition = new Vector2Int(Mathf.RoundToInt(mousePosition.x), Mathf.RoundToInt(mousePosition.y));
 
         if (m_DebugMouseToPlayerTiles)
