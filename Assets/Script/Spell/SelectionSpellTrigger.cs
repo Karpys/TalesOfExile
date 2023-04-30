@@ -27,6 +27,11 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
     }
     protected virtual void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin)
     {
+        TriggerOnHitFx(entity,spellData);
+    }
+
+    protected void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData)
+    {
         SpellAnimation onHitAnim = OnHitAnimation;
 
         //Animation

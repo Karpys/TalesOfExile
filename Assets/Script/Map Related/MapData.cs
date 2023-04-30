@@ -66,7 +66,7 @@ public class MapData : SingletonMonoBehavior<MapData>
         return entityAt;
     }
 
-    private BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
+    public BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
     {
         foreach (BoardEntity entity in entities)
         {

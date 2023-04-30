@@ -120,7 +120,7 @@ public class BaseEntityIA:EntityBehaviour
             
             if (allowedCastZone.DisplayType != ZoneType.NONE)
             {
-                if(!ZoneTileManager.IsInRange(buffs[buffId],m_Target.EntityPosition,allowedCastZone))
+                if(!ZoneTileManager.IsInRange(m_AttachedEntity.EntityPosition,m_Target.EntityPosition,allowedCastZone))
                     continue;
             }
             
@@ -168,13 +168,13 @@ public class BaseEntityIA:EntityBehaviour
                 Zone allowedCastZone = triggerSpellData.TriggerData.AllowedCastZone;
                 if (allowedCastZone.DisplayType != ZoneType.NONE)
                 {
-                    if(!ZoneTileManager.IsInRange(triggerSpellData,targetPosition,allowedCastZone))
+                    if(!ZoneTileManager.IsInRange(m_AttachedEntity.EntityPosition,targetPosition,allowedCastZone))
                         continue;
                 }
                 
                 SpellCastUtils.GetSpellTargetOrigin(triggerSpellData,ref targetPosition);
                 
-                if (ZoneTileManager.IsInRange(triggerSpellData,targetPosition,triggerSpellData.GetMainSelection().Zone) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
+                if (ZoneTileManager.IsInRange(m_AttachedEntity.EntityPosition,targetPosition,triggerSpellData.GetMainSelection().Zone) && SpellCastUtils.CanCastSpellAt(triggerSpellData, targetPosition))
                 {
                     SpellCastUtils.CastSpellAt(triggerSpellData,targetPosition,m_AttachedEntity.EntityPosition);
                     return true;

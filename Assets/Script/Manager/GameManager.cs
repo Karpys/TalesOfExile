@@ -119,6 +119,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         else if(entity.EntityGroup == EntityGroup.Friendly)
             m_FriendlyOnBoard.Remove(entity);
     }
+
+    public List<BoardEntity> GetEntityViaGroup(EntityGroup group)
+    {
+        if (group == EntityGroup.Enemy)
+            return new List<BoardEntity>(m_ActiveEnemiesOnBoard);
+        else if (group == EntityGroup.Friendly)
+            return new List<BoardEntity>(m_FriendlyOnBoard);
+        return null;
+    }
     
     //UI Manager//
     public void RefreshTargetEntitySkills()

@@ -26,6 +26,7 @@ public class EntityStats
     public float HolyDamageModifier = 0f;
     public float FireDamageModifier = 0f;
     public float PhysicalDamageModifier = 0f;
+    public float ElementalDamageModifier = 0f;
     //Physical
     //Ect ect
     
@@ -40,6 +41,7 @@ public class EntityStats
     public float HolyDamageReduction = 0; 
     public float FireDamageReduction = 0; 
     public float PhysicalDamageReduction = 0; 
+    public float ElementalDamageReduction = 0; 
 
     public object Clone()
     {
@@ -62,6 +64,8 @@ public class EntityStats
                 return FireDamageModifier;
             case SubDamageType.Physical:
                 return PhysicalDamageModifier;
+            case SubDamageType.Elemental:
+                return ElementalDamageModifier;
             default:
                 Debug.LogError("Sub Damage type not set up :" + subDamageType);
                 return 0;
@@ -102,6 +106,9 @@ public class EntityStats
                 break;
             case SubDamageType.Physical:
                 percentageReduction = PhysicalDamageReduction;
+                break;
+            case SubDamageType.Elemental:
+                percentageReduction = ElementalDamageReduction;
                 break;
             default:
                 Debug.LogError("Sub Damage type not set up :" + subDamageType);

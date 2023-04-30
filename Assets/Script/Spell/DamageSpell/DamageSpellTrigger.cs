@@ -78,7 +78,11 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int origin)
     {
         base.EntityHit(entity,spellData,targetGroup,origin);
-        
+        DamageEntity(entity,spellData,targetGroup);
+    }
+
+    protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
+    {
         float totalDamage = 0;
         MainDamageType mainDamageType = DamageSpellData.DamageType.MainDamageType;
         //Foreach Damage Sources//

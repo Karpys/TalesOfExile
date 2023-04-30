@@ -121,13 +121,11 @@ public static class ZoneTileManager
         return zones;
     }
 
-    public static bool IsInRange(TriggerSpellData spellData, Vector2Int castPosition,Zone zoneSelection)
+    public static bool IsInRange(Vector2Int origin, Vector2Int castPosition,Zone zoneSelection)
     {
         if (zoneSelection == null)
             return true;
         
-        Vector2Int origin = spellData.AttachedEntity.EntityPosition;
-
         switch (zoneSelection.DisplayType)
         {
             case ZoneType.Square:
@@ -153,7 +151,7 @@ public static class ZoneTileManager
                 return false;
         }
     }
-
+    
     public static ZoneType GetOuter(ZoneType type)
     {
         switch (type)
@@ -161,7 +159,7 @@ public static class ZoneTileManager
             case ZoneType.Circle:
                 return ZoneType.OuterCircle;
             case ZoneType.Square:
-                return ZoneType.Square;
+                return ZoneType.OuterSquare;
             default:
                 return ZoneType.OuterSquare;
         }
