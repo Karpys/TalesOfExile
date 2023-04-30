@@ -53,27 +53,30 @@ public class MapData : SingletonMonoBehavior<MapData>
     
     public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
     {
-        List<BoardEntity> boardEntities = new List<BoardEntity>();
+        BoardEntity entityAt = null;
 
-        //Get the selected group list
         if (targetEntityGroup == EntityGroup.Enemy)
         {
-            boardEntities = GameManager.Instance.ActiveEnemiesOnBoard;
-        }
-        else if(targetEntityGroup == EntityGroup.Friendly)
+            entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.ActiveEnemiesOnBoard);
+        }else if (targetEntityGroup == EntityGroup.Friendly)
         {
-            boardEntities = GameManager.Instance.FriendlyOnBoard;
+            entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.FriendlyOnBoard);
         }
         
-        for (int i = 0; i < boardEntities.Count; i++)
+        return entityAt;
+    }
+
+    private BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
+    {
+        foreach (BoardEntity entity in entities)
         {
-            if (boardEntities[i].EntityPosition == entityPos)
-                return boardEntities[i];
+            if (entity.EntityPosition == entityPos)
+                return entity;
         }
-        
+
         return null;
     }
-    
+
     public Vector2Int MapClampedPosition(Vector2Int pos)
     {
         int clampedX = Mathf.Clamp(pos.x, 0,m_Map.Width - 1);
