@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ColorHelper
@@ -19,5 +20,13 @@ public static class ColorHelper
         totalColor /= damageSources.Count;
         
         return new Color(totalColor.x,totalColor.y,totalColor.z,1);
+    }
+
+    public static List<Color> GetColorInSprite(Sprite sprite)
+    {
+        Texture2D tex = sprite.texture;
+        Color[] colors = tex.GetPixels();
+
+        return colors.Distinct().ToList();
     }
 }

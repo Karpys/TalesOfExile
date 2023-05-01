@@ -18,6 +18,11 @@ public class GenericLibrary<O,K> where O : class where K : struct
             m_Dictionary.Add(key.Type,key.Object);
         }            
     }
+
+    public void SetKeys(LibraryKey<O, K>[] libraryKey)
+    {
+        m_Keys = libraryKey;
+    }
     
     public O GetViaKey(K type)
     {
@@ -39,4 +44,10 @@ public class LibraryKey<O,K> where O : class where K : struct
 {
     public O Object = null;
     public K Type;
+
+    public LibraryKey(O obj, K key)
+    {
+        Object = obj;
+        Type = key;
+    }
 }
