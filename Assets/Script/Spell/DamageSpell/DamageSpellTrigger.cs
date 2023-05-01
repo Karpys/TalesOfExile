@@ -29,10 +29,11 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 
     private void ApplyDamageModifier(BoardEntity entity)
     {
+        float damageModifier = entity.EntityStats.GetDamageParametersModifier(DamageSpellData);
+        
         foreach (DamageSource source in DamageSources.Values)
         {
-            source.Damage *= (entity.EntityStats.GetDamageModifier(source.DamageType) + entity.EntityStats.GetMainTypeModifier(DamageSpellData.DamageType.MainDamageType)
-                + 100) / 100;
+            source.Damage *= damageModifier;
         }
     }
 

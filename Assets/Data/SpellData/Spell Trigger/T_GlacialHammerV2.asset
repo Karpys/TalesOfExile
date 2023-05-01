@@ -20,6 +20,6 @@ MonoBehaviour:
       MainDamageType: 0
       SubDamageTypes: 000000000100000003000000
     InitialSourceDamage:
-      Damage: 1
+      Damage: 100
       DamageType: 3
   BaseWeaponDamageConvertion: 0
