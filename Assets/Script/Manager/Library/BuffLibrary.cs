@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuffLibrary : SingletonMonoBehavior<BuffLibrary>
 {
-    [SerializeField] private GenericObjectLibrary<Buff, BuffType> Library = null;
+    [SerializeField] private GenericLibrary<Buff, BuffType> Library = null;
 
     private void Awake()
     {

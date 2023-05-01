@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: T_LightningStrike
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 9140524552017338541, guid: 9253cd52ed36d264985a1ef5d07dbbc9, type: 3}
+  OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
       SubDamageTypes: 0100000002000000
     InitialSourceDamage:
-      Damage: 60
-      DamageType: 0
+      Damage: 80
+      DamageType: 1
   m_TriggerClassName: LightningSpellTrigger
   m_AdditionalParameters:
   - Type: 3
     Value: ZoneType Circle
   - Type: 0
-    Value: 5
+    Value: 7
   - Type: 0
-    Value: 5
+    Value: 3

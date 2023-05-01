@@ -17,7 +17,7 @@ MonoBehaviour:
     - m_Weight: 70
       m_Object: {fileID: -4592490546126341204, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
     - m_Weight: 15
-      m_Object: {fileID: -4246224396354935666, guid: 88747e47e1ea93a4e97fef206c0b55ba, type: 3}
+      m_Object: {fileID: -2413995395981544658, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
     - m_Weight: 15
       m_Object: {fileID: -1552969435183735199, guid: b0c10f5bb8e1bd74ab61a0c3d9e95c55, type: 3}
   m_TargetEnemiesCount: 20

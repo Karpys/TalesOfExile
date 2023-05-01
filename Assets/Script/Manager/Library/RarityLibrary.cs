@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RarityLibrary : SingletonMonoBehavior<RarityLibrary>
 {
-    [SerializeField] private GenericObjectLibrary<RarityParameter, Rarity> Library = null;
+    [SerializeField] private GenericLibrary<RarityParameter, Rarity> Library = null;
 
     private void Awake()
     {

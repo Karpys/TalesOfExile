@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ModifierLibraryController : SingletonMonoBehavior<ModifierLibraryController>
 {
-    [SerializeField] private GenericObjectLibrary<ModifierEquipementPoolScriptable,Tier> m_TierPool = null;
+    [SerializeField] private GenericLibrary<ModifierEquipementPoolScriptable,Tier> m_TierPool = null;
 
     private void Awake()
     {
         InitItemDictionary(m_TierPool);
     }
 
-    private void InitItemDictionary(GenericObjectLibrary<ModifierEquipementPoolScriptable,Tier> tierPool)
+    private void InitItemDictionary(GenericLibrary<ModifierEquipementPoolScriptable,Tier> tierPool)
     {
         tierPool.InitializeDictionary();
         
@@ -23,7 +23,7 @@ public class ModifierLibraryController : SingletonMonoBehavior<ModifierLibraryCo
 
     public ModifierPool GetViaKey(Tier type,EquipementType equipementType)
     {
-        GenericObjectLibrary<ModifierPoolScriptable, EquipementType> equipementTypeTierPool = m_TierPool.GetViaKey(type).m_EquipementModifierPool;
+        GenericLibrary<ModifierPoolScriptable, EquipementType> equipementTypeTierPool = m_TierPool.GetViaKey(type).m_EquipementModifierPool;
         if (equipementTypeTierPool == null)
         {
             Debug.LogError("Tier Modifier Pool has not been set up: " + type);

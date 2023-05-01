@@ -16,18 +16,12 @@ public class Fx_ArrowAnim : BurstAnimation
     protected override void Start()
     {
         transform.position = (m_Datas[0] as SpellData).AttachedEntity.WorldPosition;
-        RotateTowardPoint((m_Datas[1] as BoardEntity).WorldPosition);
+        SpriteUtils.RotateTowardPoint(transform.position, (m_Datas[1] as BoardEntity).WorldPosition, m_Visual.transform);
         m_Visual.enabled = true;
         base.Start();
     }
 
-    private void RotateTowardPoint(Vector3 point)
-    {
-        Vector3 direction = point - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-        m_Visual.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
-    }
+    
     
     protected override void Animate()
     {

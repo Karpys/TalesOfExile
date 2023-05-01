@@ -7,7 +7,7 @@ public abstract class SpellAnimation : MonoBehaviour
     public float BaseSpellDelay => GetAnimationDuration();
     protected object[] m_Datas = null;
     
-    public void TriggerFx(Vector3 position,Transform targetEntity = null,object[] args = null)
+    public SpellAnimation TriggerFx(Vector3 position,Transform targetEntity = null,object[] args = null)
     {
         SpellAnimation anim = null;
 
@@ -22,6 +22,8 @@ public abstract class SpellAnimation : MonoBehaviour
         
         anim.transform.localPosition = position;
         anim.SetArgs(args);
+
+        return anim;
     }
 
     private void SetArgs(object[] args)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
 {
-    [SerializeField] private GenericObjectLibrary<BoardEntity, EntityType> Library = null;
+    [SerializeField] private GenericLibrary<BoardEntity, EntityType> Library = null;
 
     private void Awake()
     {

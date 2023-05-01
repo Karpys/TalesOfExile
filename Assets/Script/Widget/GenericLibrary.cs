@@ -4,7 +4,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 [System.Serializable]
-public class GenericObjectLibrary<O,K> where O : class where K : struct
+public class GenericLibrary<O,K> where O : class where K : struct
 {
     [SerializeField] private LibraryKey<O, K>[] m_Keys = null;
     private Dictionary<K,O> m_Dictionary = new Dictionary<K,O>();

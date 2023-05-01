@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TileLibrary : SingletonMonoBehavior<TileLibrary>
 {
-    [SerializeField] private GenericObjectLibrary<WorldTile, TileType> m_TileLibrary = null;
+    [SerializeField] private GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
 
     private void Awake()
     {

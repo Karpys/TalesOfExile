@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EntityBaseData:
     m_EntityGroup: 0
+    m_TargetEntityGroup: 0
     m_Stats:
       CombatRange: 1
-      MaxLife: 80
-      Life: 80
+      MaxLife: 150
+      Life: 150
       LifeRegeneration: 0
       MeleeModifier: 0
       ProjectileModifier: 0
@@ -26,6 +27,7 @@ MonoBehaviour:
       HolyDamageModifier: 0
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
+      ElementalDamageModifier: 0
       FlatMeleeDamageReduction: 0
       FlatProjectileDamageReduction: 0
       FlatSpellDamageReduction: 0
@@ -33,6 +35,7 @@ MonoBehaviour:
       HolyDamageReduction: 0
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
+      ElementalDamageReduction: 0
     m_SpellList:
       m_Spells:
       - Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
