@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Map/Room", fileName = "New RoomMap", order = 0)]
-class RoomMapGeneration : MapGenerationData
+class RoomMapGeneration : FlatDefaultMapGeneration
 {
 
     [SerializeField] private WorldTile m_HoleTile = null;

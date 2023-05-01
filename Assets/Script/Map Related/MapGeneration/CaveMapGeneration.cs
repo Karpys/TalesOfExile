@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Map/Room/Cave", fileName = "New CaveMap", order = 0)]
-public class CaveMapGeneration : MapGenerationData
+public class CaveMapGeneration : FlatDefaultMapGeneration
 {
     [Header("World Tile")]
     [SerializeField] protected WorldTile m_DoorTile = null;

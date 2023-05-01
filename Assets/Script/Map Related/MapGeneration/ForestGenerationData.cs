@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Map/Forest", fileName = "New ForestMap", order = 0)]
-public class ForestGenerationData : MapGenerationData
+public class ForestGenerationData : FlatDefaultMapGeneration
 {
     [SerializeField] List<FloatPercentageSlider> m_RoadPivots = new List<FloatPercentageSlider>();
     [SerializeField] private TileSet m_RoadTileSet = null;

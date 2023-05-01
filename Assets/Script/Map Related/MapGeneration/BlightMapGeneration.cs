@@ -2,7 +2,7 @@
 using UnityEngine.Assertions.Must;
 
 [CreateAssetMenu(menuName = "Map/Blight", fileName = "BlightMapGeneration", order = 0)]
-public class BlightMapGeneration : MapGenerationData
+public class BlightMapGeneration : FlatDefaultMapGeneration
 {
     [SerializeField] private BlightCore m_BlightCore = null;
 
