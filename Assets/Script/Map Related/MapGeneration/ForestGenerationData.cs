@@ -141,7 +141,6 @@ public class ForestGenerationData : FlatDefaultMapGeneration
     private void GenerateTree(int x,int y)
     {
         WorldTile tree = m_Map.PlaceTileAt(m_TreeTile, x, y);
-        tree.GetComponentInChildren<SpriteHelper>().SetSpritePriority(-y);
     }
 }
 
