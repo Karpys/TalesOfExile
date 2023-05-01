@@ -132,6 +132,20 @@ public class EntityStats
                 return 0;
         }
     }
+
+    public float GetDamageParametersModifier(DamageParameters damageSpellData)
+    {
+        float modifier = 0;
+
+        foreach (SubDamageType subDamageType in damageSpellData.DamageType.SubDamageTypes)
+        {
+            modifier += GetDamageModifier(subDamageType);
+        }
+
+        modifier += GetMainTypeModifier(damageSpellData.DamageType.MainDamageType);
+
+        return (modifier + 100) / 100;
+    }
 }
 
 public enum EntityGroup
