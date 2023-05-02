@@ -3,20 +3,16 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[System.Serializable]
-public class BoardEntitySpawn
-{
-    public BoardEntity Entity = null;
-    public Vector2Int BoardSpawnPosition = Vector2Int.zero;
-}
-public class MapGenerator : MonoBehaviour
+public class MapGenerator : SingletonMonoBehavior<MapGenerator>
 {
     [SerializeField] private MapData m_MapData = null;
-    [SerializeField] private BoardEntitySpawn[] m_BoardEntities = null;
-    [SerializeField] private MapGenerationData m_GenerationData = null;
+    [SerializeField] private PlayerBoardEntity m_PlayerEntity = null;
+    [SerializeField] private MapGenerationData m_HubMap = null;
+    [SerializeField] private MapGroup m_CurrentMapGroup = null;
 
     private bool m_FirstGeneration = true;
-    public MapGenerationData GenerationData => m_GenerationData;
+    private int m_MapId = 0;
+    public MapGenerationData CurrentMapData => m_CurrentMapGroup.MapGenerationData[m_MapId];
     private void Start()
     {
         InitializeMap();
@@ -27,18 +23,34 @@ public class MapGenerator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReloadMap();
+        }else if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextMap();
         }
     }
-
-    public void ReloadMap()
+    
+    private void InitializeMap()
     {
-        MapCleaner.Instance.Clean();
-        EraseMap();
-        GenerateMap();
+        InitializeMapData();
+        //Tiles Initiation//
+        LoadMap(CurrentMapData);
     }
 
+    private void ReloadMap()
+    {
+        LoadMap(CurrentMapData);
+    }
+
+    private void ReturnToHub()
+    {
+        LoadMap(m_HubMap);
+    }
+    
     private void EraseMap()
     {
+        if(m_MapData.Map == null)
+            return;
+        
         List<BoardEntity> entity = GameManager.Instance.EntitiesOnBoard;
         
         int entityCount = entity.Count;
@@ -61,35 +73,48 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void InitializeMap()
+    public void NextMap()
     {
-        Map map = new Map(this);
-        m_MapData.Map = map;
-        InitializeMapData();
-        //Tiles Initiation//
-        GenerateMap();
+        m_MapId += 1;
 
+        if (m_MapId >= m_CurrentMapGroup.MapGenerationData.Length)
+        {
+            m_MapId = 0;
+            ReturnToHub();
+            return;
+        }
+        
+        LoadMap(m_CurrentMapGroup.MapGenerationData[m_MapId]);
     }
 
-    private void GenerateMap()
+    private void LoadMap(MapGenerationData generationData)
     {
-        GenerationMapInfo info = m_GenerationData.Generate(m_MapData);
+        MapCleaner.Instance.Clean();
+        EraseMap();
+        GenerationMapInfo info = generationData.Generate(m_MapData);
         
-        //Entities Init//
+        PlacePlayerEntity(info.StartPosition);
+    }
+
+    private void PlacePlayerEntity(Vector2Int position)
+    {
         if (m_FirstGeneration)
         {
-            EntityHelper.SpawnEntityOnMap(info.StartPosition,m_BoardEntities[0].Entity,new PLayerAutoPlayEntity(),EntityGroup.Friendly);
+            EntityHelper.SpawnEntityOnMap(position,m_PlayerEntity,new PLayerAutoPlayEntity(),EntityGroup.Friendly);
         }
         else
         {
-            Debug.Log("Move Player");
-            GameManager.Instance.PlayerEntity.Place(info.StartPosition.x,info.StartPosition.y,m_MapData);   
+            GameManager.Instance.PlayerEntity.Place(position.x,position.y,m_MapData);   
         }
 
         m_FirstGeneration = false;
     }
 
-    
+    public void SetMapGroup(MapGroup mapGroup)
+    {
+        m_CurrentMapGroup = mapGroup;
+        m_MapId = 0;
+    }
 
     private void InitializeMapData()
     {

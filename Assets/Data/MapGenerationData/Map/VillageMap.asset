@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Width: 30
   m_Height: 30
-  m_BaseTile: {fileID: 0}
+  m_BaseTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
   m_MapSprite: {fileID: 21300000, guid: ecd5c4daed523ab4aa4142fc912d7962, type: 3}
   m_ColorTileMap:
     m_Keys:

@@ -7,13 +7,7 @@ public class Map
     public int Height = 0;
     public int Width = 0;
     public Tile[,] Tiles = null;
-
-    private MapGenerator m_Generator = null;
-    public Map(MapGenerator generator)
-    {
-        m_Generator = generator;
-    }
-
+    
     public Map(int width, int height)
     {
         Height = height;
@@ -80,7 +74,7 @@ public class Map
     
     public WorldTile GetDefaultMapTile()
     {
-        return m_Generator.GenerationData.DefaultTile;
+        return MapGenerator.Instance.CurrentMapData.DefaultTile;
     }
     
     public bool InMapBounds(Vector2Int pos)

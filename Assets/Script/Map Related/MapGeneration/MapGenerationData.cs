@@ -16,7 +16,9 @@ public abstract class MapGenerationData : ScriptableObject
     public virtual GenerationMapInfo Generate(MapData mapData)
     {
         m_MapData = mapData;
-        m_Map = mapData.Map;
+        m_Map = new Map(m_Width, m_Height);
+        mapData.Map = m_Map;
+        
         m_Map.Height = m_Height;
         m_Map.Width = m_Width;
 
