@@ -95,7 +95,7 @@ public static class ModifierUtils
             case ModifierType.UpPhysical:
                 return "+" + modifier.Value + "% Physical damage";
             case ModifierType.IncreaseMaxLife:
-                return "+" + modifier.Value + " Maximum life";
+                return "+" + modifier.Value + " Maximum Life";
             case ModifierType.SpellAddition:
                 return "Add " + modifier.Value + " spell";
             case ModifierType.AddThrowRockPassif:
