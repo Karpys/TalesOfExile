@@ -13,6 +13,8 @@ public class GenericLibrary<O,K> where O : class where K : struct
 
     public void InitializeDictionary()
     {
+        m_Dictionary.Clear();
+        
         foreach (LibraryKey<O,K> key in m_Keys)
         {
             m_Dictionary.Add(key.Type,key.Object);

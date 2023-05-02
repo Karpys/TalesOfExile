@@ -19,9 +19,8 @@ public abstract class MapGenerationData : ScriptableObject
         m_Map = mapData.Map;
         m_Map.Height = m_Height;
         m_Map.Width = m_Width;
-        
-        if(m_Map.Tiles == null)
-            m_Map.Tiles = new Tile[m_Width,m_Height];
+
+        m_Map.Tiles = new Tile[m_Width,m_Height];
         
         return new GenerationMapInfo(new Vector2Int(0,0));
     }

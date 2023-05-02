@@ -83,7 +83,7 @@ public class MapGenerator : MonoBehaviour
         else
         {
             Debug.Log("Move Player");
-            GameManager.Instance.PlayerEntity.MoveTo(info.StartPosition);   
+            GameManager.Instance.PlayerEntity.Place(info.StartPosition.x,info.StartPosition.y,m_MapData);   
         }
 
         m_FirstGeneration = false;
