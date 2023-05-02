@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Script.UI;
+using TweenCustom;
 using UnityEngine;
 
 [Serializable]
@@ -246,6 +247,7 @@ public abstract class BoardEntity : MonoBehaviour
     }
     public void Place(int x, int y, MapData targetMap)
     {
+        transform.DoKill();
         m_XPosition = x;
         m_YPosition = y;
         m_TargetMap = targetMap;
