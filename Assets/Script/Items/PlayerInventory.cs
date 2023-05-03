@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     private void OnApplicationQuit()
     {
-        WriteSaveData(m_SaveName,FetchSaveData());
+        SaveInventory();
     }
     
     private void Update()
@@ -70,6 +70,10 @@ public class PlayerInventory : MonoBehaviour,ISaver
         (m_PlayerInventory[id1], m_PlayerInventory[id2]) = (m_PlayerInventory[id2], m_PlayerInventory[id1]);
     }
     //Save Part
+    private void SaveInventory()
+    {
+        WriteSaveData(m_SaveName,FetchSaveData());
+    }
     private void ClearPlayerInventory()
     {
         string[] data = Enumerable.Repeat("none",EquipementLenght).ToArray();

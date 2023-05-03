@@ -11,6 +11,18 @@ public static class SaveUtils
 
     public static string GetSaveDirectory()
     {
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            return MobileSavePath();
+        }
+        else
+        {
+            return ComputerSavePath();
+        }
+    }
+
+    private static string ComputerSavePath()
+    {
         if (Directory.Exists(Application.dataPath + SAVE_DIRECTORY))
         {
             return Application.dataPath + SAVE_DIRECTORY;
@@ -19,6 +31,19 @@ public static class SaveUtils
         {
             Directory.CreateDirectory(Application.dataPath + SAVE_DIRECTORY);
             return Application.dataPath + SAVE_DIRECTORY;
+        }
+    }
+    
+    private static string MobileSavePath()
+    {
+        if (Directory.Exists(Application.persistentDataPath + SAVE_DIRECTORY))
+        {
+            return Application.persistentDataPath + SAVE_DIRECTORY;
+        }
+        else
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + SAVE_DIRECTORY);
+            return Application.persistentDataPath + SAVE_DIRECTORY;
         }
     }
 
