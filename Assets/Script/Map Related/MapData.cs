@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapData : SingletonMonoBehavior<MapData>
@@ -68,13 +69,9 @@ public class MapData : SingletonMonoBehavior<MapData>
 
     public BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
     {
-        foreach (BoardEntity entity in entities)
-        {
-            if (entity.EntityPosition == entityPos)
-                return entity;
-        }
+        BoardEntity entity = entities.FirstOrDefault(en => en.Targetable && en.EntityPosition == entityPos);
 
-        return null;
+        return entity;
     }
 
     public Vector2Int MapClampedPosition(Vector2Int pos)

@@ -26,4 +26,6 @@ public enum EntityType
     None,
     Balista,
     Skeleton,
+    //Misc 101...
+    Mine = 101,
 }

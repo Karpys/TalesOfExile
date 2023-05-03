@@ -160,12 +160,13 @@ public abstract class BoardEntity : MonoBehaviour
 {
     [Header("Base")] 
     [SerializeField] protected BoardEntityDataScriptable m_EntityDataScriptable = null;
-    [SerializeField] protected int m_XPosition = 0;
-    [SerializeField] protected int m_YPosition = 0;
     [SerializeField] protected Transform m_VisualTransform = null;
+    [SerializeField] protected bool m_Targetable = true;
     // [SerializeField] protected AddDamageModifier m_TestModifier = null;
     protected bool m_CanBehave = true;
     protected bool m_IsDead = false;
+    protected int m_YPosition = 0;
+    protected int m_XPosition = 0;
     
     protected EntityBehaviour m_EntityBehaviour = null;
     protected BoardEntityData m_EntityData = null;
@@ -188,6 +189,9 @@ public abstract class BoardEntity : MonoBehaviour
     public EntityBuffs Buffs => m_Buffs;
     public BoardEntityLife Life => m_EntityLife;
     public BoardEntityEventHandler EntityEvent => m_EntityEvent;
+    
+    //Property//
+    public bool Targetable => m_Targetable;
 
     //Need to be called when an entity is created//
     public void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
@@ -252,7 +256,7 @@ public abstract class BoardEntity : MonoBehaviour
         m_YPosition = y;
         m_TargetMap = targetMap;
         transform.position = targetMap.GetTilePosition(x, y);
-        m_TargetMap.Map.Tiles[x, y].Walkable = false;
+        OnNewPosition(EntityPosition);
     }
 
     public virtual void MoveTo(int x, int y, bool movement = true)
@@ -260,10 +264,15 @@ public abstract class BoardEntity : MonoBehaviour
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
         m_XPosition = x;
         m_YPosition = y;
-        m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = false;
+        OnNewPosition(EntityPosition);
         //OnMove ?//
         if(movement)
             Movement();
+    }
+
+    protected virtual void OnNewPosition(Vector2Int position)
+    {
+        m_TargetMap.Map.Tiles[position.x,position.y].Walkable = false;
     }
     
     public void MoveTo(Vector2Int pos,bool movement = true)

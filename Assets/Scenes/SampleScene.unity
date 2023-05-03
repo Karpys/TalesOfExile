@@ -2059,6 +2059,8 @@ MonoBehaviour:
       Type: 1
     - Object: {fileID: 2959216194418653047, guid: 83ca59d24d0c2004d8174ef0dcc1a3fa, type: 3}
       Type: 2
+    - Object: {fileID: 4700584262946876349, guid: da47f8734651f984386018290a86ed20, type: 3}
+      Type: 101
 --- !u!1 &1522239926
 GameObject:
   m_ObjectHideFlags: 0

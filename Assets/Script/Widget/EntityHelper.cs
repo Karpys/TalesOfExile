@@ -25,6 +25,6 @@ public static class EntityHelper
     
     public static BoardEntity GetClosestEntity(List<BoardEntity> entities,Vector2Int originPosition)
     {
-        return entities.OrderBy(e => DistanceUtils.GetSquareDistance(originPosition, e.EntityPosition)).First();
+        return entities.Where(en => en.Targetable).OrderBy(e => DistanceUtils.GetSquareDistance(originPosition, e.EntityPosition)).First();
     }
 }
