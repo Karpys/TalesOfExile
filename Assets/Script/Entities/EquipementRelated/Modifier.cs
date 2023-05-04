@@ -13,6 +13,12 @@ public class Modifier
         Value = value;
     }
 
+    public void Transmut(ModifierType type, float value)
+    {
+        Type = type;
+        Value = value.ToString();
+    }
+
     public Modifier(string saveData)
     {
         string[] splitData = saveData.Split('|');

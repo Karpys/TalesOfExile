@@ -22,7 +22,7 @@ public class ParameterLessTriggerEditor : Editor
         
         for (int i = 0; i < m_FieldsName.Length; i++)
         {
-            AddField(m_FieldValues[i],i);
+            EditorUtils.AddField(m_FieldValues[i],i,m_FieldsName[i]);
         }
 
         if(GUILayout.Button("Send values"))
@@ -61,7 +61,7 @@ public class ParameterLessTriggerEditor : Editor
         }
     }
 
-    private void AddField(FieldValue field,int id)
+    /*private void AddField(FieldValue field,int id,string fieldName)
     {
         EditorGUILayout.LabelField(m_FieldsName[id]);
 
@@ -82,6 +82,9 @@ public class ParameterLessTriggerEditor : Editor
 
                 enumFieldValue.Value = enumFieldValue.EnumType + " " + EditorGUILayout.EnumPopup(targetEnum).ToString();
                 break;
+            case FieldType.Bool:
+                field.Value = EditorGUILayout.Toggle(bool.Parse(field.Value)).ToString();
+                break;
         }
-    }
+    }*/
 }

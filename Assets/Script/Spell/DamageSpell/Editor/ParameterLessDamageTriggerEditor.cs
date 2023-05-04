@@ -22,7 +22,7 @@ public class ParameterLessDamageTriggerScriptableEditor : Editor
 
         for (int i = 0; i < m_FieldsName.Length; i++)
         {
-            AddField(m_FieldValues[i],i);
+            EditorUtils.AddField(m_FieldValues[i],i,m_FieldsName[i]);
         }
         
         if(GUILayout.Button("Send values"))
@@ -61,7 +61,7 @@ public class ParameterLessDamageTriggerScriptableEditor : Editor
         }
     }
 
-    private void AddField(FieldValue field,int id)
+    /*private void AddField(FieldValue field,int id)
     {
         EditorGUILayout.LabelField(m_FieldsName[id]);
 
@@ -83,5 +83,5 @@ public class ParameterLessDamageTriggerScriptableEditor : Editor
                 enumFieldValue.Value = enumFieldValue.EnumType + " " + EditorGUILayout.EnumPopup(targetEnum).ToString();
                 break;
         }
-    }
+    }*/
 }

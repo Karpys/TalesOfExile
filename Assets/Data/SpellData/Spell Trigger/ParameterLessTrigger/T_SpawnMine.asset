@@ -19,3 +19,5 @@ MonoBehaviour:
   m_AdditionalParameters:
   - Type: 3
     Value: EntityType Mine
+  - Type: 5
+    Value: True

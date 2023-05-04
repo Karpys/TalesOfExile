@@ -15,7 +15,7 @@ public class RockThrowBuff : Buff
         Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
         
         m_Receiver.EntityEvent.OnDoDamageTo += AddRockThrowCallBack;
-        m_Receiver.EntityEvent.OnSpellRecompute += Trigger.SpellTrigger.ComputeSpellData;
+        m_Receiver.EntityEvent.OnSpellRecompute += Recompute;
     }
 
     private void AddRockThrowCallBack(BoardEntity receiver,DamageSource damageSource,TriggerSpellData _)
@@ -42,6 +42,11 @@ public class RockThrowBuff : Buff
     protected override void UnApply()
     {
         m_Receiver.EntityEvent.OnDoDamageTo -= AddRockThrowCallBack;
-        m_Receiver.EntityEvent.OnSpellRecompute -= Trigger.SpellTrigger.ComputeSpellData;
+        m_Receiver.EntityEvent.OnSpellRecompute -= Recompute;
+    }
+
+    private void Recompute()
+    {
+        Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
     }
 }

@@ -1,5 +1,6 @@
 ﻿public enum ModifierType
 {
+    None = -1,
     //Damage Type Up// 0 => 20//
     UpFire = 0,
     UpCold = 1,

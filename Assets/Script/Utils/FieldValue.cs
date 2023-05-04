@@ -9,6 +9,8 @@ public class FieldValue
 
     public FieldValue GetField(string type)
     {
+        Debug.Log(type);
+
         switch (type)
         {
             case "System.Int32":
@@ -17,6 +19,8 @@ public class FieldValue
                 return new FieldValue(FieldType.Float, "0");
             case "System.String":
                 return new FieldValue(FieldType.String, "Empty");
+            case "System.Boolean":
+                return new FieldValue(FieldType.Bool, "False");
             default:
                 //Try get enum//
                 System.Type enumType = System.Type.GetType(type);
@@ -48,6 +52,8 @@ public class FieldValue
             case FieldType.Enum:
                 System.Type enumType = System.Type.GetType(Value.Split()[0]);
                 return Enum.Parse(enumType, Value.Split()[1]);
+            case FieldType.Bool:
+                return bool.Parse(Value);
             case FieldType.String:
                 return Value;
             default:
@@ -73,4 +79,5 @@ public enum FieldType
     String,
     Enum,
     Empty,
+    Bool,
 }

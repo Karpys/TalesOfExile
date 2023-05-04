@@ -6,72 +6,82 @@ using Random = UnityEngine.Random;
 
 public static class ModifierUtils
 {
+    private static readonly Dictionary<ModifierType, Action<Modifier, BoardEntity>> applyActions;
+    private static readonly Dictionary<ModifierType, Action<Modifier, BoardEntity>> unapplyActions;
+
+    static ModifierUtils()
+    {
+        applyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
+        {
+            { ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
+            { ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
+            { ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
+            { ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
+            { ModifierType.SpellAddition, (m, e) =>
+                {
+                    SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
+                    e.AddSpellToSpellList(spellToAdd);
+                }
+            },
+            { ModifierType.AddThrowRockPassif, (m, e) =>
+                {
+                    Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, e);
+                    buff.InitializeBuff(e, e, 0, m.FloatValue);
+                    buff.SetBuffType(BuffGroup.Buff, BuffCooldown.Passive);
+                    buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + m.Value);
+                    buff.EnableVisual(false);
+                }
+            },
+        };
+
+        unapplyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
+        {
+            {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier -= m.FloatValue},
+            {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
+            {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
+            {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
+            {
+                ModifierType.SpellAddition, (m, e) =>
+                {
+                    SpellData spellToAdd = e.GetSpellViaKey(m.Value);
+                    if (spellToAdd == null)
+                    {
+                        Debug.Log("No Spell key to remove found :" + m.Value);
+                        return;
+                    }
+
+                    e.RemoveSpellToSpellList(spellToAdd);
+                }
+            },
+            {
+                ModifierType.AddThrowRockPassif, (m, e) =>
+                {
+                    e.Buffs.TryRemoveBuffViaKey((int) BuffType.RockThrowBuff + " " + m.Value);
+                }
+            },
+        };
+    }
     public static void ApplyModifier(Modifier modifier,BoardEntity entity)
     {
-        switch (modifier.Type)
+        if (applyActions.TryGetValue(modifier.Type, out Action<Modifier, BoardEntity> action))
         {
-            case ModifierType.UpCold:
-                entity.EntityStats.ColdDamageModifier += modifier.FloatValue;
-                break;
-            case ModifierType.UpFire:
-                entity.EntityStats.FireDamageModifier += modifier.FloatValue;
-                break;
-            case ModifierType.UpPhysical:
-                entity.EntityStats.PhysicalDamageModifier += modifier.FloatValue;
-                break;
-            case ModifierType.IncreaseMaxLife:
-                entity.Life.ChangeMaxLifeValue(modifier.FloatValue);
-                break;
-            case ModifierType.SpellAddition:
-                SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(modifier.Value);
-                entity.AddSpellToSpellList(spellToAdd);
-                break;
-            case ModifierType.AddThrowRockPassif:
-                Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, entity);
-                buff.InitializeBuff(entity,entity,0,modifier.FloatValue);
-                buff.SetBuffType(BuffGroup.Buff,BuffCooldown.Passive);
-                buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + modifier.Value);
-                buff.EnableVisual(false);
-                break;
-            default:
-                Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
-                break;
+            action.Invoke(modifier,entity);
+        }
+        else
+        {
+            Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
         }
     }
     
     public static void UnapplyModifier(Modifier modifier, BoardEntity entity)
     {
-        switch (modifier.Type)
+        if (unapplyActions.TryGetValue(modifier.Type, out Action<Modifier, BoardEntity> action))
         {
-            case ModifierType.UpCold:
-                entity.EntityStats.ColdDamageModifier -= modifier.FloatValue;
-                break;
-            case ModifierType.UpFire:
-                entity.EntityStats.FireDamageModifier -= modifier.FloatValue;
-                break;
-            case ModifierType.UpPhysical:
-                entity.EntityStats.PhysicalDamageModifier -= modifier.FloatValue;
-                break;
-            case ModifierType.IncreaseMaxLife:
-                entity.Life.ChangeMaxLifeValue(-modifier.FloatValue);
-                break;
-            case ModifierType.SpellAddition:
-                SpellData spellToAdd = entity.GetSpellViaKey(modifier.Value);
-                
-                if (spellToAdd == null)
-                {
-                    Debug.Log("No Spell key to remove found :" + modifier.Value);
-                    break;
-                }
-                
-                entity.RemoveSpellToSpellList(spellToAdd);
-                break;
-            case ModifierType.AddThrowRockPassif:
-                entity.Buffs.TryRemoveBuffViaKey((int)BuffType.RockThrowBuff + " " + modifier.Value);
-                break;
-            default:
-                Debug.LogError("MODIFIER EQUIPEMENT HAS NOT BEEN SET UP");
-                break;
+            action.Invoke(modifier,entity);
+        }
+        else
+        {
+            Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
         }
     }
 

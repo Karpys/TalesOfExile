@@ -3,9 +3,11 @@
 public class SpawnEntityTrigger : SelectionSpellTrigger
 {
     private EntityType m_EntityTypeToSpawn = EntityType.None;
-    public SpawnEntityTrigger(BaseSpellTriggerScriptable baseScriptable,EntityType entityType) : base(baseScriptable)
+    private bool m_UseTransmitter = false;
+    public SpawnEntityTrigger(BaseSpellTriggerScriptable baseScriptable,EntityType entityType,bool useTransmitter) : base(baseScriptable)
     {
         m_EntityTypeToSpawn = entityType;
+        m_UseTransmitter = useTransmitter;
     }
 
     public override void ComputeSpellPriority()
@@ -21,8 +23,11 @@ public class SpawnEntityTrigger : SelectionSpellTrigger
 
         if (tile.Walkable)
         {
-            EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(m_EntityTypeToSpawn)
+            BoardEntity entity = EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(m_EntityTypeToSpawn)
                 ,GetEntityIa(),spellData.AttachedEntity.EntityGroup,spellData.AttachedEntity.TargetEntityGroup);
+            
+            if(m_UseTransmitter)
+                entity.GetComponent<StatsTransmitter>().InitTransmitter(spellData.AttachedEntity);
         }
     }
 
