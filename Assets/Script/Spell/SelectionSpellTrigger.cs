@@ -22,15 +22,16 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
             if(tileHitAnim.BaseSpellDelay > m_SpellAnimDelay)
                 m_SpellAnimDelay = tileHitAnim.BaseSpellDelay;
 
-            tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition));
+            TriggerTileHitFx(tileHitAnim,tilePosition);
         }
     }
-    protected virtual void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin)
-    {
-        TriggerOnHitFx(entity,spellData);
-    }
 
-    protected void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData)
+    protected virtual void TriggerTileHitFx(SpellAnimation tileHitAnim,Vector2Int tilePosition)
+    {
+        tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition));
+    }
+    
+    protected virtual void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin)
     {
         SpellAnimation onHitAnim = OnHitAnimation;
 
@@ -40,15 +41,20 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
             if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
                 m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
 
-            if (AdditionalDatasAnimation)
-            {
-                object[] additionalData = {spellData, entity};
-                onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
-            }
-            else
-            {
-                onHitAnim.TriggerFx(entity.WorldPosition);
-            }
+            TriggerOnHitFx(entity,spellData,onHitAnim);   
+        }
+    }
+
+    protected virtual void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData,SpellAnimation onHitAnim)
+    {
+        if (AdditionalDatasAnimation)
+        {
+            object[] additionalData = {spellData, entity};
+            onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
+        }
+        else
+        {
+            onHitAnim.TriggerFx(entity.WorldPosition);
         }
     }
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)

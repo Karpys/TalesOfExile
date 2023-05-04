@@ -10,34 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: DetectionMine
+  m_Name: MineExplosion
   m_EditorClassIdentifier: 
-  SpellKey: DetectionMine
+  SpellKey: MineExplosion
   SpellType: 0
-  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: 8d31785fcff65ff4790366a17b456040, type: 2}
-  m_BaseCooldown: 8
+  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: d82baf9a61797476aa901ac5efdb5999, type: 2}
+  m_BaseCooldown: 0
   m_Selection:
   - Origin: 0
     Zone:
       DisplayType: 0
-      Range: 5
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: 0
-    ActionSelection: 0
-  - Origin: 1
-    Zone:
-      DisplayType: 1
-      Range: 1
+      Range: 4
     ValidationType:
       NeedValidation: 1
-      TargetZoneValidation: 0
+      TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions: []
   AllowedCastZone:
-    DisplayType: 0
-    Range: 5
+    DisplayType: -1
+    Range: 0
   OriginSelection: 0
