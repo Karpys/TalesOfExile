@@ -286,7 +286,7 @@ public abstract class BoardEntity : MonoBehaviour
         m_EntityBehaviour.SetEntity(this);
     }
     
-    protected void RemoveFromBoard()
+    protected virtual void RemoveFromBoard()
     {
         m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
     }

@@ -6,4 +6,9 @@ public class WalkableEntity : BoardEntity
     {
         return;
     }
+
+    protected override void RemoveFromBoard()
+    {
+        return;
+    }
 }

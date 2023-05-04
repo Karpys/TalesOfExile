@@ -35,6 +35,14 @@ MonoBehaviour:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
+  - Origin: 1
+    Zone:
+      DisplayType: 1
+      Range: 1
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: 0
+    ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions:
   - SelectionId: 1
