@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InvocationSickness : MonoBehaviour
 {
+    [SerializeField] private int m_TurnWaitBehave = 1;
+    
     private BoardEntity m_AttachedEntity = null;
     private void Awake()
     {
@@ -19,7 +21,12 @@ public class InvocationSickness : MonoBehaviour
 
     private void EntityCanBehave()
     {
-        m_AttachedEntity.SetBehaveState(true);
-        Destroy(this);
+        m_TurnWaitBehave -= 1;
+
+        if (m_TurnWaitBehave <= 0)
+        {
+            m_AttachedEntity.SetBehaveState(true);
+            Destroy(this);
+        }
     }
 }

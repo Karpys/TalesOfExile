@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpawnEntityTrigger : SelectionSpellTrigger
+public class  SpawnEntityTrigger : SelectionSpellTrigger
 {
     private EntityType m_EntityTypeToSpawn = EntityType.None;
     private bool m_UseTransmitter = false;
@@ -21,8 +21,10 @@ public class SpawnEntityTrigger : SelectionSpellTrigger
 
         Tile tile = MapData.Instance.GetTile(tilePosition);
 
+        Debug.Log(tilePosition);
         if (tile.Walkable)
         {
+            Debug.Log("spawn entity");
             BoardEntity entity = EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(m_EntityTypeToSpawn)
                 ,GetEntityIa(),spellData.AttachedEntity.EntityGroup,spellData.AttachedEntity.TargetEntityGroup);
             

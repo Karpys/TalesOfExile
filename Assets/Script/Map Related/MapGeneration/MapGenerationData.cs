@@ -28,3 +28,10 @@ public abstract class MapGenerationData : ScriptableObject
     }
 
 }
+
+[System.Serializable]
+public struct EntitySpawn
+{
+    public BoardEntity EntityPrefab;
+    public Vector2Int EntityPosition;
+}

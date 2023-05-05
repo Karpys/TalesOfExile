@@ -148,6 +148,7 @@ public static class ZoneTileManager
                 }
                 return false;
             default:
+                Debug.LogError("Target selection display type has not been set up: " + zoneSelection.DisplayType);
                 return false;
         }
     }

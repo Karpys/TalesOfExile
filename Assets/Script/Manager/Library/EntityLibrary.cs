@@ -23,9 +23,11 @@ public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
 
 public enum EntityType
 {
-    None,
-    Balista,
-    Skeleton,
+    None = 0,
+    Balista = 1,
+    Skeleton = 2,
+    Labouk = 3,
     //Misc 101...
     Mine = 101,
+    LaboukSpawner = 102,
 }

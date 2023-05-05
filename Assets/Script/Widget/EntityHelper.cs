@@ -22,6 +22,15 @@ public static class EntityHelper
         boardEntity.Place(pos.x,pos.y,mapData);
         return boardEntity;
     }
+
+    public static void SpawnEnemyViaEntitySpawn(EntitySpawn[] entitySpawn)
+    {
+        foreach (EntitySpawn spawn in entitySpawn)
+        {
+            SpawnEntityOnMap(spawn.EntityPosition, spawn.EntityPrefab, new MapEnemyEntityBehaviour(), EntityGroup.Enemy,
+                EntityGroup.Friendly);
+        }
+    }
     
     public static BoardEntity GetClosestEntity(List<BoardEntity> entities,Vector2Int originPosition)
     {

@@ -4,16 +4,16 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "MonsterGeneration", menuName = "Monster/ClassicGeneration", order = 0)]
-public class MonsterGeneration : ScriptableObject
+public class MonsterGeneration : BaseMonsterGeneration
 {
     [SerializeField] private StaticWeightElementDraw<BoardEntity> m_WeightEnemies = null;
     [SerializeField] private float m_TargetEnemiesCount = 10;
-
-    public void GenerateEnemies(List<Tile> targetTiles,MapData map)
+    
+    public override void Generate(List<Tile> allowedTiles)
     {
-        float monsterSpawnChance = m_TargetEnemiesCount * 100 / targetTiles.Count;
+        float monsterSpawnChance = m_TargetEnemiesCount * 100 / allowedTiles.Count;
         
-        foreach (Tile tile in targetTiles)
+        foreach (Tile tile in allowedTiles)
         {
             float random = Random.Range(0f, 100f);
 

@@ -30,7 +30,7 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     
     public List<Item> ItemRequest(InventoryPoolObject objectPool,int drawCount)
     {
-        List<Item> inventoryObjects =  objectPool.Draw(drawCount);
+        List<Item> inventoryObjects = objectPool.Draw(drawCount);
         return inventoryObjects;
     }
 }

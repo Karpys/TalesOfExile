@@ -10,7 +10,7 @@ public class ForestGenerationData : FlatDefaultMapGeneration
     [Range(0,100)]
     [SerializeField] private float m_TreeChance = 10;
     [SerializeField] private WorldTile m_TreeTile = null;
-    [SerializeField] private MonsterGeneration m_MonsterGeneration = null;
+    [SerializeField] private BaseMonsterGeneration m_MonsterGeneration = null;
 
     public override GenerationMapInfo Generate(MapData mapData)
     {
@@ -99,7 +99,7 @@ public class ForestGenerationData : FlatDefaultMapGeneration
                 tiles.Add(tile);
         }
 
-        m_MonsterGeneration.GenerateEnemies(tiles,m_MapData);
+        m_MonsterGeneration.Generate(tiles);
     }
 
     private void RemoveUnreachableTileOnPath(List<Tile> tiles)

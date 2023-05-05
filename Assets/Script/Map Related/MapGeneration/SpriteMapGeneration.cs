@@ -6,6 +6,8 @@ public class SpriteMapGeneration : MapGenerationData
 {
     [SerializeField] private Sprite m_MapSprite = null;
     [SerializeField] private GenericLibrary<WorldTile, Color> m_ColorTileMap = null;
+
+    [SerializeField] private BaseMonsterGeneration m_MonsterGeneration = null;
     public Sprite MapSprite => m_MapSprite;
 
     public void GenerateLibrary(List<Color> colors)
@@ -60,7 +62,24 @@ public class SpriteMapGeneration : MapGenerationData
                     m_Map.PlaceTileAt(tile, x, y);
             }
         }
+        
+        
+        MonsterGeneration();
 
         return new GenerationMapInfo(new Vector2Int(m_Width / 2, m_Height / 2));
+    }
+
+    private void MonsterGeneration()
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        foreach (Tile tile in m_MapData.Map.Tiles)
+        {
+            if(tile.Walkable)
+                tiles.Add(tile);
+        }
+        
+        if(m_MonsterGeneration)
+            m_MonsterGeneration.Generate(tiles);
     }
 }
