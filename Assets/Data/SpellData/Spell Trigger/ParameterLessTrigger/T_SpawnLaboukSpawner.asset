@@ -21,3 +21,5 @@ MonoBehaviour:
     Value: EntityType LaboukSpawner
   - Type: 5
     Value: False
+  - Type: 0
+    Value: 1000

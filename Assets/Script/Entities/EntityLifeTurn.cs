@@ -2,16 +2,20 @@ using System;
 using UnityEngine;
 public class EntityLifeTurn : MonoBehaviour
 {
-    private int m_TurnCount = 10;
+    [SerializeField] protected int m_BaseTurnCount = 10;
     private BoardEntity m_AttachedEntity = null;
 
     public void SetTurnCount(int turnCount)
     {
-        m_TurnCount = turnCount;
+        m_BaseTurnCount = turnCount;
     }
     private void Awake()
     {
         m_AttachedEntity = GetComponent<BoardEntity>();
+    }
+
+    private void Start()
+    {
         m_AttachedEntity.EntityEvent.OnBehave += ReduceLifeCounter;
     }
 
@@ -20,11 +24,11 @@ public class EntityLifeTurn : MonoBehaviour
         m_AttachedEntity.EntityEvent.OnBehave -= ReduceLifeCounter;
     }
 
-    private void ReduceLifeCounter()
+    protected virtual void ReduceLifeCounter()
     {
-        m_TurnCount -= 1;
+        m_BaseTurnCount -= 1;
         
-        if(m_TurnCount <= 0)
+        if(m_BaseTurnCount <= 0)
             m_AttachedEntity.ForceDeath();
     }
 }

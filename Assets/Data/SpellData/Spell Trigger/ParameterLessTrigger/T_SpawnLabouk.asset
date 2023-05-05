@@ -21,3 +21,5 @@ MonoBehaviour:
     Value: EntityType Labouk
   - Type: 5
     Value: False
+  - Type: 0
+    Value: 100

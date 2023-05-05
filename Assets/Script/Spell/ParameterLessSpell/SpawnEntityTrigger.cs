@@ -4,15 +4,17 @@ public class  SpawnEntityTrigger : SelectionSpellTrigger
 {
     private EntityType m_EntityTypeToSpawn = EntityType.None;
     private bool m_UseTransmitter = false;
-    public SpawnEntityTrigger(BaseSpellTriggerScriptable baseScriptable,EntityType entityType,bool useTransmitter) : base(baseScriptable)
+    private int m_SpawnPriority = 0;
+    public SpawnEntityTrigger(BaseSpellTriggerScriptable baseScriptable,EntityType entityType,bool useTransmitter,int spawnPriority) : base(baseScriptable)
     {
         m_EntityTypeToSpawn = entityType;
         m_UseTransmitter = useTransmitter;
+        m_SpawnPriority = spawnPriority;
     }
 
     public override void ComputeSpellPriority()
     {
-        m_SpellPriority = 0;
+        m_SpellPriority = m_SpawnPriority;
     }
 
     protected override void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
@@ -24,7 +26,6 @@ public class  SpawnEntityTrigger : SelectionSpellTrigger
         Debug.Log(tilePosition);
         if (tile.Walkable)
         {
-            Debug.Log("spawn entity");
             BoardEntity entity = EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(m_EntityTypeToSpawn)
                 ,GetEntityIa(),spellData.AttachedEntity.EntityGroup,spellData.AttachedEntity.TargetEntityGroup);
             

@@ -40,6 +40,6 @@ MonoBehaviour:
   - SelectionId: 1
     Type: 0
   AllowedCastZone:
-    DisplayType: 0
-    Range: 5
+    DisplayType: -1
+    Range: 0
   OriginSelection: 2
