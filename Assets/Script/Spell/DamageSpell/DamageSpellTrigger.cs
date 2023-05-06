@@ -24,7 +24,6 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         DamageSources.Clear();
         ComputeSpellDamage(entity);
         ApplyDamageModifier(entity);
-        ComputeSpellPriority();
     }
 
     private void ApplyDamageModifier(BoardEntity entity)
@@ -60,20 +59,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
             AddDamageSource(additionalSources[i]);
         }
     }
-    
-    //Spell Priority
-    public override void ComputeSpellPriority()
-    {
-        int damagePriority = 0;
-        
-        foreach (KeyValuePair<SubDamageType,DamageSource> damageSource in DamageSources)
-        {
-            damagePriority += (int)damageSource.Value.Damage;
-        }
 
-        m_SpellPriority = damagePriority;
-    }
-    
     #endregion
     //Apply Damage To All Ennemies in the actionTiles
     protected override void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int origin)

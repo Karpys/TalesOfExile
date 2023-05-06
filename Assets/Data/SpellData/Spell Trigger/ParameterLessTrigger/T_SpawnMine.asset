@@ -21,5 +21,3 @@ MonoBehaviour:
     Value: EntityType Mine
   - Type: 5
     Value: True
-  - Type: 0
-    Value: 80

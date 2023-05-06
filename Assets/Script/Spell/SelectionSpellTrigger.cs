@@ -92,9 +92,6 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
     {
         return EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
     }
-
-    public override void ComputeSpellData(BoardEntity entity)
-    {
-        ComputeSpellPriority();
-    }
+    
+    public override void ComputeSpellData(BoardEntity entity){}
 }

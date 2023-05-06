@@ -18,7 +18,7 @@ public class BaseEntityIA:EntityBehaviour
     }
     public void SelfBuffCount()
     {
-        int count = m_AttachedEntity.Spells.Count(s => s.Data.SpellType == SpellType.Buff);
+        int count = m_AttachedEntity.Spells.Count(s => s.m_SpellData.Data.SpellType == SpellType.Buff);
         m_TriggerSelfBuffCount = count;
     }
     
@@ -29,10 +29,11 @@ public class BaseEntityIA:EntityBehaviour
         //Linq : https://learn.microsoft.com/fr-fr/dotnet/api/system.linq.enumerable.select?view=net-7.0
         Dictionary<TriggerSpellData, int> spellIndexes = m_AttachedEntity.Spells
             .Select((spell, index) => new { Spell = spell, Index = index })
-            .Where(s => s.Spell.Data.SpellType == SpellType.Trigger)
-            .ToDictionary(s => (TriggerSpellData)s.Spell, s => s.Index);
+            .Where(s => s.Spell.m_SpellData.Data.SpellType == SpellType.Trigger)
+            .ToDictionary(s => (TriggerSpellData)s.Spell.m_SpellData, s => s.Index);
 
         int[] sortedIndexes = m_AttachedEntity.Spells
+            .Select(s => s.m_SpellData)
             .Where(s => s.Data.SpellType == SpellType.Trigger)
             .Cast<TriggerSpellData>()
             .OrderByDescending(s => s.SpellTrigger.SpellPriority)
@@ -100,6 +101,7 @@ public class BaseEntityIA:EntityBehaviour
     private bool SelfBuffAction()
     {
         List<TriggerSpellData> buffs = m_AttachedEntity.Spells
+            .Select(s => s.m_SpellData)
             .Where(s => s.Data.SpellType == SpellType.Buff)
             .Cast<TriggerSpellData>()
             .Where(s => s.IsCooldownReady())
@@ -161,7 +163,7 @@ public class BaseEntityIA:EntityBehaviour
         for (int i = 0; i < m_SpellIdPriority.Length; i++)
         {
             Vector2Int targetPosition = m_Target.EntityPosition;
-            TriggerSpellData triggerSpellData = m_AttachedEntity.Spells[m_SpellIdPriority[i]] as TriggerSpellData;
+            TriggerSpellData triggerSpellData = m_AttachedEntity.Spells[m_SpellIdPriority[i]].m_SpellData as TriggerSpellData;
             
             if (triggerSpellData.IsCooldownReady())
             {

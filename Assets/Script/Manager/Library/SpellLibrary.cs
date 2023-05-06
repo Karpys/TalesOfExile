@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
 {
-    [SerializeField] private List<SpellData> m_SpellList = new List<SpellData>();
-    public Dictionary<string, SpellData> Spells = new Dictionary<string, SpellData>();
+    [SerializeField] private List<SpellInfo> m_SpellList = new List<SpellInfo>();
+    public Dictionary<string, SpellInfo> Spells = new Dictionary<string, SpellInfo>();
 
     private void Awake()
     {
-        foreach (SpellData spellData in m_SpellList)
+        foreach (SpellInfo spellData in m_SpellList)
         {
-            Spells.Add(spellData.Data.SpellKey,spellData);
+            Spells.Add(spellData.m_SpellData.Data.SpellKey,spellData);
         }
     }
 
-    public SpellData GetSpellViaKey(string spellKey)
+    public SpellInfo GetSpellViaKey(string spellKey)
     {
-        SpellData spellData = null;
+        SpellInfo spellData = null;
         Spells.TryGetValue(spellKey,out spellData);
 
         if (spellData == null)
@@ -26,6 +26,6 @@ public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
             return null;
         }
         
-        return new SpellData(spellData);
+        return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority);
     }
 }

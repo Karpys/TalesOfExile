@@ -38,11 +38,11 @@ MonoBehaviour:
       ElementalDamageReduction: 0
     m_SpellList:
       m_Spells:
-      - Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: acd84d7954bba4b38b1e9d3eaa5e1b4f, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 0
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: acd84d7954bba4b38b1e9d3eaa5e1b4f, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 1

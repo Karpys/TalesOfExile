@@ -7,25 +7,22 @@ public class SpellData
 {
     public SpellDataScriptable Data = null;
     [HideInInspector]public BoardEntity AttachedEntity = null;
-    //Mainly used for support spells
-    public SpellList ConnectedSpellData = null;
 
 
-    public virtual SpellData Initialize()
+    public virtual SpellInfo Initialize(int priority)
     {
-        ConnectedSpellData = ConnectedSpellData.Clone();
         //TODO:SAME with support Spells
         switch (Data.SpellType)
         {
             case SpellType.Trigger:
                 TriggerSpellData triggerSpellData = new TriggerSpellData(this);
-                return triggerSpellData.Initialize();
+                return triggerSpellData.Initialize(priority);
             case SpellType.Buff:
                 TriggerSpellData buffSpellData = new TriggerSpellData(this);
-                return buffSpellData.Initialize();
+                return buffSpellData.Initialize(priority);
             default:
                 Debug.LogError("Missing SpellType Implementation");
-                return this;
+                return new SpellInfo(this,priority);
         }
     }
 
@@ -33,7 +30,6 @@ public class SpellData
     {
         Data = baseSpellData.Data;
         AttachedEntity = baseSpellData.AttachedEntity;
-        ConnectedSpellData = baseSpellData.ConnectedSpellData.Clone();
     }
     
     public virtual object Clone()

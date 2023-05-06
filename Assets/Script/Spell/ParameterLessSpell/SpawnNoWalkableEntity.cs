@@ -1,7 +1,7 @@
 ﻿public class SpawnNoWalkableEntity : SpawnEntityTrigger
 {
 
-    public SpawnNoWalkableEntity(BaseSpellTriggerScriptable baseScriptable, EntityType entityType, bool useTransmitter, int spawnPriority) : base(baseScriptable, entityType, useTransmitter, spawnPriority)
+    public SpawnNoWalkableEntity(BaseSpellTriggerScriptable baseScriptable, EntityType entityType, bool useTransmitter) : base(baseScriptable, entityType, useTransmitter)
     {
     }
     protected override BaseEntityIA GetEntityIa()

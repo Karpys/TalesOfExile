@@ -11,9 +11,4 @@ public class SpawnBalistaTrigger : SelectionSpellTrigger
         EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(EntityType.Balista),new BalistaIA(),spellData.AttachedEntity.EntityGroup);
         base.TileHit(tilePosition, spellData);
     }
-
-    public override void ComputeSpellPriority()
-    {
-        m_SpellPriority = 0;
-    }
 }

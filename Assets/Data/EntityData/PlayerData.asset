@@ -38,27 +38,27 @@ MonoBehaviour:
       ElementalDamageReduction: 0
     m_SpellList:
       m_Spells:
-      - Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 0d38b00532de4a1468bab9a4e8a4b8ce, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: adbe993e0101ea642a6c6f77ae417925, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
-      - Data: {fileID: 11400000, guid: bf9be8471747b564fb64ee9d14332111, type: 2}
-        AttachedEntity: {fileID: 0}
-        ConnectedSpellData:
-          m_Spells: []
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 1
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 2
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 0d38b00532de4a1468bab9a4e8a4b8ce, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 10
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: adbe993e0101ea642a6c6f77ae417925, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 4
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 10
+      - m_SpellData:
+          Data: {fileID: 11400000, guid: 504debc7db7fe8e4e8c0e3ac18f85934, type: 2}
+          AttachedEntity: {fileID: 0}
+        m_SpellPriority: 5

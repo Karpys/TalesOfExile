@@ -19,7 +19,7 @@ public static class ModifierUtils
             { ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
             { ModifierType.SpellAddition, (m, e) =>
                 {
-                    SpellData spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
+                    SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
                     e.AddSpellToSpellList(spellToAdd);
                 }
             },
@@ -43,7 +43,7 @@ public static class ModifierUtils
             {
                 ModifierType.SpellAddition, (m, e) =>
                 {
-                    SpellData spellToAdd = e.GetSpellViaKey(m.Value);
+                    SpellInfo spellToAdd = e.GetSpellViaKey(m.Value);
                     if (spellToAdd == null)
                     {
                         Debug.Log("No Spell key to remove found :" + m.Value);

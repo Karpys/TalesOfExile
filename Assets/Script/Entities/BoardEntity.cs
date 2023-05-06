@@ -169,7 +169,7 @@ public abstract class BoardEntity : MonoBehaviour
     protected int m_XPosition = 0;
     
     protected EntityBehaviour m_EntityBehaviour = null;
-    protected BoardEntityData m_EntityData = null;
+    [SerializeField] protected BoardEntityData m_EntityData = null;
     protected MapData m_TargetMap = null;
     protected EntityEquipement m_Equipement = null;
     protected EntityBuffs m_Buffs = null;
@@ -179,7 +179,7 @@ public abstract class BoardEntity : MonoBehaviour
     public MapData Map => m_TargetMap;
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
-    public List<SpellData> Spells => m_EntityData.m_SpellList.m_Spells;
+    public List<SpellInfo> Spells => m_EntityData.m_SpellList.m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
     public EntityGroup TargetEntityGroup => m_EntityData.m_TargetEntityGroup;
@@ -309,24 +309,28 @@ public abstract class BoardEntity : MonoBehaviour
         }
     }
 
+    public SpellInfo RegisterSpell(SpellInfo spell)
+    {
+        spell.m_SpellData.AttachedEntity = this;
+        return  spell.m_SpellData.Initialize(spell.m_SpellPriority);
+    }
+    
     public SpellData RegisterSpell(SpellData spell)
     {
         spell.AttachedEntity = this;
-        return spell.Initialize();
+        return spell.Initialize(0).m_SpellData;
     }
 
-    public void AddSpellToSpellList(SpellData spell)
+    public void AddSpellToSpellList(SpellInfo spell)
     {
-        Debug.Log("Add spell : "  + spell.Data.SpellKey);
+        Debug.Log("Add spell : "  + spell.m_SpellData.Data.SpellKey);
         m_EntityData.m_SpellList.m_Spells.Add(RegisterSpell(spell));
-        
-        spell.ConnectedSpellData.m_Spells.Clear();
         
         if(this == GameManager.Instance.ControlledEntity)
             GameManager.Instance.RefreshTargetEntitySkills();
     }
 
-    public void RemoveSpellToSpellList(SpellData spell)
+    public void RemoveSpellToSpellList(SpellInfo spell)
     {
         m_EntityData.m_SpellList.m_Spells.Remove(spell);
 
@@ -334,21 +338,21 @@ public abstract class BoardEntity : MonoBehaviour
             GameManager.Instance.RefreshTargetEntitySkills();
     }
 
-    public SpellData GetSpellViaKey(string spellKey)
+    public SpellInfo GetSpellViaKey(string spellKey)
     {
-        foreach (SpellData spellData in Spells)
+        foreach (SpellInfo spellInfo in Spells)
         {
-            if (spellData.Data.SpellKey == spellKey)
-                return spellData;
+            if (spellInfo.m_SpellData.Data.SpellKey == spellKey)
+                return spellInfo;
         }
         return null;
     }
 
     public void ReduceAllCooldown()
     {
-        foreach (SpellData spellData in Spells)
+        foreach (SpellInfo spellData in Spells)
         {
-            if (spellData is TriggerSpellData triggerData)
+            if (spellData.m_SpellData is TriggerSpellData triggerData)
             {
                 triggerData.ReduceCooldown();       
             }
@@ -358,12 +362,12 @@ public abstract class BoardEntity : MonoBehaviour
     //Need to be used when the entity is buffed / Equip / Unequip items//
     public void ComputeAllSpells()
     {
-        foreach (SpellData spellData in Spells)
+        foreach (SpellInfo spellData in Spells)
         {
-            if(spellData.Data.SpellType == SpellType.Support)
+            if(spellData.m_SpellData.Data.SpellType == SpellType.Support)
                 continue;
             
-            TriggerSpellData triggerSpell = spellData as TriggerSpellData;
+            TriggerSpellData triggerSpell = spellData.m_SpellData as TriggerSpellData;
             triggerSpell.SpellTrigger.ComputeSpellData(this);
         }
 

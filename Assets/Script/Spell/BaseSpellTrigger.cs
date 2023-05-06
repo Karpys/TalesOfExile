@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class BaseSpellTrigger
 {
@@ -10,14 +11,15 @@ public abstract class BaseSpellTrigger
     public int SpellPriority => GetSpellPriority();
     protected virtual int GetSpellPriority()
     {
+        Debug.Log("Get Spell Prio");
         return m_SpellPriority;
     }
-
-    public void SetAttachedSpell(SpellData spellData)
+    
+    public void SetAttachedSpell(SpellData spellData,int priority)
     {
+        m_SpellPriority = priority;
         m_AttachedSpell = spellData;
     }
-    public abstract void ComputeSpellPriority();
     public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles);
 
     public abstract void ComputeSpellData(BoardEntity entity);

@@ -31,22 +31,35 @@ public class BoardEntityData
 [System.Serializable]
 public class SpellList
 {
-    public List<SpellData> m_Spells = new List<SpellData>();
+    public List<SpellInfo> m_Spells = new List<SpellInfo>();
 
     public SpellList Clone()
     {
-        List<SpellData> newSpells = new List<SpellData>();
+        List<SpellInfo> newSpells = new List<SpellInfo>();
 
         for (int i = 0; i < m_Spells.Count; i++)
         {
-            newSpells.Add((SpellData)m_Spells[i].Clone());
+            newSpells.Add(new SpellInfo(m_Spells[i].m_SpellData,m_Spells[i].m_SpellPriority));
         }
         
         return new SpellList(newSpells);
     }
 
-    public SpellList(List<SpellData> spells)
+    public SpellList(List<SpellInfo> spells)
     {
         m_Spells = spells;
+    }
+}
+
+[System.Serializable]
+public class SpellInfo
+{
+    public SpellData m_SpellData = null;
+    public int m_SpellPriority = 0;
+    
+    public SpellInfo(SpellData spellData, int priority)
+    {
+        m_SpellData = (SpellData)spellData.Clone();
+        m_SpellPriority = priority;
     }
 }

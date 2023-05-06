@@ -17,9 +17,4 @@ public class JumpTrigger : SelectionSpellTrigger
         base.EntityHit(entity,spellData,targetGroup,origin);
         return;
     }
-
-    public override void ComputeSpellPriority()
-    {
-        m_SpellPriority = 0;
-    }
 }

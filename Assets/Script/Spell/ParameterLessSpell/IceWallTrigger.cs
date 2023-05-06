@@ -9,11 +9,6 @@ public class IceWallTrigger : SelectionSpellTrigger
         m_TileType = tileType;
     }
 
-    public override void ComputeSpellPriority()
-    {
-        m_SpellPriority = 0;
-    }
-
     protected override void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
     {
         base.TileHit(tilePosition, spellData);

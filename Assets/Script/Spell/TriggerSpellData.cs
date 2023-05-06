@@ -16,16 +16,15 @@ public class TriggerSpellData:SpellData
     {
         AttachedEntity = spellData.AttachedEntity;
         Data = spellData.Data;
-        ConnectedSpellData = spellData.ConnectedSpellData;
     }
 
-    public override SpellData Initialize()
+    public override SpellInfo Initialize(int priority)
     {
         m_BaseCooldown = TriggerData.m_BaseCooldown;
         SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
-        SpellTrigger.SetAttachedSpell(this);
+        SpellTrigger.SetAttachedSpell(this,priority);
         SpellTrigger.ComputeSpellData(AttachedEntity);
-        return this;
+        return new SpellInfo(this,priority);
     }
     public override object Clone()
     {
@@ -88,10 +87,10 @@ public class TriggerSpellData:SpellData
 
 public class SupportSpellData:SpellData
 {
-    public override SpellData Initialize()
+    public override SpellInfo Initialize(int priority)
     {
         Debug.Log("Init Support Spell");
-        return this;
+        return new SpellInfo(this,priority);
     }
 
     public SupportSpellData(SpellData baseSpellData) : base(baseSpellData)

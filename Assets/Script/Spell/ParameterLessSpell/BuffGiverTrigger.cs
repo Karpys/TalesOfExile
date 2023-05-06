@@ -16,11 +16,6 @@ public class BuffGiverTrigger : SelectionSpellTrigger
         m_BuffValue = buffValue;
     }
 
-    public override void ComputeSpellPriority()
-    {
-        m_SpellPriority = (int)m_BuffValue;
-    }
-
     protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int spellOrigin)
     {
         base.EntityHit(entity, spellData, targetGroup, spellOrigin);

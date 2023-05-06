@@ -16,15 +16,9 @@ public class RegenerationBuffTrigger : BuffGiverTrigger
     {
         BoardEntity entity = m_AttachedSpell.AttachedEntity;
         if (entity.Life.Life < entity.Life.MaxLife)
-            return 1;
+            return m_SpellPriority;
         
         return 0;
     }
 
-    public override void ComputeSpellPriority()
-    {
-        m_SpellPriority = 0;
-    }
-
-    
 }
