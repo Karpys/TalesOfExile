@@ -14,9 +14,17 @@ public class RockThrowBuff : Buff
         
         ((DamageSpellTrigger)Trigger.SpellTrigger).SetInitialDamageSource(m_BuffValue);
         Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
-        
+
+        m_Receiver.EntityEvent.OnRequestSpellDamage += AddRockDamage;
         m_Receiver.EntityEvent.OnSpellCast += AddRockThrowCallBack;
         m_Receiver.EntityEvent.OnSpellRecompute += Recompute;
+        
+        m_Receiver.ComputeAllSpells();
+    }
+
+    private void AddRockDamage(DamageSpellTrigger damageSpell, FloatSocket modifierValue)
+    {
+        damageSpell.AddDamageSource(new DamageSource(15,SubDamageType.Cold));
     }
 
     private void AddRockThrowCallBack(CastInfo castInfo)
@@ -48,8 +56,11 @@ public class RockThrowBuff : Buff
 
     protected override void UnApply()
     {
+        m_Receiver.EntityEvent.OnRequestSpellDamage -= AddRockDamage;
         m_Receiver.EntityEvent.OnSpellCast -= AddRockThrowCallBack;
         m_Receiver.EntityEvent.OnSpellRecompute -= Recompute;
+        
+        m_Receiver.ComputeAllSpells();
     }
 
     private void Recompute()

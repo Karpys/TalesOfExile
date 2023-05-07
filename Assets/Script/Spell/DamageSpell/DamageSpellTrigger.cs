@@ -22,13 +22,17 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     public override void ComputeSpellData(BoardEntity entity)
     {
         DamageSources.Clear();
+
+        FloatSocket bonusModifier = new FloatSocket();
+        entity.EntityEvent.OnRequestSpellDamage?.Invoke(this,bonusModifier);
+        
         ComputeSpellDamage(entity);
-        ApplyDamageModifier(entity);
+        ApplyDamageModifier(entity,bonusModifier.Value);
     }
 
-    private void ApplyDamageModifier(BoardEntity entity)
+    private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
     {
-        float damageModifier = entity.EntityStats.GetDamageParametersModifier(DamageSpellData);
+        float damageModifier = entity.EntityStats.GetDamageParametersModifier(DamageSpellData, bonusModifier);
         
         foreach (DamageSource source in DamageSources.Values)
         {
@@ -36,7 +40,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         }
     }
 
-    protected void AddDamageSource(DamageSource damageSource)
+    public void AddDamageSource(DamageSource damageSource)
     {
         DamageSource currentSource = null;
         if (DamageSources.TryGetValue(damageSource.DamageType, out currentSource))
@@ -51,13 +55,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 
     protected virtual void ComputeSpellDamage(BoardEntity entity)
     {
-        DamageSources.Add(DamageSpellData.InitialSourceDamage.DamageType,new DamageSource(DamageSpellData.InitialSourceDamage));
-        DamageSource[] additionalSources = entity.GetAdditionalSources(DamageSpellData.DamageType);
-        
-        for (int i = 0; i < additionalSources.Length; i++)
-        {
-            AddDamageSource(additionalSources[i]);
-        }
+        AddDamageSource(new DamageSource(DamageSpellData.InitialSourceDamage));
     }
 
     #endregion

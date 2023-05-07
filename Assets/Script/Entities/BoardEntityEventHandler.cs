@@ -11,6 +11,7 @@ public class BoardEntityEventHandler : MonoBehaviour
     public Action<TriggerSpellData> OnGetHit = null;
     public Action<CastInfo> OnSpellCast = null;
 
+    public Action<DamageSpellTrigger,FloatSocket> OnRequestSpellDamage = null;
     public Action OnSpellRecompute = null;
     public Action OnBehave = null;
     public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource,TriggerSpellData spellDamage)
@@ -44,3 +45,24 @@ public class IntSocket
         m_Value = baseValue;
     }
 }
+
+public class FloatSocket
+{
+    private float m_Value = 0;
+
+    public float Value
+    {
+        get => m_Value;
+        set => m_Value = value;
+    }
+
+    public FloatSocket(float baseValue)
+    {
+        m_Value = baseValue;
+    }
+    
+    public FloatSocket()
+    {
+    }
+}
+

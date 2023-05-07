@@ -134,9 +134,9 @@ public class EntityStats
         }
     }
 
-    public float GetDamageParametersModifier(DamageParameters damageSpellData)
+    public float GetDamageParametersModifier(DamageParameters damageSpellData,float bonusModifier = 0)
     {
-        float modifier = 0;
+        float modifier = bonusModifier;
 
         foreach (SubDamageType subDamageType in damageSpellData.DamageType.SubDamageTypes)
         {
@@ -406,19 +406,6 @@ public abstract class BoardEntity : MonoBehaviour
             m_EntityEvent.OnDeath = null;
         
         TriggerDeath();
-    }
-
-    public DamageSource[] GetAdditionalSources(DamageType damageType)
-    {
-        //Fetch All Additional Sources / From equipement / skill tree
-        List<DamageSource> additionalSources = new List<DamageSource>();
-        
-        //Test is in local entity
-        // DamageSource newSource = m_TestModifier.GetAdditionalDamage(damageType);
-        //
-        // if(newSource != null)
-        //     additionalSources.Add(newSource);
-        return additionalSources.ToArray();
     }
 
     public virtual float GetMainWeaponDamage()
