@@ -41,6 +41,9 @@ public static class SpellCastUtils
             //Default Target position
             case SpellOriginType.ClosestEnemy:
                 break;
+            case SpellOriginType.Self:
+                newOrigin = spellData.AttachedEntity.EntityPosition;
+                break;
             default:
                 Debug.LogError("Return target position per default due to spell target origin not implemented");
                 break;

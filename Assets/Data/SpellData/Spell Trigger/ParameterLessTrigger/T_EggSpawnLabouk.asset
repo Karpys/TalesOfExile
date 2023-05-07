@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 852c3f8fb48b4f71b0380feaf82975c4, type: 3}
-  m_Name: T_SpawnLabouk
+  m_Name: T_EggSpawnLabouk
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   AdditionalAnimDatas: 0
-  m_TriggerClassName: SpawnEntityTrigger
+  m_TriggerClassName: ReplaceSpawnTrigger
   m_AdditionalParameters:
   - Type: 3
     Value: EntityType Labouk

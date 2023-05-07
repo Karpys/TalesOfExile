@@ -49,4 +49,5 @@ public enum SpellOriginType
     ClosestAlly,
     RandomWalkableInsideMainSelection,
     ClosestInverseAtDistance,
+    Self,
 }

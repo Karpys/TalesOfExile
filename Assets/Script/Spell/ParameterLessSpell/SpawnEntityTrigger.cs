@@ -32,3 +32,16 @@ public class  SpawnEntityTrigger : SelectionSpellTrigger
         return new BaseEntityIA();
     }
 }
+
+public class ReplaceSpawnTrigger : SpawnEntityTrigger
+{
+    public ReplaceSpawnTrigger(BaseSpellTriggerScriptable baseScriptable, EntityType entityType, bool useTransmitter) : base(baseScriptable, entityType, useTransmitter)
+    {
+    }
+
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+    {
+        spellData.AttachedEntity.ForceDeath();
+        base.Trigger(spellData, spellTiles, castInfo);
+    }
+}

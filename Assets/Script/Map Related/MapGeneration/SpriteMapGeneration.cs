@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Map/SpriteMap", fileName = "SpriteMap", order = 0)]
 public class SpriteMapGeneration : MapGenerationData
 {
+    [Header("Sprite Map Data")]
+    [SerializeField] private Vector2Int m_PlayerSpawnPosition = Vector2Int.zero;
     [SerializeField] private Sprite m_MapSprite = null;
     [SerializeField] private GenericLibrary<WorldTile, Color> m_ColorTileMap = null;
 
@@ -66,7 +68,7 @@ public class SpriteMapGeneration : MapGenerationData
         
         MonsterGeneration();
 
-        return new GenerationMapInfo(new Vector2Int(m_Width / 2, m_Height / 2));
+        return new GenerationMapInfo(m_PlayerSpawnPosition);
     }
 
     private void MonsterGeneration()
