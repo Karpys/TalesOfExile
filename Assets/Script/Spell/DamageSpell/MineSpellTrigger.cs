@@ -9,9 +9,9 @@ public class MineSpellTrigger : DamageSpellTrigger
     public MineSpellTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
     {}
 
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
-        base.Trigger(spellData, spellTiles);
+        base.Trigger(spellData, spellTiles,castInfo);
 
         if (m_HasTrigger)
         {
@@ -35,10 +35,11 @@ public class MineSpellTrigger : DamageSpellTrigger
         m_SpellAnimations.Add(tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition),m_AttachedSpell.AttachedEntity.transform) as SpellAnimationActivator);
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int origin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int origin, CastInfo castInfo)
     {
         if(m_HasTrigger)
-            base.EntityHit(entity, spellData, targetGroup, origin);
+            base.EntityHit(entity, spellData, targetGroup, origin,castInfo);
     }
     
     private void MineExplosion()

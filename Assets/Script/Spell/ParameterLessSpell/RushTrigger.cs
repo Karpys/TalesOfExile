@@ -6,15 +6,16 @@ public class RushTrigger : DamageSpellTrigger
     {
     }
 
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
         MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
-        base.Trigger(spellData, spellTiles);
+        base.Trigger(spellData, spellTiles,castInfo);
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int origin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int origin, CastInfo castInfo)
     {
-        base.EntityHit(entity, spellData, targetGroup, origin);
+        base.EntityHit(entity, spellData, targetGroup, origin,castInfo);
         //Silence Showcase
         //Buff silenceDebuff = BuffLibrary.Instance.GetBuffViaKey(BuffType.SilenceDebuff, entity);
         //silenceDebuff.InitializeBuff(spellData.AttachedEntity,entity,10,0);

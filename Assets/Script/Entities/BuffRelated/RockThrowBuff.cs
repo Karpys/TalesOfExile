@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RockThrowBuff : Buff
@@ -14,19 +15,25 @@ public class RockThrowBuff : Buff
         ((DamageSpellTrigger)Trigger.SpellTrigger).SetInitialDamageSource(m_BuffValue);
         Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
         
-        m_Receiver.EntityEvent.OnDoDamageTo += AddRockThrowCallBack;
+        m_Receiver.EntityEvent.OnSpellCast += AddRockThrowCallBack;
         m_Receiver.EntityEvent.OnSpellRecompute += Recompute;
     }
 
-    private void AddRockThrowCallBack(BoardEntity receiver,DamageSource damageSource,TriggerSpellData _)
+    private void AddRockThrowCallBack(CastInfo castInfo)
     {
-        if(damageSource.DamageType != SubDamageType.Physical)
-            return;
-        
-        if(GameManager.Instance.AddCallBackAction(ThrowRocks))
-            m_RockReceiver.Add(receiver.EntityPosition);
+        if (castInfo.SpellCasted.Data.SpellGroups.Contains(SpellGroup.Rock))
+        {
+            foreach (BoardEntity boardEntity in castInfo.HitEntity)
+            {
+                if (!ReferenceEquals(boardEntity, null))
+                {
+                    if(GameManager.Instance.AddCallBackAction(ThrowRocks))
+                        m_RockReceiver.Add(boardEntity.EntityPosition);
+                }
+            }
+        }
     }
-
+    
     private void ThrowRocks()
     {
         for (int i = 0; i < m_RockReceiver.Count; i++)
@@ -41,7 +48,7 @@ public class RockThrowBuff : Buff
 
     protected override void UnApply()
     {
-        m_Receiver.EntityEvent.OnDoDamageTo -= AddRockThrowCallBack;
+        m_Receiver.EntityEvent.OnSpellCast -= AddRockThrowCallBack;
         m_Receiver.EntityEvent.OnSpellRecompute -= Recompute;
     }
 

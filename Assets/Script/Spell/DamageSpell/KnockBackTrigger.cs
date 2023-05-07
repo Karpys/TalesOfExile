@@ -14,14 +14,15 @@ public class KnockBackTrigger : DamageSpellTrigger
         m_RepulseForce = repulseForce;
     }
     
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
         m_EntityHits.Clear();
         m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto").m_SpellData as TriggerSpellData;
-        base.Trigger(spellData, spellTiles);
+        base.Trigger(spellData, spellTiles,castInfo);
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,Vector2Int origin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int origin, CastInfo castInfo)
     {
         if (m_EntityHits.Contains(entity))
         {
@@ -44,7 +45,7 @@ public class KnockBackTrigger : DamageSpellTrigger
             }
             else
             {
-                base.EntityHit(entity, spellData, targetGroup,origin);
+                base.EntityHit(entity, spellData, targetGroup,origin,castInfo);
                 break;
             }
         }

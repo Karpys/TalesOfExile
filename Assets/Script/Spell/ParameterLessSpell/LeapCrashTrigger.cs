@@ -14,9 +14,9 @@ public class LeapCrashTrigger : DamageSpellTrigger
         base.TileHit(tilePosition, spellData);
     }
 
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
         spellData.AttachedEntity.MoveTo(spellTiles.OriginTiles[0]);
-        base.Trigger(spellData, spellTiles);
+        base.Trigger(spellData, spellTiles,castInfo);
     }
 }

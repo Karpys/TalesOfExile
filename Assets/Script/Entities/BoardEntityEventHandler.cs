@@ -8,6 +8,9 @@ public class BoardEntityEventHandler : MonoBehaviour
     //TriggerSpellData can be null
     public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFrom = null;
     public Action<BoardEntity,DamageSource,TriggerSpellData> OnDoDamageTo = null;
+    public Action<TriggerSpellData> OnGetHit = null;
+    public Action<CastInfo> OnSpellCast = null;
+
     public Action OnSpellRecompute = null;
     public Action OnBehave = null;
     public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource,TriggerSpellData spellDamage)
@@ -18,6 +21,11 @@ public class BoardEntityEventHandler : MonoBehaviour
     public void TriggerDoDamageAction(BoardEntity damageTo, DamageSource damageSource,TriggerSpellData spellDamage)
     {
         OnDoDamageTo?.Invoke(damageTo,damageSource,spellDamage);
+    }
+
+    public void TriggerCastInfoEvent(CastInfo castInfo)
+    {
+        OnSpellCast?.Invoke(castInfo);
     }
 }
 

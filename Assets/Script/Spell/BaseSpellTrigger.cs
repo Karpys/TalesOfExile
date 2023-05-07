@@ -20,7 +20,32 @@ public abstract class BaseSpellTrigger
         m_SpellPriority = priority;
         m_AttachedSpell = spellData;
     }
-    public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles);
+
+    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
+    {
+        CastInfo castInfo = new CastInfo(spellData);
+        Trigger(spellData,spellTiles,castInfo);
+        spellData.AttachedEntity.EntityEvent.TriggerCastInfoEvent(castInfo);
+    }
+    public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo);
 
     public abstract void ComputeSpellData(BoardEntity entity);
+}
+
+public class CastInfo
+{
+    private List<BoardEntity> m_HitEntity = new List<BoardEntity>();
+    private SpellData m_SpellCasted = null;
+
+    public SpellData SpellCasted => m_SpellCasted;
+    public List<BoardEntity> HitEntity => m_HitEntity;
+    public void AddHitEntity(BoardEntity boardEntity)
+    {
+        m_HitEntity.Add(boardEntity);
+    }
+
+    public CastInfo(SpellData spellCasted)
+    {
+        m_SpellCasted = spellCasted;
+    }
 }

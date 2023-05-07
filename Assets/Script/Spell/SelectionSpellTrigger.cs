@@ -31,7 +31,8 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
         tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition));
     }
     
-    protected virtual void EntityHit(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup,Vector2Int spellOrigin)
+    protected virtual void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int spellOrigin, CastInfo castInfo)
     {
         SpellAnimation onHitAnim = OnHitAnimation;
 
@@ -43,6 +44,8 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
 
             TriggerOnHitFx(entity,spellData,onHitAnim);   
         }
+        
+        castInfo.AddHitEntity(entity);
     }
 
     protected virtual void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData,SpellAnimation onHitAnim)
@@ -57,7 +60,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
             onHitAnim.TriggerFx(entity.WorldPosition);
         }
     }
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles)
+    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
         m_SpellAnimDelay = 0;
         EntityGroup targetGroup = GetEntityGroup(spellData);
@@ -73,7 +76,7 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
                 if(!entityHit)
                     continue;
                 
-                EntityHit(entityHit,spellData,targetGroup,spellTiles.OriginTiles[i]);
+                EntityHit(entityHit,spellData,targetGroup,spellTiles.OriginTiles[i],castInfo);
                 //Foreach Damage Sources//
             }
         }

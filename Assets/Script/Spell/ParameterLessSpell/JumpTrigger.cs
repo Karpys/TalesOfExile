@@ -12,9 +12,10 @@ public class JumpTrigger : SelectionSpellTrigger
         spellData.AttachedEntity.MoveTo(tilePosition.x,tilePosition.y);
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,Vector2Int origin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int origin, CastInfo castInfo)
     {
-        base.EntityHit(entity,spellData,targetGroup,origin);
+        base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
         return;
     }
 }

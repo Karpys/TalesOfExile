@@ -16,9 +16,10 @@ public class BuffGiverTrigger : SelectionSpellTrigger
         m_BuffValue = buffValue;
     }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int spellOrigin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int spellOrigin, CastInfo castInfo)
     {
-        base.EntityHit(entity, spellData, targetGroup, spellOrigin);
+        base.EntityHit(entity, spellData, targetGroup, spellOrigin,castInfo);
         GiveBuff(spellData.AttachedEntity,entity,m_BuffArgs);
     }
 

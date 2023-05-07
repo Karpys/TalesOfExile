@@ -43,7 +43,7 @@ public class TriggerSpellData:SpellData
     //TODO: Need to Implemente the CooldownSystem
     public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool freeCast = false)
     {
-        SpellTrigger.Trigger(spellData,spellTiles);
+        SpellTrigger.CastSpell(spellData,spellTiles);
         
         if(freeCast)
             return;

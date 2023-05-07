@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Spell", menuName = "Trigger/A_TriggerSpell", order = 0)]
 public class TriggerSpellDataScriptable : SpellDataScriptable
 {
+    [Header("Trigger Spell Data")]
     //FIX PARAMETERS//
     [Header("Spell UI")]
     public Sprite m_SpellIconBorder = null;

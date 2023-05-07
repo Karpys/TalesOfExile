@@ -26,7 +26,8 @@ public class LightningSpellTrigger : DamageSpellTrigger
     }
 
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup, Vector2Int origin)
+    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        Vector2Int origin, CastInfo castInfo)
     {
         List<BoardEntity> targetEntity = GameManager.Instance.GetEntityViaGroup(targetGroup);
         targetEntity.Remove(entity);
@@ -40,7 +41,7 @@ public class LightningSpellTrigger : DamageSpellTrigger
             BoardEntity en = entityStriked[i];
             if (en != null)
             {
-                DamageEntity(en,spellData,targetGroup);
+                base.EntityHit(en,spellData,targetGroup,origin,castInfo);
             }
         }
 
