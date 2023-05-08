@@ -8,12 +8,37 @@ public class BoardEntityMovement : MonoBehaviour
 
     private float m_InputTiming = 0.05f;
     private float m_CurrentFecthInputTimer = -1;
+
+    private bool m_OnRepeat = false;
     public void SetTargetEntity(BoardEntity target)
     {
         m_Entity = target;
     }
     
     public void Update()
+    {
+        if (InputManager.Instance.IsMovementKeyHold)
+        {
+            HoldConfiguration();   
+        }
+        else
+        {
+            TouchConfiguration();
+        }
+
+        if (m_CurrentFecthInputTimer >= 0)
+        {
+            m_CurrentFecthInputTimer -= Time.deltaTime;
+
+            if (m_CurrentFecthInputTimer < 0)
+            {
+                TryMoveTo(m_ComputedInput);
+                m_ComputedInput = Vector2Int.zero;
+                m_OnRepeat = true;
+            }
+        }
+    }
+    private void TouchConfiguration()
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -38,16 +63,31 @@ public class BoardEntityMovement : MonoBehaviour
             m_ComputedInput.y = -1;
             TryLaunchInputFecth();
         }
-
-        if (m_CurrentFecthInputTimer >= 0)
+    }
+    private void HoldConfiguration()
+    {
+        if (Input.GetKey(KeyCode.D))
         {
-            m_CurrentFecthInputTimer -= Time.deltaTime;
-
-            if (m_CurrentFecthInputTimer < 0)
-            {
-                TryMoveTo(m_ComputedInput);
-                m_ComputedInput = Vector2Int.zero;
-            }
+            m_ComputedInput.x = 1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKey(KeyCode.Q))
+        {
+            m_ComputedInput.x = -1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKey(KeyCode.Z))
+        {
+            m_ComputedInput.y = 1;
+            TryLaunchInputFecth();
+        }
+        
+        if (Input.GetKey(KeyCode.S))
+        {
+            m_ComputedInput.y = -1;
+            TryLaunchInputFecth();
         }
     }
 

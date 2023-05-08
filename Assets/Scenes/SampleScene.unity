@@ -1676,6 +1676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9eae9c863048a89d6ad34eba4e9590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MouvementKeyHoldTimer: 0.25
 --- !u!1 &1362587456
 GameObject:
   m_ObjectHideFlags: 0
