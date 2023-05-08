@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,11 @@ public abstract class BaseSpellTrigger
     protected int m_SpellPriority = 0;
 
     protected SpellData m_AttachedSpell = null;
+
+    public Action<CastInfo> OnCastSpell = null;
     //Cooldown Part//
     public int SpellPriority => GetSpellPriority();
+    public SpellData SpellData => m_AttachedSpell;
     protected virtual int GetSpellPriority()
     {
         Debug.Log("Get Spell Prio");
@@ -23,9 +27,14 @@ public abstract class BaseSpellTrigger
 
     public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
-        CastInfo castInfo = new CastInfo(spellData);
+        CastInfo castInfo = null;
+        if (OnCastSpell != null)
+        {
+            castInfo = new CastInfo(spellData);
+        }
+        
         Trigger(spellData,spellTiles,castInfo);
-        spellData.AttachedEntity.EntityEvent.TriggerCastInfoEvent(castInfo);
+        OnCastSpell?.Invoke(castInfo);
     }
     public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo);
 

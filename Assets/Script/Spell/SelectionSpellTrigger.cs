@@ -44,8 +44,8 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
 
             TriggerOnHitFx(entity,spellData,onHitAnim);   
         }
-        
-        castInfo.AddHitEntity(entity);
+
+        castInfo?.AddHitEntity(entity);
     }
 
     protected virtual void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData,SpellAnimation onHitAnim)
@@ -95,6 +95,10 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
     {
         return EntityHelper.GetInverseEntityGroup(spellData.AttachedEntity.EntityGroup);
     }
-    
-    public override void ComputeSpellData(BoardEntity entity){}
+
+    public override void ComputeSpellData(BoardEntity entity)
+    {
+        OnCastSpell = null;
+        entity.EntityEvent.OnRequestCastEvent?.Invoke(this);
+    }
 }

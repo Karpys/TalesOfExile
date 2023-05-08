@@ -28,6 +28,8 @@ public class DamageSpellTrigger : SelectionSpellTrigger
         
         ComputeSpellDamage(entity);
         ApplyDamageModifier(entity,bonusModifier.Value);
+        
+        base.ComputeSpellData(entity);
     }
 
     private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
