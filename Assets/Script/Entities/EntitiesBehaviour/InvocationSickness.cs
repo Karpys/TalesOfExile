@@ -16,7 +16,8 @@ public class InvocationSickness : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.A_OnEndTurn -= EntityCanBehave;
+        if(GameManager.Instance)
+            GameManager.Instance.A_OnEndTurn -= EntityCanBehave;
     }
 
     protected virtual void EntityCanBehave()
