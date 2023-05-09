@@ -36,4 +36,17 @@ public static class EntityHelper
     {
         return entities.Where(en => en.Targetable).OrderBy(e => DistanceUtils.GetSquareDistance(originPosition, e.EntityPosition)).FirstOrDefault();
     }
+
+    public static BehaveTiming GetBehaveTiming(BoardEntity entity, BehaveTiming timing)
+    {
+        if (timing == BehaveTiming.SameAsSource)
+        {
+            if (entity.EntityGroup == EntityGroup.Enemy)
+                return BehaveTiming.Enemy;
+            if (entity.EntityGroup == EntityGroup.Friendly)
+                return BehaveTiming.Friendly;
+        }
+
+        return timing;
+    }
 }

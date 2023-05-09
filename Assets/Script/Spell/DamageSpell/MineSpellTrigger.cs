@@ -29,12 +29,12 @@ public class MineSpellTrigger : DamageSpellTrigger
             return;
         base.TileHit(tilePosition, spellData);
     }
-    
-    protected override void TriggerTileHitFx(SpellAnimation tileHitAnim,Vector2Int tilePosition)
-    {
-        m_SpellAnimations.Add(tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition),m_AttachedSpell.AttachedEntity.transform) as SpellAnimationActivator);
-    }
 
+    protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
+    {
+        m_SpellAnimations.Add(TileHitAnimation.TriggerFx(tilePosition,m_AttachedSpell.AttachedEntity.transform) as SpellAnimationActivator);
+    }
+    
     protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
         Vector2Int origin, CastInfo castInfo)
     {

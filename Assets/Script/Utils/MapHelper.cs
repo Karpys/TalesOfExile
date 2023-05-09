@@ -23,4 +23,9 @@ public static class MapHelper
             originalMap.TryInsertWorldTileAt(mapTile.WorldTile, mapTile.TilePosition + insertOriginPosition);
         }
     }
+
+    public static MapPlaceable InsertMapPlaceable(PlaceableType placeableType)
+    {
+        return GameObject.Instantiate(PlaceableLibrary.Instance.GetViaKey(placeableType), MapData.Instance.transform);
+    }
 }

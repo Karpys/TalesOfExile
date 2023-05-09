@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
-  m_Name: T_RangedAuto
+  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
+  m_Name: T_RangeWeapon
   m_EditorClassIdentifier: 
-  OnTileHitAnimation: {fileID: 0}
+  OnTileHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
   OnHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
-  AdditionalAnimDatas: 1
   BaseDamageParameters:
     DamageType:
       MainDamageType: 1
@@ -22,4 +21,7 @@ MonoBehaviour:
     InitialSourceDamage:
       Damage: 0
       DamageType: 0
-  BaseWeaponDamageConvertion: 80
+  m_TriggerClassName: ProjectileAutoTrigger
+  m_AdditionalParameters:
+  - Type: 1
+    Value: 50

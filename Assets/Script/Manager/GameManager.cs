@@ -43,6 +43,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public Action A_OnEndTurn;
     public Action A_OnEndPlayerTurn;
     public Action A_OnEndEnemyTurn;
+    public Action A_OnFriendlyBehave;
+    public Action A_OnEnemyBehave;
+    
     public Action<BoardEntity,BoardEntity> A_OnControlledEntityChange;
     private Action A_CallBackEndAction;
 
@@ -246,6 +249,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             
             friendly[i].EntityAction();
         }
+        
+        A_OnFriendlyBehave?.Invoke();
     }
     private void TriggerAllEnemyAction()
     {
@@ -260,5 +265,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             
             entity.EntityAction();
         }
+        
+        A_OnEnemyBehave?.Invoke();
     }
 }

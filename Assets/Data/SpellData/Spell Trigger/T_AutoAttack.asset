@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
   m_Name: T_AutoAttack
   m_EditorClassIdentifier: 
+  OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 3908413993525435510, guid: ca025f6319c2ed9438a23d33a681d2f9, type: 3}
-  AdditionalAnimDatas: 1
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
@@ -21,4 +21,7 @@ MonoBehaviour:
     InitialSourceDamage:
       Damage: 0
       DamageType: 0
-  BaseWeaponDamageConvertion: 100
+  m_TriggerClassName: AutoAttackTrigger
+  m_AdditionalParameters:
+  - Type: 1
+    Value: 100

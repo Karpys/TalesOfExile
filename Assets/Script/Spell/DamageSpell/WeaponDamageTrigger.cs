@@ -1,10 +1,12 @@
 ﻿public class WeaponDamageTrigger : DamageSpellTrigger
 {
     public float WeaponDamageConvertion = 100f;
-    public WeaponDamageTrigger(WeaponDamageSpellScriptable weaponDamageData):base(weaponDamageData)
+    
+    public WeaponDamageTrigger(DamageSpellScriptable damageSpellData,float baseWeaponDamageConvertion) : base(damageSpellData)
     {
-        WeaponDamageConvertion = weaponDamageData.BaseWeaponDamageConvertion;
+        WeaponDamageConvertion = baseWeaponDamageConvertion;
     }
+    
     protected override void ComputeSpellDamage(BoardEntity entity)
     {
         base.ComputeSpellDamage(entity);
@@ -12,4 +14,6 @@
             DamageSpellData.InitialSourceDamage.DamageType);
         AddDamageSource(weaponDamageSource);
     }
+
+    
 }
