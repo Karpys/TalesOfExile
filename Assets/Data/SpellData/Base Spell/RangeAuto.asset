@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: RangeAuto
   SpellType: 0
+  SpellGroups: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 6dbce669734acd245a062cc5a0807892, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: 28bea24876e1bd1489e60412b9a7d6a3, type: 2}
+  m_SpellTrigger: {fileID: 11400000, guid: 94cfbeb07ac9942ce898b2c7eea411f5, type: 2}
   m_BaseCooldown: 1
   m_Selection:
   - Origin: 0
@@ -30,7 +31,7 @@ MonoBehaviour:
   - Origin: 1
     Zone:
       DisplayType: 1
-      Range: 1
+      Range: 2
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0

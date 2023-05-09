@@ -119,6 +119,6 @@ public static class SpellCastUtils
             }
         }
 
-        return new SpellTiles(originTiles, tilesActions);
+        return new SpellTiles(originPosition,originTiles, tilesActions);
     }
 }

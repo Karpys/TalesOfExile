@@ -9,17 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e4fb457f5a420d82f515fb639f275a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
   m_Name: T_RockSlam
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
       SubDamageTypes: 00000000
     InitialSourceDamage:
-      Damage: 20
+      Damage: 0
       DamageType: 0
-  BaseWeaponDamageConvertion: 100
+  m_TriggerClassName: WeaponDamageTrigger
+  m_AdditionalParameters:
+  - Type: 1
+    Value: 50

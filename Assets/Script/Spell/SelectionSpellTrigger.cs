@@ -2,7 +2,6 @@
 
 public abstract class SelectionSpellTrigger:BaseSpellTrigger
 {
-    protected bool AdditionalDatasAnimation = false;
     protected SpellAnimation OnHitAnimation = null;
     protected SpellAnimation TileHitAnimation = null;
 
@@ -10,55 +9,41 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
     {
         OnHitAnimation = baseScriptable.OnHitAnimation;
         TileHitAnimation = baseScriptable.OnTileHitAnimation;
-        AdditionalDatasAnimation = baseScriptable.AdditionalAnimDatas;
     }
 
     protected virtual void TileHit(Vector2Int tilePosition, TriggerSpellData spellData)
     {
-        SpellAnimation tileHitAnim = TileHitAnimation;
-        
-        if (tileHitAnim)
+        if (TileHitAnimation)
         {
-            if(tileHitAnim.BaseSpellDelay > m_SpellAnimDelay)
-                m_SpellAnimDelay = tileHitAnim.BaseSpellDelay;
+            if(TileHitAnimation.BaseSpellDelay > m_SpellAnimDelay)
+                m_SpellAnimDelay = TileHitAnimation.BaseSpellDelay;
 
-            TriggerTileHitFx(tileHitAnim,tilePosition);
+            TriggerTileHitFx(MapData.Instance.GetTilePosition(tilePosition),null);
         }
     }
 
-    protected virtual void TriggerTileHitFx(SpellAnimation tileHitAnim,Vector2Int tilePosition)
+    protected virtual void TriggerTileHitFx(Vector3 tilePosition,Transform transform, params object[] args)
     {
-        tileHitAnim.TriggerFx(MapData.Instance.GetTilePosition(tilePosition));
+        TileHitAnimation.TriggerFx(tilePosition,transform,args);
     }
     
     protected virtual void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
         Vector2Int spellOrigin, CastInfo castInfo)
     {
-        SpellAnimation onHitAnim = OnHitAnimation;
-
-        //Animation
-        if (onHitAnim)
+        if (OnHitAnimation)
         {
-            if(onHitAnim.BaseSpellDelay > m_SpellAnimDelay)
-                m_SpellAnimDelay = onHitAnim.BaseSpellDelay;
+            if(OnHitAnimation.BaseSpellDelay > m_SpellAnimDelay)
+                m_SpellAnimDelay = OnHitAnimation.BaseSpellDelay;
 
-            TriggerOnHitFx(entity,spellData,onHitAnim);   
+            TriggerOnHitFx(entity.WorldPosition,null);
         }
 
         castInfo?.AddHitEntity(entity);
     }
 
-    protected virtual void TriggerOnHitFx(BoardEntity entity,TriggerSpellData spellData,SpellAnimation onHitAnim)
+    protected virtual void TriggerOnHitFx(Vector3 entityPosition,Transform transform, params object[] args)
     {
-        if (AdditionalDatasAnimation)
-        {
-            object[] additionalData = {spellData, entity};
-            onHitAnim.TriggerFx(entity.WorldPosition,null,additionalData);
-        }
-        else
-        {
-            onHitAnim.TriggerFx(entity.WorldPosition);
-        }
+        OnHitAnimation.TriggerFx(entityPosition,transform,args);
     }
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {

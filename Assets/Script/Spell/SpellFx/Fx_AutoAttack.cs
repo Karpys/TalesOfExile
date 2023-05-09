@@ -14,14 +14,15 @@ public class Fx_AutoAttack : BurstAnimation
     protected override void Animate()
     {
         base.Animate();
-        SpellData spellData = m_Datas[0] as SpellData;
-        BoardEntity entity = m_Datas[1] as BoardEntity;
+        Vector3 startPosition = (Vector3)m_Datas[0];
+        Vector3 endPosition = (Vector3)m_Datas[1];
+        Transform targetTransform = (Transform)m_Datas[2];
 
-        Vector3 targetPosition = (entity.WorldPosition + spellData.AttachedEntity.WorldPosition) / 2;
-        spellData.AttachedEntity.VisualTransform.DoMove(targetPosition, m_AnimDuration / 2).OnComplete((() =>
+        Vector3 targetPosition = (endPosition + startPosition) / 2;
+        targetTransform.DoMove(targetPosition, m_AnimDuration / 2).OnComplete((() =>
         {
             m_HitFx.gameObject.SetActive(true);
-            spellData.AttachedEntity.VisualTransform.DoMove(spellData.AttachedEntity.WorldPosition, m_AnimDuration / 2);
+            targetTransform.DoMove(startPosition, m_AnimDuration / 2);
         }));
     }
     
