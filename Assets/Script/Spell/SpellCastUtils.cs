@@ -83,6 +83,18 @@ public static class SpellCastUtils
     
     public static void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition,bool freeCast = false)
     {
+        SpellTiles spellTiles = GetSpellTilesInfo(spellData,pos, originPosition);
+        CastSpell(spellData,spellTiles,freeCast);
+    }
+    
+    public static void TriggerSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition)
+    {
+        SpellTiles spellTiles = GetSpellTilesInfo(spellData,pos, originPosition);
+        spellData.SpellTrigger.Trigger(spellData,spellTiles,null);
+    }
+
+    public static SpellTiles GetSpellTilesInfo(TriggerSpellData spellData, Vector2Int pos, Vector2Int originPosition)
+    {
         List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
         List<Vector2Int> originTiles = new List<Vector2Int>();
 
@@ -106,7 +118,7 @@ public static class SpellCastUtils
                 originTiles.Add(origin);
             }
         }
-        
-        CastSpell(spellData,new SpellTiles(originTiles,tilesActions),freeCast);
+
+        return new SpellTiles(originTiles, tilesActions);
     }
 }
