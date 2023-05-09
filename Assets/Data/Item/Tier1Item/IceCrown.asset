@@ -18,7 +18,7 @@ MonoBehaviour:
   m_InUIVisual: {fileID: 21300000, guid: 1e1a0ec2a10a4a6418b9509757d20df2, type: 3}
   m_ObjectName: Ice Crown
   m_Description: A magical crown with a cold touch
-  m_BaseRarity: -1
+  m_BaseRarity: 0
   m_EquipementType: 1
   m_EquipementTier: 1
   m_EquipementBaseModifiers:

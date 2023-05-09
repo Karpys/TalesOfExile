@@ -16,6 +16,7 @@ public class OnEntityDeathSpawnLoot : Lootable
     private void Start()
     {
         m_AttachedEntity.EntityEvent.OnDeath += SpawnLoot;
+        ComputeLoot();
     }
 
     private void OnDestroy()
