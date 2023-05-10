@@ -20,6 +20,7 @@ MonoBehaviour:
       MaxLife: 250
       Life: 250
       LifeRegeneration: 0
+      WeaponForce: 35
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0

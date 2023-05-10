@@ -20,6 +20,7 @@ MonoBehaviour:
       MaxLife: 450
       Life: 450
       LifeRegeneration: 0
+      WeaponForce: 75
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
@@ -59,6 +60,6 @@ MonoBehaviour:
           AttachedEntity: {fileID: 0}
         m_SpellPriority: 10
       - m_SpellData:
-          Data: {fileID: 11400000, guid: 504debc7db7fe8e4e8c0e3ac18f85934, type: 2}
+          Data: {fileID: 11400000, guid: 88a523d1097f480459969601753d75a8, type: 2}
           AttachedEntity: {fileID: 0}
         m_SpellPriority: 5

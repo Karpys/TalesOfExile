@@ -50,9 +50,4 @@ public class PlayerBoardEntity : BoardEntity
     {
         m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0, 0), m_MovementDuration / 2f);
     }
-
-    public override float GetMainWeaponDamage()
-    {
-        return 75f;
-    }
 }

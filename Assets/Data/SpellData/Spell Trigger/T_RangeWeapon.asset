@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_RangeWeapon
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
-  OnHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
+  OnHitAnimation: {fileID: 0}
   BaseDamageParameters:
     DamageType:
       MainDamageType: 1

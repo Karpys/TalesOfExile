@@ -6,6 +6,7 @@
     UpCold = 1,
     UpPhysical = 2,
     
+    IncreaseWeaponForce = 20,
     //Defense Type// 21 => 50//
     IncreaseMaxLife = 21,
     

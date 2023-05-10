@@ -16,6 +16,9 @@ public class EntityStats
     public float Life = 100f;
     public float LifeRegeneration = 0;
     //From Damage to move speed to base life ?//
+    [Header("Damage Stats")]
+    public float WeaponForce = 20f;
+    
     //MainTypeModifier//
     [Header("Main Damage Modifier")]
     public float MeleeModifier = 0f;
@@ -410,7 +413,6 @@ public abstract class BoardEntity : MonoBehaviour
 
     public virtual float GetMainWeaponDamage()
     {
-        //TODo: Return the main damage weapon damage
-        return 35f;
+        return EntityStats.WeaponForce;
     }
 }

@@ -40,7 +40,7 @@ public class RangeModifierPropertyDrawer : PropertyDrawer
 
         foreach (ModifierType type in modifierTypes)
         {
-            stringParamModifierType.Add(Array.IndexOf(enumNames, type.ToString()));
+            stringParamModifierType.Add(Array.IndexOf(enumNames, type.ToString()) + 1);
         }
 
         return stringParamModifierType;

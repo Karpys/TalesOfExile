@@ -16,6 +16,7 @@ public static class ModifierUtils
             { ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
             { ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
             { ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
+            { ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
             { ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
             { ModifierType.SpellAddition, (m, e) =>
                 {
@@ -39,6 +40,7 @@ public static class ModifierUtils
             {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier -= m.FloatValue},
             {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
             {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
+            {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
             {
                 ModifierType.SpellAddition, (m, e) =>
@@ -104,6 +106,8 @@ public static class ModifierUtils
                 return "+" + modifier.Value + "% Fire damage";
             case ModifierType.UpPhysical:
                 return "+" + modifier.Value + "% Physical damage";
+            case ModifierType.IncreaseWeaponForce:
+                return "Increase weapon damage by " + modifier.Value;
             case ModifierType.IncreaseMaxLife:
                 return "+" + modifier.Value + " Maximum Life";
             case ModifierType.SpellAddition:

@@ -22,5 +22,5 @@ MonoBehaviour:
   m_EquipementType: 3
   m_EquipementTier: 1
   m_EquipementBaseModifiers:
-  - Type: 21
+  - Type: 20
     Value: 10
