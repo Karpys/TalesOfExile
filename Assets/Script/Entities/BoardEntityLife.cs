@@ -1,15 +1,16 @@
 ﻿using System;
+using TweenCustom;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BoardEntityLife : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer m_LifeFill = null;
+    [SerializeField] private Transform m_LifeDamageEffect = null; 
     
     private float m_MaxLife = 100f;
     private float m_Life = 100f;
     private float m_LifeRegeneration = 0;
-    
     
     public Action<float,float> A_OnLifeUpdated;
     //Getter
@@ -71,6 +72,12 @@ public class BoardEntityLife : MonoBehaviour
     {
         float ratio = m_Life / m_MaxLife;
         m_LifeFill.color = ColorHelper.GetLifeLerp(ratio);
-        m_LifeFill.transform.localScale = new Vector3(1, ratio, 1);
+
+        Vector3 targetScale = new Vector3(1, ratio, 1);
+        m_LifeFill.transform.localScale = targetScale;
+
+
+        m_LifeDamageEffect.DoKill();
+        m_LifeDamageEffect.DoScale(targetScale, 0.25f).SetDelay(.5f).SetEase(Ease.EASE_OUT_SIN);
     }
 }

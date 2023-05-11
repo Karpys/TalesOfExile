@@ -4,7 +4,7 @@ using UnityEngine;
 public class Fx_HammerHit : BurstAnimation
 {
     [SerializeField] private SpriteRenderer m_Sprite = null;
-    [SerializeField] private BaseTweenData m_ScaleTween = null;
+    [SerializeField] private BaseTweenData m_ScaleTween;
     [SerializeField] private float m_FadeDuration = 0.2f;
     protected override float GetAnimationDuration()
     {

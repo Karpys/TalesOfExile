@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Fx_RockGround : BurstAnimation
 {
-    [SerializeField] protected BaseTweenData m_ScaleParams = null;
+    [SerializeField] protected BaseTweenData m_ScaleParams;
     [SerializeField] protected SpriteRenderer m_Sprite = null;
     [SerializeField] protected float m_FadeDuration = 0.2f;
 

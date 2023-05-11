@@ -114,7 +114,6 @@ namespace TweenCustom
             TweenManager.Instance.RemoveTween(this);
         }
 
-
         //Ease Evaluate
         protected double Evaluate()
         {
@@ -122,26 +121,24 @@ namespace TweenCustom
             {
                 return m_AnimCurve.Evaluate(m_Ratio);
             }
-            else
+            
+            switch (m_Ease)
             {
-                
-                switch (m_Ease)
-                {
-                    case Ease.LINEAR:
-                        return m_Ratio;
-                    case Ease.EASE_IN_SIN:
-                        return 1 - Math.Cos((m_Ratio * Math.PI) / 2);
-                    case Ease.EASE_OUT_SIN:
-                        return Math.Sin((m_Ratio * Math.PI) / 2);
-                    case Ease.EASE_OUT_ELASTIC:
-                        double c4 = (2 * Math.PI) / 3;
-                        if (m_Ratio == 1)
-                            return 1;
-                        return Math.Pow(2, -10 * m_Ratio) * Math.Sin((m_Ratio * 10 - 0.75) * c4) + 1;
-                    default:
-                        return 0;
-                }
+                case Ease.LINEAR:
+                    return m_Ratio;
+                case Ease.EASE_IN_SIN:
+                    return 1 - Math.Cos((m_Ratio * Math.PI) / 2);
+                case Ease.EASE_OUT_SIN:
+                    return Math.Sin((m_Ratio * Math.PI) / 2);
+                case Ease.EASE_OUT_ELASTIC:
+                    double c4 = (2 * Math.PI) / 3;
+                    if (m_Ratio == 1)
+                        return 1;
+                    return Math.Pow(2, -10 * m_Ratio) * Math.Sin((m_Ratio * 10 - 0.75) * c4) + 1;
+                default:
+                    return 0;
             }
+            
         }
 
         //Set Tween Mode Parameters
