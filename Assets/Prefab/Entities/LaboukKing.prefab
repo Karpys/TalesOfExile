@@ -132,9 +132,7 @@ MonoBehaviour:
     DisplayType: 0
     Range: 5
   m_IsStatic: 0
-  m_EntityLoot:
-  - {fileID: 11400000, guid: ea1d3f6286e1ed44eb11610431fe664b, type: 2}
-  - {fileID: 11400000, guid: a5ea70bed4b02b145afb69ab477a4e42, type: 2}
+  m_EntityLoot: []
 --- !u!114 &-4592490546126341204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +175,26 @@ MonoBehaviour:
       ElementalDamageReduction: 0
     m_SpellList:
       m_Spells: []
+--- !u!114 &5015729017847668901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481496948592758787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17210ed03bb946c7b60ca6b6b0f3731a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LootZoneSelection:
+    DisplayType: 0
+    Range: 4
+  m_IsStatic: 0
+  m_ItemDraw:
+    DrawCount: 20
+    DrawChance: 100
+  m_ItemPoolType: 0
 --- !u!1 &5895859843570005449
 GameObject:
   m_ObjectHideFlags: 0

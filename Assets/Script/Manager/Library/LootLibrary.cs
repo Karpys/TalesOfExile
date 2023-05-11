@@ -9,14 +9,14 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
     
 
-    public List<Item> ItemRequest(ItemPoolType poolType,int drawCount)
+    public List<Item> ItemRequest(ItemPoolType poolType,ItemDraw itemDraw)
     {
         List<Item> inventoryObject = new List<Item>();
         
         switch (poolType)
         {
             case ItemPoolType.Tier1Items:
-                inventoryObject = m_Tier1PoolObject.Draw(drawCount);
+                inventoryObject = m_Tier1PoolObject.Draw(itemDraw);
                 break;
             case ItemPoolType.None:
                 break;
@@ -28,9 +28,9 @@ public class LootLibrary : SingletonMonoBehavior<LootLibrary>
         return inventoryObject;
     }
     
-    public List<Item> ItemRequest(InventoryPoolObject objectPool,int drawCount)
+    public List<Item> ItemRequest(InventoryPoolObject objectPool,ItemDraw itemDraw)
     {
-        List<Item> inventoryObjects = objectPool.Draw(drawCount);
+        List<Item> inventoryObjects = objectPool.Draw(itemDraw);
         return inventoryObjects;
     }
 }
@@ -45,18 +45,16 @@ public enum ItemPoolType
 public class InventoryPoolObject
 {
     [SerializeField] private StaticWeightElementDraw<InventoryItemData> m_ObjectDataPool = null;
-    [Range(0,100)]
-    [SerializeField] private float m_DrawChance = 50f;
     [SerializeField] private WeightEnumDraw<Rarity> m_RarityDraw = null;
-    public List<Item> Draw(int drawCount)
+    public List<Item> Draw(ItemDraw itemDraw)
     {
         List<Item> itemDrawn = new List<Item>();
 
-        for (int i = 0; i < drawCount; i++)
+        for (int i = 0; i < itemDraw.DrawCount; i++)
         {
             float shouldDraw = Random.Range(0, 100);
 
-            if (shouldDraw < m_DrawChance)
+            if (shouldDraw < itemDraw.DrawChance)
             {
                 Item item = m_ObjectDataPool.Draw().ToInventoryObject();
                 itemDrawn.Add(item);
@@ -73,5 +71,20 @@ public class InventoryPoolObject
         }
 
         return itemDrawn;
+    }
+}
+
+
+[System.Serializable]
+public struct ItemDraw
+{
+    public int DrawCount;
+    [Range(0,100f)]
+    public float DrawChance;
+
+    public ItemDraw(int drawCount, float drawChance)
+    {
+        DrawCount = drawCount;
+        DrawChance = drawChance;
     }
 }

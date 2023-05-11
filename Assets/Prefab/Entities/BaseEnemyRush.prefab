@@ -44,9 +44,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EntityDataScriptable: {fileID: 11400000, guid: 047ce22e4be0cad4688f43d9b38648e0, type: 2}
-  m_XPosition: 0
-  m_YPosition: 0
   m_VisualTransform: {fileID: 1778751248556589878}
+  m_Targetable: 1
+  m_EntityData:
+    m_EntityGroup: 0
+    m_TargetEntityGroup: 0
+    m_Stats:
+      CombatRange: 1
+      MaxLife: 100
+      Life: 100
+      LifeRegeneration: 0
+      WeaponForce: 20
+      MeleeModifier: 0
+      ProjectileModifier: 0
+      SpellModifier: 0
+      ColdDamageModifier: 0
+      HolyDamageModifier: 0
+      FireDamageModifier: 0
+      PhysicalDamageModifier: 0
+      ElementalDamageModifier: 0
+      FlatMeleeDamageReduction: 0
+      FlatProjectileDamageReduction: 0
+      FlatSpellDamageReduction: 0
+      ColdDamageReduction: 0
+      HolyDamageReduction: 0
+      FireDamageReduction: 0
+      PhysicalDamageReduction: 0
+      ElementalDamageReduction: 0
+    m_SpellList:
+      m_Spells: []
 --- !u!114 &6341128736352721077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +89,9 @@ MonoBehaviour:
     DisplayType: 1
     Range: 2
   m_IsStatic: 0
-  m_DrawCount: 2
+  m_ItemDraw:
+    DrawCount: 1
+    DrawChance: 12
   m_ItemPoolType: 0
 --- !u!1 &6165430051826993969
 GameObject:
@@ -232,6 +260,10 @@ PrefabInstance:
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028324458861236449, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8915308864731957502, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_TestEquipement.Type

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityLootable : Lootable
 {
-    [SerializeField] private int m_DrawCount = 3;
+    [SerializeField] private ItemDraw m_ItemDraw;
     [SerializeField] private ItemPoolType m_ItemPoolType = ItemPoolType.Tier1Items;
     
     private BoardEntity m_AttachedEntity = null;
@@ -27,7 +27,7 @@ public class EntityLootable : Lootable
     protected override void ComputeLoot()
     {
         base.ComputeLoot();
-        m_LootObjects = LootLibrary.Instance.ItemRequest(m_ItemPoolType,m_DrawCount);
+        m_LootObjects = LootLibrary.Instance.ItemRequest(m_ItemPoolType,m_ItemDraw);
     }
 
     protected override Vector2Int GetOriginPosition()
