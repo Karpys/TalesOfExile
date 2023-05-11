@@ -213,7 +213,7 @@ public abstract class BoardEntity : MonoBehaviour
         
         //Life
         m_EntityLife = GetComponent<BoardEntityLife>();
-        m_EntityLife.Initalize(this, m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
+        m_EntityLife.Initialize(m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
         //Equipement
         m_Equipement = GetComponent<EntityEquipement>();
 

@@ -1,10 +1,13 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public static class ColorHelper
 {
+    private static readonly Color MAX_LIFE_COLOR = new Color(0.098f,0.568f,0,1);
+    private static readonly Color MIN_LIFE_COLOR = new Color(0.568f,0,0,1);
     public static Color GetDamageBlendColor(Dictionary<SubDamageType, DamageSource> damageSources)
     {
         Vector3 totalColor = Vector3.zero;
@@ -28,5 +31,10 @@ public static class ColorHelper
         Color[] colors = tex.GetPixels();
 
         return colors.Distinct().ToList();
+    }
+
+    public static Color GetLifeLerp(float ratio)
+    {
+        return Color.Lerp(MIN_LIFE_COLOR, MAX_LIFE_COLOR, ratio);
     }
 }

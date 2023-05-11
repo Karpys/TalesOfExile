@@ -39,6 +39,7 @@ MonoBehaviour:
       MaxLife: 100
       Life: 100
       LifeRegeneration: 0
+      WeaponForce: 20
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
@@ -69,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a92425343534d0c8fd26e64811f0749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TurnWaitBehave: 1
 --- !u!1 &3400312404597722597
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +268,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028324458861236449, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890019779835663185, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

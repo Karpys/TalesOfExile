@@ -113,41 +113,6 @@ Transform:
   m_Father: {fileID: 790934946185552068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2318941865701268292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868885018205819403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428476c9b66447b49b58ce1841ba982b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EntityDataScriptable: {fileID: 11400000, guid: 4626c31fb9b51eb4684290a555d9178d, type: 2}
-  m_XPosition: 0
-  m_YPosition: 0
-  m_VisualTransform: {fileID: 790934946185552068}
-  m_PlayerInventory: {fileID: 6336160848901496929}
-  m_JumpTweenContainer: {fileID: 1805600238328547132}
-  m_MovementDuration: 0.1
---- !u!114 &6336160848901496929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868885018205819403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055576b2c7aa4ca8b9570492c2f02558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Equipement: {fileID: 2833043709359365327}
-  m_SaveName: InventorySave.txt
-  m_InventoryItemCount: 50
-  m_EquipementItemCount: 11
 --- !u!1 &6165464817441814939
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +144,67 @@ Transform:
   m_Father: {fileID: 4638045973670722877}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2318941865701268292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868885018205819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428476c9b66447b49b58ce1841ba982b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EntityDataScriptable: {fileID: 11400000, guid: 4626c31fb9b51eb4684290a555d9178d, type: 2}
+  m_VisualTransform: {fileID: 790934946185552068}
+  m_Targetable: 1
+  m_EntityData:
+    m_EntityGroup: 0
+    m_TargetEntityGroup: 0
+    m_Stats:
+      CombatRange: 1
+      MaxLife: 100
+      Life: 100
+      LifeRegeneration: 0
+      WeaponForce: 20
+      MeleeModifier: 0
+      ProjectileModifier: 0
+      SpellModifier: 0
+      ColdDamageModifier: 0
+      HolyDamageModifier: 0
+      FireDamageModifier: 0
+      PhysicalDamageModifier: 0
+      ElementalDamageModifier: 0
+      FlatMeleeDamageReduction: 0
+      FlatProjectileDamageReduction: 0
+      FlatSpellDamageReduction: 0
+      ColdDamageReduction: 0
+      HolyDamageReduction: 0
+      FireDamageReduction: 0
+      PhysicalDamageReduction: 0
+      ElementalDamageReduction: 0
+    m_SpellList:
+      m_Spells: []
+  m_PlayerInventory: {fileID: 6336160848901496929}
+  m_JumpTweenContainer: {fileID: 1805600238328547132}
+  m_MovementDuration: 0.1
+--- !u!114 &6336160848901496929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868885018205819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055576b2c7aa4ca8b9570492c2f02558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Equipement: {fileID: 2833043709359365327}
+  m_SaveName: InventorySave.txt
+  m_InventoryItemCount: 50
+  m_EquipementItemCount: 11
 --- !u!1 &9071852352984913702
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +341,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028324458861236449, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890019779835663185, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7272982574942465325, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}

@@ -1,12 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardEntityLife : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer m_LifeFill = null;
+    
     private float m_MaxLife = 100f;
     private float m_Life = 100f;
     private float m_LifeRegeneration = 0;
-    private BoardEntity m_AttachedEntity = null;
+    
     
     public Action<float,float> A_OnLifeUpdated;
     //Getter
@@ -24,12 +27,13 @@ public class BoardEntityLife : MonoBehaviour
             GameManager.Instance.A_OnPreEndTurn -= ApplyRegeneration;
     }
 
-    public void Initalize(BoardEntity entity, float maxLife, float life, float lifeRegeneration)
+    public void Initialize(float maxLife, float life, float lifeRegeneration)
     {
-        m_AttachedEntity = entity;
         m_MaxLife = maxLife;
         m_Life = life;
         m_LifeRegeneration = lifeRegeneration;
+
+        UpdateLifeFill();
     }
     
     public void ChangeLifeValue(float value)
@@ -39,6 +43,7 @@ public class BoardEntityLife : MonoBehaviour
             m_Life = m_MaxLife;
         
         A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
+        UpdateLifeFill();
     }
 
     public void ChangeMaxLifeValue(float value)
@@ -46,6 +51,7 @@ public class BoardEntityLife : MonoBehaviour
         m_MaxLife += value;
         
         A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
+        UpdateLifeFill();
     }
 
     private void ApplyRegeneration()
@@ -59,5 +65,12 @@ public class BoardEntityLife : MonoBehaviour
     public void AddRegeneration(float value)
     {
         m_LifeRegeneration += value;
+    }
+
+    private void UpdateLifeFill()
+    {
+        float ratio = m_Life / m_MaxLife;
+        m_LifeFill.color = ColorHelper.GetLifeLerp(ratio);
+        m_LifeFill.transform.localScale = new Vector3(1, ratio, 1);
     }
 }
