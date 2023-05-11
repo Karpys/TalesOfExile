@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 700a24467d844641b5024d7986db23d9, type: 3}
-  m_Name: LeatherBoots
+  m_Name: LeatherShoes
   m_EditorClassIdentifier: 
   m_UniqueId: 2
   m_ObjectType: 1
@@ -24,3 +24,4 @@ MonoBehaviour:
   m_EquipementBaseModifiers:
   - Type: 21
     Value: 10
+  m_ModifierPool: {fileID: 11400000, guid: 22f8142593bdbca4a8e19c13215237be, type: 2}

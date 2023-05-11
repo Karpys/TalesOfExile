@@ -9,7 +9,7 @@ public class EquipementItem:Item
 
     private bool m_IsEquiped = false;
     private Rarity m_EquipementRarity = Rarity.Null;
-    public EquipementItemData BaseEquipementData => Data as EquipementItemData;
+    public EquipementItemData EquipementData => Data as EquipementItemData;
     public Modifier[] ItemModifiers => GetAllModifiers();
     
     public EquipementType Type => m_Type;
@@ -30,7 +30,7 @@ public class EquipementItem:Item
     
     #region Rarity
     
-    public void SetRarity(Rarity rarity)
+    private void SetRarity(Rarity rarity)
     {
         m_EquipementRarity = rarity;
     }
@@ -38,7 +38,7 @@ public class EquipementItem:Item
     public void InitializeRarity(Rarity rarity,RarityParameter parameter)
     {
         SetRarity(rarity);
-        ModifierUtils.GiveModifierBasedOnRarityAndType(this, parameter.ModifierDrawCount, BaseEquipementData.EquipementTier);
+        ModifierUtils.GiveModifierBasedOnRarityAndType(this, parameter.ModifierDrawCount);
     }
 
     protected override Rarity GetRarity()
@@ -66,11 +66,11 @@ public class EquipementItem:Item
 
     private void InitializeBaseModifier()
     {
-        m_ItemBaseModifiers = new Modifier[BaseEquipementData.EquipementBaseModifiers.Count];
+        m_ItemBaseModifiers = new Modifier[EquipementData.EquipementBaseModifiers.Count];
 
-        for (int i = 0; i < BaseEquipementData.EquipementBaseModifiers.Count; i++)
+        for (int i = 0; i < EquipementData.EquipementBaseModifiers.Count; i++)
         {
-            Modifier modifier = BaseEquipementData.EquipementBaseModifiers[i];
+            Modifier modifier = EquipementData.EquipementBaseModifiers[i];
             m_ItemBaseModifiers[i] = new Modifier(modifier.Type, modifier.Value);
         }
     }
@@ -121,7 +121,7 @@ public class EquipementItem:Item
         }
         
         //Base Constructor//
-        m_Type = BaseEquipementData.EquipementType;
+        m_Type = EquipementData.EquipementType;
         InitializeBaseModifier();
         
         if(m_IsEquiped)

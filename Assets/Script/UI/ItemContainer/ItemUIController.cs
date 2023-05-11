@@ -115,7 +115,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
     private bool CanPlaceEquipement(EquipementItem equipementItem, EquipementType equipementType)
     {
         //Todo:Add Conditional Check for Weapon / Two handed weapon//
-        return equipementItem.BaseEquipementData.EquipementType == equipementType;
+        return equipementItem.EquipementData.EquipementType == equipementType;
     }
 
     public void SetCurrentMouseHolder(ItemUIHolder itemHolder)

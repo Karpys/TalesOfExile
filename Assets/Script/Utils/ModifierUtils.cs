@@ -120,12 +120,12 @@ public static class ModifierUtils
         }
     }
     
-    public static void GiveModifierBasedOnRarityAndType(EquipementItem equipementItem,int modifierCount,Tier targetTier)
+    public static void GiveModifierBasedOnRarityAndType(EquipementItem equipementItem,int modifierCount)
     {
         if(modifierCount <= 0)
             return;
         
-        ModifierPool targetPool = ModifierLibraryController.Instance.GetViaKey(targetTier,equipementItem.BaseEquipementData.EquipementType);
+        ModifierPool targetPool = equipementItem.EquipementData.ModifierPool.m_ModifierPool;
 
         Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();
         equipementItem.SetAdditionalModifiers(modifiers);

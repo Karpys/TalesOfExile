@@ -1,44 +1,6 @@
 ﻿using System;
-using Script.Widget;
 using UnityEngine;
 
-public class ModifierLibraryController : SingletonMonoBehavior<ModifierLibraryController>
-{
-    [SerializeField] private GenericLibrary<ModifierEquipementPoolScriptable,Tier> m_TierPool = null;
-
-    private void Awake()
-    {
-        InitItemDictionary(m_TierPool);
-    }
-
-    private void InitItemDictionary(GenericLibrary<ModifierEquipementPoolScriptable,Tier> tierPool)
-    {
-        tierPool.InitializeDictionary();
-        
-        foreach (ModifierEquipementPoolScriptable modifierPoolScriptable in m_TierPool.Dictionary.Values)
-        {
-            modifierPoolScriptable.m_EquipementModifierPool.InitializeDictionary();
-        }
-    }
-
-    public ModifierPool GetViaKey(Tier type,EquipementType equipementType)
-    {
-        GenericLibrary<ModifierPoolScriptable, EquipementType> equipementTypeTierPool = m_TierPool.GetViaKey(type).m_EquipementModifierPool;
-        if (equipementTypeTierPool == null)
-        {
-            Debug.LogError("Tier Modifier Pool has not been set up: " + type);
-            return null;
-        }
-
-        ModifierPool modifierPool = equipementTypeTierPool.GetViaKey(equipementType).m_ModifierPool;
-        if(modifierPool == null)
-            Debug.LogError("Modifier Pool has not been set up: " + type);
-        
-        return modifierPool;
-    }
-}
-
-//Used as a wrapper for the moment
 [System.Serializable]
 public class ModifierPool
 {

@@ -24,3 +24,4 @@ MonoBehaviour:
   m_EquipementBaseModifiers:
   - Type: 1
     Value: 20
+  m_ModifierPool: {fileID: 11400000, guid: 59f1dbb3451ed054788db04d192fef7d, type: 2}
