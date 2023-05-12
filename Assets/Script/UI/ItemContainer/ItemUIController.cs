@@ -39,6 +39,10 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
                 {
                     PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                 }
+                else if (m_OnClickHolder.MouseOn)
+                {
+                    //Perform Same Holder Action
+                }
                 else
                 {
                     PerformSingleHolderAction(m_OnClickHolder);
