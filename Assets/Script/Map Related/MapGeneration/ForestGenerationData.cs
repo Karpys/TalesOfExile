@@ -95,6 +95,9 @@ public class ForestGenerationData : FlatDefaultMapGeneration
 
         foreach (Tile tile in m_MapData.Map.Tiles)
         {
+            if(tile.XPos < 9)
+                continue;
+            
             if(tile.Walkable)
                 tiles.Add(tile);
         }
@@ -130,6 +133,9 @@ public class ForestGenerationData : FlatDefaultMapGeneration
 
     private void TryGenerateTree(int x, int y)
     {
+        if(x == 0)
+            return;
+        
         float random = Random.Range(0, 100f);
 
         if (random < m_TreeChance)
