@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
       SubDamageTypes: 0100000002000000
     InitialSourceDamage:
-      Damage: 80
+      Damage: 45
       DamageType: 1
   m_TriggerClassName: LightningSpellTrigger
   m_AdditionalParameters:

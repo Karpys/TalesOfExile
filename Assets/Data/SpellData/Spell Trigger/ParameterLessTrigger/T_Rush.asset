@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 7aa250665202fa041adab3b1d0c026f2, type: 3}
-  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
       SubDamageTypes: 00000000
     InitialSourceDamage:
-      Damage: 50
+      Damage: 0
       DamageType: 0
   m_TriggerClassName: RushTrigger
+  m_AdditionalParameters:
+  - Type: 1
+    Value: 105

@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 82f032896e7d86a4b967fe391a122e40, type: 3}
-  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 0
       SubDamageTypes: 00000000
     InitialSourceDamage:
-      Damage: 100
+      Damage: 40
       DamageType: 0
   m_TriggerClassName: KnockBackTrigger
   m_AdditionalParameters:

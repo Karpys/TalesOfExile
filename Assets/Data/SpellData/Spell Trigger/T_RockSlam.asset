@@ -19,7 +19,7 @@ MonoBehaviour:
       MainDamageType: 0
       SubDamageTypes: 00000000
     InitialSourceDamage:
-      Damage: 0
+      Damage: 20
       DamageType: 0
   m_TriggerClassName: WeaponDamageTrigger
   m_AdditionalParameters:

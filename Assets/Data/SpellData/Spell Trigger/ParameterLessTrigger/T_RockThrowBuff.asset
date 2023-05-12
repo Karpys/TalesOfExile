@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   m_TriggerClassName: BuffGiverTrigger
   m_AdditionalParameters:
   - Type: 3
@@ -24,4 +23,4 @@ MonoBehaviour:
   - Type: 0
     Value: 10
   - Type: 1
-    Value: 50
+    Value: 25

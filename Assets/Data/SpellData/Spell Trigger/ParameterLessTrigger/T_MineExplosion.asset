@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 2830547909012753135, guid: 23971bf40057a4be3a92bd0be62f6e98, type: 3}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
       SubDamageTypes: 0100000002000000
     InitialSourceDamage:
-      Damage: 75
+      Damage: 50
       DamageType: 2
   m_TriggerClassName: MineSpellTrigger
   m_AdditionalParameters: []

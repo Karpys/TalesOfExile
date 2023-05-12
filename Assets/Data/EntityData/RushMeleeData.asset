@@ -17,10 +17,10 @@ MonoBehaviour:
     m_TargetEntityGroup: 0
     m_Stats:
       CombatRange: 1
-      MaxLife: 250
-      Life: 250
+      MaxLife: 170
+      Life: 170
       LifeRegeneration: 0
-      WeaponForce: 35
+      WeaponForce: 15
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
@@ -47,7 +47,3 @@ MonoBehaviour:
           Data: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
           AttachedEntity: {fileID: 0}
         m_SpellPriority: 1
-      - m_SpellData:
-          Data: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
-          AttachedEntity: {fileID: 0}
-        m_SpellPriority: 2
