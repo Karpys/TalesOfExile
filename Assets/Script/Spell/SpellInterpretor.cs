@@ -103,7 +103,7 @@ public class SpellInterpretor : MonoBehaviour
 
    private bool IsDynamic(ZoneSelection zoneSelection)
    {
-      if (zoneSelection.Zone.DisplayType == ZoneType.PlayerToMouse)
+      if (zoneSelection.Zone.DisplayType == ZoneType.PlayerToMouse || zoneSelection.Zone.DisplayType == ZoneType.Cone)
          return true;
 
       return false;

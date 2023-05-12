@@ -7,4 +7,5 @@ public enum ZoneType
     PlayerToMouseSquareRange,
     OuterCircle,
     OuterSquare,
+    Cone,
 }

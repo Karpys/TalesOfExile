@@ -20,12 +20,12 @@ MonoBehaviour:
   m_SpellTrigger: {fileID: 11400000, guid: 267716562f50341da98f63d7b2cf385b, type: 2}
   m_BaseCooldown: 10
   m_Selection:
-  - Origin: 0
+  - Origin: 1
     Zone:
-      DisplayType: 0
-      Range: 3
+      DisplayType: 6
+      Range: 6
     ValidationType:
-      NeedValidation: 0
+      NeedValidation: 1
       TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0

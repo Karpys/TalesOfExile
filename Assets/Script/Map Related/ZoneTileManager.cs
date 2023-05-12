@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -6,6 +7,19 @@ public static class ZoneTileManager
 {
     //Maybe need an additional Vector2Int parameter use for spell target selection when two position are needed//
     //ex : Mouse To Player
+    
+    private static Vector2[] coneAdjacents = new Vector2[8]
+    {
+        new Vector2(-1, -1),
+        new Vector2(-1.5f, 0),
+        new Vector2(-1, 1),
+        new Vector2(0, -1.5f),
+        new Vector2(0, 1.5f),
+        new Vector2(1, -1),
+        new Vector2(1.5f, 0),
+        new Vector2(1, 1)
+    };
+    
     private const float CIRCLE_TOLERANCE = 0.66f;
     public static List<Vector2Int> GetSelectionZone(Zone zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
     {
@@ -102,7 +116,7 @@ public static class ZoneTileManager
                 }
                 break;
             case ZoneType.OuterSquare:
-                for (int x = -range + 1; x <range; x++)
+                for (int x = -range + 1; x < range; x++)
                 {
                     for (int y = -range + 1; y < range ; y++)
                     {
@@ -112,6 +126,35 @@ public static class ZoneTileManager
                         }
                     }
                 }
+                break;
+            case ZoneType.Cone:
+                //Circle Selection
+                float angle = 90;
+                Vector2Int middle = Vector2Int.zero;
+                
+                Vector2 nearest = coneAdjacents.OrderBy(a => Vector2.Distance(selectionOrigin, castOrigin.Value + a)).First();
+                selectionOrigin = castOrigin.Value + new Vector2Int(Mathf.FloorToInt(nearest.x),Mathf.FloorToInt(nearest.y));
+                
+                for (int x = -range + 1; x < range; x++)
+                {
+                    for (int y = -range + 1; y < range; y++)
+                    {
+                        Vector2Int offset = new Vector2Int(x, y);
+                        
+                        if (Vector2Int.Distance(middle,offset) > range - CIRCLE_TOLERANCE)
+                            continue; 
+                        
+                        Vector2 direction = (selectionOrigin - castOrigin.Value);
+                        direction = direction.normalized;
+                        float currentAngle = Vector2.SignedAngle(offset, direction);
+
+                        if (Mathf.Abs(currentAngle) <= angle / 2)
+                        {
+                            zones.Add(offset + castOrigin.Value);
+                        }
+                    }
+                }
+                
                 break;
             default:
                 Debug.LogError("Zone selection type not register");
@@ -147,7 +190,15 @@ public static class ZoneTileManager
                     return true;
                 }
                 return false;
+            case ZoneType.Cone:
+                //Same as circle//
+                if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range -CIRCLE_TOLERANCE)
+                {
+                    return true;
+                }
+                return false;
             default:
+                
                 Debug.LogError("Target selection display type has not been set up: " + zoneSelection.DisplayType);
                 return false;
         }

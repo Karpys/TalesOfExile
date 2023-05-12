@@ -192,7 +192,7 @@ MonoBehaviour:
     Range: 4
   m_IsStatic: 0
   m_ItemDraw:
-    DrawCount: 20
+    DrawCount: 5
     DrawChance: 100
   m_ItemPoolType: 0
 --- !u!1 &5895859843570005449
