@@ -518,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MapData: {fileID: 1849714072}
   m_PlayerEntity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
-  m_HubMap: {fileID: 11400000, guid: 61b388ca7c30f4646b59dd2af2f5fec3, type: 2}
+  m_HubMap: {fileID: 11400000, guid: 0778892351085fc4f8091c163d41d1b1, type: 2}
   m_CurrentMapGroup: {fileID: 11400000, guid: db2c6525fc5604314aee63874ae60263, type: 2}
 --- !u!4 &343337510
 Transform:
@@ -1373,6 +1373,10 @@ MonoBehaviour:
         m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
       - m_Weight: 25
         m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
+      - m_Weight: 25
+        m_Object: {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
+      - m_Weight: 25
+        m_Object: {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
     m_RarityDraw:
       m_WeightEnum:
       - m_Weight: 50
@@ -2266,6 +2270,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
   - {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
   - {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
+  - {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
+  - {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
 --- !u!1 &1606533802
 GameObject:
   m_ObjectHideFlags: 0

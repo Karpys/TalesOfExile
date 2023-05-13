@@ -93,15 +93,14 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
                 if(!CanPlaceEquipement(itemToEquip,equipementItemUIHolder.EquipementType))
                     return;
                 
-                //Add Conditional Check like equipement type to holder type//
-                itemToEquip.Equip();
-
-                if (equipementHolder.Item is EquipementItem itemEquiped)
+                if (itemToEquip.EquipementData.EquipementType == EquipementType.Weapon)
                 {
-                    itemEquiped.UnEquip();
+                    WeaponEquipement( equipementItemUIHolder,itemToEquip,inventoryHolder);
                 }
-                
-                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
+                else
+                {
+                    NonEquipement(itemToEquip, equipementHolder,inventoryHolder);
+                }
             }
             else if(inventoryHolder.Item == null)
             {
@@ -116,14 +115,74 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
         }
     }
 
+    private void NonEquipement(EquipementItem itemToEquip,ItemUIHolder equipementHolder,ItemUIHolder inventoryHolder)
+    {
+        itemToEquip.Equip();
+
+        if (equipementHolder.Item is EquipementItem itemEquiped)
+        {
+            itemEquiped.UnEquip();
+        }
+                
+        m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
+    }
+
+    private void WeaponEquipement(EquipementItemUIHolder equipementItemUIHolder, EquipementItem itemToEquip,ItemUIHolder inventoryHolder)
+    {
+        WeaponEquipementItemdata weaponData = itemToEquip.Data as WeaponEquipementItemdata;
+        WeaponEquipementUIHolder weaponHolder = equipementItemUIHolder as WeaponEquipementUIHolder;
+
+        if (weaponData.TwoHanded)
+        {
+            EquipementItemUIHolder[] weaponHolders = weaponHolder.GetWeaponEquiped();
+            ItemUIHolder[] freeHolder = GetFreeHolderInPlayerInventory();
+            
+            if (weaponHolders.Length - 1 > freeHolder.Length)
+                return;
+            
+            for (int i = 0; i < weaponHolders.Length; i++)
+            {
+                weaponHolders[i].EquipementItem.UnEquip();
+            }
+
+            itemToEquip.Equip();
+            m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,weaponHolder.GetMain());
+            
+            if (weaponHolders.Length == 2)
+            {
+                m_PlayerInventoryUI.EquipementInventorySwap(freeHolder[0],weaponHolder.GetSub());
+            }
+        }
+        else
+        {
+            //Check de two handed//
+            if (weaponHolder.IsTwoHandedCurrentlyEquiped())
+            {
+                //send back two handed and place this
+                weaponHolder = weaponHolder.GetMain();
+                
+            }
+            
+            itemToEquip.Equip();
+
+            weaponHolder.EquipementItem?.UnEquip();
+
+            m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,weaponHolder);
+        }
+    }
+
     private bool CanPlaceEquipement(EquipementItem equipementItem, EquipementType equipementType)
     {
-        //Todo:Add Conditional Check for Weapon / Two handed weapon//
         return equipementItem.EquipementData.EquipementType == equipementType;
     }
 
     public void SetCurrentMouseHolder(ItemUIHolder itemHolder)
     {
         m_OnMouseHolder = itemHolder;
+    }
+
+    private ItemUIHolder[] GetFreeHolderInPlayerInventory()
+    {
+        return m_PlayerInventoryUI.GetFreeHolderInPlayerInventory();
     }
 }

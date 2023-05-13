@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 public static class SaveUtils
@@ -61,13 +62,19 @@ public static class SaveUtils
         return savePath;
     }
 
-    public static string[] ReadData(string saveName,DefaultSave defaultSave)
+    public static string[] ReadData(string saveName,TextAsset textField)
     {
         string savePath = GetSavePath(saveName);
         
         if (!File.Exists(savePath))
         {
-            string[] data = Enumerable.Repeat(defaultSave.DefaultSaveData,defaultSave.DefaultSaveSize).ToArray();
+            string[] data = textField.ToString().Split('\n');
+            
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = data[i].TrimEnd('\r');
+            }
+
             File.WriteAllLines(savePath,data);
         }
         

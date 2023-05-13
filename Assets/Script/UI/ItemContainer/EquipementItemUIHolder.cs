@@ -7,6 +7,7 @@ public class EquipementItemUIHolder : ItemUIHolder
     [SerializeField] private EquipementType m_EquipementType = EquipementType.Null;
 
     public EquipementType EquipementType => m_EquipementType;
+    public EquipementItem EquipementItem => Item as EquipementItem;
     protected override void DefaultDisplay()
     {
         m_ItemVisual.sprite = m_EquipementShadow;

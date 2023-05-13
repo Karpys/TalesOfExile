@@ -66,7 +66,6 @@ MonoBehaviour:
     DisplayType: 0
     Range: 4
   m_IsStatic: 1
-  m_DrawCount: 10
   m_ChestObjectPool:
     m_ObjectDataPool:
       m_WeightElement:
@@ -75,10 +74,9 @@ MonoBehaviour:
       - m_Weight: 33
         m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
       - m_Weight: 33
-        m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
+        m_Object: {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
       - m_Weight: 33
-        m_Object: {fileID: 11400000, guid: ea1d3f6286e1ed44eb11610431fe664b, type: 2}
-    m_DrawChance: 100
+        m_Object: {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
     m_RarityDraw:
       m_WeightEnum:
       - m_Weight: 50
@@ -91,6 +89,9 @@ MonoBehaviour:
         m_Enum: 3
       - m_Weight: 1
         m_Enum: 4
+  m_ItemDraw:
+    DrawCount: 100
+    DrawChance: 100
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerInventory : MonoBehaviour,ISaver
 {
+    [SerializeField] private TextAsset m_BaseInventory = null;
     [SerializeField] private EntityEquipement m_Equipement = null;
     [SerializeField] private string m_SaveName = string.Empty;
     [SerializeField] private int m_InventoryItemCount = 0;
@@ -83,7 +85,7 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     private void InterpretSave()
     {
-        string[] data = SaveUtils.ReadData(m_SaveName,new DefaultSave("none",EquipementLenght));
+        string[] data = SaveUtils.ReadData(m_SaveName,m_BaseInventory);
         List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
         
         m_PlayerInventory = saveObjects.GetRange(0,m_PlayerInventory.Length).ToArray();

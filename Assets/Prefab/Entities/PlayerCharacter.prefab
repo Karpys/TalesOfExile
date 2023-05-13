@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055576b2c7aa4ca8b9570492c2f02558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BaseInventory: {fileID: 4900000, guid: 86c20e31067e34443bc53cae15110c60, type: 3}
   m_Equipement: {fileID: 2833043709359365327}
   m_SaveName: InventorySave.txt
   m_InventoryItemCount: 50

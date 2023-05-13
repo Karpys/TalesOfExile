@@ -121,4 +121,9 @@ public class PlayerInventoryUI : MonoBehaviour
                 return null;
         }
     }
+
+    public ItemUIHolder[] GetFreeHolderInPlayerInventory()
+    {
+        return m_ItemContainer.Where(e => e.Item == null).ToArray();
+    }
 }
