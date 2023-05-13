@@ -13,6 +13,7 @@
     //Misc// 51 +//
     SpellAddition = 51,
     AddThrowRockPassif = 52,
+    CanUseBowTalent = 53,
     //Ect
 }
 

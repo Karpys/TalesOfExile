@@ -60,7 +60,15 @@ public class SpellInterpretor : MonoBehaviour
             
             if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
             {
-               FetchSelection();
+               if(IsRestricted(m_OriginTile))
+               {
+                  ResetSpellQueue();  
+                  return;
+               }
+               else
+               {
+                  FetchSelection();
+               }
             }else if (Validation)
             {
                if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile))

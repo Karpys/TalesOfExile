@@ -17,6 +17,7 @@ public static class ModifierUtils
             { ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
             { ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
             { ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
+            { ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
             { ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
             { ModifierType.SpellAddition, (m, e) =>
                 {
@@ -41,6 +42,7 @@ public static class ModifierUtils
             {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
             {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
             {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
+            {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser -= 1 },
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
             {
                 ModifierType.SpellAddition, (m, e) =>
@@ -114,6 +116,8 @@ public static class ModifierUtils
                 return "Add " + modifier.Value + " spell";
             case ModifierType.AddThrowRockPassif:
                 return "Throw Rock dealing " + modifier.Value + " damage";
+            case ModifierType.CanUseBowTalent:
+                return "Can use bow talent";
             default:
                 Debug.LogError("Modifier type has not been set up " + modifier.Type);
                 return "Not Recognised";

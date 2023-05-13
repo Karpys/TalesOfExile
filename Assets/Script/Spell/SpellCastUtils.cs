@@ -71,6 +71,8 @@ public static class SpellCastUtils
                         return false;
                 }
                 return true;
+            case SpellRestrictionType.IsBowUser:
+                return spellData.AttachedEntity.EntityStats.IsBowUser == 0;
             default:
                 return false;
         }

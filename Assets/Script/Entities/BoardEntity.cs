@@ -45,8 +45,10 @@ public class EntityStats
     public float HolyDamageReduction = 0; 
     public float FireDamageReduction = 0; 
     public float PhysicalDamageReduction = 0; 
-    public float ElementalDamageReduction = 0; 
+    public float ElementalDamageReduction = 0;
 
+    [Header("Misc")] 
+    public int IsBowUser = 0;
     public object Clone()
     {
         return MemberwiseClone();

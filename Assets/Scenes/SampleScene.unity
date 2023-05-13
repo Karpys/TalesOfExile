@@ -1373,10 +1373,10 @@ MonoBehaviour:
         m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
       - m_Weight: 25
         m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
-      - m_Weight: 25
+      - m_Weight: 12
         m_Object: {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
-      - m_Weight: 25
-        m_Object: {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
+      - m_Weight: 12
+        m_Object: {fileID: 11400000, guid: f0793400685664b0eb9f5b126eaa6be4, type: 2}
     m_RarityDraw:
       m_WeightEnum:
       - m_Weight: 50
@@ -2272,6 +2272,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
   - {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
   - {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
+  - {fileID: 11400000, guid: f0793400685664b0eb9f5b126eaa6be4, type: 2}
 --- !u!1 &1606533802
 GameObject:
   m_ObjectHideFlags: 0

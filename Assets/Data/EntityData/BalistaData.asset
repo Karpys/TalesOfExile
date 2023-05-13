@@ -37,6 +37,7 @@ MonoBehaviour:
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
+      IsBowUser: 1
     m_SpellList:
       m_Spells:
       - m_SpellData:

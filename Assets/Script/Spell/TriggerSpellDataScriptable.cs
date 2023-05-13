@@ -40,6 +40,7 @@ public enum SpellRestrictionType
 {
     OriginOnWalkable,
     FreeTileAroundEnemyTarget,
+    IsBowUser,
 }
 
 public enum SpellOriginType
