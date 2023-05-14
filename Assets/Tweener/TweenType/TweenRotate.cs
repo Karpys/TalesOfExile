@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TweenCustom
 {
@@ -13,15 +12,12 @@ namespace TweenCustom
             m_StartValue = target.eulerAngles;
         }
 
-        public override void Step()
+        protected override void Update()
         {
-            if(base.IsDelay())return;
-            base.Step();
             m_Target.eulerAngles = NewAngle();
-            base.LateStep();
         }
 
-        public Vector3 NewAngle()
+        private Vector3 NewAngle()
         {
             Vector3 newEuleurs = Vector3.zero;
             newEuleurs = Vector3.LerpUnclamped(m_StartValue, m_EndValue, (float)Evaluate());

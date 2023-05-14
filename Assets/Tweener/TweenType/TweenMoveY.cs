@@ -12,15 +12,12 @@ namespace TweenCustom
             m_StartValue = target.position;
         }
 
-        public override void Step()
+        protected override void Update()
         {
-            if(base.IsDelay())return;
-            base.Step();
             m_Target.position = NextPosition();
-            base.LateStep();
         }
-
-        public Vector3 NextPosition()
+        
+        private Vector3 NextPosition()
         {
             Vector3 newPosition = m_Target.transform.position;
             newPosition.y = Mathf.LerpUnclamped(m_StartValue.y,m_EndValue.y,(float)Evaluate());

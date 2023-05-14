@@ -18,15 +18,12 @@ namespace TweenCustom
             // m_EndValue = endValue;
         }
 
-        public override void Step()
+        protected override void Update()
         {
-            if(base.IsDelay())return;
-            base.Step();
             m_Renderer.color = NewColor();
-            base.LateStep();
         }
-
-        public Color NewColor()
+        
+        private Color NewColor()
         {
             Vector4 newColor = Vector4.zero;
             newColor = Vector4.LerpUnclamped(m_StartColor, m_EndColor, (float)Evaluate());

@@ -12,15 +12,12 @@ namespace TweenCustom
             m_StartValue = target.localScale;
         }
 
-        public override void Step()
+        protected override void Update()
         {
-            if(base.IsDelay())return;
-            base.Step();
             m_Target.localScale = NewScale();
-            base.LateStep();
         }
-
-        public Vector3 NewScale()
+        
+        private Vector3 NewScale()
         {
             Vector3 newScale = Vector3.zero;
             newScale = Vector3.LerpUnclamped(m_StartValue, m_EndValue, (float)Evaluate());

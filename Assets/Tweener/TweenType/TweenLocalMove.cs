@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 namespace TweenCustom
 {
     public class TweenLocalMove : BaseTween
@@ -12,15 +11,12 @@ namespace TweenCustom
             m_StartValue = target.localPosition;
         }
 
-        public override void Step()
+        protected override void Update()
         {
-            if (base.IsDelay()) return;
-            base.Step();
             m_Target.localPosition = NextPosition();
-            base.LateStep();
         }
 
-        public Vector3 NextPosition()
+        private Vector3 NextPosition()
         {
             Vector3 newPosition = Vector3.zero;
             newPosition = Vector3.LerpUnclamped(m_StartValue, m_EndValue, (float)Evaluate());

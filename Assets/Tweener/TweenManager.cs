@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,25 +5,31 @@ namespace TweenCustom
 {
     public class TweenManager : SingletonMonoBehavior<TweenManager>
     {
-        public List<BaseTween> m_Tweeners = new List<BaseTween>();
+        public LinkedList<BaseTween> m_Tweeners = new LinkedList<BaseTween>();
+        //public List<BaseTween> m_Tweeners = new List<BaseTween>();
 
         private void FixedUpdate()
         {
-            for (int i = 0; i < m_Tweeners.Count; i++)
+            LinkedListNode<BaseTween> current = m_Tweeners.First;
+            while (current != null)
             {
-                if (!m_Tweeners[i].ReferenceCheck())
+                current.Value.Step();
+                if (current.Value.IsComplete)
                 {
-                    m_Tweeners.Remove(m_Tweeners[i]);
-                    i--;
-                    continue;
+                    LinkedListNode<BaseTween> next = current.Next;
+                    m_Tweeners.Remove(current);
+                    current = next;
                 }
-                m_Tweeners[i].Step();
+                else
+                {
+                    current = current.Next;
+                }
             }
         }
 
         public void AddTween(BaseTween tween)
         {
-            m_Tweeners.Add(tween);
+            m_Tweeners.AddLast(tween);
         }
 
         public void RemoveTween(BaseTween tween)
@@ -34,12 +39,18 @@ namespace TweenCustom
 
         public void KillTween(Transform trans)
         {
-            for (int i = 0; i < m_Tweeners.Count; i++)
+            LinkedListNode<BaseTween> current = m_Tweeners.First;
+            while (current != null)
             {
-                if (m_Tweeners[i].Target == trans)
+                if (current.Value.Target == trans)
                 {
-                    RemoveTween(m_Tweeners[i]);
-                    i--;
+                    LinkedListNode<BaseTween> next = current.Next;
+                    m_Tweeners.Remove(current);
+                    current = next;
+                }
+                else
+                {
+                    current = current.Next;
                 }
             }
         }

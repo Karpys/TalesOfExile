@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TweenCustom
@@ -25,9 +23,11 @@ namespace TweenCustom
         protected float m_Ratio = 0;
         protected float m_Timer = 0;
         protected bool m_HastStart = false;
-        
+
+        protected bool m_IsComplete = false;
         //Getter//
         public Transform Target => m_Target;
+        public bool IsComplete => m_IsComplete;
         //Setter//
         public Ease ease
         {
@@ -49,7 +49,7 @@ namespace TweenCustom
         {
         }
 
-        public virtual bool IsDelay()
+        protected bool IsDelay()
         {
             if (m_HastStart) return false;
 
@@ -67,10 +67,22 @@ namespace TweenCustom
             m_onStart?.Invoke();
         }
 
-        public virtual void Step()
+        public void Step()
         {
+            if(IsDelay())return;
             UpdateTimerAndRatio();
+
+            if (!ReferenceCheck())
+            {
+                m_IsComplete = true;
+                return;
+            }
+            
+            Update();
+            LateStep();
         }
+
+        protected abstract void Update();
 
         protected void UpdateTimerAndRatio()
         {
@@ -86,13 +98,10 @@ namespace TweenCustom
         {
             CheckForDestroy();
         }
-
-        // ReSharper disable Unity.PerformanceAnalysis
+        
         public virtual bool ReferenceCheck()
         {
-            if (m_Target == null)
-                return false;
-            return true;
+            return m_Target != null;
         }
         
         protected void CheckForDestroy()
@@ -100,18 +109,14 @@ namespace TweenCustom
             if (m_Ratio >= 1)
             {
                 Complete();
-                RemoveTween();
+                m_IsComplete = true;
+                //RemoveTween();
             }
         }
 
         private void Complete()
         {
             m_onComplete?.Invoke();
-        }
-
-        protected void RemoveTween()
-        {
-            TweenManager.Instance.RemoveTween(this);
         }
 
         //Ease Evaluate

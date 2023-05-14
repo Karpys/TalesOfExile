@@ -13,7 +13,6 @@ public class TweenParam
 }
 public class FloatingTextBurst : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private TMP_Text m_Text = null;
     [SerializeField] private float m_RangeRandom = 0.5f;
     [SerializeField] private TweenParam m_XAlignement = null;
@@ -38,7 +37,6 @@ public class FloatingTextBurst : MonoBehaviour
         StartCoroutine(ILaunchFloat(Random.Range(0, 0.15f)));
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (fading)
