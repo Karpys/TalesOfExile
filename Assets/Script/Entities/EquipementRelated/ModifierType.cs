@@ -5,7 +5,7 @@
     UpFire = 0,
     UpCold = 1,
     UpPhysical = 2,
-    
+    IncreaseSpellDamage = 19,
     IncreaseWeaponForce = 20,
     //Defense Type// 21 => 50//
     IncreaseMaxLife = 21,

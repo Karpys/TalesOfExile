@@ -13,19 +13,20 @@ public static class ModifierUtils
     {
         applyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
         {
-            { ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
-            { ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
-            { ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
-            { ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
-            { ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
-            { ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
-            { ModifierType.SpellAddition, (m, e) =>
+            {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
+            {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
+            {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
+            {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier += m.FloatValue},
+            {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
+            {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
+            {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
+            {ModifierType.SpellAddition, (m, e) =>
                 {
                     SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
                     e.AddSpellToSpellList(spellToAdd);
                 }
             },
-            { ModifierType.AddThrowRockPassif, (m, e) =>
+            {ModifierType.AddThrowRockPassif, (m, e) =>
                 {
                     Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, e);
                     buff.InitializeBuff(e, e, 0, m.FloatValue);
@@ -41,11 +42,11 @@ public static class ModifierUtils
             {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier -= m.FloatValue},
             {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
             {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
+            {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier -= m.FloatValue},
             {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
             {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser -= 1 },
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
-            {
-                ModifierType.SpellAddition, (m, e) =>
+            {ModifierType.SpellAddition, (m, e) =>
                 {
                     SpellInfo spellToAdd = e.GetSpellViaKey(m.Value);
                     if (spellToAdd == null)
@@ -57,8 +58,7 @@ public static class ModifierUtils
                     e.RemoveSpellToSpellList(spellToAdd);
                 }
             },
-            {
-                ModifierType.AddThrowRockPassif, (m, e) =>
+            {ModifierType.AddThrowRockPassif, (m, e) =>
                 {
                     e.Buffs.TryRemoveBuffViaKey((int) BuffType.RockThrowBuff + " " + m.Value);
                 }
@@ -118,6 +118,8 @@ public static class ModifierUtils
                 return "Throw Rock dealing " + modifier.Value + " damage";
             case ModifierType.CanUseBowTalent:
                 return "Can use bow talent";
+            case ModifierType.IncreaseSpellDamage:
+                return "+" + modifier.Value + "% Spell damage";
             default:
                 Debug.LogError("Modifier type has not been set up " + modifier.Type);
                 return "Not Recognised";
