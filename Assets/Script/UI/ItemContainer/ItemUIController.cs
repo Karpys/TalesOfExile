@@ -148,7 +148,7 @@ public class ItemUIController : SingletonMonoBehavior<ItemUIController>
             itemToEquip.Equip();
             m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,weaponHolder.GetMain());
             
-            if (weaponHolders.Length == 2)
+            if (weaponHolders.Length == 2 || weaponHolder.GetSub().Item != null)
             {
                 m_PlayerInventoryUI.EquipementInventorySwap(freeHolder[0],weaponHolder.GetSub());
             }

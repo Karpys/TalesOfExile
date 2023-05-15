@@ -314,6 +314,14 @@ public abstract class BoardEntity : MonoBehaviour
         }
     }
 
+    public void UpdateSpellPriority()
+    {
+        if (m_EntityBehaviour is BaseEntityIA baseEntity)
+        {
+            baseEntity.ComputeSpellPriority();       
+        }
+    }
+
     public SpellInfo RegisterSpell(SpellInfo spell)
     {
         spell.m_SpellData.AttachedEntity = this;

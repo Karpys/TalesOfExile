@@ -24,6 +24,7 @@ public static class ModifierUtils
                 {
                     SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
                     e.AddSpellToSpellList(spellToAdd);
+                    e.UpdateSpellPriority();
                 }
             },
             {ModifierType.AddThrowRockPassif, (m, e) =>
@@ -56,6 +57,7 @@ public static class ModifierUtils
                     }
 
                     e.RemoveSpellToSpellList(spellToAdd);
+                    e.UpdateSpellPriority();
                 }
             },
             {ModifierType.AddThrowRockPassif, (m, e) =>
