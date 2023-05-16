@@ -5,17 +5,26 @@ using UnityEngine;
 
 public class EntityBuffs : MonoBehaviour
 {
-    public List<Buff> m_Buffs = null;
+    private List<Buff> m_Buffs = new List<Buff>();
+
+    public Action<Buff> OnAddBuff = null;
+    public Action<Buff> OnRemoveBuff = null;
+    public Action OnCdReduced = null;
+
+    public List<Buff> Buffs => m_Buffs;
 
     public void AddBuff(Buff buff)
     {
         m_Buffs.Add(buff);
+        OnAddBuff?.Invoke(buff);
     }
 
     public void RemoveBuff(Buff buff)
     {
         if (m_Buffs.Contains(buff))
             m_Buffs.Remove(buff);
+        
+        OnRemoveBuff?.Invoke(buff);
     }
     private  void Start()
     {
@@ -34,6 +43,8 @@ public class EntityBuffs : MonoBehaviour
         {
             m_Buffs[i].ReduceCooldown();
         }
+        
+        OnCdReduced?.Invoke();
     }
 
     public void TryRemovePassiveOffTypeAndValue(BuffType buffType, float buffValue)

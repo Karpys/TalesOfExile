@@ -48,6 +48,8 @@ MonoBehaviour:
   m_BuffType: 0
   m_BuffGroup: 1
   m_BuffCooldown: 0
+  m_BuffInfo:
+    BuffVisual: {fileID: 21300000, guid: d70475cb759d1324ab1e6cfd33a1be91, type: 3}
   m_EnemyBuffIgnoreFirstCooldown: 1
 --- !u!1 &7929470540732908950
 GameObject:

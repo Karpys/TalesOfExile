@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Buff : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public abstract class Buff : MonoBehaviour
     [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
     [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
 
+    [Header("Buff Visual Info")] 
+    [SerializeField]protected BuffInfo m_BuffInfo;
     [Header("Enemy Specific")]
     [SerializeField] protected bool m_EnemyBuffIgnoreFirstCooldown = false;
 
@@ -22,7 +25,9 @@ public abstract class Buff : MonoBehaviour
     public BuffCooldown BuffCooldown => m_BuffCooldown;
     public BuffType BuffType => m_BuffType;
     public float BuffValue => m_BuffValue;
+    public int Cooldown => m_Cooldown;
     public string BuffKey => m_BuffKey;
+    public BuffInfo BuffInfo => m_BuffInfo;
 
     public virtual void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
     {
@@ -83,4 +88,10 @@ public abstract class Buff : MonoBehaviour
         UnApply();
         Destroy(gameObject);
     }
+}
+
+[System.Serializable]
+public struct BuffInfo
+{
+    public Sprite BuffVisual;
 }

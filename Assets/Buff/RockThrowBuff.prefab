@@ -4852,9 +4852,9 @@ MonoBehaviour:
   m_BuffType: 2
   m_BuffGroup: 1
   m_BuffCooldown: 0
+  m_BuffInfo:
+    BuffVisual: {fileID: 21300000, guid: 5c6a2344c7c7e41879fcd06a53ffe506, type: 3}
   m_EnemyBuffIgnoreFirstCooldown: 1
   m_TriggerSpellData:
     Data: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
     AttachedEntity: {fileID: 0}
-    ConnectedSpellData:
-      m_Spells: []

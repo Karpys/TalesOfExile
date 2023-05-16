@@ -126,7 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a66196cc2a4c61a9cdb0a2e90ad755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_VisualTransform: {fileID: 0}
   m_BuffType: 201
   m_BuffGroup: 2
   m_BuffCooldown: 0
+  m_BuffInfo:
+    BuffVisual: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
   m_EnemyBuffIgnoreFirstCooldown: 0

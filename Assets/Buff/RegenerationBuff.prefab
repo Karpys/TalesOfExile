@@ -4852,4 +4852,6 @@ MonoBehaviour:
   m_BuffType: 1
   m_BuffGroup: 1
   m_BuffCooldown: 0
+  m_BuffInfo:
+    BuffVisual: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
   m_EnemyBuffIgnoreFirstCooldown: 0
