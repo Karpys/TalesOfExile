@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BurstAnimation : SpellAnimation
+public abstract class BurstAnimation : SpellAnimation
 {
     [SerializeField] protected float m_SpellAnimFixeDelay = 0;
     protected virtual void Start()
@@ -29,8 +29,6 @@ public class BurstAnimation : SpellAnimation
 
     protected override void Animate() {}
 
-    protected override void DestroySelf(float time)
-    {
-        Destroy(gameObject,time);
-    }
+    protected abstract void DestroySelf(float time);
+
 }

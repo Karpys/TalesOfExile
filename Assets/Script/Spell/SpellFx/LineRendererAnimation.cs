@@ -33,7 +33,7 @@ public class LineRendererAnimation : SpellAnimation
         m_Renderer.DoColor(Color.white.setAlpha(0), 0.1f).SetDelay(m_AppearDelay + m_AppearDuration);
     }
 
-    protected override void DestroySelf(float time)
+    private void DestroySelf(float time)
     {
         Destroy(gameObject,time);
     }

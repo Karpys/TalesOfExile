@@ -17,11 +17,6 @@ public class SpellAnimationActivator : SpellAnimation
     protected override void Animate()
     {
         m_ActivatorAnimation.TriggerFx(transform.position);
-        DestroySelf(0);
-    }
-
-    protected override void DestroySelf(float time)
-    {
         Destroy(gameObject);
     }
 }

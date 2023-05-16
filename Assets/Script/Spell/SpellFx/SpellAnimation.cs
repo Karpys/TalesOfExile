@@ -27,5 +27,4 @@ public abstract class SpellAnimation : MonoBehaviour
 
     protected abstract float GetAnimationDuration();
     protected abstract void Animate();
-    protected abstract void DestroySelf(float time);
 }

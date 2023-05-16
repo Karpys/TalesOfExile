@@ -33,13 +33,16 @@ public class PlayerInventory : MonoBehaviour,ISaver
 
     private void OnApplicationQuit()
     {
-        SaveInventory();
+        //SaveInventory();
     }
     
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
             ClearPlayerInventory();
+
+        if (Input.GetKeyDown(KeyCode.W))
+            SaveInventory();
     }
 
     public bool TryPickUp(Item item)

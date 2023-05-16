@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectileAutoTrigger : WeaponDamageTrigger
 {
-    private Vector3 m_OriginPosition = Vector3.zero;
+    protected Vector3 m_OriginPosition = Vector3.zero;
     public ProjectileAutoTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
     {}
     
