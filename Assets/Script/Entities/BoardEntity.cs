@@ -368,6 +368,11 @@ public abstract class BoardEntity : MonoBehaviour
         }
     }
 
+    public virtual SpellData[] GetDisplaySpells()
+    {
+        return m_Spells.ToArray();
+    }
+
     //Need to be used when the entity is buffed / Equip / Unequip items//
     public void ComputeAllSpells()
     {
