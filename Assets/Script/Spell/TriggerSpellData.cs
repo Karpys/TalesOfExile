@@ -1,9 +1,8 @@
 using UnityEngine;
 
-[System.Serializable]
 public class TriggerSpellData:SpellData
 {
-    public TriggerSpellDataScriptable TriggerData => Data as TriggerSpellDataScriptable;
+    public TriggerSpellDataScriptable TriggerData => m_Data as TriggerSpellDataScriptable;
     //SpellTrigger Class//
     public BaseSpellTrigger SpellTrigger = null;
     //Spell Variables//
@@ -12,20 +11,16 @@ public class TriggerSpellData:SpellData
     
     //Intern Params//
     private bool m_HasBeenUsed = false;
-    public TriggerSpellData(SpellData spellData) : base(spellData)
-    {
-        AttachedEntity = spellData.AttachedEntity;
-        Data = spellData.Data;
-    }
 
-    public override SpellInfo Initialize(int priority)
+    public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
     {
         m_BaseCooldown = TriggerData.m_BaseCooldown;
         SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
-        SpellTrigger.SetAttachedSpell(this,priority);
+        SpellTrigger.SetAttachedSpell(this,spellInfo.m_SpellPriority);
         SpellTrigger.ComputeSpellData(AttachedEntity);
-        return new SpellInfo(this,priority);
+        return this;
     }
+
     public override object Clone()
     {
         return MemberwiseClone();
@@ -83,17 +78,15 @@ public class TriggerSpellData:SpellData
         
         return (float)m_CurrentCooldown / m_BaseCooldown;
     }
+    
+    public TriggerSpellData(SpellInfo baseSpellInfo, BoardEntity attachedEntity) : base(baseSpellInfo, attachedEntity)
+    {
+    }
 }
 
 public class SupportSpellData:SpellData
 {
-    public override SpellInfo Initialize(int priority)
-    {
-        Debug.Log("Init Support Spell");
-        return new SpellInfo(this,priority);
-    }
-
-    public SupportSpellData(SpellData baseSpellData) : base(baseSpellData)
+    public SupportSpellData(SpellInfo baseSpellInfo, BoardEntity attachedEntity) : base(baseSpellInfo, attachedEntity)
     {
     }
 }

@@ -38,9 +38,6 @@ MonoBehaviour:
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
       IsBowUser: 1
-    m_SpellList:
-      m_Spells:
-      - m_SpellData:
-          Data: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
-          AttachedEntity: {fileID: 0}
-        m_SpellPriority: 0
+    m_BaseSpellInfos:
+    - m_SpellData: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
+      m_SpellPriority: 1

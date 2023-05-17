@@ -28,7 +28,7 @@ public class SpellInterfaceController : MonoBehaviour
     {
         for (int i = 0; i < entity.Spells.Count; i++)
         {
-            TriggerSpellData triggerSpell = entity.Spells[i].m_SpellData as TriggerSpellData;
+            TriggerSpellData triggerSpell = entity.Spells[i] as TriggerSpellData;
             
             if(triggerSpell == null)
                 return;

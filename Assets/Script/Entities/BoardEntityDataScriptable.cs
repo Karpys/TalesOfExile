@@ -15,7 +15,7 @@ public class BoardEntityData
     public EntityGroup m_EntityGroup = EntityGroup.Neutral;
     public EntityGroup m_TargetEntityGroup = EntityGroup.Neutral;
     public EntityStats m_Stats = null;
-    public SpellList m_SpellList = null;
+    public SpellInfo[] m_BaseSpellInfos = null;
     //Deep Copy => source : Good exemple with the difference between Deep and Shallow
     //"https://www.geeksforgeeks.org/shallow-copy-and-deep-copy-in-c-sharp/"
     //Struct idea for non complex classes ?
@@ -24,42 +24,19 @@ public class BoardEntityData
     {
         m_EntityGroup = data.m_EntityGroup;
         m_Stats = (EntityStats)data.m_Stats.Clone();
-        m_SpellList = data.m_SpellList.Clone();
-    }
-}
-
-[System.Serializable]
-public class SpellList
-{
-    public List<SpellInfo> m_Spells = new List<SpellInfo>();
-
-    public SpellList Clone()
-    {
-        List<SpellInfo> newSpells = new List<SpellInfo>();
-
-        for (int i = 0; i < m_Spells.Count; i++)
-        {
-            newSpells.Add(new SpellInfo(m_Spells[i].m_SpellData,m_Spells[i].m_SpellPriority));
-        }
-        
-        return new SpellList(newSpells);
-    }
-
-    public SpellList(List<SpellInfo> spells)
-    {
-        m_Spells = spells;
+        m_BaseSpellInfos = data.m_BaseSpellInfos;
     }
 }
 
 [System.Serializable]
 public class SpellInfo
 {
-    public SpellData m_SpellData = null;
+    public SpellDataScriptable m_SpellData = null;
     public int m_SpellPriority = 0;
     
-    public SpellInfo(SpellData spellData, int priority)
+    public SpellInfo(SpellDataScriptable spellData, int priority)
     {
-        m_SpellData = (SpellData)spellData.Clone();
+        m_SpellData = spellData;
         m_SpellPriority = priority;
     }
 }

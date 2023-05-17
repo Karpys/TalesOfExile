@@ -1977,14 +1977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpellList:
-  - m_SpellData:
-      Data: {fileID: 11400000, guid: dedf0988c775ddd4db405b1bb9fccd95, type: 2}
-      AttachedEntity: {fileID: 0}
+  - m_SpellData: {fileID: 11400000, guid: dedf0988c775ddd4db405b1bb9fccd95, type: 2}
     m_SpellPriority: 0
-  - m_SpellData:
-      Data: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
-      AttachedEntity: {fileID: 0}
-    m_SpellPriority: 0
+  - m_SpellData: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
+    m_SpellPriority: 3
 --- !u!1 &1946549647
 GameObject:
   m_ObjectHideFlags: 0

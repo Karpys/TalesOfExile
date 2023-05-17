@@ -15,7 +15,6 @@ public abstract class BaseSpellTrigger
     public SpellData SpellData => m_AttachedSpell;
     protected virtual int GetSpellPriority()
     {
-        Debug.Log("Get Spell Prio");
         return m_SpellPriority;
     }
     

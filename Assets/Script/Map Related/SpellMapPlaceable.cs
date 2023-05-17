@@ -10,7 +10,7 @@ public class SpellMapPlaceable : MapPlaceable,IBehave
     public void Initialize(BoardEntity entity,Vector2Int position,BehaveTiming behaveTiming,int behaveCount)
     {
         Place(position);
-        m_AttachedSpell = entity.RegisterSpell(m_SpellInfo).m_SpellData as TriggerSpellData;
+        m_AttachedSpell = entity.RegisterSpell(m_SpellInfo) as TriggerSpellData;
 
         behaveTiming = EntityHelper.GetBehaveTiming(entity,behaveTiming);
         m_BehaviourTrigger.InitBehaviourTrigger(this,behaveTiming,behaveCount);

@@ -113,7 +113,7 @@ public class BoardEntityMovement : MonoBehaviour
         }
         else
         {
-            SpellData autoAttack = m_Entity.GetSpellViaKey("AutoAttack").m_SpellData;
+            SpellData autoAttack = m_Entity.GetSpellViaKey("AutoAttack");
             
             if(autoAttack == null)
                 return;

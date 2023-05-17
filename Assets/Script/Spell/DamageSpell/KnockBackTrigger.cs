@@ -17,7 +17,7 @@ public class KnockBackTrigger : DamageSpellTrigger
     public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
     {
         m_EntityHits.Clear();
-        m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto").m_SpellData as TriggerSpellData;
+        m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto") as TriggerSpellData;
         base.Trigger(spellData, spellTiles,castInfo);
     }
 

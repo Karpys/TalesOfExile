@@ -11,7 +11,7 @@ public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
     {
         foreach (SpellInfo spellData in m_SpellList)
         {
-            Spells.Add(spellData.m_SpellData.Data.SpellKey,spellData);
+            Spells.Add(spellData.m_SpellData.SpellKey,spellData);
         }
     }
 

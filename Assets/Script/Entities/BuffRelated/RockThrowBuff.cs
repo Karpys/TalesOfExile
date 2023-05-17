@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class RockThrowBuff : Buff
 {
-    [SerializeField] private SpellData m_TriggerSpellData = null;
-    private TriggerSpellData Trigger => m_TriggerSpellData as TriggerSpellData;
+    [SerializeField] private SpellInfo m_SpellInfo = null;
+    
+    private TriggerSpellData m_TriggerSpellData = null;
     private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
     
     protected override void Apply()
     {
-        m_TriggerSpellData = m_Receiver.RegisterSpell(m_TriggerSpellData);
+        m_TriggerSpellData = m_Receiver.RegisterSpell(m_SpellInfo) as TriggerSpellData;
         
-        ((DamageSpellTrigger)Trigger.SpellTrigger).SetInitialDamageSource(m_BuffValue);
-        Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
+        ((DamageSpellTrigger)m_TriggerSpellData.SpellTrigger).SetInitialDamageSource(m_BuffValue);
+        m_TriggerSpellData.SpellTrigger.ComputeSpellData(m_Receiver);
 
         m_Receiver.EntityEvent.OnRequestCastEvent += AddThrowCallBack;
         m_Receiver.ComputeAllSpells();
@@ -42,7 +43,7 @@ public class RockThrowBuff : Buff
         {
             Vector2Int receiver = m_RockReceiver[i];
             
-            SpellCastUtils.CastSpellAt(Trigger, receiver,m_Receiver.EntityPosition);
+            SpellCastUtils.CastSpellAt(m_TriggerSpellData, receiver,m_Receiver.EntityPosition);
         }
 
         m_RockReceiver.Clear();
@@ -58,6 +59,6 @@ public class RockThrowBuff : Buff
 
     private void Recompute()
     {
-        Trigger.SpellTrigger.ComputeSpellData(m_Receiver);
+        m_TriggerSpellData.SpellTrigger.ComputeSpellData(m_Receiver);
     }
 }

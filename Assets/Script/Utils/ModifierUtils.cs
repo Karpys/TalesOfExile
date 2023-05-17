@@ -49,7 +49,7 @@ public static class ModifierUtils
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
             {ModifierType.SpellAddition, (m, e) =>
                 {
-                    SpellInfo spellToAdd = e.GetSpellViaKey(m.Value);
+                    SpellData spellToAdd = e.GetSpellViaKey(m.Value);
                     if (spellToAdd == null)
                     {
                         Debug.Log("No Spell key to remove found :" + m.Value);

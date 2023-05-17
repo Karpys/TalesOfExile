@@ -175,16 +175,18 @@ public abstract class BoardEntity : MonoBehaviour
     
     protected EntityBehaviour m_EntityBehaviour = null;
     [SerializeField] protected BoardEntityData m_EntityData = null;
+    
     protected MapData m_TargetMap = null;
     protected EntityEquipement m_Equipement = null;
     protected EntityBuffs m_Buffs = null;
     protected BoardEntityLife m_EntityLife = null;
     protected BoardEntityEventHandler m_EntityEvent = null;
+    protected List<SpellData> m_Spells = new List<SpellData>();
 
     public MapData Map => m_TargetMap;
     public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
     public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
-    public List<SpellInfo> Spells => m_EntityData.m_SpellList.m_Spells;
+    public List<SpellData> Spells => m_Spells;
     public EntityStats EntityStats => m_EntityData.m_Stats;
     public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
     public EntityGroup TargetEntityGroup => m_EntityData.m_TargetEntityGroup;
@@ -308,9 +310,9 @@ public abstract class BoardEntity : MonoBehaviour
     
     private void RegisterStartSpells()
     {
-        for (int i = 0; i < m_EntityData.m_SpellList.m_Spells.Count; i++)
+        for (int i = 0; i < m_EntityData.m_BaseSpellInfos.Length; i++)
         {
-            m_EntityData.m_SpellList.m_Spells[i] = RegisterSpell(m_EntityData.m_SpellList.m_Spells[i]);
+            m_Spells.Add(RegisterSpell(m_EntityData.m_BaseSpellInfos[i]));
         }
     }
 
@@ -322,40 +324,34 @@ public abstract class BoardEntity : MonoBehaviour
         }
     }
 
-    public SpellInfo RegisterSpell(SpellInfo spell)
+    public SpellData RegisterSpell(SpellInfo spell)
     {
-        spell.m_SpellData.AttachedEntity = this;
-        return  spell.m_SpellData.Initialize(spell.m_SpellPriority);
-    }
-    
-    public SpellData RegisterSpell(SpellData spell)
-    {
-        spell.AttachedEntity = this;
-        return spell.Initialize(0).m_SpellData;
+        SpellData spellData = new SpellData(spell,this).Initialize(spell,this);
+        return spellData;
     }
 
     public void AddSpellToSpellList(SpellInfo spell)
     {
-        Debug.Log("Add spell : "  + spell.m_SpellData.Data.SpellKey);
-        m_EntityData.m_SpellList.m_Spells.Add(RegisterSpell(spell));
+        Debug.Log("Add spell : "  + spell.m_SpellData.SpellKey);
+        m_Spells.Add(RegisterSpell(spell));
         
         if(this == GameManager.Instance.ControlledEntity)
             GameManager.Instance.RefreshTargetEntitySkills();
     }
 
-    public void RemoveSpellToSpellList(SpellInfo spell)
+    public void RemoveSpellToSpellList(SpellData spell)
     {
-        m_EntityData.m_SpellList.m_Spells.Remove(spell);
+        m_Spells.Remove(spell);
 
         if(this == GameManager.Instance.ControlledEntity)
             GameManager.Instance.RefreshTargetEntitySkills();
     }
 
-    public SpellInfo GetSpellViaKey(string spellKey)
+    public SpellData GetSpellViaKey(string spellKey)
     {
-        foreach (SpellInfo spellInfo in Spells)
+        foreach (SpellData spellInfo in Spells)
         {
-            if (spellInfo.m_SpellData.Data.SpellKey == spellKey)
+            if (spellInfo.Data.SpellKey == spellKey)
                 return spellInfo;
         }
         return null;
@@ -363,9 +359,9 @@ public abstract class BoardEntity : MonoBehaviour
 
     public void ReduceAllCooldown()
     {
-        foreach (SpellInfo spellData in Spells)
+        foreach (SpellData spellData in Spells)
         {
-            if (spellData.m_SpellData is TriggerSpellData triggerData)
+            if (spellData is TriggerSpellData triggerData)
             {
                 triggerData.ReduceCooldown();       
             }
@@ -375,12 +371,12 @@ public abstract class BoardEntity : MonoBehaviour
     //Need to be used when the entity is buffed / Equip / Unequip items//
     public void ComputeAllSpells()
     {
-        foreach (SpellInfo spellData in Spells)
+        foreach (SpellData spellData in Spells)
         {
-            if(spellData.m_SpellData.Data.SpellType == SpellType.Support)
+            if(spellData.Data.SpellType == SpellType.Support)
                 continue;
             
-            TriggerSpellData triggerSpell = spellData.m_SpellData as TriggerSpellData;
+            TriggerSpellData triggerSpell = spellData as TriggerSpellData;
             triggerSpell.SpellTrigger.ComputeSpellData(this);
         }
 

@@ -2,34 +2,35 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class SpellData
 {
-    public SpellDataScriptable Data = null;
-    [HideInInspector]public BoardEntity AttachedEntity = null;
+    protected SpellDataScriptable m_Data = null;
+    protected BoardEntity m_AttachedEntity = null;
 
+    public BoardEntity AttachedEntity => m_AttachedEntity;
+    public SpellDataScriptable Data => m_Data;
 
-    public virtual SpellInfo Initialize(int priority)
+    public virtual SpellData Initialize(SpellInfo spellInfo,BoardEntity attachedEntity)
     {
         //TODO:SAME with support Spells
-        switch (Data.SpellType)
+        switch (m_Data.SpellType)
         {
             case SpellType.Trigger:
-                TriggerSpellData triggerSpellData = new TriggerSpellData(this);
-                return triggerSpellData.Initialize(priority);
+                TriggerSpellData triggerSpellData = new TriggerSpellData(spellInfo,attachedEntity);
+                return triggerSpellData.Initialize(spellInfo, attachedEntity);
             case SpellType.Buff:
-                TriggerSpellData buffSpellData = new TriggerSpellData(this);
-                return buffSpellData.Initialize(priority);
+                TriggerSpellData buffSpellData = new TriggerSpellData(spellInfo,attachedEntity);
+                return buffSpellData.Initialize(spellInfo, attachedEntity);
             default:
                 Debug.LogError("Missing SpellType Implementation");
-                return new SpellInfo(this,priority);
+                return this;
         }
     }
-
-    public SpellData(SpellData baseSpellData)
+    
+    public SpellData(SpellInfo baseSpellInfo,BoardEntity attachedEntity)
     {
-        Data = baseSpellData.Data;
-        AttachedEntity = baseSpellData.AttachedEntity;
+        m_Data = baseSpellInfo.m_SpellData;
+        m_AttachedEntity = attachedEntity;
     }
     
     public virtual object Clone()
