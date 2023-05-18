@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: Spell Test
   SpellType: 0
-  SpellGroups: 
+  SpellGroups: 05000000
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: a0614144088a523409447975d3cb4e41, type: 2}
+  m_SpellTrigger: {fileID: 11400000, guid: 4ae3facf6b1746f41bc6c91e3ce7c153, type: 2}
   m_BaseCooldown: 0
   m_Selection:
   - Origin: 0
@@ -31,15 +31,13 @@ MonoBehaviour:
   - Origin: 1
     Zone:
       DisplayType: 1
-      Range: 1
+      Range: 2
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 2
+  SpellRestrictions: []
   AllowedCastZone:
     DisplayType: -1
     Range: 0

@@ -33,7 +33,7 @@ public class RockThrowBuff : Buff
     private void ThrowRocks(CastInfo castInfo)
     {
         GameManager.Instance.AddCallBackAction(ThrowRocks);
-        m_RockReceiver = castInfo.HitEntity.Where(en => !ReferenceEquals(en, null)).Select(en => en.EntityPosition).ToList();
+        m_RockReceiver.AddRange(castInfo.HitEntity.Where(en => !ReferenceEquals(en, null)).Select(en => en.EntityPosition).ToList());
     }
     
     

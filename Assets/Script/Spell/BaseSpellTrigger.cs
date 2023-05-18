@@ -24,7 +24,7 @@ public abstract class BaseSpellTrigger
         m_AttachedSpell = spellData;
     }
 
-    public void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
+    public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
         CastInfo castInfo = null;
         if (OnCastSpell != null)
