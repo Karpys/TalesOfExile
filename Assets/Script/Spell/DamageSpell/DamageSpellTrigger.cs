@@ -6,13 +6,15 @@ using UnityEngine;
 //The animation part can be move to BaseTargetEntitySpell//
 public class DamageSpellTrigger : SelectionSpellTrigger
 {
-    public DamageParameters DamageSpellData = null;
+    protected DamageParameters m_DamageSpellParams = null;
 
-    protected Dictionary<SubDamageType, DamageSource> DamageSources = new Dictionary<SubDamageType, DamageSource>();
+    protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
+
+    public Dictionary<SubDamageType, DamageSource> DamageSource => m_DamageSources;
     public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
     {
         Debug.Log("Call Base Damage Spell Trigger");
-        DamageSpellData = new DamageParameters(damageSpellData.BaseDamageParameters);
+        m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
     }
 
     #region ComputePart
@@ -21,7 +23,7 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 
     public override void ComputeSpellData(BoardEntity entity)
     {
-        DamageSources.Clear();
+        m_DamageSources.Clear();
 
         FloatSocket bonusModifier = new FloatSocket();
         entity.EntityEvent.OnRequestSpellDamage?.Invoke(this,bonusModifier);
@@ -34,30 +36,30 @@ public class DamageSpellTrigger : SelectionSpellTrigger
 
     private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
     {
-        float damageModifier = entity.EntityStats.GetDamageParametersModifier(DamageSpellData, bonusModifier);
+        float damageModifier = entity.EntityStats.GetDamageParametersModifier(m_DamageSpellParams, bonusModifier);
         
-        foreach (DamageSource source in DamageSources.Values)
+        foreach (DamageSource source in m_DamageSources.Values)
         {
-            source.Damage *= damageModifier;
+            var damageSource = source;
+            damageSource.Damage *= damageModifier;
         }
     }
 
     public void AddDamageSource(DamageSource damageSource)
     {
-        DamageSource currentSource = null;
-        if (DamageSources.TryGetValue(damageSource.DamageType, out currentSource))
+        if (m_DamageSources.TryGetValue(damageSource.DamageType, out var currentSource))
         {
             currentSource.Damage += damageSource.Damage;
         }
         else
         {
-            DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
+            m_DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
         }
     }
 
     protected virtual void ComputeSpellDamage(BoardEntity entity)
     {
-        AddDamageSource(new DamageSource(DamageSpellData.InitialSourceDamage));
+        AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
     }
 
     #endregion
@@ -67,29 +69,41 @@ public class DamageSpellTrigger : SelectionSpellTrigger
     {
         base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
         DamageEntity(entity,spellData,targetGroup);
+        castInfo?.AddHitEntity(entity);
     }
 
     protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
     {
         float totalDamage = 0;
-        MainDamageType mainDamageType = DamageSpellData.DamageType.MainDamageType;
+        MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
         //Foreach Damage Sources//
-        foreach (DamageSource damageSource in DamageSources.Values)
+        foreach (DamageSource damageSource in m_DamageSources.Values)
         {
-            totalDamage += DamageManager.Instance.TryDamageEnemy(entity, spellData.AttachedEntity,damageSource,mainDamageType,spellData); //DamageSource);
+            totalDamage += DamageManager.Instance.TryDamageEnemy(entity,damageSource,mainDamageType); //DamageSource);
         }
         
+        entity.EntityEvent.TriggerGetDamageAction(spellData.AttachedEntity,this);
         entity.TakeDamage(totalDamage);
 
         /*Text Display */
         if (targetGroup == EntityGroup.Enemy)
         {
-            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(DamageSources),m_SpellAnimDelay);
+            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
         }
     }
 
     public void SetInitialDamageSource(float initialDamageSource)
     {
-        DamageSpellData.InitialSourceDamage.Damage = initialDamageSource;
+        m_DamageSpellParams.InitialSourceDamage.Damage = initialDamageSource;
+    }
+
+    protected override CastInfo GetCastInfo(TriggerSpellData spellData)
+    {
+        if (OnCastSpell != null)
+        {
+            return new DamageCastInfo(spellData);
+        }
+
+        return null;
     }
 }

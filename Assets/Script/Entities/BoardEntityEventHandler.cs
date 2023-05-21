@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardEntityEventHandler : MonoBehaviour
@@ -6,22 +7,16 @@ public class BoardEntityEventHandler : MonoBehaviour
     public Action<IntSocket> OnRequestBlockSpell = null;
     public Action OnDeath = null;
     //TriggerSpellData can be null
-    public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFrom = null;
-    public Action<BoardEntity,DamageSource,TriggerSpellData> OnDoDamageTo = null;
+    public Action<BoardEntity,DamageSpellTrigger> OnGetDamageFromSpell = null;
     public Action<TriggerSpellData> OnGetHit = null;
     public Action<BaseSpellTrigger> OnRequestCastEvent = null;
 
     public Action<DamageSpellTrigger,FloatSocket> OnRequestSpellDamage = null;
     public Action OnSpellRecompute = null;
     public Action OnBehave = null;
-    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSource damageSource,TriggerSpellData spellDamage)
+    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSpellTrigger spellDamageTrigger)
     {
-        OnGetDamageFrom?.Invoke(damageFrom,damageSource,spellDamage);
-    }
-
-    public void TriggerDoDamageAction(BoardEntity damageTo, DamageSource damageSource,TriggerSpellData spellDamage)
-    {
-        OnDoDamageTo?.Invoke(damageTo,damageSource,spellDamage);
+        OnGetDamageFromSpell?.Invoke(damageFrom,spellDamageTrigger);
     }
 }
 

@@ -26,14 +26,20 @@ public abstract class BaseSpellTrigger
 
     public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
     {
-        CastInfo castInfo = null;
-        if (OnCastSpell != null)
-        {
-            castInfo = new CastInfo(spellData);
-        }
+        CastInfo castInfo = GetCastInfo(spellData);
         
         Trigger(spellData,spellTiles,castInfo);
         OnCastSpell?.Invoke(castInfo);
+    }
+
+    protected virtual CastInfo GetCastInfo(TriggerSpellData spellData)
+    {
+        if (OnCastSpell != null)
+        {
+            return new CastInfo(spellData);
+        }
+
+        return null;
     }
     public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo);
 
@@ -42,18 +48,29 @@ public abstract class BaseSpellTrigger
 
 public class CastInfo
 {
-    private List<BoardEntity> m_HitEntity = new List<BoardEntity>();
     private SpellData m_SpellCasted = null;
-
     public SpellData SpellCasted => m_SpellCasted;
-    public List<BoardEntity> HitEntity => m_HitEntity;
-    public void AddHitEntity(BoardEntity boardEntity)
-    {
-        m_HitEntity.Add(boardEntity);
-    }
 
     public CastInfo(SpellData spellCasted)
     {
         m_SpellCasted = spellCasted;
     }
+    
+    public virtual void AddHitEntity(BoardEntity boardEntity)
+    {
+    }
+}
+
+public class DamageCastInfo:CastInfo
+{
+    private List<BoardEntity> m_HitEntity = new List<BoardEntity>();
+    public List<BoardEntity> HitEntity => m_HitEntity;
+
+    public override void AddHitEntity(BoardEntity boardEntity)
+    {
+        m_HitEntity.Add(boardEntity);
+    }
+
+    public DamageCastInfo(SpellData spellCasted) : base(spellCasted)
+    {}
 }

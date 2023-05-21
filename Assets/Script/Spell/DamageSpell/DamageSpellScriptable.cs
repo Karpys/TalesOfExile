@@ -20,9 +20,9 @@ public class DamageSpellScriptable : BaseSpellTriggerScriptable
 public class AddDamageModifier
 {
     public DamageType TargetDamageType = null;
-    public DamageSource AddedDamageSource = null;
+    public DamageSource AddedDamageSource;
 
-    public DamageSource GetAdditionalDamage(DamageType initialDamageType)
+    public DamageSource? GetAdditionalDamage(DamageType initialDamageType)
     {
         if (initialDamageType.MainDamageType == TargetDamageType.MainDamageType)
             return AddedDamageSource;

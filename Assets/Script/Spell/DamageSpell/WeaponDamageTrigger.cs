@@ -11,7 +11,7 @@
     {
         base.ComputeSpellDamage(entity);
         DamageSource weaponDamageSource = new DamageSource(entity.GetMainWeaponDamage() * WeaponDamageConvertion / 100,
-            DamageSpellData.InitialSourceDamage.DamageType);
+            m_DamageSpellParams.InitialSourceDamage.DamageType);
         AddDamageSource(weaponDamageSource);
     }
 

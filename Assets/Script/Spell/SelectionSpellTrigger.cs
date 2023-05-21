@@ -37,8 +37,6 @@ public abstract class SelectionSpellTrigger:BaseSpellTrigger
 
             TriggerOnHitFx(entity.WorldPosition,null);
         }
-
-        castInfo?.AddHitEntity(entity);
     }
 
     protected virtual void TriggerOnHitFx(Vector3 entityPosition,Transform transform, params object[] args)
