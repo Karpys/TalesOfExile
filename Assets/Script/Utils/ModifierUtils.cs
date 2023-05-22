@@ -8,18 +8,30 @@ public static class ModifierUtils
 {
     private static readonly Dictionary<ModifierType, Action<Modifier, BoardEntity>> applyActions;
     private static readonly Dictionary<ModifierType, Action<Modifier, BoardEntity>> unapplyActions;
+    private static readonly Dictionary<ModifierType, Func<Modifier,string>> descriptionModifiers;
 
     static ModifierUtils()
     {
         applyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
         {
+            //Damage type
             {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
             {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
             {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
+            {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier += m.FloatValue},
+            {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier += m.FloatValue},
+            //GlobalDamage
             {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier += m.FloatValue},
             {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
-            {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
+            //Resistance
+            {ModifierType.UpColdResistance,(m,e) => e.EntityStats.ColdDamageReduction += m.FloatValue},
+            {ModifierType.UpFireResistance,(m,e) => e.EntityStats.FireDamageReduction += m.FloatValue},
+            {ModifierType.UpPhysicalResistance,(m,e) => e.EntityStats.PhysicalDamageReduction += m.FloatValue},
+            {ModifierType.UpLightningResistance,(m,e) => e.EntityStats.LightningDamageReduction += m.FloatValue},
+            {ModifierType.UpElementResistance,(m,e) => e.EntityStats.ElementalDamageReduction += m.FloatValue},
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
+            //Misc
+            {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
             {ModifierType.SpellAddition, (m, e) =>
                 {
                     SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
@@ -40,11 +52,22 @@ public static class ModifierUtils
 
         unapplyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
         {
+            //Damage type
             {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier -= m.FloatValue},
             {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
             {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
+            {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier -= m.FloatValue},
+            {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier -= m.FloatValue},
+            //Global Damage
             {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier -= m.FloatValue},
             {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
+            //Resistance
+            {ModifierType.UpColdResistance,(m,e) => e.EntityStats.ColdDamageReduction -= m.FloatValue},
+            {ModifierType.UpFireResistance,(m,e) => e.EntityStats.FireDamageReduction -= m.FloatValue},
+            {ModifierType.UpPhysicalResistance,(m,e) => e.EntityStats.PhysicalDamageReduction -= m.FloatValue},
+            {ModifierType.UpLightningResistance,(m,e) => e.EntityStats.LightningDamageReduction -= m.FloatValue},
+            {ModifierType.UpElementResistance,(m,e) => e.EntityStats.ElementalDamageReduction -= m.FloatValue},
+            //Misc
             {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser -= 1 },
             {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
             {ModifierType.SpellAddition, (m, e) =>
@@ -66,10 +89,34 @@ public static class ModifierUtils
                 }
             },
         };
+        
+        descriptionModifiers = new Dictionary<ModifierType, Func<Modifier, string>>()
+        {
+            //Damage Type
+            { ModifierType.UpCold, modifier => $"+{modifier.Value}% Cold damage" },
+            { ModifierType.UpFire, modifier => $"+{modifier.Value}% Fire damage" },
+            { ModifierType.UpLightning, modifier => $"+{modifier.Value}% Lightning damage" },
+            { ModifierType.UpPhysical, modifier => $"+{modifier.Value}% Physical damage" },
+            { ModifierType.UpElemental, modifier => $"+{modifier.Value}% Elemental damage" },
+            //Global Damage
+            { ModifierType.IncreaseWeaponForce, modifier => $"Increase weapon damage by {modifier.Value}" },
+            { ModifierType.IncreaseSpellDamage, modifier => $"+{modifier.Value}% Spell damage" },
+            //Resistance
+            {ModifierType.UpColdResistance,modifier => $"+{modifier.Value}% Cold resistance"},
+            {ModifierType.UpFireResistance,modifier =>$"+{modifier.Value}% Fire resistance"},
+            {ModifierType.UpPhysicalResistance,modifier => $"+{modifier.Value}% Physical resistance"},
+            {ModifierType.UpLightningResistance,modifier => $"+{modifier.Value}% Lightning resistance"},
+            {ModifierType.UpElementResistance,modifier => $"+{modifier.Value}% Elemental resistance"},
+            { ModifierType.IncreaseMaxLife, modifier => $"+{modifier.Value} Maximum Life" },
+            //Misc
+            { ModifierType.SpellAddition, modifier => $"Add {modifier.Value} spell" },
+            { ModifierType.AddThrowRockPassif, modifier => $"Throw Rock dealing {modifier.Value} damage" },
+            { ModifierType.CanUseBowTalent, _ => "Can use bow talent" },
+        };
     }
     public static void ApplyModifier(Modifier modifier,BoardEntity entity)
     {
-        if (applyActions.TryGetValue(modifier.Type, out Action<Modifier, BoardEntity> action))
+        if (applyActions.TryGetValue(modifier.Type, out var action))
         {
             action.Invoke(modifier,entity);
         }
@@ -81,7 +128,7 @@ public static class ModifierUtils
     
     public static void UnapplyModifier(Modifier modifier, BoardEntity entity)
     {
-        if (unapplyActions.TryGetValue(modifier.Type, out Action<Modifier, BoardEntity> action))
+        if (unapplyActions.TryGetValue(modifier.Type, out var action))
         {
             action.Invoke(modifier,entity);
         }
@@ -102,29 +149,14 @@ public static class ModifierUtils
     
     public static string GetModifierDescription(Modifier modifier)
     {
-        switch (modifier.Type)
+        if (descriptionModifiers.TryGetValue(modifier.Type, out var descriptionFunc))
         {
-            case ModifierType.UpCold:
-                return "+" + modifier.Value + "% Cold damage";
-            case ModifierType.UpFire:
-                return "+" + modifier.Value + "% Fire damage";
-            case ModifierType.UpPhysical:
-                return "+" + modifier.Value + "% Physical damage";
-            case ModifierType.IncreaseWeaponForce:
-                return "Increase weapon damage by " + modifier.Value;
-            case ModifierType.IncreaseMaxLife:
-                return "+" + modifier.Value + " Maximum Life";
-            case ModifierType.SpellAddition:
-                return "Add " + modifier.Value + " spell";
-            case ModifierType.AddThrowRockPassif:
-                return "Throw Rock dealing " + modifier.Value + " damage";
-            case ModifierType.CanUseBowTalent:
-                return "Can use bow talent";
-            case ModifierType.IncreaseSpellDamage:
-                return "+" + modifier.Value + "% Spell damage";
-            default:
-                Debug.LogError("Modifier type has not been set up " + modifier.Type);
-                return "Not Recognised";
+            return descriptionFunc(modifier);
+        }
+        else
+        {
+            Debug.LogError("Modifier type has not been set up: " + modifier.Type);
+            return "Not Recognized";
         }
     }
     

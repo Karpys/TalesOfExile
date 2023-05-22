@@ -27,7 +27,7 @@ public class EntityStats
     //SubTypeModifier//
     [Header("Sub Damage Modifier")]
     public float ColdDamageModifier = 0f;
-    public float HolyDamageModifier = 0f;
+    public float LightningDamageModifier = 0f;
     public float FireDamageModifier = 0f;
     public float PhysicalDamageModifier = 0f;
     public float ElementalDamageModifier = 0f;
@@ -42,7 +42,7 @@ public class EntityStats
 
     [Header("Sub DamageType Percentage Reduction")]
     public float ColdDamageReduction = 0; 
-    public float HolyDamageReduction = 0; 
+    public float LightningDamageReduction = 0; 
     public float FireDamageReduction = 0; 
     public float PhysicalDamageReduction = 0; 
     public float ElementalDamageReduction = 0;
@@ -64,8 +64,8 @@ public class EntityStats
         {
             case SubDamageType.Cold:
                 return ColdDamageModifier;
-            case SubDamageType.Holy:
-                return HolyDamageModifier;
+            case SubDamageType.Lightning:
+                return LightningDamageModifier;
             case SubDamageType.Fire:
                 return FireDamageModifier;
             case SubDamageType.Physical:
@@ -104,8 +104,8 @@ public class EntityStats
             case SubDamageType.Cold:
                 percentageReduction = ColdDamageReduction;
                 break;
-            case SubDamageType.Holy:
-                percentageReduction = HolyDamageReduction;
+            case SubDamageType.Lightning:
+                percentageReduction = LightningDamageReduction;
                 break;
             case SubDamageType.Fire:
                 percentageReduction = FireDamageReduction;
@@ -121,6 +121,7 @@ public class EntityStats
                 break;
         }
 
+        percentageReduction = Mathf.Min(percentageReduction, 75f);
         return new Vector2(flatReduction, percentageReduction);
     }
     

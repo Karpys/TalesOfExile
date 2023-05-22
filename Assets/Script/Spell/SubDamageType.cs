@@ -4,6 +4,6 @@ public enum SubDamageType
     Elemental,
     Fire,
     Cold,
-    Holy,
+    Lightning,
     //Ect ect
 }

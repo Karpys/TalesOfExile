@@ -26,5 +26,5 @@ MonoBehaviour:
     Value: 20
   - Type: 20
     Value: 10
-  m_ModifierPool: {fileID: 11400000, guid: 37f28af151c6d6f4e956a4cf735e20a6, type: 2}
+  m_ModifierPool: {fileID: 11400000, guid: 7badc78203ca4e1439903d3ab1aa2236, type: 2}
   m_IsTwoHanded: 0

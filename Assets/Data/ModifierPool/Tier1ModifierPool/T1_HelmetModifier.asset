@@ -17,21 +17,31 @@ MonoBehaviour:
       m_WeightElement:
       - m_Weight: 25
         m_Object:
-          m_Type: 0
+          m_Type: 22
           m_Range: {x: 5, y: 10}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 1
+          m_Type: 23
           m_Range: {x: 5, y: 10}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 2
+          m_Type: 24
           m_Range: {x: 5, y: 10}
           m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 21
           m_Range: {x: 15, y: 35}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
+          m_Type: 26
+          m_Range: {x: 5, y: 10}
+          m_Params: 
+      - m_Weight: 25
+        m_Object:
+          m_Type: 25
+          m_Range: {x: 5, y: 10}
           m_Params: 

@@ -24,5 +24,5 @@ MonoBehaviour:
   m_EquipementBaseModifiers:
   - Type: 20
     Value: 17
-  m_ModifierPool: {fileID: 11400000, guid: 37f28af151c6d6f4e956a4cf735e20a6, type: 2}
+  m_ModifierPool: {fileID: 11400000, guid: 78efa987be6891541a172aae3d5d8631, type: 2}
   m_IsTwoHanded: 0
