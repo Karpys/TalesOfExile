@@ -2,6 +2,8 @@
 
 public class BoardEntityMovement : MonoBehaviour
 {
+    [SerializeField] private SpellInterpretor m_Interpretor = null;
+    
     private BoardEntity m_Entity = null;
     
     private Vector2Int m_ComputedInput = Vector2Int.zero;
@@ -109,6 +111,7 @@ public class BoardEntityMovement : MonoBehaviour
         if (MapData.Instance.IsWalkable(targetPosition))
         {
             m_Entity.MoveTo(targetPosition);
+            m_Interpretor.OnMovementResetSpellQueue();
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
         else
@@ -125,6 +128,7 @@ public class BoardEntityMovement : MonoBehaviour
             
             Debug.Log("Auto Attack");
             SpellCastUtils.CastSpellAt(autoAttack as TriggerSpellData,targetPosition,m_Entity.EntityPosition);
+            m_Interpretor.OnMovementResetSpellQueue();
             GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
         }
     }

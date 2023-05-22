@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpellIcon : MonoBehaviour
+public class SpellIcon : UIPointer
 {
     //Spell Data to use//
     //Retrieve spell display//
@@ -12,28 +12,24 @@ public class SpellIcon : MonoBehaviour
     [SerializeField] private Image m_SpellIcon = null;
     [SerializeField] private Image m_SpellIconBorder = null;
     [SerializeField] private TMP_Text m_SpellKey = null;
-    [SerializeField] private Button m_ButtonSpellTrigger = null;
 
     private SpellInterfaceController m_InterfaceController = null;
     
     private TriggerSpellData m_CurrentSpellData = null;
     private KeyCode m_SpellKeyCode = KeyCode.Alpha1;
     private bool m_IsControlKey = false;
+    private int m_Id = -1;
     public TriggerSpellData SpellData => m_CurrentSpellData;
 
     private static int START_ID_KEYCODE = 49;
 
-    private void Awake()
-    {
-        m_ButtonSpellTrigger.onClick.AddListener(TryUseSpell);
-    }
-
-    public void Initialize(SpellInterfaceController controller)
+    public void Initialize(SpellInterfaceController controller,int id)
     {
         m_InterfaceController = controller;
+        m_Id = id;
     }
 
-    private void TryUseSpell()
+    public void TryUseSpell()
     {
         //Conditionnal Spell Check//
         if(m_CurrentSpellData == null)
@@ -99,5 +95,15 @@ public class SpellIcon : MonoBehaviour
     public void EnableIcon(bool enable)
     {
         m_DisplayContainer.SetActive(enable);
+    }
+
+    protected override void OnEnter()
+    {
+        m_InterfaceController.SetPointer(this);
+    }
+
+    protected override void OnExit()
+    {
+        return;
     }
 }

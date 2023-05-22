@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpellInterpretor : MonoBehaviour
 {
+   [SerializeField] private GlobalCanvas m_GlobalCanvas = null;
    [SerializeField] private Color m_ActionColor = Color.white;
    [SerializeField] private Color m_DisplayColor = Color.white;
    
@@ -19,12 +20,14 @@ public class SpellInterpretor : MonoBehaviour
    private Vector2Int m_OriginTile = Vector2Int.zero;
    private Vector2Int m_CastOriginTile = Vector2Int.zero;
    private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
+   
    public void LaunchSpellQueue(TriggerSpellData spell)
    {
       ResetSpellQueue();
       
       if(!spell.IsCooldownReady())
          return;
+      
       m_CurrentSpell = spell;
       m_CurrentSpellQueue = 0;
       //Launch Spell Queue
@@ -32,9 +35,12 @@ public class SpellInterpretor : MonoBehaviour
 
    public void Update()
    {
-      if (Input.GetMouseButtonDown(0))
+      if (Input.GetMouseButtonDown(0) && !m_GlobalCanvas.IsOnCanvas(UICanvasType.SpellIcons))
       {
          Validation = true;
+      }else if (Input.GetMouseButtonDown(1))
+      {
+         ResetSpellQueue();
       }
       
       //Spell Queue Update Loop
@@ -162,6 +168,11 @@ public class SpellInterpretor : MonoBehaviour
       m_OriginTiles.Clear();
       m_DisplayTiles.Clear();
       HighlightTilesManager.Instance.ResetHighlighTilesAndLock();
+   }
+
+   public void OnMovementResetSpellQueue()
+   {
+      ResetSpellQueue();
    }
    
    private Color GetColor(ZoneSelection selection)

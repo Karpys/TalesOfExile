@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be1d94ed94842839e29e7cc57ad6236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Interpretor: {fileID: 2045092499}
 --- !u!1 &52797353
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpellUI: {fileID: 6837714218827805255, guid: 2325e73628d3eee47b3fdc18c169bbc5, type: 3}
-  m_SpellCount: 18
   m_SpellLayout: {fileID: 1553008921}
   m_Interpretor: {fileID: 2045092499}
 --- !u!222 &474328539
@@ -2176,6 +2176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3e377572164ab480daca4c78e498eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GlobalCanvas: {fileID: 1072997887}
   m_ActionColor: {r: 0, g: 0.42352942, b: 0.15686275, a: 1}
   m_DisplayColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
 --- !u!4 &2045092500
