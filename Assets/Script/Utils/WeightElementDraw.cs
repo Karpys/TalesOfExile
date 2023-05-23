@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 
 /// <summary>
-/// Use StaticWeightElementDraw if called multiple times
+/// Use StaticWeightElementDraw if the size never change
 /// </summary>
 [System.Serializable]
 public class WeightElementDraw<T> where T:class
@@ -31,7 +31,7 @@ public class WeightElementDraw<T> where T:class
             }
         }
         
-        return (T)m_WeightElement[elementId].Object;
+        return m_WeightElement[elementId].Object;
     }
 
     protected virtual float GetTotalWeight()
