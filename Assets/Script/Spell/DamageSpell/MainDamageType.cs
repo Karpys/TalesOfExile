@@ -1,7 +1,10 @@
-public enum MainDamageType
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    Melee,
-    Projectile,
-    Spell,
-    None,
+    public enum MainDamageType
+    {
+        Melee,
+        Projectile,
+        Spell,
+        None,
+    }
 }

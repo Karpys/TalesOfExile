@@ -1,12 +1,15 @@
-﻿public class RegenerationBuff : Buff
+﻿namespace KarpysDev.Script.Entities.BuffRelated
 {
-    protected override void Apply()
+    public class RegenerationBuff : Buff
     {
-        m_Receiver.Life.AddRegeneration(m_BuffValue);
-    }
+        protected override void Apply()
+        {
+            m_Receiver.Life.AddRegeneration(m_BuffValue);
+        }
 
-    protected override void UnApply()
-    {
-        m_Receiver.Life.AddRegeneration(-m_BuffValue);
+        protected override void UnApply()
+        {
+            m_Receiver.Life.AddRegeneration(-m_BuffValue);
+        }
     }
 }

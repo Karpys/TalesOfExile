@@ -1,5 +1,8 @@
-public enum ZoneOrigin
+namespace KarpysDev.Script.Spell
 {
-    Self,
-    Mouse,
+    public enum ZoneOrigin
+    {
+        Self,
+        Mouse,
+    }
 }

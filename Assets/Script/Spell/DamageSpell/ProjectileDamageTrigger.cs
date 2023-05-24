@@ -1,23 +1,27 @@
+using KarpysDev.Script.Map_Related;
 using UnityEngine;
 
-public class ProjectileDamageTrigger : DamageSpellTrigger
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    private Vector3 m_OriginPosition = Vector3.zero; 
-    public ProjectileDamageTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
-
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+    public class ProjectileDamageTrigger : DamageSpellTrigger
     {
-        m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.CenterOrigin);
-        base.Trigger(spellData, spellTiles, castInfo);
-    }
+        private Vector3 m_OriginPosition = Vector3.zero; 
+        public ProjectileDamageTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
 
-    protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
-    {
-        base.TriggerOnHitFx(m_OriginPosition, transform,m_OriginPosition,entityPosition);
-    }
+        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+        {
+            m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.CenterOrigin);
+            base.Trigger(spellData, spellTiles, castInfo);
+        }
 
-    protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
-    {
-        base.TriggerTileHitFx(m_OriginPosition, transform, m_OriginPosition,tilePosition);
+        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        {
+            base.TriggerOnHitFx(m_OriginPosition, transform,m_OriginPosition,entityPosition);
+        }
+
+        protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
+        {
+            base.TriggerTileHitFx(m_OriginPosition, transform, m_OriginPosition,tilePosition);
+        }
     }
 }

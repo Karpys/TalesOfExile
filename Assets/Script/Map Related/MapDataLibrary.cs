@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Map_Related.MapGeneration;
+using UnityEngine;
 
-public class MapDataLibrary : SingletonMonoBehavior<MapDataLibrary>
+namespace KarpysDev.Script.Map_Related
 {
-    public float TileSize = 0;
-    [SerializeField] private MapTileReloader BaseMapReloader = null;
-
-    public void AddReloaderAt(Vector2Int pos)
+    public class MapDataLibrary : SingletonMonoBehavior<MapDataLibrary>
     {
-        Instantiate(BaseMapReloader, MapData.Instance.transform).SetReloadPosition(pos);
+        public float TileSize = 0;
+        [SerializeField] private MapTileReloader BaseMapReloader = null;
+
+        public void AddReloaderAt(Vector2Int pos)
+        {
+            Instantiate(BaseMapReloader, MapData.Instance.transform).SetReloadPosition(pos);
+        }
     }
 }

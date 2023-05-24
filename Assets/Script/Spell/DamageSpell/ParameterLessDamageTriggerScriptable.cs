@@ -1,38 +1,42 @@
 ﻿using System;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ParameterLessDamageTrigger", menuName = "Trigger/ParameterLessDamageTrigger", order = 0)]
-public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    [SerializeField] private string m_TriggerClassName = string.Empty;
-    #region Editor Use Only
-    [SerializeField] private FieldValue[] m_AdditionalParameters = Array.Empty<FieldValue>();
-
-    public string TriggerClassName => m_TriggerClassName;
-    public FieldValue[] AdditionalParameters
+    [CreateAssetMenu(fileName = "ParameterLessDamageTrigger", menuName = "Trigger/ParameterLessDamageTrigger", order = 0)]
+    public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable
     {
-        set => m_AdditionalParameters = value;
-        get => m_AdditionalParameters;
-    }
-    #endregion
-    
-    public override BaseSpellTrigger SetUpTrigger()
-    {
-        string className = m_TriggerClassName;
-        Type triggerClass = Type.GetType(className.Split(':')[0]);
-        
-        if(triggerClass == null)
-            Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
+        [SerializeField] private string m_TriggerClassName = string.Empty;
+        #region Editor Use Only
+        [SerializeField] private FieldValue[] m_AdditionalParameters = Array.Empty<FieldValue>();
 
-        object[] attributes = new object[1+m_AdditionalParameters.Length];
-        
-        attributes[0] = this;
-
-        for (int i = 0; i < m_AdditionalParameters.Length; i++)
+        public string TriggerClassName => m_TriggerClassName;
+        public FieldValue[] AdditionalParameters
         {
-            attributes[i + 1] = m_AdditionalParameters[i].GetValue();
+            set => m_AdditionalParameters = value;
+            get => m_AdditionalParameters;
         }
+        #endregion
+    
+        public override BaseSpellTrigger SetUpTrigger()
+        {
+            string className = m_TriggerClassName;
+            Type triggerClass = StringUtils.GetTypeViaClassName(className.Split(':')[0]);
         
-        return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);
+            if(triggerClass == null)
+                Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
+
+            object[] attributes = new object[1+m_AdditionalParameters.Length];
+        
+            attributes[0] = this;
+
+            for (int i = 0; i < m_AdditionalParameters.Length; i++)
+            {
+                attributes[i + 1] = m_AdditionalParameters[i].GetValue();
+            }
+        
+            return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);
+        }
     }
 }

@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Spell.DamageSpell;
+using KarpysDev.Script.Widget;
+using UnityEngine;
 
-public class RushTrigger : WeaponDamageTrigger
+namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
-    public RushTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+    public class RushTrigger : WeaponDamageTrigger
     {
-    }
-    public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
-    {
-        MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
-        base.Trigger(spellData, spellTiles,castInfo);
-    }
+        public RushTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        {
+        }
+        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
+        {
+            MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
+            base.Trigger(spellData, spellTiles,castInfo);
+        }
     
-    private void MoveToClosestFreeTile(TriggerSpellData spellData,Vector2Int position)
-    {
-        Tile closestFree = TileHelper.GetFreeClosestAround(MapData.Instance.GetTile(position),spellData.AttachedEntity.WorldPosition);
-        spellData.AttachedEntity.MoveTo(closestFree.TilePosition);
+        private void MoveToClosestFreeTile(TriggerSpellData spellData,Vector2Int position)
+        {
+            Tile closestFree = TileHelper.GetFreeClosestAround(MapData.Instance.GetTile(position),spellData.AttachedEntity.WorldPosition);
+            spellData.AttachedEntity.MoveTo(closestFree.TilePosition);
+        }
     }
 }

@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Script.UI
+namespace KarpysDev.Script.UI
 {
     public enum LayoutType
     {

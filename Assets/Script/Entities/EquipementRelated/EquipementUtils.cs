@@ -1,35 +1,39 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Items;
+using KarpysDev.Script.Utils;
 
-public static class EquipementUtils
+namespace KarpysDev.Script.Entities.EquipementRelated
 {
-    public static void ApplyEquipementStats(EquipementItem equipementItem, BoardEntity entity, bool recomputeStats = true)
+    public static class EquipementUtils
     {
-        foreach (Modifier modifier in equipementItem.ItemModifiers)
+        public static void ApplyEquipementStats(EquipementItem equipementItem, BoardEntity entity, bool recomputeStats = true)
         {
-            ModifierUtils.ApplyModifier(modifier,entity);
-        }
+            foreach (Modifier modifier in equipementItem.ItemModifiers)
+            {
+                ModifierUtils.ApplyModifier(modifier,entity);
+            }
         
-        if(recomputeStats)
-            entity.ComputeAllSpells();
-    }
+            if(recomputeStats)
+                entity.ComputeAllSpells();
+        }
     
-    public static void UnapplyEquipementStats(EquipementItem equipementItem, BoardEntity entity)
-    {
-        foreach (Modifier modifier in equipementItem.ItemModifiers)
+        public static void UnapplyEquipementStats(EquipementItem equipementItem, BoardEntity entity)
         {
-            ModifierUtils.UnapplyModifier(modifier,entity);
-        }
+            foreach (Modifier modifier in equipementItem.ItemModifiers)
+            {
+                ModifierUtils.UnapplyModifier(modifier,entity);
+            }
         
-        entity.ComputeAllSpells();
-    }
+            entity.ComputeAllSpells();
+        }
 
-    public static void Equip(EquipementItem equipementItem, BoardEntity entity)
-    {
-        ApplyEquipementStats(equipementItem,entity);
-    }
+        public static void Equip(EquipementItem equipementItem, BoardEntity entity)
+        {
+            ApplyEquipementStats(equipementItem,entity);
+        }
 
-    public static void UnEquip(EquipementItem item, BoardEntity entity)
-    {
-        UnapplyEquipementStats(item,entity);
+        public static void UnEquip(EquipementItem item, BoardEntity entity)
+        {
+            UnapplyEquipementStats(item,entity);
+        }
     }
 }

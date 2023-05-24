@@ -1,23 +1,26 @@
 ﻿using UnityEngine;
 
-public class DestroyObjectCleaner : IMapClean
+namespace KarpysDev.Script.Manager
 {
-    private GameObject m_worldObject = null;
-    
-    public DestroyObjectCleaner(GameObject worldObject)
+    public class DestroyObjectCleaner : IMapClean
     {
-        m_worldObject = worldObject;
-        RegisterToMapCleaner();
-    }
+        private GameObject m_worldObject = null;
     
-    public void RegisterToMapCleaner()
-    {
-        MapCleaner.Instance.RegisterObject(this);
-    }
+        public DestroyObjectCleaner(GameObject worldObject)
+        {
+            m_worldObject = worldObject;
+            RegisterToMapCleaner();
+        }
+    
+        public void RegisterToMapCleaner()
+        {
+            MapCleaner.Instance.RegisterObject(this);
+        }
 
-    public void Clean()
-    {
-        if(m_worldObject)
-            Object.Destroy(m_worldObject);
+        public void Clean()
+        {
+            if(m_worldObject)
+                Object.Destroy(m_worldObject);
+        }
     }
 }

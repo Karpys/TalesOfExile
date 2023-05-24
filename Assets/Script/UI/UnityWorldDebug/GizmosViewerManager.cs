@@ -1,24 +1,26 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GizmosViewerManager : SingletonMonoBehavior<GizmosViewerManager>
+namespace KarpysDev.Script.UI.UnityWorldDebug
 {
-    [SerializeField] private CubeViewer m_CubeViewer = null;
-
-    public void CreateCube(Vector3 position, Vector3 size,Color color,Transform parent = null)
+    public class GizmosViewerManager : SingletonMonoBehavior<GizmosViewerManager>
     {
-        CubeViewer cube = null;
+        [SerializeField] private CubeViewer m_CubeViewer = null;
 
-        if (parent)
+        public void CreateCube(Vector3 position, Vector3 size,Color color,Transform parent = null)
         {
-            cube = Instantiate(m_CubeViewer,parent);
-            cube.transform.localPosition = position;
-        }
-        else
-        {
-            cube = Instantiate(m_CubeViewer, position, Quaternion.identity);
-        }
+            CubeViewer cube = null;
+
+            if (parent)
+            {
+                cube = Instantiate(m_CubeViewer,parent);
+                cube.transform.localPosition = position;
+            }
+            else
+            {
+                cube = Instantiate(m_CubeViewer, position, Quaternion.identity);
+            }
         
-        cube.Initalize(size,color);
+            cube.Initalize(size,color);
+        }
     }
 }

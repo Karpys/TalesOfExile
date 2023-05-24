@@ -1,19 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Utils;
 
-public class PLayerAutoPlayEntity : BaseEntityIA
+namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    protected override void SetTarget()
+    public class PLayerAutoPlayEntity : BaseEntityIA
     {
-        List<BoardEntity> entities = m_AttachedEntity.EntityGroup == EntityGroup.Friendly ? GameManager.Instance.EnemiesOnBoard : GameManager.Instance.FriendlyOnBoard;
-
-        if (entities.Count == 0)
+        protected override void SetTarget()
         {
-            m_Target = null;
-            return;
-        }
+            List<BoardEntity> entities = m_AttachedEntity.EntityGroup == EntityGroup.Friendly ? GameManager.Instance.EnemiesOnBoard : GameManager.Instance.FriendlyOnBoard;
 
-        m_Target = entities.OrderBy(e => DistanceUtils.GetSquareDistance(m_AttachedEntity.EntityPosition, e.EntityPosition)).First();
+            if (entities.Count == 0)
+            {
+                m_Target = null;
+                return;
+            }
+
+            m_Target = entities.OrderBy(e => DistanceUtils.GetSquareDistance(m_AttachedEntity.EntityPosition, e.EntityPosition)).First();
+        }
     }
 }

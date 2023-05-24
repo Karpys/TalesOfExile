@@ -1,34 +1,37 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class BurstAnimation : SpellAnimation
+namespace KarpysDev.Script.Spell.SpellFx
 {
-    [SerializeField] protected float m_SpellAnimFixeDelay = 0;
-    protected virtual void Start()
+    public abstract class BurstAnimation : SpellAnimation
     {
-        if (m_SpellAnimFixeDelay <= 0)
+        [SerializeField] protected float m_SpellAnimFixeDelay = 0;
+        protected virtual void Start()
         {
-            Animate();
-            DestroySelf(GetAnimationDuration());
-        }
-        else
-        {
-            StartCoroutine(DelayAnim());
-            IEnumerator DelayAnim()
+            if (m_SpellAnimFixeDelay <= 0)
             {
-                yield return new WaitForSeconds(m_SpellAnimFixeDelay);
                 Animate();
                 DestroySelf(GetAnimationDuration());
             }
+            else
+            {
+                StartCoroutine(DelayAnim());
+                IEnumerator DelayAnim()
+                {
+                    yield return new WaitForSeconds(m_SpellAnimFixeDelay);
+                    Animate();
+                    DestroySelf(GetAnimationDuration());
+                }
+            }
         }
+        protected override float GetAnimationDuration()
+        {
+            return m_SpellAnimFixeDelay;
+        }
+
+        protected override void Animate() {}
+
+        protected abstract void DestroySelf(float time);
+
     }
-    protected override float GetAnimationDuration()
-    {
-        return m_SpellAnimFixeDelay;
-    }
-
-    protected override void Animate() {}
-
-    protected abstract void DestroySelf(float time);
-
 }

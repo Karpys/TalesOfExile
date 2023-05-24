@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using KarpysDev.Script.Entities;
 using UnityEngine;
 
-public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
+namespace KarpysDev.Script.Manager.Library
 {
-    [SerializeField] private List<SpellInfo> m_SpellList = new List<SpellInfo>();
-    public Dictionary<string, SpellInfo> Spells = new Dictionary<string, SpellInfo>();
-
-    private void Awake()
+    public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
     {
-        foreach (SpellInfo spellData in m_SpellList)
-        {
-            Spells.Add(spellData.m_SpellData.SpellKey,spellData);
-        }
-    }
+        [SerializeField] private List<SpellInfo> m_SpellList = new List<SpellInfo>();
+        public Dictionary<string, SpellInfo> Spells = new Dictionary<string, SpellInfo>();
 
-    public SpellInfo GetSpellViaKey(string spellKey)
-    {
-        SpellInfo spellData = null;
-        Spells.TryGetValue(spellKey,out spellData);
-
-        if (spellData == null)
+        private void Awake()
         {
-            Debug.LogError("Spell Key not found");
-            return null;
+            foreach (SpellInfo spellData in m_SpellList)
+            {
+                Spells.Add(spellData.m_SpellData.SpellKey,spellData);
+            }
         }
+
+        public SpellInfo GetSpellViaKey(string spellKey)
+        {
+            SpellInfo spellData = null;
+            Spells.TryGetValue(spellKey,out spellData);
+
+            if (spellData == null)
+            {
+                Debug.LogError("Spell Key not found");
+                return null;
+            }
         
-        return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority);
+            return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority);
+        }
     }
 }

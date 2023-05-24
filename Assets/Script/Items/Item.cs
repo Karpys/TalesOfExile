@@ -1,59 +1,65 @@
-
 using System.Collections.Generic;
+using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.UI;
+using KarpysDev.Script.UI.ItemContainer;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
-public abstract class Item:ISavable
+namespace KarpysDev.Script.Items
 {
-    protected InventoryItemData m_Data = null;
-    public Rarity Rarity => GetRarity();
-    public InventoryItemData Data => m_Data;
-    public Item(InventoryItemData data)
+    public abstract class Item:ISavable
     {
-        m_Data = data;
-    }
+        protected InventoryItemData m_Data = null;
+        public Rarity Rarity => GetRarity();
+        public InventoryItemData Data => m_Data;
+        public Item(InventoryItemData data)
+        {
+            m_Data = data;
+        }
     
-    protected virtual Rarity GetRarity()
-    {
-        return m_Data.Rarity;
-    }
+        protected virtual Rarity GetRarity()
+        {
+            return m_Data.Rarity;
+        }
 
-    //Save Load Constructor
-    public Item(string[] saveArgs)
-    {
-        m_Data = ItemLibrary.Instance.GetBaseDataViaId(saveArgs[1].ToInt());
-    }
+        //Save Load Constructor
+        public Item(string[] saveArgs)
+        {
+            m_Data = ItemLibrary.Instance.GetBaseDataViaId(saveArgs[1].ToInt());
+        }
 
-    public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
-    {
-        List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
-        newItemButton.Add(new ItemButtonUIParameters(DisplayName,"Display Name"));
-        return newItemButton;
-    }
+        public virtual List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
+        {
+            List<ItemButtonUIParameters> newItemButton = new List<ItemButtonUIParameters>();
+            newItemButton.Add(new ItemButtonUIParameters(DisplayName,"Display Name"));
+            return newItemButton;
+        }
 
-    private void DisplayName()
-    {
-        Debug.Log(m_Data.ObjectName);
-    }
+        private void DisplayName()
+        {
+            Debug.Log(m_Data.ObjectName);
+        }
     
-    //Save Part//
-    public virtual string GetSaveData()
-    {
-        return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
+        //Save Part//
+        public virtual string GetSaveData()
+        {
+            return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
+        }
     }
-}
 
-public interface ISavable
-{
-    public string GetSaveData();
-}
+    public interface ISavable
+    {
+        public string GetSaveData();
+    }
 
-public interface ILoadable
-{
-    public void LoadData(string saveData);
-}
+    public interface ILoadable
+    {
+        public void LoadData(string saveData);
+    }
 
-public interface ISaver
-{
-    public string[] FetchSaveData();
-    public void WriteSaveData(string saveName, string[] data);
+    public interface ISaver
+    {
+        public string[] FetchSaveData();
+        public void WriteSaveData(string saveName, string[] data);
+    }
 }

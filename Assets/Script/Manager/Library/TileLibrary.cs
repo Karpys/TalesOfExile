@@ -1,33 +1,38 @@
 ﻿using System;
+using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
-public class TileLibrary : SingletonMonoBehavior<TileLibrary>
+namespace KarpysDev.Script.Manager.Library
 {
-    [SerializeField] private GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
-
-    private void Awake()
+    public class TileLibrary : SingletonMonoBehavior<TileLibrary>
     {
-        m_TileLibrary.InitializeDictionary();
+        [SerializeField] private GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
+
+        private void Awake()
+        {
+            m_TileLibrary.InitializeDictionary();
+        }
+
+        public WorldTile GetTileViaKey(TileType type)
+        {
+            return m_TileLibrary.GetViaKey(type);
+        }
     }
 
-    public WorldTile GetTileViaKey(TileType type)
+    [Serializable]
+    public class TileKey
     {
-        return m_TileLibrary.GetViaKey(type);
+        [SerializeField] private TileType m_Type = TileType.None;
+        [SerializeField] private WorldTile m_Tile = null;
+
+        public TileType Type => m_Type;
+        public WorldTile Tile => m_Tile;
     }
-}
 
-[System.Serializable]
-public class TileKey
-{
-    [SerializeField] private TileType m_Type = TileType.None;
-    [SerializeField] private WorldTile m_Tile = null;
-
-    public TileType Type => m_Type;
-    public WorldTile Tile => m_Tile;
-}
-
-public enum TileType
-{
-    None,
-    IceWall,
+    public enum TileType
+    {
+        None,
+        IceWall,
+    }
 }

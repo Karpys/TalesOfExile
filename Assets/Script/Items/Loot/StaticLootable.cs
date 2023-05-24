@@ -1,29 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Map_Related;
 using UnityEngine;
 
-public abstract class StaticLootable : Lootable
+namespace KarpysDev.Script.Items.Loot
 {
-    protected override void ComputeLoot()
+    public abstract class StaticLootable : Lootable
     {
-        base.ComputeLoot();
-
-        MapData mapData = MapData.Instance;
-        
-        foreach (Vector2Int position in m_LootZones)
+        protected override void ComputeLoot()
         {
-            Tile tile = mapData.GetTile(position);
+            base.ComputeLoot();
 
-            if (tile != null)
+            MapData mapData = MapData.Instance;
+        
+            foreach (Vector2Int position in m_LootZones)
             {
-                m_LootTiles.Add(tile);
+                Tile tile = mapData.GetTile(position);
+
+                if (tile != null)
+                {
+                    m_LootTiles.Add(tile);
+                }
             }
         }
-    }
 
-    protected override List<Tile> GetLootTiles()
-    {
-        return m_LootTiles.Where(t => t.Walkable).ToList();
+        protected override List<Tile> GetLootTiles()
+        {
+            return m_LootTiles.Where(t => t.Walkable).ToList();
+        }
     }
 }

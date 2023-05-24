@@ -1,10 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FollowMouse : MonoBehaviour
+namespace KarpysDev.Script.UI
 {
-    private void Update()
+    public class FollowMouse : MonoBehaviour
     {
-        transform.position = Input.mousePosition;
+        private void Update()
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 }

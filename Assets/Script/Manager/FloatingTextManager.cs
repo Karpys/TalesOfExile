@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Widget;
+using UnityEngine;
 
-public class FloatingTextManager : SingletonMonoBehavior<FloatingTextManager>
+namespace KarpysDev.Script.Manager
 {
-    [SerializeField] private FloatingTextBurst m_FloatingPrefab = null;
-
-    public void SpawnFloatingText(Vector3 position,float value,Color? color = null,float delay = 0f)
+    public class FloatingTextManager : SingletonMonoBehavior<FloatingTextManager>
     {
-        Color targetColor = color ?? Color.white;
-        FloatingTextBurst text = Instantiate(m_FloatingPrefab, position,Quaternion.identity);
-        text.LaunchFloat(value,targetColor,delay);
+        [SerializeField] private FloatingTextBurst m_FloatingPrefab = null;
+
+        public void SpawnFloatingText(Vector3 position,float value,Color? color = null,float delay = 0f)
+        {
+            Color targetColor = color ?? Color.white;
+            FloatingTextBurst text = Instantiate(m_FloatingPrefab, position,Quaternion.identity);
+            text.LaunchFloat(value,targetColor,delay);
+        }
     }
 }

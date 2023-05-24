@@ -1,53 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using KarpysDev.Script.Entities.EquipementRelated;
+using KarpysDev.Script.Manager.Library;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(RangeModifier))]
-public class RangeModifierPropertyDrawer : PropertyDrawer
+namespace KarpysDev.Script.Editor
 {
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(RangeModifier))]
+    public class RangeModifierPropertyDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, label, property);
-
-        EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Type"), true);
-
-        SerializedProperty typeProperty = property.FindPropertyRelative("m_Type");
-        
-        string[] enumNames = Enum.GetNames(typeof(ModifierType));
-
-        ModifierType[] modifierTypes = new ModifierType[] {ModifierType.SpellAddition};
-        
-        List<int> stringParamModifier = StringParamModifierType(enumNames,modifierTypes);
-
-        if (stringParamModifier.Contains(typeProperty.enumValueIndex))
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            position.y += 20;
-            EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Params"), true);
-        }
-        else
-        {
-            position.y += 20;
-            EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Range"), true);
-        }
+            EditorGUI.BeginProperty(position, label, property);
+
+            EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Type"), true);
+
+            SerializedProperty typeProperty = property.FindPropertyRelative("m_Type");
         
-        EditorGUI.EndProperty();
-    }
+            string[] enumNames = Enum.GetNames(typeof(ModifierType));
 
-    private List<int> StringParamModifierType(string[] enumNames,ModifierType[] modifierTypes)
-    {
-        List<int> stringParamModifierType = new List<int>();
+            ModifierType[] modifierTypes = new ModifierType[] {ModifierType.SpellAddition};
+        
+            List<int> stringParamModifier = StringParamModifierType(enumNames,modifierTypes);
 
-        foreach (ModifierType type in modifierTypes)
-        {
-            stringParamModifierType.Add(Array.IndexOf(enumNames, type.ToString()) + 1);
+            if (stringParamModifier.Contains(typeProperty.enumValueIndex))
+            {
+                position.y += 20;
+                EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Params"), true);
+            }
+            else
+            {
+                position.y += 20;
+                EditorGUI.PropertyField(position, property.FindPropertyRelative("m_Range"), true);
+            }
+        
+            EditorGUI.EndProperty();
         }
 
-        return stringParamModifierType;
-    }
+        private List<int> StringParamModifierType(string[] enumNames,ModifierType[] modifierTypes)
+        {
+            List<int> stringParamModifierType = new List<int>();
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return 40;
+            foreach (ModifierType type in modifierTypes)
+            {
+                stringParamModifierType.Add(Array.IndexOf(enumNames, type.ToString()) + 1);
+            }
+
+            return stringParamModifierType;
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return 40;
+        }
     }
 }

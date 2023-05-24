@@ -1,58 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
+using KarpysDev.Script.Spell;
+using KarpysDev.Script.Spell.DamageSpell;
 using UnityEngine;
 
-public class BoardEntityEventHandler : MonoBehaviour
+namespace KarpysDev.Script.Entities
 {
-    public Action<IntSocket> OnRequestBlockSpell = null;
-    public Action OnDeath = null;
-    //TriggerSpellData can be null
-    public Action<BoardEntity,DamageSpellTrigger> OnGetDamageFromSpell = null;
-    public Action<TriggerSpellData> OnGetHit = null;
-    public Action<BaseSpellTrigger> OnRequestCastEvent = null;
-
-    public Action<DamageSpellTrigger,FloatSocket> OnRequestSpellDamage = null;
-    public Action OnSpellRecompute = null;
-    public Action OnBehave = null;
-    public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSpellTrigger spellDamageTrigger)
+    public class BoardEntityEventHandler : MonoBehaviour
     {
-        OnGetDamageFromSpell?.Invoke(damageFrom,spellDamageTrigger);
-    }
-}
+        public Action<IntSocket> OnRequestBlockSpell = null;
+        public Action OnDeath = null;
+        //TriggerSpellData can be null
+        public Action<BoardEntity,DamageSpellTrigger> OnGetDamageFromSpell = null;
+        public Action<TriggerSpellData> OnGetHit = null;
+        public Action<BaseSpellTrigger> OnRequestCastEvent = null;
 
-public class IntSocket
-{
-    private int m_Value = 0;
-
-    public int Value
-    {
-        get => m_Value;
-        set => m_Value = value;
+        public Action<DamageSpellTrigger,FloatSocket> OnRequestSpellDamage = null;
+        public Action OnSpellRecompute = null;
+        public Action OnBehave = null;
+        public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSpellTrigger spellDamageTrigger)
+        {
+            OnGetDamageFromSpell?.Invoke(damageFrom,spellDamageTrigger);
+        }
     }
 
-    public IntSocket(int baseValue)
+    public class IntSocket
     {
-        m_Value = baseValue;
+        private int m_Value = 0;
+
+        public int Value
+        {
+            get => m_Value;
+            set => m_Value = value;
+        }
+
+        public IntSocket(int baseValue)
+        {
+            m_Value = baseValue;
+        }
     }
-}
 
-public class FloatSocket
-{
-    private float m_Value = 0;
-
-    public float Value
+    public class FloatSocket
     {
-        get => m_Value;
-        set => m_Value = value;
-    }
+        private float m_Value = 0;
 
-    public FloatSocket(float baseValue)
-    {
-        m_Value = baseValue;
-    }
+        public float Value
+        {
+            get => m_Value;
+            set => m_Value = value;
+        }
+
+        public FloatSocket(float baseValue)
+        {
+            m_Value = baseValue;
+        }
     
-    public FloatSocket()
-    {
+        public FloatSocket()
+        {
+        }
     }
 }
-

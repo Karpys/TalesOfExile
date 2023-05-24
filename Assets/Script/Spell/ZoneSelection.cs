@@ -1,23 +1,28 @@
-[System.Serializable]
-public class ZoneSelection
-{
-    public ZoneOrigin Origin = ZoneOrigin.Self;
-    public Zone Zone = null;
-    public ValidationType ValidationType = null;
-    public bool ActionSelection = false;
+using System;
 
-    
-}
-
-[System.Serializable]
-public class Zone
+namespace KarpysDev.Script.Spell
 {
-    public ZoneType DisplayType = ZoneType.NONE;
-    public int Range = 0;
-    
-    public Zone(ZoneType type, int range)
+    [Serializable]
+    public class ZoneSelection
     {
-        DisplayType = type;
-        Range = range;
+        public ZoneOrigin Origin = ZoneOrigin.Self;
+        public Zone Zone = null;
+        public ValidationType ValidationType = null;
+        public bool ActionSelection = false;
+
+    
+    }
+
+    [Serializable]
+    public class Zone
+    {
+        public ZoneType DisplayType = ZoneType.NONE;
+        public int Range = 0;
+    
+        public Zone(ZoneType type, int range)
+        {
+            DisplayType = type;
+            Range = range;
+        }
     }
 }

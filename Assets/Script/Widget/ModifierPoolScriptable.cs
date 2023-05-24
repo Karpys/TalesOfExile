@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Manager.Library;
+using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "ModifierPool", menuName = "Modifier/ModifierPool", order = 0)]
-public class ModifierPoolScriptable : ScriptableObject
+namespace KarpysDev.Script.Widget
 {
-    public ModifierPool m_ModifierPool = null;
+    [CreateAssetMenu(fileName = "ModifierPool", menuName = "Modifier/ModifierPool", order = 0)]
+    public class ModifierPoolScriptable : ScriptableObject
+    {
+        public ModifierPool m_ModifierPool = null;
+    }
 }

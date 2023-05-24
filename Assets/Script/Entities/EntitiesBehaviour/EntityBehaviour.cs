@@ -1,14 +1,17 @@
-﻿public abstract class EntityBehaviour
+﻿namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    protected BoardEntity m_AttachedEntity = null;
-    
-    public abstract void Behave();
-
-    public void SetEntity(BoardEntity boardEntity)
+    public abstract class EntityBehaviour
     {
-        m_AttachedEntity = boardEntity;
-        InitializeEntityBehaviour();
-    }
+        protected BoardEntity m_AttachedEntity = null;
+    
+        public abstract void Behave();
 
-    protected abstract void InitializeEntityBehaviour();
+        public void SetEntity(BoardEntity boardEntity)
+        {
+            m_AttachedEntity = boardEntity;
+            InitializeEntityBehaviour();
+        }
+
+        protected abstract void InitializeEntityBehaviour();
+    }
 }

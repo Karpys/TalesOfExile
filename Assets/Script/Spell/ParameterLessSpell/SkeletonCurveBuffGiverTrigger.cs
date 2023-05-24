@@ -1,8 +1,14 @@
-public class SkeletonCurseBuffGiverTrigger : BuffGiverTrigger
+using KarpysDev.Script.Entities.BuffRelated;
+using KarpysDev.Script.Manager.Library;
+
+namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
-    public SkeletonCurseBuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, int buffDuration, float skeletonLifeTurn,int skeletonSpawnCount) : base(baseScriptable, buffGroup, buffType, buffDuration, skeletonLifeTurn)
+    public class SkeletonCurseBuffGiverTrigger : BuffGiverTrigger
     {
-        m_BuffArgs = new object[1];
-        m_BuffArgs[0] = skeletonSpawnCount;
+        public SkeletonCurseBuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, int buffDuration, float skeletonLifeTurn,int skeletonSpawnCount) : base(baseScriptable, buffGroup, buffType, buffDuration, skeletonLifeTurn)
+        {
+            m_BuffArgs = new object[1];
+            m_BuffArgs[0] = skeletonSpawnCount;
+        }
     }
 }

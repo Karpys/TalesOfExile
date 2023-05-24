@@ -1,13 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class UIEntityLifeTurn : EntityLifeTurn
+namespace KarpysDev.Script.Entities
 {
-    [SerializeField] private TMP_Text m_LifeCount = null;
-
-    protected override void ReduceLifeCounter()
+    public class UIEntityLifeTurn : EntityLifeTurn
     {
-        base.ReduceLifeCounter();
-        m_LifeCount.text = m_LifeCount.ToString();
+        [SerializeField] private TMP_Text m_LifeCount = null;
+
+        protected override void ReduceLifeCounter()
+        {
+            base.ReduceLifeCounter();
+            m_LifeCount.text = m_LifeCount.ToString();
+        }
     }
 }

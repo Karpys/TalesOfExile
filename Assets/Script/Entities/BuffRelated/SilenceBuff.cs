@@ -1,17 +1,20 @@
-﻿public class SilenceBuff : Buff
+﻿namespace KarpysDev.Script.Entities.BuffRelated
 {
-    protected override void Apply()
+    public class SilenceBuff : Buff
     {
-        m_Receiver.EntityEvent.OnRequestBlockSpell += AddBlockSpell;
-    }
+        protected override void Apply()
+        {
+            m_Receiver.EntityEvent.OnRequestBlockSpell += AddBlockSpell;
+        }
 
-    private void AddBlockSpell(IntSocket blockSpell)
-    {
-        blockSpell.Value += 1;
-    }
+        private void AddBlockSpell(IntSocket blockSpell)
+        {
+            blockSpell.Value += 1;
+        }
 
-    protected override void UnApply()
-    {
-        m_Receiver.EntityEvent.OnRequestBlockSpell -= AddBlockSpell;
+        protected override void UnApply()
+        {
+            m_Receiver.EntityEvent.OnRequestBlockSpell -= AddBlockSpell;
+        }
     }
 }

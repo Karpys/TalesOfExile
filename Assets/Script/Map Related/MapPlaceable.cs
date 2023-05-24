@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MapPlaceable : MonoBehaviour
+namespace KarpysDev.Script.Map_Related
 {
-    protected Vector2Int m_Position = Vector2Int.zero;
-
-    protected void Place(Vector2Int position)
+    public class MapPlaceable : MonoBehaviour
     {
-        transform.position = MapData.Instance.GetTilePosition(position);
-        m_Position = position;
+        protected Vector2Int m_Position = Vector2Int.zero;
+
+        protected void Place(Vector2Int position)
+        {
+            transform.position = MapData.Instance.GetTilePosition(position);
+            m_Position = position;
+        }
     }
 }

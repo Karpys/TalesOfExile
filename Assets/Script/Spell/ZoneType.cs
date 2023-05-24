@@ -1,11 +1,14 @@
-public enum ZoneType
+namespace KarpysDev.Script.Spell
 {
-    NONE = -1,
-    Circle,
-    Square,
-    PlayerToMouse,
-    PlayerToMouseSquareRange,
-    OuterCircle,
-    OuterSquare,
-    Cone,
+    public enum ZoneType
+    {
+        NONE = -1,
+        Circle,
+        Square,
+        PlayerToMouse,
+        PlayerToMouseSquareRange,
+        OuterCircle,
+        OuterSquare,
+        Cone,
+    }
 }

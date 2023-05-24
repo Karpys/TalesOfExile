@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Utils;
 using UnityEngine;
+using LineRenderer = KarpysDev.Script.Utils.LineRenderer;
 
 
 //Special That needed a lot a works//
@@ -15,41 +20,44 @@ using UnityEngine;
 //For the LineRenderer Add A SpellAnimationLibrary//
 //Don't fix what's not broken//
 //Todo: Flag as todo but works great//
-public class LightningSpellTrigger : DamageSpellTrigger
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    private Zone m_ZoneStrike = null;
-    private int m_StrikeCount = 0;
-    public LightningSpellTrigger(DamageSpellScriptable damageSpellData,ZoneType zoneType,int zoneRange,int strikeCount) : base(damageSpellData)
+    public class LightningSpellTrigger : DamageSpellTrigger
     {
-        m_ZoneStrike = new Zone(zoneType, zoneRange);
-        m_StrikeCount = strikeCount;
-    }
-
-
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
-        Vector2Int origin, CastInfo castInfo)
-    {
-        List<BoardEntity> targetEntity = GameManager.Instance.GetEntityViaGroup(targetGroup);
-        targetEntity.Remove(entity);
-
-
-        List<BoardEntity> entityStriked = new List<BoardEntity> {entity};
-        entityStriked.AddRange(DistanceUtils.GetZoneContactEntity(m_ZoneStrike, targetEntity, entity.EntityPosition, m_StrikeCount));
-
-        for (int i = 0; i < entityStriked.Count; i++)
+        private Zone m_ZoneStrike = null;
+        private int m_StrikeCount = 0;
+        public LightningSpellTrigger(DamageSpellScriptable damageSpellData,ZoneType zoneType,int zoneRange,int strikeCount) : base(damageSpellData)
         {
-            BoardEntity en = entityStriked[i];
-            if (en != null)
-            {
-                base.EntityHit(en,spellData,targetGroup,origin,castInfo);
-            }
+            m_ZoneStrike = new Zone(zoneType, zoneRange);
+            m_StrikeCount = strikeCount;
         }
 
-        //Animation//
-        List<Vector2Int> strikePoints = new List<Vector2Int>{spellData.AttachedEntity.EntityPosition};
-        strikePoints.AddRange(entityStriked.Select(en => en.EntityPosition).ToList());
-        LineRenderer.LinePointsRenderer(strikePoints, LineRendererType.Lighning, 0.3f, 0.01f);
 
-        m_SpellAnimDelay = 0.3f;
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+            Vector2Int origin, CastInfo castInfo)
+        {
+            List<BoardEntity> targetEntity = GameManager.Instance.GetEntityViaGroup(targetGroup);
+            targetEntity.Remove(entity);
+
+
+            List<BoardEntity> entityStriked = new List<BoardEntity> {entity};
+            entityStriked.AddRange(DistanceUtils.GetZoneContactEntity(m_ZoneStrike, targetEntity, entity.EntityPosition, m_StrikeCount));
+
+            for (int i = 0; i < entityStriked.Count; i++)
+            {
+                BoardEntity en = entityStriked[i];
+                if (en != null)
+                {
+                    base.EntityHit(en,spellData,targetGroup,origin,castInfo);
+                }
+            }
+
+            //Animation//
+            List<Vector2Int> strikePoints = new List<Vector2Int>{spellData.AttachedEntity.EntityPosition};
+            strikePoints.AddRange(entityStriked.Select(en => en.EntityPosition).ToList());
+            LineRenderer.LinePointsRenderer(strikePoints, LineRendererType.Lighning, 0.3f, 0.01f);
+
+            m_SpellAnimDelay = 0.3f;
+        }
     }
 }

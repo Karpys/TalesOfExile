@@ -1,28 +1,32 @@
-﻿using System;
+﻿using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
 using UnityEngine;
 
-public class Canvas_Skills : MonoBehaviour
+namespace KarpysDev.Script.UI
 {
-    [SerializeField] private SpellInterfaceController m_SpellInterface = null;
-
-    private void Awake()
+    public class Canvas_Skills : MonoBehaviour
     {
-        GameManager.Instance.A_OnEndPlayerTurn += RefreshCooldown;
-    }
+        [SerializeField] private SpellInterfaceController m_SpellInterface = null;
 
-    private void OnDestroy()
-    {
-        if(GameManager.Instance)
-            GameManager.Instance.A_OnEndPlayerTurn -= RefreshCooldown;
-    }
+        private void Awake()
+        {
+            GameManager.Instance.A_OnEndPlayerTurn += RefreshCooldown;
+        }
 
-    public void SetTargetSkills(BoardEntity entity)
-    {
-        m_SpellInterface.SetSpellIcons(entity);
-    }
+        private void OnDestroy()
+        {
+            if(GameManager.Instance)
+                GameManager.Instance.A_OnEndPlayerTurn -= RefreshCooldown;
+        }
 
-    private void RefreshCooldown()
-    {
-        m_SpellInterface.UpdateAllCooldownVisual();
+        public void SetTargetSkills(BoardEntity entity)
+        {
+            m_SpellInterface.SetSpellIcons(entity);
+        }
+
+        private void RefreshCooldown()
+        {
+            m_SpellInterface.UpdateAllCooldownVisual();
+        }
     }
 }

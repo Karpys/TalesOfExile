@@ -1,23 +1,27 @@
-using System;
+using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
-public class PlaceableLibrary : SingletonMonoBehavior<PlaceableLibrary>
+namespace KarpysDev.Script.Manager.Library
 {
-    [SerializeField] private GenericLibrary<MapPlaceable, PlaceableType> m_Library = null;
-
-    private void Start()
+    public class PlaceableLibrary : SingletonMonoBehavior<PlaceableLibrary>
     {
-        m_Library.InitializeDictionary();
+        [SerializeField] private GenericLibrary<MapPlaceable, PlaceableType> m_Library = null;
+
+        private void Start()
+        {
+            m_Library.InitializeDictionary();
+        }
+
+        public MapPlaceable GetViaKey(PlaceableType placeableType)
+        {
+            return m_Library.GetViaKey(placeableType);
+        }
     }
 
-    public MapPlaceable GetViaKey(PlaceableType placeableType)
+
+    public enum PlaceableType
     {
-        return m_Library.GetViaKey(placeableType);
+        BurningGround
     }
-}
-
-
-public enum PlaceableType
-{
-    BurningGround
 }

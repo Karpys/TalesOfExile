@@ -1,14 +1,17 @@
-using UnityEngine;
+using System;
 
-[System.Serializable]
-public class DamageParameters
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public DamageType DamageType = null;
-    public DamageSource InitialSourceDamage;
-
-    public DamageParameters(DamageParameters damageParameters)
+    [Serializable]
+    public class DamageParameters
     {
-        DamageType = new DamageType(damageParameters.DamageType);
-        InitialSourceDamage = new DamageSource(damageParameters.InitialSourceDamage);
+        public DamageType DamageType = null;
+        public DamageSource InitialSourceDamage;
+
+        public DamageParameters(DamageParameters damageParameters)
+        {
+            DamageType = new DamageType(damageParameters.DamageType);
+            InitialSourceDamage = new DamageSource(damageParameters.InitialSourceDamage);
+        }
     }
 }

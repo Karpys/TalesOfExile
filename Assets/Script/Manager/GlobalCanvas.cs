@@ -1,31 +1,34 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.UI.Pointer;
 
-public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
+namespace KarpysDev.Script.Manager
 {
-    private UIPointer m_CurrentPointer = null;
-    private UICanvasType m_CurrentCanvasType = UICanvasType.None;
-    
-    public UIPointer CurrentPointer => m_CurrentPointer;
-    public UICanvasType CanvasType => m_CurrentCanvasType;
-    
-    public void SetCanvasPointer(UIPointer pointer, UICanvasType canvasType)
+    public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
     {
-        m_CurrentPointer = pointer;
-        m_CurrentCanvasType = canvasType;
+        private UIPointer m_CurrentPointer = null;
+        private UICanvasType m_CurrentCanvasType = UICanvasType.None;
+    
+        public UIPointer CurrentPointer => m_CurrentPointer;
+        public UICanvasType CanvasType => m_CurrentCanvasType;
+    
+        public void SetCanvasPointer(UIPointer pointer, UICanvasType canvasType)
+        {
+            m_CurrentPointer = pointer;
+            m_CurrentCanvasType = canvasType;
+        }
+
+        public bool IsOnCanvas(UICanvasType canvasType)
+        {
+            if (canvasType == m_CurrentCanvasType && m_CurrentPointer.PointerUp)
+                return true;
+
+            return false;
+        }
     }
 
-    public bool IsOnCanvas(UICanvasType canvasType)
+    public enum UICanvasType
     {
-        if (canvasType == m_CurrentCanvasType && m_CurrentPointer.PointerUp)
-            return true;
-
-        return false;
+        None,
+        Inventory,
+        SpellIcons,
     }
-}
-
-public enum UICanvasType
-{
-    None,
-    Inventory,
-    SpellIcons,
 }

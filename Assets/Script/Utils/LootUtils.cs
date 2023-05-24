@@ -1,18 +1,22 @@
+using KarpysDev.Script.Items;
 using UnityEngine;
 
-public static class LootUtils
+namespace KarpysDev.Script.Utils
 {
-    public static Item ToInventoryObject(this InventoryItemData itemData)
+    public static class LootUtils
     {
-        switch (itemData.ObjectType)
+        public static Item ToInventoryObject(this InventoryItemData itemData)
         {
-            case ObjectType.DefaultObject:
-                return new DefaultItem(itemData);
-            case ObjectType.Equipement:
-                return new EquipementItem(itemData as EquipementItemData);
-            default:
-                Debug.LogError("Equipement Object Data type not set up" + itemData.ObjectType);
-                return null;
+            switch (itemData.ObjectType)
+            {
+                case ObjectType.DefaultObject:
+                    return new DefaultItem(itemData);
+                case ObjectType.Equipement:
+                    return new EquipementItem(itemData as EquipementItemData);
+                default:
+                    Debug.LogError("Equipement Object Data type not set up" + itemData.ObjectType);
+                    return null;
+            }
         }
     }
 }

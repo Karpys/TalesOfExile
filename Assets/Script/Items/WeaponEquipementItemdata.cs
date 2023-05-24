@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Inventory/WeaponItemData", fileName = "WeaponEquipementItemdata", order = 0)]
-public class WeaponEquipementItemdata : EquipementItemData
+namespace KarpysDev.Script.Items
 {
-    [Header("Weapon Specific")]
-    [SerializeField] private bool m_IsTwoHanded = false;
+    [CreateAssetMenu(menuName = "Inventory/WeaponItemData", fileName = "WeaponEquipementItemdata", order = 0)]
+    public class WeaponEquipementItemdata : EquipementItemData
+    {
+        [Header("Weapon Specific")]
+        [SerializeField] private bool m_IsTwoHanded = false;
 
-    public bool TwoHanded => m_IsTwoHanded;
+        public bool TwoHanded => m_IsTwoHanded;
+    }
 }

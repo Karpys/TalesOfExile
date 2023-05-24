@@ -1,21 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using KarpysDev.Script.Map_Related;
 using UnityEngine;
 
-public class SpritePriority : MonoBehaviour
+namespace KarpysDev.Script.Widget
 {
-    // Start is called before the first frame update
-    [SerializeField] private WorldTile m_OriginTile = null;
-    [SerializeField] private SpriteRenderer m_Renderer = null;
-
-    private void Start()
+    public class SpritePriority : MonoBehaviour
     {
-        SetSpritePriority(-m_OriginTile.Tile.YPos);
-    }
+        // Start is called before the first frame update
+        [SerializeField] private WorldTile m_OriginTile = null;
+        [SerializeField] private SpriteRenderer m_Renderer = null;
 
-    private void SetSpritePriority(int priority)
-    {
-        m_Renderer.sortingOrder = priority;
+        private void Start()
+        {
+            SetSpritePriority(-m_OriginTile.Tile.YPos);
+        }
+
+        private void SetSpritePriority(int priority)
+        {
+            m_Renderer.sortingOrder = priority;
+        }
     }
 }

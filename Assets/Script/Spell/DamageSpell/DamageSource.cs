@@ -1,18 +1,23 @@
-[System.Serializable]
-public class DamageSource
+using System;
+
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public float Damage = 10;
-    public SubDamageType DamageType = SubDamageType.Physical;
-
-    public DamageSource(float damage, SubDamageType damageType)
+    [Serializable]
+    public class DamageSource
     {
-        Damage = damage;
-        DamageType = damageType;
-    }
+        public float Damage = 10;
+        public SubDamageType DamageType = SubDamageType.Physical;
 
-    public DamageSource(DamageSource baseDamageSource)
-    {
-        Damage = baseDamageSource.Damage;
-        DamageType = baseDamageSource.DamageType;
+        public DamageSource(float damage, SubDamageType damageType)
+        {
+            Damage = damage;
+            DamageType = damageType;
+        }
+
+        public DamageSource(DamageSource baseDamageSource)
+        {
+            Damage = baseDamageSource.Damage;
+            DamageType = baseDamageSource.DamageType;
+        }
     }
 }

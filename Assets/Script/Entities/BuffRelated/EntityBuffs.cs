@@ -1,91 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Manager.Library;
 using UnityEngine;
 
-public class EntityBuffs : MonoBehaviour
+namespace KarpysDev.Script.Entities.BuffRelated
 {
-    private List<Buff> m_Buffs = new List<Buff>();
-
-    public Action<Buff> OnAddBuff = null;
-    public Action<Buff> OnRemoveBuff = null;
-    public Action OnCdReduced = null;
-
-    public List<Buff> Buffs => m_Buffs;
-
-    public void AddBuff(Buff buff)
+    public class EntityBuffs : MonoBehaviour
     {
-        m_Buffs.Add(buff);
-        OnAddBuff?.Invoke(buff);
-    }
+        private List<Buff> m_Buffs = new List<Buff>();
 
-    public void RemoveBuff(Buff buff)
-    {
-        if (m_Buffs.Contains(buff))
-            m_Buffs.Remove(buff);
-        
-        OnRemoveBuff?.Invoke(buff);
-    }
-    private  void Start()
-    {
-        GameManager.Instance.A_OnEndTurn += ReduceAllCd;
-    }
+        public Action<Buff> OnAddBuff = null;
+        public Action<Buff> OnRemoveBuff = null;
+        public Action OnCdReduced = null;
 
-    private void OnDestroy()
-    {
-        if(GameManager.Instance)
-            GameManager.Instance.A_OnEndTurn -= ReduceAllCd;
-    }
+        public List<Buff> Buffs => m_Buffs;
 
-    private void ReduceAllCd()
-    {
-        for (int i = m_Buffs.Count - 1; i >= 0; i--)
+        public void AddBuff(Buff buff)
         {
-            m_Buffs[i].ReduceCooldown();
+            m_Buffs.Add(buff);
+            OnAddBuff?.Invoke(buff);
         }
-        
-        OnCdReduced?.Invoke();
-    }
 
-    public void TryRemovePassiveOffTypeAndValue(BuffType buffType, float buffValue)
-    {
-        for (int i = 0; i < m_Buffs.Count; i++)
+        public void RemoveBuff(Buff buff)
         {
-            Debug.Log(m_Buffs[i].BuffType);
-            if (m_Buffs[i].BuffType == buffType && m_Buffs[i].BuffValue == buffValue &&
-                m_Buffs[i].BuffCooldown == BuffCooldown.Passive)
+            if (m_Buffs.Contains(buff))
+                m_Buffs.Remove(buff);
+        
+            OnRemoveBuff?.Invoke(buff);
+        }
+        private  void Start()
+        {
+            GameManager.Instance.A_OnEndTurn += ReduceAllCd;
+        }
+
+        private void OnDestroy()
+        {
+            if(GameManager.Instance)
+                GameManager.Instance.A_OnEndTurn -= ReduceAllCd;
+        }
+
+        private void ReduceAllCd()
+        {
+            for (int i = m_Buffs.Count - 1; i >= 0; i--)
             {
-                m_Buffs[i].RemovePassive();
-                return;
+                m_Buffs[i].ReduceCooldown();
+            }
+        
+            OnCdReduced?.Invoke();
+        }
+
+        public void TryRemovePassiveOffTypeAndValue(BuffType buffType, float buffValue)
+        {
+            for (int i = 0; i < m_Buffs.Count; i++)
+            {
+                Debug.Log(m_Buffs[i].BuffType);
+                if (m_Buffs[i].BuffType == buffType && m_Buffs[i].BuffValue == buffValue &&
+                    m_Buffs[i].BuffCooldown == BuffCooldown.Passive)
+                {
+                    m_Buffs[i].RemovePassive();
+                    return;
+                }
             }
         }
-    }
     
-    public void TryRemoveBuffViaKey(string buffKey)
-    {
-        for (int i = 0; i < m_Buffs.Count; i++)
+        public void TryRemoveBuffViaKey(string buffKey)
         {
-            if (m_Buffs[i].BuffKey == buffKey)
+            for (int i = 0; i < m_Buffs.Count; i++)
             {
-                m_Buffs[i].RemovePassive();
-                return;
+                if (m_Buffs[i].BuffKey == buffKey)
+                {
+                    m_Buffs[i].RemovePassive();
+                    return;
+                }
             }
         }
     }
-}
 
-[System.Serializable]
-public enum BuffGroup
-{
-    Neutral,
-    Buff,
-    Debuff
-}
+    [Serializable]
+    public enum BuffGroup
+    {
+        Neutral,
+        Buff,
+        Debuff
+    }
 
-[System.Serializable]
-public enum BuffCooldown
-{
-    Cooldown,
-    Toggle,
-    Passive,
+    [Serializable]
+    public enum BuffCooldown
+    {
+        Cooldown,
+        Toggle,
+        Passive,
+    }
 }

@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-[System.Serializable]
-public class FloatPercentageSlider
+namespace KarpysDev.Script.Utils
 {
-    [Range(0, 100)] public float Value = 50f;
+    [Serializable]
+    public class FloatPercentageSlider
+    {
+        [Range(0, 100)] public float Value = 50f;
+    }
 }

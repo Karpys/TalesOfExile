@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Script.UI.Jauge
+namespace KarpysDev.Script.UI.Jauge
 {
     public abstract class BaseJauge : MonoBehaviour
     {

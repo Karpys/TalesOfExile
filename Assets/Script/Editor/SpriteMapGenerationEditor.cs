@@ -1,29 +1,33 @@
-﻿using System;
+﻿using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.Widget;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SpriteMapGeneration))]
-public class SpriteMapGenerationEditor:Editor
+namespace KarpysDev.Script.Editor
 {
-    private SpriteMapGeneration m_Target = null;
-
-    public void OnEnable()
+    [CustomEditor(typeof(SpriteMapGeneration))]
+    public class SpriteMapGenerationEditor:UnityEditor.Editor
     {
-        m_Target = target as SpriteMapGeneration;
-    }
+        private SpriteMapGeneration m_Target = null;
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        AddGenerateLibraryButton();
-    }
-
-    private void AddGenerateLibraryButton()
-    {
-        if (GUILayout.Button("Generate Librarty"))
+        public void OnEnable()
         {
-            m_Target.GenerateLibrary(ColorHelper.GetColorInSprite(m_Target.MapSprite));
+            m_Target = target as SpriteMapGeneration;
+        }
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            AddGenerateLibraryButton();
+        }
+
+        private void AddGenerateLibraryButton()
+        {
+            if (GUILayout.Button("Generate Librarty"))
+            {
+                m_Target.GenerateLibrary(ColorHelper.GetColorInSprite(m_Target.MapSprite));
+            }
         }
     }
 }

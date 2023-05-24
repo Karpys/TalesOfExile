@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-public class DoubleAutoTrigger : AutoAttackTrigger
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    private bool m_TriggerAnim = false;
-    public DoubleAutoTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
-    {}
-
-    public override void CastSpell(TriggerSpellData spellData, SpellTiles spellTiles)
+    public class DoubleAutoTrigger : AutoAttackTrigger
     {
-        m_TriggerAnim = false;
-        base.CastSpell(spellData, spellTiles);
-        base.CastSpell(spellData, spellTiles);
-    }
+        private bool m_TriggerAnim = false;
+        public DoubleAutoTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        {}
 
-    protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
-    {
-        if (m_TriggerAnim == false)
+        public override void CastSpell(TriggerSpellData spellData, SpellTiles spellTiles)
         {
-            base.TriggerOnHitFx(entityPosition, transform, args);
-            m_TriggerAnim = true;
+            m_TriggerAnim = false;
+            base.CastSpell(spellData, spellTiles);
+            base.CastSpell(spellData, spellTiles);
+        }
+
+        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        {
+            if (m_TriggerAnim == false)
+            {
+                base.TriggerOnHitFx(entityPosition, transform, args);
+                m_TriggerAnim = true;
+            }
         }
     }
 }

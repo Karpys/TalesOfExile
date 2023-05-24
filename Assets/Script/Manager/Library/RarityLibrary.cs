@@ -1,31 +1,36 @@
 using System;
+using KarpysDev.Script.Items;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
-public class RarityLibrary : SingletonMonoBehavior<RarityLibrary>
+namespace KarpysDev.Script.Manager.Library
 {
-    [SerializeField] private GenericLibrary<RarityParameter, Rarity> Library = null;
-
-    private void Awake()
+    public class RarityLibrary : SingletonMonoBehavior<RarityLibrary>
     {
-        Library.InitializeDictionary();
+        [SerializeField] private GenericLibrary<RarityParameter, Rarity> Library = null;
+
+        private void Awake()
+        {
+            Library.InitializeDictionary();
+        }
+
+        public RarityParameter GetParametersViaKey(Rarity type)
+        {
+            return Library.GetViaKey(type);
+        }
     }
 
-    public RarityParameter GetParametersViaKey(Rarity type)
+    [Serializable]
+    public class RarityParameter
     {
-        return Library.GetViaKey(type);
+        [SerializeField] private Sprite m_RaritySprite = null;
+        [SerializeField] private GameObject m_RarityWorldFx = null;
+        [SerializeField] private Color m_RarityColor = Color.white;
+        [SerializeField] private int m_RarityModifierDrawCount = 0;
+
+        public Sprite RaritySprite => m_RaritySprite;
+        public GameObject WorldFx => m_RarityWorldFx;
+        public Color RarityColor => m_RarityColor;
+        public int ModifierDrawCount => m_RarityModifierDrawCount;
     }
-}
-
-[System.Serializable]
-public class RarityParameter
-{
-    [SerializeField] private Sprite m_RaritySprite = null;
-    [SerializeField] private GameObject m_RarityWorldFx = null;
-    [SerializeField] private Color m_RarityColor = Color.white;
-    [SerializeField] private int m_RarityModifierDrawCount = 0;
-
-    public Sprite RaritySprite => m_RaritySprite;
-    public GameObject WorldFx => m_RarityWorldFx;
-    public Color RarityColor => m_RarityColor;
-    public int ModifierDrawCount => m_RarityModifierDrawCount;
 }

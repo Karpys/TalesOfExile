@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class WalkableEntity : BoardEntity
+namespace KarpysDev.Script.Entities
 {
-    protected override void OnNewPosition(Vector2Int position)
+    public class WalkableEntity : BoardEntity
     {
-        return;
-    }
+        protected override void OnNewPosition(Vector2Int position)
+        {
+            return;
+        }
 
-    protected override void RemoveFromBoard()
-    {
-        return;
+        protected override void RemoveFromBoard()
+        {
+            return;
+        }
     }
 }

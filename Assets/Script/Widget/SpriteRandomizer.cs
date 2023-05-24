@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
-public class SpriteRandomizer : MonoBehaviour
+namespace KarpysDev.Script.Widget
 {
-    // Start is called before the first frame update
-    [SerializeField] private WeightElementDraw<Sprite> m_SpriteDraw = null;
-    [SerializeField] private SpriteRenderer m_Renderer;
-    void Awake()
+    public class SpriteRandomizer : MonoBehaviour
     {
-        m_Renderer.sprite = m_SpriteDraw.Draw();
-    }
+        // Start is called before the first frame update
+        [SerializeField] private WeightElementDraw<Sprite> m_SpriteDraw = null;
+        [SerializeField] private SpriteRenderer m_Renderer;
+        void Awake()
+        {
+            m_Renderer.sprite = m_SpriteDraw.Draw();
+        }
 
+    }
 }

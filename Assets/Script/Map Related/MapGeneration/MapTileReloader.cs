@@ -1,34 +1,37 @@
-using System;
+using KarpysDev.Script.Manager;
 using UnityEngine;
 
-public class MapTileReloader : MonoBehaviour
+namespace KarpysDev.Script.Map_Related.MapGeneration
 {
-    private Vector2Int m_ReloadPosition = Vector2Int.zero;
-
-    private DestroyObjectCleaner m_Cleaner = null;
-    private void Start()
+    public class MapTileReloader : MonoBehaviour
     {
-        m_Cleaner = new DestroyObjectCleaner(gameObject);
-        
-        GameManager.Instance.A_OnEndTurn += CheckForPlayerPosition;
-    }
+        private Vector2Int m_ReloadPosition = Vector2Int.zero;
 
-    private void OnDestroy()
-    {
-        if(GameManager.Instance)
-            GameManager.Instance.A_OnEndTurn -= CheckForPlayerPosition;
-    }
-
-    public void SetReloadPosition(Vector2Int reloadPosition)
-    {
-        m_ReloadPosition = reloadPosition;
-    }
-
-    private void CheckForPlayerPosition()
-    {
-        if (GameManager.Instance.PlayerEntity.EntityPosition == m_ReloadPosition)
+        private DestroyObjectCleaner m_Cleaner = null;
+        private void Start()
         {
-            MapGenerator.Instance.NextMap();
-        } 
+            m_Cleaner = new DestroyObjectCleaner(gameObject);
+        
+            GameManager.Instance.A_OnEndTurn += CheckForPlayerPosition;
+        }
+
+        private void OnDestroy()
+        {
+            if(GameManager.Instance)
+                GameManager.Instance.A_OnEndTurn -= CheckForPlayerPosition;
+        }
+
+        public void SetReloadPosition(Vector2Int reloadPosition)
+        {
+            m_ReloadPosition = reloadPosition;
+        }
+
+        private void CheckForPlayerPosition()
+        {
+            if (GameManager.Instance.PlayerEntity.EntityPosition == m_ReloadPosition)
+            {
+                MapGenerator.Instance.NextMap();
+            } 
+        }
     }
 }

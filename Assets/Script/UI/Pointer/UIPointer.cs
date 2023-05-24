@@ -1,25 +1,27 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class UIPointer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+namespace KarpysDev.Script.UI.Pointer
 {
-    private bool m_PointerUp = false;
-
-    public bool PointerUp => m_PointerUp;
-    public void OnPointerEnter(PointerEventData eventData)
+    public abstract class UIPointer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
-        m_PointerUp = true;
-        OnEnter();
-    }
+        private bool m_PointerUp = false;
 
-    //In RecordUIManager? time same rinventoryUIHolder => case display item//
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        m_PointerUp = false;
-        OnExit();
-    }
+        public bool PointerUp => m_PointerUp;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            m_PointerUp = true;
+            OnEnter();
+        }
 
-    protected abstract void OnEnter();
-    protected abstract void OnExit();
+        //In RecordUIManager? time same rinventoryUIHolder => case display item//
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            m_PointerUp = false;
+            OnExit();
+        }
+
+        protected abstract void OnEnter();
+        protected abstract void OnExit();
+    }
 }

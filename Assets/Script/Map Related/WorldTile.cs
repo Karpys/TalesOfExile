@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 
-public class WorldTile : MonoBehaviour
+namespace KarpysDev.Script.Map_Related
 {
-    [SerializeField] private bool m_Walkable = true;
-    protected Tile m_AttachedTile = null;
-
-    public Tile Tile => m_AttachedTile;
-
-    public void SetTile(Tile tile)
+    public class WorldTile : MonoBehaviour
     {
-        tile.SetWorldTile(this);
-        m_AttachedTile = tile;
-        tile.Walkable = m_Walkable;
+        [SerializeField] private bool m_Walkable = true;
+        protected Tile m_AttachedTile = null;
+
+        public Tile Tile => m_AttachedTile;
+
+        public void SetTile(Tile tile)
+        {
+            tile.SetWorldTile(this);
+            m_AttachedTile = tile;
+            tile.Walkable = m_Walkable;
+        }
     }
 }

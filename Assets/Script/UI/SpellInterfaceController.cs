@@ -1,85 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Spell;
+using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
-public class SpellInterfaceController : UIPointer
+namespace KarpysDev.Script.UI
 {
-    //UI Part//
-    [SerializeField] private SpellIcon m_SpellUI = null;
-    [SerializeField] private RectTransform m_SpellLayout = null;
-    [SerializeField] private SpellInterpretor m_Interpretor = null;
+    public class SpellInterfaceController : UIPointer
+    {
+        //UI Part//
+        [SerializeField] private SpellIcon m_SpellUI = null;
+        [SerializeField] private RectTransform m_SpellLayout = null;
+        [SerializeField] private SpellInterpretor m_Interpretor = null;
     
-    private SpellIcon[] m_IconsHolder;
+        private SpellIcon[] m_IconsHolder;
 
-    public const int SPELL_DISPLAY_COUNT = 18;
-    public SpellInterpretor Interpretor => m_Interpretor;
+        public const int SPELL_DISPLAY_COUNT = 18;
+        public SpellInterpretor Interpretor => m_Interpretor;
 
-    private SpellIcon m_CurrentPointer = null;
-    //Spell Data Part//
-    //List des spells attribue au spell ui icon//
-    private void Awake()
-    {
-        //Initialize tiles depend on screen and tile size//
-        m_IconsHolder = new SpellIcon[SPELL_DISPLAY_COUNT];
-        for (int i = 0; i < SPELL_DISPLAY_COUNT; i++)
+        private SpellIcon m_CurrentPointer = null;
+        //Spell Data Part//
+        //List des spells attribue au spell ui icon//
+        private void Awake()
         {
-            m_IconsHolder[i] = Instantiate(m_SpellUI, m_SpellLayout.transform);
-            m_IconsHolder[i].Initialize(this, i);
-            m_IconsHolder[i].SetSpellKey(i,i > (SPELL_DISPLAY_COUNT/2) - 1);
+            //Initialize tiles depend on screen and tile size//
+            m_IconsHolder = new SpellIcon[SPELL_DISPLAY_COUNT];
+            for (int i = 0; i < SPELL_DISPLAY_COUNT; i++)
+            {
+                m_IconsHolder[i] = Instantiate(m_SpellUI, m_SpellLayout.transform);
+                m_IconsHolder[i].Initialize(this, i);
+                m_IconsHolder[i].SetSpellKey(i,i > (SPELL_DISPLAY_COUNT/2) - 1);
+            }
+
+            m_CurrentPointer = m_IconsHolder[0];
         }
 
-        m_CurrentPointer = m_IconsHolder[0];
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+        private void Update()
         {
-            if (m_CurrentPointer.PointerUp)
+            if (Input.GetMouseButtonDown(0))
             {
-                m_CurrentPointer.TryUseSpell();
+                if (m_CurrentPointer.PointerUp)
+                {
+                    m_CurrentPointer.TryUseSpell();
+                }
             }
         }
-    }
 
-    public void SetSpellIcons(BoardEntity entity)
-    {
-        SpellData[] spellsToDisplay = entity.GetDisplaySpells();
+        public void SetSpellIcons(BoardEntity entity)
+        {
+            SpellData[] spellsToDisplay = entity.GetDisplaySpells();
         
-        for (int i = 0; i < spellsToDisplay.Length; i++)
-        {
-            if(!(spellsToDisplay[i] is TriggerSpellData triggerSpell))
-                continue;
-            
-            m_IconsHolder[i].SetSpell(triggerSpell);
-        }
-
-        for (int i = spellsToDisplay.Length; i < SPELL_DISPLAY_COUNT; i++)
-        {
-            m_IconsHolder[i].ClearIcon();
-        }
-    }
-
-    public void UpdateAllCooldownVisual()
-    {
-        foreach (SpellIcon spellIcon in m_IconsHolder)
-        {
-            if (spellIcon.SpellData != null)
+            for (int i = 0; i < spellsToDisplay.Length; i++)
             {
-                spellIcon.UpdateCooldownVisual();
+                if(!(spellsToDisplay[i] is TriggerSpellData triggerSpell))
+                    continue;
+            
+                m_IconsHolder[i].SetSpell(triggerSpell);
+            }
+
+            for (int i = spellsToDisplay.Length; i < SPELL_DISPLAY_COUNT; i++)
+            {
+                m_IconsHolder[i].ClearIcon();
             }
         }
-    }
 
-    public void SetPointer(SpellIcon pointer)
-    {
-        m_CurrentPointer = pointer;
-    }
+        public void UpdateAllCooldownVisual()
+        {
+            foreach (SpellIcon spellIcon in m_IconsHolder)
+            {
+                if (spellIcon.SpellData != null)
+                {
+                    spellIcon.UpdateCooldownVisual();
+                }
+            }
+        }
 
-    protected override void OnEnter()
-    {
-        GlobalCanvas.Instance.SetCanvasPointer(this, UICanvasType.SpellIcons);
-    }
+        public void SetPointer(SpellIcon pointer)
+        {
+            m_CurrentPointer = pointer;
+        }
 
-    protected override void OnExit(){}
+        protected override void OnEnter()
+        {
+            GlobalCanvas.Instance.SetCanvasPointer(this, UICanvasType.SpellIcons);
+        }
+
+        protected override void OnExit(){}
+    }
 }

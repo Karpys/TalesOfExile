@@ -1,9 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Map/MapPack", fileName = "new MapPAck", order = 0)]
-public class MapGroup : ScriptableObject
+namespace KarpysDev.Script.Map_Related.MapGeneration
 {
-    [SerializeField] private MapGenerationData[] m_Maps = null;
+    [CreateAssetMenu(menuName = "Map/MapPack", fileName = "new MapPAck", order = 0)]
+    public class MapGroup : ScriptableObject
+    {
+        [SerializeField] private MapGenerationData[] m_Maps = null;
 
-    public MapGenerationData[] MapGenerationData => m_Maps;
+        public MapGenerationData[] MapGenerationData => m_Maps;
+    }
 }

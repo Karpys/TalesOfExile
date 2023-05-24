@@ -1,83 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
 using UnityEngine;
 
-public class MapData : SingletonMonoBehavior<MapData>
+namespace KarpysDev.Script.Map_Related
 {
-    [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
-    private Map m_Map = null;
-    
-    public Map Map
+    public class MapData : SingletonMonoBehavior<MapData>
     {
-        get { return m_Map; }
-        set { m_Map = value; }
-    }
+        [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
+        private Map m_Map = null;
     
-    
-    public bool IsWalkable(int x, int y)
-    {
-        if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x,y].Walkable)
+        public Map Map
         {
-            return true;
+            get { return m_Map; }
+            set { m_Map = value; }
         }
-        return false;
-    }
-
-    public bool IsWalkable(Vector2Int pos)
-    {
-        return IsWalkable(pos.x, pos.y);
-    }
-
-    public Vector3 GetTilePosition(int x, int y)
-    {
-        return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);
-    }
-
-    public Vector3 GetTilePosition(Vector2Int pos)
-    {
-        return GetTilePosition(pos.x, pos.y);
-    }
-
-    public Tile GetTile(Vector2Int pos)
-    {
-        if (!Map.InMapBounds(pos))
-            return null;
-        
-        return Map.Tiles[pos.x, pos.y];
-    }
-
-    public Vector2Int GetControlledEntityPosition()
-    {
-        return GameManager.Instance.ControlledEntity.EntityPosition;
-    }
     
-    public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
-    {
-        BoardEntity entityAt = null;
-
-        if (targetEntityGroup == EntityGroup.Enemy)
+    
+        public bool IsWalkable(int x, int y)
         {
-            entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.ActiveEnemiesOnBoard);
-        }else if (targetEntityGroup == EntityGroup.Friendly)
-        {
-            entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.FriendlyOnBoard);
+            if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x,y].Walkable)
+            {
+                return true;
+            }
+            return false;
         }
+
+        public bool IsWalkable(Vector2Int pos)
+        {
+            return IsWalkable(pos.x, pos.y);
+        }
+
+        public Vector3 GetTilePosition(int x, int y)
+        {
+            return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);
+        }
+
+        public Vector3 GetTilePosition(Vector2Int pos)
+        {
+            return GetTilePosition(pos.x, pos.y);
+        }
+
+        public Tile GetTile(Vector2Int pos)
+        {
+            if (!Map.InMapBounds(pos))
+                return null;
         
-        return entityAt;
-    }
+            return Map.Tiles[pos.x, pos.y];
+        }
 
-    public BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
-    {
-        BoardEntity entity = entities.FirstOrDefault(en => en.Targetable && en.EntityPosition == entityPos);
+        public Vector2Int GetControlledEntityPosition()
+        {
+            return GameManager.Instance.ControlledEntity.EntityPosition;
+        }
+    
+        public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
+        {
+            BoardEntity entityAt = null;
 
-        return entity;
-    }
+            if (targetEntityGroup == EntityGroup.Enemy)
+            {
+                entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.ActiveEnemiesOnBoard);
+            }else if (targetEntityGroup == EntityGroup.Friendly)
+            {
+                entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.FriendlyOnBoard);
+            }
+        
+            return entityAt;
+        }
 
-    public Vector2Int MapClampedPosition(Vector2Int pos)
-    {
-        int clampedX = Mathf.Clamp(pos.x, 0,m_Map.Width - 1);
-        int clampedY = Mathf.Clamp(pos.y,0, m_Map.Height - 1);
-        return new Vector2Int(clampedX, clampedY);
+        public BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
+        {
+            BoardEntity entity = entities.FirstOrDefault(en => en.Targetable && en.EntityPosition == entityPos);
+
+            return entity;
+        }
+
+        public Vector2Int MapClampedPosition(Vector2Int pos)
+        {
+            int clampedX = Mathf.Clamp(pos.x, 0,m_Map.Width - 1);
+            int clampedY = Mathf.Clamp(pos.y,0, m_Map.Height - 1);
+            return new Vector2Int(clampedX, clampedY);
+        }
     }
 }

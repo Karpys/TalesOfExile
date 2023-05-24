@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Items;
+using UnityEngine;
 
-
-public class EntityEquipement : MonoBehaviour
+namespace KarpysDev.Script.Entities.EquipementRelated
 {
-    private Item[] m_Equipement = new Item[11];
-
-    public Item[] Equipement => m_Equipement;
-
-    public void SetSaveEquipement(Item[] item)
+    public class EntityEquipement : MonoBehaviour
     {
-        m_Equipement = item;
+        private Item[] m_Equipement = new Item[11];
+
+        public Item[] Equipement => m_Equipement;
+
+        public void SetSaveEquipement(Item[] item)
+        {
+            m_Equipement = item;
+        }
     }
 }

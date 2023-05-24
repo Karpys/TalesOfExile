@@ -1,58 +1,61 @@
 using System;
+using KarpysDev.Script.Utils;
+using KarpysDev.Script.Utils.Editor;
 using UnityEditor;
 using UnityEngine;
 
-
-[CustomEditor(typeof(ParameterLessTrigger))]
-public class ParameterLessTriggerEditor : Editor
+namespace KarpysDev.Script.Spell.DamageSpell.Editor
 {
-    private ParameterLessTrigger m_ParameterLessTrigger = null;
-    private string m_className = string.Empty;
-
-    private string[] m_FieldsName = null;
-    private FieldValue[] m_FieldValues = null;
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(ParameterLessTrigger))]
+    public class ParameterLessTriggerEditor : UnityEditor.Editor
     {
-        DrawDefaultInspector();
+        private ParameterLessTrigger m_ParameterLessTrigger = null;
+        private string m_className = string.Empty;
 
-        EditorGUILayout.Space(10);
+        private string[] m_FieldsName = null;
+        private FieldValue[] m_FieldValues = null;
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-        if(m_FieldsName == null || m_FieldsName.Length == 0)
-            return;
+            EditorGUILayout.Space(10);
+
+            if(m_FieldsName == null || m_FieldsName.Length == 0)
+                return;
         
-        for (int i = 0; i < m_FieldsName.Length; i++)
-        {
-            EditorUtils.DrawField(m_FieldValues[i],m_FieldsName[i]);
-        }
-
-        if(GUILayout.Button("Send values"))
-        {
-            m_ParameterLessTrigger.AdditionalParameters = EditorUtils.GetNewFieldValue(m_FieldValues,serializedObject,target);
-        }
-    }
-
-    private void OnEnable()
-    {
-        m_ParameterLessTrigger = target as ParameterLessTrigger;
-        m_className = m_ParameterLessTrigger.TriggerClassName + ",Assembly-CSharp";
-
-        Type triggerClass = StringUtils.GetTypeViaClassName(m_className);
-        
-        if (triggerClass != null)
-        {
-            StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, out m_FieldValues, 0, 1);
-
-            if (m_ParameterLessTrigger.AdditionalParameters.Length > 0)
+            for (int i = 0; i < m_FieldsName.Length; i++)
             {
-                for (int i = 0; i < m_FieldsName.Length; i++)
+                EditorUtils.DrawField(m_FieldValues[i],m_FieldsName[i]);
+            }
+
+            if(GUILayout.Button("Send values"))
+            {
+                m_ParameterLessTrigger.AdditionalParameters = EditorUtils.GetNewFieldValue(m_FieldValues,serializedObject,target);
+            }
+        }
+
+        private void OnEnable()
+        {
+            m_ParameterLessTrigger = target as ParameterLessTrigger;
+            m_className = m_ParameterLessTrigger.TriggerClassName;
+
+            Type triggerClass = StringUtils.GetTypeViaClassName(m_className);
+        
+            if (triggerClass != null)
+            {
+                StringUtils.GetConstructorsFields(triggerClass, out m_FieldsName, out m_FieldValues, 0, 1);
+
+                if (m_ParameterLessTrigger.AdditionalParameters.Length > 0)
                 {
-                    m_FieldValues[i].Value = m_ParameterLessTrigger.AdditionalParameters[i].Value;
+                    for (int i = 0; i < m_FieldsName.Length; i++)
+                    {
+                        m_FieldValues[i].Value = m_ParameterLessTrigger.AdditionalParameters[i].Value;
+                    }
                 }
             }
         }
-    }
 
-    /*private void AddField(FieldValue field,int id,string fieldName)
+        /*private void AddField(FieldValue field,int id,string fieldName)
     {
         EditorGUILayout.LabelField(m_FieldsName[id]);
 
@@ -78,4 +81,5 @@ public class ParameterLessTriggerEditor : Editor
                 break;
         }
     }*/
+    }
 }

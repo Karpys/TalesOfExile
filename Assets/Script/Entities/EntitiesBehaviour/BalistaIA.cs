@@ -1,9 +1,10 @@
-﻿using UnityEngine;
-
-public class BalistaIA : BaseEntityIA
+﻿namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    protected override bool MovementAction()
+    public class BalistaIA : BaseEntityIA
     {
-        return false;
+        protected override bool MovementAction()
+        {
+            return false;
+        }
     }
 }

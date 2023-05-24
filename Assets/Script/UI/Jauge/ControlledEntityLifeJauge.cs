@@ -1,7 +1,9 @@
-﻿using TMPro;
+﻿using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
+using TMPro;
 using UnityEngine;
 
-namespace Script.UI.Jauge
+namespace KarpysDev.Script.UI.Jauge
 {
     public class ControlledEntityLifeJauge : BaseJauge
     {

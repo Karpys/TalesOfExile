@@ -1,109 +1,115 @@
 using System.Collections.Generic;
+using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 //DAMAGE SPELL TRIGGER need to inherit from BaseTargetEntitySpell abstract class//
 //return a List of Entity and then here apply all the damage source//
 //The animation part can be move to BaseTargetEntitySpell//
-public class DamageSpellTrigger : SelectionSpellTrigger
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    protected DamageParameters m_DamageSpellParams = null;
-
-    protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
-
-    public Dictionary<SubDamageType, DamageSource> DamageSource => m_DamageSources;
-    public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
+    public class DamageSpellTrigger : SelectionSpellTrigger
     {
-        Debug.Log("Call Base Damage Spell Trigger");
-        m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
-    }
+        protected DamageParameters m_DamageSpellParams = null;
 
-    #region ComputePart
+        protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
+
+        public Dictionary<SubDamageType, DamageSource> DamageSource => m_DamageSources;
+        public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
+        {
+            Debug.Log("Call Base Damage Spell Trigger");
+            m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
+        }
+
+        #region ComputePart
 
     
 
-    public override void ComputeSpellData(BoardEntity entity)
-    {
-        m_DamageSources.Clear();
+        public override void ComputeSpellData(BoardEntity entity)
+        {
+            m_DamageSources.Clear();
 
-        FloatSocket bonusModifier = new FloatSocket();
-        entity.EntityEvent.OnRequestSpellDamage?.Invoke(this,bonusModifier);
+            FloatSocket bonusModifier = new FloatSocket();
+            entity.EntityEvent.OnRequestSpellDamage?.Invoke(this,bonusModifier);
         
-        ComputeSpellDamage(entity);
-        ApplyDamageModifier(entity,bonusModifier.Value);
+            ComputeSpellDamage(entity);
+            ApplyDamageModifier(entity,bonusModifier.Value);
         
-        base.ComputeSpellData(entity);
-    }
+            base.ComputeSpellData(entity);
+        }
 
-    private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
-    {
-        float damageModifier = entity.EntityStats.GetDamageParametersModifier(m_DamageSpellParams, bonusModifier);
+        private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
+        {
+            float damageModifier = entity.EntityStats.GetDamageParametersModifier(m_DamageSpellParams, bonusModifier);
         
-        foreach (DamageSource source in m_DamageSources.Values)
-        {
-            var damageSource = source;
-            damageSource.Damage *= damageModifier;
+            foreach (DamageSource source in m_DamageSources.Values)
+            {
+                var damageSource = source;
+                damageSource.Damage *= damageModifier;
+            }
         }
-    }
 
-    public void AddDamageSource(DamageSource damageSource)
-    {
-        if (m_DamageSources.TryGetValue(damageSource.DamageType, out var currentSource))
+        public void AddDamageSource(DamageSource damageSource)
         {
-            currentSource.Damage += damageSource.Damage;
+            if (m_DamageSources.TryGetValue(damageSource.DamageType, out var currentSource))
+            {
+                currentSource.Damage += damageSource.Damage;
+            }
+            else
+            {
+                m_DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
+            }
         }
-        else
+
+        protected virtual void ComputeSpellDamage(BoardEntity entity)
         {
-            m_DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
+            AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
         }
-    }
 
-    protected virtual void ComputeSpellDamage(BoardEntity entity)
-    {
-        AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
-    }
-
-    #endregion
-    //Apply Damage To All Ennemies in the actionTiles
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
-        Vector2Int origin, CastInfo castInfo)
-    {
-        base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
-        DamageEntity(entity,spellData,targetGroup);
-        castInfo?.AddHitEntity(entity);
-    }
-
-    protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
-    {
-        float totalDamage = 0;
-        MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
-        //Foreach Damage Sources//
-        foreach (DamageSource damageSource in m_DamageSources.Values)
+        #endregion
+        //Apply Damage To All Ennemies in the actionTiles
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+            Vector2Int origin, CastInfo castInfo)
         {
-            totalDamage += DamageManager.Instance.TryDamageEnemy(entity,damageSource,mainDamageType); //DamageSource);
+            base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
+            DamageEntity(entity,spellData,targetGroup);
+            castInfo?.AddHitEntity(entity);
         }
+
+        protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
+        {
+            float totalDamage = 0;
+            MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
+            //Foreach Damage Sources//
+            foreach (DamageSource damageSource in m_DamageSources.Values)
+            {
+                totalDamage += DamageManager.Instance.TryDamageEnemy(entity,damageSource,mainDamageType); //DamageSource);
+            }
         
-        entity.EntityEvent.TriggerGetDamageAction(spellData.AttachedEntity,this);
-        entity.TakeDamage(totalDamage);
+            entity.EntityEvent.TriggerGetDamageAction(spellData.AttachedEntity,this);
+            entity.TakeDamage(totalDamage);
 
-        /*Text Display */
-        if (targetGroup == EntityGroup.Enemy)
-        {
-            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
-        }
-    }
-
-    public void SetInitialDamageSource(float initialDamageSource)
-    {
-        m_DamageSpellParams.InitialSourceDamage.Damage = initialDamageSource;
-    }
-
-    protected override CastInfo GetCastInfo(TriggerSpellData spellData)
-    {
-        if (OnCastSpell != null)
-        {
-            return new DamageCastInfo(spellData);
+            /*Text Display */
+            if (targetGroup == EntityGroup.Enemy)
+            {
+                FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
+            }
         }
 
-        return null;
+        public void SetInitialDamageSource(float initialDamageSource)
+        {
+            m_DamageSpellParams.InitialSourceDamage.Damage = initialDamageSource;
+        }
+
+        protected override CastInfo GetCastInfo(TriggerSpellData spellData)
+        {
+            if (OnCastSpell != null)
+            {
+                return new DamageCastInfo(spellData);
+            }
+
+            return null;
+        }
     }
 }

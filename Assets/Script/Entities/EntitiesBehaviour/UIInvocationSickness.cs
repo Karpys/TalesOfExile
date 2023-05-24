@@ -1,25 +1,27 @@
-using System;
 using TMPro;
 using UnityEngine;
 
-public class UIInvocationSickness : InvocationSickness
+namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    [SerializeField] private TMP_Text m_Count = null;
-
-    private void Start()
+    public class UIInvocationSickness : InvocationSickness
     {
-        m_Count.text = m_TurnWaitBehave.ToString();
-    }
+        [SerializeField] private TMP_Text m_Count = null;
 
-    protected override void EntityCanBehave()
-    {
-        base.EntityCanBehave();
-        m_Count.text = m_TurnWaitBehave.ToString();
-    }
+        private void Start()
+        {
+            m_Count.text = m_TurnWaitBehave.ToString();
+        }
 
-    protected override void RemoveSickness()
-    {
-        Destroy(m_Count.gameObject);
-        base.RemoveSickness();
+        protected override void EntityCanBehave()
+        {
+            base.EntityCanBehave();
+            m_Count.text = m_TurnWaitBehave.ToString();
+        }
+
+        protected override void RemoveSickness()
+        {
+            Destroy(m_Count.gameObject);
+            base.RemoveSickness();
+        }
     }
 }

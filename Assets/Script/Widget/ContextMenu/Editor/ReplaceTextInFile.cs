@@ -2,27 +2,29 @@
 using UnityEditor;
 using UnityEngine;
 
-
-public static class ToolMenu
+namespace KarpysDev.Script.Widget.ContextMenu.Editor
 {
-    [MenuItem("Tools/ReplaceString")]
-    public static void ReplaceString()
+    public static class ToolMenu
     {
-        string toReplace = "m_HorizontalBearingY: 54.890625";
-        string newValue = "      " + toReplace.Split()[0] + " 52";
-        string path = "Assets/UI/Font/EightBit.asset";
-        
-        string[] lines = File.ReadAllLines(path);
-
-        for (int i = 0; i < lines.Length; i++)
+        [MenuItem("Tools/ReplaceString")]
+        public static void ReplaceString()
         {
-            if (lines[i].Contains(toReplace))
-            {
-                Debug.Log("Replace");
-                lines[i] = newValue;
-            }
-        }
+            string toReplace = "m_HorizontalBearingY: 54.890625";
+            string newValue = "      " + toReplace.Split()[0] + " 52";
+            string path = "Assets/UI/Font/EightBit.asset";
         
-        File.WriteAllLines(path,lines);
+            string[] lines = File.ReadAllLines(path);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains(toReplace))
+                {
+                    Debug.Log("Replace");
+                    lines[i] = newValue;
+                }
+            }
+        
+            File.WriteAllLines(path,lines);
+        }
     }
 }

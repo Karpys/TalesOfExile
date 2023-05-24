@@ -1,27 +1,30 @@
-using System;
 using System.Collections.Generic;
+using KarpysDev.Script.Items;
 using UnityEngine;
 
-public class ItemLibrary : SingletonMonoBehavior<ItemLibrary>
+namespace KarpysDev.Script.Manager.Library
 {
-    [SerializeField] private InventoryItemData[] m_BaseObjectScriptable = null;
-
-    private Dictionary<int, InventoryItemData> m_InventoryObjectDictionary = new Dictionary<int, InventoryItemData>();
-    private void Awake()
+    public class ItemLibrary : SingletonMonoBehavior<ItemLibrary>
     {
-        foreach (InventoryItemData inventoryObject in m_BaseObjectScriptable)
+        [SerializeField] private InventoryItemData[] m_BaseObjectScriptable = null;
+
+        private Dictionary<int, InventoryItemData> m_InventoryObjectDictionary = new Dictionary<int, InventoryItemData>();
+        private void Awake()
         {
-            m_InventoryObjectDictionary.Add(inventoryObject.UniqueId,inventoryObject);
+            foreach (InventoryItemData inventoryObject in m_BaseObjectScriptable)
+            {
+                m_InventoryObjectDictionary.Add(inventoryObject.UniqueId,inventoryObject);
+            }
         }
-    }
 
-    public InventoryItemData GetBaseDataViaId(int id)
-    {
-        m_InventoryObjectDictionary.TryGetValue(id, out InventoryItemData baseData);
+        public InventoryItemData GetBaseDataViaId(int id)
+        {
+            m_InventoryObjectDictionary.TryGetValue(id, out InventoryItemData baseData);
         
-        if(baseData == null)
-            Debug.LogError("Base data id : " + id + "is not recognised");
+            if(baseData == null)
+                Debug.LogError("Base data id : " + id + "is not recognised");
 
-        return baseData;
+            return baseData;
+        }
     }
 }

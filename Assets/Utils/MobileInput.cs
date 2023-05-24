@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using KarpysDev.Script.Entities;
+using KarpysDev.Script.UI.ItemContainer;
 using UnityEngine;
 using UnityEngine.UIElements;
 

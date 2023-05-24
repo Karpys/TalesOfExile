@@ -1,18 +1,22 @@
 using System.Collections.Generic;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MonsterGeneration", menuName = "Monster/EntitySpawnGeneration", order = 0)]
-public class EntitySpawnGeneration : BaseMonsterGeneration
+namespace KarpysDev.Script.Map_Related.MapGeneration
 {
-    [SerializeField] private EntitySpawn[] m_EntitySpawns = null;
-    
-    public override void Generate(List<Tile> allowedTiles)
+    [CreateAssetMenu(fileName = "MonsterGeneration", menuName = "Monster/EntitySpawnGeneration", order = 0)]
+    public class EntitySpawnGeneration : BaseMonsterGeneration
     {
-        EntityHelper.SpawnEnemyViaEntitySpawn(m_EntitySpawns);
+        [SerializeField] private EntitySpawn[] m_EntitySpawns = null;
+    
+        public override void Generate(List<Tile> allowedTiles)
+        {
+            EntityHelper.SpawnEnemyViaEntitySpawn(m_EntitySpawns);
+        }
+    }
+
+    public abstract class BaseMonsterGeneration : ScriptableObject
+    {
+        public abstract void Generate(List<Tile> allowedTiles);
     }
 }
-
-public abstract class BaseMonsterGeneration : ScriptableObject
-{
-    public abstract void Generate(List<Tile> allowedTiles);
-} 

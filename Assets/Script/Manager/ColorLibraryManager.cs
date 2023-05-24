@@ -1,25 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using KarpysDev.Script.Spell;
+using UnityEngine;
 
-[System.Serializable]
-public class DamageTypeColor
+namespace KarpysDev.Script.Manager
 {
-    public SubDamageType DamageType = SubDamageType.Physical;
-    public Color DamageColor = Color.white; 
-}
-public class ColorLibraryManager:SingletonMonoBehavior<ColorLibraryManager>
-{
-    public DamageTypeColor[] DamageTypeColors = new DamageTypeColor[1];
-    
-    public Color GetDamageColor(SubDamageType damageType)
+    [Serializable]
+    public class DamageTypeColor
     {
-        for (int i = 0; i < DamageTypeColors.Length; i++)
+        public SubDamageType DamageType = SubDamageType.Physical;
+        public Color DamageColor = Color.white; 
+    }
+    public class ColorLibraryManager:SingletonMonoBehavior<ColorLibraryManager>
+    {
+        public DamageTypeColor[] DamageTypeColors = new DamageTypeColor[1];
+    
+        public Color GetDamageColor(SubDamageType damageType)
         {
-            if (damageType == DamageTypeColors[i].DamageType)
+            for (int i = 0; i < DamageTypeColors.Length; i++)
             {
-                return DamageTypeColors[i].DamageColor;
+                if (damageType == DamageTypeColors[i].DamageType)
+                {
+                    return DamageTypeColors[i].DamageColor;
+                }
             }
-        }
         
-        return Color.white;
+            return Color.white;
+        }
     }
 }

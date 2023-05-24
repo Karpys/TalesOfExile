@@ -1,38 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpellDamage", menuName = "Trigger/Basic Damage", order = 0)]
-public class DamageSpellScriptable : BaseSpellTriggerScriptable
+namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public DamageParameters BaseDamageParameters = null;
-    
-    public override BaseSpellTrigger SetUpTrigger()
+    [CreateAssetMenu(fileName = "SpellDamage", menuName = "Trigger/Basic Damage", order = 0)]
+    public class DamageSpellScriptable : BaseSpellTriggerScriptable
     {
-        Debug.Log("Return new Damage Spell Trigger");
-        return new DamageSpellTrigger(this);
+        public DamageParameters BaseDamageParameters = null;
+    
+        public override BaseSpellTrigger SetUpTrigger()
+        {
+            Debug.Log("Return new Damage Spell Trigger");
+            return new DamageSpellTrigger(this);
+        }
     }
-}
 
 
 //Can be created via Modifier by type
-[System.Serializable]
-public class AddDamageModifier
-{
-    public DamageType TargetDamageType = null;
-    public DamageSource AddedDamageSource;
-
-    public DamageSource? GetAdditionalDamage(DamageType initialDamageType)
+    [Serializable]
+    public class AddDamageModifier
     {
-        if (initialDamageType.MainDamageType == TargetDamageType.MainDamageType)
-            return AddedDamageSource;
+        public DamageType TargetDamageType = null;
+        public DamageSource AddedDamageSource;
 
-        for (int i = 0; i < TargetDamageType.SubDamageTypes.Length; i++)
+        public DamageSource? GetAdditionalDamage(DamageType initialDamageType)
         {
-            if (initialDamageType.SubDamageTypes.Contains(TargetDamageType.SubDamageTypes[i]))
+            if (initialDamageType.MainDamageType == TargetDamageType.MainDamageType)
                 return AddedDamageSource;
-        }
 
-        return null;
+            for (int i = 0; i < TargetDamageType.SubDamageTypes.Length; i++)
+            {
+                if (initialDamageType.SubDamageTypes.Contains(TargetDamageType.SubDamageTypes[i]))
+                    return AddedDamageSource;
+            }
+
+            return null;
+        }
     }
 }

@@ -1,11 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System;
-using System.Linq;
-
-namespace Bresenhams
+namespace KarpysDev.Script.Utils
 {
     // Author: Jason Morley (Source: http://www.morleydev.co.uk/blog/2010/11/18/generic-bresenhams-line-algorithm-in-visual-basic-net/)
     /// <summary>

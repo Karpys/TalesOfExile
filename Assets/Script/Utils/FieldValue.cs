@@ -1,83 +1,84 @@
 using System;
 using UnityEngine;
 
-[System.Serializable]
-public class FieldValue
+namespace KarpysDev.Script.Utils
 {
-    public FieldType Type = FieldType.Int;
-    public string Value = String.Empty;
-
-    public FieldValue GetField(string type)
+    [Serializable]
+    public class FieldValue
     {
-        Debug.Log(type);
+        public FieldType Type = FieldType.Int;
+        public string Value = String.Empty;
 
-        switch (type)
+        public FieldValue GetField(string type)
         {
-            case "System.Int32":
-                return new FieldValue(FieldType.Int, "0");
-            case "System.Single":
-                return new FieldValue(FieldType.Float, "0");
-            case "System.String":
-                return new FieldValue(FieldType.String, "Empty");
-            case "System.Boolean":
-                return new FieldValue(FieldType.Bool, "False");
-            default:
-                //Try get enum//
-                System.Type enumType = System.Type.GetType(type);
-                if (enumType != null)
-                {
-                    return new EnumFieldValue(FieldType.Enum, "0 0", type);
-                }else
-                {
-                    Debug.LogError("Type has not been implemented");
+            switch (type)
+            {
+                case "System.Int32":
+                    return new FieldValue(FieldType.Int, "0");
+                case "System.Single":
+                    return new FieldValue(FieldType.Float, "0");
+                case "System.String":
+                    return new FieldValue(FieldType.String, "Empty");
+                case "System.Boolean":
+                    return new FieldValue(FieldType.Bool, "False");
+                default:
+                    //Try get enum//
+                    Type enumType = StringUtils.GetTypeViaClassName(type);
+                    if (enumType != null)
+                    {
+                        return new EnumFieldValue(FieldType.Enum, "0 0", type);
+                    }else
+                    {
+                        Debug.LogError("Type has not been implemented");
+                        return null;
+                    }
+            }
+        }
+
+        public FieldValue(FieldType type, string defaultValue)
+        {
+            Type = type;
+            Value = defaultValue;
+        }
+
+        public object GetValue()
+        {
+            switch (Type)
+            {
+                case FieldType.Int:
+                    return Value.ToInt();
+                case FieldType.Float:
+                    return Value.ToFloat();
+                case FieldType.Enum:
+                    Type enumType = StringUtils.GetTypeViaClassName(Value.Split()[0]);
+                    return Enum.Parse(enumType, Value.Split()[1]);
+                case FieldType.Bool:
+                    return bool.Parse(Value);
+                case FieldType.String:
+                    return Value;
+                default:
                     return null;
-                }
+            }
         }
     }
 
-    public FieldValue(FieldType type, string defaultValue)
+    public class EnumFieldValue : FieldValue
     {
-        Type = type;
-        Value = defaultValue;
-    }
+        public Type EnumType;
 
-    public object GetValue()
-    {
-        switch (Type)
+        public EnumFieldValue(FieldType type, string defaultValue,string enumType) : base(type, defaultValue)
         {
-            case FieldType.Int:
-                return Value.ToInt();
-            case FieldType.Float:
-                return Value.ToFloat();
-            case FieldType.Enum:
-                System.Type enumType = System.Type.GetType(Value.Split()[0]);
-                return Enum.Parse(enumType, Value.Split()[1]);
-            case FieldType.Bool:
-                return bool.Parse(Value);
-            case FieldType.String:
-                return Value;
-            default:
-                return null;
+            EnumType = StringUtils.GetTypeViaClassName(enumType);
         }
     }
-}
 
-public class EnumFieldValue : FieldValue
-{
-    public Type EnumType;
-
-    public EnumFieldValue(FieldType type, string defaultValue,string enumType) : base(type, defaultValue)
+    public enum FieldType
     {
-        EnumType = System.Type.GetType(enumType);
+        Int,
+        Float,
+        String,
+        Enum,
+        Empty,
+        Bool,
     }
-}
-
-public enum FieldType
-{
-    Int,
-    Float,
-    String,
-    Enum,
-    Empty,
-    Bool,
 }

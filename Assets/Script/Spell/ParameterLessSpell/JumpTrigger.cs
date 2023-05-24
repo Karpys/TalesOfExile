@@ -1,21 +1,25 @@
+using KarpysDev.Script.Entities;
 using UnityEngine;
 
-public class JumpTrigger : SelectionSpellTrigger
+namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
-    public JumpTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
+    public class JumpTrigger : SelectionSpellTrigger
     {
-    }
-    protected override void TileHit(Vector2Int tilePosition,TriggerSpellData spellData)
-    {
-        base.TileHit(tilePosition,spellData);
-        //Move the entity//
-        spellData.AttachedEntity.MoveTo(tilePosition.x,tilePosition.y);
-    }
+        public JumpTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
+        {
+        }
+        protected override void TileHit(Vector2Int tilePosition,TriggerSpellData spellData)
+        {
+            base.TileHit(tilePosition,spellData);
+            //Move the entity//
+            spellData.AttachedEntity.MoveTo(tilePosition.x,tilePosition.y);
+        }
 
-    protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
-        Vector2Int origin, CastInfo castInfo)
-    {
-        base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
-        return;
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+            Vector2Int origin, CastInfo castInfo)
+        {
+            base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
+            return;
+        }
     }
 }

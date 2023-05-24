@@ -1,63 +1,75 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
-using UnityEngine;
 
-public static class StringUtils
+namespace KarpysDev.Script.Utils
 {
-    public static object[] StringsToObjects(string[] data)
+    public static class StringUtils
     {
-        object[] objects = new object[data.Length];
+        private static Assembly currentAssembly = null;
 
-        for (int i = 0; i < data.Length; i++)
+        static StringUtils()
         {
-            objects[i] = data[i];
+            currentAssembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName == "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+        }
+        public static object[] StringsToObjects(string[] data)
+        {
+            object[] objects = new object[data.Length];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                objects[i] = data[i];
+            }
+
+            return objects;
         }
 
-        return objects;
-    }
-
-    public static Type GetTypeViaClassName(string className)
-    {
-        Type classType = Type.GetType(className);
-        if (classType == null)
+        public static Type GetTypeViaClassName(string className)
         {
-            Debug.LogError("Class Name Dont exist " + className);
-            return null;
-        }
-        return classType;
-    }
+            foreach (var assemblyType in currentAssembly.GetTypes())
+            {
+                // Vérifier si le nom du type correspond
+                if (assemblyType.Name == className)
+                {
+                    return assemblyType;
+                }
+            }
 
-    public static void GetConstructorsFields(Type targetClass,out string[] fieldsName,out FieldValue[] fieldsValues,int constructor,int ignoreParamCount)
-    {
-        if (targetClass.GetConstructors().Length <= constructor)
-        {
-            fieldsName = Array.Empty<string>();
-            fieldsValues = Array.Empty<FieldValue>();
-            return;
+            return Type.GetType(className);
         }
+
+        public static void GetConstructorsFields(Type targetClass,out string[] fieldsName,out FieldValue[] fieldsValues,int constructor,int ignoreParamCount)
+        {
+            if (targetClass.GetConstructors().Length <= constructor)
+            {
+                fieldsName = Array.Empty<string>();
+                fieldsValues = Array.Empty<FieldValue>();
+                return;
+            }
                 
-        ConstructorInfo constructorInfo = targetClass.GetConstructors()[constructor];
-        FieldValue fieldConstructor = new FieldValue(FieldType.Empty,"empty");
+            ConstructorInfo constructorInfo = targetClass.GetConstructors()[constructor];
+            FieldValue fieldConstructor = new FieldValue(FieldType.Empty,"empty");
         
-        fieldsName = new string[constructorInfo.GetParameters().Length - ignoreParamCount];
-        fieldsValues = new FieldValue[fieldsName.Length];
-        ParameterInfo[] infos = constructorInfo.GetParameters();
+            fieldsName = new string[constructorInfo.GetParameters().Length - ignoreParamCount];
+            fieldsValues = new FieldValue[fieldsName.Length];
+            ParameterInfo[] infos = constructorInfo.GetParameters();
             
-        for (var i = 0; i < infos.Length - ignoreParamCount; i++)
-        {
-            ParameterInfo parameterInfo = infos[i + ignoreParamCount];
-            fieldsName[i] = char.ToUpper(parameterInfo.Name[0]) + parameterInfo.Name.Substring(1);//+ " " + parameterInfo.ParameterType;
-            fieldsValues[i] = fieldConstructor.GetField(parameterInfo.ParameterType.ToString());
+            for (var i = 0; i < infos.Length - ignoreParamCount; i++)
+            {
+                ParameterInfo parameterInfo = infos[i + ignoreParamCount];
+                fieldsName[i] = char.ToUpper(parameterInfo.Name[0]) + parameterInfo.Name.Substring(1);//+ " " + parameterInfo.ParameterType;
+                fieldsValues[i] = fieldConstructor.GetField(parameterInfo.ParameterType.ToString());
+            }
         }
-    }
 
-    public static int ToInt(this string value)
-    {
-        return int.Parse(value);
-    }
+        public static int ToInt(this string value)
+        {
+            return int.Parse(value);
+        }
 
-    public static float ToFloat(this string value)
-    {
-        return float.Parse(value);
+        public static float ToFloat(this string value)
+        {
+            return float.Parse(value);
+        }
     }
 }

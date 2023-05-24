@@ -1,7 +1,10 @@
-﻿public class DefaultItem : Item
+﻿namespace KarpysDev.Script.Items
 {
-    public DefaultItem(InventoryItemData dataData) : base(dataData){}
+    public class DefaultItem : Item
+    {
+        public DefaultItem(InventoryItemData dataData) : base(dataData){}
     
-    //Save Load Constructor
-    public DefaultItem(string[] saveArgs):base(saveArgs){}
+        //Save Load Constructor
+        public DefaultItem(string[] saveArgs):base(saveArgs){}
+    }
 }
