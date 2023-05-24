@@ -1,10 +1,11 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public static class EditorUtils
 {
-    public static void AddField(FieldValue field,int id,string fieldName)
+    public static void DrawField(FieldValue field,string fieldName)
     {
         EditorGUILayout.LabelField(fieldName);
 
@@ -30,4 +31,21 @@ public static class EditorUtils
                 break;
         }
     }
+
+    public static FieldValue[] GetNewFieldValue(FieldValue[] fieldValues,SerializedObject serializedObject,Object target)
+    {
+        FieldValue[] newFieldValues = new FieldValue[fieldValues.Length];
+            
+        for (int i = 0; i < fieldValues.Length; i++)
+        {
+            FieldValue fieldValue = fieldValues[i];
+            newFieldValues[i] = new FieldValue(fieldValue.Type, fieldValue.Value);
+        }
+            
+        EditorUtility.SetDirty(target);
+        serializedObject.ApplyModifiedProperties();
+
+        return newFieldValues;
+    }
+        
 }

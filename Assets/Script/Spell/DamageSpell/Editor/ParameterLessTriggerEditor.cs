@@ -22,21 +22,12 @@ public class ParameterLessTriggerEditor : Editor
         
         for (int i = 0; i < m_FieldsName.Length; i++)
         {
-            EditorUtils.AddField(m_FieldValues[i],i,m_FieldsName[i]);
+            EditorUtils.DrawField(m_FieldValues[i],m_FieldsName[i]);
         }
 
         if(GUILayout.Button("Send values"))
         {
-            m_ParameterLessTrigger.AdditionalParameters = new FieldValue[m_FieldValues.Length];
-            
-            for (int i = 0; i < m_FieldValues.Length; i++)
-            {
-                FieldValue fieldValue = m_FieldValues[i];
-                m_ParameterLessTrigger.AdditionalParameters[i] = new FieldValue(fieldValue.Type, fieldValue.Value);
-            }
-
-            EditorUtility.SetDirty(target);
-            serializedObject.ApplyModifiedProperties();
+            m_ParameterLessTrigger.AdditionalParameters = EditorUtils.GetNewFieldValue(m_FieldValues,serializedObject,target);
         }
     }
 
