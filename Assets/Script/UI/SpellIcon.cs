@@ -27,6 +27,8 @@ namespace KarpysDev.Script.UI
 
         private static int START_ID_KEYCODE = 49;
 
+        public int SpellId => m_Id;
+
         public void Initialize(SpellInterfaceController controller,int id)
         {
             m_InterfaceController = controller;
@@ -77,6 +79,12 @@ namespace KarpysDev.Script.UI
         }
         public void SetSpell(TriggerSpellData spell)
         {
+            if (spell == null)
+            {
+                ClearIcon();
+                return;
+            }
+            
             m_CurrentSpellData = spell;
             EnableIcon(true);
             m_SpellIcon.sprite = spell.TriggerData.m_SpellIcon;

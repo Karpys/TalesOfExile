@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Entities.EquipementRelated;
@@ -378,9 +379,9 @@ namespace KarpysDev.Script.Entities
             }
         }
 
-        public virtual SpellData[] GetDisplaySpells()
+        public virtual TriggerSpellData[] GetDisplaySpells()
         {
-            return m_Spells.ToArray();
+            return m_Spells.ToArray().Where(s => s.Data.SpellType != SpellType.Support).Cast<TriggerSpellData>().ToArray();
         }
 
         //Need to be used when the entity is buffed / Equip / Unequip items//

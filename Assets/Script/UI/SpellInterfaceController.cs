@@ -2,6 +2,7 @@
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI
@@ -9,6 +10,7 @@ namespace KarpysDev.Script.UI
     public class SpellInterfaceController : UIPointer
     {
         //UI Part//
+        [SerializeField] private Canvas_Skills m_CanvasSkill = null;
         [SerializeField] private SpellIcon m_SpellUI = null;
         [SerializeField] private RectTransform m_SpellLayout = null;
         [SerializeField] private SpellInterpretor m_Interpretor = null;
@@ -44,18 +46,22 @@ namespace KarpysDev.Script.UI
                     m_CurrentPointer.TryUseSpell();
                 }
             }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                if (EntityHelper.CanEditSpell(GameManager.Instance.ControlledEntity) && m_CurrentPointer.PointerUp)
+                {
+                    m_CanvasSkill.ShowSpellSelection(m_CurrentPointer);
+                }
+            }
         }
 
         public void SetSpellIcons(BoardEntity entity)
         {
-            SpellData[] spellsToDisplay = entity.GetDisplaySpells();
+            TriggerSpellData[] spellsToDisplay = entity.GetDisplaySpells();
         
             for (int i = 0; i < spellsToDisplay.Length; i++)
             {
-                if(!(spellsToDisplay[i] is TriggerSpellData triggerSpell))
-                    continue;
-            
-                m_IconsHolder[i].SetSpell(triggerSpell);
+                m_IconsHolder[i].SetSpell(spellsToDisplay[i]);
             }
 
             for (int i = spellsToDisplay.Length; i < SPELL_DISPLAY_COUNT; i++)

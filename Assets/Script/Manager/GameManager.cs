@@ -139,7 +139,7 @@ namespace KarpysDev.Script.Manager
         //UI Manager//
         public void RefreshTargetEntitySkills()
         {
-            m_CanvasSkills.SetTargetSkills(m_ControlledEntity);
+            m_CanvasSkills.RefreshTargetSkills(m_ControlledEntity);
         }
         //OnPlayer Action//
 

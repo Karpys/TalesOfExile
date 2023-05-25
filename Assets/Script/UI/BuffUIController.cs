@@ -16,6 +16,11 @@ namespace KarpysDev.Script.UI
         private void Start()
         {
             GameManager.Instance.A_OnControlledEntityChange += OnControlledEntityChange;
+            
+            if (GameManager.Instance && GameManager.Instance.ControlledEntity)
+            {
+                OnControlledEntityChange(null,GameManager.Instance.ControlledEntity);
+            }
         }
 
         private void OnDestroy()

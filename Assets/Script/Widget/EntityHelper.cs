@@ -56,5 +56,10 @@ namespace KarpysDev.Script.Widget
 
             return timing;
         }
+
+        public static bool CanEditSpell(BoardEntity instanceControlledEntity)
+        {
+            return instanceControlledEntity as PlayerBoardEntity;
+        }
     }
 }

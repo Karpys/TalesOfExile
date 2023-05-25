@@ -1,11 +1,14 @@
-﻿using KarpysDev.Script.Items;
+﻿using System.Linq;
+using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
+using KarpysDev.Script.Spell;
+using KarpysDev.Script.UI;
 using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
-    public class PlayerBoardEntity : BoardEntity
+    public class PlayerBoardEntity : BoardEntity,ISpellSet
     {
         [Header("Player")]
         [SerializeField] private PlayerInventory m_PlayerInventory = null;
@@ -13,11 +16,33 @@ namespace KarpysDev.Script.Entities
         [SerializeField] private float m_MovementDuration = 0.1f;
 
         public PlayerInventory PlayerInventory => m_PlayerInventory;
+
+        private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
+            InitDisplaySpell();
             GameManager.Instance.RegisterPlayer(this);
             GameManager.Instance.SetControlledEntity(this);
+        }
+
+        public void InitDisplaySpell()
+        {
+            //Todo: Use Save System//
+            int maxDisplay = m_DisplaySpell.Length;
+            int spellId = 0;
+
+            for (int i = 0; i < Spells.Count; i++)
+            {
+                if (Spells[i] is TriggerSpellData triggerSpellData)
+                {
+                    m_DisplaySpell[spellId] = triggerSpellData;
+                    spellId++;
+                    
+                    if(spellId == maxDisplay)
+                        break;
+                }
+            }
         }
     
         public override void EntityAction()
@@ -52,5 +77,32 @@ namespace KarpysDev.Script.Entities
         {
             m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0, 0), m_MovementDuration / 2f);
         }
+
+        public override TriggerSpellData[] GetDisplaySpells()
+        {
+            return m_DisplaySpell;
+        }
+
+        public void InsertSpell(TriggerSpellData spellData,int id)
+        {
+            if (m_DisplaySpell.Contains(spellData))
+            {
+                for (int i = 0; i < m_DisplaySpell.Length; i++)
+                {
+                    if (m_DisplaySpell[i] == spellData)
+                    {
+                        m_DisplaySpell[i] = null;
+                    }
+                }
+            }
+
+            m_DisplaySpell[id] = spellData;
+        }
+    }
+
+    public interface ISpellSet
+    {
+        void InitDisplaySpell();
+        void InsertSpell(TriggerSpellData spellData,int id);
     }
 }

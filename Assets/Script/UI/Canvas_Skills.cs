@@ -7,6 +7,7 @@ namespace KarpysDev.Script.UI
     public class Canvas_Skills : MonoBehaviour
     {
         [SerializeField] private SpellInterfaceController m_SpellInterface = null;
+        [SerializeField] private SpellSelectionUI m_SpellSelection = null;
 
         private void Awake()
         {
@@ -19,7 +20,7 @@ namespace KarpysDev.Script.UI
                 GameManager.Instance.A_OnEndPlayerTurn -= RefreshCooldown;
         }
 
-        public void SetTargetSkills(BoardEntity entity)
+        public void RefreshTargetSkills(BoardEntity entity)
         {
             m_SpellInterface.SetSpellIcons(entity);
         }
@@ -27,6 +28,11 @@ namespace KarpysDev.Script.UI
         private void RefreshCooldown()
         {
             m_SpellInterface.UpdateAllCooldownVisual();
+        }
+
+        public void ShowSpellSelection(SpellIcon pointer)
+        {
+            m_SpellSelection.Show(pointer.SpellId,pointer.transform);
         }
     }
 }
