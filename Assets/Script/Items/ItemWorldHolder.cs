@@ -49,8 +49,11 @@ namespace KarpysDev.Script.Items
         }
         public void DisplayWorldVisual()
         {
-            m_InWorldVisual.sprite = m_Item.Data.InWorldVisual;
-            m_InWorldVisual.gameObject.SetActive(true);
+            if (m_InWorldVisual)
+            {
+                m_InWorldVisual.sprite = m_Item.Data.InWorldVisual;
+                m_InWorldVisual.gameObject.SetActive(true);
+            }
         }
 
         public void OnJumpEnd()
