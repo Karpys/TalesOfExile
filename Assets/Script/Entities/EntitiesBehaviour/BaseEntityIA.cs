@@ -108,8 +108,7 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
             List<TriggerSpellData> buffs = m_AttachedEntity.Spells
                 .Where(s => s.Data.SpellType == SpellType.Buff)
                 .Cast<TriggerSpellData>()
-                .Where(s => s.IsCooldownReady())
-                .Where(s => s.SpellTrigger.SpellPriority > 0)
+                .Where(s => s.IsCooldownReady() && s.SpellTrigger.SpellPriority > 0)
                 .OrderByDescending(s => s.SpellTrigger.SpellPriority)
                 .ToList();
 

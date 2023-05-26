@@ -187,7 +187,6 @@ namespace KarpysDev.Script.Entities
         [SerializeField] protected BoardEntityData m_EntityData = null;
     
         protected MapData m_TargetMap = null;
-        protected EntityEquipement m_Equipement = null;
         protected EntityBuffs m_Buffs = null;
         protected BoardEntityLife m_EntityLife = null;
         protected BoardEntityEventHandler m_EntityEvent = null;
@@ -201,7 +200,6 @@ namespace KarpysDev.Script.Entities
         public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
         public EntityGroup TargetEntityGroup => m_EntityData.m_TargetEntityGroup;
         public BoardEntityData EntityData => m_EntityData;
-        public EntityEquipement EntityEquipement => m_Equipement;
         public Transform VisualTransform => m_VisualTransform;
         public EntityBuffs Buffs => m_Buffs;
         public BoardEntityLife Life => m_EntityLife;
@@ -228,8 +226,6 @@ namespace KarpysDev.Script.Entities
             //Life
             m_EntityLife = GetComponent<BoardEntityLife>();
             m_EntityLife.Initialize(m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
-            //Equipement
-            m_Equipement = GetComponent<EntityEquipement>();
 
             //Buffs
             m_Buffs = GetComponent<EntityBuffs>();

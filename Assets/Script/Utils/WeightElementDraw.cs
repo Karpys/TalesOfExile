@@ -21,7 +21,7 @@ namespace KarpysDev.Script.Utils
             while (elementId < m_WeightElement.Length - 1)
             {
                 currentWeight += m_WeightElement[elementId].Weight;
-                if (drawWeight < currentWeight)
+                if (drawWeight <= currentWeight)
                 {
                     break;
                 }
