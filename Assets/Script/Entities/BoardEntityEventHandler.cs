@@ -10,17 +10,13 @@ namespace KarpysDev.Script.Entities
         public Action<IntSocket> OnRequestBlockSpell = null;
         public Action OnDeath = null;
         //TriggerSpellData can be null
-        public Action<BoardEntity,DamageSpellTrigger> OnGetDamageFromSpell = null;
-        public Action<TriggerSpellData> OnGetHit = null;
+        public Action<BoardEntity,DamageSpellTrigger> OnGetHitFromSpell = null;
+        public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFromSpell = null;
         public Action<BaseSpellTrigger> OnRequestCastEvent = null;
 
         public Action<DamageSpellTrigger,FloatSocket> OnRequestSpellDamage = null;
         public Action OnSpellRecompute = null;
         public Action OnBehave = null;
-        public void TriggerGetDamageAction(BoardEntity damageFrom, DamageSpellTrigger spellDamageTrigger)
-        {
-            OnGetDamageFromSpell?.Invoke(damageFrom,spellDamageTrigger);
-        }
     }
 
     public class IntSocket

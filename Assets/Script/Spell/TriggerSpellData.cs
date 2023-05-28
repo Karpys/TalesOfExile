@@ -4,7 +4,8 @@ namespace KarpysDev.Script.Spell
 {
     public class TriggerSpellData:SpellData
     {
-        public TriggerSpellDataScriptable TriggerData => m_Data as TriggerSpellDataScriptable;
+        private TriggerSpellDataScriptable m_TriggerData = null;
+        public TriggerSpellDataScriptable TriggerData => m_TriggerData;
         //SpellTrigger Class//
         public BaseSpellTrigger SpellTrigger = null;
         //Spell Variables//
@@ -16,6 +17,7 @@ namespace KarpysDev.Script.Spell
 
         public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
         {
+            m_TriggerData = (TriggerSpellDataScriptable)m_Data;
             m_BaseCooldown = TriggerData.m_BaseCooldown;
             SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
             SpellTrigger.SetAttachedSpell(this,spellInfo.m_SpellPriority);

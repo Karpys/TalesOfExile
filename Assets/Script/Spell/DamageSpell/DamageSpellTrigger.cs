@@ -84,10 +84,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
             //Foreach Damage Sources//
             foreach (DamageSource damageSource in m_DamageSources.Values)
             {
-                totalDamage += DamageManager.Instance.TryDamageEnemy(entity,damageSource,mainDamageType); //DamageSource);
+                totalDamage +=
+                    DamageManager.Instance.TryDamageEnemy(entity, damageSource, mainDamageType, spellData); //DamageSource);
             }
         
-            entity.EntityEvent.TriggerGetDamageAction(spellData.AttachedEntity,this);
+            entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);
+
             entity.TakeDamage(totalDamage);
 
             /*Text Display */
