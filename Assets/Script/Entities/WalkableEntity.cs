@@ -13,5 +13,15 @@ namespace KarpysDev.Script.Entities
         {
             return;
         }
+
+        public override void MoveTo(int x, int y, bool movement = true)
+        {
+            m_XPosition = x;
+            m_YPosition = y;
+            OnNewPosition(EntityPosition);
+            //OnMove ?//
+            if(movement)
+                Movement();
+        }
     }
 }

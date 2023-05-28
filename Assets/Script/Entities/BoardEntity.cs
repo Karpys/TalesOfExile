@@ -276,6 +276,7 @@ namespace KarpysDev.Script.Entities
         public virtual void MoveTo(int x, int y, bool movement = true)
         {
             m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
+            m_TargetMap.Map.EntitiesTile[m_XPosition, m_YPosition] = null;
             m_XPosition = x;
             m_YPosition = y;
             OnNewPosition(EntityPosition);
@@ -287,6 +288,7 @@ namespace KarpysDev.Script.Entities
         protected virtual void OnNewPosition(Vector2Int position)
         {
             m_TargetMap.Map.Tiles[position.x,position.y].Walkable = false;
+            m_TargetMap.Map.EntitiesTile[position.x, position.y] = this;
         }
     
         public void MoveTo(Vector2Int pos,bool movement = true)

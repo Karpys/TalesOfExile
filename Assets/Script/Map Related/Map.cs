@@ -1,5 +1,6 @@
 ﻿
 
+using KarpysDev.Script.Entities;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
@@ -9,12 +10,14 @@ namespace KarpysDev.Script.Map_Related
         public int Height = 0;
         public int Width = 0;
         public Tile[,] Tiles = null;
+        public BoardEntity[,] EntitiesTile = null;
     
         public Map(int width, int height)
         {
             Height = height;
             Width = width;
             Tiles = new Tile[Width,Height];
+            EntitiesTile = new BoardEntity[Width, Height];
         
             for (int x = 0; x < Width; x++)
             {

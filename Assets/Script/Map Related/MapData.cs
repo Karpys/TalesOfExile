@@ -57,24 +57,12 @@ namespace KarpysDev.Script.Map_Related
     
         public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
         {
-            BoardEntity entityAt = null;
+            BoardEntity entityAt = m_Map.EntitiesTile[entityPos.x,entityPos.y];
 
-            if (targetEntityGroup == EntityGroup.Enemy)
-            {
-                entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.ActiveEnemiesOnBoard);
-            }else if (targetEntityGroup == EntityGroup.Friendly)
-            {
-                entityAt = GetEntityAtFrom(entityPos, GameManager.Instance.FriendlyOnBoard);
-            }
-        
-            return entityAt;
-        }
-
-        public BoardEntity GetEntityAtFrom(Vector2Int entityPos, List<BoardEntity> entities)
-        {
-            BoardEntity entity = entities.FirstOrDefault(en => en.Targetable && en.EntityPosition == entityPos);
-
-            return entity;
+            if (entityAt && entityAt.EntityGroup == targetEntityGroup)
+                return entityAt;
+            
+            return null;
         }
 
         public Vector2Int MapClampedPosition(Vector2Int pos)
