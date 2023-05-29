@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
-    public class DamageManager : SingletonMonoBehavior<DamageManager>
+    public static class DamageManager
     {
-        public float TryDamageEnemy(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
+        public static float TryDamageEnemy(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
         {
             //Add Block//
             return DamageStep(damageTo,damageSource,mainDamageType,triggerSpellData);//Add DamageClass
         }
 
-        private float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
+        private static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
@@ -25,6 +25,32 @@ namespace KarpysDev.Script.Manager
             //DamageToOnDamageTaken//
             Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + mitigiedDamageSource.DamageType + " damage");
             return mitigiedDamageSource.Damage;
+        }
+
+        public static float GetDamageModifier(DamageParameters damageParameters, EntityStats stats,float bonusModifier = 0)
+        {
+            float modifier = bonusModifier;
+
+            foreach (SubDamageType subDamageType in damageParameters.DamageType.SubDamageTypes)
+            {
+                modifier += stats.GetDamageModifier(subDamageType);
+            }
+
+            modifier += stats.GetMainTypeModifier(damageParameters.DamageType.MainDamageType);
+
+            return (modifier + 100) / 100;
+        }
+        
+        public static float GetDamageModifier(SubDamageType[] subDamage, EntityStats stats)
+        {
+            float modifier = 0;
+
+            foreach (SubDamageType subDamageType in subDamage)
+            {
+                modifier += stats.GetDamageModifier(subDamageType);
+            }
+            
+            return (modifier + 100) / 100;
         }
     }
 }

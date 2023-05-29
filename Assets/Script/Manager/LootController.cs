@@ -33,7 +33,7 @@ namespace KarpysDev.Script.Manager
         {
             ItemWorldHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
         
-            worldHolder.InitalizeHolder(inventoryItem,targetTile.TilePosition);
+            worldHolder.InitializeHolder(inventoryItem,targetTile.TilePosition);
             LootJumpTo(worldHolder,targetTile,delay);
         }
 

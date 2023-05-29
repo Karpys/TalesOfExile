@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a66196cc2a4c61a9cdb0a2e90ad755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VisualTransform: {fileID: 0}
+  m_VisualTransform: {fileID: 2470825045819942819}
   m_BuffType: 201
   m_BuffGroup: 2
   m_BuffCooldown: 0

@@ -30,18 +30,21 @@ namespace KarpysDev.Script.Spell.DamageSpell
         {
             m_DamageSources.Clear();
 
-            FloatSocket bonusModifier = new FloatSocket();
-            entity.EntityEvent.OnRequestSpellDamage?.Invoke(this,bonusModifier);
+            FloatSocket bonusDamage = new FloatSocket();
+            entity.EntityEvent.OnRequestBonusSpellDamage?.Invoke(this,bonusDamage);
         
             ComputeSpellDamage(entity);
-            ApplyDamageModifier(entity,bonusModifier.Value);
+            ApplyDamageModifier(entity,bonusDamage.Value);
         
+            //DESIGN CHOICE : Additional damage are added after the damage modifier are applied
+            //additional damage scale their own way => ex FireHandBuff
+            entity.EntityEvent.OnRequestAdditionalSpellSource?.Invoke(this);
             base.ComputeSpellData(entity);
         }
 
         private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
         {
-            float damageModifier = entity.EntityStats.GetDamageParametersModifier(m_DamageSpellParams, bonusModifier);
+            float damageModifier = DamageManager.GetDamageModifier(m_DamageSpellParams, entity.EntityStats, bonusModifier);
         
             foreach (DamageSource source in m_DamageSources.Values)
             {
@@ -85,7 +88,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             foreach (DamageSource damageSource in m_DamageSources.Values)
             {
                 totalDamage +=
-                    DamageManager.Instance.TryDamageEnemy(entity, damageSource, mainDamageType, spellData); //DamageSource);
+                    DamageManager.TryDamageEnemy(entity, damageSource, mainDamageType, spellData); //DamageSource);
             }
         
             entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);

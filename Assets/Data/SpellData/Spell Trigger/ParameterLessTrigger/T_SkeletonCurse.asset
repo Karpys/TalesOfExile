@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   m_TriggerClassName: SkeletonCurseBuffGiverTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: BuffGroup Debuff
+    Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Debuff
   - Type: 3
-    Value: BuffType SkeletonCurse
+    Value: KarpysDev.Script.Manager.Library.BuffType SkeletonCurse
   - Type: 0
     Value: 10
   - Type: 1

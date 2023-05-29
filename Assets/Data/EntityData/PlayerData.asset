@@ -49,3 +49,5 @@ MonoBehaviour:
       m_SpellPriority: 10
     - m_SpellData: {fileID: 11400000, guid: 504debc7db7fe8e4e8c0e3ac18f85934, type: 2}
       m_SpellPriority: 10
+    - m_SpellData: {fileID: 11400000, guid: 95be70e7a27024de7953961012a1d038, type: 2}
+      m_SpellPriority: 10

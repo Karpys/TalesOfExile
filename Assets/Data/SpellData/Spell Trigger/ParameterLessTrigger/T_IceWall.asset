@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   m_TriggerClassName: IceWallTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: TileType IceWall
+    Value: KarpysDev.Script.Manager.Library.TileType IceWall

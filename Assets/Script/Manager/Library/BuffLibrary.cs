@@ -44,6 +44,7 @@ namespace KarpysDev.Script.Manager.Library
         ModifierBuff = 0,
         RegenerationBuff = 1,
         RockThrowBuff = 2,
+        FireHandBuff = 3,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
         //Mark / Misc// 201 +//

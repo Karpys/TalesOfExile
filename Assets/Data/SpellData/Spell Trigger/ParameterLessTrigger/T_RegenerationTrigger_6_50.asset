@@ -17,9 +17,9 @@ MonoBehaviour:
   m_TriggerClassName: RegenerationBuffTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: BuffGroup Buff
+    Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Buff
   - Type: 3
-    Value: BuffType RegenerationBuff
+    Value: KarpysDev.Script.Manager.Library.BuffType RegenerationBuff
   - Type: 0
     Value: 4
   - Type: 1

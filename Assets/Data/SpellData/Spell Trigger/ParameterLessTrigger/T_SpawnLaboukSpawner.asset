@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   m_TriggerClassName: SpawnNoWalkableEntity
   m_AdditionalParameters:
   - Type: 3
-    Value: EntityType LaboukSpawner
+    Value: KarpysDev.Script.Manager.Library.EntityType LaboukSpawner
   - Type: 5
     Value: False

@@ -57,6 +57,9 @@ namespace KarpysDev.Script.Map_Related
     
         public BoardEntity GetEntityAt(Vector2Int entityPos,EntityGroup targetEntityGroup)
         {
+            if (!m_Map.InMapBounds(entityPos))
+                return null;
+            
             BoardEntity entityAt = m_Map.EntitiesTile[entityPos.x,entityPos.y];
 
             if (entityAt && entityAt.EntityGroup == targetEntityGroup)

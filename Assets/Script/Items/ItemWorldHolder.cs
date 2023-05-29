@@ -42,7 +42,7 @@ namespace KarpysDev.Script.Items
                     Destroy(gameObject);
             }
         }
-        public void InitalizeHolder(Item item,Vector2Int mapPosition)
+        public void InitializeHolder(Item item,Vector2Int mapPosition)
         {
             m_Item = item;
             m_HolderMapPosition = mapPosition;

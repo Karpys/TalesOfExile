@@ -24,7 +24,7 @@ MonoBehaviour:
   m_TriggerClassName: LightningSpellTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: ZoneType Circle
+    Value: KarpysDev.Script.Spell.ZoneType Circle
   - Type: 0
     Value: 7
   - Type: 0

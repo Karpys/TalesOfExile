@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  AdditionalAnimDatas: 0
   m_TriggerClassName: CreateSpellPlaceableTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: PlaceableType BurningGround
+    Value: KarpysDev.Script.Manager.Library.PlaceableType BurningGround
   - Type: 3
-    Value: BehaveTiming EndTurn
+    Value: KarpysDev.Script.Entities.BehaveTiming EndTurn
   - Type: 0
     Value: 5
