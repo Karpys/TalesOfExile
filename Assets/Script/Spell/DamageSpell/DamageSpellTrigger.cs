@@ -16,10 +16,18 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
 
         public Dictionary<SubDamageType, DamageSource> DamageSource => m_DamageSources;
+
+        private bool m_DisplayDamage = false;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
         {
             Debug.Log("Call Base Damage Spell Trigger");
             m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
+        }
+
+        public override void SetAttachedSpell(SpellData spellData, int priority)
+        {
+            base.SetAttachedSpell(spellData, priority);
+            m_DisplayDamage = m_AttachedSpell.AttachedEntity.EntityGroup != EntityGroup.Enemy;
         }
 
         #region ComputePart
@@ -72,15 +80,15 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         #endregion
         //Apply Damage To All Ennemies in the actionTiles
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int origin, CastInfo castInfo)
         {
-            base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
-            DamageEntity(entity,spellData,targetGroup);
+            base.EntityHit(entity,spellData,origin,castInfo);
+            DamageEntity(entity,spellData);
             castInfo?.AddHitEntity(entity);
         }
 
-        protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData,EntityGroup targetGroup)
+        protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData)
         {
             float totalDamage = 0;
             MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
@@ -88,15 +96,15 @@ namespace KarpysDev.Script.Spell.DamageSpell
             foreach (DamageSource damageSource in m_DamageSources.Values)
             {
                 totalDamage +=
-                    DamageManager.TryDamageEnemy(entity, damageSource, mainDamageType, spellData); //DamageSource);
+                    DamageManager.DamageStep(entity, damageSource, mainDamageType, spellData,m_DisplayDamage,m_SpellAnimDelay); //DamageSource);
             }
-        
+            
             entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);
 
             entity.TakeDamage(totalDamage);
 
             /*Text Display */
-            if (targetGroup == EntityGroup.Enemy)
+            if (m_DisplayDamage && DamageManager.BlendDisplayDamage)
             {
                 FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
             }

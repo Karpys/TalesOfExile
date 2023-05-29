@@ -21,10 +21,10 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             m_BuffValue = buffValue;
         }
 
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int spellOrigin, CastInfo castInfo)
         {
-            base.EntityHit(entity, spellData, targetGroup, spellOrigin,castInfo);
+            base.EntityHit(entity, spellData, spellOrigin,castInfo);
             GiveBuff(spellData.AttachedEntity,entity,m_BuffArgs);
         }
 

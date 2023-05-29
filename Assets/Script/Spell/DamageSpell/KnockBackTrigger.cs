@@ -26,7 +26,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             base.Trigger(spellData, spellTiles,castInfo);
         }
 
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int origin, CastInfo castInfo)
         {
             if (m_EntityHits.Contains(entity))
@@ -50,7 +50,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                 }
                 else
                 {
-                    base.EntityHit(entity, spellData, targetGroup,origin,castInfo);
+                    base.EntityHit(entity, spellData,origin,castInfo);
                     break;
                 }
             }

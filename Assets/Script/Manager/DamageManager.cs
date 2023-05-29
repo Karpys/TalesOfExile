@@ -7,13 +7,9 @@ namespace KarpysDev.Script.Manager
 {
     public static class DamageManager
     {
-        public static float TryDamageEnemy(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
-        {
-            //Add Block//
-            return DamageStep(damageTo,damageSource,mainDamageType,triggerSpellData);//Add DamageClass
-        }
+        public static bool BlendDisplayDamage = true;
 
-        private static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData)
+        public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay)
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
@@ -24,6 +20,13 @@ namespace KarpysDev.Script.Manager
             damageTo.EntityEvent.OnGetDamageFromSpell?.Invoke(triggerSpellData.AttachedEntity,mitigiedDamageSource,triggerSpellData);
             //DamageToOnDamageTaken//
             Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + mitigiedDamageSource.DamageType + " damage");
+
+            if (displayDamage && !BlendDisplayDamage)
+            {
+                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage,ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
+
+            }
+            
             return mitigiedDamageSource.Damage;
         }
 

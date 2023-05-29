@@ -20,7 +20,7 @@ namespace KarpysDev.Script.Spell
             return m_SpellPriority;
         }
     
-        public void SetAttachedSpell(SpellData spellData,int priority)
+        public virtual void SetAttachedSpell(SpellData spellData,int priority)
         {
             m_SpellPriority = priority;
             m_AttachedSpell = spellData;

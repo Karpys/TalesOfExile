@@ -34,7 +34,7 @@ namespace KarpysDev.Script.Spell
             TileHitAnimation.TriggerFx(tilePosition,transform,args);
         }
     
-        protected virtual void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected virtual void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int spellOrigin, CastInfo castInfo)
         {
             if (OnHitAnimation)
@@ -66,7 +66,7 @@ namespace KarpysDev.Script.Spell
                     if(!entityHit)
                         continue;
                 
-                    EntityHit(entityHit,spellData,targetGroup,spellTiles.OriginTiles[i],castInfo);
+                    EntityHit(entityHit,spellData,spellTiles.OriginTiles[i],castInfo);
                     //Foreach Damage Sources//
                 }
             }

@@ -15,10 +15,10 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             spellData.AttachedEntity.MoveTo(tilePosition.x,tilePosition.y);
         }
 
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int origin, CastInfo castInfo)
         {
-            base.EntityHit(entity,spellData,targetGroup,origin,castInfo);
+            base.EntityHit(entity,spellData,origin,castInfo);
             return;
         }
     }

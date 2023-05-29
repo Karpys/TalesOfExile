@@ -33,10 +33,10 @@ namespace KarpysDev.Script.Spell.DamageSpell
         }
 
 
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int origin, CastInfo castInfo)
         {
-            List<BoardEntity> targetEntity = GameManager.Instance.GetEntityViaGroup(targetGroup);
+            List<BoardEntity> targetEntity = GameManager.Instance.GetEntityViaGroup(m_AttachedSpell.AttachedEntity.TargetEntityGroup);
             targetEntity.Remove(entity);
 
 
@@ -48,7 +48,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                 BoardEntity en = entityStriked[i];
                 if (en != null)
                 {
-                    base.EntityHit(en,spellData,targetGroup,origin,castInfo);
+                    base.EntityHit(en,spellData,origin,castInfo);
                 }
             }
 

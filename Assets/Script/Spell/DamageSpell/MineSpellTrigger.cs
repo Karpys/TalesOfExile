@@ -39,11 +39,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
             m_SpellAnimations.Add(TileHitAnimation.TriggerFx(tilePosition,m_AttachedSpell.AttachedEntity.transform) as SpellAnimationActivator);
         }
     
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, EntityGroup targetGroup,
+        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
             Vector2Int origin, CastInfo castInfo)
         {
             if(m_HasTrigger)
-                base.EntityHit(entity, spellData, targetGroup, origin,castInfo);
+                base.EntityHit(entity, spellData, origin,castInfo);
         }
     
         private void MineExplosion()
