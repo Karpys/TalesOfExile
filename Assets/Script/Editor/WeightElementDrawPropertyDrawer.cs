@@ -24,10 +24,13 @@ namespace KarpysDev.Script.Editor
             }
             else
             {
-                EditorGUI.PropertyField(position, objectField, label, true);
-                position.y += EditorGUI.GetPropertyHeight(objectField);
+                Debug.Log(""+ EditorGUI.GetPropertyHeight(objectField));
+                position.height = EditorGUI.GetPropertyHeight(objectField);
+                EditorGUI.PropertyField(position, objectField, GUIContent.none, true);
+                
+                position.y += position.height;
                 position.height = 17;
-                EditorGUI.PropertyField(position, weightField, label, true);
+                EditorGUI.PropertyField(position, weightField, GUIContent.none, true);
             }
 
         }
@@ -38,8 +41,11 @@ namespace KarpysDev.Script.Editor
             {
                 return 17;
             }
-            
-            return EditorGUI.GetPropertyHeight(property) - 17;
+
+            var objectField = property.FindPropertyRelative("m_Object");
+            var weightField = property.FindPropertyRelative("m_Weight");
+            float size = EditorGUI.GetPropertyHeight(objectField) + EditorGUI.GetPropertyHeight(weightField);
+            return size;
         }
 
         private bool IsObjectField(SerializedProperty property)
