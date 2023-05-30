@@ -5,12 +5,12 @@ using UnityEngine;
 namespace KarpysDev.Script.Editor
 {
     [CustomPropertyDrawer(typeof(WeightElement<>))]
-    public class WeightElementDrawPropertyDrawer : PropertyDrawer
+    public class WeightElementPropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var objectField = property.FindPropertyRelative("m_Object");
-            var weightField = property.FindPropertyRelative("m_Weight");
+            SerializedProperty objectField = property.FindPropertyRelative("m_Object");
+            SerializedProperty weightField = property.FindPropertyRelative("m_Weight");
             label.text = "";
 
             if (IsObjectField(property))
@@ -24,7 +24,6 @@ namespace KarpysDev.Script.Editor
             }
             else
             {
-                Debug.Log(""+ EditorGUI.GetPropertyHeight(objectField));
                 position.height = EditorGUI.GetPropertyHeight(objectField);
                 EditorGUI.PropertyField(position, objectField, GUIContent.none, true);
                 
@@ -41,11 +40,13 @@ namespace KarpysDev.Script.Editor
             {
                 return 17;
             }
-
-            var objectField = property.FindPropertyRelative("m_Object");
-            var weightField = property.FindPropertyRelative("m_Weight");
-            float size = EditorGUI.GetPropertyHeight(objectField) + EditorGUI.GetPropertyHeight(weightField);
-            return size;
+            else
+            {
+                SerializedProperty objectField = property.FindPropertyRelative("m_Object");
+                SerializedProperty weightField = property.FindPropertyRelative("m_Weight");
+                float size = EditorGUI.GetPropertyHeight(objectField) + EditorGUI.GetPropertyHeight(weightField);
+                return size;
+            }
         }
 
         private bool IsObjectField(SerializedProperty property)
