@@ -15,7 +15,7 @@ namespace KarpysDev.Script.Widget
         public AnimationCurve Curve;
         public float Duration;
     }
-    public class FloatingTextBurst : MonoBehaviour,IPoolObject
+    public class FloatingTextBurst : MonoBehaviour
     {
         [SerializeField] private TMP_Text m_Text = null;
         [SerializeField] private float m_RangeRandom = 0.5f;
@@ -23,7 +23,7 @@ namespace KarpysDev.Script.Widget
         [SerializeField] private TweenParam m_YEndAlignement;
 
         private FloatingTextManager m_TextManager = null;
-        private bool fading = false;
+        private bool m_Fading = false;
 
         public void Initialize(FloatingTextManager textManager)
         {
@@ -47,7 +47,7 @@ namespace KarpysDev.Script.Widget
 
         void Update()
         {
-            if (fading)
+            if (m_Fading)
             {
                 Color textColor = m_Text.color;
                 textColor.a -= Time.deltaTime;
@@ -60,20 +60,17 @@ namespace KarpysDev.Script.Widget
             }
         }
 
-        public void PoolReturn()
+        private void PoolReturn()
         {
             m_Text.text = "";
+            m_Text.color = Color.white;
+            m_Fading = false;
             m_TextManager.Return(this);
         }
 
         private void LaunchFade()
         {
-            fading = true;
+            m_Fading = true;
         }
     }
-}
-
-public interface IPoolObject
-{
-    public void PoolReturn();
 }

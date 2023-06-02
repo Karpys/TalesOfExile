@@ -24,7 +24,6 @@ namespace KarpysDev.Script.Manager
             if (displayDamage && !BlendDisplayDamage)
             {
                 FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage,ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
-
             }
             
             return mitigiedDamageSource.Damage;

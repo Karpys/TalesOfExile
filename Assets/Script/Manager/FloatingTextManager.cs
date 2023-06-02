@@ -14,7 +14,12 @@ namespace KarpysDev.Script.Manager
 
         private void Awake()
         {
-            m_TextPool = new GameObjectPool<FloatingTextBurst>(m_FloatingPrefab,transform, m_InitialSize);
+            m_TextPool = new GameObjectPool<FloatingTextBurst>(m_FloatingPrefab,transform, m_InitialSize,OnAddNewFloatingText);
+        }
+
+        private void OnAddNewFloatingText(FloatingTextBurst floatingTextBurst)
+        {
+            floatingTextBurst.Initialize(this);
         }
 
         public void Return(FloatingTextBurst floatingTextBurst)

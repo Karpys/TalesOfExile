@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +8,19 @@ namespace KarpysDev.Script.Widget.ObjectPooling
     {
         private readonly Queue<T> m_Pool;
 
+        private Action<T> A_OnAddPoolObject = null;
         private Transform m_Parent = null;
         private T m_PoolObjectPrefab = null;
 
-        public GameObjectPool(T poolPrefab,Transform parent,int initialSize)
+        public GameObjectPool(T poolPrefab,Transform parent,int initialSize,Action<T> onAddPoolObject)
         {
             m_Parent = parent;
             m_PoolObjectPrefab = poolPrefab;
+            A_OnAddPoolObject = onAddPoolObject;
             m_Pool = new Queue<T>(initialSize);
             for (int i = 0; i < initialSize; i++)
             {
-                m_Pool.Enqueue(AddPoolObject());
+                InitPoolObject();
             }
         }
         
@@ -27,7 +30,7 @@ namespace KarpysDev.Script.Widget.ObjectPooling
             {
                 T obj = m_Pool.Dequeue();
                 obj.gameObject.SetActive(true);
-                return m_Pool.Dequeue();
+                return obj;
             }
             else
             {
@@ -37,7 +40,17 @@ namespace KarpysDev.Script.Widget.ObjectPooling
 
         private T AddPoolObject()
         {
-            return GameObject.Instantiate(m_PoolObjectPrefab,m_Parent);
+            T obj = GameObject.Instantiate(m_PoolObjectPrefab, m_Parent);
+            A_OnAddPoolObject.Invoke(obj);
+            return obj;
+        }
+
+        private void InitPoolObject()
+        {
+            T obj = GameObject.Instantiate(m_PoolObjectPrefab, m_Parent); 
+            A_OnAddPoolObject.Invoke(obj);
+            obj.gameObject.SetActive(false);
+            m_Pool.Enqueue(obj);
         }
 
         public void Return(T obj)
