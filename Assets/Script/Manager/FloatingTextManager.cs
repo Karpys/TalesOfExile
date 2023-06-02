@@ -1,4 +1,6 @@
-﻿using KarpysDev.Script.Widget;
+﻿using System;
+using KarpysDev.Script.Widget;
+using KarpysDev.Script.Widget.ObjectPooling;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager
@@ -6,11 +8,25 @@ namespace KarpysDev.Script.Manager
     public class FloatingTextManager : SingletonMonoBehavior<FloatingTextManager>
     {
         [SerializeField] private FloatingTextBurst m_FloatingPrefab = null;
+        [SerializeField] private int m_InitialSize = 100;
+
+        private GameObjectPool<FloatingTextBurst> m_TextPool = null;
+
+        private void Awake()
+        {
+            m_TextPool = new GameObjectPool<FloatingTextBurst>(m_FloatingPrefab,transform, m_InitialSize);
+        }
+
+        public void Return(FloatingTextBurst floatingTextBurst)
+        {
+            m_TextPool.Return(floatingTextBurst);
+        }
 
         public void SpawnFloatingText(Vector3 position,float value,Color? color = null,float delay = 0f)
         {
             Color targetColor = color ?? Color.white;
-            FloatingTextBurst text = Instantiate(m_FloatingPrefab, position,Quaternion.identity);
+            FloatingTextBurst text = m_TextPool.Take();
+            text.transform.position = position;
             text.LaunchFloat(value,targetColor,delay);
         }
     }

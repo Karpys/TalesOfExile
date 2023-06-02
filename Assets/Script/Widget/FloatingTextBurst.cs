@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using KarpysDev.Script.Manager;
 using TMPro;
 using TweenCustom;
 using UnityEngine;
@@ -14,14 +15,21 @@ namespace KarpysDev.Script.Widget
         public AnimationCurve Curve;
         public float Duration;
     }
-    public class FloatingTextBurst : MonoBehaviour
+    public class FloatingTextBurst : MonoBehaviour,IPoolObject
     {
         [SerializeField] private TMP_Text m_Text = null;
         [SerializeField] private float m_RangeRandom = 0.5f;
         [SerializeField] private TweenParam m_XAlignement;
         [SerializeField] private TweenParam m_YEndAlignement;
 
+        private FloatingTextManager m_TextManager = null;
         private bool fading = false;
+
+        public void Initialize(FloatingTextManager textManager)
+        {
+            m_TextManager = textManager;
+        }
+        
         public void LaunchFloat(float damageValue,Color? color = null,float triggerDelay = 0f)
         {
             float delay = triggerDelay + Random.Range(0f, 0.15f);
@@ -44,10 +52,18 @@ namespace KarpysDev.Script.Widget
                 Color textColor = m_Text.color;
                 textColor.a -= Time.deltaTime;
                 m_Text.color = textColor;
-            
-                if(m_Text.color.a <= 0)
-                    Destroy(gameObject);
+
+                if (m_Text.color.a <= 0)
+                {
+                    PoolReturn();
+                }
             }
+        }
+
+        public void PoolReturn()
+        {
+            m_Text.text = "";
+            m_TextManager.Return(this);
         }
 
         private void LaunchFade()
@@ -55,4 +71,9 @@ namespace KarpysDev.Script.Widget
             fading = true;
         }
     }
+}
+
+public interface IPoolObject
+{
+    public void PoolReturn();
 }
