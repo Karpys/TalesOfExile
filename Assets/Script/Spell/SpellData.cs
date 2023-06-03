@@ -38,5 +38,11 @@ namespace KarpysDev.Script.Spell
         {
             return MemberwiseClone();
         }
+        
+        public virtual string GetSpellDescription()
+        {
+            string description = m_Data.BaseDescription;
+            return description;
+        }
     }
 }

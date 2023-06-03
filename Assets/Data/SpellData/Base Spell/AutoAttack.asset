@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellKey: AutoAttack
   SpellType: 0
   SpellGroups: 02000000
+  BaseDescription: Deal 100% of your weapon force (&0).
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 11a167c533e194fda9536b2ac28bf176, type: 2}

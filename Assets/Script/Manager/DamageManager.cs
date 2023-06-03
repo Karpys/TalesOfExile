@@ -54,5 +54,11 @@ namespace KarpysDev.Script.Manager
             
             return (modifier + 100) / 100;
         }
+
+        public static string ToDescription(this DamageSource damageSource)
+        {
+            //Todo: Add Damage color//
+            return Mathf.Floor(damageSource.Damage) + " " + damageSource.DamageType + " damage";
+        }
     }
 }

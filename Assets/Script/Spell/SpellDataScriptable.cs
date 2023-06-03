@@ -9,6 +9,9 @@ namespace KarpysDev.Script.Spell
         public string SpellKey = String.Empty;
         public SpellType SpellType = SpellType.Trigger;
         public SpellGroup[] SpellGroups = Array.Empty<SpellGroup>();
+        
+        [Header("Spell Description (&0..&1) => place holder")]
+        public string BaseDescription = String.Empty;
     }
 
     public enum SpellType

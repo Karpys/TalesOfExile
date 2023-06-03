@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
@@ -15,7 +16,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
 
-        public Dictionary<SubDamageType, DamageSource> DamageSource => m_DamageSources;
+        public Dictionary<SubDamageType, DamageSource> DamageSources => m_DamageSources;
 
         private bool m_DisplayDamage = false;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
@@ -123,6 +124,19 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
 
             return null;
+        }
+
+        public override string[] GetDescriptionParts()
+        {
+            if (m_DamageSources.TryGetValue(m_DamageSpellParams.InitialSourceDamage.DamageType,
+                    out DamageSource initialDamageSource))
+            {
+                string[] description = new string[1];
+                description[0] = initialDamageSource.ToDescription();
+                return description;
+            }
+
+            return Array.Empty<string>();
         }
     }
 }

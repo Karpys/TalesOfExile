@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: Rush
   SpellType: 0
+  SpellGroups: 
+  BaseDescription: Deal &0.
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 178043513e6696541b993c61f952b1a5, type: 2}

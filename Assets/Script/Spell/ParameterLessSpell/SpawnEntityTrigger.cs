@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
-    public class  SpawnEntityTrigger : SelectionSpellTrigger
+    public class SpawnEntityTrigger : SelectionSpellTrigger
     {
         private EntityType m_EntityTypeToSpawn = EntityType.None;
         private bool m_UseTransmitter = false;

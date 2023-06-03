@@ -40,5 +40,13 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
             return base.GetEntityGroup(spellData);
         }
+
+        public override string[] GetDescriptionParts()
+        {
+            string[] descriptionParts = new string[2];
+            descriptionParts[0] = Mathf.Floor(m_BuffValue) + "";
+            descriptionParts[1] = m_BuffDuration  + "";
+            return descriptionParts;
+        }
     }
 }

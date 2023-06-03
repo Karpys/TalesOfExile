@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellKey: RockSlam
   SpellType: 0
   SpellGroups: 05000000
+  BaseDescription: Deal &0.
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: ce67ec4c5bea931408f2b0378d4ed0ae, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 267716562f50341da98f63d7b2cf385b, type: 2}

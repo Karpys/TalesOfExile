@@ -46,8 +46,10 @@ namespace KarpysDev.Script.Spell
         public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo);
 
         public abstract void ComputeSpellData(BoardEntity entity);
-    }
 
+        public abstract string[] GetDescriptionParts();
+    }
+    
     public class CastInfo
     {
         private SpellData m_SpellCasted = null;

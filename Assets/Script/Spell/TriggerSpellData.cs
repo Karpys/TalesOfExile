@@ -1,4 +1,5 @@
 using KarpysDev.Script.Entities;
+using UnityEngine;
 
 namespace KarpysDev.Script.Spell
 {
@@ -82,10 +83,26 @@ namespace KarpysDev.Script.Spell
         
             return (float)m_CurrentCooldown / m_BaseCooldown;
         }
-    
-        public TriggerSpellData(SpellInfo baseSpellInfo, BoardEntity attachedEntity) : base(baseSpellInfo, attachedEntity)
+
+        public override string GetSpellDescription()
         {
+            string description = m_Data.BaseDescription;
+            string[] dynamicValues = SpellTrigger.GetDescriptionParts();
+
+            for (int i = 0; i < dynamicValues.Length; i++)
+            {
+                description = description.Replace("&" + i, dynamicValues[i]);
+            }
+
+            if (description == "")
+            {
+                description = "Description not implemented";
+            }
+            
+            return description;
         }
+
+        public TriggerSpellData(SpellInfo baseSpellInfo, BoardEntity attachedEntity) : base(baseSpellInfo, attachedEntity) {}
     }
 
     public class SupportSpellData:SpellData

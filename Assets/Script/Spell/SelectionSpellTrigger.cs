@@ -1,4 +1,5 @@
-﻿using KarpysDev.Script.Entities;
+﻿using System;
+using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell.SpellFx;
@@ -90,6 +91,11 @@ namespace KarpysDev.Script.Spell
         {
             OnCastSpell = null;
             entity.EntityEvent.OnRequestCastEvent?.Invoke(this);
+        }
+
+        public override string[] GetDescriptionParts()
+        {
+            return Array.Empty<string>();
         }
     }
 }

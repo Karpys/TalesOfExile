@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellKey: RangeAuto
   SpellType: 0
   SpellGroups: 
+  BaseDescription: Deal 100% of your weapon force (&0).
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 6dbce669734acd245a062cc5a0807892, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 94cfbeb07ac9942ce898b2c7eea411f5, type: 2}

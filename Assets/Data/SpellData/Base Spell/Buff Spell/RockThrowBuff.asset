@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: RockThrow
   SpellType: 2
+  SpellGroups: 
+  BaseDescription: Apply a buff where whenever you deal rock damage, deal &0 additional
+    physical damage. The buff last for &1 turn.
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 5c6a2344c7c7e41879fcd06a53ffe506, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 0fc271a9e46a51f49a5053d274b4cdec, type: 2}
