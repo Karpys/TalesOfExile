@@ -55,7 +55,7 @@ namespace KarpysDev.Script.Entities
             JumpAnimation();
         }
 
-        protected override void TriggerDeath()
+        public override void TriggerDeath()
         {
             //Trigger Lose ?//
             return;

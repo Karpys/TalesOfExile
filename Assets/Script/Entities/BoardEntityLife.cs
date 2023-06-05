@@ -9,8 +9,9 @@ namespace KarpysDev.Script.Entities
     public class BoardEntityLife : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer m_LifeFill = null;
-        [SerializeField] private Transform m_LifeDamageEffect = null; 
-    
+        [SerializeField] private Transform m_LifeDamageEffect = null;
+
+        private BoardEntity m_Entity = null;
         private float m_MaxLife = 100f;
         private float m_Life = 100f;
         private float m_LifeRegeneration = 0;
@@ -31,12 +32,13 @@ namespace KarpysDev.Script.Entities
                 GameManager.Instance.A_OnPreEndTurn -= ApplyRegeneration;
         }
 
-        public void Initialize(float maxLife, float life, float lifeRegeneration)
+        public void Initialize(float maxLife, float life, float lifeRegeneration,BoardEntity entity)
         {
             m_MaxLife = maxLife;
             m_Life = life;
             m_LifeRegeneration = lifeRegeneration;
-
+            m_Entity = entity;
+            
             UpdateLifeFill();
         }
     
@@ -48,6 +50,10 @@ namespace KarpysDev.Script.Entities
         
             A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
             UpdateLifeFill();
+            
+            
+            if (m_Life <= 0)
+                m_Entity.TriggerDeath();
         }
 
         public void ChangeMaxLifeValue(float value)

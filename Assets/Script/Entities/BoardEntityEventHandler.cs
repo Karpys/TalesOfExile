@@ -16,6 +16,8 @@ namespace KarpysDev.Script.Entities
 
         public Action<DamageSpellTrigger,FloatSocket> OnRequestBonusSpellDamage = null;
         public Action<DamageSpellTrigger> OnRequestAdditionalSpellSource = null;
+
+        public Action<BoardEntity> OnKill = null;
         public Action OnSpellRecompute = null;
         public Action OnBehave = null;
     }

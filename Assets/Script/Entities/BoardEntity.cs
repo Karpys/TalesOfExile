@@ -208,6 +208,9 @@ namespace KarpysDev.Script.Entities
     
         //Property//
         public bool Targetable => m_Targetable;
+        
+        //Private Field//
+        private BoardEntity m_LastGetHit = null;
 
         //Need to be called when an entity is created//
         public void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
@@ -226,7 +229,7 @@ namespace KarpysDev.Script.Entities
         
             //Life
             m_EntityLife = GetComponent<BoardEntityLife>();
-            m_EntityLife.Initialize(m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration);
+            m_EntityLife.Initialize(m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration,this);
 
             //Buffs
             m_Buffs = GetComponent<EntityBuffs>();
@@ -401,12 +404,15 @@ namespace KarpysDev.Script.Entities
         public void TakeDamage(float value)
         {
             m_EntityLife.ChangeLifeValue(-value);
-
-            if (m_EntityLife.Life <= 0)
-                TriggerDeath();
+        }
+        
+        public void TakeDamage(float value,BoardEntity damageFrom)
+        {
+            m_LastGetHit = damageFrom;
+            m_EntityLife.ChangeLifeValue(-value);
         }
 
-        protected virtual void TriggerDeath()
+        public virtual void TriggerDeath()
         {
             if (m_IsDead)
                 return;
@@ -419,6 +425,11 @@ namespace KarpysDev.Script.Entities
         
             RemoveFromBoard();
             m_EntityEvent.OnDeath?.Invoke();
+
+            if (m_LastGetHit)
+            {
+                m_LastGetHit.m_EntityEvent.OnKill?.Invoke(this);
+            }
         
             Destroy(gameObject);
         }

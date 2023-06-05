@@ -101,8 +101,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
             
             entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);
-
-            entity.TakeDamage(totalDamage);
+            entity.TakeDamage(totalDamage,spellData.AttachedEntity);
 
             /*Text Display */
             if (m_DisplayDamage && DamageManager.BlendDisplayDamage)
