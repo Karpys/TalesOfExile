@@ -28,7 +28,7 @@ namespace KarpysDev.Script.Items
             m_PlayerInventory = new Item[m_InventoryItemCount];
         }
 
-        private void Start()
+        public void Init()
         {
             InterpretSave();
         }

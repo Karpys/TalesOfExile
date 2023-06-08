@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
@@ -21,9 +22,21 @@ namespace KarpysDev.Script.Entities
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
-            InitDisplaySpell();
+           
             GameManager.Instance.RegisterPlayer(this);
             GameManager.Instance.SetControlledEntity(this);
+        }
+
+        public override void EntityInitialization(EntityBehaviour entityIa, EntityGroup entityGroup,
+            EntityGroup targetEntityGroup = EntityGroup.None)
+        {
+            base.EntityInitialization(entityIa, entityGroup, targetEntityGroup);
+            m_PlayerInventory.Init();
+            //Init Skill Tree
+            InitDisplaySpell();
+            
+            if(this == GameManager.Instance.ControlledEntity)
+                GameManager.Instance.RefreshTargetEntitySkills();
         }
 
         public void InitDisplaySpell()

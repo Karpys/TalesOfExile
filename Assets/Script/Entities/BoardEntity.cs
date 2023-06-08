@@ -213,7 +213,7 @@ namespace KarpysDev.Script.Entities
         private BoardEntity m_LastGetHit = null;
 
         //Need to be called when an entity is created//
-        public void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
+        public virtual void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
         {
         
             //Copy Base Entity Data
