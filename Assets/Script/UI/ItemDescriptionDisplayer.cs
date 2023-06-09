@@ -20,7 +20,7 @@ namespace KarpysDev.Script.UI
 
         private void Update()
         {
-            transform.position = Input.mousePosition; //+ new Vector3(0,((RectTransform)transform).sizeDelta.y,0);
+            //transform.position = Input.mousePosition; //+ new Vector3(0,((RectTransform)transform).sizeDelta.y,0);
         }
 
         public virtual void Initialize(Item item)

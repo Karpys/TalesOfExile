@@ -1,5 +1,7 @@
 ﻿using System;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Utils;
+using TMPro;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
@@ -11,7 +13,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
         [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
 
-        [Header("Buff Visual Info")] 
+        [Header("Buff Info")] 
         [SerializeField]protected BuffInfo m_BuffInfo;
         [Header("Enemy Specific")]
         [SerializeField] protected bool m_EnemyBuffIgnoreFirstCooldown = false;
@@ -90,11 +92,26 @@ namespace KarpysDev.Script.Entities.BuffRelated
             UnApply();
             Destroy(gameObject);
         }
+
+        public string GetDescription()
+        {
+            return StringUtils.GetDescription(m_BuffInfo.BaseBuffDescription, GetDescriptionDynamicValues());
+        }
+
+        protected virtual string[] GetDescriptionDynamicValues()
+        {
+            string[] dyValues = new string[1];
+            dyValues[0] = m_BuffValue+"";
+            return dyValues;
+        }
     }
 
     [Serializable]
     public struct BuffInfo
     {
         public Sprite BuffVisual;
+        public string BuffName;
+        [Header("Spell Description (&0..&1) => place holder")]
+        public string BaseBuffDescription;
     }
 }

@@ -71,5 +71,20 @@ namespace KarpysDev.Script.Utils
         {
             return float.Parse(value);
         }
+
+        public static string GetDescription(string baseDescription,string[] dynamicValues)
+        {
+            for (int i = 0; i < dynamicValues.Length; i++)
+            {
+                baseDescription = baseDescription.Replace("&" + i, dynamicValues[i]);
+            }
+
+            if (baseDescription == "")
+            {
+                baseDescription = "Description not implemented";
+            }
+
+            return baseDescription;
+        }
     }
 }

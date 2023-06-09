@@ -1,21 +1,35 @@
+using System;
 using KarpysDev.Script.Entities.BuffRelated;
+using KarpysDev.Script.UI.Pointer;
+using KarpysDev.Script.Widget;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KarpysDev.Script.UI
 {
-    public class BuffUI : MonoBehaviour
+    public class BuffUI : UIPointer
     {
         [SerializeField] private Image m_BuffVisual = null;
         [SerializeField] private TMP_Text m_BuffCooldown = null;
+        [SerializeField] private float m_DisplayDelay = 0.2f;
     
+        private BuffUIDisplayer m_Displayer = null;
+        private bool m_InDisplay = false;
+        
         private Buff m_AttachedBuff = null;
+        private Clock m_DisplayerClock = null;
 
         public Buff AttachedBuff => m_AttachedBuff;
 
-        public void Initialize(Buff buff)
+        private void Update()
         {
+            m_DisplayerClock?.UpdateClock();
+        }
+
+        public void Initialize(Buff buff,BuffUIDisplayer displayer)
+        {
+            m_Displayer = displayer;
             m_AttachedBuff = buff;
             m_BuffVisual.sprite = buff.BuffInfo.BuffVisual;
             UpdateText();
@@ -24,6 +38,28 @@ namespace KarpysDev.Script.UI
         public void UpdateText()
         {
             m_BuffCooldown.text = m_AttachedBuff.Cooldown + "";
+        }
+
+        protected override void OnEnter()
+        {
+            m_DisplayerClock = new Clock(m_DisplayDelay, DisplayBuffDescription);
+        }
+
+        protected override void OnExit()
+        {
+            m_DisplayerClock = null;
+            
+            if (m_InDisplay)
+            {
+                m_Displayer.Hide();
+                m_InDisplay = false;
+            }
+        }
+
+        private void DisplayBuffDescription()
+        {
+            m_InDisplay = true;
+            m_Displayer.Initialize(m_AttachedBuff,transform.position);
         }
     }
 }

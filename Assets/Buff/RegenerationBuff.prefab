@@ -4854,4 +4854,6 @@ MonoBehaviour:
   m_BuffCooldown: 0
   m_BuffInfo:
     BuffVisual: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
+    BuffName: Regeneration
+    BaseBuffDescription: Regen &0 additional Hp each turn
   m_EnemyBuffIgnoreFirstCooldown: 0

@@ -11,7 +11,8 @@ namespace KarpysDev.Script.UI
     {
         [SerializeField] private Transform m_BuffContainer = null;
         [SerializeField] private BuffUI m_BuffUIPrefab = null;
-
+        [SerializeField] private BuffUIDisplayer m_Displayer = null;
+        
         private List<BuffUI> m_BuffUIs = new List<BuffUI>();
         private void Start()
         {
@@ -71,7 +72,7 @@ namespace KarpysDev.Script.UI
                 return;
         
             BuffUI buffUI = Instantiate(m_BuffUIPrefab, m_BuffContainer);
-            buffUI.Initialize(buff);
+            buffUI.Initialize(buff,m_Displayer);
             m_BuffUIs.Add(buffUI);
         }
     

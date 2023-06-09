@@ -1,4 +1,5 @@
 using KarpysDev.Script.Entities;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell
@@ -86,19 +87,7 @@ namespace KarpysDev.Script.Spell
 
         public override string GetSpellDescription()
         {
-            string description = m_Data.BaseDescription;
-            string[] dynamicValues = SpellTrigger.GetDescriptionParts();
-
-            for (int i = 0; i < dynamicValues.Length; i++)
-            {
-                description = description.Replace("&" + i, dynamicValues[i]);
-            }
-
-            if (description == "")
-            {
-                description = "Description not implemented";
-            }
-            
+            string description = StringUtils.GetDescription(m_Data.BaseDescription,SpellTrigger.GetDescriptionParts());
             return description;
         }
 
