@@ -1,0 +1,61 @@
+KarpysDev.Script.Items.EquipementItem 4 1 False 21|13
+KarpysDev.Script.Items.EquipementItem 4 2 False 21|19-1|6
+KarpysDev.Script.Items.EquipementItem 3 1 False 24|7
+KarpysDev.Script.Items.EquipementItem 3 2 False 23|9-25|10
+KarpysDev.Script.Items.EquipementItem 8 0 False null
+KarpysDev.Script.Items.EquipementItem 5 0 False null
+KarpysDev.Script.Items.EquipementItem 7 1 False 3|10
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+KarpysDev.Script.Items.EquipementItem 3 1 True 22|9
+none
+none
+KarpysDev.Script.Items.EquipementItem 7 3 True 0|7-4|6-1|10
+none
+none
+KarpysDev.Script.Items.EquipementItem 4 2 True 0|7-2|8
+none
+none
+KarpysDev.Script.Items.EquipementItem 2 0 True null
+none
