@@ -21,10 +21,10 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_Receiver.EntityEvent.OnDeath -= SpawnSkeleton;
         }
 
-        public override void InitializeBuff(BoardEntity caster, BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
+        public override void InitializeAsBuff(BoardEntity caster, BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
         {
             m_SkeletonCount = (int)args[0];
-            base.InitializeBuff(caster, receiver, cooldown, buffValue, args);
+            base.InitializeAsBuff(caster, receiver, cooldown, buffValue, args);
         }
 
         private void SpawnSkeleton()

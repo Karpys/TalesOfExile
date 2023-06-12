@@ -53,7 +53,7 @@ namespace KarpysDev.Script.Utils
                         buff.SetBuffType(BuffGroup.Buff, BuffCooldown.Passive);
                         buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + m.Value);
                         buff.EnableVisual(false);
-                        buff.InitializeBuff(e, e, 0, m.FloatValue);
+                        buff.InitializeAsPassive(e, e,m.FloatValue);
                     }
                 },
             };
@@ -93,7 +93,7 @@ namespace KarpysDev.Script.Utils
                 },
                 {ModifierType.AddThrowRockPassif, (m, e) =>
                     {
-                        e.Buffs.TryRemoveBuffViaKey((int) BuffType.RockThrowBuff + " " + m.Value);
+                        e.Buffs.TryRemovePassive(BuffType.RockThrowBuff,m.FloatValue);
                     }
                 },
             };

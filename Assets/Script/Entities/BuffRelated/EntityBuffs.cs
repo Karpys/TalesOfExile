@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Manager.Library;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
     public class EntityBuffs : MonoBehaviour
     {
         private List<Buff> m_Buffs = new List<Buff>();
+        private List<Buff> m_Passive = new List<Buff>();
 
         public Action<Buff> OnAddBuff = null;
         public Action<Buff> OnRemoveBuff = null;
@@ -29,6 +31,18 @@ namespace KarpysDev.Script.Entities.BuffRelated
         
             OnRemoveBuff?.Invoke(buff);
         }
+        
+        public void AddPassive(Buff buff)
+        {
+            m_Passive.Add(buff);
+        }
+
+        public void RemovePassive(Buff buff)
+        {
+            if (m_Passive.Contains(buff))
+                m_Passive.Remove(buff);
+        }
+        
         private  void Start()
         {
             GameManager.Instance.A_OnEndTurn += ReduceAllCd;
@@ -49,31 +63,22 @@ namespace KarpysDev.Script.Entities.BuffRelated
         
             OnCdReduced?.Invoke();
         }
-
-        public void TryRemovePassiveOffTypeAndValue(BuffType buffType, float buffValue)
+        
+        public void TryRemovePassive(BuffType buffType,float buffValue)
         {
-            for (int i = 0; i < m_Buffs.Count; i++)
+            for (int i = 0; i < m_Passive.Count; i++)
             {
-                Debug.Log(m_Buffs[i].BuffType);
-                if (m_Buffs[i].BuffType == buffType && m_Buffs[i].BuffValue == buffValue &&
-                    m_Buffs[i].BuffCooldown == BuffCooldown.Passive)
+                if (m_Passive[i].BuffType == buffType)
                 {
-                    m_Buffs[i].RemovePassive();
+                    m_Passive[i].ReducePassiveValue(buffValue);
                     return;
                 }
             }
         }
-    
-        public void TryRemoveBuffViaKey(string buffKey)
+
+        public Buff ContainPassiveOfType(BuffType buffType)
         {
-            for (int i = 0; i < m_Buffs.Count; i++)
-            {
-                if (m_Buffs[i].BuffKey == buffKey)
-                {
-                    m_Buffs[i].RemovePassive();
-                    return;
-                }
-            }
+            return m_Passive.FirstOrDefault(b => b.BuffType == buffType);
         }
     }
 

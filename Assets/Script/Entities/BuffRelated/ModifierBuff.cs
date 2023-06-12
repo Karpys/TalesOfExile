@@ -6,10 +6,10 @@ namespace KarpysDev.Script.Entities.BuffRelated
     public class ModifierBuff : Buff
     {
         private Modifier m_Modifier = null;
-        public override void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args)
+        public override void InitializeAsBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args)
         {
             m_Modifier = args[0] as Modifier;
-            base.InitializeBuff(caster,receiver, cooldown, buffValue, args);
+            base.InitializeAsBuff(caster,receiver, cooldown, buffValue, args);
         }
 
         protected override void Apply()

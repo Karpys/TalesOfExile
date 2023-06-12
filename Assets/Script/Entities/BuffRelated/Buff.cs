@@ -12,6 +12,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         [SerializeField] protected BuffType m_BuffType = BuffType.None;
         [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
         [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
+        [SerializeField] protected bool m_StackablePassive = false;
 
         [Header("Buff Info")] 
         [SerializeField]protected BuffInfo m_BuffInfo;
@@ -33,7 +34,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public string BuffKey => m_BuffKey;
         public BuffInfo BuffInfo => m_BuffInfo;
 
-        public virtual void InitializeBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
+        public virtual void InitializeAsBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
         {
             if (receiver.EntityGroup == EntityGroup.Enemy && m_EnemyBuffIgnoreFirstCooldown)
                 m_IgnoreCooldownOnInit = true;
@@ -85,10 +86,64 @@ namespace KarpysDev.Script.Entities.BuffRelated
             if(m_VisualTransform)
                 m_VisualTransform.gameObject.SetActive(enable); 
         }
-
-        public void RemovePassive()
+        
+        protected virtual Buff ContainPassiveCheck()
         {
-            m_Receiver.Buffs.RemoveBuff(this);
+            return m_Receiver.Buffs.ContainPassiveOfType(m_BuffType);
+        }
+
+        protected virtual bool RemovePassiveCheck()
+        {
+            return m_BuffValue == 0;
+        }
+        
+        public virtual void InitializeAsPassive(BoardEntity caster,BoardEntity receiver,float buffValue,object[] args = null)
+        {
+            m_Receiver = receiver;
+            m_Caster = caster;
+            m_BuffValue = buffValue;
+            
+            //Si le caster a deja un passif de ce type => ajouter sa valeur a celle deja existante, sinon l'ajouter normalement ?
+            Buff passive = ContainPassiveCheck(); 
+            if (m_StackablePassive && passive)
+            {
+                passive.AddPassiveValue(buffValue);
+                Destroy(gameObject);
+            }
+            else
+            {
+                m_Receiver.Buffs.AddPassive(this);
+                Apply();
+            }
+        }
+
+        protected virtual void AddPassiveValue(float value)
+        {
+            m_BuffValue += value;
+            OnPassiveValueChanged();
+            m_Receiver.ComputeAllSpells();
+        }
+        
+        public virtual void ReducePassiveValue(float value)
+        {
+            m_BuffValue -= value;
+
+            if (RemovePassiveCheck())
+            {
+                RemovePassive();
+            }
+
+            OnPassiveValueChanged();
+            m_Receiver.ComputeAllSpells();
+        }
+
+        protected virtual void OnPassiveValueChanged() 
+        {}
+
+        private void RemovePassive()
+        {
+            Debug.Log("Remove Passive");
+            m_Receiver.Buffs.RemovePassive(this);
             UnApply();
             Destroy(gameObject);
         }

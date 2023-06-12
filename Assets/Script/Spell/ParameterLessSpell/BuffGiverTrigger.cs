@@ -30,7 +30,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         private void GiveBuff(BoardEntity caster,BoardEntity receiver,object[] args = null)
         {
-            BuffLibrary.Instance.AddBuffToViaKey(m_BuffType, receiver).InitializeBuff(caster, receiver, m_BuffDuration, m_BuffValue,args);
+            BuffLibrary.Instance.AddBuffToViaKey(m_BuffType, receiver).InitializeAsBuff(caster, receiver, m_BuffDuration, m_BuffValue,args);
         }
 
         protected override EntityGroup GetEntityGroup(TriggerSpellData spellData)
