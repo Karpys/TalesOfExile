@@ -1,20 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace TweenCustom
 {
-    public class TweenSpriteColor: BaseTween
+    public class TweenImageColor: BaseTween
     {
-        private SpriteRenderer m_Renderer = null;
+        private Image m_Renderer = null;
         private Vector4 m_StartColor = new Vector4(0,0,0,1);
         private Vector4 m_EndColor = new Vector4(0,0,0,1);
-        public TweenSpriteColor(SpriteRenderer target,Vector4 endValue,float duration)
+        public TweenImageColor(Image target,Vector4 endValue,float duration)
         {
-            //Use This for Do kill 
-            //m_Target = target.transform;
+            m_Target = target.transform;
             m_Renderer = target;
             m_Duration = duration;
             m_StartColor = target.color.rgba();
             m_EndColor = endValue;
+            // m_StartValue = target.color.rgb();
+            // m_EndValue = endValue;
         }
 
         protected override void Update()

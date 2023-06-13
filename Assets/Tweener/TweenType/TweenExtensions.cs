@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace TweenCustom
 {
     public static class TweenExtensions
@@ -61,6 +63,13 @@ namespace TweenCustom
         public static BaseTween DoColor(this SpriteRenderer renderer, Color endValue,float duration)
         {
             TweenSpriteColor baseTween = new TweenSpriteColor(renderer, endValue.rgba(), duration);
+            TweenManager.Instance.AddTween(baseTween);
+            return baseTween;
+        }
+        
+        public static BaseTween DoColor(this Image renderer, Color endValue,float duration)
+        {
+            TweenImageColor baseTween = new TweenImageColor(renderer, endValue.rgba(), duration);
             TweenManager.Instance.AddTween(baseTween);
             return baseTween;
         }
