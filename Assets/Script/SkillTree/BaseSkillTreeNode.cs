@@ -15,6 +15,7 @@ namespace KarpysDev.Script.SkillTree
         [SerializeField] protected Image m_NodeOutlineValidation = null;
 
         [Header("References")]
+        [SerializeField] private int m_SkillTreeNodeId = 0;
         [SerializeField] private BaseSkillTreeNode[] m_ConnectedNodes = null;
 
         private bool m_IsUnlocked = false;
@@ -24,6 +25,7 @@ namespace KarpysDev.Script.SkillTree
         private static float NODE_SPRITE_ALPHA = 0.5f;
         
         //Getter//
+        public int NodeId => m_SkillTreeNodeId;
         public bool IsUnlocked => m_IsUnlocked;
         private int ConnectedUnlocked => m_ConnectedNodes.Where(n => n.IsUnlocked).ToArray().Length;
         private BaseSkillTreeNode[] ConnetectedConnectedNodes => m_ConnectedNodes.Where(n => n.IsUnlocked).ToArray();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
+using KarpysDev.Script.SkillTree;
 using KarpysDev.Script.UI;
 using KarpysDev.Script.UI.ItemContainer;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace KarpysDev.Script.Manager
         [Header("UI reference")]
         [SerializeField] private Canvas_Skills m_CanvasSkills = null;
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
+        [SerializeField] private SkillTreeController m_SkillTreeController = null;
         //Widget//
         [SerializeField] private BoardEntityMovement m_EntityInputMovement = null;
         [SerializeField] private bool m_RemoveDelay = false;
@@ -83,6 +85,7 @@ namespace KarpysDev.Script.Manager
         {
             m_PlayerEntity = player;
             m_PlayerInventoryUI.SetPlayerInventory(player.PlayerInventory);
+            m_SkillTreeController.Initialize(player);
         }
 
         public void SetControlledEntity(BoardEntity entity)

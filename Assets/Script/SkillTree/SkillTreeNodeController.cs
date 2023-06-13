@@ -1,4 +1,5 @@
 ﻿using System;
+using KarpysDev.Script.Entities;
 using UnityEngine;
 
 namespace KarpysDev.Script.SkillTree
@@ -6,6 +7,14 @@ namespace KarpysDev.Script.SkillTree
     public class SkillTreeNodeController : MonoBehaviour
     {
         private BaseSkillTreeNode m_CurrentNode = null;
+        private BoardEntity m_AttachedEntity = null;
+
+        public BoardEntity AttachedEntity => m_AttachedEntity;
+        public void Initialize(BoardEntity attachedEntity)
+        {
+            m_AttachedEntity = attachedEntity;
+        }
+        
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
