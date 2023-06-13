@@ -171,7 +171,6 @@ namespace KarpysDev.Script.PathFinding
                     }
                 }
             }
-            Debug.Log("Iteration count: " + iterationCount);
 
             return startTile;
         }

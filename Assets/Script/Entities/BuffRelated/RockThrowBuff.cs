@@ -38,9 +38,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private void ThrowRocks(CastInfo castInfo)
         {
             if (!(castInfo is DamageCastInfo damageCastInfo)) return;
-        
-            GameManager.Instance.AddCallBackAction(ThrowRocks);
-            m_RockReceiver.AddRange(damageCastInfo.HitEntity.Where(en => !ReferenceEquals(en, null)).Select(en => en.EntityPosition).ToList());
+
+            if (GameManager.Instance.AddCallBackAction(ThrowRocks))
+            {
+                m_RockReceiver.AddRange(damageCastInfo.HitEntity.Where(en => !ReferenceEquals(en, null)).Select(en => en.EntityPosition).ToList());
+            }
         }
     
     
@@ -50,7 +52,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             {
                 Vector2Int receiver = m_RockReceiver[i];
             
-                SpellCastUtils.CastSpellAt(m_TriggerSpellData, receiver,m_Receiver.EntityPosition);
+                SpellCastUtils.TriggerSpellAt(m_TriggerSpellData, receiver,m_Receiver.EntityPosition);
             }
 
             m_RockReceiver.Clear();
