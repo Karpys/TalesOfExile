@@ -15,7 +15,11 @@ MonoBehaviour:
   m_SkillTreeNodeController: {fileID: 0}
   m_NodeSprite: {fileID: 6416020712596368189}
   m_NodeOutlineValidation: {fileID: 6416020712644186567}
+  m_SkillTreeNodeId: 0
   m_ConnectedNodes: []
+  m_Modifier:
+    Type: 0
+    Value: 
 --- !u!1001 &2919658403473521988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25,7 +29,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8182755755015032980, guid: 2bbf763f1296fa440a2ad33b10db600e, type: 3}
       propertyPath: m_Name
-      value: DefauktSkillTreeNode
+      value: ModifierSkillTreeNode
       objectReference: {fileID: 0}
     - target: {fileID: 8182755755015032983, guid: 2bbf763f1296fa440a2ad33b10db600e, type: 3}
       propertyPath: m_Pivot.x

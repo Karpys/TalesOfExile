@@ -4,12 +4,12 @@ namespace KarpysDev.Script.Utils
 {
     public static class SpriteUtils
     {
-        public static void RotateTowardPoint(Vector3 originPosition,Vector3 point,Transform rotateVisual)
+        public static void RotateTowardPoint(Vector3 originPosition,Vector3 point,Transform rotateVisual,float offset = 0)
         {
             Vector3 direction = point - originPosition;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
-            rotateVisual.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
+            rotateVisual.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle + offset));
         }
     
         public static float GetRotateTowardPoint(Vector3 originPosition,Vector3 point)

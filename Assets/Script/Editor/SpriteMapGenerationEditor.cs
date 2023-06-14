@@ -24,7 +24,7 @@ namespace KarpysDev.Script.Editor
 
         private void AddGenerateLibraryButton()
         {
-            if (GUILayout.Button("Generate Librarty"))
+            if (GUILayout.Button("Generate Library"))
             {
                 m_Target.GenerateLibrary(ColorHelper.GetColorInSprite(m_Target.MapSprite));
             }

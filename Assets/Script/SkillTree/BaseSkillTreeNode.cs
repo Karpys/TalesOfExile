@@ -28,8 +28,26 @@ namespace KarpysDev.Script.SkillTree
         public int NodeId => m_SkillTreeNodeId;
         public bool IsUnlocked => m_IsUnlocked;
         private int ConnectedUnlocked => m_ConnectedNodes.Where(n => n.IsUnlocked).ToArray().Length;
-        private BaseSkillTreeNode[] ConnetectedConnectedNodes => m_ConnectedNodes.Where(n => n.IsUnlocked).ToArray();
+        private BaseSkillTreeNode[] ConnectedConnectedNodes => m_ConnectedNodes.Where(n => n.IsUnlocked).ToArray();
         public BaseSkillTreeNode[] ConnectedNodes => m_ConnectedNodes;
+        
+        // Editor //
+        public void AssignController(SkillTreeNodeController nodeController)
+        {
+            m_SkillTreeNodeController = nodeController;
+        }
+
+        public void AssignNodeId(int id)
+        {
+            m_SkillTreeNodeId = id;
+        }
+
+        public void AssignConnected(BaseSkillTreeNode[] connectedNodes)
+        {
+            m_ConnectedNodes = connectedNodes;
+        }
+        
+        // End Editor //
 
         public void Unlock()
         {
@@ -62,17 +80,17 @@ namespace KarpysDev.Script.SkillTree
         public virtual bool CanLock()
         {
             //Check if a node can be unlearned//
-            foreach (BaseSkillTreeNode baseSkillTreeNode in ConnetectedConnectedNodes)
-            {
-                if (baseSkillTreeNode.ConnectedUnlocked == 1)
-                {
-                    if(baseSkillTreeNode as StartSkillTreeNode)
-                        continue;
+            //Todo: Find a way to acheive that//
+            //foreach (BaseSkillTreeNode baseSkillTreeNode in ConnectedConnectedNodes)
+            //{
+            //    if (baseSkillTreeNode.ConnectedUnlocked == 1)
+            //    {
+            //        if(baseSkillTreeNode as StartSkillTreeNode)
+            //            continue;
                     
-                    Debug.Log(baseSkillTreeNode.name);   
-                    return false;
-                }
-            }
+            //        return false;
+            //    }
+            //}
             
             return true;
         }
