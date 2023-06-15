@@ -35,11 +35,19 @@ namespace KarpysDev.Script.Entities
     {
         public SpellDataScriptable m_SpellData = null;
         public int m_SpellPriority = 0;
+        [HideInInspector] public SpellLearnType m_SpellLearnType = SpellLearnType.Learned;
     
-        public SpellInfo(SpellDataScriptable spellData, int priority)
+        public SpellInfo(SpellDataScriptable spellData, int priority,SpellLearnType spellLearnType)
         {
             m_SpellData = spellData;
             m_SpellPriority = priority;
+            m_SpellLearnType = spellLearnType;
         }
+    }
+    
+    public enum SpellLearnType
+    {
+        Learned,
+        Equipement,
     }
 }

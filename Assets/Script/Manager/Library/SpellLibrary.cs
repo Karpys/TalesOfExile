@@ -17,7 +17,7 @@ namespace KarpysDev.Script.Manager.Library
             }
         }
 
-        public SpellInfo GetSpellViaKey(string spellKey)
+        public SpellInfo GetSpellViaKey(string spellKey,SpellLearnType spellLearnType)
         {
             SpellInfo spellData = null;
             Spells.TryGetValue(spellKey,out spellData);
@@ -28,7 +28,7 @@ namespace KarpysDev.Script.Manager.Library
                 return null;
             }
         
-            return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority);
+            return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority,spellLearnType);
         }
     }
 }

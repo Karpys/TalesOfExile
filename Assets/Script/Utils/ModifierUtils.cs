@@ -42,7 +42,7 @@ namespace KarpysDev.Script.Utils
                 {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
                 {ModifierType.SpellAddition, (m, e) =>
                     {
-                        SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value);
+                        SpellInfo spellToAdd = SpellLibrary.Instance.GetSpellViaKey(m.Value,SpellLearnType.Equipement);
                         e.AddSpellToSpellList(spellToAdd);
                         e.UpdateSpellPriority();
                     }

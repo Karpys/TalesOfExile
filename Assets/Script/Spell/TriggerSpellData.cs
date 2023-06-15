@@ -16,11 +16,14 @@ namespace KarpysDev.Script.Spell
     
         //Intern Params//
         private bool m_HasBeenUsed = false;
+        private SpellLearnType m_SpellLearnType = SpellLearnType.Learned;
 
+        public SpellLearnType SpellLearnType => m_SpellLearnType;
         public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
         {
             m_TriggerData = (TriggerSpellDataScriptable)m_Data;
             m_BaseCooldown = TriggerData.m_BaseCooldown;
+            m_SpellLearnType = spellInfo.m_SpellLearnType;
             SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
             SpellTrigger.SetAttachedSpell(this,spellInfo.m_SpellPriority);
             SpellTrigger.ComputeSpellData(AttachedEntity);
