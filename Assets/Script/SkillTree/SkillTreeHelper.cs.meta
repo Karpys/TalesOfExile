@@ -1,3 +1,15 @@
 fileFormatVersion: 2
 guid: 1d2477d9d32245cea6cbd0dd7e3f923d
-timeCreated: 1686733008
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_NodeHolder: {instanceID: 0}
+  - m_ConnexionHolder: {instanceID: 0}
+  - m_NodeController: {instanceID: 0}
+  - m_ConnexionPrefab: {fileID: 994822049805538646, guid: 42c919b694b354cd0adb48334ccf8348, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

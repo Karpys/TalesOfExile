@@ -62,7 +62,7 @@ namespace KarpysDev.Script.SkillTree
 
                         if (!connexions.Contains(connexion))
                         {
-                            CreateConnexion(node,connectedNode);
+                            CreateConnexion(node,connectedNode,connexion);
                             connexions.Add(connexion);
                         }
                     }
@@ -70,17 +70,14 @@ namespace KarpysDev.Script.SkillTree
             }
         }
 
-        private void CreateConnexion(BaseSkillTreeNode node1, BaseSkillTreeNode node2)
+        private void CreateConnexion(BaseSkillTreeNode node1, BaseSkillTreeNode node2,Vector2Int connexionId)
         {
-            //Instantiate at node 1//
-            //Rotate toward node 2//
-            //Apply new Height//
-            GameObject connexion = (GameObject)PrefabUtility.InstantiatePrefab(m_Target.ConnexionPrefab, m_Target.ConnexionHolder);
+            SkillTreeConnexion connexion = (SkillTreeConnexion)PrefabUtility.InstantiatePrefab(m_Target.ConnexionPrefab, m_Target.ConnexionHolder);
+            connexion.AssignId(connexionId);
             connexion.transform.position = node1.transform.position;
             SpriteUtils.RotateTowardPoint(node1.transform.position,node2.transform.position,connexion.transform,-90);
 
             float distance = Vector3.Distance(node1.transform.position, node2.transform.position);
-            
             RectTransform rectTransform = connexion.transform as RectTransform;
             rectTransform.sizeDelta =new Vector2(rectTransform.sizeDelta.x,distance * 10);
         }
