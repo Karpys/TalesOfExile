@@ -122,7 +122,7 @@ namespace KarpysDev.Script.Entities
             }
             else
             {
-                SpellData autoAttack = m_Entity.GetSpellViaKey("AutoAttack");
+                TriggerSpellData autoAttack = m_Entity.GetUsableViaKey("AutoAttack");
             
                 if(autoAttack == null)
                     return;
@@ -133,7 +133,7 @@ namespace KarpysDev.Script.Entities
                     return;
             
                 Debug.Log("Auto Attack");
-                SpellCastUtils.CastSpellAt(autoAttack as TriggerSpellData,targetPosition,m_Entity.EntityPosition);
+                SpellCastUtils.CastSpellAt(autoAttack,targetPosition,m_Entity.EntityPosition);
                 m_Interpretor.OnMovementResetSpellQueue();
                 GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
             }

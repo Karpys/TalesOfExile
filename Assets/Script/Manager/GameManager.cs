@@ -13,6 +13,7 @@ namespace KarpysDev.Script.Manager
     {
         [Header("UI reference")]
         [SerializeField] private Canvas_Skills m_CanvasSkills = null;
+        [SerializeField] private CanvasSkillLearned m_CanvasSkillLearned = null;
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
         [SerializeField] private SkillTreeController m_SkillTreeController = null;
         //Widget//
@@ -86,6 +87,7 @@ namespace KarpysDev.Script.Manager
             m_PlayerEntity = player;
             m_PlayerInventoryUI.SetPlayerInventory(player.PlayerInventory);
             m_SkillTreeController.Initialize(player);
+            m_CanvasSkillLearned.Initialize(player);
         }
 
         public void SetControlledEntity(BoardEntity entity)

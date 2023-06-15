@@ -59,7 +59,14 @@ namespace KarpysDev.Script.Widget
 
         public static bool CanEditSpell(BoardEntity instanceControlledEntity)
         {
-            return instanceControlledEntity as PlayerBoardEntity;
+            if (instanceControlledEntity is ISpellSet set)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

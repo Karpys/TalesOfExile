@@ -15,7 +15,7 @@ namespace KarpysDev.Script.Map_Related
         public void Initialize(BoardEntity entity,Vector2Int position,BehaveTiming behaveTiming,int behaveCount)
         {
             Place(position);
-            m_AttachedSpell = entity.RegisterSpell(m_SpellInfo) as TriggerSpellData;
+            m_AttachedSpell = entity.RegisterSpell(m_SpellInfo);
 
             behaveTiming = EntityHelper.GetBehaveTiming(entity,behaveTiming);
             m_BehaviourTrigger.InitBehaviourTrigger(this,behaveTiming,behaveCount);

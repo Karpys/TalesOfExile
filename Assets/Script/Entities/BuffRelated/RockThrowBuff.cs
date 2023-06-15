@@ -16,7 +16,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
     
         protected override void Apply()
         {
-            m_TriggerSpellData = m_Receiver.RegisterSpell(m_SpellInfo) as TriggerSpellData;
+            m_TriggerSpellData = m_Receiver.RegisterSpell(m_SpellInfo);
         
             ((DamageSpellTrigger)m_TriggerSpellData.SpellTrigger).SetInitialDamageSource(m_BuffValue);
             m_TriggerSpellData.SpellTrigger.ComputeSpellData(m_Receiver);

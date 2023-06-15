@@ -12,7 +12,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
     
         protected override void InitializeEntityBehaviour()
         {
-            SelfBuffCount();
             ComputeSpellPriority();
         }
     

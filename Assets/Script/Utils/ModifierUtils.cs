@@ -80,7 +80,7 @@ namespace KarpysDev.Script.Utils
                 {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
                 {ModifierType.SpellAddition, (m, e) =>
                     {
-                        SpellData spellToAdd = e.GetSpellViaKey(m.Value);
+                        TriggerSpellData spellToAdd = e.GetSpellViaKey(m.Value);
                         if (spellToAdd == null)
                         {
                             Debug.Log("No Spell key to remove found :" + m.Value);

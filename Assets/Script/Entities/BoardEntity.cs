@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
-using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell;
@@ -191,12 +190,13 @@ namespace KarpysDev.Script.Entities
         protected EntityBuffs m_Buffs = null;
         protected BoardEntityLife m_EntityLife = null;
         protected BoardEntityEventHandler m_EntityEvent = null;
-        protected List<SpellData> m_Spells = new List<SpellData>();
+        protected List<TriggerSpellData> m_Spells = new List<TriggerSpellData>();
 
         public MapData Map => m_TargetMap;
         public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
         public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
-        public List<SpellData> Spells => m_Spells;
+        public List<TriggerSpellData> Spells => m_Spells;
+        public List<TriggerSpellData> UsableSpells => GetUsableSpells();
         public EntityStats EntityStats => m_EntityData.m_Stats;
         public EntityGroup EntityGroup => m_EntityData.m_EntityGroup;
         public EntityGroup TargetEntityGroup => m_EntityData.m_TargetEntityGroup;
@@ -324,7 +324,7 @@ namespace KarpysDev.Script.Entities
         {
             for (int i = 0; i < m_EntityData.m_BaseSpellInfos.Length; i++)
             {
-                m_Spells.Add(RegisterSpell(m_EntityData.m_BaseSpellInfos[i]));
+                AddSpellToSpellList(m_EntityData.m_BaseSpellInfos[i]);
             }
         }
 
@@ -336,22 +336,28 @@ namespace KarpysDev.Script.Entities
             }
         }
 
-        public SpellData RegisterSpell(SpellInfo spell)
+        public TriggerSpellData RegisterSpell(SpellInfo spell)
         {
-            SpellData spellData = new SpellData(spell,this).Initialize(spell,this);
+            TriggerSpellData spellData = new SpellData(spell,this).Initialize(spell,this) as TriggerSpellData;
             return spellData;
+        }
+        
+        protected virtual List<TriggerSpellData> GetUsableSpells()
+        {
+            return m_Spells;
         }
 
         public void AddSpellToSpellList(SpellInfo spell)
         {
             Debug.Log("Add spell : "  + spell.m_SpellData.SpellKey);
-            m_Spells.Add(RegisterSpell(spell));
+            TriggerSpellData spellAdded = RegisterSpell(spell);
+            m_Spells.Add(spellAdded);
         
             if(this == GameManager.Instance.ControlledEntity)
                 GameManager.Instance.RefreshTargetEntitySkills();
         }
 
-        public void RemoveSpellToSpellList(SpellData spell)
+        public void RemoveSpellToSpellList(TriggerSpellData spell)
         {
             m_Spells.Remove(spell);
 
@@ -359,9 +365,19 @@ namespace KarpysDev.Script.Entities
                 GameManager.Instance.RefreshTargetEntitySkills();
         }
 
-        public SpellData GetSpellViaKey(string spellKey)
+        public TriggerSpellData GetSpellViaKey(string spellKey)
         {
-            foreach (SpellData spellInfo in Spells)
+            foreach (TriggerSpellData spellInfo in Spells)
+            {
+                if (spellInfo.Data.SpellKey == spellKey)
+                    return spellInfo;
+            }
+            return null;
+        }
+        
+        public TriggerSpellData GetUsableViaKey(string spellKey)
+        {
+            foreach (TriggerSpellData spellInfo in UsableSpells)
             {
                 if (spellInfo.Data.SpellKey == spellKey)
                     return spellInfo;
@@ -371,30 +387,23 @@ namespace KarpysDev.Script.Entities
 
         public void ReduceAllCooldown()
         {
-            foreach (SpellData spellData in Spells)
+            foreach (TriggerSpellData triggerData in Spells)
             {
-                if (spellData is TriggerSpellData triggerData)
-                {
-                    triggerData.ReduceCooldown();       
-                }
+                triggerData.ReduceCooldown();       
             }
         }
 
         public virtual TriggerSpellData[] GetDisplaySpells()
         {
-            return m_Spells.ToArray().Where(s => s.Data.SpellType != SpellType.Support).Cast<TriggerSpellData>().ToArray();
+            return m_Spells.ToArray();
         }
 
         //Need to be used when the entity is buffed / Equip / Unequip items//
-        public void ComputeAllSpells()
+        public virtual void ComputeAllSpells()
         {
-            foreach (SpellData spellData in Spells)
+            foreach (TriggerSpellData spellData in Spells)
             {
-                if(spellData.Data.SpellType == SpellType.Support)
-                    continue;
-            
-                TriggerSpellData triggerSpell = spellData as TriggerSpellData;
-                triggerSpell.SpellTrigger.ComputeSpellData(this);
+                spellData.SpellTrigger.ComputeSpellData(this);
             }
 
             m_EntityEvent.OnSpellRecompute?.Invoke();

@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
-using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI
@@ -21,11 +19,11 @@ namespace KarpysDev.Script.UI
 
         private int m_CurrentSpellId = 0;
 
-        private List<SpellSelectionUIHolder> m_Holders = new List<SpellSelectionUIHolder>();
+        private List<SpellUIHolder> m_Holders = new List<SpellUIHolder>();
 
         private bool m_IsShown = false;
         private RectTransform m_Rect = null;
-        private SpellSelectionUIHolder m_CurrentPointer = null;
+        private SpellUIHolder m_CurrentPointer = null;
         private void Awake()
         {
             m_Rect = transform as RectTransform;
@@ -104,21 +102,31 @@ namespace KarpysDev.Script.UI
 
         private void DisplaySpells()
         {
-            BoardEntity controlledEntity = GameManager.Instance.ControlledEntity;
+            //BoardEntity controlledEntity = GameManager.Instance.ControlledEntity;
+            ISpellSet spellSet = GameManager.Instance.ControlledEntity as ISpellSet;
 
-            
-            for (int i = 0; i < controlledEntity.Spells.Count; i++)
+            if (spellSet == null)
             {
-                if (controlledEntity.Spells[i] is TriggerSpellData triggerSpellData)
+                Debug.LogError("Spell set equals nul ?");
+                return;
+            }
+
+            TriggerSpellData[] spellDatas = spellSet.GetDisplaySpells();
+            
+            for (int i = 0; i < spellDatas.Length; i++)
+            {
+                if (spellDatas[i] != null)
                 {
                     SpellSelectionUIHolder holder = Instantiate(m_HolderPrefab, m_LayoutTransform);
-                    holder.Initialize(triggerSpellData,this);
+                    holder.Initialize(spellDatas[i]);
+                    holder.SetSelectionController(this);
                     m_Holders.Add(holder);
                 }
             }
 
             SpellSelectionUIHolder nullHolder = Instantiate(m_HolderPrefab, m_LayoutTransform);
-            nullHolder.Initialize(null,this);
+            nullHolder.Initialize(null);
+            nullHolder.SetSelectionController(this);
             m_Holders.Add(nullHolder);
             
             m_CurrentPointer = m_Holders[0];
@@ -126,13 +134,13 @@ namespace KarpysDev.Script.UI
 
         
 
-        public void SetCurrentPointer(SpellSelectionUIHolder spellSelectionUIHolder)
+        public void SetCurrentPointer(SpellUIHolder spellSelectionUIHolder)
         {
             Debug.Log("Set");
             m_CurrentPointer = spellSelectionUIHolder;
         }
         
-        private void SetSpell(SpellSelectionUIHolder currentPointer)
+        private void SetSpell(SpellUIHolder currentPointer)
         {
             ISpellSet spellSet = (ISpellSet) GameManager.Instance.ControlledEntity;
 

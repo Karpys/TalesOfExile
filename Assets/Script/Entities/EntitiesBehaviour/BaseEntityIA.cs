@@ -16,15 +16,14 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         protected BoardEntity m_Target = null;
         protected override void InitializeEntityBehaviour()
         {
-            SelfBuffCount();
             ComputeSpellPriority();
         
             if(m_AttachedEntity.EntityGroup == EntityGroup.Enemy)
                 GameManager.Instance.RegisterActiveEnemy(m_AttachedEntity);
         }
-        public void SelfBuffCount()
+        private void SelfBuffCount()
         {
-            int count = m_AttachedEntity.Spells.Count(s => s.Data.SpellType == SpellType.Buff);
+            int count = m_AttachedEntity.UsableSpells.Count(s => s.Data.SpellType == SpellType.Buff);
             m_TriggerSelfBuffCount = count;
         }
     
@@ -33,19 +32,20 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         {
             //Source : See Chat Gpt Conv "ComputeSpellPriority"//
             //Linq : https://learn.microsoft.com/fr-fr/dotnet/api/system.linq.enumerable.select?view=net-7.0
-            Dictionary<TriggerSpellData, int> spellIndexes = m_AttachedEntity.Spells
+            Dictionary<TriggerSpellData, int> spellIndexes = m_AttachedEntity.UsableSpells
                 .Select((spell, index) => new { Spell = spell, Index = index })
                 .Where(s => s.Spell.Data.SpellType == SpellType.Trigger)
-                .ToDictionary(s => (TriggerSpellData)s.Spell, s => s.Index);
+                .ToDictionary(s => s.Spell, s => s.Index);
 
-            int[] sortedIndexes = m_AttachedEntity.Spells
+            int[] sortedIndexes = m_AttachedEntity.UsableSpells
                 .Where(s => s.Data.SpellType == SpellType.Trigger)
-                .Cast<TriggerSpellData>()
                 .OrderByDescending(s => s.SpellTrigger.SpellPriority)
                 .Select(s => spellIndexes[s])
                 .ToArray();
 
             m_SpellIdPriority = sortedIndexes;
+
+            SelfBuffCount();
         }
 
         public override void Behave()
@@ -105,9 +105,8 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
         private bool SelfBuffAction()
         {
-            List<TriggerSpellData> buffs = m_AttachedEntity.Spells
+            List<TriggerSpellData> buffs = m_AttachedEntity.UsableSpells
                 .Where(s => s.Data.SpellType == SpellType.Buff)
-                .Cast<TriggerSpellData>()
                 .Where(s => s.IsCooldownReady() && s.SpellTrigger.SpellPriority > 0)
                 .OrderByDescending(s => s.SpellTrigger.SpellPriority)
                 .ToList();
@@ -162,11 +161,10 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         }
         private bool TriggerAction()
         {
-        
             for (int i = 0; i < m_SpellIdPriority.Length; i++)
             {
                 Vector2Int targetPosition = m_Target.EntityPosition;
-                TriggerSpellData triggerSpellData = m_AttachedEntity.Spells[m_SpellIdPriority[i]] as TriggerSpellData;
+                TriggerSpellData triggerSpellData = m_AttachedEntity.UsableSpells[m_SpellIdPriority[i]];
             
                 if (triggerSpellData.IsCooldownReady())
                 {

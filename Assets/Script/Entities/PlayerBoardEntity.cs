@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
@@ -19,6 +20,7 @@ namespace KarpysDev.Script.Entities
         public PlayerInventory PlayerInventory => m_PlayerInventory;
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
+
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
@@ -37,6 +39,9 @@ namespace KarpysDev.Script.Entities
             
             if(this == GameManager.Instance.ControlledEntity)
                 GameManager.Instance.RefreshTargetEntitySkills();
+            
+            ComputeAllSpells();
+            UpdateSpellPriority();
         }
 
         public void InitDisplaySpell()
@@ -47,25 +52,33 @@ namespace KarpysDev.Script.Entities
 
             for (int i = 0; i < Spells.Count; i++)
             {
-                if (Spells[i] is TriggerSpellData triggerSpellData)
-                {
-                    m_DisplaySpell[spellId] = triggerSpellData;
-                    spellId++;
-                    
-                    if(spellId == maxDisplay)
-                        break;
-                }
+                m_DisplaySpell[spellId] = Spells[i];
+                spellId++;
+                
+                if(spellId == maxDisplay)
+                    break;
             }
         }
-    
+
+        protected override List<TriggerSpellData> GetUsableSpells()
+        {
+            List<TriggerSpellData> triggerSpellDatas = m_DisplaySpell.Where(s => s != null).ToList();
+            return triggerSpellDatas;
+        }
+
+        public override void ComputeAllSpells()
+        {
+            foreach (TriggerSpellData triggerSpellData in UsableSpells)
+            {
+                triggerSpellData.SpellTrigger.ComputeSpellData(this);
+            }
+
+            m_EntityEvent.OnSpellRecompute?.Invoke();
+        }
+
         public override void EntityAction()
         {
             m_EntityBehaviour.Behave();
-        }
-
-        protected override void Movement()
-        {
-            JumpAnimation();
         }
 
         public override void TriggerDeath()
@@ -73,6 +86,17 @@ namespace KarpysDev.Script.Entities
             //Trigger Lose ?//
             return;
         }
+        
+        #region Movement
+
+        
+
+        protected override void Movement()
+        {
+            JumpAnimation();
+        }
+
+        
 
         void JumpAnimation()
         {
@@ -91,6 +115,8 @@ namespace KarpysDev.Script.Entities
             m_JumpTweenContainer.transform.DoLocalMove(new Vector3(0, 0, 0), m_MovementDuration / 2f);
         }
 
+        #endregion
+        
         public override TriggerSpellData[] GetDisplaySpells()
         {
             return m_DisplaySpell;
@@ -98,18 +124,26 @@ namespace KarpysDev.Script.Entities
 
         public void InsertSpell(TriggerSpellData spellData,int id)
         {
-            if (m_DisplaySpell.Contains(spellData))
+            TriggerSpellData inPlaceSpell = m_DisplaySpell[id];
+
+            if (spellData != null)
             {
                 for (int i = 0; i < m_DisplaySpell.Length; i++)
                 {
                     if (m_DisplaySpell[i] == spellData)
                     {
-                        m_DisplaySpell[i] = null;
+                        m_DisplaySpell[i] = inPlaceSpell;
+                        break;
                     }
                 }
             }
 
             m_DisplaySpell[id] = spellData;
+
+            if (spellData == null)
+            {
+                UpdateSpellPriority();
+            }
         }
     }
 
@@ -117,5 +151,6 @@ namespace KarpysDev.Script.Entities
     {
         void InitDisplaySpell();
         void InsertSpell(TriggerSpellData spellData,int id);
+        TriggerSpellData[] GetDisplaySpells();
     }
 }
