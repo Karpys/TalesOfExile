@@ -7,7 +7,7 @@ namespace KarpysDev.Script.UI.ItemContainer
     public class ItemUIController : SingletonMonoBehavior<ItemUIController>
     {
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
-        [SerializeField] private ItemFade m_ItemFade = null;
+        [SerializeField] private UISelectionFade m_ItemFade = null;
         private ItemUIHolder m_OnClickHolder = null;
         private ItemUIHolder m_OnMouseHolder = null;
 

@@ -84,6 +84,11 @@ namespace KarpysDev.Script.Manager
         //Set the player value//
         public void RegisterPlayer(PlayerBoardEntity player)
         {
+            if (m_PlayerEntity == player)
+            {
+                Debug.LogError("Register twice same player entity ?");
+            }
+            
             m_PlayerEntity = player;
             m_PlayerInventoryUI.SetPlayerInventory(player.PlayerInventory);
             m_SkillTreeController.Initialize(player);
@@ -144,7 +149,8 @@ namespace KarpysDev.Script.Manager
         //UI Manager//
         public void RefreshTargetEntitySkills()
         {
-            m_CanvasSkills.RefreshTargetSkills(m_ControlledEntity);
+            if(m_ControlledEntity != null)
+                m_CanvasSkills.RefreshTargetSkills(m_ControlledEntity);
         }
         //OnPlayer Action//
 

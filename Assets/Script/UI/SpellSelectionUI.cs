@@ -82,6 +82,7 @@ namespace KarpysDev.Script.UI
         {
             ClearOldSpells();
             m_Container.gameObject.SetActive(false);
+            m_IsShown = false;
         }
 
         private void AdaptSize()
@@ -136,7 +137,6 @@ namespace KarpysDev.Script.UI
 
         public void SetCurrentPointer(SpellUIHolder spellSelectionUIHolder)
         {
-            Debug.Log("Set");
             m_CurrentPointer = spellSelectionUIHolder;
         }
         

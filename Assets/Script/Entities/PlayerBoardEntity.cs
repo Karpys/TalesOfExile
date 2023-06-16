@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
@@ -21,6 +22,7 @@ namespace KarpysDev.Script.Entities
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
 
+        public Action A_OnSpellCollectionChanged = null;
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
@@ -86,7 +88,22 @@ namespace KarpysDev.Script.Entities
             //Trigger Lose ?//
             return;
         }
-        
+
+        public override void AddSpellToSpellList(SpellInfo spell)
+        {
+            base.AddSpellToSpellList(spell);
+            A_OnSpellCollectionChanged?.Invoke();
+            GameManager.Instance.RefreshTargetEntitySkills();
+        }
+
+        public override void RemoveSpellToSpellList(TriggerSpellData spell)
+        {
+            base.RemoveSpellToSpellList(spell);
+            A_OnSpellCollectionChanged?.Invoke();
+            GameManager.Instance.RefreshTargetEntitySkills();
+
+        }
+
         #region Movement
 
         
@@ -139,11 +156,9 @@ namespace KarpysDev.Script.Entities
             }
 
             m_DisplaySpell[id] = spellData;
-
-            if (spellData == null)
-            {
-                UpdateSpellPriority();
-            }
+            spellData?.SpellTrigger.ComputeSpellData(this);
+            UpdateSpellPriority();
+            
         }
     }
 

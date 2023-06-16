@@ -9,6 +9,7 @@ namespace KarpysDev.Script.UI
         [SerializeField] private SpellInterfaceController m_SpellInterface = null;
         [SerializeField] private SpellSelectionUI m_SpellSelection = null;
 
+        private PlayerBoardEntity m_Player = null;
         private void Awake()
         {
             GameManager.Instance.A_OnEndPlayerTurn += RefreshCooldown;

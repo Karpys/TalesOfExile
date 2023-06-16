@@ -347,22 +347,16 @@ namespace KarpysDev.Script.Entities
             return m_Spells;
         }
 
-        public void AddSpellToSpellList(SpellInfo spell)
+        public virtual void AddSpellToSpellList(SpellInfo spell)
         {
             Debug.Log("Add spell : "  + spell.m_SpellData.SpellKey);
             TriggerSpellData spellAdded = RegisterSpell(spell);
             m_Spells.Add(spellAdded);
-        
-            if(this == GameManager.Instance.ControlledEntity)
-                GameManager.Instance.RefreshTargetEntitySkills();
         }
 
-        public void RemoveSpellToSpellList(TriggerSpellData spell)
+        public virtual void RemoveSpellToSpellList(TriggerSpellData spell)
         {
             m_Spells.Remove(spell);
-
-            if(this == GameManager.Instance.ControlledEntity)
-                GameManager.Instance.RefreshTargetEntitySkills();
         }
 
         public TriggerSpellData GetSpellViaKey(string spellKey)

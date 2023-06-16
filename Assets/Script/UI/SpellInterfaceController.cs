@@ -21,6 +21,8 @@ namespace KarpysDev.Script.UI
         public SpellInterpretor Interpretor => m_Interpretor;
 
         private SpellIcon m_CurrentPointer = null;
+
+        public SpellIcon CurrentPointer => m_CurrentPointer;
         //Spell Data Part//
         //List des spells attribue au spell ui icon//
         private void Awake()
