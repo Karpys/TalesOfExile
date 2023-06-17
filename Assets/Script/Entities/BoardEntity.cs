@@ -347,11 +347,12 @@ namespace KarpysDev.Script.Entities
             return m_Spells;
         }
 
-        public virtual void AddSpellToSpellList(SpellInfo spell)
+        public virtual TriggerSpellData AddSpellToSpellList(SpellInfo spell)
         {
             Debug.Log("Add spell : "  + spell.m_SpellData.SpellKey);
             TriggerSpellData spellAdded = RegisterSpell(spell);
             m_Spells.Add(spellAdded);
+            return spellAdded;
         }
 
         public virtual void RemoveSpellToSpellList(TriggerSpellData spell)

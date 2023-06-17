@@ -49,7 +49,7 @@ namespace KarpysDev.Script.Entities
         public void InitDisplaySpell()
         {
             //Todo: Use Save System//
-            int maxDisplay = m_DisplaySpell.Length;
+            /*int maxDisplay = m_DisplaySpell.Length;
             int spellId = 0;
 
             for (int i = 0; i < Spells.Count; i++)
@@ -59,7 +59,7 @@ namespace KarpysDev.Script.Entities
                 
                 if(spellId == maxDisplay)
                     break;
-            }
+            }*/
         }
 
         protected override List<TriggerSpellData> GetUsableSpells()
@@ -89,19 +89,48 @@ namespace KarpysDev.Script.Entities
             return;
         }
 
-        public override void AddSpellToSpellList(SpellInfo spell)
+        public override TriggerSpellData AddSpellToSpellList(SpellInfo spell)
         {
-            base.AddSpellToSpellList(spell);
+            TriggerSpellData spellAdded = base.AddSpellToSpellList(spell);
+            AddInDisplay(spellAdded);
             A_OnSpellCollectionChanged?.Invoke();
             GameManager.Instance.RefreshTargetEntitySkills();
+            return spellAdded;
         }
 
         public override void RemoveSpellToSpellList(TriggerSpellData spell)
         {
             base.RemoveSpellToSpellList(spell);
+            PopFromDisplay(spell);
             A_OnSpellCollectionChanged?.Invoke();
             GameManager.Instance.RefreshTargetEntitySkills();
 
+        }
+        
+        private void AddInDisplay(TriggerSpellData spellAdded)
+        {
+            if(m_DisplaySpell.Contains(spellAdded)) return;
+            
+            for (int i = 0; i < m_DisplaySpell.Length; i++)
+            {
+                if (m_DisplaySpell[i] == null)
+                {
+                    m_DisplaySpell[i] = spellAdded;
+                    return;
+                }
+            }
+        }
+
+        private void PopFromDisplay(TriggerSpellData spell)
+        {
+            for (int i = 0; i < m_DisplaySpell.Length; i++)
+            {
+                TriggerSpellData spellData = m_DisplaySpell[i];
+                if (spellData == spell)
+                {
+                    m_DisplaySpell[i] = null;
+                }
+            }
         }
 
         #region Movement
