@@ -1,0 +1,18 @@
+AutoAttack
+Rush
+RegenBuff
+RockSlam
+LighningStrike
+Fire Hand Buff
+RockThrow
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
