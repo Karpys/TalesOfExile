@@ -15,6 +15,7 @@ namespace KarpysDev.Script.Entities
     {
         [Header("Player")]
         [SerializeField] private PlayerInventory m_PlayerInventory = null;
+        [SerializeField] private SpellDisplaySaver m_SpellDisplaySave = null;
         [SerializeField] private Transform m_JumpTweenContainer = null;
         [SerializeField] private float m_MovementDuration = 0.1f;
 
@@ -22,6 +23,7 @@ namespace KarpysDev.Script.Entities
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
 
+        public TriggerSpellData[] DisplaySpell => m_DisplaySpell;
         public Action A_OnSpellCollectionChanged = null;
         protected override void RegisterEntity()
         {
@@ -48,6 +50,7 @@ namespace KarpysDev.Script.Entities
 
         public void InitDisplaySpell()
         {
+            m_DisplaySpell = m_SpellDisplaySave.LoadSpellDisplay();
             //Todo: Use Save System//
             /*int maxDisplay = m_DisplaySpell.Length;
             int spellId = 0;
