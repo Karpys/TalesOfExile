@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.UI;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -19,13 +20,14 @@ namespace KarpysDev.Script.Spell
       private List<Vector2Int> m_OriginTiles = new List<Vector2Int>();
 
       private TriggerSpellData m_CurrentSpell = null;
+      private SpellIcon m_AttachedSpellIcon = null;
       private int m_CurrentSpellQueue = 0;
    
       private Vector2Int m_OriginTile = Vector2Int.zero;
       private Vector2Int m_CastOriginTile = Vector2Int.zero;
       private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
    
-      public void LaunchSpellQueue(TriggerSpellData spell)
+      public void LaunchSpellQueue(TriggerSpellData spell,SpellIcon attachedSpellIcon)
       {
          ResetSpellQueue();
       
@@ -33,6 +35,7 @@ namespace KarpysDev.Script.Spell
             return;
       
          m_CurrentSpell = spell;
+         m_AttachedSpellIcon = attachedSpellIcon;
          m_CurrentSpellQueue = 0;
          //Launch Spell Queue
       }
@@ -115,6 +118,7 @@ namespace KarpysDev.Script.Spell
             Vector2Int origin = m_CurrentSpell.AttachedEntity.EntityPosition;
             SpellCastUtils.CastSpell(m_CurrentSpell,new SpellTiles(origin,m_OriginTiles,m_ActionTiles));
             GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
+            m_AttachedSpellIcon.ToggleCheck(m_CurrentSpell);
             ResetSpellQueue();
          }
       }

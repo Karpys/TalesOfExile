@@ -1,5 +1,6 @@
 ﻿using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
+using KarpysDev.Script.Spell.ParameterLessSpell;
 using KarpysDev.Script.UI.Pointer;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace KarpysDev.Script.UI
         [SerializeField] private Image m_CdFillAmount = null;
         [SerializeField] private Image m_SpellIcon = null;
         [SerializeField] private Image m_SpellIconBorder = null;
+        [SerializeField] private Transform m_Rotator = null;
         [SerializeField] private TMP_Text m_SpellKey = null;
 
         private SpellInterfaceController m_InterfaceController = null;
@@ -37,13 +39,10 @@ namespace KarpysDev.Script.UI
 
         public void TryUseSpell()
         {
-            //Conditionnal Spell Check//
             if(m_CurrentSpellData == null)
                 return;
-            //Stun check ? Mana check ect//
-            //Do it in entity class or exterior manager class//
-            Debug.Log("Try Use Spell");
-            m_InterfaceController.Interpretor.LaunchSpellQueue(m_CurrentSpellData);
+            
+            m_InterfaceController.Interpretor.LaunchSpellQueue(m_CurrentSpellData,this);
         }
 
         private void Update()
@@ -79,6 +78,7 @@ namespace KarpysDev.Script.UI
         }
         public void SetSpell(TriggerSpellData spell)
         {
+            ToggleCheck(spell);
             if (spell == null)
             {
                 ClearIcon();
@@ -90,6 +90,17 @@ namespace KarpysDev.Script.UI
             m_SpellIcon.sprite = spell.TriggerData.m_SpellIcon;
             m_SpellIconBorder.sprite = spell.TriggerData.m_SpellIconBorder;
             UpdateCooldownVisual();
+        }
+
+        public void ToggleCheck(TriggerSpellData spell)
+        {
+            if (spell == null || !spell.IsBuffToggle || !(spell.SpellTrigger is BuffGiverTrigger buffGiver) || buffGiver.CurrentToggleBuff == null)
+            {
+                m_Rotator.gameObject.SetActive(false);
+                return;
+            }
+            
+            m_Rotator.gameObject.SetActive(true);            
         }
 
         public void ClearIcon()

@@ -198,13 +198,15 @@ namespace KarpysDev.Script.Entities
                     }
                 }
             }
-            else
+            //Allow Toggle to be active while not in dispay list => Need to recompute the buff data inside the buff using
+            //On m_receiver.RecomputesStats => Recompute//
+            /*else
             {
                 if (inPlaceSpell != null)
                 {
                     TryRemoveToggle(inPlaceSpell);
                 }
-            }
+            }*/
 
             m_DisplaySpell[id] = spellData;
             spellData?.SpellTrigger.ComputeSpellData(this);
