@@ -31,6 +31,7 @@ namespace KarpysDev.Script.Spell
         Lightning,
         Rock,
         Ice,
+        BuffToggle,
         //Ect ect everything that can fit in a spellGroup//
     }
 }

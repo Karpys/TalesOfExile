@@ -6,10 +6,10 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     public class RegenerationBuffTrigger : BuffGiverTrigger
     {
-        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup, BuffType buffType, int buffDuration, float buffValue) : base(baseScriptable, buffGroup, buffType, buffDuration, buffValue)
+
+        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup, BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue) : base(baseScriptable, buffGroup, buffType, buffCooldown, buffDuration, buffValue)
         {
         }
-
         protected override int GetSpellPriority()
         {
             BoardEntity entity = m_AttachedSpell.AttachedEntity;
@@ -19,5 +19,6 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             return 0;
         }
 
+        
     }
 }

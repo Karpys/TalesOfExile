@@ -63,16 +63,20 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
                 if (m_Cooldown <= 0)
                 {
-                    m_Receiver.Buffs.RemoveBuff(this);
-                    UnApply();
-                    Destroy(gameObject);
+                    RemoveBuff();
                 }
             }
         }
 
-        public void SetBuffType(BuffGroup group,BuffCooldown cooldown)
+        public void RemoveBuff()
         {
-            m_BuffGroup = group;
+            m_Receiver.Buffs.RemoveBuff(this);
+            UnApply();
+            Destroy(gameObject);
+        }
+
+        public void SetBuffCooldown(BuffCooldown cooldown)
+        {
             m_BuffCooldown = cooldown;
         }
 

@@ -20,6 +20,8 @@ MonoBehaviour:
     Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Debuff
   - Type: 3
     Value: KarpysDev.Script.Manager.Library.BuffType SkeletonCurse
+  - Type: 3
+    Value: KarpysDev.Script.Entities.BuffRelated.BuffCooldown Cooldown
   - Type: 0
     Value: 10
   - Type: 1

@@ -1,3 +1,4 @@
+using System.Linq;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Utils;
 using UnityEngine;
@@ -17,7 +18,9 @@ namespace KarpysDev.Script.Spell
         //Intern Params//
         private bool m_HasBeenUsed = false;
         private SpellLearnType m_SpellLearnType = SpellLearnType.Learned;
+        private bool m_IsBuffToggle = false;
 
+        public bool IsBuffToggle => m_IsBuffToggle;
         public SpellLearnType SpellLearnType => m_SpellLearnType;
         public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
         {
@@ -27,6 +30,7 @@ namespace KarpysDev.Script.Spell
             SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
             SpellTrigger.SetAttachedSpell(this,spellInfo.m_SpellPriority);
             SpellTrigger.ComputeSpellData(AttachedEntity);
+            m_IsBuffToggle = TriggerData.SpellGroups.Contains(SpellGroup.BuffToggle);
             return this;
         }
 

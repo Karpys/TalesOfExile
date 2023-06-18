@@ -20,6 +20,8 @@ MonoBehaviour:
     Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Buff
   - Type: 3
     Value: KarpysDev.Script.Manager.Library.BuffType RockThrowBuff
+  - Type: 3
+    Value: KarpysDev.Script.Entities.BuffRelated.BuffCooldown Cooldown
   - Type: 0
     Value: 10
   - Type: 1

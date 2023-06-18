@@ -5,6 +5,7 @@ using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
+using KarpysDev.Script.Spell.ParameterLessSpell;
 using KarpysDev.Script.UI;
 using TweenCustom;
 using UnityEngine;
@@ -105,11 +106,22 @@ namespace KarpysDev.Script.Entities
         {
             base.RemoveSpellToSpellList(spell);
             PopFromDisplay(spell);
+            TryRemoveToggle(spell);
             A_OnSpellCollectionChanged?.Invoke();
             GameManager.Instance.RefreshTargetEntitySkills();
-
         }
-        
+
+        private void TryRemoveToggle(TriggerSpellData spell)
+        {
+            if (!spell.IsBuffToggle) return;
+            if (!(spell.SpellTrigger is BuffGiverTrigger buffGiver)) return;
+            
+            if (buffGiver.CurrentToggleBuff != null)
+            {
+                buffGiver.CurrentToggleBuff.RemoveBuff();
+            }
+        }
+
         private void AddInDisplay(TriggerSpellData spellAdded)
         {
             if(m_DisplaySpell.Contains(spellAdded)) return;
@@ -184,6 +196,13 @@ namespace KarpysDev.Script.Entities
                         m_DisplaySpell[i] = inPlaceSpell;
                         break;
                     }
+                }
+            }
+            else
+            {
+                if (inPlaceSpell != null)
+                {
+                    TryRemoveToggle(inPlaceSpell);
                 }
             }
 

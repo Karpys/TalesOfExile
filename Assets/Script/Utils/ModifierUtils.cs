@@ -50,7 +50,7 @@ namespace KarpysDev.Script.Utils
                 {ModifierType.AddThrowRockPassif, (m, e) =>
                     {
                         Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, e);
-                        buff.SetBuffType(BuffGroup.Buff, BuffCooldown.Passive);
+                        buff.SetBuffCooldown(BuffCooldown.Passive);
                         buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + m.Value);
                         buff.EnableVisual(false);
                         buff.InitializeAsPassive(e, e,m.FloatValue);
