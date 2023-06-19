@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
-using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -98,7 +97,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             foreach (DamageSource damageSource in m_DamageSources.Values)
             {
                 totalDamage +=
-                    DamageManager.DamageStep(entity, damageSource, mainDamageType, spellData,m_DisplayDamage,m_SpellAnimDelay); //DamageSource);
+                    DamageManager.DamageStep(entity, damageSource, mainDamageType, spellData,m_DisplayDamage,m_SpellAnimDelay,m_SpellEfficiency); //DamageSource);
             }
             
             entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);
@@ -137,25 +136,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
 
             return Array.Empty<string>();
-        }
-    }
-
-    public class FlameBurstTrigger : DamageSpellTrigger
-    {
-        private int m_BurnDuration = 0;
-        private float m_BurnValue = 0;
-
-        public FlameBurstTrigger(DamageSpellScriptable damageSpellData, int burnDuration, float burnValue) : base(
-            damageSpellData)
-        {
-            m_BurnDuration = burnDuration;
-            m_BurnValue = burnValue;
-        }
-
-        protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, Vector2Int origin, CastInfo castInfo)
-        {
-            base.EntityHit(entity, spellData, origin, castInfo);
-            BuffLibrary.Instance.AddBuffToViaKey(BuffType.BurnDotDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,m_BurnDuration,m_BurnValue);
         }
     }
 }

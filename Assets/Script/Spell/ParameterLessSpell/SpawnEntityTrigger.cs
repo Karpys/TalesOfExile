@@ -46,10 +46,10 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         {
         }
 
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
             spellData.AttachedEntity.ForceDeath();
-            base.Trigger(spellData, spellTiles, castInfo);
+            base.Trigger(spellData, spellTiles, castInfo,efficiency);
         }
     }
 }

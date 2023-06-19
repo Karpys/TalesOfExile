@@ -27,11 +27,11 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             m_BuffValue = buffValue;
         }
 
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
             if (m_BuffCooldown != BuffCooldown.Toggle)
             {
-                base.Trigger(spellData, spellTiles, castInfo);
+                base.Trigger(spellData, spellTiles, castInfo,efficiency);
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             }
             else
             {
-                base.Trigger(spellData,spellTiles,castInfo);
+                base.Trigger(spellData,spellTiles,castInfo,efficiency);
             }
         }
 

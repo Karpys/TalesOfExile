@@ -49,9 +49,9 @@ namespace KarpysDev.Script.Spell
 
         //Use and Cooldown Part
         //TODO: Need to Implemente the CooldownSystem
-        public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool freeCast = false)
+        public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,float efficiency = 1,bool freeCast = false)
         {
-            SpellTrigger.CastSpell(spellData,spellTiles);
+            SpellTrigger.CastSpell(spellData,spellTiles,efficiency);
         
             if(freeCast)
                 return;

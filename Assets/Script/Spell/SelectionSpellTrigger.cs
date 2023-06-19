@@ -51,7 +51,8 @@ namespace KarpysDev.Script.Spell
         {
             OnHitAnimation.TriggerFx(entityPosition,transform,args);
         }
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo,float efficiency = 1)
         {
             m_SpellAnimDelay = 0;
             EntityGroup targetGroup = GetEntityGroup(spellData);

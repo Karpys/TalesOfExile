@@ -9,13 +9,13 @@ namespace KarpysDev.Script.Manager
     {
         public static bool BlendDisplayDamage = true;
 
-        public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay)
+        public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay,float efficiency)
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
             //x => Flat / y => Percentage//
             Vector2 damageReduction = damageTo.EntityStats.GetDamageReduction(mainDamageType, damageSource.DamageType);
-            mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage - damageReduction.x) * (1 - damageReduction.y / 100);
+            mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage * efficiency - damageReduction.x) * (1 - damageReduction.y / 100);
         
             damageTo.EntityEvent.OnGetDamageFromSpell?.Invoke(triggerSpellData.AttachedEntity,mitigiedDamageSource,triggerSpellData);
             //DamageToOnDamageTaken//

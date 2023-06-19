@@ -18,12 +18,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
         {
             m_RepulseForce = repulseForce;
         }
-    
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
             m_EntityHits.Clear();
             m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto");
-            base.Trigger(spellData, spellTiles,castInfo);
+            base.Trigger(spellData, spellTiles,castInfo,efficiency);
         }
 
         protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,
@@ -56,7 +56,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
         
             if(m_RangeAutoTrigger != null)
-                SpellCastUtils.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,spellData.AttachedEntity.EntityPosition,true);
+                SpellCastUtils.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,spellData.AttachedEntity.EntityPosition,m_SpellEfficiency,true);
         
             UpdateEntityPosition(entity);
         }

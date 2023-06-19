@@ -8,10 +8,10 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected Vector3 m_OriginPosition = Vector3.zero; 
         public ProjectileDamageTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
 
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
             m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.CenterOrigin);
-            base.Trigger(spellData, spellTiles, castInfo);
+            base.Trigger(spellData, spellTiles, castInfo,efficiency);
         }
 
         protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)

@@ -10,9 +10,10 @@ namespace KarpysDev.Script.Spell
         protected int m_SpellPriority = 0;
 
         protected SpellData m_AttachedSpell = null;
-
+        protected float m_SpellEfficiency = 1;
+        
         public Action<CastInfo> OnCastSpell = null;
-        //Cooldown Part//
+        
         public int SpellPriority => GetSpellPriority();
         public SpellData SpellData => m_AttachedSpell;
         protected virtual int GetSpellPriority()
@@ -26,11 +27,11 @@ namespace KarpysDev.Script.Spell
             m_AttachedSpell = spellData;
         }
 
-        public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles)
+        public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,float efficiency = 1)
         {
             CastInfo castInfo = GetCastInfo(spellData);
         
-            Trigger(spellData,spellTiles,castInfo);
+            TriggerSpell(spellData,spellTiles,castInfo,efficiency);
             OnCastSpell?.Invoke(castInfo);
         }
 
@@ -43,7 +44,15 @@ namespace KarpysDev.Script.Spell
 
             return null;
         }
-        public abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo);
+
+        public void TriggerSpell(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo,
+            float efficiency = 1)
+        {
+            m_SpellEfficiency = efficiency;
+            Trigger(spellData,spellTiles,castInfo,m_SpellEfficiency);
+        }
+
+        protected abstract void Trigger(TriggerSpellData spellData,SpellTiles spellTiles,CastInfo castInfo,float efficiency = 1);
 
         public abstract void ComputeSpellData(BoardEntity entity);
 

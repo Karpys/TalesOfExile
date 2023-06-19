@@ -13,9 +13,9 @@ namespace KarpysDev.Script.Spell.DamageSpell
         public MineSpellTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {}
 
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
-            base.Trigger(spellData, spellTiles,castInfo);
+            base.Trigger(spellData, spellTiles,castInfo,efficiency);
 
             if (m_HasTrigger)
             {

@@ -10,10 +10,11 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         public RushTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
         {
         }
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo)
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
             MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
-            base.Trigger(spellData, spellTiles,castInfo);
+            base.Trigger(spellData, spellTiles,castInfo,efficiency);
         }
     
         private void MoveToClosestFreeTile(TriggerSpellData spellData,Vector2Int position)

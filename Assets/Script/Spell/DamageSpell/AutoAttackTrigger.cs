@@ -7,13 +7,13 @@ namespace KarpysDev.Script.Spell.DamageSpell
         public AutoAttackTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
         {
         }
-    
-        public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
             m_StartPosition = spellData.AttachedEntity.WorldPosition;
             m_TargetTransform = spellData.AttachedEntity.VisualTransform;
         
-            base.Trigger(spellData, spellTiles, castInfo);
+            base.Trigger(spellData, spellTiles, castInfo,efficiency);
         }
 
         private Vector3 m_StartPosition = Vector3.zero;
