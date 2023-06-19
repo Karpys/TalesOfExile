@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
@@ -6,6 +7,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     public class DamageType
     {
         public MainDamageType MainDamageType = MainDamageType.Melee;
+        [NonReorderable]
         public SubDamageType[] SubDamageTypes = new SubDamageType[1];
 
         public DamageType(DamageType damageType)

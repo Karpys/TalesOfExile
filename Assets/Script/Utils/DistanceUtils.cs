@@ -42,5 +42,27 @@ namespace KarpysDev.Script.Utils
 
             return contactEntity;
         }
+        
+        public static List<BoardEntity> GetClosestEntityAround(Zone contactZone, List<BoardEntity> entities, Vector2Int originPosition, int entityCount)
+        {
+            List<BoardEntity> contactEntity = new List<BoardEntity>();
+            
+        
+            for (int i = 0; i < entityCount; i++)
+            {
+                if(entities.Count <= 0)
+                    break;
+            
+                BoardEntity closestEntity = EntityHelper.GetClosestEntity(entities,originPosition);
+            
+                if(!ZoneTileManager.IsInRange(originPosition,closestEntity.EntityPosition,contactZone))
+                    break;
+
+                contactEntity.Add(closestEntity);
+                entities.Remove(closestEntity);
+            }
+
+            return contactEntity;
+        }
     }
 }

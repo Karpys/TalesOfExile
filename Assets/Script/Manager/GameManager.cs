@@ -74,6 +74,11 @@ namespace KarpysDev.Script.Manager
                 m_AutoPlay = !m_AutoPlay;
             }
 
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                m_RemoveDelay = !m_RemoveDelay;
+            }
+
             if (m_AutoPlay && m_CanPlay)
             {
                 LaunchActionQueue(m_ControlledEntity);

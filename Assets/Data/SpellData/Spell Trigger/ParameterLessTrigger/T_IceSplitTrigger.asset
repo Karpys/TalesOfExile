@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
+  m_Name: T_IceSplitTrigger
+  m_EditorClassIdentifier: 
+  OnTileHitAnimation: {fileID: 0}
+  OnHitAnimation: {fileID: 1315964064108705742, guid: c6b5f2f309a3f4044b6e6da9aa2ab3e7, type: 3}
+  BaseDamageParameters:
+    DamageType:
+      MainDamageType: 2
+      SubDamageTypes: 0300000001000000
+    InitialSourceDamage:
+      Damage: 40
+      DamageType: 3
+  m_TriggerClassName: IceShardSplitTrigger
+  m_AdditionalParameters:
+  - Type: 3
+    Value: KarpysDev.Script.Spell.ZoneType Circle
+  - Type: 0
+    Value: 5
+  - Type: 0
+    Value: 2

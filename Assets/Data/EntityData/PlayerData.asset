@@ -41,15 +41,13 @@ MonoBehaviour:
     m_BaseSpellInfos:
     - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
       m_SpellPriority: 1
-    - m_SpellData: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
-      m_SpellPriority: 5
+      m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
-      m_SpellPriority: 1
-    - m_SpellData: {fileID: 11400000, guid: adbe993e0101ea642a6c6f77ae417925, type: 2}
-      m_SpellPriority: 10
-    - m_SpellData: {fileID: 11400000, guid: 504debc7db7fe8e4e8c0e3ac18f85934, type: 2}
-      m_SpellPriority: 10
-    - m_SpellData: {fileID: 11400000, guid: 95be70e7a27024de7953961012a1d038, type: 2}
-      m_SpellPriority: 10
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: b6b6a98ece087e74099bf21d9c2658a4, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 0d38b00532de4a1468bab9a4e8a4b8ce, type: 2}
-      m_SpellPriority: 10
+      m_SpellPriority: 5
+      m_SpellLearnType: 0

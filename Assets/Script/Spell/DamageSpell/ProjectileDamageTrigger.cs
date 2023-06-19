@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     public class ProjectileDamageTrigger : DamageSpellTrigger
     {
-        private Vector3 m_OriginPosition = Vector3.zero; 
+        protected Vector3 m_OriginPosition = Vector3.zero; 
         public ProjectileDamageTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData){}
 
         public override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo)
