@@ -28,6 +28,29 @@ namespace KarpysDev.Script.Manager
             
             return mitigiedDamageSource.Damage;
         }
+        
+        public static void DirectDamage(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,BoardEntity damagefrom = null,bool displayDamage = true, float displayDelay = 0)
+        {
+            DamageSource mitigiedDamageSource = new DamageSource(damageSource);
+        
+            //x => Flat / y => Percentage//
+            Vector2 damageReduction = damageTo.EntityStats.GetDamageReduction(mainDamageType, damageSource.DamageType);
+            mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage - damageReduction.x) * (1 - damageReduction.y / 100);
+        
+            if (displayDamage)
+            {
+                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage,ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
+            }
+
+            if (damagefrom)
+            {
+                damageTo.TakeDamage(mitigiedDamageSource.Damage,damagefrom);
+            }
+            else
+            {
+                damageTo.TakeDamage(mitigiedDamageSource.Damage);
+            }
+        }
 
         public static float GetDamageModifier(DamageParameters damageParameters, EntityStats stats,float bonusModifier = 0)
         {
@@ -51,6 +74,20 @@ namespace KarpysDev.Script.Manager
             {
                 modifier += stats.GetDamageModifier(subDamageType);
             }
+            
+            return (modifier + 100) / 100;
+        }
+        
+        public static float GetDamageModifier(MainDamageType mainDamageType,SubDamageType[] subDamage, EntityStats stats)
+        {
+            float modifier = 0;
+
+            foreach (SubDamageType subDamageType in subDamage)
+            {
+                modifier += stats.GetDamageModifier(subDamageType);
+            }
+            
+            modifier += stats.GetMainTypeModifier(mainDamageType);
             
             return (modifier + 100) / 100;
         }

@@ -117,6 +117,7 @@ namespace KarpysDev.Script.Spell
          {
             Vector2Int origin = m_CurrentSpell.AttachedEntity.EntityPosition;
             SpellCastUtils.CastSpell(m_CurrentSpell,new SpellTiles(origin,m_OriginTiles,m_ActionTiles));
+            m_CurrentSpell.AttachedEntity.EntityEvent.OnBehave?.Invoke();
             GameManager.Instance.A_OnPlayerAction.Invoke(m_CurrentSpell.AttachedEntity);
             m_AttachedSpellIcon.ToggleCheck(m_CurrentSpell);
             ResetSpellQueue();

@@ -118,6 +118,7 @@ namespace KarpysDev.Script.Entities
             {
                 m_Entity.MoveTo(targetPosition);
                 m_Interpretor.OnMovementResetSpellQueue();
+                m_Entity.EntityEvent.OnBehave?.Invoke();
                 GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
             }
             else
@@ -135,6 +136,7 @@ namespace KarpysDev.Script.Entities
                 Debug.Log("Auto Attack");
                 SpellCastUtils.CastSpellAt(autoAttack,targetPosition,m_Entity.EntityPosition);
                 m_Interpretor.OnMovementResetSpellQueue();
+                m_Entity.EntityEvent.OnBehave?.Invoke();
                 GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
             }
         }

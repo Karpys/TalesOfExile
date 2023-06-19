@@ -47,6 +47,7 @@ namespace KarpysDev.Script.Manager.Library
         FireHandBuff = 3,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
+        BurnDotDebuff = 102,
         //Mark / Misc// 201 +//
         SkeletonCurse = 201,
     }

@@ -3364,6 +3364,8 @@ MonoBehaviour:
       Type: 201
     - Object: {fileID: 7869612215995910445, guid: 2364e5596be0349e0bb09c9afca82722, type: 3}
       Type: 3
+    - Object: {fileID: 6676662465223061898, guid: 2c815f381a0ac9c46abd1cd2680d1441, type: 3}
+      Type: 102
 --- !u!1 &1817704154
 GameObject:
   m_ObjectHideFlags: 0

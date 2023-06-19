@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_IceSplitTrigger
+  m_Name: T_FlameBurst
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 1315964064108705742, guid: c6b5f2f309a3f4044b6e6da9aa2ab3e7, type: 3}
+  OnHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
-      SubDamageTypes: 0300000001000000
+      SubDamageTypes: 02000000
     InitialSourceDamage:
-      Damage: 30
-      DamageType: 3
-  m_TriggerClassName: IceShardSplitTrigger
+      Damage: 25
+      DamageType: 2
+  m_TriggerClassName: FlameBurstTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Spell.ZoneType Circle
   - Type: 0
     Value: 5
-  - Type: 0
-    Value: 2
+  - Type: 1
+    Value: 10
