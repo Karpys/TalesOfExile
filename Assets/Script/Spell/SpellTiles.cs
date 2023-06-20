@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell
@@ -14,6 +15,9 @@ namespace KarpysDev.Script.Spell
             CenterOrigin = centerOrigin;
             OriginTiles = originTiles;
             ActionTiles = actionTiles;
+            
         }
+
+        public Vector2Int Last => ActionTiles.Last().Last();
     }
 }
