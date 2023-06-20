@@ -1,4 +1,5 @@
-﻿using KarpysDev.Script.Map_Related;
+﻿using System;
+using KarpysDev.Script.Map_Related;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
