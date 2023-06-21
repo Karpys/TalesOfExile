@@ -7,16 +7,14 @@ namespace KarpysDev.Script.Spell.SpellFx
     public class Fx_Projectile : BurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
-
-        //[CONST]//
-        private Vector2 MAXDISTANCE_REFERENCE = new Vector2(5, 0.2f);
+        [SerializeField] private Vector2 m_ProjectileDistanceTime = new Vector2(5, 0.2f);
     
         private Vector3 m_StartPosition = Vector3.zero;
         private Vector3 m_EndPosition = Vector3.zero;
 
         protected override float GetAnimationDuration()
         {
-            return MAXDISTANCE_REFERENCE.y;
+            return m_ProjectileDistanceTime.y;
         }
 
         protected override void Start()
@@ -41,15 +39,8 @@ namespace KarpysDev.Script.Spell.SpellFx
     
         protected override void Animate()
         {
-            base.Animate();
-
-            float arrowSpeed = Vector3.Distance(transform.position, m_EndPosition) * MAXDISTANCE_REFERENCE.y / MAXDISTANCE_REFERENCE.x;
+            float arrowSpeed = Vector3.Distance(transform.position, m_EndPosition) * m_ProjectileDistanceTime.y / m_ProjectileDistanceTime.x;
             transform.DoMove(m_EndPosition, arrowSpeed).OnComplete(() => Destroy(gameObject));
-        }
-
-        protected override void DestroySelf(float time)
-        {
-            //base.DestroySelf(0.2f);
         }
     }
 }

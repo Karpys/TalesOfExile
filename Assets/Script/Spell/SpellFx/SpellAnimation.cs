@@ -6,6 +6,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     public abstract class SpellAnimation : MonoBehaviour
     {
+        [SerializeField] protected float m_AnimationLockTime = 0.2f;
         public float BaseSpellDelay => GetAnimationDuration();
         protected object[] m_Datas = null;
     
@@ -28,7 +29,10 @@ namespace KarpysDev.Script.Spell.SpellFx
             m_Datas = args;
         }
 
-        protected abstract float GetAnimationDuration();
+        protected virtual float GetAnimationDuration()
+        {
+            return m_AnimationLockTime;
+        }
         protected abstract void Animate();
     }
 }

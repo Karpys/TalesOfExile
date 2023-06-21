@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_ProjectileSequence : SpellAnimation
+    public class Fx_ProjectileSequence : BurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
         [SerializeField] private Vector2 ProjectileSpeedReference = new Vector2(5, 0.2f);
 
         private List<Vector3> points = new List<Vector3>();
     
-        protected void Start()
+        protected override void Start()
         {
             if (m_Datas.Length == 0)
             {
@@ -23,8 +23,8 @@ namespace KarpysDev.Script.Spell.SpellFx
         
             transform.position = (Vector3)m_Datas[0];
             points = (List<Vector3>)m_Datas[1];
-
-            Animate();
+            
+            base.Start();
         }
 
         protected override float GetAnimationDuration()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_FlameBurst
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
+  OnHitAnimation: {fileID: -857462294725842901, guid: f264c4732d367d64487ef9869a015356, type: 3}
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2

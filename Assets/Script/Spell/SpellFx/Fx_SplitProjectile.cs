@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_SplitProjectile : SpellAnimation
+    public class Fx_SplitProjectile : BurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
         [SerializeField] private SpellAnimation m_ProjectileSplitAnimation = null;
@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Spell.SpellFx
        
         private List<Vector3> m_Points = new List<Vector3>();
 
-        protected void Start()
+        protected override void Start()
         {
             if (m_Datas.Length == 0)
             {
@@ -24,7 +24,7 @@ namespace KarpysDev.Script.Spell.SpellFx
             transform.position = (Vector3)m_Datas[0];
             m_Points = (List<Vector3>)m_Datas[1];
 
-            Animate();
+            base.Start();
         }
         
         protected override float GetAnimationDuration()

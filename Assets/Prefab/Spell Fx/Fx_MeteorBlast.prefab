@@ -126,8 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1c28980735486390d5e4375bb06366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_AnimationLockTime: 0.2
   m_Offset: {x: -3, y: 3, z: 0}
   m_MovementDuration: 0.2
-  m_AnimationDuration: 0.2
   m_RangeDelay: {x: 0, y: 0.2}
   m_VisualTransform: {fileID: 974638068750772250}
+  m_CallBackAnim: {fileID: -857462294725842901, guid: f264c4732d367d64487ef9869a015356, type: 3}

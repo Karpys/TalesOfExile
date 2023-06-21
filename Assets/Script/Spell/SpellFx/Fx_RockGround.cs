@@ -1,3 +1,4 @@
+using KarpysDev.Script.Utils;
 using TweenCustom;
 using UnityEngine;
 
@@ -16,14 +17,10 @@ namespace KarpysDev.Script.Spell.SpellFx
 
         protected override void Animate()
         {
-            m_ScaleParams.TargetTransform.DoScale(m_ScaleParams).SetEase(Ease.EASE_OUT_SIN);
-            base.Animate();
-        }
-
-        protected override void DestroySelf(float time)
-        {
-            m_Sprite.DoColor(new Color(1, 1, 1, 0), m_FadeDuration).SetDelay(time);
-            Destroy(gameObject,m_FadeDuration + time + 0.1f);
+            m_ScaleParams.TargetTransform.DoScale(m_ScaleParams).SetEase(Ease.EASE_OUT_SIN).OnComplete(() =>
+            {
+                m_Sprite.FadeAndDestroy(new Color(1,1,1,0),m_FadeDuration,gameObject);
+            });
         }
     }
 }

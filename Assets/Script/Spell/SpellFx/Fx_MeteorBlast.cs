@@ -3,16 +3,18 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_MeteorBlast : SpellAnimation
+    public class Fx_MeteorBlast : BurstAnimation
     {
         [SerializeField] private Vector3 m_Offset = Vector3.zero;
         [SerializeField] private float m_MovementDuration = 0.2f;
-        [SerializeField] private float m_AnimationDuration = 0.2f;
         [SerializeField] private Vector2 m_RangeDelay = Vector2.up;
         [SerializeField] private Transform m_VisualTransform = null;
 
+        [Header("Call Back Anim")]
+        [SerializeField] private SpellAnimation m_CallBackAnim = null;
+
         private Vector3 m_Destination = Vector3.zero;
-        private void Start()
+        protected override void Start()
         {
             Transform targetTransform = transform;
             Vector3 position = targetTransform.position;
@@ -20,12 +22,7 @@ namespace KarpysDev.Script.Spell.SpellFx
             position += m_Offset;
             targetTransform.position = position;
             
-            Animate();
-        }
-
-        protected override float GetAnimationDuration()
-        {
-            return m_AnimationDuration;
+            base.Start();
         }
 
         protected override void Animate()
@@ -36,6 +33,7 @@ namespace KarpysDev.Script.Spell.SpellFx
                 m_VisualTransform.gameObject.SetActive(true);
             }).OnComplete(() =>
             {
+                m_CallBackAnim.TriggerFx(m_Destination);
                 Destroy(gameObject);
             });
         }

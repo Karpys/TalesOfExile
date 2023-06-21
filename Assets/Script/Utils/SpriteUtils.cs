@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TweenCustom;
+using UnityEngine;
 
 namespace KarpysDev.Script.Utils
 {
@@ -22,6 +23,11 @@ namespace KarpysDev.Script.Utils
         {
             Vector2Int direction = point - originPosition;
             return Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        }
+
+        public static BaseTween FadeAndDestroy(this SpriteRenderer renderer, Color targetColor, float duration,GameObject attachedGameObject)
+        {
+            return renderer.DoColor(targetColor, duration).OnComplete(() => Object.Destroy(attachedGameObject));
         }
     }
 }
