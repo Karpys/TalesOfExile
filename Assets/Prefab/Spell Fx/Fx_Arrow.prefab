@@ -38,7 +38,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120274718742154910}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -126,5 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673baecfe2354f419f14367db9aa31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpellAnimFixeDelay: 0
+  m_AnimationLockTime: 0.2
   m_Visual: {fileID: 1119914872239381813}
+  m_ProjectileDistanceTime: {x: 5, y: 0.2}

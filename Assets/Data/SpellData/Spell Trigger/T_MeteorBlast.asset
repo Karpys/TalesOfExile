@@ -19,5 +19,5 @@ MonoBehaviour:
       MainDamageType: 2
       SubDamageTypes: 02000000
     InitialSourceDamage:
-      Damage: 70
+      Damage: 50
       DamageType: 2

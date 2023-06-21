@@ -18,7 +18,7 @@ MonoBehaviour:
   BaseDescription: Cast an icy shard dealing &0 cold damage. On impact, it splits
     into &1 smaller shards towards nearest enemies.
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 2f2d9f3d4762b65448eb4d075fd46730, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 6ffc90b0ee480ec408386ed2fe65d711, type: 2}
   m_BaseCooldown: 4
   m_Selection:

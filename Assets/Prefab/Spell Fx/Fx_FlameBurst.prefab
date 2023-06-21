@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7af358c41d14d759dfb32502a6072d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AnimationLockTime: 0.2
-  m_FadeDelay: 0.2
+  m_AnimationLockTime: 0.1
+  m_FadeDelay: 0.1
   m_Visual: {fileID: 1119914872239381813}
   m_FadeColor: {r: 0, g: 0, b: 0, a: 0}
   m_FadeDuration: 0.2

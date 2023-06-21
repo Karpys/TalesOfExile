@@ -30,7 +30,6 @@ namespace KarpysDev.Script.Spell.SpellFx
         
             transform.position = m_StartPosition;
             SpriteUtils.RotateTowardPoint(m_StartPosition, m_EndPosition, m_Visual.transform);
-            m_Visual.enabled = true;
         
             base.Start();
         }

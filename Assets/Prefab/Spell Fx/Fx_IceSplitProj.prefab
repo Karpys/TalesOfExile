@@ -91,9 +91,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9140524552017338543}
-  - component: {fileID: 1315964064108705742}
+  - component: {fileID: 4454528519068613723}
   m_Layer: 0
-  m_Name: Fx_IceSplit
+  m_Name: Fx_IceSplitProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1315964064108705742
+--- !u!114 &4454528519068613723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,10 +123,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9140524552017338512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee16400f1b042998ba95406cb2dbc23, type: 3}
+  m_Script: {fileID: 11500000, guid: 673baecfe2354f419f14367db9aa31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnimationLockTime: 0.2
   m_Visual: {fileID: 1119914872239381813}
-  m_ProjectileSplitAnimation: {fileID: 4454528519068613723, guid: 70fcc7a15ed234d4ab8653da2d48794f, type: 3}
-  ProjectileSpeedReference: {x: 5, y: 0.1}
+  m_ProjectileDistanceTime: {x: 5, y: 0.2}

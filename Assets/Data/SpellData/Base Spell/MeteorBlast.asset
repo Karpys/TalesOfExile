@@ -19,7 +19,7 @@ MonoBehaviour:
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: d4f7bd688975c4045959a84418200256, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 7832de19f0c109e4c8dd476f7115e061, type: 2}
-  m_BaseCooldown: 0
+  m_BaseCooldown: 8
   m_Selection:
   - Origin: 0
     Zone:
