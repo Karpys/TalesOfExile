@@ -10,22 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_LightningStrike
+  m_Name: T_SkeletonLifeStealer
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 0}
+  OnHitAnimation: {fileID: 5476735992649530300, guid: 2aae68a80cddd7c4d922094a935e9584, type: 3}
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
-      SubDamageTypes: 0100000002000000
+      SubDamageTypes: 01000000
     InitialSourceDamage:
-      Damage: 45
-      DamageType: 4
-  m_TriggerClassName: LightningSpellTrigger
+      Damage: 35
+      DamageType: 1
+  m_TriggerClassName: SkeletonLifeStealerTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Spell.ZoneType Circle
-  - Type: 0
-    Value: 7
-  - Type: 0
-    Value: 3
+  - Type: 1
+    Value: 0,2

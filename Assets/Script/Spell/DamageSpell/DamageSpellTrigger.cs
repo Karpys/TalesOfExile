@@ -85,11 +85,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
             Vector2Int origin, CastInfo castInfo)
         {
             base.EntityHit(entity,spellData,origin,castInfo);
-            DamageEntity(entity,spellData);
+            DamageEntityStep(entity,spellData);
             castInfo?.AddHitEntity(entity);
         }
 
-        protected void DamageEntity(BoardEntity entity,TriggerSpellData spellData)
+        protected virtual float DamageEntityStep(BoardEntity entity,TriggerSpellData spellData)
         {
             float totalDamage = 0;
             MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
@@ -108,6 +108,8 @@ namespace KarpysDev.Script.Spell.DamageSpell
             {
                 FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage.ToString("0"),ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
             }
+
+            return totalDamage;
         }
 
         public void SetInitialDamageSource(float initialDamageSource)

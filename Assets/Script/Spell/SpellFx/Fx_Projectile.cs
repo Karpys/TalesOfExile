@@ -6,15 +6,18 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     public class Fx_Projectile : BurstAnimation
     {
-        [SerializeField] private SpriteRenderer m_Visual = null;
-        [SerializeField] private Vector2 m_ProjectileDistanceTime = new Vector2(5, 0.2f);
+        [SerializeField] protected SpriteRenderer m_Visual = null;
     
-        private Vector3 m_StartPosition = Vector3.zero;
-        private Vector3 m_EndPosition = Vector3.zero;
+        [Header("Parameters")]
+        [SerializeField] protected Vector2 m_ProjectileDistanceTime = new Vector2(5, 0.2f);
+        [SerializeField] protected float m_RotationOffset = 0;
+        
+        protected Vector3 m_StartPosition = Vector3.zero;
+        protected Vector3 m_EndPosition = Vector3.zero;
 
         protected override float GetAnimationDuration()
         {
-            return m_ProjectileDistanceTime.y;
+            return m_AnimationLockTime;
         }
 
         protected override void Start()
@@ -29,7 +32,7 @@ namespace KarpysDev.Script.Spell.SpellFx
             m_EndPosition = (Vector3)m_Datas[1];
         
             transform.position = m_StartPosition;
-            SpriteUtils.RotateTowardPoint(m_StartPosition, m_EndPosition, m_Visual.transform);
+            SpriteUtils.RotateTowardPoint(m_StartPosition, m_EndPosition, m_Visual.transform,m_RotationOffset);
         
             base.Start();
         }
@@ -38,7 +41,7 @@ namespace KarpysDev.Script.Spell.SpellFx
     
         protected override void Animate()
         {
-            float arrowSpeed = Vector3.Distance(transform.position, m_EndPosition) * m_ProjectileDistanceTime.y / m_ProjectileDistanceTime.x;
+            float arrowSpeed = Vector3.Distance(m_StartPosition, m_EndPosition) * m_ProjectileDistanceTime.y / m_ProjectileDistanceTime.x;
             transform.DoMove(m_EndPosition, arrowSpeed).OnComplete(() => Destroy(gameObject));
         }
     }

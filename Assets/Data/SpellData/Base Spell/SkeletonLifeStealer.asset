@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
+  m_Name: SkeletonLifeStealer
+  m_EditorClassIdentifier: 
+  SpellKey: SkeletonLifeStealer
+  SpellType: 0
+  SpellGroups: 0000000001000000
+  BaseDescription: Deal &0.
+  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: d5b05de8e275cc847a5c0061e185dbe6, type: 2}
+  m_BaseCooldown: 10
+  m_Selection:
+  - Origin: 0
+    Zone:
+      DisplayType: 0
+      Range: 5
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 0
+  - Origin: 1
+    Zone:
+      DisplayType: 1
+      Range: 2
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: -1
+    ActionSelection: 1
+  m_MainSelection: 0
+  SpellRestrictions: []
+  AllowedCastZone:
+    DisplayType: -1
+    Range: 0
+  OriginSelection: 0
