@@ -1,5 +1,6 @@
 ﻿using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Map_Related;
 
 namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
@@ -14,6 +15,10 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             return new BalistaIA();
         }
 
-    
+        protected override bool CanSpawnEntity(Tile tile)
+        
+        {
+            return true;
+        }
     }
 }

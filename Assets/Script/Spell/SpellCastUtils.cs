@@ -60,6 +60,8 @@ namespace KarpysDev.Script.Spell
         {
             switch (type)
             {
+                case SpellRestrictionType.OriginOnEnemy:
+                    return !MapData.Instance.GetEntityAt(targetPosition, spellData.AttachedEntity.TargetEntityGroup);
                 case SpellRestrictionType.OriginOnWalkable:
                     return !MapData.Instance.IsWalkable(targetPosition);
                 case SpellRestrictionType.FreeTileAroundEnemyTarget:

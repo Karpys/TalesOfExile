@@ -35,7 +35,7 @@ MonoBehaviour:
       Range: 2
     ValidationType:
       NeedValidation: 1
-      TargetZoneValidation: -1
+      TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions: []

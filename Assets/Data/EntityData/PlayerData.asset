@@ -54,7 +54,7 @@ MonoBehaviour:
     - m_SpellData: {fileID: 11400000, guid: 00d952355c11e174f9af85c8a36e1645, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
-    - m_SpellData: {fileID: 11400000, guid: 88a523d1097f480459969601753d75a8, type: 2}
+    - m_SpellData: {fileID: 11400000, guid: bf9be8471747b564fb64ee9d14332111, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 504debc7db7fe8e4e8c0e3ac18f85934, type: 2}

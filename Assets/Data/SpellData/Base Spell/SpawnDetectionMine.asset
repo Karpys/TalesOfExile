@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellKey: SpawnDetectionMine
   SpellType: 0
+  SpellGroups: 
+  BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 8d31785fcff65ff4790366a17b456040, type: 2}
@@ -44,9 +46,7 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 1
-    Type: 0
+  SpellRestrictions: []
   AllowedCastZone:
     DisplayType: 0
     Range: 5

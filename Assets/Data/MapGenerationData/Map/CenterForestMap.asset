@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059b4370a7a3428d98c6a5683fcdf46b, type: 3}
+  m_Name: CenterForestMap
+  m_EditorClassIdentifier: 
+  m_Width: 50
+  m_Height: 50
+  m_BaseTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+  m_SpawnPosition: {x: 25, y: 25}
+  m_TreeChance: 10
+  m_TreeTile: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
+  m_BlockMonsterSpawn: {x: 5, y: 5}
+  m_MonsterGeneration: {fileID: 11400000, guid: 4aa23ea9f6e5d6f4b998ce0715541f55, type: 2}

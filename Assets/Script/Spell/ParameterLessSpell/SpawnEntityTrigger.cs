@@ -23,8 +23,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
             Tile tile = MapData.Instance.GetTile(tilePosition);
 
-            Debug.Log(tilePosition);
-            if (tile.Walkable)
+            if (CanSpawnEntity(tile))
             {
                 BoardEntity entity = EntityHelper.SpawnEntityOnMap(tilePosition,EntityLibrary.Instance.GetEntityViaKey(m_EntityTypeToSpawn)
                     ,GetEntityIa(),spellData.AttachedEntity.EntityGroup,spellData.AttachedEntity.TargetEntityGroup);
@@ -32,6 +31,11 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
                 if(m_UseTransmitter)
                     entity.GetComponent<StatsTransmitter>().InitTransmitter(spellData.AttachedEntity);
             }
+        }
+
+        protected virtual bool CanSpawnEntity(Tile tile)
+        {
+            return tile.Walkable;
         }
 
         protected virtual BaseEntityIA GetEntityIa()

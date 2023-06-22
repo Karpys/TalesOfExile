@@ -20,7 +20,7 @@ MonoBehaviour:
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 2f2d9f3d4762b65448eb4d075fd46730, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 6ffc90b0ee480ec408386ed2fe65d711, type: 2}
-  m_BaseCooldown: 4
+  m_BaseCooldown: 3
   m_Selection:
   - Origin: 0
     Zone:
@@ -39,7 +39,9 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
+  SpellRestrictions:
+  - SelectionId: 1
+    Type: 3
   AllowedCastZone:
     DisplayType: -1
     Range: 0

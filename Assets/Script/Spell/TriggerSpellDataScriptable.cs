@@ -42,6 +42,7 @@ namespace KarpysDev.Script.Spell
         OriginOnWalkable,
         FreeTileAroundEnemyTarget,
         IsBowUser,
+        OriginOnEnemy,
     }
 
     public enum SpellOriginType

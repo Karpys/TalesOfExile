@@ -24,4 +24,4 @@ MonoBehaviour:
   m_TriggerClassName: SkeletonLifeStealerTrigger
   m_AdditionalParameters:
   - Type: 1
-    Value: 0,2
+    Value: 0,4

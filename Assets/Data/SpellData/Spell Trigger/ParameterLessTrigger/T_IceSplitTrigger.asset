@@ -26,6 +26,6 @@ MonoBehaviour:
   - Type: 3
     Value: KarpysDev.Script.Spell.ZoneType Circle
   - Type: 0
-    Value: 5
+    Value: 6
   - Type: 0
-    Value: 2
+    Value: 3
