@@ -33,6 +33,12 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
         public override void Behave()
         {
+            BehaveLogic();
+            m_AttachedEntity.EntityEvent.OnBehave?.Invoke();
+        }
+
+        private void BehaveLogic()
+        {
             Tile nextTile = m_BlightSpawner.GetNextBranchPath(m_PathId);
 
             if (nextTile == null)

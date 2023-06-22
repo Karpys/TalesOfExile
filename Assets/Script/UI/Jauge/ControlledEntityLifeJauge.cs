@@ -34,7 +34,7 @@ namespace KarpysDev.Script.UI.Jauge
         protected override void UpdateJaugeFillValue(float currentValue, float maxValue)
         {
             base.UpdateJaugeFillValue(currentValue, maxValue);
-            m_LifeText.text = currentValue + " / " + maxValue;
+            m_LifeText.text = currentValue.ToString("0") + " / " + maxValue.ToString("0");
         }
     }
 }
