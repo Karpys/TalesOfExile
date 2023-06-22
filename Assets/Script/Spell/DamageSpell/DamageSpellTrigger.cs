@@ -106,7 +106,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             /*Text Display */
             if (m_DisplayDamage && DamageManager.BlendDisplayDamage)
             {
-                FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage,ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
+                FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage.ToString("0"),ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
             }
         }
 

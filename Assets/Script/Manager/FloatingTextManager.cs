@@ -27,7 +27,7 @@ namespace KarpysDev.Script.Manager
             m_TextPool.Return(floatingTextBurst);
         }
 
-        public void SpawnFloatingText(Vector3 position,float value,Color? color = null,float delay = 0f)
+        public void SpawnFloatingText(Vector3 position,string value,Color? color = null,float delay = 0f)
         {
             Color targetColor = color ?? Color.white;
             FloatingTextBurst text = m_TextPool.Take();

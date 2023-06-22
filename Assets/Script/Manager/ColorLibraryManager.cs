@@ -12,19 +12,25 @@ namespace KarpysDev.Script.Manager
     }
     public class ColorLibraryManager:SingletonMonoBehavior<ColorLibraryManager>
     {
+        [SerializeField] private Color m_HealColor = Color.green;
         public DamageTypeColor[] DamageTypeColors = new DamageTypeColor[1];
     
         public Color GetDamageColor(SubDamageType damageType)
         {
-            for (int i = 0; i < DamageTypeColors.Length; i++)
+            foreach (DamageTypeColor damegeTypeColor in DamageTypeColors)
             {
-                if (damageType == DamageTypeColors[i].DamageType)
+                if (damageType == damegeTypeColor.DamageType)
                 {
-                    return DamageTypeColors[i].DamageColor;
+                    return damegeTypeColor.DamageColor;
                 }
             }
-        
+
             return Color.white;
+        }
+
+        public Color GetHealColor()
+        {
+            return m_HealColor;
         }
     }
 }

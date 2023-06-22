@@ -30,7 +30,7 @@ namespace KarpysDev.Script.Widget
             m_TextManager = textManager;
         }
         
-        public void LaunchFloat(float damageValue,Color? color = null,float triggerDelay = 0f)
+        public void LaunchFloat(string damageValue,Color? color = null,float triggerDelay = 0f)
         {
             float delay = triggerDelay + Random.Range(0f, 0.15f);
             Color targetColor = color ?? Color.white;
@@ -40,7 +40,7 @@ namespace KarpysDev.Script.Widget
             transform.DoMoveY(m_YEndAlignement.Target.position.y, m_YEndAlignement.Duration).SetCurve(m_YEndAlignement.Curve).SetDelay(delay).OnStart(
                 () =>
                 {
-                    m_Text.text = (int)damageValue + "";
+                    m_Text.text = damageValue;
                     Invoke(nameof(LaunchFade),m_YEndAlignement.Duration * 0.8f);
                 });
         }

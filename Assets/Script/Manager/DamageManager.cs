@@ -23,10 +23,20 @@ namespace KarpysDev.Script.Manager
 
             if (displayDamage && !BlendDisplayDamage)
             {
-                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage,ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
+                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage.ToString("0"),ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
             }
             
             return mitigiedDamageSource.Damage;
+        }
+
+        public static float HealTarget(BoardEntity entity, float healValue,bool displayText,float delay = 0)
+        {
+            //Todo : Add HealModifier ?
+            entity.Life.ChangeLifeValue(healValue);
+            if (!displayText) return healValue;
+            
+            FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,"+" + healValue.ToString("0"),ColorLibraryManager.Instance.GetHealColor(),delay);
+            return healValue;
         }
         
         public static void DirectDamage(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,BoardEntity damagefrom = null,bool displayDamage = true, float displayDelay = 0)
@@ -39,7 +49,7 @@ namespace KarpysDev.Script.Manager
         
             if (displayDamage)
             {
-                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage,ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
+                FloatingTextManager.Instance.SpawnFloatingText(damageTo.WorldPosition,mitigiedDamageSource.Damage.ToString("0"),ColorLibraryManager.Instance.GetDamageColor(mitigiedDamageSource.DamageType),displayDelay);
             }
 
             if (damagefrom)

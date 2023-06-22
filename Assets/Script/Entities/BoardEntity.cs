@@ -405,6 +405,10 @@ namespace KarpysDev.Script.Entities
         }
     
         //Damage Related//
+        public void HealTarget(float value)
+        {
+            m_EntityLife.ChangeLifeValue(value);
+        }
         public void TakeDamage(float value)
         {
             m_EntityLife.ChangeLifeValue(-value);
