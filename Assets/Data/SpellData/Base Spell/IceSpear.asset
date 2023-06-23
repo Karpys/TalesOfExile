@@ -39,7 +39,9 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
+  SpellRestrictions:
+  - SelectionId: 0
+    Type: 4
   AllowedCastZone:
     DisplayType: -1
     Range: 0

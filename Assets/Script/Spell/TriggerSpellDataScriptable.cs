@@ -34,7 +34,7 @@ namespace KarpysDev.Script.Spell
     public class SpellRestriction
     {
         public int SelectionId = 0;
-        public SpellRestrictionType Type = SpellRestrictionType.OriginOnWalkable;
+        public SpellRestrictionType Type = SpellRestrictionType.OriginOnEnemy;
     }
 
     public enum SpellRestrictionType
@@ -43,6 +43,8 @@ namespace KarpysDev.Script.Spell
         FreeTileAroundEnemyTarget,
         IsBowUser,
         OriginOnEnemy,
+        CanLaunchSpell,
+        //CanMove,
     }
 
     public enum SpellOriginType

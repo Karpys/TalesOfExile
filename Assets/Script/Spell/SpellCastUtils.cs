@@ -60,6 +60,8 @@ namespace KarpysDev.Script.Spell
         {
             switch (type)
             {
+                case SpellRestrictionType.CanLaunchSpell:
+                    return spellData.AttachedEntity.EntityStats.SpellLockCount > 0;
                 case SpellRestrictionType.OriginOnEnemy:
                     return !MapData.Instance.GetEntityAt(targetPosition, spellData.AttachedEntity.TargetEntityGroup);
                 case SpellRestrictionType.OriginOnWalkable:
@@ -82,6 +84,7 @@ namespace KarpysDev.Script.Spell
                 case SpellRestrictionType.IsBowUser:
                     return spellData.AttachedEntity.EntityStats.IsBowUser == 0;
                 default:
+                    Debug.LogError("Spell Restriction type has not been set up");
                     return false;
             }
         }

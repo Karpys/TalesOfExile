@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace KarpysDev.Script.Map_Related.Blight
 {
-    public class BlightCore : WorldTile
+    public class BlightCore : WorldTile,IMapClean
     {
         [SerializeField] private Zone m_OuterZoneSelection = null;
         [SerializeField] private TileSet m_BranchTileSet = null;
@@ -33,14 +33,13 @@ namespace KarpysDev.Script.Map_Related.Blight
         private void Start()
         {
             GameManager.Instance.A_OnEndTurn += CheckForActive;
+            RegisterToMapCleaner();
             m_BeginBlightButton.onClick.AddListener(OnBeginClicked);
             m_NoBlightButton.onClick.AddListener(OnNoClicked);
         }
 
         private void OnDestroy()
         {
-            if(GameManager.Instance)
-                GameManager.Instance.A_OnEndTurn -= CheckForActive;
             m_BeginBlightButton.onClick.RemoveListener(OnBeginClicked);
             m_NoBlightButton.onClick.RemoveListener(OnNoClicked);
         }
@@ -184,6 +183,16 @@ namespace KarpysDev.Script.Map_Related.Blight
             
                 //TODO:Loot From Blight Core and blight spawner//
             }
+        }
+
+        public void RegisterToMapCleaner()
+        {
+            MapCleaner.Instance.RegisterObject(this);
+        }
+
+        public void Clean()
+        {
+            GameManager.Instance.A_OnEndTurn -= CheckForActive;
         }
     }
 }

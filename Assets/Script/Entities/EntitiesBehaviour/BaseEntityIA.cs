@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
@@ -14,6 +15,8 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         private int m_TriggerSelfBuffCount = 0;
 
         protected BoardEntity m_Target = null;
+
+        private TriggerSpellData[] m_SelfBuffs = Array.Empty<TriggerSpellData>();
         protected override void InitializeEntityBehaviour()
         {
             ComputeSpellPriority();
@@ -25,6 +28,7 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         {
             int count = m_AttachedEntity.UsableSpells.Count(s => s.Data.SpellType == SpellType.Buff);
             m_TriggerSelfBuffCount = count;
+            m_SelfBuffs = m_AttachedEntity.UsableSpells.Where(s => s.Data.SpellType == SpellType.Buff).ToArray();
         }
     
     
@@ -105,19 +109,20 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
         private bool SelfBuffAction()
         {
-            List<TriggerSpellData> buffs = m_AttachedEntity.UsableSpells
-                .Where(s => s.Data.SpellType == SpellType.Buff)
-                .Where(s => s.IsCooldownReady() && s.SpellTrigger.SpellPriority > 0)
+            if (m_SelfBuffs.Length == 0)
+                return false;
+                    
+            TriggerSpellData[] buffs = m_SelfBuffs.Where(s => s.IsCooldownReady() && s.SpellTrigger.SpellPriority > 0)
                 .OrderByDescending(s => s.SpellTrigger.SpellPriority)
-                .ToList();
+                .ToArray();
 
-            if (buffs.Count == 0 || buffs[0].SpellTrigger.SpellPriority <= 0)
+            if (buffs.Length == 0 || buffs[0].SpellTrigger.SpellPriority <= 0)
                 return false;
 
             int buffId = 0;
             Vector2Int targetPosition = Vector2Int.zero;
         
-            for (; buffId < buffs.Count; buffId++)
+            for (; buffId < buffs.Length; buffId++)
             {
                 Zone allowedCastZone = buffs[buffId].TriggerData.AllowedCastZone;
                 SpellCastUtils.GetSpellTargetOrigin(buffs[buffId],ref targetPosition);
@@ -131,7 +136,7 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
                 break;
             }
 
-            if (buffId >= buffs.Count)
+            if (buffId >= buffs.Length)
                 return false;
         
             SpellCastUtils.CastSpellAt(buffs[buffId],targetPosition,m_AttachedEntity.EntityPosition);

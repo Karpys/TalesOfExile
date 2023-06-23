@@ -58,6 +58,10 @@ namespace KarpysDev.Script.Entities
 
         [Header("Misc")] 
         public int IsBowUser = 0;
+        
+        [Header("Crowd Control")]
+        public int RootLockCount = 0;
+        public int SpellLockCount = 0;
         public object Clone()
         {
             return MemberwiseClone();

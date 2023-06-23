@@ -26,6 +26,8 @@ namespace KarpysDev.Script.Spell
       private Vector2Int m_OriginTile = Vector2Int.zero;
       private Vector2Int m_CastOriginTile = Vector2Int.zero;
       private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
+      //Can Launch Check uses
+      private List<Vector2Int> m_ValidationOriginTile =  new List<Vector2Int>();
    
       public void LaunchSpellQueue(TriggerSpellData spell,SpellIcon attachedSpellIcon)
       {
@@ -73,7 +75,7 @@ namespace KarpysDev.Script.Spell
             
                if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
                {
-                  if(IsRestricted(m_OriginTile))
+                  if(IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
                      ResetSpellQueue();  
                      return;
@@ -84,7 +86,7 @@ namespace KarpysDev.Script.Spell
                   }
                }else if (Validation)
                {
-                  if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile))
+                  if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
                      FetchSelection();
                      Validation = false;
@@ -115,6 +117,12 @@ namespace KarpysDev.Script.Spell
       {
          if (GameManager.Instance.CanPlay)
          {
+            if (!CanLaunchSpell())
+            {
+               ResetSpellQueue();
+               return;
+            }
+            
             Vector2Int origin = m_CurrentSpell.AttachedEntity.EntityPosition;
             SpellCastUtils.CastSpell(m_CurrentSpell,new SpellTiles(origin,m_OriginTiles,m_ActionTiles));
             m_CurrentSpell.AttachedEntity.EntityEvent.OnBehave?.Invoke();
@@ -146,26 +154,43 @@ namespace KarpysDev.Script.Spell
             return false;
       }
 
-      private bool IsRestricted(Vector2Int validationOrigin)
+      private bool CanLaunchSpell()
+      {
+         if (m_CurrentSpell.TriggerData.SpellRestrictions.Count == 0)
+            return true;
+
+         for (int i = 0; i < m_CurrentSpellQueue; i++)
+         {
+            if (IsRestricted(m_ValidationOriginTile[i], i))
+            {
+               return false;
+            }
+         }
+
+         return true;
+      }
+
+      private bool IsRestricted(Vector2Int validationOrigin,int idCheck)
       {
          if (m_CurrentSpell.TriggerData.SpellRestrictions.Count == 0)
             return false;
 
-         SpellRestriction spellRestriction = null;
 
          foreach (SpellRestriction restriction in m_CurrentSpell.TriggerData.SpellRestrictions)
          {
-            if (restriction.SelectionId == m_CurrentSpellQueue)
+            if (restriction.SelectionId == idCheck)
             {
-               spellRestriction = restriction;
-               break;
+               bool restricted = SpellCastUtils.IsRestricted(restriction.Type, validationOrigin, m_CurrentSpell);
+               
+               if (restricted)
+               {
+                  //Todo: Floating text spell restriction info//
+                  return true;
+               }
             }
          }
-
-         if (spellRestriction == null)
-            return false;
-
-         return SpellCastUtils.IsRestricted(spellRestriction.Type, validationOrigin, m_CurrentSpell);
+         
+         return false;
       }
 
       private void ResetSpellQueue()
@@ -176,6 +201,7 @@ namespace KarpysDev.Script.Spell
          m_ActionTiles.Clear();
          m_OriginTiles.Clear();
          m_DisplayTiles.Clear();
+         m_ValidationOriginTile.Clear();
          HighlightTilesManager.Instance.ResetHighlighTilesAndLock();
       }
 
@@ -221,6 +247,7 @@ namespace KarpysDev.Script.Spell
             AddToDisplayTiles(m_TilesSelection);
          }
 
+         m_ValidationOriginTile.Add(m_OriginTile);
          HighlightTilesManager.Instance.LockHighLightTiles(m_TilesSelection.Count);
          m_CurrentSpellQueue += 1;
       }
