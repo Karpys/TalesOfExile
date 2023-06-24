@@ -9,6 +9,7 @@
         UpPhysical = 2,
         UpLightning = 3,
         UpElemental = 4,
+        IncreaseProjectileDamage = 18,
         IncreaseSpellDamage = 19,
         IncreaseWeaponForce = 20,
         //Defense Type// 21 => 50//

@@ -57,8 +57,8 @@ namespace KarpysDev.Script.Map_Related
                 return null;
             
             BoardEntity entityAt = m_Map.EntitiesTile[entityPos.x,entityPos.y];
-
-            if (entityAt && entityAt.EntityGroup == targetEntityGroup)
+            
+            if (targetEntityGroup == EntityGroup.All || entityAt && entityAt.EntityGroup == targetEntityGroup)
                 return entityAt;
             
             return null;

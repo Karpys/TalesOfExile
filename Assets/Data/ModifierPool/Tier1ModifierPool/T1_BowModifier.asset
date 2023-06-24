@@ -15,33 +15,38 @@ MonoBehaviour:
   m_ModifierPool:
     m_Modifiers:
       m_WeightElement:
+      - m_Weight: 40
+        m_Object:
+          m_Type: 18
+          m_Range: {x: 10, y: 20}
+          m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 0
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 1
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 2
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 3
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
           m_Type: 4
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 5
         m_Object:
           m_Type: 20
-          m_Range: {x: 5, y: 10}
+          m_Range: {x: 10, y: 20}
           m_Params: 

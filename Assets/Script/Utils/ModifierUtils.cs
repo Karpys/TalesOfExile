@@ -29,6 +29,7 @@ namespace KarpysDev.Script.Utils
                 {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier += m.FloatValue},
                 {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier += m.FloatValue},
                 //GlobalDamage
+                {ModifierType.IncreaseProjectileDamage, (m, e) => e.EntityStats.ProjectileModifier += m.FloatValue},
                 {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier += m.FloatValue},
                 {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
                 //Resistance
@@ -67,6 +68,7 @@ namespace KarpysDev.Script.Utils
                 {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier -= m.FloatValue},
                 {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier -= m.FloatValue},
                 //Global Damage
+                {ModifierType.IncreaseProjectileDamage, (m, e) => e.EntityStats.ProjectileModifier -= m.FloatValue},
                 {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier -= m.FloatValue},
                 {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
                 //Resistance
@@ -107,7 +109,8 @@ namespace KarpysDev.Script.Utils
                 { ModifierType.UpPhysical, modifier => $"+{modifier.Value}% Physical damage" },
                 { ModifierType.UpElemental, modifier => $"+{modifier.Value}% Elemental damage" },
                 //Global Damage
-                { ModifierType.IncreaseWeaponForce, modifier => $"Increase weapon damage by {modifier.Value}" },
+                { ModifierType.IncreaseProjectileDamage, modifier => $"+{modifier.Value}% Projectile damage" },
+                { ModifierType.IncreaseWeaponForce, modifier => $"Increase Weapon damage by {modifier.Value}" },
                 { ModifierType.IncreaseSpellDamage, modifier => $"+{modifier.Value}% Spell damage" },
                 //Resistance
                 {ModifierType.UpColdResistance,modifier => $"+{modifier.Value}% Cold resistance"},

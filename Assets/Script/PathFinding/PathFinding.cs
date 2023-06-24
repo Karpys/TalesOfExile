@@ -52,10 +52,7 @@ namespace KarpysDev.Script.PathFinding
             Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
 
             Tile lastTile = FindLastTile(startPos, endPos,ignoreWall);
-
-            if (ReferenceEquals(lastTile,null))
-                return null;
-        
+            
             List<Tile> path = new List<Tile>();
         
             Tile currentTile = lastTile;

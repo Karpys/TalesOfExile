@@ -1,11 +1,11 @@
 AutoAttack
-Rush
 RegenBuff
-RockSlam
+IceSplit
+FlameBurst
+MeteorBlast
+SpawnDetectionMine
 LighningStrike
-Fire Hand Buff
-RockThrow
-none
+RangeAuto
 none
 none
 none

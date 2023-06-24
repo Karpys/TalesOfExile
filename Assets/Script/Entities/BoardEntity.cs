@@ -173,6 +173,7 @@ namespace KarpysDev.Script.Entities
         Friendly,
         Enemy,
         Neutral,
+        All,
         None,
     }
     public abstract class BoardEntity : MonoBehaviour

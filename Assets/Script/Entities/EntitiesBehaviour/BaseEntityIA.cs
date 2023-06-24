@@ -4,6 +4,7 @@ using System.Linq;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell;
+using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -145,19 +146,31 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
         protected virtual bool MovementAction()
         {
-            List<Tile> path = PathFinding.PathFinding.FindTilePath(m_AttachedEntity.EntityPosition, m_Target.EntityPosition,false);
-            if (path.Count > m_AttachedEntity.EntityStats.CombatRange)
+            Tile closestTile = PathFinding.PathFinding.FindClosestTile(m_AttachedEntity.EntityPosition, m_Target.EntityPosition,false);
+
+            int squareRange = DistanceUtils.GetSquareDistance(m_AttachedEntity.EntityPosition, m_Target.EntityPosition);
+            
+            if (squareRange >= m_AttachedEntity.EntityStats.CombatRange)
             {
                 //Move toward player//
-                if (MapData.Instance.IsWalkable(path[0].TilePosition))
+                if (closestTile.Walkable)
                 {
-                    m_AttachedEntity.MoveTo(path[0].TilePosition);
+                    m_AttachedEntity.MoveTo(closestTile.TilePosition);
                 }
             }
-            else if(path.Count < m_AttachedEntity.EntityStats.CombatRange)
+            else if(squareRange < m_AttachedEntity.EntityStats.CombatRange)
             {
+                Vector2Int targetPos = Vector2Int.zero;
                 //Run Away from player if too close//
-                Vector2Int targetPos = TileHelper.GetOppositePosition(m_AttachedEntity.EntityPosition, path[0].TilePosition);
+                if (m_AttachedEntity.EntityPosition == closestTile.TilePosition)
+                {
+                    targetPos = TileHelper.GetOppositePosition(m_AttachedEntity.EntityPosition, m_Target.EntityPosition);
+                }
+                else
+                {
+                    targetPos = TileHelper.GetOppositePosition(m_AttachedEntity.EntityPosition, closestTile.TilePosition);
+                }
+                
                 if (MapData.Instance.IsWalkable(targetPos))
                     m_AttachedEntity.MoveTo(targetPos);
             }

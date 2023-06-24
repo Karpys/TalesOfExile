@@ -47,10 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BehaviourTrigger: {fileID: -4123646803933880055}
   m_SpellInfo:
-    m_SpellData:
-      Data: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
-      AttachedEntity: {fileID: 0}
+    m_SpellData: {fileID: 11400000, guid: e6a214ed6e33d2a468b3ab84df79e8da, type: 2}
     m_SpellPriority: 0
+    m_SpellLearnType: 0
 --- !u!114 &-4123646803933880055
 MonoBehaviour:
   m_ObjectHideFlags: 0
