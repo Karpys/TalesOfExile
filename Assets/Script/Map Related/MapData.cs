@@ -10,14 +10,10 @@ namespace KarpysDev.Script.Map_Related
     {
         [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
         private Map m_Map = null;
-    
-        public Map Map
-        {
-            get { return m_Map; }
-            set { m_Map = value; }
-        }
-    
-    
+
+        public Map Map => m_Map;
+
+        public int MaxSize => m_Map.Height * m_Map.Width;
         public bool IsWalkable(int x, int y)
         {
             if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x,y].Walkable)
@@ -73,6 +69,16 @@ namespace KarpysDev.Script.Map_Related
             int clampedX = Mathf.Clamp(pos.x, 0,m_Map.Width - 1);
             int clampedY = Mathf.Clamp(pos.y,0, m_Map.Height - 1);
             return new Vector2Int(clampedX, clampedY);
+        }
+
+        public void SetMap(Map map,bool updatePathFinding = true)
+        {
+            m_Map = map;
+            
+            if (updatePathFinding)
+            {
+                PathFinding.PathFinding.UpdatePathFinding();
+            }
         }
     }
 }

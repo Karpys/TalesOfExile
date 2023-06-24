@@ -21,7 +21,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             m_MapData = mapData;
             m_Map = new Map(m_Width, m_Height);
-            mapData.Map = m_Map;
+            mapData.SetMap(m_Map);
         
             m_Map.Height = m_Height;
             m_Map.Width = m_Width;

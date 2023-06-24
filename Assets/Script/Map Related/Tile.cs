@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.PathFinding;
+using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
 {
@@ -43,6 +44,20 @@ namespace KarpysDev.Script.Map_Related
         public void SetWorldTile(WorldTile worldTile)
         {
             m_WorldTile = worldTile;
+        }
+
+        public int HeapIndex { get; set; }
+
+        public int CompareTo(Tile tile)
+        {
+            int compare = fCost.CompareTo(tile.fCost);
+
+            if (compare == 0)
+            {
+                compare = hCost.CompareTo(tile.hCost);
+            }
+
+            return -compare;
         }
     }
 }

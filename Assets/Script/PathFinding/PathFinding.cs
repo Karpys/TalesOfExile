@@ -13,45 +13,45 @@ namespace KarpysDev.Script.PathFinding
     }
     public static class PathFinding
     {
-        private const int MAX_ITERATION_COUNT = 100;
-        public static MapData mapData = null;
+        public static int BASE_MAX_ITERATION_COUNT = 100;
         public static NeighbourType NeighbourType = NeighbourType.Square;
-        public static Tile FindClosestTile(Vector2Int startPos, Vector2Int playerPos,bool ignoreWall = false)
-        {
-            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[playerPos.x, playerPos.y];
 
-            return FindClosestTile(startTile, playerTile,ignoreWall);
-        }
-        public static Tile FindClosestTile(Tile startTile, Tile playerTile,bool ignoreWall = false)
+        private static TileHeap openSet = null;
+        public static int maxIteration
         {
-            Tile tile = FindLastTile(startTile, playerTile,ignoreWall);
+            get;
+            set;
+        }
+
+
+        public static MapData mapData = null;
+
+        public static void UpdatePathFinding()
+        {
+            openSet = new TileHeap(mapData.MaxSize);
+        }
+        
+        public static Tile FindClosestTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
+        {
+            Tile tile = FindLastTile(startPos, endPos,ignoreWall);
             Tile currentTile = tile;
 
-            if (currentTile == startTile)
+            if (currentTile.TilePosition == startPos)
                 return currentTile;
-            while (currentTile.ParentTile != startTile)
+            while (currentTile.ParentTile.TilePosition != startPos)
             {
                 currentTile = currentTile.ParentTile;
             }
 
-            List<Vector2Int> path = new List<Vector2Int>();
-            path.Add(new Vector2Int(currentTile.XPos,currentTile.YPos));
             return currentTile;
         }
-
-
-        public static List<Tile> FindTilePath(Vector2Int startPos, Vector2Int playerPos,bool ignoreWall = false)
+        
+        public static List<Tile> FindTilePath(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
             Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[playerPos.x, playerPos.y];
+            Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
 
-            return FindTilePath(startTile, playerTile,ignoreWall);
-        }
-
-        public static List<Tile> FindTilePath(Tile startTile, Tile playerTile,bool ignoreWall = false)
-        {
-            Tile lastTile = FindLastTile(startTile, playerTile,ignoreWall);
+            Tile lastTile = FindLastTile(startPos, endPos,ignoreWall);
 
             if (ReferenceEquals(lastTile,null))
                 return null;
@@ -78,17 +78,10 @@ namespace KarpysDev.Script.PathFinding
         }
 
 
-        public static List<Vector2Int> FindPath(Vector2Int startPos, Vector2Int playerPos, bool ignoreWall = false)
-        {
-            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[playerPos.x, playerPos.y];
-
-            return FindPath(startTile, playerTile, ignoreWall);
-        }
-        public static List<Vector2Int> FindPath(Tile startTile, Tile playerTile, bool ignoreWall = false)
+        public static List<Vector2Int> FindPath(Vector2Int startPos, Vector2Int endPos, bool ignoreWall = false)
         {
             List<Vector2Int> path = new List<Vector2Int>();
-            List<Tile> tilePath = FindTilePath(startTile, playerTile, ignoreWall);
+            List<Tile> tilePath = FindTilePath(startPos, endPos, ignoreWall);
 
             if (tilePath == null)
                 return null;
@@ -100,41 +93,28 @@ namespace KarpysDev.Script.PathFinding
 
             return path;
         }
-
-        public static Tile FindLastTile(Vector2Int startPos, Vector2Int playerPos,bool ignoreWall = false)
-        {
-            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[playerPos.x, playerPos.y];
         
-            return FindLastTile(startTile, playerTile,ignoreWall);
-        }
-    
         //Core//
-        public static Tile FindLastTile(Tile startTile, Tile playerTile,bool ignoreWall = false)
+        public static Tile FindLastTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
+            openSet.Clear();
+            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
+            Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
+        
             int iterationCount = 0;
-            List<Tile> openSet = new List<Tile>();
+
             HashSet<Tile> closeSet = new HashSet<Tile>();
             openSet.Add(startTile);
 
             while (openSet.Count > 0)
             {
-                if (iterationCount >= MAX_ITERATION_COUNT)
-                    return openSet[0]; 
+                if (iterationCount >= maxIteration)
+                {
+                    return openSet.RemoveFirst(); 
+                }
                     
                 iterationCount += 1;
-                Tile currentTile = openSet[0];
-
-                for (int i = 1; i < openSet.Count; i++)
-                {
-                    if (openSet[i].fCost < currentTile.fCost ||
-                        openSet[i].fCost == currentTile.fCost && openSet[i].hCost < currentTile.hCost)
-                    {
-                        currentTile = openSet[i];
-                    }
-                }
-
-                openSet.Remove(currentTile);
+                Tile currentTile = openSet.RemoveFirst();
                 closeSet.Add(currentTile);
 
                 /*if (currentTile == playerTile)
@@ -143,13 +123,15 @@ namespace KarpysDev.Script.PathFinding
                 return currentTile;
             }*/
             
-                List<Tile> neighbours = TileHelper.GetNeighbours(currentTile, NeighbourType, mapData);
+                SetNeighbours(currentTile);
 
-                foreach (Tile neighbour in neighbours)
+                for(int i = 0; i < NeightbourCount; i++)
                 {
+                    Tile neighbour = NeightboursTiles[i];
                     //Player Not Walkable
                     if (neighbour == playerTile)
                     {
+                        //Debug.Log(iterationCount);
                         /*DebugTile(startTile,currentTile);*/
                         return currentTile;
                     }
@@ -157,7 +139,7 @@ namespace KarpysDev.Script.PathFinding
                     if (!neighbour.Walkable && !ignoreWall || closeSet.Contains(neighbour))
                         continue;
 
-                    float newMovementCost = currentTile.gCost; /*+ GetDistance(currentTile, neighbour, startTile);*/
+                    float newMovementCost = currentTile.gCost + GetDistance(currentTile, neighbour, startTile);
                     if (newMovementCost < neighbour.gCost || !openSet.Contains(neighbour))
                     {
                         neighbour.gCost = newMovementCost;/*newMovementCost;*/
@@ -174,7 +156,7 @@ namespace KarpysDev.Script.PathFinding
 
             return startTile;
         }
-
+        
         /*private void DebugTile(Tile start,Tile end)
     {
         List<Vector2Int> path = new List<Vector2Int>();
@@ -221,6 +203,76 @@ namespace KarpysDev.Script.PathFinding
             /*if (distX > distY)
             return D1 * (distX - distY) + D2 * distY;
          return D1 * (distY - distX) + D2 * distX;*/
+        }
+        
+        private static Tile[] NeightboursTiles = new Tile[8];
+        private static int NeightbourCount = 0;
+        private static void SetNeighbours(Tile tile)
+        {
+            if (NeighbourType == NeighbourType.Square)
+            {
+                SetSquareNeighbours(tile);
+            }else if (NeighbourType == NeighbourType.Cross)
+            {
+                SetCrossNeighours(tile);
+            }
+            
+        }
+
+        private static void SetCrossNeighours(Tile tile)
+        {
+            int id = 0;
+            for (int x = -1; x <= 1; x++)
+            {
+                if(x == 0)
+                    continue;
+            
+                int checkX = tile.XPos + x;
+                if (checkX >= 0 && checkX < mapData.Map.Width)
+                {
+                    NeightboursTiles[id] = mapData.Map.Tiles[checkX, tile.YPos];
+                    id++;
+                }
+            }
+        
+            for (int y = -1; y <= 1; y++)
+            {
+                if(y == 0)
+                    continue;
+            
+                int checkY = tile.YPos + y;
+                if (checkY >= 0 && checkY < mapData.Map.Height)
+                {
+                    NeightboursTiles[id] = mapData.Map.Tiles[tile.XPos, checkY];
+                    id++;
+                }
+            }
+
+            NeightbourCount = id;
+        }
+
+        private static void SetSquareNeighbours(Tile tile)
+        {
+            int id = 0;
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if(x == 0 && y == 0)
+                        continue;
+
+                    int checkX = tile.XPos + x;
+                    int checkY = tile.YPos + y;
+
+                    if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
+                    {
+                        NeightboursTiles[id] = mapData.Map.Tiles[checkX, checkY];
+                        id++;
+                    }
+                }
+            }
+
+            NeightbourCount = id;
         }
     }
 }

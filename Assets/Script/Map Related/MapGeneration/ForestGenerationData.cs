@@ -79,7 +79,9 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
                 path = new List<Vector2Int>();
                 path.Add(new Vector2Int(lastTile.XPos,lastTile.YPos));
-                path.AddRange(PathFinding.PathFinding.FindPath(lastTile, m_Map.Tiles[x,y]));
+                PathFinding.PathFinding.maxIteration = 1000;
+                path.AddRange(PathFinding.PathFinding.FindPath(lastTile.TilePosition, m_Map.Tiles[x,y].TilePosition));
+                PathFinding.PathFinding.maxIteration = PathFinding.PathFinding.BASE_MAX_ITERATION_COUNT;
             
                 PathFinding.PathFinding.NeighbourType = NeighbourType.Square;
         
