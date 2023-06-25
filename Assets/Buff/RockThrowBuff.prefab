@@ -4861,3 +4861,4 @@ MonoBehaviour:
   m_SpellInfo:
     m_SpellData: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
     m_SpellPriority: 1
+    m_SpellLearnType: 0

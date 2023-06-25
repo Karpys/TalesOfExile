@@ -8,8 +8,10 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     public class GrabChainTrigger : SelectionSpellTrigger
     {
-        public GrabChainTrigger(BaseSpellTriggerScriptable baseScriptable) : base(baseScriptable)
+        private int m_StunDuration = 0;
+        public GrabChainTrigger(BaseSpellTriggerScriptable baseScriptable,int stunDuration) : base(baseScriptable)
         {
+            m_StunDuration = stunDuration;
         }
         
         private Transform m_AttachedTransform = null;
@@ -37,7 +39,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
             
             base.EntityHit(entity, spellData, origin, castInfo);
-            BuffLibrary.Instance.AddBuffToViaKey(BuffType.StunDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,1,1);
+            BuffLibrary.Instance.AddBuffToViaKey(BuffType.StunDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,m_StunDuration,1);
         }
 
         private Transform m_EntityHit = null;

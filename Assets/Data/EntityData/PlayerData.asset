@@ -38,6 +38,8 @@ MonoBehaviour:
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
       IsBowUser: 0
+      RootLockCount: 0
+      SpellLockCount: 0
     m_BaseSpellInfos:
     - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
       m_SpellPriority: 1
@@ -45,7 +47,7 @@ MonoBehaviour:
     - m_SpellData: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
-    - m_SpellData: {fileID: 11400000, guid: b6b6a98ece087e74099bf21d9c2658a4, type: 2}
+    - m_SpellData: {fileID: 11400000, guid: 0f7469d60bf08ef45a882b314e8b699b, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 8939cc1fdeeac0240a2acdfd9fb6a474, type: 2}

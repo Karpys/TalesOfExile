@@ -56,6 +56,9 @@ TagManager:
   - name: HighlightTile
     uniqueID: 3223451079
     locked: 0
+  - name: EntityLife
+    uniqueID: 1609235331
+    locked: 0
   - name: Fx
     uniqueID: 2072107463
     locked: 0

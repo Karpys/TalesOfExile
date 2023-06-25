@@ -25,6 +25,12 @@ namespace KarpysDev.Script.Entities
     
         public void Update()
         {
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                WaitTurn();
+                return;
+            }
+            
             if (InputManager.Instance.IsMovementKeyHold)
             {
                 HoldConfiguration();   
@@ -46,6 +52,13 @@ namespace KarpysDev.Script.Entities
                 }
             }
         }
+
+        private void WaitTurn()
+        {
+            m_Entity.EntityEvent.OnBehave?.Invoke();
+            GameManager.Instance.A_OnPlayerAction.Invoke(m_Entity);
+        }
+        
         private void TouchConfiguration()
         {
             if (Input.GetKeyDown(KeyCode.D))
@@ -107,7 +120,7 @@ namespace KarpysDev.Script.Entities
     
         public void TryMoveTo(Vector2Int pos)
         {
-            if (!GameManager.Instance.CanPlay)
+            if (!GameManager.Instance.CanPlay || m_Entity.EntityStats.RootLockCount > 0)
             {
                 return;
             }

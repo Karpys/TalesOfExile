@@ -31,7 +31,7 @@ MonoBehaviour:
     ActionSelection: 0
   - Origin: 1
     Zone:
-      DisplayType: 1
+      DisplayType: 0
       Range: 2
     ValidationType:
       NeedValidation: 1
@@ -39,8 +39,8 @@ MonoBehaviour:
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions:
-  - SelectionId: 1
-    Type: 3
+  - SelectionId: 0
+    Type: 5
   AllowedCastZone:
     DisplayType: -1
     Range: 0
