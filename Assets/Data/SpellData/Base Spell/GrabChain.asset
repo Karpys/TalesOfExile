@@ -32,7 +32,7 @@ MonoBehaviour:
   - Origin: 1
     Zone:
       DisplayType: 1
-      Range: 1
+      Range: 2
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0

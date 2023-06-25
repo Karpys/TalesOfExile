@@ -1,4 +1,5 @@
 ﻿using KarpysDev.Script.Entities;
+using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Widget;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
             
             base.EntityHit(entity, spellData, origin, castInfo);
+            BuffLibrary.Instance.AddBuffToViaKey(BuffType.StunDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,1,1);
         }
 
         private Transform m_EntityHit = null;

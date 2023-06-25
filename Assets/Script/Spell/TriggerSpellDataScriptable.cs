@@ -44,6 +44,7 @@ namespace KarpysDev.Script.Spell
         IsBowUser,
         OriginOnEnemy,
         CanLaunchSpell,
+        CanUseMeleeSpell,
         //CanMove,
     }
 

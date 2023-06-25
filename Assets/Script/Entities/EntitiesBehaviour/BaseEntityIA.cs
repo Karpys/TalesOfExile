@@ -94,7 +94,8 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
                     }
                 }
         
-                if (!triggerAction)
+                Debug.Log(m_AttachedEntity.EntityStats.RootLockCount);
+                if (!triggerAction && m_AttachedEntity.EntityStats.RootLockCount <= 0)
                 {
                     triggerAction = MovementAction();
                 }

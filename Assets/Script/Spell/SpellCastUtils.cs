@@ -62,6 +62,8 @@ namespace KarpysDev.Script.Spell
             {
                 case SpellRestrictionType.CanLaunchSpell:
                     return spellData.AttachedEntity.EntityStats.SpellLockCount > 0;
+                case SpellRestrictionType.CanUseMeleeSpell:
+                    return spellData.AttachedEntity.EntityStats.MeleeLockCount > 0;
                 case SpellRestrictionType.OriginOnEnemy:
                     return !MapData.Instance.GetEntityAt(targetPosition, spellData.AttachedEntity.TargetEntityGroup);
                 case SpellRestrictionType.OriginOnWalkable:

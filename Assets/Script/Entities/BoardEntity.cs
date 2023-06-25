@@ -62,6 +62,7 @@ namespace KarpysDev.Script.Entities
         [Header("Crowd Control")]
         public int RootLockCount = 0;
         public int SpellLockCount = 0;
+        public int MeleeLockCount = 0;
         public object Clone()
         {
             return MemberwiseClone();
