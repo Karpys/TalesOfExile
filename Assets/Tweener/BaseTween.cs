@@ -17,6 +17,7 @@ namespace TweenCustom
         //Action//
         public TweenAction m_onComplete = null;
         public TweenAction m_onStart = null;
+        public TweenAction m_onReferenceLose = null;
 
         //Static Values//
         protected Vector3 m_StartValue = Vector3.zero;
@@ -74,6 +75,7 @@ namespace TweenCustom
 
             if (!ReferenceCheck())
             {
+                m_onReferenceLose?.Invoke();
                 m_IsComplete = true;
                 return;
             }

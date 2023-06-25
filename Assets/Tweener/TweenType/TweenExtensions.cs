@@ -159,6 +159,12 @@ namespace TweenCustom
             tween.m_onStart = action;
             return tween;
         }
+        
+        public static BaseTween OnReferenceLose(this BaseTween tween, TweenAction action)
+        {
+            tween.m_onReferenceLose = action;
+            return tween;
+        }
 
         #endregion
     }

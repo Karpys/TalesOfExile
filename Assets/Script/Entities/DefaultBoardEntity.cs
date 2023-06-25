@@ -6,7 +6,7 @@ namespace KarpysDev.Script.Entities
     {
         protected override void Movement()
         {
-            transform.DoKill();
+            //transform.DoKill();
             transform.DoMove( m_TargetMap.GetTilePosition(m_XPosition, m_YPosition),0.1f);
         }
     }

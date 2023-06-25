@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: SPELLTEST
+  m_Name: GrabChain
   m_EditorClassIdentifier: 
   SpellKey: GrabChain
   SpellType: 0
   SpellGroups: 
   BaseDescription: Grab an entity close to you
-  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 974b7e0184b5b174f84298ec10a57437, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: fcba80bf292486c41a1404192f58520f, type: 2}
   m_BaseCooldown: 8
@@ -39,7 +39,7 @@ MonoBehaviour:
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions:
-  - SelectionId: 0
+  - SelectionId: 1
     Type: 3
   AllowedCastZone:
     DisplayType: -1

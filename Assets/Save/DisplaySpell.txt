@@ -1,11 +1,11 @@
 AutoAttack
-RegenBuff
-IceSplit
-FlameBurst
-MeteorBlast
-SpawnDetectionMine
-LighningStrike
+GrabChain
 RangeAuto
+none
+none
+none
+none
+none
 none
 none
 none

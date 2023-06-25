@@ -16,12 +16,18 @@ namespace KarpysDev.Script.Spell.SpellFx
             Transform targetTransform = (Transform)m_Datas[2];
 
             Vector3 targetPosition = (endPosition + startPosition) / 2;
-            targetTransform.DoMove(targetPosition, m_AnimDuration / 2).OnComplete((() =>
+            targetTransform.DoMove(targetPosition, m_AnimDuration / 2).OnComplete(() =>
             {
-                m_HitFx.gameObject.SetActive(true);
-                targetTransform.DoMove(startPosition, m_AnimDuration / 2);
-                m_HitFx.FadeAndDestroy(new Color(1,1,1,0),0.2f + m_AnimDuration/2,gameObject);
-            }));
+                DisplayFx();
+                if(targetTransform)
+                    targetTransform.DoMove(startPosition, m_AnimDuration / 2); 
+            }).OnReferenceLose(DisplayFx);
+        }
+
+        private void DisplayFx()
+        {
+            m_HitFx.gameObject.SetActive(true);
+            m_HitFx.FadeAndDestroy(new Color(1,1,1,0),0.2f + m_AnimDuration/2,gameObject);
         }
     }
 }

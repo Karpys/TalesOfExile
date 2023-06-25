@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Utils
 {
-    public class LineRenderer
+    public static class LineRenderer
     {
         public static void LinePointsRenderer(List<Vector2Int> points, LineRendererType lineRendererType, float lineDuration,float additionalFadeDelay)
         {

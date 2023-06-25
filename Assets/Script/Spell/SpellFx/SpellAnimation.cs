@@ -10,14 +10,14 @@ namespace KarpysDev.Script.Spell.SpellFx
         public float BaseSpellDelay => GetAnimationDuration();
         protected object[] m_Datas = null;
     
-        public SpellAnimation TriggerFx(Vector3 position,Transform transform = null,params object[] args)
+        public SpellAnimation TriggerFx(Vector3 position,Transform targetTransform = null,params object[] args)
         {
             SpellAnimation anim = null;
 
-            if (transform == null)
-                transform = MapData.Instance.transform;
+            if (targetTransform == null)
+                targetTransform = MapData.Instance.transform;
         
-            anim = Instantiate(this,position,Quaternion.identity,transform);
+            anim = Instantiate(this,position,Quaternion.identity,targetTransform);
         
             anim.SetArgs(args);
 
