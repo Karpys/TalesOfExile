@@ -11,15 +11,16 @@ namespace KarpysDev.Script.Spell
     {
         public static bool CanCastSpellAt(TriggerSpellData spellData,Vector2Int targetPosition)
         {
-            bool canCast = true;
-
             for (int i = 0; i < spellData.TriggerData.SpellRestrictions.Count; i++)
             {
                 SpellRestriction spellRestriction = spellData.TriggerData.SpellRestrictions[i];
-                canCast = !IsRestricted(spellRestriction.Type, targetPosition,spellData);
+                if(IsRestricted(spellRestriction.Type, targetPosition,spellData))
+                {
+                    return false;
+                }
             }
 
-            return canCast;
+            return true;
         }
     
         public static void GetSpellTargetOrigin(TriggerSpellData spellData,ref Vector2Int newOrigin)
@@ -66,6 +67,11 @@ namespace KarpysDev.Script.Spell
                     return spellData.AttachedEntity.EntityStats.MeleeLockCount > 0;
                 case SpellRestrictionType.OriginOnEnemy:
                     return !MapData.Instance.GetEntityAt(targetPosition, spellData.AttachedEntity.TargetEntityGroup);
+                case SpellRestrictionType.OriginOnEntityCursed:
+                    BoardEntity entity = MapData.Instance.GetEntityAt(targetPosition, spellData.AttachedEntity.TargetEntityGroup);
+                    if (!entity)
+                        return true;
+                    return !entity.Buffs.IsCursed();
                 case SpellRestrictionType.OriginOnWalkable:
                     return !MapData.Instance.IsWalkable(targetPosition);
                 case SpellRestrictionType.FreeTileAroundEnemyTarget:

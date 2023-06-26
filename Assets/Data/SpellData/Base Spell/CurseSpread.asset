@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: Rush
+  m_Name: CurseSpread
   m_EditorClassIdentifier: 
-  SpellKey: Rush
+  SpellKey: Curse Spread
   SpellType: 0
-  SpellGroups: 
-  BaseDescription: Deal &0.
-  m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: 178043513e6696541b993c61f952b1a5, type: 2}
-  m_BaseCooldown: 10
+  SpellGroups: 01000000
+  BaseDescription: Spread target curses to enemy around
+  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: 5cdbb7c76ef82c54087d601a9697f6b6, type: 2}
+  m_BaseCooldown: 0
   m_Selection:
   - Origin: 0
     Zone:
       DisplayType: 0
-      Range: 6
+      Range: 5
     ValidationType:
       NeedValidation: 0
-      TargetZoneValidation: -1
+      TargetZoneValidation: 0
     ActionSelection: 0
   - Origin: 1
     Zone:
@@ -40,9 +40,9 @@ MonoBehaviour:
   m_MainSelection: 0
   SpellRestrictions:
   - SelectionId: 0
-    Type: 5
+    Type: 4
   - SelectionId: 1
-    Type: 1
+    Type: 6
   AllowedCastZone:
     DisplayType: -1
     Range: 0

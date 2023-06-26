@@ -47,5 +47,12 @@ namespace KarpysDev.Script.Entities.BuffRelated
             }
         
         }
+
+        public override object[] GetArgs()
+        {
+            object[] args = new object[1];
+            args[0] = m_SkeletonCount;
+            return args;
+        }
     }
 }

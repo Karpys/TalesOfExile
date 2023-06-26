@@ -80,6 +80,35 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             return m_Passive.FirstOrDefault(b => b.BuffType == buffType);
         }
+
+        public bool IsCursed()
+        {
+            foreach (Buff buff in m_Buffs)
+            {
+                if (buff.BuffGroup == BuffGroup.Curse)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public BuffType[] GetCurseTypes()
+        {
+            return m_Buffs.Where(b => b.BuffGroup == BuffGroup.Curse).Select(b => b.BuffType).ToArray();
+        }
+
+        public List<BuffState> GetCurseStates()
+        {
+            List<BuffState> curseStates = new List<BuffState>();
+            foreach (Buff buff in m_Buffs)
+            {
+                if(buff.BuffGroup != BuffGroup.Curse)
+                    continue;
+                curseStates.Add(new BuffState(buff.BuffType,buff.Cooldown,buff.BuffValue,buff.GetArgs()));
+            }
+
+            return curseStates;
+        }
     }
 
     [Serializable]
@@ -87,7 +116,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
     {
         Neutral,
         Buff,
-        Debuff
+        Debuff,
+        Curse
     }
 
     [Serializable]
@@ -96,5 +126,21 @@ namespace KarpysDev.Script.Entities.BuffRelated
         Cooldown,
         Toggle,
         Passive,
+    }
+    
+    public struct BuffState
+    {
+        public BuffType BuffType;
+        public int Duration;
+        public float Value;
+        public object[] AdditionalDatas;
+
+        public BuffState(BuffType buffType, int duration, float buffValue, object[] additionalDatas)
+        {
+            BuffType = buffType;
+            Duration = duration;
+            Value = buffValue;
+            AdditionalDatas = additionalDatas;
+        }
     }
 }

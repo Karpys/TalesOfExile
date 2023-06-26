@@ -29,6 +29,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         public BuffCooldown BuffCooldown => m_BuffCooldown;
         public BuffType BuffType => m_BuffType;
+        public BuffGroup BuffGroup => m_BuffGroup;
         public float BuffValue => m_BuffValue;
         public int Cooldown => m_Cooldown;
         public string BuffKey => m_BuffKey;
@@ -161,6 +162,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
             string[] dyValues = new string[1];
             dyValues[0] = m_BuffValue+"";
             return dyValues;
+        }
+
+        public virtual object[] GetArgs()
+        {
+            return null;
         }
     }
 
