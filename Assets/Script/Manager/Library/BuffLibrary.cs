@@ -45,6 +45,7 @@ namespace KarpysDev.Script.Manager.Library
         RegenerationBuff = 1,
         RockThrowBuff = 2,
         FireHandBuff = 3,
+        OnKillFlameBurst = 4,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
         BurnDotDebuff = 102,

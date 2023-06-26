@@ -1,7 +1,7 @@
 AutoAttack
 GrabChain
 RangeAuto
-none
+SkeletonCurse
 none
 none
 none

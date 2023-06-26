@@ -14,10 +14,10 @@ namespace KarpysDev.Script.Utils
             transmitterAction = new Dictionary<StatType, Action<EntityStats, Modifier, float>>()
             {
                 {StatType.PhysicalDamage, (s, m, v) => m.Transmut(ModifierType.UpPhysical, s.PhysicalDamageModifier * v)},
-                //{StatType.ElementalDamage, (s, m, v) => m.Transmut(ModifierType.UpElemental, s.ElementalDamageModifier * v)},
+                {StatType.ElementalDamage, (s, m, v) => m.Transmut(ModifierType.UpElemental, s.ElementalDamageModifier * v)},
                 {StatType.FireDamage, (s, m, v) => m.Transmut(ModifierType.UpFire, s.FireDamageModifier * v)},
                 {StatType.ColdDamage, (s, m, v) => m.Transmut(ModifierType.UpCold, s.ColdDamageModifier * v)},
-                //{StatType.HolyDamage, (s, m, v) => m.Transmut(ModifierType.UpHoly, s.HolyDamageModifier * v)},
+                {StatType.WeaponForce, (s, m, v) => m.Transmut(ModifierType.IncreaseWeaponForce, s.WeaponForce * v)},
             };
         }
     }

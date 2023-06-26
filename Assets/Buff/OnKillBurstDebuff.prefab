@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2248ea9331deb7545865f3810a0c932f, type: 2}
+  - {fileID: 2100000, guid: 21fe3929e8ee17a4b97d6ad044893501, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4813,9 +4813,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340844535513894891}
-  - component: {fileID: 1295540597718710931}
+  - component: {fileID: 4338360265272663631}
   m_Layer: 0
-  m_Name: StunDebuff
+  m_Name: OnKillBurstDebuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4836,7 +4836,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1295540597718710931
+--- !u!114 &4338360265272663631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4845,16 +4845,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7725818344753659411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142f6bd6c5ba4d59a892da30b8e95d4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 509bc1b193fd43d9bf8980352d2653fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_VisualTransform: {fileID: 1818227198784954253}
-  m_BuffType: 103
-  m_BuffGroup: 2
+  m_BuffType: 4
+  m_BuffGroup: 1
   m_BuffCooldown: 0
   m_StackablePassive: 0
   m_BuffInfo:
-    BuffVisual: {fileID: 21300000, guid: d218d3b73ef23ae4ebf5b49caf90bc4b, type: 3}
-    BuffName: Stun
-    BaseBuffDescription: Can't cast talent and move
+    BuffVisual: {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
+    BuffName: Flame burst on kill
+    BaseBuffDescription: Explode enemy on kill dealing &0 fire area damage
   m_EnemyBuffIgnoreFirstCooldown: 0
+  m_SpellInfo:
+    m_SpellData: {fileID: 11400000, guid: f8c5ba15b5fc6874595058b4adda5883, type: 2}
+    m_SpellPriority: 0
+    m_SpellLearnType: 0
+  m_MaxTriggerPerTurn: 250

@@ -19,7 +19,7 @@ namespace KarpysDev.Script.Manager
         
             damageTo.EntityEvent.OnGetDamageFromSpell?.Invoke(triggerSpellData.AttachedEntity,mitigiedDamageSource,triggerSpellData);
             //DamageToOnDamageTaken//
-            Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + mitigiedDamageSource.DamageType + " damage");
+            //Debug.Log("Entity : " + damageTo.gameObject.name + " take :" + damageSource.Damage + " " + mitigiedDamageSource.DamageType + " damage");
 
             if (displayDamage && !BlendDisplayDamage)
             {

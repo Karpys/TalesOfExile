@@ -16,6 +16,7 @@ MonoBehaviour:
   - Type: 3
     StatConvertion: 1
   m_Recompute: 1
+  m_EventTransmit: 00000000
 --- !u!114 &4700584262946876349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,20 +58,10 @@ MonoBehaviour:
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
       IsBowUser: 0
+      RootLockCount: 0
+      SpellLockCount: 0
+      MeleeLockCount: 0
     m_BaseSpellInfos: []
---- !u!114 &7021049853220798022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2877731213849115536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a92425343534d0c8fd26e64811f0749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TurnWaitBehave: 1
 --- !u!114 &6263487688207143041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +75,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BaseTurnCount: 25
+--- !u!114 &7021049853220798022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877731213849115536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a92425343534d0c8fd26e64811f0749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TurnWaitBehave: 1
 --- !u!1 &3400312404597722597
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
                     ,GetEntityIa(),spellData.AttachedEntity.EntityGroup,spellData.AttachedEntity.TargetEntityGroup);
             
                 if(m_UseTransmitter)
-                    entity.GetComponent<StatsTransmitter>().InitTransmitter(spellData.AttachedEntity);
+                    entity.GetComponent<SummonTransmitter>().InitTransmitter(spellData.AttachedEntity);
             }
         }
 

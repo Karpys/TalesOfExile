@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
-    public class StatsTransmitter : MonoBehaviour
+    public class SummonTransmitter : MonoBehaviour
     {
         [SerializeField] private StatTransmit[] m_StatTransmit = null;
+        [SerializeField] private EventTransmit[] m_EventTransmit = null; 
         [SerializeField] private bool m_Recompute = false;
 
         private BoardEntity m_AttachedEntity = null;
@@ -21,7 +22,7 @@ namespace KarpysDev.Script.Entities
 
         private void OnDestroy()
         {
-            m_CopyEntity.EntityEvent.OnSpellRecompute -= ApplyTransmitter;
+            m_CopyEntity.EntityEvent.OnSpellRecompute -= ApplyStatsTransmitter;
         }
 
         public void InitTransmitter(BoardEntity copyEntity)
@@ -34,11 +35,25 @@ namespace KarpysDev.Script.Entities
 
             m_CopyEntity = copyEntity;
 
-            ApplyTransmitter();
-            m_CopyEntity.EntityEvent.OnSpellRecompute += ApplyTransmitter;
+            ApplyEventTransmitter();
+            ApplyStatsTransmitter();
+            m_CopyEntity.EntityEvent.OnSpellRecompute += ApplyStatsTransmitter;
         }
 
-        private void ApplyTransmitter()
+        private void ApplyEventTransmitter()
+        {
+            for (int i = 0; i < m_EventTransmit.Length; i++)
+            {
+                switch (m_EventTransmit[i])
+                {
+                    case EventTransmit.OnKill:
+                        m_AttachedEntity.EntityEvent.OnKill += m_CopyEntity.EntityEvent.OnKill;
+                        break;
+                }
+            }
+        }
+        
+        private void ApplyStatsTransmitter()
         {
             ClearModifier();
 
@@ -89,6 +104,12 @@ namespace KarpysDev.Script.Entities
         [Range(0,1)]
         public float StatConvertion;
     }
+    
+    public enum EventTransmit
+    {
+        OnKill,
+        
+    }
 
     public enum StatType
     {
@@ -103,6 +124,7 @@ namespace KarpysDev.Script.Entities
         MeleeDamage = 21,
         ProjectileDamage = 22,
         SpellDamage = 23,
+        WeaponForce = 24,
         //DamageResistance 31 => 50
     }
 }
