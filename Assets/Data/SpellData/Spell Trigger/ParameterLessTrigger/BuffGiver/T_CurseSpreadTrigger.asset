@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_CurseSpreadTrigger
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: -857462294725842901, guid: f264c4732d367d64487ef9869a015356, type: 3}
+  OnHitAnimation: {fileID: 7104824561962830290, guid: aa7014a175a022849bfbef7b10596ebc, type: 3}
   m_TriggerClassName: CurseSpreadTrigger
   m_AdditionalParameters:
   - Type: 3
