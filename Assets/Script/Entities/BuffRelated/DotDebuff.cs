@@ -27,7 +27,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private float GetDamage()
         {
             float damage = m_BaseDamageSource.Damage * DamageManager.GetDamageModifier(m_MainDamageType,m_SubDamageType, m_Caster.EntityStats); 
-            Debug.Log(damage);
             return damage;
         }
 

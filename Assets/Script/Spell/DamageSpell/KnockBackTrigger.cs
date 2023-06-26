@@ -39,7 +39,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
             for (int i = 0; i < m_RepulseForce; i++)
             {
-                Debug.Log("Entity position :" + entity.EntityPosition);
                 Vector2Int opposite = TileHelper.GetOppositePositionFrom(entity.EntityPosition, spellData.AttachedEntity.EntityPosition);
             
             

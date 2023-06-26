@@ -8,7 +8,6 @@ namespace KarpysDev.Script.Entities.EquipementRelated
     {
         public static void ApplyEquipementStats(EquipementItem equipementItem, BoardEntity entity, bool recomputeStats = true)
         {
-            Debug.Log(equipementItem.Data.ObjectName);
             foreach (Modifier modifier in equipementItem.ItemModifiers)
             {
                 ModifierUtils.ApplyModifier(modifier,entity);

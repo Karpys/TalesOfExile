@@ -21,7 +21,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
         private bool m_DisplayDamage = false;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
         {
-            Debug.Log("Call Base Damage Spell Trigger");
             m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
         }
 

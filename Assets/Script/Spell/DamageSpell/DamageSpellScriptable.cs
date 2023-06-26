@@ -11,7 +11,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
     
         public override BaseSpellTrigger SetUpTrigger()
         {
-            Debug.Log("Return new Damage Spell Trigger");
             return new DamageSpellTrigger(this);
         }
     }

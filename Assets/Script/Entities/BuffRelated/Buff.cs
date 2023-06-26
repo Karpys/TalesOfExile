@@ -146,7 +146,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private void RemovePassive()
         {
-            Debug.Log("Remove Passive");
             m_Receiver.Buffs.RemovePassive(this);
             UnApply();
             Destroy(gameObject);

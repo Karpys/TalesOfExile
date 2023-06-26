@@ -41,8 +41,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private void TriggerSpell(BoardEntity entityKilled)
         {
-            Debug.Log("Trigger");
-            Debug.Log(m_CurrentCount);
             if(m_CurrentCount >= m_MaxTriggerPerTurn)
                 return;
             m_CurrentCount += 1;

@@ -146,7 +146,6 @@ namespace KarpysDev.Script.Entities
                 if(entity == null)
                     return;
             
-                Debug.Log("Auto Attack");
                 //Todo : Spell Restriction Check//
                 SpellCastUtils.CastSpellAt(autoAttack,targetPosition,m_Entity.EntityPosition);
                 m_Interpretor.OnMovementResetSpellQueue();
