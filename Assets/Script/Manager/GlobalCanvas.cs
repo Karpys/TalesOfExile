@@ -1,14 +1,17 @@
 ﻿using KarpysDev.Script.UI.Pointer;
+using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
     public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
     {
+        [SerializeField] private Vector2 m_ScreenSize = Vector2.zero;
         private UIPointer m_CurrentPointer = null;
         private UICanvasType m_CurrentCanvasType = UICanvasType.None;
     
         public UIPointer CurrentPointer => m_CurrentPointer;
         public UICanvasType CanvasType => m_CurrentCanvasType;
+        public Vector2 ScreenSize => m_ScreenSize;
     
         public void SetCanvasPointer(UIPointer pointer, UICanvasType canvasType)
         {
@@ -22,6 +25,18 @@ namespace KarpysDev.Script.Manager
                 return true;
 
             return false;
+        }
+
+        //Todo : Add Pivot type => Left / Middle / Right / Custom ?
+
+        public void ClampX(RectTransform uiTransform)
+        {
+            float uiSize = uiTransform.rect.width;
+            float posX = uiTransform.position.x;
+
+            posX = Mathf.Clamp(posX, uiSize / 2, m_ScreenSize.x - uiSize / 2);
+            Transform trans = uiTransform.transform;
+            trans.position = new Vector3(posX, trans.position.y);
         }
     }
 

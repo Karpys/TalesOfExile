@@ -2351,6 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb819017deb4ae8b7c176d62a14ff78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ScreenSize: {x: 1920, y: 1080}
 --- !u!1 &1081259846
 GameObject:
   m_ObjectHideFlags: 0
