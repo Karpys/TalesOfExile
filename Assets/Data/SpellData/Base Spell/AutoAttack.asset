@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: AutoAttack
   m_EditorClassIdentifier: 
-  SpellKey: AutoAttack
+  SpellName: Weapon Attack
   SpellType: 0
-  SpellGroups: 02000000
+  SpellGroups: 0000000002000000
   BaseDescription: Deal 100% of your weapon force (&0).
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}

@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Manager.Library
         {
             foreach (SpellInfo spellData in m_SpellList)
             {
-                Spells.Add(spellData.m_SpellData.SpellKey,spellData);
+                Spells.Add(spellData.m_SpellData.SpellName,spellData);
             }
         }
 
@@ -24,7 +24,7 @@ namespace KarpysDev.Script.Manager.Library
 
             if (spellData == null)
             {
-                Debug.LogError("Spell Key not found");
+                Debug.LogError("Spell Key not found : " + spellKey);
                 return null;
             }
         

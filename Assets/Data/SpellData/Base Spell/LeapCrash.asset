@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: LeapCrash
   m_EditorClassIdentifier: 
-  SpellKey: LeapCrash
+  SpellName: Leap Crash
   SpellType: 0
-  SpellGroups: 
+  SpellGroups: 0000000002000000
   BaseDescription: Deal &0.
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}

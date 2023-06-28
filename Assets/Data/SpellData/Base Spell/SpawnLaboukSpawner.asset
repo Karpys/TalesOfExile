@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SpawnLaboukSpawner
   m_EditorClassIdentifier: 
-  SpellKey: SpawnLaboukSpawner
+  SpellName: Spawn Labouk Spawner
   SpellType: 0
   SpellGroups: 
+  BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 26c96664bed52402e8a1a04c6a3f2f12, type: 2}

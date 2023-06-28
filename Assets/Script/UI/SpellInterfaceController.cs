@@ -14,6 +14,7 @@ namespace KarpysDev.Script.UI
         [SerializeField] private SpellIcon m_SpellUI = null;
         [SerializeField] private RectTransform m_SpellLayout = null;
         [SerializeField] private SpellInterpretor m_Interpretor = null;
+        [SerializeField] private SpellUIDisplayer m_SpellDisplayer = null;
     
         private SpellIcon[] m_IconsHolder;
 
@@ -21,6 +22,7 @@ namespace KarpysDev.Script.UI
         public SpellInterpretor Interpretor => m_Interpretor;
 
         private SpellIcon m_CurrentPointer = null;
+        private Clock m_DisplaySpellClock = null;
 
         public SpellIcon CurrentPointer => m_CurrentPointer;
         //Spell Data Part//
@@ -46,6 +48,7 @@ namespace KarpysDev.Script.UI
                 if (m_CurrentPointer.PointerUp)
                 {
                     m_CurrentPointer.TryUseSpell();
+                    HideSpell();
                 }
             }
             else if (Input.GetMouseButtonDown(1))
@@ -53,10 +56,13 @@ namespace KarpysDev.Script.UI
                 if (EntityHelper.CanEditSpell(GameManager.Instance.ControlledEntity) && m_CurrentPointer.PointerUp)
                 {
                     m_CanvasSkill.ShowSpellSelection(m_CurrentPointer);
+                    HideSpell();
                 }
             }
+            
+            m_DisplaySpellClock?.UpdateClock();
         }
-
+        
         public void SetSpellIcons(BoardEntity entity)
         {
             TriggerSpellData[] spellsToDisplay = entity.GetDisplaySpells();
@@ -86,13 +92,36 @@ namespace KarpysDev.Script.UI
         public void SetPointer(SpellIcon pointer)
         {
             m_CurrentPointer = pointer;
+
+            m_DisplaySpellClock = new Clock(0.05f, TryDisplaySpell);
         }
+        
+        private void TryDisplaySpell()
+        {
+            if (m_CurrentPointer.PointerUp)
+            {
+                DisplaySpell();
+            }
+        }
+        private void DisplaySpell()
+        {
+            if(m_CurrentPointer.SpellData != null)
+                m_SpellDisplayer.DisplaySpell(m_CurrentPointer.SpellData,m_CurrentPointer.transform);
+        }
+
+        public void HideSpell()
+        {
+            m_SpellDisplayer.HideSpell();
+        }
+
 
         protected override void OnEnter()
         {
             GlobalCanvas.Instance.SetCanvasPointer(this, UICanvasType.SpellIcons);
         }
 
-        protected override void OnExit(){}
+        protected override void OnExit()
+        {
+        }
     }
 }

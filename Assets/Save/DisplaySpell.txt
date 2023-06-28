@@ -1,11 +1,11 @@
-AutoAttack
-GrabChain
-RangeAuto
-SkeletonCurse
-none
-none
-none
-none
+Weapon Attack
+Regeneration Buff
+Grab Chain
+Flame Burst
+Meteor Blast
+Detection Mine
+Lightning Strike
+Skeleton Curse
 none
 none
 none

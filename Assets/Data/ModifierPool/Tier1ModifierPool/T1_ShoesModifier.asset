@@ -49,4 +49,4 @@ MonoBehaviour:
         m_Object:
           m_Type: 51
           m_Range: {x: 5, y: 10}
-          m_Params: LesserLeap
+          m_Params: Lesser Leap

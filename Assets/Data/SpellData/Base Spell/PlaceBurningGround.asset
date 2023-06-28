@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: PlaceBurningGround
   m_EditorClassIdentifier: 
-  SpellKey: CreateBurningGround
+  SpellName: Place Burning Ground
   SpellType: 0
-  SpellGroups: 
+  SpellGroups: 150000001600000018000000
   BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}

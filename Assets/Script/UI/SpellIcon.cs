@@ -127,7 +127,7 @@ namespace KarpysDev.Script.UI
 
         protected override void OnExit()
         {
-            return;
+            m_InterfaceController.HideSpell();
         }
     }
 }

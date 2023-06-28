@@ -355,7 +355,7 @@ namespace KarpysDev.Script.Entities
 
         public virtual TriggerSpellData AddSpellToSpellList(SpellInfo spell)
         {
-            Debug.Log("Add spell : "  + spell.m_SpellData.SpellKey);
+            Debug.Log("Add spell : "  + spell.m_SpellData.SpellName);
             TriggerSpellData spellAdded = RegisterSpell(spell);
             m_Spells.Add(spellAdded);
             return spellAdded;
@@ -370,7 +370,7 @@ namespace KarpysDev.Script.Entities
         {
             foreach (TriggerSpellData spellInfo in Spells)
             {
-                if (spellInfo.Data.SpellKey == spellKey)
+                if (spellInfo.Data.SpellName == spellKey)
                     return spellInfo;
             }
             return null;
@@ -380,7 +380,7 @@ namespace KarpysDev.Script.Entities
         {
             foreach (TriggerSpellData spellInfo in UsableSpells)
             {
-                if (spellInfo.Data.SpellKey == spellKey)
+                if (spellInfo.Data.SpellName == spellKey)
                     return spellInfo;
             }
             return null;

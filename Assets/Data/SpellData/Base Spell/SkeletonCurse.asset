@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SkeletonCurse
   m_EditorClassIdentifier: 
-  SpellKey: SkeletonCurse
+  SpellName: Skeleton Curse
   SpellType: 0
-  SpellGroups: 
+  SpellGroups: 1500000067000000
   BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}

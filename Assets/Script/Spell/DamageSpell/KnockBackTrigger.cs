@@ -22,7 +22,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
             m_EntityHits.Clear();
-            m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("RangeAuto");
+            m_RangeAutoTrigger = spellData.AttachedEntity.GetSpellViaKey("Range Attack");
             base.Trigger(spellData, spellTiles,castInfo,efficiency);
         }
 

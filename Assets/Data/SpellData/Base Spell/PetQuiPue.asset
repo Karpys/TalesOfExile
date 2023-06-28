@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: PetQuiPue
   m_EditorClassIdentifier: 
-  SpellKey: 
+  SpellName: Pet Qui Pue
   SpellType: 0
   SpellGroups: 
   BaseDescription: Deal &0.

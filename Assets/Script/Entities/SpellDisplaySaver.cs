@@ -37,7 +37,7 @@ namespace KarpysDev.Script.Entities
                 for (int y = 0; y < currentDisplaySave.Count; y++)
                 {
                     TriggerSpellData spellData = currentDisplaySave[y];
-                    if (spellData.TriggerData.SpellKey == spellKeys[i])
+                    if (spellData.TriggerData.SpellName == spellKeys[i])
                     {
                         triggerSpellDatas[i] = spellData;
                         currentDisplaySave.Remove(currentDisplaySave[y]);
@@ -61,7 +61,7 @@ namespace KarpysDev.Script.Entities
                 }
                 else
                 {
-                    spellDisplaySave[i] = triggerSpellDatas[i].TriggerData.SpellKey;
+                    spellDisplaySave[i] = triggerSpellDatas[i].TriggerData.SpellName;
                 }
             }
             return spellDisplaySave;

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: BurningGroundEffect
   m_EditorClassIdentifier: 
-  SpellKey: BurningGroundEffect
+  SpellName: Burning Ground Effect
   SpellType: 0
-  SpellGroups: 
+  SpellGroups: 1800000016000000
   BaseDescription: 
   m_SpellIconBorder: {fileID: 0}
   m_SpellIcon: {fileID: 0}
-  m_SpellTrigger: {fileID: 11400000, guid: 45849df95a585a34e8cade5dad9ee16d, type: 2}
+  m_SpellTrigger: {fileID: 0}
   m_BaseCooldown: 10
   m_Selection:
   - Origin: 0

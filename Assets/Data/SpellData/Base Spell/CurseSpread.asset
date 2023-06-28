@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: CurseSpread
   m_EditorClassIdentifier: 
-  SpellKey: Curse Spread
+  SpellName: Curse Spreader
   SpellType: 0
-  SpellGroups: 01000000
+  SpellGroups: 6700000015000000
   BaseDescription: Spread target curses to enemy around
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 8049d4d10e29f8b4483ad9e21727723f, type: 3}

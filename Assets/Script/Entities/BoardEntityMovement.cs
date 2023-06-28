@@ -136,7 +136,7 @@ namespace KarpysDev.Script.Entities
             }
             else
             {
-                TriggerSpellData autoAttack = m_Entity.GetUsableViaKey("AutoAttack");
+                TriggerSpellData autoAttack = m_Entity.GetUsableViaKey("Weapon Attack");
             
                 if(autoAttack == null)
                     return;

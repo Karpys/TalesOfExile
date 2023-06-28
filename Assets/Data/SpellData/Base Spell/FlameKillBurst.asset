@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: FlameKillBurst
   m_EditorClassIdentifier: 
-  SpellKey: FlameKillBurst
+  SpellName: Flame Kill Burst
   SpellType: 0
-  SpellGroups: 0100000003000000
+  SpellGroups: 180000001600000015000000
   BaseDescription: Entity burst on death dealing &0 damage
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
