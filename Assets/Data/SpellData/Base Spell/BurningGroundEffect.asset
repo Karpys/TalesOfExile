@@ -18,7 +18,7 @@ MonoBehaviour:
   BaseDescription: 
   m_SpellIconBorder: {fileID: 0}
   m_SpellIcon: {fileID: 0}
-  m_SpellTrigger: {fileID: 0}
+  m_SpellTrigger: {fileID: 11400000, guid: 0561890b3239dcf409edb514c14ff612, type: 2}
   m_BaseCooldown: 10
   m_Selection:
   - Origin: 0

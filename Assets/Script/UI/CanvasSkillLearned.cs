@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Spell;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,9 @@ namespace KarpysDev.Script.UI
         [SerializeField] private SpellLearnedUIHolder m_SpellUIHolderPrefab = null;
         [SerializeField] private Transform[] m_DisableIfNoEquipementSpells = null;
         [SerializeField] private UISelectionFade m_SpellItemFade = null;
+
+        [Header("Spell Description Display")] 
+        [SerializeField] private SpellUIDisplayer m_SpellDisplayer = null;
         
         private PlayerBoardEntity m_Player = null;
 
@@ -26,6 +30,7 @@ namespace KarpysDev.Script.UI
         private bool m_IsActive = false;
 
 
+        private Clock m_DisplaySpellClock = null; 
         public void Initialize(PlayerBoardEntity player)
         {
             m_Player = player;
@@ -35,6 +40,25 @@ namespace KarpysDev.Script.UI
         public void SetCurrentHolder(SpellUIHolder holder)
         {
             m_CurrentHolder = holder;
+            m_DisplaySpellClock = new Clock(0.05f, TryDisplaySpell);
+        }
+
+        private void TryDisplaySpell()
+        {
+            if (m_CurrentHolder.PointerUp)
+            {
+                DisplaySpell();
+            }
+        }
+
+        private void DisplaySpell()
+        {
+            m_SpellDisplayer.DisplaySpell(m_CurrentHolder.TriggerSpellData,m_CurrentHolder.transform);
+        }
+
+        public void HideDisplaySpell()
+        {
+            m_SpellDisplayer.HideSpell();
         }
         
         private void Update()
@@ -77,6 +101,8 @@ namespace KarpysDev.Script.UI
                 m_SpellItemFade.Clear();
                 m_SelectedSpell = null;
             }
+
+            m_DisplaySpellClock?.UpdateClock();
         }
 
         private void TryInsertSpell(TriggerSpellData triggerSpellData,int id)

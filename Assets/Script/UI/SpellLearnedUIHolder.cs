@@ -14,5 +14,11 @@
             base.OnEnter();
             m_Controller.SetCurrentHolder(this);
         }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+            m_Controller.HideDisplaySpell();
+        }
     }
 }

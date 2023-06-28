@@ -1743,7 +1743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: c1b1aed50719bf8448ce542f5191a6d6, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: c1b1aed50719bf8448ce542f5191a6d6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2188,9 +2188,9 @@ RectTransform:
   - {fileID: 52797354}
   - {fileID: 1476022915}
   - {fileID: 155981258}
+  - {fileID: 2093773607093934748}
   - {fileID: 1130608335}
   - {fileID: 875753298}
-  - {fileID: 2093773607093934748}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3335,7 +3335,7 @@ RectTransform:
   m_Children:
   - {fileID: 438383948}
   m_Father: {fileID: 1072997886}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3381,6 +3381,7 @@ MonoBehaviour:
   - {fileID: 953820683}
   - {fileID: 604204847}
   m_SpellItemFade: {fileID: 5945283051051054607}
+  m_SpellDisplayer: {fileID: 875753299}
 --- !u!222 &2179724875105788116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3424,7 +3425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: a9b4748b958300844b6ae465b0463a94, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: a9b4748b958300844b6ae465b0463a94, type: 3}
       propertyPath: m_AnchorMax.x

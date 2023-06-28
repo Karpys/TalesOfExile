@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using TMPro;
 using UnityEngine;
@@ -50,6 +51,7 @@ namespace KarpysDev.Script.UI
             
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_LayoutTransform);
             AdaptSize();
+            GlobalCanvas.Instance.ClampX((RectTransform)transform);
         }
 
         public void HideSpell()
