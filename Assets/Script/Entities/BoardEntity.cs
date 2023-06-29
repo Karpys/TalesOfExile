@@ -320,6 +320,7 @@ namespace KarpysDev.Script.Entities
     
         protected virtual void RemoveFromBoard()
         {
+            m_TargetMap.Map.EntitiesTile[m_XPosition,m_YPosition] = null;
             m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
         }
         protected virtual void Movement()
