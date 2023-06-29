@@ -15,7 +15,7 @@ MonoBehaviour:
   SpellName: Flame Burst Buff
   SpellType: 2
   SpellGroups: 650000001800000016000000
-  BaseDescription: On kill burst entity dealing &0 fire area damage
+  BaseDescription: On kill burst entity deal FIRE&0 Fire area damageENDCOLOR
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: eeb2852edfc84a541bd52e22c474f47d, type: 2}

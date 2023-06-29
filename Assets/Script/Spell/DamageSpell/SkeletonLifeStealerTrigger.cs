@@ -6,8 +6,8 @@ namespace KarpysDev.Script.Spell.DamageSpell
     public class SkeletonLifeStealerTrigger : ProjectileDamageTrigger
     {
         private float m_PercentDamageHealed = 0;
-        public SkeletonLifeStealerTrigger(DamageSpellScriptable damageSpellData, float ratioDamageHealed) : base(
-            damageSpellData)
+        public SkeletonLifeStealerTrigger(DamageSpellScriptable damageSpellData, OriginType originType,float ratioDamageHealed) : base(
+            damageSpellData,originType)
         {
             m_PercentDamageHealed = ratioDamageHealed;
         }

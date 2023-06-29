@@ -10,24 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_IceSplitTrigger
+  m_Name: T_IceBlast
   m_EditorClassIdentifier: 
-  OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 1315964064108705742, guid: c6b5f2f309a3f4044b6e6da9aa2ab3e7, type: 3}
+  OnTileHitAnimation: {fileID: 4454528519068613723, guid: 70fcc7a15ed234d4ab8653da2d48794f, type: 3}
+  OnHitAnimation: {fileID: 0}
   BaseDamageParameters:
     DamageType:
       MainDamageType: 2
       SubDamageTypes: 0300000001000000
     InitialSourceDamage:
-      Damage: 30
+      Damage: 45
       DamageType: 3
-  m_TriggerClassName: IceShardSplitTrigger
+  m_TriggerClassName: ProjectileDamageTrigger
   m_AdditionalParameters:
   - Type: 3
-    Value: OriginType CasterPosition
-  - Type: 3
-    Value: KarpysDev.Script.Spell.ZoneType Circle
-  - Type: 0
-    Value: 6
-  - Type: 0
-    Value: 3
+    Value: OriginType FirstActionSelection

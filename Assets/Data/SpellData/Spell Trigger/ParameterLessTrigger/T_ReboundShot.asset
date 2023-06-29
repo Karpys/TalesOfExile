@@ -23,6 +23,8 @@ MonoBehaviour:
       DamageType: 0
   m_TriggerClassName: ReboundArrow
   m_AdditionalParameters:
+  - Type: 3
+    Value: OriginType CasterPosition
   - Type: 1
     Value: 100
   - Type: 3

@@ -12,8 +12,8 @@ namespace KarpysDev.Script.Spell.DamageSpell
         private Zone m_ZoneStrike = null;
         private int m_Rebound = 0;
 
-        public ReboundArrow(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion, ZoneType zoneType,
-            int zoneRange,int rebound) : base(damageSpellData, baseWeaponDamageConvertion)
+        public ReboundArrow(DamageSpellScriptable damageSpellData,OriginType originType, float baseWeaponDamageConvertion, ZoneType zoneType,
+            int zoneRange,int rebound) : base(damageSpellData, originType,baseWeaponDamageConvertion)
         {
             m_ZoneStrike = new Zone(zoneType, zoneRange);
             m_Rebound = rebound;

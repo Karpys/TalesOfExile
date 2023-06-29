@@ -1,6 +1,7 @@
 ﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Spell.DamageSpell;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager
@@ -105,7 +106,8 @@ namespace KarpysDev.Script.Manager
         public static string ToDescription(this DamageSource damageSource)
         {
             //Todo: Add Damage color//
-            return Mathf.Floor(damageSource.Damage) + " " + damageSource.DamageType + " damage";
+            string colorCode = damageSource.DamageType.ToColorString();
+            return colorCode + Mathf.Floor(damageSource.Damage) + " " + damageSource.DamageType + " damage" + "</color>";
         }
     }
 }

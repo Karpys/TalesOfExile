@@ -10,38 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
-  m_Name: SkeletonCurse
+  m_Name: IceBlast
   m_EditorClassIdentifier: 
-  SpellName: Skeleton Curse
+  SpellName: Ice Blast
   SpellType: 0
-  SpellGroups: 1500000067000000
-  BaseDescription: Curse an entity, if the entity dies spawn a skeleton at your side
+  SpellGroups: 15000000160000001900000033000000
+  BaseDescription: Launch a burst of icy shard dealing &0 damage
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: 3460c83ccb671454ebd062cb429a9b47, type: 2}
-  m_BaseCooldown: 8
+  m_SpellIcon: {fileID: 21300000, guid: 2f2d9f3d4762b65448eb4d075fd46730, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: a90367c607e2cb14989447ba2eac28e8, type: 2}
+  m_BaseCooldown: 5
   m_Selection:
   - Origin: 0
     Zone:
       DisplayType: 0
-      Range: 5
+      Range: 6
     ValidationType:
       NeedValidation: 0
       TargetZoneValidation: 0
     ActionSelection: 0
   - Origin: 1
     Zone:
-      DisplayType: 1
-      Range: 1
+      DisplayType: 0
+      Range: 3
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 1
-    Type: 3
+  SpellRestrictions: []
   AllowedCastZone:
-    DisplayType: 0
-    Range: 5
+    DisplayType: -1
+    Range: 0
   OriginSelection: 0

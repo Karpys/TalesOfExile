@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     {
         private Zone m_ZoneStrike = null;
         private int m_SplitCount = 0;
-        public IceShardSplitTrigger(DamageSpellScriptable damageSpellData,ZoneType zoneType,int range,int splitCount) : base(damageSpellData)
+        public IceShardSplitTrigger(DamageSpellScriptable damageSpellData,OriginType originType,ZoneType zoneType,int range,int splitCount) : base(damageSpellData,originType)
         {
             m_ZoneStrike = new Zone(zoneType, range);
             m_SplitCount = splitCount;

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using KarpysDev.Script.Manager;
+using KarpysDev.Script.Spell;
+using KarpysDev.Script.Spell.DamageSpell;
+using UnityEngine;
 
 namespace KarpysDev.Script.Utils
 {
@@ -79,11 +83,39 @@ namespace KarpysDev.Script.Utils
                 baseDescription = baseDescription.Replace("&" + i, dynamicValues[i]);
             }
 
+            baseDescription = ReplaceColorTag(baseDescription);
+
             if (baseDescription == "")
             {
                 baseDescription = "Description not implemented";
             }
 
+            return baseDescription;
+        }
+
+        public static string ToColorString(this SubDamageType subDamageType)
+        {
+            return "<color=#" + ColorLibraryManager.Instance.GetDamageColor(subDamageType).ToColorString() + ">";
+        }
+
+        public static string ToColorString(this Color color)
+        {
+            return ColorUtility.ToHtmlStringRGB(color);
+        }
+
+        public static string ToColorTag(this string colorTag)
+        {
+            return "<color=#" + colorTag + ">";
+        }
+
+        //Todo : Find better way to acheive that
+        private static string ReplaceColorTag(string baseDescription)
+        {
+            baseDescription = baseDescription.Replace("FIRE", ToColorString(SubDamageType.Fire));
+            baseDescription = baseDescription.Replace("COLD", ToColorString(SubDamageType.Cold));
+            baseDescription = baseDescription.Replace("PHYSICAL", ToColorString(SubDamageType.Physical));
+            baseDescription = baseDescription.Replace("LIGHTNING", ToColorString(SubDamageType.Lightning));
+            baseDescription = baseDescription.Replace("ENDCOLOR","</color>");
             return baseDescription;
         }
     }

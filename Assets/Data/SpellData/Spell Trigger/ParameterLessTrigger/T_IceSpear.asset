@@ -23,5 +23,7 @@ MonoBehaviour:
       DamageType: 3
   m_TriggerClassName: IceSpearTrigger
   m_AdditionalParameters:
+  - Type: 3
+    Value: OriginType CasterPosition
   - Type: 1
     Value: 0,2

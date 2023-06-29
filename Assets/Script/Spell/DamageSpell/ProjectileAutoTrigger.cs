@@ -5,9 +5,14 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     public class ProjectileAutoTrigger : WeaponDamageTrigger
     {
+        protected OriginType m_OriginType = OriginType.CasterPosition;
         protected Vector3 m_OriginPosition = Vector3.zero;
-        public ProjectileAutoTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
-        {}
+
+        public ProjectileAutoTrigger(DamageSpellScriptable damageSpellData, OriginType originType,
+            float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        {
+            m_OriginType = originType;
+        }
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {

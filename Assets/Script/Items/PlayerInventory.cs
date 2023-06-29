@@ -68,8 +68,8 @@ namespace KarpysDev.Script.Items
 
         private void PrintItemPickUp(Item item)
         {
-            string colorCode = ColorUtility.ToHtmlStringRGB(RarityLibrary.Instance.GetParametersViaKey(item.Rarity).RarityColor);
-            Debug.Log("<color=#"+ colorCode+">" + item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
+            string colorCode = RarityLibrary.Instance.GetParametersViaKey(item.Rarity).RarityColor.ToColorString();
+            Debug.Log(colorCode.ToColorTag()+ item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
         }
 
         public void SwapItem(int id1, int id2)

@@ -6,7 +6,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     public class IceSpearTrigger : ProjectileDamageTrigger
     {
         private float m_AdditionalEfficiency = 0;
-        public IceSpearTrigger(DamageSpellScriptable damageSpellData,float effiencyAdditionalOnFirstHit) : base(damageSpellData)
+        public IceSpearTrigger(DamageSpellScriptable damageSpellData,OriginType originType,float effiencyAdditionalOnFirstHit) : base(damageSpellData,originType)
         {
             m_AdditionalEfficiency = effiencyAdditionalOnFirstHit;
         }

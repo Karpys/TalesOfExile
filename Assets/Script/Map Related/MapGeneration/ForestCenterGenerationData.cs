@@ -30,9 +30,9 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
         private void TryGenerateTree(int x, int y)
         {
-            if(x == 0)
+            if(x == m_SpawnPosition.x && y == m_SpawnPosition.y)
                 return;
-        
+            
             float random = Random.Range(0, 100f);
 
             if (random < m_TreeChance)
