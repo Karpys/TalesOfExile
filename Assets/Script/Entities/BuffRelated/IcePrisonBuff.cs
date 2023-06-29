@@ -8,8 +8,14 @@ namespace KarpysDev.Script.Entities.BuffRelated
     {
         protected override void Apply()
         {
+            GameManager.Instance.A_OnPreEndTurn += ApplyRegeneration;
             m_Receiver.EntityStats.AddStunLock(1);
             m_Receiver.EntityEvent.OnGetDamageFromSpell += ImmunePhysicalDamage;
+        }
+        
+        private void ApplyRegeneration()
+        {
+            DamageManager.HealTarget(m_Receiver, m_BuffValue,true);
         }
 
         private void ImmunePhysicalDamage(BoardEntity entity, DamageSource mitigiedDamageSource, TriggerSpellData spellData)
@@ -22,9 +28,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         protected override void UnApply()
         {
-            DamageManager.HealTarget(m_Receiver, m_BuffValue, true);
             m_Receiver.EntityStats.AddStunLock(-1);
             m_Receiver.EntityEvent.OnGetDamageFromSpell -= ImmunePhysicalDamage;
+            GameManager.Instance.A_OnPreEndTurn -= ApplyRegeneration;
         }
     }
 }

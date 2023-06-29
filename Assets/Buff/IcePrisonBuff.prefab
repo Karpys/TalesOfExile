@@ -4857,5 +4857,5 @@ MonoBehaviour:
     BuffVisual: {fileID: 21300000, guid: 974855fcbab60dd468eaa02643186d43, type: 3}
     BuffName: Ice Prison
     BaseBuffDescription: Immune to all physical damage. Target is stunned. Heal target
-      &0 at the end.
+      &0 Hp each turn.
   m_EnemyBuffIgnoreFirstCooldown: 1

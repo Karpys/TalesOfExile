@@ -16,7 +16,7 @@ MonoBehaviour:
   SpellType: 2
   SpellGroups: 6600000019000000
   BaseDescription: Immune target from all physical damage, however target cant act
-    during the effect. Heal target at the end of the effect.
+    during the effect. Heal target each turn during the effect.
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 974855fcbab60dd468eaa02643186d43, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 2941b837966e48b47ac28ed822df86fe, type: 2}
