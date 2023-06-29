@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
+  m_Name: IcePrisonBuff
+  m_EditorClassIdentifier: 
+  SpellName: Ice Prison Buff
+  SpellType: 2
+  SpellGroups: 6600000019000000
+  BaseDescription: Immune target from all physical damage, however target cant act
+    during the effect. Heal target at the end of the effect.
+  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 974855fcbab60dd468eaa02643186d43, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: 2941b837966e48b47ac28ed822df86fe, type: 2}
+  m_BaseCooldown: 12
+  m_Selection:
+  - Origin: 0
+    Zone:
+      DisplayType: 1
+      Range: 1
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: 0
+    ActionSelection: 1
+  m_MainSelection: 0
+  SpellRestrictions: []
+  AllowedCastZone:
+    DisplayType: 1
+    Range: 6
+  OriginSelection: 0

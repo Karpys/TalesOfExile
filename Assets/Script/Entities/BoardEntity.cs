@@ -167,6 +167,13 @@ namespace KarpysDev.Script.Entities
 
             return (modifier + 100) / 100;
         }
+
+        public void AddStunLock(int stunLockState)
+        {
+            RootLockCount += stunLockState;
+            MeleeLockCount += stunLockState;
+            SpellLockCount += stunLockState;
+        }
     }
 
     public enum EntityGroup

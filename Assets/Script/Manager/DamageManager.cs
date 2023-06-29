@@ -32,7 +32,7 @@ namespace KarpysDev.Script.Manager
         public static float HealTarget(BoardEntity entity, float healValue,bool displayText,float delay = 0)
         {
             //Todo : Add HealModifier ?
-            entity.Life.ChangeLifeValue(healValue);
+            entity.HealTarget(healValue);
             if (!displayText) return healValue;
             
             FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,"+" + healValue.ToString("0"),ColorLibraryManager.Instance.GetHealColor(),delay);
