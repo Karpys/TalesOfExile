@@ -26,4 +26,4 @@ MonoBehaviour:
   - Type: 3
     Value: OriginType CasterPosition
   - Type: 1
-    Value: 0,2
+    Value: 0.5

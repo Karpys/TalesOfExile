@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
@@ -16,7 +17,7 @@ namespace KarpysDev.Script.Utils.Editor
                     field.Value = EditorGUILayout.IntField(field.Value.ToInt()).ToString();
                     break;
                 case FieldType.Float:
-                    field.Value = EditorGUILayout.FloatField(field.Value.ToFloat()).ToString();
+                    field.Value = EditorGUILayout.FloatField(field.Value.ToFloat()).ToString(CultureInfo.InvariantCulture);
                     break;
                 case FieldType.String:
                     field.Value = EditorGUILayout.TextField(field.Value);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using KarpysDev.Script.Manager;
@@ -73,7 +74,7 @@ namespace KarpysDev.Script.Utils
 
         public static float ToFloat(this string value)
         {
-            return float.Parse(value);
+            return float.Parse(value,CultureInfo.InvariantCulture);
         }
 
         public static string GetDescription(string baseDescription,string[] dynamicValues)
