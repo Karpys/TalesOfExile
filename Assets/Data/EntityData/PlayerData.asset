@@ -75,3 +75,15 @@ MonoBehaviour:
     - m_SpellData: {fileID: 11400000, guid: ca858707b9b59564ea61fb603231be44, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: b6b6a98ece087e74099bf21d9c2658a4, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: 9e8b419359b6c914da48970a7261ae61, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: 298ad5e28d37f4748ac6c1d2109e8323, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: adbe993e0101ea642a6c6f77ae417925, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0

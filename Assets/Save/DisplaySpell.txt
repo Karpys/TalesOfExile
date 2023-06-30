@@ -1,18 +1,18 @@
 Weapon Attack
 Regeneration Buff
-Grab Chain
+Range Attack
 Flame Burst
 Meteor Blast
 Detection Mine
 Lightning Strike
 Skeleton Curse
+Curse Spreader
+Ice Blast
+Grab Chain
+Rock Slam
+Life Stealer
+Ice Spear
+Ice Split
 none
 none
-none
-none
-none
-none
-none
-none
-none
-none
+Flame Burst Buff

@@ -15,7 +15,7 @@ MonoBehaviour:
   SpellName: Grab Chain
   SpellType: 0
   SpellGroups: 0200000068000000
-  BaseDescription: Grab an entity close to you
+  BaseDescription: Grab an entity
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 974b7e0184b5b174f84298ec10a57437, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: fcba80bf292486c41a1404192f58520f, type: 2}

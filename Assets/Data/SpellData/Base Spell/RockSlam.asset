@@ -24,7 +24,7 @@ MonoBehaviour:
   - Origin: 1
     Zone:
       DisplayType: 6
-      Range: 4
+      Range: 5
     ValidationType:
       NeedValidation: 1
       TargetZoneValidation: -1
