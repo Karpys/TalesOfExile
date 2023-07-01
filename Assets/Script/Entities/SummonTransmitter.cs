@@ -75,7 +75,7 @@ namespace KarpysDev.Script.Entities
                     Debug.LogError("Transmit type has not been set up : " + transmit.Type);
                 }
 
-                Debug.Log(" mod type" + modToApply.Type + "value" + modToApply.Value);
+                Debug.Log(" mod type " + modToApply.Type + " value " + modToApply.Value);
                 ModifierUtils.ApplyModifier(modToApply, m_AttachedEntity);
                 m_StatModifier[i] = modToApply;
             }

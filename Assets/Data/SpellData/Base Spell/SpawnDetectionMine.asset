@@ -16,8 +16,8 @@ MonoBehaviour:
   SpellType: 0
   SpellGroups: 1500000018000000
   BaseDescription: 
-  m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
+  m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: a97d86e35b1d4b244bbf998f51663011, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 8d31785fcff65ff4790366a17b456040, type: 2}
   m_BaseCooldown: 8
   m_Selection:

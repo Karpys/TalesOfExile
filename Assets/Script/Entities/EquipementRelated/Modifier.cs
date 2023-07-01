@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using KarpysDev.Script.Utils;
 
 namespace KarpysDev.Script.Entities.EquipementRelated
@@ -19,7 +20,7 @@ namespace KarpysDev.Script.Entities.EquipementRelated
         public void Transmut(ModifierType type, float value)
         {
             Type = type;
-            Value = value.ToString();
+            Value = value.ToString(CultureInfo.InvariantCulture);
         }
 
         public Modifier(string saveData)

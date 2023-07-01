@@ -1,15 +1,15 @@
-KarpysDev.Script.Items.EquipementItem 7 2 False 18|19-0|13
-KarpysDev.Script.Items.EquipementItem 7 1 False 0|9
-KarpysDev.Script.Items.EquipementItem 6 3 False 4|6-0|8-1|10
-KarpysDev.Script.Items.EquipementItem 3 2 False 25|6-22|6
-KarpysDev.Script.Items.EquipementItem 7 3 False 1|11-18|11-2|15
-KarpysDev.Script.Items.EquipementItem 7 2 False 18|19-0|13
-KarpysDev.Script.Items.EquipementItem 7 2 False 4|14-2|15
-KarpysDev.Script.Items.EquipementItem 6 0 False null
-KarpysDev.Script.Items.EquipementItem 7 1 False 0|9
 KarpysDev.Script.Items.EquipementItem 7 3 False 18|19-4|8-2|13
-KarpysDev.Script.Items.EquipementItem 8 4 False 0|8-3|5-4|7-1|8-19|10
-KarpysDev.Script.Items.EquipementItem 8 1 False 19|14
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
 none
 none
 none
@@ -51,8 +51,8 @@ none
 KarpysDev.Script.Items.EquipementItem 3 3 True 23|8-25|8-26|9
 none
 none
-KarpysDev.Script.Items.EquipementItem 7 3 True 18|19-4|8-2|13
-none
+KarpysDev.Script.Items.EquipementItem 8 4 True 0|8-3|5-4|7-1|8-19|10
+KarpysDev.Script.Items.EquipementItem 8 1 True 19|14
 none
 KarpysDev.Script.Items.EquipementItem 4 3 True 2|8-21|22-1|10
 none

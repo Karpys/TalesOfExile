@@ -15,8 +15,8 @@ MonoBehaviour:
   m_StatTransmit:
   - Type: 3
     StatConvertion: 1
-  m_Recompute: 1
   m_EventTransmit: 00000000
+  m_Recompute: 1
 --- !u!114 &4700584262946876349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 455326569
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f80f0e66960381047804130ce0027878, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
