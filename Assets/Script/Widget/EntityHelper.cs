@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Entities;
+using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
+using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Map_Related.MapGeneration;
 using KarpysDev.Script.Utils;
@@ -67,6 +69,13 @@ namespace KarpysDev.Script.Widget
             {
                 return false;
             }
+        }
+
+        public static Buff GiveBuff(this BoardEntity receiver,BuffType buffType,int buffDuration, float buffValue,BoardEntity caster,object[] args = null)
+        {
+            Buff buff = BuffLibrary.Instance.AddBuffToViaKey(buffType, receiver); 
+            buff.InitializeAsBuff(caster, receiver, buffDuration, buffValue, args);
+            return buff;
         }
     }
 }

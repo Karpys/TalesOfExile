@@ -1,6 +1,7 @@
 ﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.ParameterLessSpell
@@ -57,13 +58,12 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         {
             if (m_BuffCooldown == BuffCooldown.Toggle)
             {
-                m_CurrentToggleBuff = BuffLibrary.Instance.AddBuffToViaKey(m_BuffType, receiver);
+                m_CurrentToggleBuff = receiver.GiveBuff(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
                 m_CurrentToggleBuff.SetBuffCooldown(BuffCooldown.Toggle);
-                m_CurrentToggleBuff.InitializeAsBuff(caster, receiver, m_BuffDuration, m_BuffValue, args);
             }
             else
             {
-                BuffLibrary.Instance.AddBuffToViaKey(m_BuffType, receiver).InitializeAsBuff(caster, receiver, m_BuffDuration, m_BuffValue, args);
+                receiver.GiveBuff(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
             }
         }
 

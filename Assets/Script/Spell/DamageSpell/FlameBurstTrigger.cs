@@ -1,5 +1,6 @@
 ﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
@@ -19,7 +20,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, Vector2Int origin, CastInfo castInfo)
         {
             base.EntityHit(entity, spellData, origin, castInfo);
-            BuffLibrary.Instance.AddBuffToViaKey(BuffType.BurnDotDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,m_BurnDuration,m_BurnValue);
+            entity.GiveBuff(BuffType.BurnDotDebuff, m_BurnDuration, m_BurnValue, m_AttachedSpell.AttachedEntity);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     public class KnockBackTrigger : DamageSpellTrigger
     {
-        private List<BoardEntity> m_EntityHits = new List<BoardEntity>();
         private int m_RepulseForce = 2;
 
         private TriggerSpellData m_RangeAutoTrigger = null;
@@ -19,6 +18,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             m_RepulseForce = repulseForce;
         }
 
+        private List<BoardEntity> m_EntityHits = new List<BoardEntity>();
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
             m_EntityHits.Clear();
@@ -31,7 +31,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
         {
             if (m_EntityHits.Contains(entity))
             {
-                UpdateEntityPosition(entity);   
                 return;
             }
         

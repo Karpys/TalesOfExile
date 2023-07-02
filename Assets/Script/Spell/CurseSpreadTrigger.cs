@@ -4,6 +4,7 @@ using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Utils;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell
@@ -34,7 +35,7 @@ namespace KarpysDev.Script.Spell
             {
                 foreach (BuffState buffState in m_Curses)
                 {
-                    BuffLibrary.Instance.AddBuffToViaKey(buffState.BuffType, entityHit).InitializeAsBuff(spellData.AttachedEntity, entityHit, buffState.Duration, buffState.Value, buffState.AdditionalDatas);
+                    entity.GiveBuff(buffState.BuffType, buffState.Duration, buffState.Value, spellData.AttachedEntity, buffState.AdditionalDatas);
                 }
                 
                 base.EntityHit(entityHit,spellData,spellOrigin,castInfo);

@@ -39,7 +39,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
             
             base.EntityHit(entity, spellData, origin, castInfo);
-            BuffLibrary.Instance.AddBuffToViaKey(BuffType.StunDebuff, entity).InitializeAsBuff(m_AttachedSpell.AttachedEntity,entity,m_StunDuration,1);
+            entity.GiveBuff(BuffType.StunDebuff, m_StunDuration, 1, m_AttachedSpell.AttachedEntity);
         }
 
         private Transform m_EntityHit = null;

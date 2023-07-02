@@ -12,7 +12,7 @@ Grab Chain
 Rock Slam
 Life Stealer
 Ice Spear
-none
+Monk Palm
 none
 none
 none
