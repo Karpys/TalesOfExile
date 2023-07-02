@@ -35,7 +35,7 @@ namespace KarpysDev.Script.Spell
             {
                 foreach (BuffState buffState in m_Curses)
                 {
-                    entity.GiveBuff(buffState.BuffType, buffState.Duration, buffState.Value, spellData.AttachedEntity, buffState.AdditionalDatas);
+                    entityHit.GiveBuff(buffState.BuffType, buffState.Duration, buffState.Value, spellData.AttachedEntity, buffState.AdditionalDatas);
                 }
                 
                 base.EntityHit(entityHit,spellData,spellOrigin,castInfo);
