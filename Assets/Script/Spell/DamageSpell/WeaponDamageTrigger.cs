@@ -18,7 +18,5 @@ namespace KarpysDev.Script.Spell.DamageSpell
                 m_DamageSpellParams.InitialSourceDamage.DamageType);
             AddDamageSource(weaponDamageSource);
         }
-
-    
     }
 }

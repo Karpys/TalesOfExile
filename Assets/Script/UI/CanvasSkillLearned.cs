@@ -53,6 +53,7 @@ namespace KarpysDev.Script.UI
 
         private void DisplaySpell()
         {
+            m_CurrentHolder.TriggerSpellData.SpellTrigger.ComputeSpellData(m_Player);
             m_SpellDisplayer.DisplaySpell(m_CurrentHolder.TriggerSpellData,m_CurrentHolder.transform);
         }
 

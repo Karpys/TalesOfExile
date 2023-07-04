@@ -48,6 +48,9 @@ MonoBehaviour:
     - m_SpellData: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: 95c927aa183a7624389529d3d3e03890, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 0f7469d60bf08ef45a882b314e8b699b, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
@@ -72,12 +75,6 @@ MonoBehaviour:
     - m_SpellData: {fileID: 11400000, guid: ca858707b9b59564ea61fb603231be44, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
-    - m_SpellData: {fileID: 11400000, guid: b6b6a98ece087e74099bf21d9c2658a4, type: 2}
-      m_SpellPriority: 5
-      m_SpellLearnType: 0
-    - m_SpellData: {fileID: 11400000, guid: 298ad5e28d37f4748ac6c1d2109e8323, type: 2}
-      m_SpellPriority: 5
-      m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 14cc955afab094b06966386d24636fe6, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
@@ -94,5 +91,11 @@ MonoBehaviour:
       m_SpellPriority: 5
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: b9ec57937e8089f4fa01ed93d1a3c4d9, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: beb682e2eae09654389cb9d4dc99e327, type: 2}
+      m_SpellPriority: 5
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
       m_SpellPriority: 5
       m_SpellLearnType: 0
