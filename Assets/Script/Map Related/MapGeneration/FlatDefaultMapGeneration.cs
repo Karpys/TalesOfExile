@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     {
         public override GenerationMapInfo Generate(MapData mapData)
         {
-            base.Generate(mapData);
+            GenerationMapInfo info = base.Generate(mapData);
         
             for (int x = 0; x < m_Width; x++)
             {
@@ -19,7 +19,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 }
             }
 
-            return new GenerationMapInfo(new Vector2Int(0,0));
+            return info;
         }
 
         protected virtual void OnGenerateBaseTile(int x, int y)

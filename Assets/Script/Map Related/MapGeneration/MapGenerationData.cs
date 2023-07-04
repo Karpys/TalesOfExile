@@ -10,8 +10,8 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         [SerializeField] protected int m_Height = 50;
         [Header("Base Map Data")] 
         [SerializeField] protected WorldTile m_BaseTile = null;
-    
-    
+        [SerializeField] protected Vector2Int m_SpawnPosition = Vector2Int.one;
+        
         protected MapData m_MapData = null;
         protected Map m_Map = null;
     
@@ -28,7 +28,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
             m_Map.Tiles = new Tile[m_Width,m_Height];
         
-            return new GenerationMapInfo(new Vector2Int(0,0));
+            return new GenerationMapInfo(m_SpawnPosition);
         }
 
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Editor
 {
-    [CustomEditor(typeof(SpriteMapGeneration))]
+    [CustomEditor(typeof(SpriteMapGeneration),true)]
     public class SpriteMapGenerationEditor:UnityEditor.Editor
     {
         private SpriteMapGeneration m_Target = null;

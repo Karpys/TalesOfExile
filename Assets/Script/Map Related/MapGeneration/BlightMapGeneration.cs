@@ -24,7 +24,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             GenerationMapInfo info = base.Generate(mapData);
             m_BlightCoreGenerated.Initalize(m_Map);
-            info.StartPosition = new Vector2Int(m_Width / 2, m_Height / 2 - 2);
             return info;
         }
     }

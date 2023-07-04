@@ -19,7 +19,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         public override GenerationMapInfo Generate(MapData mapData)
         {
             GenerationMapInfo info = base.Generate(mapData);
-            info.StartPosition = m_StartPosition;
         
             SpawnPositionGeneration();
         

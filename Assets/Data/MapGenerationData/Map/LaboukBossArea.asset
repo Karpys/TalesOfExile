@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Width: 32
   m_Height: 32
   m_BaseTile: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
-  m_PlayerSpawnPosition: {x: 0, y: 16}
+  m_SpawnPosition: {x: 0, y: 16}
   m_MapSprite: {fileID: 21300000, guid: fa4aa69370973c3489a9a20d041b694d, type: 3}
   m_ColorTileMap:
     m_Keys:

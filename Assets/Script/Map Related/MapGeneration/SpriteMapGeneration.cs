@@ -8,7 +8,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     public class SpriteMapGeneration : MapGenerationData
     {
         [Header("Sprite Map Data")]
-        [SerializeField] private Vector2Int m_PlayerSpawnPosition = Vector2Int.zero;
         [SerializeField] private Sprite m_MapSprite = null;
         [SerializeField] private GenericLibrary<WorldTile, Color> m_ColorTileMap = null;
 
@@ -39,8 +38,16 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             m_Width = m_MapSprite.texture.width;
             m_Height = m_MapSprite.texture.height;
             base.Generate(mapData);
-        
-        
+            
+            GenerateTiles();
+            
+            MonsterGeneration();
+            
+            return new GenerationMapInfo(m_SpawnPosition);
+        }
+
+        protected virtual void GenerateTiles()
+        {
             Texture2D tex = m_MapSprite.texture;
         
             for (int x = 0; x < m_Width; x++)
@@ -67,25 +74,27 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                         m_Map.PlaceTileAt(tile, x, y);
                 }
             }
-        
-        
-            MonsterGeneration();
-
-            return new GenerationMapInfo(m_PlayerSpawnPosition);
         }
 
         private void MonsterGeneration()
         {
-            List<Tile> tiles = new List<Tile>();
+            List<Tile> tiles = GetMonsterTiles();
+            
+            if(m_MonsterGeneration)
+                m_MonsterGeneration.Generate(tiles);
+        }
 
+        protected virtual List<Tile> GetMonsterTiles()
+        {
+            List<Tile> tiles = new List<Tile>();
+            
             foreach (Tile tile in m_MapData.Map.Tiles)
             {
                 if(tile.Walkable)
                     tiles.Add(tile);
             }
-        
-            if(m_MonsterGeneration)
-                m_MonsterGeneration.Generate(tiles);
+
+            return tiles;
         }
     }
 }

@@ -3,31 +3,33 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
 {
-    //[CreateAssetMenu(menuName = "Map/Center Forest Map", fileName = "New FlatMap", order = 0)]
-    //[OBSOLETE]//
-    public class ForestCenterGenerationData : FlatDefaultMapGeneration
+    [CreateAssetMenu(menuName = "Map/SpriteMap/CenterForestMap", fileName = "SpriteMap", order = 0)]
+    public class CenterForestGeneration : SpriteMapGeneration
     {
+        [Header("Center Forest Specific")]
         [Range(0,100)]
         [SerializeField] private float m_TreeChance = 10;
         [SerializeField] private WorldTile m_TreeTile = null;
-
+        
         [Header("Monster Generation")]
         [SerializeField] private Vector2Int m_BlockMonsterSpawn = Vector2Int.one;
-        [SerializeField] private MonsterGeneration m_MonsterGeneration = null;
-
-        public override GenerationMapInfo Generate(MapData mapData)
+        protected override void GenerateTiles()
         {
-            GenerationMapInfo info =  base.Generate(mapData);
-            MonsterGeneration();
-            info.StartPosition = m_SpawnPosition;
-            return info;
+            base.GenerateTiles();
+            GenerateCenterTree();
         }
 
-        protected override void OnGenerateBaseTile(int x, int y)
+        private void GenerateCenterTree()
         {
-            TryGenerateTree(x,y);
+            for (int x = 0; x < m_Width; x++)
+            {
+                for (int y = 0; y < m_Height; y++)
+                {
+                    TryGenerateTree(x,y);
+                }
+            }
         }
-
+        
         private void TryGenerateTree(int x, int y)
         {
             if(x == m_SpawnPosition.x && y == m_SpawnPosition.y)
@@ -43,10 +45,10 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         
         private void GenerateTree(int x,int y)
         {
-            WorldTile tree = m_Map.PlaceTileAt(m_TreeTile, x, y);
+            m_Map.PlaceTileAt(m_TreeTile, x, y);
         }
-        
-        private void MonsterGeneration()
+
+        protected override List<Tile> GetMonsterTiles()
         {
             List<Tile> tiles = new List<Tile>();
 
@@ -60,7 +62,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                     tiles.Add(tile);
             }
 
-            m_MonsterGeneration.Generate(tiles);
+            return tiles;
         }
     }
 }
