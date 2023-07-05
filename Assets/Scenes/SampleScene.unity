@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileSize: 1
   BaseMapReloader: {fileID: 5958442995309582144, guid: 58085097704a84cbc913adfbb409b83d, type: 3}
+  PortalMapReloader: {fileID: 1970605852578674049, guid: e9b637dacabf1b64fb8508e12ac7839a, type: 3}
 --- !u!4 &101270389
 Transform:
   m_ObjectHideFlags: 0

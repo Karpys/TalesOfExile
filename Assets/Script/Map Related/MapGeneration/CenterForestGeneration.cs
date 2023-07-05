@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using KarpysDev.Script.PathFinding;
+using KarpysDev.Script.PathFinding.LinePath;
+using KarpysDev.Script.Utils;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
@@ -10,6 +14,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         [Range(0,100)]
         [SerializeField] private float m_TreeChance = 10;
         [SerializeField] private WorldTile m_TreeTile = null;
+        [SerializeField] private int m_AllowedSquareDistancePortalFromPlayer = 0;
         
         [Header("Monster Generation")]
         [SerializeField] private Vector2Int m_BlockMonsterSpawn = Vector2Int.one;
@@ -27,6 +32,37 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             base.GenerateTiles();
             GenerateCenterTree();
+            AddPortalNextMap();
+        }
+
+        private void AddPortalNextMap()
+        {
+            Vector2Int randomPos = new Vector2Int(Random.Range(5, m_Width - 5), Random.Range(5, m_Height - 5));
+
+            while (DistanceUtils.GetSquareDistance(m_StartPos,randomPos) < m_AllowedSquareDistancePortalFromPlayer)
+            {
+                randomPos = new Vector2Int(Random.Range(5, m_Width - 5), Random.Range(5, m_Height - 5));
+            }
+            
+            MapDataLibrary.Instance.AddPortalMapReloaderAt(randomPos);
+
+            List<Vector2Int> playerPortalPath = LinePath.GetPathTile(m_StartPos, randomPos, NeighbourType.Cross);
+
+
+            List<Tile> tiles = TileHelper.GetNeighbours(MapData.Instance.GetTile(randomPos), NeighbourType.Square, MapData.Instance);
+
+            foreach (Tile tile in tiles)
+            {
+                m_Map.TryPlaceTileAt(m_BaseTile, tile.TilePosition);
+            }
+            
+            foreach (Vector2Int pos in playerPortalPath)
+            {
+                if(!MapData.Instance.GetTile(pos).Walkable)
+                {
+                    m_Map.TryPlaceTileAt(m_BaseTile, pos);
+                }
+            }
         }
 
         private void GenerateCenterTree()

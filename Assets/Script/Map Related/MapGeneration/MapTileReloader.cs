@@ -24,14 +24,20 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         public void SetReloadPosition(Vector2Int reloadPosition)
         {
             m_ReloadPosition = reloadPosition;
+            transform.position = MapData.Instance.GetTilePosition(reloadPosition);
         }
 
         private void CheckForPlayerPosition()
         {
             if (GameManager.Instance.PlayerEntity.EntityPosition == m_ReloadPosition)
             {
-                MapGenerator.Instance.NextMap();
+                OnPlayerOnTile();
             } 
+        }
+
+        protected virtual void OnPlayerOnTile()
+        {
+            MapGenerator.Instance.NextMap();
         }
     }
 }
