@@ -13,6 +13,16 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         
         [Header("Monster Generation")]
         [SerializeField] private Vector2Int m_BlockMonsterSpawn = Vector2Int.one;
+
+        private Vector2Int m_StartPos = Vector2Int.zero;
+        public override GenerationMapInfo Generate(MapData mapData)
+        {
+            m_StartPos = new Vector2Int(Random.Range(5, m_Width - 5), Random.Range(5, m_Height - 5));
+            GenerationMapInfo info = base.Generate(mapData);
+            info.StartPosition = m_StartPos;
+            return info;
+        }
+
         protected override void GenerateTiles()
         {
             base.GenerateTiles();
@@ -32,7 +42,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         
         private void TryGenerateTree(int x, int y)
         {
-            if(x == m_SpawnPosition.x && y == m_SpawnPosition.y)
+            if(x == m_StartPos.x && y == m_StartPos.y)
                 return;
             
             float random = Random.Range(0, 100f);
@@ -54,8 +64,10 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
             foreach (Tile tile in m_MapData.Map.Tiles)
             {
-                if(tile.TilePosition.x >= m_SpawnPosition.x - m_BlockMonsterSpawn.x && tile.TilePosition.x <= m_SpawnPosition.x + m_BlockMonsterSpawn.x
-                   && tile.TilePosition.y >= m_SpawnPosition.y - m_BlockMonsterSpawn.y && tile.TilePosition.y <= m_SpawnPosition.y + m_BlockMonsterSpawn.y)
+                if(tile.TilePosition.x >= m_StartPos.x - m_BlockMonsterSpawn.x 
+                   && tile.TilePosition.x <= m_StartPos.x + m_BlockMonsterSpawn.x 
+                   && tile.TilePosition.y >= m_StartPos.y - m_BlockMonsterSpawn.y 
+                   && tile.TilePosition.y <= m_StartPos.y + m_BlockMonsterSpawn.y)
                     continue;
             
                 if(tile.Walkable)
