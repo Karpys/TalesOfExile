@@ -58,8 +58,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         {
             if (m_BuffCooldown == BuffCooldown.Toggle)
             {
-                m_CurrentToggleBuff = receiver.GiveBuff(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
-                m_CurrentToggleBuff.SetBuffCooldown(BuffCooldown.Toggle);
+                m_CurrentToggleBuff = receiver.GiveBuffToggle(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
             }
             else
             {

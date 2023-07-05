@@ -8,6 +8,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         private Vector2Int m_ReloadPosition = Vector2Int.zero;
 
         private DestroyObjectCleaner m_Cleaner = null;
+        private bool m_HasBeenUsed = false;
         private void Start()
         {
             m_Cleaner = new DestroyObjectCleaner(gameObject);
@@ -29,9 +30,13 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
         private void CheckForPlayerPosition()
         {
+            if (m_HasBeenUsed)
+                return;
+                    
             if (GameManager.Instance.PlayerEntity.EntityPosition == m_ReloadPosition)
             {
                 OnPlayerOnTile();
+                m_HasBeenUsed = true;
             } 
         }
 

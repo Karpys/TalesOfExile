@@ -19,6 +19,7 @@ namespace KarpysDev.Script.Items
         public Transform JumpHolder => m_JumpHolder;
 
         private DestroyObjectCleaner m_Cleaner = null;
+        private bool m_HasBeenPickedUp = false;
 
         private void Start()
         {
@@ -36,10 +37,16 @@ namespace KarpysDev.Script.Items
         //Grab Item Player Inventory//
         private void CheckForPickUp()
         {
+            if (m_HasBeenPickedUp)
+                return;
+                    
             if (m_PlayerControllerEntity.EntityPosition == m_HolderMapPosition)
             {
-                if(m_PlayerControllerEntity.PlayerInventory.TryPickUp(m_Item))
+                if (m_PlayerControllerEntity.PlayerInventory.TryPickUp(m_Item))
+                {
+                    m_HasBeenPickedUp = true;   
                     Destroy(gameObject);
+                }
             }
         }
         public void InitializeHolder(Item item,Vector2Int mapPosition)

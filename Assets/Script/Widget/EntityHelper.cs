@@ -77,5 +77,13 @@ namespace KarpysDev.Script.Widget
             buff.InitializeAsBuff(caster, receiver, buffDuration, buffValue, args);
             return buff;
         }
+        
+        public static Buff GiveBuffToggle(this BoardEntity receiver,BuffType buffType,int buffDuration, float buffValue,BoardEntity caster,object[] args = null)
+        {
+            Buff buff = BuffLibrary.Instance.AddBuffToViaKey(buffType, receiver);
+            buff.SetBuffCooldown(BuffCooldown.Toggle);
+            buff.InitializeAsBuff(caster, receiver, buffDuration, buffValue, args);
+            return buff;
+        }
     }
 }
