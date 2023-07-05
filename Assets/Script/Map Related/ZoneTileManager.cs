@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Manager;
 using KarpysDev.Script.PathFinding;
 using KarpysDev.Script.PathFinding.LinePath;
 using KarpysDev.Script.Spell;
@@ -24,6 +25,19 @@ namespace KarpysDev.Script.Map_Related
             new Vector2(1.5f, 0),
             new Vector2(1, 1)
         };
+        
+        private static float[] circleTolerances = new float[9]
+        {
+            .66f,
+            .66f,
+            .66f,
+            .66f,
+            .5f,
+            .5f,
+            .5f,
+            .66f,
+            .66f,
+        };
     
         private const float CIRCLE_TOLERANCE = 0.66f;
         public static List<Vector2Int> GetSelectionZone(Zone zoneOption,Vector2Int selectionOrigin,int range,Vector2Int? castOrigin = null)
@@ -45,13 +59,14 @@ namespace KarpysDev.Script.Map_Related
                 case ZoneType.Circle:
                     //Circle Display
                     Vector2Int middleZone = Vector2Int.zero;
+                    float circleTolerance = circleTolerances[Mathf.Min(range,8)];
                 
                     for (int x = -range + 1; x < range; x++)
                     {
                         for (int y = -range + 1; y < range; y++)
                         {
                             Vector2Int vec = new Vector2Int(x, y);
-                            if (Vector2Int.Distance(middleZone,vec) <= range - CIRCLE_TOLERANCE)
+                            if (Vector2Int.Distance(middleZone,vec) <= range - circleTolerance)
                             {
                                 zones.Add(vec + selectionOrigin);
                             }
@@ -107,13 +122,14 @@ namespace KarpysDev.Script.Map_Related
                     break;
                 case ZoneType.OuterCircle:
                     Vector2Int originCircle = Vector2Int.zero;
+                    float circleT = circleTolerances[Mathf.Min(range,8)];
                 
                     for (int x = -range + 1; x < range; x++)
                     {
                         for (int y = -range + 1; y < range; y++)
                         {
                             Vector2Int vec = new Vector2Int(x, y);
-                            if (Vector2Int.Distance(originCircle,vec) <= range  && Vector2Int.Distance(originCircle,vec) >= range - 1 - CIRCLE_TOLERANCE)
+                            if (Vector2Int.Distance(originCircle,vec) <= range  && Vector2Int.Distance(originCircle,vec) >= range - 1 - circleT)
                             {
                                 zones.Add(vec + selectionOrigin);
                             }
@@ -136,6 +152,7 @@ namespace KarpysDev.Script.Map_Related
                     //Circle Selection
                     float angle = 90;
                     Vector2Int middle = Vector2Int.zero;
+                    float coneCircleTolerance = circleTolerances[Mathf.Min(range,8)];
                 
                     Vector2 nearest = coneAdjacents.OrderBy(a => Vector2.Distance(selectionOrigin, castOrigin.Value + a)).First();
                     selectionOrigin = castOrigin.Value + new Vector2Int(Mathf.FloorToInt(nearest.x),Mathf.FloorToInt(nearest.y));
@@ -146,7 +163,7 @@ namespace KarpysDev.Script.Map_Related
                         {
                             Vector2Int offset = new Vector2Int(x, y);
                         
-                            if (Vector2Int.Distance(middle,offset) > range - CIRCLE_TOLERANCE)
+                            if (Vector2Int.Distance(middle,offset) > range - coneCircleTolerance)
                                 continue; 
                         
                             Vector2 direction = (selectionOrigin - castOrigin.Value);
@@ -190,14 +207,18 @@ namespace KarpysDev.Script.Map_Related
                     return false;
             
                 case ZoneType.Circle:
-                    if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range -CIRCLE_TOLERANCE)
+                    
+                    float circleTolerance = circleTolerances[Mathf.Min(zoneSelection.Range,8)];
+                    
+                    if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range - circleTolerance)
                     {
                         return true;
                     }
                     return false;
                 case ZoneType.Cone:
+                    float coneCircleTolerance = circleTolerances[Mathf.Min(zoneSelection.Range,8)];
                     //Same as circle//
-                    if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range -CIRCLE_TOLERANCE)
+                    if (Vector2Int.Distance(origin, castPosition) <= zoneSelection.Range -coneCircleTolerance)
                     {
                         return true;
                     }
