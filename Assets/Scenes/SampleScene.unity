@@ -3732,7 +3732,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1072997886}
     m_Modifications:
+    - target: {fileID: 1727035336890905197, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727035336890905197, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851847887500197559, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851847887500197559, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7989773985509441298, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_Displayer
+      value: 
+      objectReference: {fileID: 1130608336}
+    - target: {fileID: 8277610084635441546, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
       propertyPath: m_Displayer
       value: 
       objectReference: {fileID: 1130608336}
