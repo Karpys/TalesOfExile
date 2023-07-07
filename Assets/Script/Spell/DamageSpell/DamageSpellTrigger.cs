@@ -116,11 +116,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
             m_DamageSpellParams.InitialSourceDamage.Damage = initialDamageSource;
         }
 
-        protected override CastInfo GetCastInfo(TriggerSpellData spellData)
+        protected override CastInfo GetCastInfo(TriggerSpellData spellData,bool isMainCasted)
         {
             if (OnCastSpell != null)
             {
-                return new DamageCastInfo(spellData);
+                return new DamageCastInfo(spellData,isMainCasted);
             }
 
             return null;

@@ -46,12 +46,10 @@ namespace KarpysDev.Script.Spell
         
             return TriggerData.m_Selection[TriggerData.MainSelection];
         }
-
-        //Use and Cooldown Part
-        //TODO: Need to Implemente the CooldownSystem
-        public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,float efficiency = 1,bool freeCast = false)
+        
+        public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool mainCast = true,float efficiency = 1,bool freeCast = false)
         {
-            SpellTrigger.CastSpell(spellData,spellTiles,efficiency);
+            SpellTrigger.CastSpell(spellData,spellTiles,mainCast,efficiency);
         
             if(freeCast)
                 return;

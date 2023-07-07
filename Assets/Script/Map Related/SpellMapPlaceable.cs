@@ -9,6 +9,7 @@ namespace KarpysDev.Script.Map_Related
     {
         [SerializeField] private BehaviourTrigger m_BehaviourTrigger = null;
         [SerializeField] private SpellInfo m_SpellInfo = null;
+        [SerializeField] private bool m_IsCast = false;
 
         private TriggerSpellData m_AttachedSpell = null;
     
@@ -21,9 +22,21 @@ namespace KarpysDev.Script.Map_Related
             m_BehaviourTrigger.InitBehaviourTrigger(this,behaveTiming,behaveCount);
         }
 
+        protected virtual Vector2Int GetCastPosition()
+        {
+            return m_Position;
+        }
+
         public void Behave()
         {
-            SpellCastUtils.TriggerSpellAt(m_AttachedSpell,m_Position,m_Position);
+            if(m_IsCast)
+            {
+                SpellCastUtils.CastSpellAt(m_AttachedSpell,m_Position,GetCastPosition(),false);
+            }
+            else
+            {
+                SpellCastUtils.TriggerSpellAt(m_AttachedSpell,m_Position,GetCastPosition());
+            }
         }
     }
 }

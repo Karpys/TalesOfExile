@@ -97,15 +97,15 @@ namespace KarpysDev.Script.Spell
             }
         }
     
-        public static void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,float efficiency = 1,bool freeCast = false)
+        public static void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,bool isMainCasted = true,float efficiency = 1,bool freeCast = false)
         {
-            spellData.Cast(spellData,spellTiles,efficiency,freeCast);
+            spellData.Cast(spellData,spellTiles,isMainCasted,efficiency,freeCast);
         }
 
-        public static void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition,float efficiency = 1,bool freeCast = false)
+        public static void CastSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition,bool isMainCasted = true,float efficiency = 1,bool freeCast = false)
         {
             SpellTiles spellTiles = GetSpellTilesInfo(spellData,pos, originPosition);
-            CastSpell(spellData, spellTiles, efficiency,freeCast);
+            CastSpell(spellData, spellTiles, isMainCasted,efficiency,freeCast);
         }
     
         public static void TriggerSpellAt(TriggerSpellData spellData,Vector2Int pos,Vector2Int originPosition,float efficiency = 1)

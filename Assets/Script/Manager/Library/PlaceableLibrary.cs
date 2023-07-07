@@ -22,6 +22,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public enum PlaceableType
     {
-        BurningGround
+        BurningGround,
+        LightningStormArea,
     }
 }

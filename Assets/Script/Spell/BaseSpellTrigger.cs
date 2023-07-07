@@ -26,20 +26,19 @@ namespace KarpysDev.Script.Spell
             m_SpellPriority = priority;
             m_AttachedSpell = spellData;
         }
-
-        public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,float efficiency = 1)
-        {
-            CastInfo castInfo = GetCastInfo(spellData);
         
+        public virtual void CastSpell(TriggerSpellData spellData,SpellTiles spellTiles,bool mainCast = true,float efficiency = 1)
+        {
+            CastInfo castInfo = GetCastInfo(spellData,mainCast);
             TriggerSpell(spellData,spellTiles,castInfo,efficiency);
             OnCastSpell?.Invoke(castInfo);
         }
 
-        protected virtual CastInfo GetCastInfo(TriggerSpellData spellData)
+        protected virtual CastInfo GetCastInfo(TriggerSpellData spellData,bool mainCast)
         {
             if (OnCastSpell != null)
             {
-                return new CastInfo(spellData);
+                return new CastInfo(spellData,mainCast);
             }
 
             return null;
@@ -61,12 +60,14 @@ namespace KarpysDev.Script.Spell
     
     public class CastInfo
     {
+        private bool m_IsMainCasted = false;
         private SpellData m_SpellCasted = null;
         public SpellData SpellCasted => m_SpellCasted;
-
-        public CastInfo(SpellData spellCasted)
+        public bool IsMainCasted => m_IsMainCasted;
+        public CastInfo(SpellData spellCasted,bool isMainCasted)
         {
             m_SpellCasted = spellCasted;
+            m_IsMainCasted = isMainCasted;
         }
     
         public virtual void AddHitEntity(BoardEntity boardEntity)
@@ -84,7 +85,7 @@ namespace KarpysDev.Script.Spell
             m_HitEntity.Add(boardEntity);
         }
 
-        public DamageCastInfo(SpellData spellCasted) : base(spellCasted)
+        public DamageCastInfo(SpellData spellCasted,bool mainCasted) : base(spellCasted,mainCasted)
         {}
     }
 }

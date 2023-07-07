@@ -54,7 +54,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
         
             if(m_RangeAutoTrigger != null)
-                SpellCastUtils.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,spellData.AttachedEntity.EntityPosition,m_SpellEfficiency,true);
+                SpellCastUtils.CastSpellAt(m_RangeAutoTrigger,entity.EntityPosition,spellData.AttachedEntity.EntityPosition,false,m_SpellEfficiency,true);
         
             UpdateEntityPosition(entity);
         }
