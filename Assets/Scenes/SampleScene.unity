@@ -2313,6 +2313,7 @@ Transform:
   - {fileID: 1345723052}
   - {fileID: 443443102}
   - {fileID: 456935964}
+  - {fileID: 1552589116}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2437,6 +2438,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1364342514 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7972774548071673380, guid: bf94319ddea01c141a3393e46bb508d2, type: 3}
+  m_PrefabInstance: {fileID: 6949580794021984191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1364678916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,6 +2638,49 @@ MonoBehaviour:
       Type: 101
     - Object: {fileID: -4592490546126341204, guid: 4fbc0b4aef3a046de86e9a9bc498125d, type: 3}
       Type: 102
+--- !u!1 &1552589115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552589116}
+  - component: {fileID: 1552589117}
+  m_Layer: 0
+  m_Name: ButtonUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1552589116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552589115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1140441088}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552589117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552589115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90654f9a468d4cec95af44baeb158266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1553008920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,6 +3663,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5771113698224428265, guid: bf94319ddea01c141a3393e46bb508d2, type: 3}
+      propertyPath: m_XPositionn.x
+      value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771113698224428265, guid: bf94319ddea01c141a3393e46bb508d2, type: 3}
+      propertyPath: m_AppearDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771113698224428265, guid: bf94319ddea01c141a3393e46bb508d2, type: 3}
+      propertyPath: m_ArrowTransform
+      value: 
+      objectReference: {fileID: 1364342514}
     - target: {fileID: 6949580792905687201, guid: bf94319ddea01c141a3393e46bb508d2, type: 3}
       propertyPath: m_IsActive
       value: 0

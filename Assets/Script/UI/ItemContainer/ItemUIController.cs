@@ -69,49 +69,69 @@ namespace KarpysDev.Script.UI.ItemContainer
         {
             int holderActionType = (int)holder1.HolderGroup + (int)holder2.HolderGroup;
 
+            // Inventory + Inventory Context//
             if (holderActionType == 2)
             {
-                m_PlayerInventoryUI.SwapItem(m_OnMouseHolder.Id,m_OnClickHolder.Id);
+                SwapInventoryHolder(holder1, holder2);
             }
             else if (holderActionType == 3)
             {
-                //Player equipement to inventory context//
-                ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
-                ItemUIHolder equipementHolder = holder1.HolderGroup == ItemHolderGroup.PlayerEquipement ? holder1 : holder2;
-            
-                if (inventoryHolder.Item is EquipementItem itemToEquip)
+                EquipementToInventorySwap(holder1, holder2);
+            }
+            else if(holderActionType >= 5)
+            {
+                if (holder1.HolderGroup == ItemHolderGroup.SellPopup ||
+                    holder2.HolderGroup == ItemHolderGroup.SellPopup)
                 {
-                    //Equip the item and swap position with equipement existent One//
-                    EquipementItemUIHolder equipementItemUIHolder = equipementHolder as EquipementItemUIHolder;
-
-                    if (!equipementItemUIHolder)
+                    if (holder1.HolderGroup == ItemHolderGroup.PlayerInventory ||
+                        holder2.HolderGroup == ItemHolderGroup.PlayerInventory)
                     {
-                        Debug.LogError("Equipement item holder cast failed");
-                        return;
-                    }
-
-                    if(!CanPlaceEquipement(itemToEquip,equipementItemUIHolder.EquipementType))
-                        return;
-                
-                    if (itemToEquip.EquipementData.EquipementType == EquipementType.Weapon)
-                    {
-                        WeaponEquipement( equipementItemUIHolder,itemToEquip,inventoryHolder);
-                    }
-                    else
-                    {
-                        NonEquipement(itemToEquip, equipementHolder,inventoryHolder);
+                        SwapSellPopup(holder1, holder2);
                     }
                 }
-                else if(inventoryHolder.Item == null)
+                //Player inventory to stash context// 
+            }
+        }
+
+        private void SwapSellPopup(ItemUIHolder holder1, ItemUIHolder holder2)
+        {
+            ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
+            ItemUIHolder sellPopupHolder = holder1.HolderGroup == ItemHolderGroup.SellPopup ? holder1 : holder2;
+        }
+
+        private void SwapInventoryHolder(ItemUIHolder holder1, ItemUIHolder holder2)
+        {
+            m_PlayerInventoryUI.SwapItem(holder1.Id,holder2.Id);
+        }
+
+        private void EquipementToInventorySwap(ItemUIHolder holder1, ItemUIHolder holder2)
+        {
+            //Player equipement to inventory context//
+            ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
+            ItemUIHolder equipementHolder = holder1.HolderGroup == ItemHolderGroup.PlayerEquipement ? holder1 : holder2;
+            
+            if (inventoryHolder.Item is EquipementItem itemToEquip)
+            {
+                //Equip the item and swap position with equipement existent One//
+                EquipementItemUIHolder equipementItemUIHolder = equipementHolder as EquipementItemUIHolder;
+
+                if(!CanPlaceEquipement(itemToEquip,equipementItemUIHolder.EquipementType))
+                    return;
+                
+                if (itemToEquip.EquipementData.EquipementType == EquipementType.Weapon)
                 {
-                    //UnEquip item and place to blank space//
-                    ((EquipementItem)equipementHolder.Item).UnEquip(); 
-                    m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
+                    WeaponEquipement(equipementItemUIHolder,itemToEquip,inventoryHolder);
+                }
+                else
+                {
+                    NonEquipement(itemToEquip, equipementHolder,inventoryHolder);
                 }
             }
-            else if(holderActionType == 5)
+            else if(inventoryHolder.Item == null)
             {
-                //Player inventory to stash context// 
+                //UnEquip item and place to blank space//
+                ((EquipementItem)equipementHolder.Item).UnEquip(); 
+                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
             }
         }
 
