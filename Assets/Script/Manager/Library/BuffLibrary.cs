@@ -47,6 +47,7 @@ namespace KarpysDev.Script.Manager.Library
         FireHandBuff = 3,
         OnKillFlameBurst = 4,
         IcePrisonBuff = 5,
+        HolyAttack = 6,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
         BurnDotDebuff = 102,

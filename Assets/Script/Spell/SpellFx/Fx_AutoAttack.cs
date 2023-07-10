@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_AutoAttack : BurstAnimation
+    public class Fx_AutoAttack : Fx_BurstAnimation
     {
         [SerializeField] private float m_AnimDuration = 0.1f;
         [SerializeField] private SpriteRenderer m_HitFx = null;

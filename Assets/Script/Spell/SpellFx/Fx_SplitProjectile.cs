@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_SplitProjectile : BurstAnimation
+    public class Fx_SplitProjectile : Fx_BurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
         [SerializeField] private SpellAnimation m_ProjectileSplitAnimation = null;

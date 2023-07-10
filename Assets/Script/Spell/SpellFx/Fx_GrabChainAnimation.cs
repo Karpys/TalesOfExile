@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class GrabChainAnimation : BurstAnimation
+    public class Fx_GrabChainAnimation : Fx_BurstAnimation
     {
         [SerializeField] private PointLineRenderer m_LineRenderer = null;
         [Header("Movement Parameters")]

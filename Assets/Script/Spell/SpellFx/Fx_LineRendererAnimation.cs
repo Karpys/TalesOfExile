@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class LineRendererAnimation : SpellAnimation
+    public class Fx_LineRendererAnimation : SpellAnimation
     {
         [SerializeField] private float m_AnimDuration = 0f;
         [SerializeField] private SpriteRenderer m_Renderer = null;

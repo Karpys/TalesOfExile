@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class SpellAnimationActivator : SpellAnimation
+    public class Fx_SpellAnimationActivator : SpellAnimation
     {
         [SerializeField] private float m_AnimDuration = 0;
         [SerializeField] private SpellAnimation m_ActivatorAnimation = null;

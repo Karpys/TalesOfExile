@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_CurseSpread : BurstAndFade
+    public class Fx_CurseSpread : Fx_BurstAndFade
     {
         [Header("Rotation Param")]
         [SerializeField] private float m_RotationDelay = 0;

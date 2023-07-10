@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class SwordDanceAnimation : BurstAnimation
+    public class Fx_SwordDanceAnimation : Fx_BurstAnimation
     {
         [SerializeField] private Transform m_RotationContainer = null;
         [SerializeField] private float m_RotationForce = 0;

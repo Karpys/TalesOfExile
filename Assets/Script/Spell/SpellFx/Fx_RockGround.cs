@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_RockGround : BurstAnimation
+    public class Fx_RockGround : Fx_BurstAnimation
     {
         [SerializeField] protected BaseTweenData m_ScaleParams;
         [SerializeField] protected SpriteRenderer m_Sprite = null;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_MeteorBlast : BurstAnimation
+    public class Fx_MeteorBlast : Fx_BurstAnimation
     {
         [SerializeField] private Vector3 m_Offset = Vector3.zero;
         [SerializeField] private float m_MovementDuration = 0.2f;

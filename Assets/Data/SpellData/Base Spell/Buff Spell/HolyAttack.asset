@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
+  m_Name: HolyAttack
+  m_EditorClassIdentifier: 
+  SpellName: Holy Attack
+  SpellType: 2
+  SpellGroups: 65000000
+  BaseDescription: Heal surrunding ally when auto attack
+  m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: d3c688b53200ea043bca5befa883c2ae, type: 2}
+  m_BaseCooldown: 0
+  m_Selection:
+  - Origin: 0
+    Zone:
+      DisplayType: 1
+      Range: 1
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: 0
+    ActionSelection: 1
+  m_MainSelection: 0
+  SpellRestrictions: []
+  AllowedCastZone:
+    DisplayType: 1
+    Range: 6
+  OriginSelection: 0

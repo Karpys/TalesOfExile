@@ -1,7 +1,7 @@
 Weapon Attack
 Regeneration Buff
 Ice Split
-Flame Burst
+Rain Sword
 Meteor Blast
 Detection Mine
 Lightning Strike
