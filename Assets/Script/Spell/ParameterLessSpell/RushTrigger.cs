@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
-            MoveToClosestFreeTile(spellData,spellTiles.OriginTiles[0]);
+            MoveToClosestFreeTile(spellData,spellTiles.FirstOrigin);
             base.Trigger(spellData, spellTiles,castInfo,efficiency);
         }
     

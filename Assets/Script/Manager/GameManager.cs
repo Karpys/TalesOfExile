@@ -23,8 +23,8 @@ namespace KarpysDev.Script.Manager
         private PlayerBoardEntity m_PlayerEntity = null;
         //Controlled Entity//
         private BoardEntity m_ControlledEntity = null;
-        [HideInInspector] public BoardEntity ControlledEntity => m_ControlledEntity;
-        [HideInInspector] public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
+        public BoardEntity ControlledEntity => m_ControlledEntity;
+        public PlayerBoardEntity PlayerEntity => m_PlayerEntity;
     
         //Ennemies//
         private List<BoardEntity> m_EntitiesOnBoard = new List<BoardEntity>();

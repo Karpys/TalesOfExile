@@ -15,9 +15,9 @@ namespace KarpysDev.Script.Spell
             CenterOrigin = centerOrigin;
             OriginTiles = originTiles;
             ActionTiles = actionTiles;
-            
         }
 
         public Vector2Int Last => ActionTiles.Last().Last();
+        public Vector2Int FirstOrigin => OriginTiles[0];
     }
 }

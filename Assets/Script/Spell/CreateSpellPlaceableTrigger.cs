@@ -22,7 +22,7 @@ namespace KarpysDev.Script.Spell
         {
             base.TileHit(tilePosition, spellData);
 
-            SpellMapPlaceable spellMapPlaceable = MapHelper.InsertMapPlaceable(m_PlaceableType) as SpellMapPlaceable;
+            SpellMapPlaceable spellMapPlaceable = CreatePlaceable();
 
             if (spellMapPlaceable == null)
             {
@@ -31,6 +31,11 @@ namespace KarpysDev.Script.Spell
             }
         
             spellMapPlaceable.Initialize(spellData.AttachedEntity,tilePosition,m_BehaveTiming,m_BehaveCount);
+        }
+
+        protected virtual SpellMapPlaceable CreatePlaceable()
+        {
+            return MapHelper.InsertMapPlaceable(m_PlaceableType) as SpellMapPlaceable;
         }
     }
 }

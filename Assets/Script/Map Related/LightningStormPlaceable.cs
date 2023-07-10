@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Map_Related
 {
     public class LightningStormPlaceable : SpellMapPlaceable
     {
-        private List<Vector2Int> m_possibleCastPostion = new List<Vector2Int>();
+        private Vector2Int[] m_possibleCastPostion = null;
 
         public void SetPossibleCastPosition(List<Vector2Int> possiblePosition)
         {
@@ -17,7 +17,12 @@ namespace KarpysDev.Script.Map_Related
                     i--;
                 }
             }
-            m_possibleCastPostion = possiblePosition;
+            m_possibleCastPostion = possiblePosition.ToArray();
+        }
+
+        protected override Vector2Int GetCastPosition()
+        {
+            return m_possibleCastPostion[Random.Range(0, m_possibleCastPostion.Length)];
         }
     }
 }

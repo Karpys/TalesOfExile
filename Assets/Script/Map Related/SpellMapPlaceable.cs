@@ -31,11 +31,11 @@ namespace KarpysDev.Script.Map_Related
         {
             if(m_IsCast)
             {
-                SpellCastUtils.CastSpellAt(m_AttachedSpell,m_Position,GetCastPosition(),false);
+                SpellCastUtils.CastSpellAt(m_AttachedSpell,GetCastPosition(),m_Position,false);
             }
             else
             {
-                SpellCastUtils.TriggerSpellAt(m_AttachedSpell,m_Position,GetCastPosition());
+                SpellCastUtils.TriggerSpellAt(m_AttachedSpell,GetCastPosition(),m_Position);
             }
         }
     }

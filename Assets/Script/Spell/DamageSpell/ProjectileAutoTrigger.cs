@@ -38,7 +38,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                     m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.CenterOrigin);
                     break;
                 case OriginType.FirstActionSelection:
-                    m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.OriginTiles[0]);
+                    m_OriginPosition = MapData.Instance.GetTilePosition(spellTiles.FirstOrigin);
                     break;
             }
         }

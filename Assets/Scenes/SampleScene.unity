@@ -2261,6 +2261,8 @@ MonoBehaviour:
     m_Keys:
     - Object: {fileID: -355267252009796637, guid: 187ad8571860e4e4fb2024e8c57b9ab7, type: 3}
       Type: 0
+    - Object: {fileID: 8774724744677853576, guid: 7a0c3a191330fbe4e8ad9d66d866f702, type: 3}
+      Type: 1
 --- !u!224 &1130608335 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3258355740059536918, guid: a9b4748b958300844b6ae465b0463a94, type: 3}
@@ -3746,6 +3748,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851847887500197559, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851847887500197559, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7989773985509441298, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}

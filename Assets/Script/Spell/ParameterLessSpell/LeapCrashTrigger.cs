@@ -19,7 +19,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo, float efficiency = 1)
         {
-            spellData.AttachedEntity.MoveTo(spellTiles.OriginTiles[0]);
+            spellData.AttachedEntity.MoveTo(spellTiles.FirstOrigin);
             base.Trigger(spellData, spellTiles,castInfo,efficiency);
         }
     }
