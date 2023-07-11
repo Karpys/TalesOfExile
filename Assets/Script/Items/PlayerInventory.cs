@@ -25,7 +25,7 @@ namespace KarpysDev.Script.Items
         private int EquipementLenght => Equipement.Length + m_PlayerInventory.Length;
         private void Awake()
         {
-            m_PlayerInventory = new Item[m_InventoryItemCount];
+            m_PlayerInventory = new Item[m_InventoryItemCount + 1];
         }
 
         public void Init()
@@ -50,7 +50,7 @@ namespace KarpysDev.Script.Items
         public bool TryPickUp(Item item)
         {
             bool onPickUp = false;
-            for (int i = 0; i < m_PlayerInventory.Length; i++)
+            for (int i = 0; i < m_InventoryItemCount; i++)
             {
                 if (m_PlayerInventory[i] == null)
                 {

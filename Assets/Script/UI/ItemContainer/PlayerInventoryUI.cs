@@ -18,9 +18,12 @@ namespace KarpysDev.Script.UI.ItemContainer
         private ItemUIHolder[] m_ItemContainer = null;
         private PlayerInventory m_Inventory = null;
 
+        [Header("Popup holders")]
+        [SerializeField] private ItemUIHolder m_GoldPopupHolder = null;
+
         private void Awake()
         {
-            m_ItemContainer = new ItemUIHolder[m_ItemCount];
+            m_ItemContainer = new ItemUIHolder[m_ItemCount + 1];
         
             for (int i = 0; i < m_ItemCount; i++)
             {
@@ -29,6 +32,9 @@ namespace KarpysDev.Script.UI.ItemContainer
                 itemHolder.SetGroup(ItemHolderGroup.PlayerInventory);
                 m_ItemContainer[i] = itemHolder;
             }
+            
+            m_GoldPopupHolder.SetId(m_ItemCount);
+            m_ItemContainer[m_ItemCount] = m_GoldPopupHolder;
 
             for (int i = 0; i < m_EquipementHolder.Length; i++)
             {
@@ -95,10 +101,9 @@ namespace KarpysDev.Script.UI.ItemContainer
             SetItemToTargetGroup(inventoryHolder.Item,ItemHolderGroup.PlayerEquipement,equipementHolder.Id);
             SetItemToTargetGroup(tempItem,ItemHolderGroup.PlayerInventory,inventoryHolder.Id);
 
-            //TODO:Refresh Only swaped holder//
-            //m_ItemContainer[inventoryHolder.Id].SetItem(m_Inventory.Inventory[inventoryHolder.Id]);
-            //m_EquipementHolder[equipementHolder.Id].SetItem(m_Inventory.Equipement[equipementHolder.Id]);
-            RefreshInventoryDisplay();
+            m_ItemContainer[inventoryHolder.Id].SetItem(m_Inventory.Inventory[inventoryHolder.Id]);
+            m_EquipementHolder[equipementHolder.Id].SetItem(m_Inventory.Equipement[equipementHolder.Id]);
+            //RefreshInventoryDisplay();
         }
 
         public void DropInventoryItem(ItemUIHolder inventoryHolder)
@@ -129,6 +134,7 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         public ItemUIHolder[] GetFreeHolderInPlayerInventory()
         {
+            m_ItemContainer.
             return m_ItemContainer.Where(e => e.Item == null).ToArray();
         }
     }

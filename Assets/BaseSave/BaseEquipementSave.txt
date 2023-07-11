@@ -48,6 +48,7 @@ none
 none
 none
 none
+none
 EquipementItem 3 0 True null
 none
 none

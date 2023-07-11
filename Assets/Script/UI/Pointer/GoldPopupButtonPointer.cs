@@ -30,13 +30,13 @@ namespace KarpysDev.Script.UI.Pointer
         private void Open()
         {
             m_RectContainer.DoUIPosition(new Vector3(m_XPositionn.x, 0, 0), m_AppearDuration).SetCurve(m_Curve);
-            m_ArrowTransform.DoRotate(new Vector3(0, 0, 180), m_AppearDuration).SetCurve(m_Curve);
+            m_ArrowTransform.DoRotate(new Vector3(0, 0, 0), m_AppearDuration).SetCurve(m_Curve);
         }
         
         private void Close()
         {
             m_RectContainer.DoUIPosition(new Vector3(m_XPositionn.y, 0, 0), m_AppearDuration).SetCurve(m_Curve);
-            m_ArrowTransform.DoRotate(new Vector3(0, 0, 0), m_AppearDuration).SetCurve(m_Curve);
+            m_ArrowTransform.DoRotate(new Vector3(0, 0, 180), m_AppearDuration).SetCurve(m_Curve);
         }
     }
 }
