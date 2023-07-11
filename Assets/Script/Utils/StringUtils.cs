@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -13,9 +14,21 @@ namespace KarpysDev.Script.Utils
     {
         private static Assembly currentAssembly = null;
 
+        private static Dictionary<string, Type> classDictionary = null;
+
         static StringUtils()
         {
             currentAssembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName == "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
+            
+            classDictionary = new Dictionary<string, Type>();
+
+            foreach (Type type in currentAssembly.GetTypes())
+            {
+                Debug.Log(type.Name);
+                if(classDictionary.ContainsKey(type.Name))
+                    continue;
+                classDictionary.Add(type.Name,type);
+            }
         }
         public static object[] StringsToObjects(string[] data)
         {
@@ -31,13 +44,9 @@ namespace KarpysDev.Script.Utils
 
         public static Type GetTypeViaClassName(string className)
         {
-            foreach (var assemblyType in currentAssembly.GetTypes())
+            if(classDictionary.TryGetValue(className,out var type))
             {
-                // Vérifier si le nom du type correspond
-                if (assemblyType.Name == className)
-                {
-                    return assemblyType;
-                }
+                return type;
             }
 
             return Type.GetType(className);

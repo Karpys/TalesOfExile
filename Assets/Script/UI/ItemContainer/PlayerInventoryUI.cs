@@ -134,7 +134,6 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         public ItemUIHolder[] GetFreeHolderInPlayerInventory()
         {
-            m_ItemContainer.
             return m_ItemContainer.Where(e => e.Item == null).ToArray();
         }
     }
