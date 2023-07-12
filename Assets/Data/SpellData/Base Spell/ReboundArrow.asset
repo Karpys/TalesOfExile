@@ -39,6 +39,8 @@ MonoBehaviour:
     ActionSelection: 1
   m_MainSelection: 0
   SpellRestrictions:
+  - SelectionId: 0
+    Type: 2
   - SelectionId: 1
     Type: 3
   AllowedCastZone:

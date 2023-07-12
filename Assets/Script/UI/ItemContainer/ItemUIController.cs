@@ -96,6 +96,7 @@ namespace KarpysDev.Script.UI.ItemContainer
         private void SwapSellPopup(ItemUIHolder holder1, ItemUIHolder holder2)
         {
             m_PlayerInventoryUI.SwapItem(holder1.Id,holder2.Id);
+            m_PlayerInventoryUI.GoldPopupUIHolder.UpdateGold();
         }
 
         private void SwapInventoryHolder(ItemUIHolder holder1, ItemUIHolder holder2)

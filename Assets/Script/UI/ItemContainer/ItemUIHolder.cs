@@ -76,6 +76,6 @@ namespace KarpysDev.Script.UI.ItemContainer
         PlayerInventory = 1,
         PlayerEquipement = 2,
         Stash = 4,
-        SellPopup = 4,
+        SellPopup = 5,
     }
 }

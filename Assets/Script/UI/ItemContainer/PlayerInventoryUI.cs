@@ -19,7 +19,9 @@ namespace KarpysDev.Script.UI.ItemContainer
         private PlayerInventory m_Inventory = null;
 
         [Header("Popup holders")]
-        [SerializeField] private ItemUIHolder m_GoldPopupHolder = null;
+        [SerializeField] private GoldPopupItemUIHolder m_GoldPopupHolder = null;
+
+        public GoldPopupItemUIHolder GoldPopupUIHolder => m_GoldPopupHolder;
 
         private void Awake()
         {
@@ -134,7 +136,7 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         public ItemUIHolder[] GetFreeHolderInPlayerInventory()
         {
-            return m_ItemContainer.Where(e => e.Item == null).ToArray();
+            return m_ItemContainer.Take(m_ItemCount).Where(e => e.Item == null).ToArray();
         }
     }
 }
