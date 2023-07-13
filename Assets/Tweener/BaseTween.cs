@@ -164,6 +164,10 @@ namespace TweenCustom
 
         //TweenUtils//
 
+        public void SetStartValue(Vector3 newStartValue)
+        {
+            m_StartValue = newStartValue;
+        }
         public abstract void TweenRefreshStartValue();
     }
 }

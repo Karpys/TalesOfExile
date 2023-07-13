@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5343285878986975066}
   - component: {fileID: 8123966436913627622}
   m_Layer: 0
-  m_Name: WorldCoinHolder
+  m_Name: GoldWorldHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

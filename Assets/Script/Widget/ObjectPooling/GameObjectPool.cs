@@ -24,6 +24,17 @@ namespace KarpysDev.Script.Widget.ObjectPooling
             }
         }
         
+        public GameObjectPool(T poolPrefab,Transform parent,int initialSize)
+        {
+            m_Parent = parent;
+            m_PoolObjectPrefab = poolPrefab;
+            m_Pool = new Queue<T>(initialSize);
+            for (int i = 0; i < initialSize; i++)
+            {
+                InitPoolObject();
+            }
+        }
+        
         public T Take()
         {
             if (m_Pool.Count > 0)
@@ -41,7 +52,7 @@ namespace KarpysDev.Script.Widget.ObjectPooling
         private T AddPoolObject()
         {
             T obj = GameObject.Instantiate(m_PoolObjectPrefab, m_Parent);
-            A_OnAddPoolObject.Invoke(obj);
+            A_OnAddPoolObject?.Invoke(obj);
             return obj;
         }
 

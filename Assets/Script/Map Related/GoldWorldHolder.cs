@@ -15,19 +15,39 @@ namespace KarpysDev.Script.Map_Related
         [Header("Parameters")]
         [SerializeField] protected Vector2 m_SpeedReference = new Vector2(5, 0.2f);
 
-        private void Animate()
-        {
-            Transform targetTransform = GameManager.Instance.PlayerEntity.transform;
-            Vector3 start = targetTransform.position;
-            m_JumpContainer.transform.localPosition = Vector3.zero;
-            transform.position = start;
-            
-            Vector3 randomInsideSquare = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(1f,m_JumpDistance);
-            float arrowSpeed = Vector2.Distance(Vector2.zero, randomInsideSquare) * m_SpeedReference.y / m_SpeedReference.x;
+        private BaseTween m_MoveToTargetTween = null;
+        private GoldManager m_GoldManager = null;
 
-            Jump(arrowSpeed);
-            transform.DoMove(randomInsideSquare + start, arrowSpeed);
-            //Todo : OnComplete Move Towards (Set parent => localDoMove => Jump)targetTransform//
+        public void Initialize(GoldManager goldManager)
+        {
+            m_GoldManager = goldManager;
+        }
+        public void Animate(Vector3 spawnPosition,Transform target)
+        {
+            transform.position = spawnPosition;
+            Vector3 randomInsideSquare = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(1f,m_JumpDistance);
+            float speed = Vector2.Distance(Vector2.zero, randomInsideSquare) * m_SpeedReference.y / m_SpeedReference.x;
+
+            Jump(speed);
+            transform.DoMove(randomInsideSquare + spawnPosition, speed).OnComplete(() =>
+            {
+                m_MoveToTargetTween = transform.DoLocalMove(Vector3.zero, speed).SetDelay(0.5f).OnStart(() => MoveToTarget(target,speed)).OnComplete(PoolReturn);
+            });
+        }
+
+        private void PoolReturn()
+        {
+            m_JumpContainer.transform.localPosition = Vector3.zero;
+            transform.parent = m_GoldManager.transform;
+            m_GoldManager.Return(this);
+        }
+
+        private void MoveToTarget(Transform targetTransform,float speed)
+        {
+            Jump(speed);
+            Transform t = transform;
+            t.parent = targetTransform;
+            m_MoveToTargetTween.SetStartValue(t.localPosition);
         }
 
         private void Jump(float duration)
@@ -36,14 +56,6 @@ namespace KarpysDev.Script.Map_Related
             {
                 m_JumpContainer.DoLocalMove(Vector3.zero, duration / 2);
             });
-        }
-
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Animate();
-            }
         }
     }
 }
