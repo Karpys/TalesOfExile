@@ -11,6 +11,7 @@ namespace KarpysDev.Script.Map_Related
         [SerializeField] private Transform m_JumpContainer = null;
         [SerializeField] private float m_JumpForce = 0;
         [SerializeField] private float m_JumpDistance = 0;
+        [SerializeField] private Vector2 m_JumpDelay = Vector2.zero;
         
         [Header("Parameters")]
         [SerializeField] protected Vector2 m_SpeedReference = new Vector2(5, 0.2f);
@@ -31,7 +32,7 @@ namespace KarpysDev.Script.Map_Related
             Jump(speed);
             transform.DoMove(randomInsideSquare + spawnPosition, speed).OnComplete(() =>
             {
-                m_MoveToTargetTween = transform.DoLocalMove(Vector3.zero, speed).SetDelay(0.5f).OnStart(() => MoveToTarget(target,speed)).OnComplete(PoolReturn);
+                m_MoveToTargetTween = transform.DoLocalMove(Vector3.zero, speed).SetDelay(Random.Range(m_JumpDelay.x,m_JumpDelay.y)).OnStart(() => MoveToTarget(target,speed)).OnComplete(PoolReturn);
             });
         }
 

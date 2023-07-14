@@ -1,5 +1,6 @@
 using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Items;
+using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI.ItemContainer
@@ -8,6 +9,7 @@ namespace KarpysDev.Script.UI.ItemContainer
     {
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
         [SerializeField] private UISelectionFade m_ItemFade = null;
+        [SerializeField] private GoldPopupItemUIHolder m_GoldPopupHolder = null;
         private ItemUIHolder m_OnClickHolder = null;
         private ItemUIHolder m_OnMouseHolder = null;
 
@@ -42,6 +44,7 @@ namespace KarpysDev.Script.UI.ItemContainer
                     else if (m_OnClickHolder.MouseOn)
                     {
                         //Perform Same Holder Action
+                        PerformSameHolderAction(m_OnClickHolder);
                     }
                     else
                     {
@@ -52,6 +55,26 @@ namespace KarpysDev.Script.UI.ItemContainer
                     m_ItemFade.Clear();
                 }
             }
+        }
+
+        private void PerformSameHolderAction(ItemUIHolder holder)
+        {
+            int holderActionType = (int) holder.HolderGroup;
+
+            if (holderActionType == 1)
+            {
+                //Todo : Add Input Shift Option Enable / Disable
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    if(m_GoldPopupHolder.IsOpen)
+                        DirectToGold(holder);
+                }
+            }
+        }
+
+        private void DirectToGold(ItemUIHolder holder)
+        {
+            SwapSellPopup(holder,m_PlayerInventoryUI.GoldPopupUIHolder);
         }
 
 
@@ -95,13 +118,14 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         private void SwapSellPopup(ItemUIHolder holder1, ItemUIHolder holder2)
         {
-            m_PlayerInventoryUI.SwapItem(holder1.Id,holder2.Id);
+            m_PlayerInventoryUI.SwapInventoryHolderItem(holder1,holder2);
             m_PlayerInventoryUI.GoldPopupUIHolder.UpdateGold();
+            m_PlayerInventoryUI.GoldPopupUIHolder.TryLaunchDelete();
         }
 
         private void SwapInventoryHolder(ItemUIHolder holder1, ItemUIHolder holder2)
         {
-            m_PlayerInventoryUI.SwapItem(holder1.Id,holder2.Id);
+            m_PlayerInventoryUI.SwapInventoryHolderItem(holder1,holder2);
         }
 
         private void EquipementToInventorySwap(ItemUIHolder holder1, ItemUIHolder holder2)

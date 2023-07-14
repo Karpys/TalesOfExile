@@ -41,7 +41,7 @@ namespace KarpysDev.Script.Map_Related
             LoadMap(CurrentMapData);
         }
 
-        private void ReloadMap()
+        public void ReloadMap()
         {
             LoadMap(CurrentMapData);
         }

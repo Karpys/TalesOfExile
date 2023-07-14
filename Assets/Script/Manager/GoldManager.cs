@@ -22,9 +22,15 @@ namespace KarpysDev.Script.Manager
             goldWorldHolder.Initialize(this);
         }
 
-        public void SpawnGold(Vector3 position,Transform target)
+        public void SpawnGoldAmmount(Vector3 position,Transform target,int goldCount,float goldValue)
         {
-            m_GoldPool.Take().Animate(position,target);
+            goldValue /= goldCount;
+
+            for (int i = 0; i < goldCount; i++)
+            {
+                // Todo : Set Gold Value//
+                m_GoldPool.Take().Animate(position,target);
+            }
         }
 
         public void Return(GoldWorldHolder goldHolder)

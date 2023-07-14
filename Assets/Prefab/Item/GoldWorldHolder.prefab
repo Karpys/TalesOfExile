@@ -129,6 +129,7 @@ MonoBehaviour:
   m_JumpContainer: {fileID: 306528188644819292}
   m_JumpForce: 0.5
   m_JumpDistance: 2
+  m_JumpDelay: {x: 0.25, y: 0.5}
   m_SpeedReference: {x: 2, y: 0.2}
 --- !u!1 &8996888163636866130
 GameObject:

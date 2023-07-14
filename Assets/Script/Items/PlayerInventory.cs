@@ -71,15 +71,16 @@ namespace KarpysDev.Script.Items
             Debug.Log(colorCode.ToColorTag()+ item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
         }
 
-        public void SwapItem(int id1, int id2)
+        public void UpdateItem(Item item, int id)
         {
-            (m_PlayerInventory[id1], m_PlayerInventory[id2]) = (m_PlayerInventory[id2], m_PlayerInventory[id1]);
+            m_PlayerInventory[id] = item;
         }
         //Save Part
         private void SaveInventory()
         {
             WriteSaveData(m_SaveName,FetchSaveData());
         }
+        
         private void ClearPlayerInventory()
         {
             string[] data = Enumerable.Repeat("none",EquipementLenght).ToArray();

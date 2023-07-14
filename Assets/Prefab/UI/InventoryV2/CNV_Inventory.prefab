@@ -436,6 +436,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_ArrowTransform: {fileID: 7972774548071673380}
+  m_Holder: {fileID: 3464879552313612984}
 --- !u!1 &5426993031731787983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerInventoryUI: {fileID: 6949580794142827123}
   m_ItemFade: {fileID: 6979759430796548242}
+  m_GoldPopupHolder: {fileID: 3464879552313612984}
 --- !u!1001 &3629045156639049083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1356,6 +1358,10 @@ PrefabInstance:
       propertyPath: m_GoldText
       value: 
       objectReference: {fileID: 5634999434681821682}
+    - target: {fileID: 7749490017721005857, guid: aff8eccba70fd884cab0ac8544c4fa3b, type: 3}
+      propertyPath: m_PlayerInventoryUI
+      value: 
+      objectReference: {fileID: 6949580794142827123}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff8eccba70fd884cab0ac8544c4fa3b, type: 3}
 --- !u!114 &3464879552313612984 stripped
