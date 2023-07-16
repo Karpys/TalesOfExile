@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
@@ -18,6 +19,8 @@ namespace KarpysDev.Script.Map_Related
         private bool m_FirstGeneration = true;
         private int m_MapId = 0;
         public MapGenerationData CurrentMapData => m_CurrentMapGroup.MapGenerationData[m_MapId];
+
+        public Action A_OnMapErased = null;
         private void Start()
         {
             InitializeMap();
@@ -76,6 +79,8 @@ namespace KarpysDev.Script.Map_Related
             {
                 Destroy(tile.WorldTile.gameObject);
             }
+            
+            A_OnMapErased?.Invoke();
         }
 
         public void NextMap()

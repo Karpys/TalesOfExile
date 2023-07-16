@@ -15,6 +15,7 @@ MonoBehaviour:
   m_Width: 30
   m_Height: 30
   m_BaseTile: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+  m_SpawnPosition: {x: 15, y: 10}
   m_MapSprite: {fileID: 21300000, guid: ecd5c4daed523ab4aa4142fc912d7962, type: 3}
   m_ColorTileMap:
     m_Keys:
@@ -28,4 +29,4 @@ MonoBehaviour:
       Type: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
     - Object: {fileID: 7124269101175009985, guid: d81ac77cdc60372479bef146d5a3c6c9, type: 3}
       Type: {r: 0.41176474, g: 0.4156863, b: 0.4156863, a: 1}
-  m_MonsterGeneration: {fileID: 11400000, guid: 079a5ad169fb54246a209ca3c7f3380f, type: 2}
+  m_MonsterGeneration: {fileID: 11400000, guid: 63d5adb4fe8973f4ca90ccc79ac90019, type: 2}

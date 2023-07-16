@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     
         public override void Generate(List<Tile> allowedTiles)
         {
-            EntityHelper.SpawnEnemyViaEntitySpawn(m_EntitySpawns);
+            EntityHelper.SpawnViaEntitySpawn(m_EntitySpawns);
         }
     }
 

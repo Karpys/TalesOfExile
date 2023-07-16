@@ -1,5 +1,6 @@
 ﻿using System;
 using KarpysDev.Script.Entities;
+using KarpysDev.Script.Entities.EntitiesBehaviour;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
@@ -38,5 +39,16 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     {
         public BoardEntity EntityPrefab;
         public Vector2Int EntityPosition;
+        public EntityIAType IAType;
+        public EntityGroup EntityGroup;
+        public EntityGroup TargetGroup;
+    }
+
+    public enum EntityIAType
+    {
+        None = 0,
+        MonsterMapEntity = 1,
+        BaseEntity = 2,
+        MissionEntity = 3,
     }
 }

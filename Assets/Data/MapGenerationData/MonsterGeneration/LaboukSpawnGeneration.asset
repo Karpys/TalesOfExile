@@ -15,7 +15,16 @@ MonoBehaviour:
   m_EntitySpawns:
   - EntityPrefab: {fileID: -4592490546126341204, guid: 249b34bce4909412c897865685e46e6f, type: 3}
     EntityPosition: {x: 26, y: 16}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0
   - EntityPrefab: {fileID: -4592490546126341204, guid: 0f03671ae3ced4268a97185ebbe5f752, type: 3}
     EntityPosition: {x: 24, y: 17}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0
   - EntityPrefab: {fileID: -4592490546126341204, guid: 0f03671ae3ced4268a97185ebbe5f752, type: 3}
     EntityPosition: {x: 24, y: 15}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0

@@ -21,23 +21,36 @@ namespace KarpysDev.Script.Widget
                 return EntityGroup.Enemy;
             return EntityGroup.Neutral;
         }
+        
+        public static EntityBehaviour ToEntityIA(this EntityIAType entityIA)
+        {
+            switch (entityIA)
+            {
+                case EntityIAType.MonsterMapEntity:
+                    return new MapEnemyEntityBehaviour();
+                case EntityIAType.MissionEntity:
+                    return new MissionManEntity();
+                default:
+                    return new BaseEntityIA();
+            }
+        }
 
         public static BoardEntity SpawnEntityOnMap(Vector2Int pos,BoardEntity entityPrefabBase,EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
         {
             MapData mapData = MapData.Instance;
         
             BoardEntity boardEntity = GameObject.Instantiate(entityPrefabBase,mapData.transform);
-            boardEntity.EntityInitialization(entityIa,entityGroup,targetEntityGroup);
             boardEntity.Place(pos.x,pos.y,mapData);
+            boardEntity.EntityInitialization(entityIa,entityGroup,targetEntityGroup);
             return boardEntity;
         }
 
-        public static void SpawnEnemyViaEntitySpawn(EntitySpawn[] entitySpawn)
+        public static void SpawnViaEntitySpawn(EntitySpawn[] entitySpawn)
         {
             foreach (EntitySpawn spawn in entitySpawn)
             {
-                SpawnEntityOnMap(spawn.EntityPosition, spawn.EntityPrefab, new MapEnemyEntityBehaviour(), EntityGroup.Enemy,
-                    EntityGroup.Friendly);
+                SpawnEntityOnMap(spawn.EntityPosition, spawn.EntityPrefab, spawn.IAType.ToEntityIA(), spawn.EntityGroup,
+                    spawn.TargetGroup);
             }
         }
     
