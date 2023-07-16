@@ -27,10 +27,10 @@ namespace KarpysDev.Script.Manager.Library
 
     public enum Tier
     {
-        Tier0,
-        Tier1,
-        Tier2,
-        Tier3,
-        Tier4,
+        Tier0 = 0,
+        Tier1 = 1,
+        Tier2 = 2,
+        Tier3 = 3,
+        Tier4 = 4,
     }
 }
