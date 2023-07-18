@@ -47,4 +47,12 @@ namespace KarpysDev.Script.Map_Related.Quest
         AddPercentLife = 1,
         AddPercentPhysicalResistance = 2,
     }
+    
+    public enum MapDifficulty
+    {
+        Easy = 0,
+        Medium = 1,
+        Hard = 2,
+        Extreme =3,
+    }
 }
