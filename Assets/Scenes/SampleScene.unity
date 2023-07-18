@@ -1040,6 +1040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c8719bad2149f3bdb45a728c0915e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MapModifierIconLibrary:
+    m_Keys: []
   m_Tier0Quest:
     m_WeightElement:
     - m_Weight: 0.33
@@ -2120,17 +2122,19 @@ MonoBehaviour:
       - m_Weight: 8.33
         m_Object: {fileID: 11400000, guid: 36eb1c1e44d1a4b1786d3741c1f345df, type: 2}
     m_RarityDraw:
-      m_WeightEnum:
-      - m_Weight: 50
-        m_Enum: 0
-      - m_Weight: 25
-        m_Enum: 1
-      - m_Weight: 15
-        m_Enum: 2
-      - m_Weight: 9
-        m_Enum: 3
-      - m_Weight: 1
-        m_Enum: 4
+      m_WeightElement:
+      - m_Weight: 0
+        m_Object: 0
+      - m_Weight: 0
+        m_Object: 1
+      - m_Weight: 0
+        m_Object: 2
+      - m_Weight: 0
+        m_Object: 3
+      - m_Weight: 0
+        m_Object: 0
+      - m_Weight: 0
+        m_Object: 4
 --- !u!1 &1072997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,6 +4065,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
+      propertyPath: m_QuestLibrary
+      value: 
+      objectReference: {fileID: 574708888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
 --- !u!1001 &8366602868331893663

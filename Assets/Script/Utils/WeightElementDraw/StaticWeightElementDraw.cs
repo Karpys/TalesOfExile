@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Utils
     /// Use It when called multiple times and weight element count dont change
     /// </summary>
     [Serializable]
-    public class StaticWeightElementDraw<T> : WeightElementDraw<T> where T : class
+    public class StaticWeightElementDraw<T> : WeightElementDraw<T>
     {
         private float m_CachedWeight = -1;
         protected override float GetTotalWeight()

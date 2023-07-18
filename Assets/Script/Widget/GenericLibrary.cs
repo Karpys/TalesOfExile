@@ -5,7 +5,7 @@ using UnityEngine;
 namespace KarpysDev.Script.Widget
 {
     [Serializable]
-    public class GenericLibrary<O,K> where O : class where K : struct
+    public class GenericLibrary<O,K>
     {
         [SerializeField] private LibraryKey<O, K>[] m_Keys = null;
         private Dictionary<K,O> m_Dictionary = new Dictionary<K,O>();
@@ -29,13 +29,13 @@ namespace KarpysDev.Script.Widget
     
         public O GetViaKey(K type)
         {
-            O obj = null;
+            O obj = default;
             m_Dictionary.TryGetValue(type,out obj);
 
             if (obj == null)
             {
                 Debug.LogError("Type not found in library :"+type);
-                return null;
+                return default;
             }
         
             return obj;
@@ -43,9 +43,9 @@ namespace KarpysDev.Script.Widget
     }
 
     [Serializable]
-    public class LibraryKey<O,K> where O : class where K : struct
+    public class LibraryKey<O,K>
     {
-        public O Object = null;
+        public O Object = default;
         public K Type;
 
         public LibraryKey(O obj, K key)

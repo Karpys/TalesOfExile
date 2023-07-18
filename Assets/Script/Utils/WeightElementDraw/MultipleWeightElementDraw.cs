@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace KarpysDev.Script.Utils
 {
     [Serializable]
-    public class MultipleWeightElementDraw<T> : WeightElementDraw<T> where T : class
+    public class MultipleWeightElementDraw<T> : WeightElementDraw<T>
     {
         public List<T> MultipleDraw(int drawCount)
         {

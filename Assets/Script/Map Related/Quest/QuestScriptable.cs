@@ -12,6 +12,8 @@ namespace KarpysDev.Script.Map_Related.Quest
         [SerializeField] private MultipleWeightElementDraw<MapModifier> m_MalusMapModifier = null;
         [SerializeField] private MultipleWeightElementDraw<MapModifier> m_BonusMapModifier = null;
         [SerializeField] private MapGroup m_MapGroup = null;
+        [SerializeField] private float m_BaseGoldAmmount = 0;
+        [SerializeField] private float m_BaseExpAmmount = 0;
 
         public string MapName => m_MapName;
         public MultipleWeightElementDraw<MapModifier> MalusMapModifier => m_MalusMapModifier;

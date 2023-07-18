@@ -10,8 +10,7 @@ namespace KarpysDev.Script.Manager.Library
     public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     {
         [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
-    
-
+        
         public List<Item> ItemRequest(ItemPoolType poolType,ItemDraw itemDraw)
         {
             List<Item> inventoryObject = new List<Item>();
@@ -48,7 +47,7 @@ namespace KarpysDev.Script.Manager.Library
     public class InventoryPoolObject
     {
         [SerializeField] private StaticWeightElementDraw<InventoryItemData> m_ObjectDataPool = null;
-        [SerializeField] private WeightEnumDraw<Rarity> m_RarityDraw = null;
+        [SerializeField] private WeightElementDraw<Rarity> m_RarityDraw = null;
         public List<Item> Draw(ItemDraw itemDraw)
         {
             List<Item> itemDrawn = new List<Item>();

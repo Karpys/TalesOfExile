@@ -61,27 +61,4 @@ namespace KarpysDev.Script.Editor
             return false;
         }
     }
-    
-    [CustomPropertyDrawer(typeof(WeightEnum<>))]
-    public class WeightEnumPropertyDrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            var enumField = property.FindPropertyRelative("m_Enum");
-            var weightField = property.FindPropertyRelative("m_Weight");
-            label.text = "";
-            Rect pos = EditorGUI.PrefixLabel(position, label);
-            Rect p1 = pos,p2 = pos;
-            p1.width = pos.width * .4f;
-            p2.xMin += p1.width;
-            EditorGUI.PropertyField(p1, enumField, GUIContent.none);
-            EditorGUI.PropertyField(p2, weightField, GUIContent.none);
-
-        }
-
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return 17;
-        }
-    }
 }

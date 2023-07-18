@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Utils
     /// Use StaticWeightElementDraw if the size never change
     /// </summary>
     [Serializable]
-    public class WeightElementDraw<T> where T:class
+    public class WeightElementDraw<T>
     {
         [SerializeField] protected WeightElement<T>[] m_WeightElement = null;
         public T Draw()
