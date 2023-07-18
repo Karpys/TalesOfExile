@@ -1,5 +1,6 @@
 ﻿using System;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.Map_Related.Quest;
 using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ namespace KarpysDev.Script.UI
         [SerializeField] private Tier[] m_MapTiers = null;
         [SerializeField] private MapTierUIPointer m_MapTierPointerPrefab = null;
         [SerializeField] private Transform m_MapTierLayout = null;
+        [Header("Quest Displayer")]
+        [SerializeField] private Transform m_QuestDisplayerContainer = null;
+        [Header("References")]
+        [SerializeField] private QuestLibrary m_QuestLibrary = null;
 
         private bool m_IsOpen = false;
 
@@ -45,9 +50,16 @@ namespace KarpysDev.Script.UI
 
             if (Input.GetMouseButtonDown(0))
             {
-                if(m_CurrentPointer && m_CurrentPointer.PointerUp)
-                    Debug.Log("Select current tier : " + m_CurrentPointer.Tier);
+                if (m_CurrentPointer && m_CurrentPointer.PointerUp)
+                {
+                    DisplayCurrentTier(m_CurrentPointer.Tier);
+                }
             }
+        }
+
+        private void DisplayCurrentTier(Tier tier)
+        {
+            QuestScriptable[] quests = m_QuestLibrary.GetQuest(tier,3);
         }
 
         private void Open()

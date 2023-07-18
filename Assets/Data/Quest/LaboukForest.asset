@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb9d70991043faa38a8da8963be633, type: 3}
+  m_Name: LaboukForest
+  m_EditorClassIdentifier: 
+  m_MapName: Labouk Forest
+  m_MapModifiers:
+    m_WeightElement:
+    - m_Weight: 50
+      m_Object:
+        MapModifierType: 1
+        ModifierValue: 20
+        ModifierFactor: 1
+    - m_Weight: 50
+      m_Object:
+        MapModifierType: 2
+        ModifierValue: 5
+        ModifierFactor: 1
+  m_MapGroup: {fileID: 11400000, guid: db2c6525fc5604314aee63874ae60263, type: 2}

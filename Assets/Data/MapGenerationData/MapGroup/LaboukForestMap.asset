@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8fc456d2c424e83b0350d1ead3627cc, type: 3}
-  m_Name: ForestMap
+  m_Name: LaboukForestMap
   m_EditorClassIdentifier: 
   m_Maps:
   - {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
