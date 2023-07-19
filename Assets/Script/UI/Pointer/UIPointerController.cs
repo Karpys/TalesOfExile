@@ -1,5 +1,6 @@
 ﻿namespace KarpysDev.Script.UI.Pointer
 {
+    //Obsolete ? Instead Directly Use a button Pointer 
     public class UIPointerController : UIPointer
     {
         private IUIPointerController m_Controller = null;

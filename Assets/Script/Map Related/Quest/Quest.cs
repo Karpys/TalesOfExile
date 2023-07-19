@@ -1,4 +1,6 @@
-﻿namespace KarpysDev.Script.Map_Related.Quest
+﻿using KarpysDev.Script.Map_Related.MapGeneration;
+
+namespace KarpysDev.Script.Map_Related.Quest
 {
     public class Quest
     {
@@ -12,6 +14,7 @@
         public QuestDifficulty QuestDifficulty => m_QuestDifficulty;
         public float QuestGoldAmmount => m_QuestGoldAmmount;
         public float QuestExpAmmount => m_QuestExpAmmount;
+        public MapGroup MapGroup => m_BaseQuestScriptableData.MapGroup;
 
         public Quest(QuestScriptable questScriptable, QuestDifficulty difficulty)
         {

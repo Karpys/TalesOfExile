@@ -547,7 +547,6 @@ MonoBehaviour:
   m_MapData: {fileID: 1849714072}
   m_PlayerEntity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
   m_HubMap: {fileID: 11400000, guid: 61b388ca7c30f4646b59dd2af2f5fec3, type: 2}
-  m_CurrentMapGroup: {fileID: 11400000, guid: db2c6525fc5604314aee63874ae60263, type: 2}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -4117,7 +4116,7 @@ PrefabInstance:
       objectReference: {fileID: 574708888}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.data[1]

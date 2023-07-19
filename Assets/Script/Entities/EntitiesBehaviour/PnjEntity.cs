@@ -10,8 +10,9 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
     public abstract class PnjEntity : EntityBehaviour
     {
         private Vector2Int[] m_CloseTiles = null;
-        
-            
+
+
+        private bool m_IsPlayerClose = false;
         public override void Behave()
         {
             return;
@@ -29,9 +30,20 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         {
             if (m_CloseTiles.Contains(GameManager.Instance.PlayerEntity.EntityPosition))
             {
+                m_IsPlayerClose = true;
                 OnPlayerAroundEntity();
             }
+            else
+            {
+                if (m_IsPlayerClose)
+                {
+                    OnPlayerExit();
+                    m_IsPlayerClose = false;
+                }
+            }
         }
+
+        protected abstract void OnPlayerExit();
 
         private void UnSub()
         {

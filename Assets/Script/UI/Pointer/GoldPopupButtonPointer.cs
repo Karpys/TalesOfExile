@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI.Pointer
 {
-    public class GoldPopupButtonPointer : ButtonPointer
+    public class GoldPopupButtonPointer : UIButtonPointer
     {
         [Header("Open/Close")]
         [SerializeField] private RectTransform m_RectContainer = null;

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace KarpysDev.Script.UI.Pointer
 {
-    public abstract class ButtonPointer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+    public abstract class UIButtonPointer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     {
         private bool m_PointerUp = false;
 

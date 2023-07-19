@@ -14,10 +14,10 @@ namespace KarpysDev.Script.Map_Related
         [SerializeField] private MapData m_MapData = null;
         [SerializeField] private PlayerBoardEntity m_PlayerEntity = null;
         [SerializeField] private MapGenerationData m_HubMap = null;
-        [SerializeField] private MapGroup m_CurrentMapGroup = null;
 
         private bool m_FirstGeneration = true;
         private int m_MapId = 0;
+        private MapGroup m_CurrentMapGroup = null;
         public MapGenerationData CurrentMapData => m_CurrentMapGroup.MapGenerationData[m_MapId];
 
         public Action A_OnMapErased = null;
@@ -40,8 +40,7 @@ namespace KarpysDev.Script.Map_Related
         private void InitializeMap()
         {
             InitializeMapData();
-            //Tiles Initiation//
-            LoadMap(CurrentMapData);
+            LoadMap(m_HubMap);
         }
 
         public void ReloadMap()
@@ -124,6 +123,11 @@ namespace KarpysDev.Script.Map_Related
         {
             m_CurrentMapGroup = mapGroup;
             m_MapId = 0;
+        }
+
+        public void LaunchMap()
+        {
+            LoadMap(CurrentMapData);
         }
 
         private void InitializeMapData()

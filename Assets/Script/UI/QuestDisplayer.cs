@@ -12,7 +12,9 @@ namespace KarpysDev.Script.UI
         [SerializeField] private Transform m_MalusMapModifierTransform = null;
         [SerializeField] private TMP_Text m_GoldAmmount= null;
         [SerializeField] private TMP_Text m_ExpAmmount = null;
+        
         private Quest m_Quest = null;
+        public Quest Quest => m_Quest;
         public void AssignQuest(Quest quest)
         {
             m_Quest = quest;

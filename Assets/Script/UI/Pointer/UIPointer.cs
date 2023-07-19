@@ -14,7 +14,6 @@ namespace KarpysDev.Script.UI.Pointer
             OnEnter();
         }
 
-        //In RecordUIManager? time same rinventoryUIHolder => case display item//
         public void OnPointerExit(PointerEventData eventData)
         {
             m_PointerUp = false;

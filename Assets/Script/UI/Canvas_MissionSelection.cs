@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 
 namespace KarpysDev.Script.UI
 {
-    public class Canvas_MissionSelection : MonoBehaviour,IUIPointerController
+    public class Canvas_MissionSelection : SingletonMonoBehavior<Canvas_MissionSelection>
     {
         [SerializeField] private Transform m_Container = null;
         [Header("Map Tier Banner")]
@@ -36,56 +36,39 @@ namespace KarpysDev.Script.UI
         private bool m_IsOpen = false;
 
         private MapTierUIPointer m_CurrentPointer = null;
+        private Tier m_LastTier = Tier.Tier0;
 
         private Dictionary<Tier, Quest[]> m_ExistentQuest = new Dictionary<Tier, Quest[]>();
         private List<GameObject> m_ExistentQuestDisplayer = new List<GameObject>();
 
+        public bool IsOpen => m_IsOpen;
         private void Awake()
         {
             foreach (Tier tier in m_MapTiers)
             {
                 MapTierUIPointer pointer = Instantiate(m_MapTierPointerPrefab, m_MapTierLayout);
                 pointer.SetTier(tier);
-                pointer.AssignController(this);
             }    
         }
-        
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                if (m_IsOpen)
-                {
-                    Close();
-                }
-                else
-                {
-                    Open();
-                }
 
-                m_IsOpen = !m_IsOpen;
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (m_CurrentPointer && m_CurrentPointer.PointerUp)
-                {
-                    DisplayCurrentTier(m_CurrentPointer.Tier);
-                }
-            }
-        }
-        private void Open()
+        public void Open()
         {
+            m_IsOpen = true;
             m_Container.gameObject.SetActive(true);
+            
+            if(m_LastTier != Tier.None)
+                DisplayCurrentTier(m_LastTier);
         }
 
-        private void Close()
+        public void Close()
         {
+            m_IsOpen = false;
             m_Container.gameObject.SetActive(false);
         }
 
-        private void DisplayCurrentTier(Tier tier)
+        public void DisplayCurrentTier(Tier tier)
         {
+            m_LastTier = tier;
             if(m_ExistentQuest.Count > 0)
                 ClearExistentDisplayer();    
 
@@ -151,9 +134,11 @@ namespace KarpysDev.Script.UI
             return mapDifficulties;
         }
 
-        public void SetCurrentPointer(UIPointerController pointerController)
+        public void CloseAll()
         {
-            m_CurrentPointer = (MapTierUIPointer)pointerController;
+            Close();
+            ClearExistentDisplayer();
+            m_ExistentQuest.Clear();
         }
     }
 }

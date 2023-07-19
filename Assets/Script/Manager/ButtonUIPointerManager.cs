@@ -6,9 +6,9 @@ namespace KarpysDev.Script.Manager
 {
     public class ButtonUIPointerManager : SingletonMonoBehavior<ButtonUIPointerManager>
     {
-        private ButtonPointer m_CurrentPointer = null;
+        private UIButtonPointer m_CurrentPointer = null;
 
-        public void SetButtonPointer(ButtonPointer button)
+        public void SetButtonPointer(UIButtonPointer button)
         {
             m_CurrentPointer = button;
         }
