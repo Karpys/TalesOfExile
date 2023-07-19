@@ -1076,8 +1076,22 @@ MonoBehaviour:
       Type: 2
     - Object: {r: 0.6603774, g: 0, b: 0, a: 1}
       Type: 3
-  m_Tier0Quest:
-    m_WeightElement:
+  m_TierQuest:
+  - m_WeightElement:
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+  - m_WeightElement:
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+    - m_Weight: 0.33
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+  - m_WeightElement:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
@@ -4103,7 +4117,15 @@ PrefabInstance:
       objectReference: {fileID: 574708888}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
+      propertyPath: m_MapTiers.Array.data[1]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
+      propertyPath: m_MapTiers.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}

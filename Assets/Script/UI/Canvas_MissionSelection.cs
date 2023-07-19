@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related.Quest;
 using KarpysDev.Script.UI.Pointer;
@@ -35,6 +37,9 @@ namespace KarpysDev.Script.UI
 
         private MapTierUIPointer m_CurrentPointer = null;
 
+        private Dictionary<Tier, Quest[]> m_ExistentQuest = new Dictionary<Tier, Quest[]>();
+        private List<GameObject> m_ExistentQuestDisplayer = new List<GameObject>();
+
         private void Awake()
         {
             foreach (Tier tier in m_MapTiers)
@@ -69,11 +74,34 @@ namespace KarpysDev.Script.UI
                 }
             }
         }
+        private void Open()
+        {
+            m_Container.gameObject.SetActive(true);
+        }
+
+        private void Close()
+        {
+            m_Container.gameObject.SetActive(false);
+        }
 
         private void DisplayCurrentTier(Tier tier)
         {
-            //Todo : Cache and delete existent quest tier//
-            //Todo: If existent display them instead of creating other quest => Dictionary lookat//
+            if(m_ExistentQuest.Count > 0)
+                ClearExistentDisplayer();    
+
+            if (!m_ExistentQuest.TryGetValue(tier, out Quest[] quests))
+            {
+                quests = CreateQuest(tier);
+            }
+            
+            DisplayQuest(quests);
+            
+            if(!m_ExistentQuest.ContainsKey(tier))
+                m_ExistentQuest.Add(tier,quests);
+        }
+
+        private Quest[] CreateQuest(Tier tier)
+        {
             QuestScriptable[] questsData = m_QuestLibrary.GetQuest(tier,3);
             QuestDifficulty[] mapDifficulties = GetDifficulties();
 
@@ -83,6 +111,11 @@ namespace KarpysDev.Script.UI
                 quests[i] = new Quest(questsData[i], mapDifficulties[i]);
             }
 
+            return quests;
+        }
+
+        private void DisplayQuest(Quest[] quests)
+        {
             foreach (Quest quest in quests)
             {
                 QuestDisplayer displayer = null;
@@ -95,7 +128,18 @@ namespace KarpysDev.Script.UI
                     displayer = Instantiate(m_QuestDisplayerPrefab, m_QuestDisplayerContainer);
                 }
                 displayer.AssignQuest(quest);
+                m_ExistentQuestDisplayer.Add(displayer.gameObject);
             }
+        }
+
+        private void ClearExistentDisplayer()
+        {
+            foreach (GameObject displayer in m_ExistentQuestDisplayer)
+            {
+                Destroy(displayer);
+            }
+            
+            m_ExistentQuestDisplayer.Clear();
         }
 
         private QuestDifficulty[] GetDifficulties()
@@ -105,16 +149,6 @@ namespace KarpysDev.Script.UI
             mapDifficulties[1] = m_MapDifficulty1.Draw();
             mapDifficulties[2] = m_MapDifficulty2.Draw();
             return mapDifficulties;
-        }
-
-        private void Open()
-        {
-            m_Container.gameObject.SetActive(true);
-        }
-
-        private void Close()
-        {
-            m_Container.gameObject.SetActive(false);
         }
 
         public void SetCurrentPointer(UIPointerController pointerController)

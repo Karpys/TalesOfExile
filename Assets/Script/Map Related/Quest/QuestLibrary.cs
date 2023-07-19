@@ -13,7 +13,8 @@ namespace KarpysDev.Script.Map_Related.Quest
         [SerializeField] private GenericLibrary<float, QuestDifficulty> m_MapDifficultyLibrary = null;
         [SerializeField] private GenericLibrary<Vector2Int, QuestDifficulty> m_MapModifierDrawerLibrary = null;
         [SerializeField] private GenericLibrary<Color, QuestDifficulty> m_MapDifficultyColor = null;
-        [SerializeField] private MultipleWeightElementDraw<QuestScriptable> m_Tier0Quest = null;
+        [Header("Tier Quest")]
+        [SerializeField] private List<MultipleWeightElementDraw<QuestScriptable>> m_TierQuest = null;
 
         private Dictionary<Tier, MultipleWeightElementDraw<QuestScriptable>> m_TierQuestCollection = null;
 
@@ -24,7 +25,11 @@ namespace KarpysDev.Script.Map_Related.Quest
             m_MapModifierDrawerLibrary.InitializeDictionary();
             m_MapDifficultyColor.InitializeDictionary();
             m_TierQuestCollection = new Dictionary<Tier, MultipleWeightElementDraw<QuestScriptable>>();
-            m_TierQuestCollection.Add(Tier.Tier0,m_Tier0Quest);
+
+            for (int i = 0; i < m_TierQuest.Count; i++)
+            {
+                m_TierQuestCollection.Add((Tier)i,m_TierQuest[i]);
+            }
         }
 
         public QuestScriptable[] GetQuest(Tier tier,int questCount)

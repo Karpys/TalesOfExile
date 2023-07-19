@@ -27,6 +27,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public enum Tier
     {
+        None = -1,
         Tier0 = 0,
         Tier1 = 1,
         Tier2 = 2,
