@@ -56,7 +56,21 @@ namespace KarpysDev.Script.Widget
     
         public static BoardEntity GetClosestEntity(List<BoardEntity> entities,Vector2Int originPosition)
         {
-            return entities.Where(en => en.Targetable).OrderBy(e => DistanceUtils.GetSquareDistance(originPosition, e.EntityPosition)).FirstOrDefault();
+            BoardEntity closest = null;
+            int closestSquareDistance = 100;
+            int entitiesCount = entities.Count;
+
+            for (int i = 0; i < entitiesCount; i++)
+            {
+                int currentSquareDistance = DistanceUtils.GetSquareDistance(originPosition, entities[i].EntityPosition);
+                if (entities[i].Targetable && closestSquareDistance > currentSquareDistance)
+                {
+                    closest = entities[i];
+                    closestSquareDistance = currentSquareDistance;
+                }
+            }
+            
+            return closest;
         }
 
         public static BehaveTiming GetBehaveTiming(BoardEntity entity, BehaveTiming timing)
