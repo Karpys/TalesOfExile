@@ -12,17 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebb9d70991043faa38a8da8963be633, type: 3}
   m_Name: LaboukForest
   m_EditorClassIdentifier: 
-  m_MapName: Labouk Forest
-  m_MapModifiers:
-    m_WeightElement:
-    - m_Weight: 50
-      m_Object:
-        MapModifierType: 1
-        ModifierValue: 20
-        ModifierFactor: 1
-    - m_Weight: 50
-      m_Object:
-        MapModifierType: 2
-        ModifierValue: 5
-        ModifierFactor: 1
+  m_QuestName: Labouk Forest
+  m_MalusMapModifier:
+    m_WeightElement: []
+  m_BonusMapModifier:
+    m_WeightElement: []
   m_MapGroup: {fileID: 11400000, guid: db2c6525fc5604314aee63874ae60263, type: 2}
+  m_BaseGoldAmmount: 450
+  m_BaseExpAmmount: 400

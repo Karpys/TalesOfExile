@@ -448,6 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4556283263317875437}
+  - component: {fileID: 4964062867568506103}
   m_Layer: 5
   m_Name: QuestDisplayer
   m_TagString: Untagged
@@ -482,6 +483,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 296, y: 484}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4964062867568506103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114234024137103529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92fa7a38c2d4575bd897804fa9d00ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_QuestName: {fileID: 6608872657726738291}
+  m_QuestDifficulty: {fileID: 7622413116865401422}
+  m_BonusMapModifierTransform: {fileID: 7955102885653561246}
+  m_MalusMapModifierTransform: {fileID: 8452934530802850730}
+  m_GoldAmmount: {fileID: 3721627934300974395}
+  m_ExpAmmount: {fileID: 5377308620077843167}
 --- !u!1 &4319879974337304001
 GameObject:
   m_ObjectHideFlags: 0

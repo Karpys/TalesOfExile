@@ -1066,6 +1066,16 @@ MonoBehaviour:
       Type: 2
     - Object: {x: 3, y: 5}
       Type: 3
+  m_MapDifficultyColor:
+    m_Keys:
+    - Object: {r: 0, g: 0.8773585, b: 0.06663488, a: 1}
+      Type: 0
+    - Object: {r: 0.29772905, g: 0.7169812, b: 0.016233515, a: 1}
+      Type: 1
+    - Object: {r: 0.6901961, g: 0.33295837, b: 0, a: 1}
+      Type: 2
+    - Object: {r: 0.6603774, g: 0, b: 0, a: 1}
+      Type: 3
   m_Tier0Quest:
     m_WeightElement:
     - m_Weight: 0.33
@@ -4091,6 +4101,10 @@ PrefabInstance:
       propertyPath: m_QuestLibrary
       value: 
       objectReference: {fileID: 574708888}
+    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
+      propertyPath: m_MapTiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
 --- !u!1001 &8366602868331893663

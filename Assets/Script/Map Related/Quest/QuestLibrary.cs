@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.Quest
 {
-    public class QuestLibrary : MonoBehaviour
+    public class QuestLibrary : SingletonMonoBehavior<QuestLibrary>
     {
-        [SerializeField] private GenericLibrary<Sprite, MapModifierType> m_MapModifierIconLibrary = null;
-        [SerializeField] private GenericLibrary<float, MapDifficulty> m_MapDifficultyLibrary = null;
-        [SerializeField] private GenericLibrary<Vector2Int, MapDifficulty> m_MapModifierDrawerLibrary = null;
+        [SerializeField] private GenericLibrary<Sprite, QuestModifierType> m_MapModifierIconLibrary = null;
+        [SerializeField] private GenericLibrary<float, QuestDifficulty> m_MapDifficultyLibrary = null;
+        [SerializeField] private GenericLibrary<Vector2Int, QuestDifficulty> m_MapModifierDrawerLibrary = null;
+        [SerializeField] private GenericLibrary<Color, QuestDifficulty> m_MapDifficultyColor = null;
         [SerializeField] private MultipleWeightElementDraw<QuestScriptable> m_Tier0Quest = null;
 
         private Dictionary<Tier, MultipleWeightElementDraw<QuestScriptable>> m_TierQuestCollection = null;
@@ -21,6 +22,7 @@ namespace KarpysDev.Script.Map_Related.Quest
             m_MapModifierIconLibrary.InitializeDictionary();
             m_MapDifficultyLibrary.InitializeDictionary();
             m_MapModifierDrawerLibrary.InitializeDictionary();
+            m_MapDifficultyColor.InitializeDictionary();
             m_TierQuestCollection = new Dictionary<Tier, MultipleWeightElementDraw<QuestScriptable>>();
             m_TierQuestCollection.Add(Tier.Tier0,m_Tier0Quest);
         }
@@ -36,18 +38,23 @@ namespace KarpysDev.Script.Map_Related.Quest
             return null;
         }
 
-        public float GetDifficultyPercennt(MapDifficulty difficulty)
+        public float GetDifficultyPercennt(QuestDifficulty difficulty)
         {
             return m_MapDifficultyLibrary.GetViaKey(difficulty);
         }
 
-        public Vector2Int GetModifierCount(MapDifficulty difficulty)
+        public Vector2Int GetModifierCount(QuestDifficulty difficulty)
         {
             return m_MapModifierDrawerLibrary.GetViaKey(difficulty);
         }
-        public Sprite GetIcon(MapModifierType type)
+        public Sprite GetIcon(QuestModifierType type)
         {
             return m_MapModifierIconLibrary.GetViaKey(type);
+        }
+
+        public Color GetDifficultyColor(QuestDifficulty questDifficulty)
+        {
+            return m_MapDifficultyColor.GetViaKey(questDifficulty);
         }
     }
 }

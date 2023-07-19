@@ -8,23 +8,30 @@ namespace KarpysDev.Script.Map_Related.Quest
     [CreateAssetMenu(fileName = "Quest", menuName = "Quest/New Quest", order = 0)]
     public class QuestScriptable : ScriptableObject
     {
-        [SerializeField] private string m_MapName = String.Empty;
-        [SerializeField] private MultipleWeightElementDraw<MapModifier> m_MalusMapModifier = null;
-        [SerializeField] private MultipleWeightElementDraw<MapModifier> m_BonusMapModifier = null;
+        [SerializeField] private string m_QuestName = String.Empty;
+        [SerializeField] private MultipleWeightElementDraw<QuestModifier> m_MalusMapModifier = null;
+        [SerializeField] private MultipleWeightElementDraw<QuestModifier> m_BonusMapModifier = null;
         [SerializeField] private MapGroup m_MapGroup = null;
         [SerializeField] private float m_BaseGoldAmmount = 0;
         [SerializeField] private float m_BaseExpAmmount = 0;
 
-        public string MapName => m_MapName;
-        public MultipleWeightElementDraw<MapModifier> MalusMapModifier => m_MalusMapModifier;
-        public MultipleWeightElementDraw<MapModifier> BonusMapModifier => m_BonusMapModifier;
+        public string QuestName => m_QuestName;
+        public float BaseGoldAmmount => m_BaseGoldAmmount;
+        public float BaseExpAmmount => m_BaseExpAmmount;
+        public MultipleWeightElementDraw<QuestModifier> MalusMapModifier => m_MalusMapModifier;
+        public MultipleWeightElementDraw<QuestModifier> BonusMapModifier => m_BonusMapModifier;
         public MapGroup MapGroup => m_MapGroup;
+
+        public Quest ToQuest(QuestDifficulty difficulty)
+        {
+            return new Quest(this, difficulty);
+        }
     }
 
     [System.Serializable]
-    public class MapModifier
+    public class QuestModifier
     {
-        public MapModifierType MapModifierType = MapModifierType.AddPercentLife;
+        public QuestModifierType QuestModifierType = QuestModifierType.AddPercentLife;
         public string ModifierValue = String.Empty;
         public float ModifierFactor = 1;
 
@@ -41,14 +48,14 @@ namespace KarpysDev.Script.Map_Related.Quest
         }
     }
 
-    public enum MapModifierType
+    public enum QuestModifierType
     {
         None = 0,
         AddPercentLife = 1,
         AddPercentPhysicalResistance = 2,
     }
     
-    public enum MapDifficulty
+    public enum QuestDifficulty
     {
         Easy = 0,
         Medium = 1,
