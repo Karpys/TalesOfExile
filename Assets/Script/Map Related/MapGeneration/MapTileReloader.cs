@@ -12,8 +12,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         private void Start()
         {
             m_Cleaner = new DestroyObjectCleaner(gameObject);
-        
-            GameManager.Instance.A_OnEndTurn += CheckForPlayerPosition;
         }
 
         private void OnDestroy()
@@ -22,8 +20,9 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 GameManager.Instance.A_OnEndTurn -= CheckForPlayerPosition;
         }
 
-        public void SetReloadPosition(Vector2Int reloadPosition)
+        public void Initialize(Vector2Int reloadPosition)
         {
+            GameManager.Instance.A_OnEndTurn += CheckForPlayerPosition;
             m_ReloadPosition = reloadPosition;
             transform.position = MapData.Instance.GetTilePosition(reloadPosition);
         }

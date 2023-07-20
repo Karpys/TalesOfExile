@@ -22,6 +22,7 @@ namespace KarpysDev.Script.Map_Related
         public MapGenerationData CurrentMapData => m_CurrentMapGroup.MapGenerationData[m_MapId];
 
         public Action A_OnMapErased = null;
+        public Action A_OnMapLoaded = null;
         private void Start()
         {
             InitializeMap();
@@ -103,8 +104,8 @@ namespace KarpysDev.Script.Map_Related
             MapCleaner.Instance.Clean();
             EraseMap();
             GenerationMapInfo info = generationData.Generate(m_MapData);
-        
             PlacePlayerEntity(info.StartPosition);
+            A_OnMapLoaded?.Invoke();
         }
 
         private void PlacePlayerEntity(Vector2Int position)

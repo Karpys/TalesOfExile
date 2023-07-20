@@ -13,18 +13,18 @@ namespace KarpysDev.Script.Map_Related
         public const float TILE_SIZE = 1;
         public void AddReloaderAt(Vector2Int pos)
         {
-            Instantiate(m_BaseMapReloader, MapData.Instance.transform).SetReloadPosition(pos);
+            Instantiate(m_BaseMapReloader, MapData.Instance.transform).Initialize(pos);
         }
 
         public void AddPortalMapReloaderAt(Vector2Int pos)
         {
-            Instantiate(m_PortalMapReloader, MapData.Instance.transform).SetReloadPosition(pos);
+            Instantiate(m_PortalMapReloader, MapData.Instance.transform).Initialize(pos);
         }
         
         public void AddMissionLauncher(Vector2Int pos,Sprite sprite,Quest quest)
         {
             MissionLauncherPortalMap missionPortal = Instantiate(m_MissionLauncherPortalMap, MapData.Instance.transform);
-            missionPortal.SetReloadPosition(pos);
+            missionPortal.Initialize(pos);
             missionPortal.Init(sprite,quest);
         }
     }
