@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe8bedf40864127b3591f877f98dd67, type: 3}
+  m_Name: ForestMapBossArea
+  m_EditorClassIdentifier: 
+  m_Width: 32
+  m_Height: 32
+  m_BaseTile: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
+  m_SpawnPosition: {x: 0, y: 16}
+  m_MapSprite: {fileID: 21300000, guid: fa4aa69370973c3489a9a20d041b694d, type: 3}
+  m_ColorTileMap:
+    m_Keys:
+    - Object: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
+      Type: {r: 0, g: 0, b: 0, a: 1}
+    - Object: {fileID: 7124269101175009985, guid: bb54872bc6629f347a00894abf134a5c, type: 3}
+      Type: {r: 0.37254903, g: 0.80392164, b: 0.8941177, a: 1}
+    - Object: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
+      Type: {r: 0.29411766, g: 0.41176474, b: 0.18431373, a: 1}
+    - Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      Type: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
+    - Object: {fileID: 7124269101175009985, guid: 5e329897676e527418d3959267b02e65, type: 3}
+      Type: {r: 0.85098046, g: 0.627451, b: 0.40000004, a: 1}
+    - Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      Type: {r: 0.9843138, g: 0.9490197, b: 0.21176472, a: 1}
+  m_MonsterGeneration: {fileID: 11400000, guid: 522bc79dbbe3d94439d437e45a75fe02, type: 2}

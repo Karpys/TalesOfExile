@@ -24,7 +24,6 @@ namespace KarpysDev.Script.Utils
 
             foreach (Type type in currentAssembly.GetTypes())
             {
-                Debug.Log(type.Name);
                 if(classDictionary.ContainsKey(type.Name))
                     continue;
                 classDictionary.Add(type.Name,type);

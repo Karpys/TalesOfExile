@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eea09fb05c4f8bada5e07a093495b7, type: 3}
+  m_Name: ForestBossSpawnerGeneration
+  m_EditorClassIdentifier: 
+  m_EntitySpawns:
+  - EntityPrefab: {fileID: -2413995395981544658, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
+    EntityPosition: {x: 26, y: 16}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0
+  - EntityPrefab: {fileID: -4592490546126341204, guid: 9f22fac0b2876de44a0d11d0c305e766, type: 3}
+    EntityPosition: {x: 24, y: 17}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0
+  - EntityPrefab: {fileID: -4592490546126341204, guid: 9f22fac0b2876de44a0d11d0c305e766, type: 3}
+    EntityPosition: {x: 24, y: 15}
+    IAType: 1
+    EntityGroup: 1
+    TargetGroup: 0

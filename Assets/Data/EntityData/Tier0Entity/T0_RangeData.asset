@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b491e1dd8a48eca0830a9bfcdcab91, type: 3}
-  m_Name: LaboukKingData
+  m_Name: T0_RangeData
   m_EditorClassIdentifier: 
   m_EntityBaseData:
     m_EntityGroup: 1
     m_TargetEntityGroup: 0
     m_Stats:
-      CombatRange: 1
-      MaxLife: 1000
-      Life: 1000
+      CombatRange: 4
+      MaxLife: 80
+      Life: 80
       LifeRegeneration: 0
       WeaponForce: 10
       MeleeModifier: 0
@@ -37,14 +37,11 @@ MonoBehaviour:
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
-      IsBowUser: 0
+      IsBowUser: 1
       RootLockCount: 0
       SpellLockCount: 0
       MeleeLockCount: 0
     m_BaseSpellInfos:
-    - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
-      m_SpellPriority: 0
-      m_SpellLearnType: 0
-    - m_SpellData: {fileID: 11400000, guid: acd84d7954bba4b38b1e9d3eaa5e1b4f, type: 2}
+    - m_SpellData: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
       m_SpellPriority: 1
       m_SpellLearnType: 0

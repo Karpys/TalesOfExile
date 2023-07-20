@@ -1,6 +1,6 @@
-none
-none
-none
+Weapon Attack
+Regeneration Buff
+Rush
 none
 none
 none

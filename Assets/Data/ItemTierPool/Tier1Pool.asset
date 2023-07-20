@@ -14,6 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InventoryPoolObject:
     m_ObjectDataPool:
-      m_WeightElement: []
+      m_WeightElement:
+      - m_Weight: 25
+        m_Object: {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
+      - m_Weight: 25
+        m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
+      - m_Weight: 25
+        m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
+      - m_Weight: 8.33
+        m_Object: {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
+      - m_Weight: 8.33
+        m_Object: {fileID: 11400000, guid: f0793400685664b0eb9f5b126eaa6be4, type: 2}
+      - m_Weight: 8.33
+        m_Object: {fileID: 11400000, guid: 36eb1c1e44d1a4b1786d3741c1f345df, type: 2}
     m_RarityDraw:
-      m_WeightElement: []
+      m_WeightElement:
+      - m_Weight: 50
+        m_Object: 0
+      - m_Weight: 25
+        m_Object: 1
+      - m_Weight: 15
+        m_Object: 2
+      - m_Weight: 9
+        m_Object: 3
+      - m_Weight: 1
+        m_Object: 4

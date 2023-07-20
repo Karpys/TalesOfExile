@@ -1,18 +1,18 @@
 Weapon Attack
 Regeneration Buff
-Ice Split
-Rain Sword
-Meteor Blast
-Detection Mine
-Lightning Strike
-Skeleton Curse
-Curse Spreader
-Ice Blast
-Grab Chain
-Rock Slam
-Life Stealer
-Ice Spear
-Monk Palm
+Rush
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
 none
 none
 none

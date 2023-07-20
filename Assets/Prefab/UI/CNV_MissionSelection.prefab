@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 7337835579912275508}
-  m_MapTiers: 000000000100000002000000
+  m_MapTiers: 0000000001000000
   m_MapTierPointerPrefab: {fileID: 8774934637185926365, guid: 5d93c25c99499064b87f56180cc83231, type: 3}
   m_MapTierLayout: {fileID: 7337835581450653385}
   m_MapDifficulty0:
@@ -388,3 +388,4 @@ MonoBehaviour:
   m_EasyQuestDisplayerPrefab: {fileID: 2779278908141440593, guid: 9cb7f6c92f7eb9f4c8dad3f2d50f50bf, type: 3}
   m_QuestDisplayerPrefab: {fileID: 4964062867568506103, guid: dcd644d6602871f439b679b1e599e4cd, type: 3}
   m_QuestLibrary: {fileID: 0}
+  m_SpawnPortalOffset: {x: 0, y: 2}

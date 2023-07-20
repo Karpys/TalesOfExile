@@ -2153,33 +2153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6290220d6755496786142974d5b1a2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Tier1PoolObject:
-    m_ObjectDataPool:
-      m_WeightElement:
-      - m_Weight: 25
-        m_Object: {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
-      - m_Weight: 25
-        m_Object: {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}
-      - m_Weight: 25
-        m_Object: {fileID: 11400000, guid: 0c237a1101a465d45b349a883593ce7e, type: 2}
-      - m_Weight: 8.33
-        m_Object: {fileID: 11400000, guid: b33d2c8191f7232498d080e6ec70d928, type: 2}
-      - m_Weight: 8.33
-        m_Object: {fileID: 11400000, guid: f0793400685664b0eb9f5b126eaa6be4, type: 2}
-      - m_Weight: 8.33
-        m_Object: {fileID: 11400000, guid: 36eb1c1e44d1a4b1786d3741c1f345df, type: 2}
-    m_RarityDraw:
-      m_WeightElement:
-      - m_Weight: 50
-        m_Object: 0
-      - m_Weight: 25
-        m_Object: 1
-      - m_Weight: 15
-        m_Object: 2
-      - m_Weight: 9
-        m_Object: 3
-      - m_Weight: 1
-        m_Object: 4
+  m_PoolObjects:
+    m_Keys:
+    - Object: {fileID: 11400000, guid: 949b2786750b6934d8b0eec9b42a8e34, type: 2}
+      Type: 2
 --- !u!1 &1072997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,18 +4091,6 @@ PrefabInstance:
       propertyPath: m_QuestLibrary
       value: 
       objectReference: {fileID: 574708888}
-    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
-      propertyPath: m_MapTiers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
-      propertyPath: m_SpawnPortalOffset.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
-      propertyPath: m_MapTiers.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.data[2]
       value: 2

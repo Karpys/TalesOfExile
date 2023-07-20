@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b491e1dd8a48eca0830a9bfcdcab91, type: 3}
-  m_Name: RangeData
+  m_Name: T1_LaboukInvocation
   m_EditorClassIdentifier: 
   m_EntityBaseData:
     m_EntityGroup: 1
     m_TargetEntityGroup: 0
     m_Stats:
-      CombatRange: 4
-      MaxLife: 80
-      Life: 80
+      CombatRange: 1
+      MaxLife: 100
+      Life: 100
       LifeRegeneration: 0
       WeaponForce: 10
       MeleeModifier: 0
       ProjectileModifier: 0
       SpellModifier: 0
       ColdDamageModifier: 0
-      HolyDamageModifier: 0
+      LightningDamageModifier: 0
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
       ElementalDamageModifier: 0
@@ -33,11 +33,18 @@ MonoBehaviour:
       FlatProjectileDamageReduction: 0
       FlatSpellDamageReduction: 0
       ColdDamageReduction: 0
-      HolyDamageReduction: 0
+      LightningDamageReduction: 0
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
-      IsBowUser: 1
+      IsBowUser: 0
+      RootLockCount: 0
+      SpellLockCount: 0
+      MeleeLockCount: 0
     m_BaseSpellInfos:
-    - m_SpellData: {fileID: 11400000, guid: 6e501f53b7874fc4c8a6938d38923cd1, type: 2}
+    - m_SpellData: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
       m_SpellPriority: 1
+      m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
+      m_SpellPriority: 0
+      m_SpellLearnType: 0
