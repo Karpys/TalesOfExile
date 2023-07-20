@@ -15,6 +15,7 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         [Header("Equipement Holder")]
         [SerializeField] private ItemUIHolder[] m_EquipementHolder = null;
+        [SerializeField] private WeaponEquipementUIHolder m_MainWeaponEquipementUIHolder = null;
         private ItemUIHolder[] m_ItemHolders = null;
         private PlayerInventory m_Inventory = null;
 
@@ -61,6 +62,8 @@ namespace KarpysDev.Script.UI.ItemContainer
             {
                 m_EquipementHolder[i].SetItem(m_Inventory.Equipement[i]);
             }
+            
+            m_MainWeaponEquipementUIHolder.UpdateFadeVisual();
         }
 
         private void RefreshWhenOpen()

@@ -40,6 +40,7 @@ namespace KarpysDev.Script.UI.ItemContainer
         {
             if (item == null)
             {
+                m_AttachedItem = null;
                 DefaultDisplay();
                 return;
             }
@@ -49,14 +50,17 @@ namespace KarpysDev.Script.UI.ItemContainer
             m_ItemVisual.color = Color.white;
 
             RarityParameter rarityParameter = RarityLibrary.Instance.GetParametersViaKey(item.Rarity);
+            SetBorder(rarityParameter.RarityColor, 1);
+        }
+
+        protected void SetBorder(Color color,float alpha)
+        {
             m_ItemRarityBorder.sprite = m_ItemBorder;
-            m_ItemRarityBorder.color = rarityParameter.RarityColor;
+            m_ItemRarityBorder.color = color.setAlpha(alpha);
         }
 
         protected virtual void DefaultDisplay()
         {
-            m_AttachedItem = null;
-            //Set to default sprite
             m_ItemRarityBorder.sprite = m_DefaultItemBorder;
             m_ItemRarityBorder.color = Color.white;
         }

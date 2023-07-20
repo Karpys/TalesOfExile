@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using KarpysDev.Script.Items;
+using KarpysDev.Script.Manager.Library;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI.ItemContainer
@@ -30,6 +31,22 @@ namespace KarpysDev.Script.UI.ItemContainer
             if (IsTwoHanded || m_OtherEquipementHolder.IsTwoHanded)
                 return true;
             return false;
+        }
+        public void UpdateFadeVisual()
+        {
+            WeaponEquipementUIHolder main = GetMain();
+            WeaponEquipementUIHolder sub = GetSub();
+            
+            if (main.IsTwoHanded)
+            {
+                sub.m_ItemVisual.sprite = main.m_ItemVisual.sprite;
+                sub.m_ItemVisual.color = new Color(1,1,1,0.5f);
+                sub.SetBorder(RarityLibrary.Instance.GetParametersViaKey(main.Item.Rarity).RarityColor,0.5f);
+            }
+            else if(sub.Item == null)
+            {
+                sub.DefaultDisplay();
+            }
         }
 
         public EquipementItemUIHolder[] GetWeaponEquiped()

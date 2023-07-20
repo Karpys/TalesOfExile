@@ -1130,6 +1130,7 @@ MonoBehaviour:
   - {fileID: 8058242097317307259}
   - {fileID: 2190845800876889802}
   - {fileID: 6273191614907741081}
+  m_MainWeaponEquipementUIHolder: {fileID: 3783555787221582700}
   m_GoldPopupHolder: {fileID: 3464879552313612984}
 --- !u!114 &6949580794142827122
 MonoBehaviour:

@@ -1,7 +1,7 @@
 Weapon Attack
 Regeneration Buff
 Rush
-none
+Range Attack
 none
 none
 none

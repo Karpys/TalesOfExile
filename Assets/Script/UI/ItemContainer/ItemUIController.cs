@@ -157,6 +157,9 @@ namespace KarpysDev.Script.UI.ItemContainer
                 ((EquipementItem)equipementHolder.Item).UnEquip(); 
                 m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
             }
+            
+            if(equipementHolder is WeaponEquipementUIHolder weaponHolder)
+                weaponHolder.UpdateFadeVisual();
         }
 
         private void NonEquipement(EquipementItem itemToEquip,ItemUIHolder equipementHolder,ItemUIHolder inventoryHolder)
@@ -180,7 +183,7 @@ namespace KarpysDev.Script.UI.ItemContainer
             {
                 EquipementItemUIHolder[] weaponHolders = weaponHolder.GetWeaponEquiped();
                 ItemUIHolder[] freeHolder = GetFreeHolderInPlayerInventory();
-            
+
                 if (weaponHolders.Length - 1 > freeHolder.Length)
                     return;
             
@@ -204,7 +207,6 @@ namespace KarpysDev.Script.UI.ItemContainer
                 {
                     //send back two handed and place this
                     weaponHolder = weaponHolder.GetMain();
-                
                 }
             
                 itemToEquip.Equip();
