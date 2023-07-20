@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Utils;
+using KarpysDev.Script.Widget;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,24 +10,23 @@ namespace KarpysDev.Script.Manager.Library
 {
     public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     {
-        [SerializeField] private InventoryPoolObject m_Tier1PoolObject = null;
+        [SerializeField] private GenericLibrary<InventoryPoolObjectScriptable,ItemPoolType> m_PoolObjects = null;
         
         public List<Item> ItemRequest(ItemPoolType poolType,ItemDraw itemDraw)
         {
             List<Item> inventoryObject = new List<Item>();
-        
-            switch (poolType)
-            {
-                case ItemPoolType.Tier1Items:
-                    inventoryObject = m_Tier1PoolObject.Draw(itemDraw);
-                    break;
-                case ItemPoolType.None:
-                    break;
-                default:
-                    Debug.LogError("Item Pool Type has not been set up" + poolType);
-                    break;
-            }
 
+            InventoryPoolObjectScriptable poolObject = m_PoolObjects.GetViaKey(poolType);
+
+            if (poolObject != null)
+            {
+                inventoryObject = poolObject.Draw(itemDraw);
+            }
+            else
+            {
+                Debug.LogError("Item Pool Type has not been set up" + poolType);
+            }
+        
             return inventoryObject;
         }
     
@@ -39,8 +39,9 @@ namespace KarpysDev.Script.Manager.Library
 
     public enum ItemPoolType
     {
-        Tier1Items,
-        None,
+        None = 0,
+        Tier0Items = 1,
+        Tier1Items = 2,
     }
 
     [Serializable]

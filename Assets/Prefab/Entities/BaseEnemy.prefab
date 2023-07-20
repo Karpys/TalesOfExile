@@ -59,7 +59,7 @@ MonoBehaviour:
       ProjectileModifier: 0
       SpellModifier: 0
       ColdDamageModifier: 0
-      HolyDamageModifier: 0
+      LightningDamageModifier: 0
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
       ElementalDamageModifier: 0
@@ -67,12 +67,15 @@ MonoBehaviour:
       FlatProjectileDamageReduction: 0
       FlatSpellDamageReduction: 0
       ColdDamageReduction: 0
-      HolyDamageReduction: 0
+      LightningDamageReduction: 0
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
-    m_SpellList:
-      m_Spells: []
+      IsBowUser: 0
+      RootLockCount: 0
+      SpellLockCount: 0
+      MeleeLockCount: 0
+    m_BaseSpellInfos: []
 --- !u!114 &3618556183251360860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +95,7 @@ MonoBehaviour:
   m_ItemDraw:
     DrawCount: 1
     DrawChance: 12
-  m_ItemPoolType: 0
+  m_ItemPoolType: 2
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0

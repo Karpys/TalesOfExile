@@ -1080,16 +1080,16 @@ MonoBehaviour:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
+      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
   - m_WeightElement:
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
   - m_WeightElement:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
@@ -4116,7 +4116,7 @@ PrefabInstance:
       objectReference: {fileID: 574708888}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_SpawnPortalOffset.y
