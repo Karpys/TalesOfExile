@@ -10,43 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a4a6e6e28c648e9abe3b9a0077046af, type: 3}
-  m_Name: T1_ShoesModifier
+  m_Name: T0_BowModifier
   m_EditorClassIdentifier: 
   m_ModifierPool:
     m_Modifiers:
       m_WeightElement:
-      - m_Weight: 25
+      - m_Weight: 40
         m_Object:
-          m_Type: 22
-          m_Range: {x: 5, y: 10}
+          m_Type: 18
+          m_Range: {x: 10, y: 20}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 23
-          m_Range: {x: 5, y: 10}
+          m_Type: 0
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 24
-          m_Range: {x: 5, y: 10}
+          m_Type: 1
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 21
-          m_Range: {x: 10, y: 25}
+          m_Type: 2
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 26
-          m_Range: {x: 5, y: 10}
+          m_Type: 3
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 25
         m_Object:
-          m_Type: 25
-          m_Range: {x: 5, y: 10}
+          m_Type: 4
+          m_Range: {x: 7, y: 15}
           m_Params: 
       - m_Weight: 5
         m_Object:
-          m_Type: 51
-          m_Range: {x: 5, y: 10}
-          m_Params: Lesser Leap
+          m_Type: 20
+          m_Range: {x: 10, y: 20}
+          m_Params: 

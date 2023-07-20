@@ -95,7 +95,7 @@ MonoBehaviour:
   m_ItemDraw:
     DrawCount: 1
     DrawChance: 24
-  m_ItemPoolType: 2
+  m_ItemPoolType: 1
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 980381498483754554, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_Name
-      value: Range_Enemy
+      value: T0_Range_Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2068509225359419660, guid: 1f9441e469ea4414894468f0a0b31b9c, type: 3}
       propertyPath: m_RootOrder

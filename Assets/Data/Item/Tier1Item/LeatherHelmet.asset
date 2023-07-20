@@ -20,7 +20,7 @@ MonoBehaviour:
   m_Description: A leather cap that protect you against monsters
   m_BaseRarity: -1
   m_EquipementType: 1
-  m_EquipementTier: 1
+  m_EquipementTier: 0
   m_EquipementBaseModifiers:
   - Type: 21
     Value: 10

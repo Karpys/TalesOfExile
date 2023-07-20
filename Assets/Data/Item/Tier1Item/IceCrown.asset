@@ -20,7 +20,7 @@ MonoBehaviour:
   m_Description: A magical crown with a cold touch
   m_BaseRarity: 0
   m_EquipementType: 1
-  m_EquipementTier: 1
+  m_EquipementTier: 0
   m_EquipementBaseModifiers:
   - Type: 1
     Value: 20

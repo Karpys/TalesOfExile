@@ -2156,6 +2156,8 @@ MonoBehaviour:
   m_PoolObjects:
     m_Keys:
     - Object: {fileID: 11400000, guid: 949b2786750b6934d8b0eec9b42a8e34, type: 2}
+      Type: 1
+    - Object: {fileID: 11400000, guid: 949b2786750b6934d8b0eec9b42a8e34, type: 2}
       Type: 2
 --- !u!1 &1072997882
 GameObject:
@@ -2944,7 +2946,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BaseObjectScriptable:
-  - {fileID: 11400000, guid: ea1d3f6286e1ed44eb11610431fe664b, type: 2}
   - {fileID: 11400000, guid: a5ea70bed4b02b145afb69ab477a4e42, type: 2}
   - {fileID: 11400000, guid: 83bdd78c259aa9b4395c1c9496b89502, type: 2}
   - {fileID: 11400000, guid: 34cacce228d86b848858213b5f39f6a1, type: 2}

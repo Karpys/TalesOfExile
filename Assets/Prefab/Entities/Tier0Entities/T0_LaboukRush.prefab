@@ -95,7 +95,7 @@ MonoBehaviour:
   m_ItemDraw:
     DrawCount: 3
     DrawChance: 100
-  m_ItemPoolType: 2
+  m_ItemPoolType: 1
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0

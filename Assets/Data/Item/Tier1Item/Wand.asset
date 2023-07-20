@@ -20,7 +20,7 @@ MonoBehaviour:
   m_Description: A wood wand infused with magic
   m_BaseRarity: -1
   m_EquipementType: 5
-  m_EquipementTier: 1
+  m_EquipementTier: 0
   m_EquipementBaseModifiers:
   - Type: 19
     Value: 20

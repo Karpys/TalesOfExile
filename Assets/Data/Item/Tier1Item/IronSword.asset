@@ -20,7 +20,7 @@ MonoBehaviour:
   m_Description: A iron sword that protect you against monsters
   m_BaseRarity: -1
   m_EquipementType: 5
-  m_EquipementTier: 1
+  m_EquipementTier: 0
   m_EquipementBaseModifiers:
   - Type: 20
     Value: 17

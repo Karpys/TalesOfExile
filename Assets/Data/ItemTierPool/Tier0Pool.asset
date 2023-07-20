@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5616403998814ad4a931b5ffc64db67d, type: 3}
-  m_Name: Tier1Pool
+  m_Name: Tier0Pool
   m_EditorClassIdentifier: 
   m_InventoryPoolObject:
     m_ObjectDataPool:
@@ -27,6 +27,8 @@ MonoBehaviour:
         m_Object: {fileID: 11400000, guid: f0793400685664b0eb9f5b126eaa6be4, type: 2}
       - m_Weight: 8.33
         m_Object: {fileID: 11400000, guid: 36eb1c1e44d1a4b1786d3741c1f345df, type: 2}
+      - m_Weight: 8.33
+        m_Object: {fileID: 11400000, guid: f9a0a6f32bbee67468f32f1b553add09, type: 2}
     m_RarityDraw:
       m_WeightElement:
       - m_Weight: 50
