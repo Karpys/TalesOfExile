@@ -26,6 +26,11 @@ namespace KarpysDev.Script.PathFinding
 
         public static MapData mapData = null;
 
+        static PathFinding()
+        {
+            maxIteration = BASE_MAX_ITERATION_COUNT;
+        }
+        
         public static void UpdatePathFinding()
         {
             openSet = new TileHeap(mapData.MaxSize);
