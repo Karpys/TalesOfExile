@@ -4,6 +4,7 @@ using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.UI;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -90,6 +91,7 @@ namespace KarpysDev.Script.Map_Related
             {
                 m_MapId = 0;
                 ReturnToHub();
+                MissionSelectionManager.Instance.TriggerQuestEnd();
                 return;
             }
         

@@ -30,8 +30,11 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         {
             if (m_CloseTiles.Contains(GameManager.Instance.PlayerEntity.EntityPosition))
             {
-                m_IsPlayerClose = true;
-                OnPlayerAroundEntity();
+                if (!m_IsPlayerClose)
+                {
+                    m_IsPlayerClose = true;
+                    OnPlayerEnterEntity();
+                }
             }
             else
             {
@@ -55,6 +58,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
             MapGenerator.Instance.A_OnMapErased -= UnSub;
         }
 
-        protected abstract void OnPlayerAroundEntity();
+        protected abstract void OnPlayerEnterEntity();
     }
 }

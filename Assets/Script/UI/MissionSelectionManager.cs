@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using KarpysDev.Script.Manager.Library;
-using KarpysDev.Script.Map_Related.Quest;
+using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.Map_Related.QuestRelated;
 using KarpysDev.Script.UI.Pointer;
 using KarpysDev.Script.Utils;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace KarpysDev.Script.UI
 {
-    public class Canvas_MissionSelection : SingletonMonoBehavior<Canvas_MissionSelection>
+    public class MissionSelectionManager : SingletonMonoBehavior<MissionSelectionManager>
     {
         [SerializeField] private Transform m_Container = null;
         [Header("Map Tier Banner")]
@@ -32,16 +29,21 @@ namespace KarpysDev.Script.UI
         //[SerializeField] private MapModifierIcon m_MalusMapModifierIcon = null;
         [Header("References")]
         [SerializeField] private QuestLibrary m_QuestLibrary = null;
+        [SerializeField] private Vector2Int m_SpawnPortalOffset = Vector2Int.zero;
 
         private bool m_IsOpen = false;
+        private Vector2Int m_OpenPosition = Vector2Int.zero;
 
         private MapTierUIPointer m_CurrentPointer = null;
         private Tier m_LastTier = Tier.Tier0;
 
         private Dictionary<Tier, Quest[]> m_ExistentQuest = new Dictionary<Tier, Quest[]>();
         private List<GameObject> m_ExistentQuestDisplayer = new List<GameObject>();
+        private MissionLauncherPortalMap m_ExistentPortal = null;
+        private Quest m_CurrentQuest = null;
 
         public bool IsOpen => m_IsOpen;
+        public Vector2Int GetSpawnPosition => m_OpenPosition + m_SpawnPortalOffset;
         private void Awake()
         {
             foreach (Tier tier in m_MapTiers)
@@ -51,8 +53,9 @@ namespace KarpysDev.Script.UI
             }    
         }
 
-        public void Open()
+        public void Open(Vector2Int openPosition)
         {
+            m_OpenPosition = openPosition;
             m_IsOpen = true;
             m_Container.gameObject.SetActive(true);
             
@@ -81,6 +84,11 @@ namespace KarpysDev.Script.UI
             
             if(!m_ExistentQuest.ContainsKey(tier))
                 m_ExistentQuest.Add(tier,quests);
+        }
+
+        public void SetPortal(MissionLauncherPortalMap portal)
+        {
+            m_ExistentPortal = portal;
         }
 
         private Quest[] CreateQuest(Tier tier)
@@ -134,11 +142,32 @@ namespace KarpysDev.Script.UI
             return mapDifficulties;
         }
 
+        public void SetQuest(Quest quest)
+        {
+            m_CurrentQuest = quest;
+        }
+
+        public void TriggerQuestEnd()
+        {
+            Invoke("PopLoot",1f);
+        }
+
+        private void PopLoot()
+        {
+            m_CurrentQuest.PopLoot();
+        }
+
         public void CloseAll()
         {
             Close();
             ClearExistentDisplayer();
             m_ExistentQuest.Clear();
+        }
+
+        public void ClearExistentPortal()
+        {
+            if(m_ExistentPortal)
+                Destroy(m_ExistentPortal.gameObject);
         }
     }
 }

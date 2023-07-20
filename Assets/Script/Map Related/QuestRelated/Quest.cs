@@ -1,6 +1,8 @@
-﻿using KarpysDev.Script.Map_Related.MapGeneration;
+﻿using KarpysDev.Script.Manager;
+using KarpysDev.Script.Map_Related.MapGeneration;
+using UnityEngine;
 
-namespace KarpysDev.Script.Map_Related.Quest
+namespace KarpysDev.Script.Map_Related.QuestRelated
 {
     public class Quest
     {
@@ -15,6 +17,7 @@ namespace KarpysDev.Script.Map_Related.Quest
         public float QuestGoldAmmount => m_QuestGoldAmmount;
         public float QuestExpAmmount => m_QuestExpAmmount;
         public MapGroup MapGroup => m_BaseQuestScriptableData.MapGroup;
+        public Sprite QuestPortalIcon => m_BaseQuestScriptableData.QuestPortalIcon;
 
         public Quest(QuestScriptable questScriptable, QuestDifficulty difficulty)
         {
@@ -23,6 +26,12 @@ namespace KarpysDev.Script.Map_Related.Quest
 
             m_QuestGoldAmmount = m_BaseQuestScriptableData.BaseGoldAmmount * QuestDifficultyPercent / 100;
             m_QuestExpAmmount = m_BaseQuestScriptableData.BaseExpAmmount * QuestDifficultyPercent / 100;
+        }
+
+        public void PopLoot()
+        {
+            GoldManager.Instance.SpawnGoldAmmount(MapData.Instance.GetTilePosition(GameManager.Instance.PlayerEntity.EntityPosition)
+                ,GameManager.Instance.PlayerEntity.transform,10,m_QuestGoldAmmount);
         }
     }
 }

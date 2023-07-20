@@ -8,10 +8,10 @@ namespace KarpysDev.Script.UI.Pointer
         [SerializeField] private QuestDisplayer m_Displayer = null;
         public override void Trigger()
         {
-            //Todo : Spawn Portal at position and assign mapGroup
-            Canvas_MissionSelection.Instance.CloseAll();
-            MapGenerator.Instance.SetMapGroup(m_Displayer.Quest.MapGroup);            
-            MapGenerator.Instance.LaunchMap();            
+            MissionSelectionManager.Instance.Close();
+            MissionSelectionManager.Instance.ClearExistentPortal();
+            MapDataLibrary.Instance.AddMissionLauncher(MissionSelectionManager.Instance.GetSpawnPosition,m_Displayer.Quest.QuestPortalIcon,
+                m_Displayer.Quest);
         }
     }
 }

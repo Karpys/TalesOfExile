@@ -18,7 +18,7 @@ namespace KarpysDev.Script.UI.Pointer
 
         public override void Trigger()
         {
-            Canvas_MissionSelection.Instance.DisplayCurrentTier(m_Tier);
+            MissionSelectionManager.Instance.DisplayCurrentTier(m_Tier);
         }
     }
 }

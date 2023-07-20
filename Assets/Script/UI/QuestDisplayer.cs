@@ -1,4 +1,4 @@
-﻿using KarpysDev.Script.Map_Related.Quest;
+﻿using KarpysDev.Script.Map_Related.QuestRelated;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +18,6 @@ namespace KarpysDev.Script.UI
         public void AssignQuest(Quest quest)
         {
             m_Quest = quest;
-
             m_QuestDifficulty.color = QuestLibrary.Instance.GetDifficultyColor(m_Quest.QuestDifficulty);
             m_QuestName.text = m_Quest.QuestName;
             m_QuestDifficulty.text = m_Quest.QuestDifficulty+"\n"+m_Quest.QuestDifficultyPercent+"%";

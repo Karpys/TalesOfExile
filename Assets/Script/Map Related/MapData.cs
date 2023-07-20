@@ -30,12 +30,12 @@ namespace KarpysDev.Script.Map_Related
 
         public Vector3 GetTilePosition(int x, int y)
         {
-            return new Vector3(x * m_MapDataLibrary.TileSize, y * m_MapDataLibrary.TileSize, 0);
+            return new Vector3(x, y, 0);
         }
 
         public Vector3 GetTilePosition(Vector2Int pos)
         {
-            return GetTilePosition(pos.x, pos.y);
+            return new Vector3(pos.x,pos.y,0);
         }
 
         public Tile GetTile(Vector2Int pos)

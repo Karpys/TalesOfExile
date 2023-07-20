@@ -330,9 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f2b42a6c1e46829fb467b06bd616bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileSize: 1
-  BaseMapReloader: {fileID: 5958442995309582144, guid: 58085097704a84cbc913adfbb409b83d, type: 3}
-  PortalMapReloader: {fileID: 1970605852578674049, guid: e9b637dacabf1b64fb8508e12ac7839a, type: 3}
+  m_BaseMapReloader: {fileID: 5958442995309582144, guid: 58085097704a84cbc913adfbb409b83d, type: 3}
+  m_PortalMapReloader: {fileID: 1970605852578674049, guid: e9b637dacabf1b64fb8508e12ac7839a, type: 3}
+  m_MissionLauncherPortalMap: {fileID: 1832282807183631090, guid: dff59a062f31e4340aead0c780167d26, type: 3}
 --- !u!4 &101270389
 Transform:
   m_ObjectHideFlags: 0
@@ -1080,21 +1080,21 @@ MonoBehaviour:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
   - m_WeightElement:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
   - m_WeightElement:
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
     - m_Weight: 0.33
-      m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+      m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
 --- !u!1 &584535088
@@ -4117,6 +4117,10 @@ PrefabInstance:
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
+      propertyPath: m_SpawnPortalOffset.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8649162637620089031, guid: e4101b6790f76a7499fafe87af0127a3, type: 3}
       propertyPath: m_MapTiers.Array.data[1]

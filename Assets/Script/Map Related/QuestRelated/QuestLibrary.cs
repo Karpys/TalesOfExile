@@ -5,7 +5,7 @@ using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
-namespace KarpysDev.Script.Map_Related.Quest
+namespace KarpysDev.Script.Map_Related.QuestRelated
 {
     public class QuestLibrary : SingletonMonoBehavior<QuestLibrary>
     {

@@ -3,7 +3,7 @@ using KarpysDev.Script.Map_Related.MapGeneration;
 using KarpysDev.Script.Utils;
 using UnityEngine;
 
-namespace KarpysDev.Script.Map_Related.Quest
+namespace KarpysDev.Script.Map_Related.QuestRelated
 {
     [CreateAssetMenu(fileName = "Quest", menuName = "Quest/New Quest", order = 0)]
     public class QuestScriptable : ScriptableObject
@@ -14,6 +14,7 @@ namespace KarpysDev.Script.Map_Related.Quest
         [SerializeField] private MapGroup m_MapGroup = null;
         [SerializeField] private float m_BaseGoldAmmount = 0;
         [SerializeField] private float m_BaseExpAmmount = 0;
+        [SerializeField] private Sprite m_QuestPortalIcon = null;
 
         public string QuestName => m_QuestName;
         public float BaseGoldAmmount => m_BaseGoldAmmount;
@@ -21,6 +22,7 @@ namespace KarpysDev.Script.Map_Related.Quest
         public MultipleWeightElementDraw<QuestModifier> MalusMapModifier => m_MalusMapModifier;
         public MultipleWeightElementDraw<QuestModifier> BonusMapModifier => m_BonusMapModifier;
         public MapGroup MapGroup => m_MapGroup;
+        public Sprite QuestPortalIcon => m_QuestPortalIcon;
 
         public Quest ToQuest(QuestDifficulty difficulty)
         {
