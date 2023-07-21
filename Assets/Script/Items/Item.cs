@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Items
 {
-    public abstract class Item:ISavable
+    public abstract class Item
     {
         protected InventoryItemData m_Data = null;
         public Rarity Rarity => GetRarity();
@@ -46,19 +46,9 @@ namespace KarpysDev.Script.Items
             return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
         }
     }
-
-    public interface ISavable
-    {
-        public string GetSaveData();
-    }
-
-    public interface ILoadable
-    {
-        public void LoadData(string saveData);
-    }
-
     public interface ISaver
     {
+        public string GetSaveName { get;}
         public string[] FetchSaveData();
         public void WriteSaveData(string saveName, string[] data);
     }

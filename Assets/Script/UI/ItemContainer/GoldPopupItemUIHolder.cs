@@ -62,7 +62,7 @@ namespace KarpysDev.Script.UI.ItemContainer
                 return;
             
             Transform player = GameManager.Instance.PlayerEntity.transform;
-            GoldManager.Instance.SpawnGoldAmmount(player.position,player,5,250);
+            GoldManager.Instance.SpawnGoldAmount(player.position,player,5,250);
             SetItem(null);
             m_PlayerInventoryUI.UpdateInventoryCollection(this);
             UpdateGold();

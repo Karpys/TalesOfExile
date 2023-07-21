@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4152096741164217281}
   - component: {fileID: 3721627934300974395}
   m_Layer: 0
-  m_Name: GoldAmmount
+  m_Name: GoldAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 1533875966333113742}
   - component: {fileID: 5377308620077843167}
   m_Layer: 0
-  m_Name: ExpAmmount
+  m_Name: ExpAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,8 +513,8 @@ MonoBehaviour:
   m_QuestDifficulty: {fileID: 7622413116865401422}
   m_BonusMapModifierTransform: {fileID: 7955102885653561246}
   m_MalusMapModifierTransform: {fileID: 8452934530802850730}
-  m_GoldAmmount: {fileID: 3721627934300974395}
-  m_ExpAmmount: {fileID: 5377308620077843167}
+  m_GoldAmount: {fileID: 3721627934300974395}
+  m_ExpAmount: {fileID: 5377308620077843167}
 --- !u!1 &4319879974337304001
 GameObject:
   m_ObjectHideFlags: 0

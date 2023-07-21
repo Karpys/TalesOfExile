@@ -18,13 +18,15 @@ namespace KarpysDev.Script.Map_Related
 
         private BaseTween m_MoveToTargetTween = null;
         private GoldManager m_GoldManager = null;
+        private float m_GoldValue = 0;
 
         public void Initialize(GoldManager goldManager)
         {
             m_GoldManager = goldManager;
         }
-        public void Animate(Vector3 spawnPosition,Transform target)
+        public void Launch(Vector3 spawnPosition,Transform target,float goldValue)
         {
+            m_GoldValue = goldValue;
             transform.position = spawnPosition;
             Vector3 randomInsideSquare = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(1f,m_JumpDistance);
             float speed = Vector2.Distance(Vector2.zero, randomInsideSquare) * m_SpeedReference.y / m_SpeedReference.x;
@@ -38,6 +40,8 @@ namespace KarpysDev.Script.Map_Related
 
         private void PoolReturn()
         {
+            m_GoldManager.ChangeGoldValue(m_GoldValue);
+            m_GoldValue = 0;
             m_JumpContainer.transform.localPosition = Vector3.zero;
             transform.parent = m_GoldManager.transform;
             m_GoldManager.Return(this);

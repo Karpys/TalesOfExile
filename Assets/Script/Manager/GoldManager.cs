@@ -1,12 +1,14 @@
 ﻿using System;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Widget.ObjectPooling;
+using Script.Data;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
     public class GoldManager : SingletonMonoBehavior<GoldManager>
     {
+        [SerializeField] private PlayerDataHolder m_PlayerDataHolder = null;
         [SerializeField] private GoldWorldHolder m_GoldHolder = null;
         [SerializeField] private int m_InitialSize = 10;
 
@@ -22,17 +24,20 @@ namespace KarpysDev.Script.Manager
             goldWorldHolder.Initialize(this);
         }
 
-        public void SpawnGoldAmmount(Vector3 position,Transform target,int goldCount,float goldValue)
+        public void SpawnGoldAmount(Vector3 position,Transform target,int goldCount,float goldValue)
         {
             goldValue /= goldCount;
 
             for (int i = 0; i < goldCount; i++)
             {
-                // Todo : Set Gold Value//
-                m_GoldPool.Take().Animate(position,target);
+                m_GoldPool.Take().Launch(position,target,goldValue);
             }
         }
 
+        public void ChangeGoldValue(float goldValue)
+        {
+            m_PlayerDataHolder.ChangeGoldValue(goldValue);
+        }
         public void Return(GoldWorldHolder goldHolder)
         {
             m_GoldPool.Return(goldHolder);

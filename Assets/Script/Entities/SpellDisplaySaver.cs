@@ -3,6 +3,7 @@ using KarpysDev.Script.Items;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI;
 using KarpysDev.Script.Utils;
+using Script.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,18 +15,15 @@ namespace KarpysDev.Script.Entities
         [SerializeField] private TextAsset m_BaseSave = null;
         [SerializeField] private string m_SaveName = string.Empty;
 
-        private void Update()
+        private void Awake()
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                WriteSaveData(m_SaveName,FetchSaveData());
-            }
+            GlobalSaver.AddSaver(this);
         }
 
         //Todo: Need to handle spell key collision//
         public TriggerSpellData[] LoadSpellDisplay()
         {
-            string[] spellKeys = SaveUtils.ReadData(m_SaveName,m_BaseSave);
+            string[] spellKeys = SaveUtils.ReadData(GetSaveName,m_BaseSave);
 
             List<TriggerSpellData> currentDisplaySave = new List<TriggerSpellData>(m_Player.Spells);
             TriggerSpellData[] triggerSpellDatas = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
@@ -48,6 +46,9 @@ namespace KarpysDev.Script.Entities
 
             return triggerSpellDatas;
         }
+
+        public string GetSaveName => m_SaveName;
+
         public string[] FetchSaveData()
         {
             TriggerSpellData[] triggerSpellDatas = m_Player.DisplaySpell;

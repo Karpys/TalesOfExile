@@ -8,14 +8,14 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
     {
         private QuestScriptable m_BaseQuestScriptableData;
         private QuestDifficulty m_QuestDifficulty = QuestDifficulty.Easy;
-        private float m_QuestGoldAmmount = 0;
-        private float m_QuestExpAmmount = 0;
+        private float m_QuestGoldAmount = 0;
+        private float m_QuestExpAmount = 0;
 
         public string QuestName => m_BaseQuestScriptableData.QuestName;
         public float QuestDifficultyPercent => QuestLibrary.Instance.GetDifficultyPercennt(m_QuestDifficulty);
         public QuestDifficulty QuestDifficulty => m_QuestDifficulty;
-        public float QuestGoldAmmount => m_QuestGoldAmmount;
-        public float QuestExpAmmount => m_QuestExpAmmount;
+        public float QuestGoldAmount => m_QuestGoldAmount;
+        public float QuestExpAmount => m_QuestExpAmount;
         public MapGroup MapGroup => m_BaseQuestScriptableData.MapGroup;
         public Sprite QuestPortalIcon => m_BaseQuestScriptableData.QuestPortalIcon;
 
@@ -24,14 +24,14 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
             m_BaseQuestScriptableData = questScriptable;
             m_QuestDifficulty = difficulty;
 
-            m_QuestGoldAmmount = m_BaseQuestScriptableData.BaseGoldAmmount * QuestDifficultyPercent / 100;
-            m_QuestExpAmmount = m_BaseQuestScriptableData.BaseExpAmmount * QuestDifficultyPercent / 100;
+            m_QuestGoldAmount = m_BaseQuestScriptableData.BaseGoldAmount * QuestDifficultyPercent / 100;
+            m_QuestExpAmount = m_BaseQuestScriptableData.BaseExpAmount * QuestDifficultyPercent / 100;
         }
 
         public void PopLoot()
         {
-            GoldManager.Instance.SpawnGoldAmmount(MapData.Instance.GetTilePosition(GameManager.Instance.PlayerEntity.EntityPosition)
-                ,GameManager.Instance.PlayerEntity.transform,10,m_QuestGoldAmmount);
+            GoldManager.Instance.SpawnGoldAmount(MapData.Instance.GetTilePosition(GameManager.Instance.PlayerEntity.EntityPosition)
+                ,GameManager.Instance.PlayerEntity.transform,10,m_QuestGoldAmount);
         }
     }
 }

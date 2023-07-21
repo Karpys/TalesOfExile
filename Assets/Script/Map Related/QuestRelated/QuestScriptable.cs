@@ -12,13 +12,13 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
         [SerializeField] private MultipleWeightElementDraw<QuestModifier> m_MalusMapModifier = null;
         [SerializeField] private MultipleWeightElementDraw<QuestModifier> m_BonusMapModifier = null;
         [SerializeField] private MapGroup m_MapGroup = null;
-        [SerializeField] private float m_BaseGoldAmmount = 0;
-        [SerializeField] private float m_BaseExpAmmount = 0;
+        [SerializeField] private float m_BaseGoldAmount = 0;
+        [SerializeField] private float m_BaseExpAmount = 0;
         [SerializeField] private Sprite m_QuestPortalIcon = null;
 
         public string QuestName => m_QuestName;
-        public float BaseGoldAmmount => m_BaseGoldAmmount;
-        public float BaseExpAmmount => m_BaseExpAmmount;
+        public float BaseGoldAmount => m_BaseGoldAmount;
+        public float BaseExpAmount => m_BaseExpAmount;
         public MultipleWeightElementDraw<QuestModifier> MalusMapModifier => m_MalusMapModifier;
         public MultipleWeightElementDraw<QuestModifier> BonusMapModifier => m_BonusMapModifier;
         public MapGroup MapGroup => m_MapGroup;

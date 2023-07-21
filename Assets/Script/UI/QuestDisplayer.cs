@@ -10,8 +10,8 @@ namespace KarpysDev.Script.UI
         [SerializeField] private TMP_Text m_QuestDifficulty = null;
         [SerializeField] private Transform m_BonusMapModifierTransform = null;
         [SerializeField] private Transform m_MalusMapModifierTransform = null;
-        [SerializeField] private TMP_Text m_GoldAmmount= null;
-        [SerializeField] private TMP_Text m_ExpAmmount = null;
+        [SerializeField] private TMP_Text m_GoldAmount= null;
+        [SerializeField] private TMP_Text m_ExpAmount = null;
         
         private Quest m_Quest = null;
         public Quest Quest => m_Quest;
@@ -22,8 +22,8 @@ namespace KarpysDev.Script.UI
             m_QuestName.text = m_Quest.QuestName;
             m_QuestDifficulty.text = m_Quest.QuestDifficulty+"\n"+m_Quest.QuestDifficultyPercent+"%";
 
-            m_GoldAmmount.text = m_Quest.QuestGoldAmmount.ToString("0");
-            m_ExpAmmount.text = m_Quest.QuestExpAmmount.ToString("0");
+            m_GoldAmount.text = m_Quest.QuestGoldAmount.ToString("0");
+            m_ExpAmount.text = m_Quest.QuestExpAmount.ToString("0");
         }
     }
 }

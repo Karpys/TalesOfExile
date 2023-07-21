@@ -4,6 +4,7 @@ using System.Linq;
 using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Utils;
+using Script.Data;
 using UnityEngine;
 
 namespace KarpysDev.Script.Items
@@ -24,6 +25,7 @@ namespace KarpysDev.Script.Items
         private int EquipementLenght => Equipement.Length + m_PlayerInventory.Length;
         private void Awake()
         {
+            GlobalSaver.AddSaver(this);
             m_PlayerInventory = new Item[m_InventoryItemCount + 1];
         }
 
@@ -41,9 +43,6 @@ namespace KarpysDev.Script.Items
         {
             if (Input.GetKeyDown(KeyCode.X))
                 ClearPlayerInventory();
-
-            if (Input.GetKeyDown(KeyCode.W))
-                SaveInventory();
         }
 
         public bool TryPickUp(Item item)
@@ -78,7 +77,7 @@ namespace KarpysDev.Script.Items
         //Save Part
         private void SaveInventory()
         {
-            WriteSaveData(m_SaveName,FetchSaveData());
+            WriteSaveData(GetSaveName,FetchSaveData());
         }
         
         private void ClearPlayerInventory()
@@ -90,7 +89,7 @@ namespace KarpysDev.Script.Items
 
         private void InterpretSave()
         {
-            string[] data = SaveUtils.ReadData(m_SaveName,m_BaseInventory);
+            string[] data = SaveUtils.ReadData(GetSaveName,m_BaseInventory);
             List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
         
             m_PlayerInventory = saveObjects.GetRange(0,m_PlayerInventory.Length).ToArray();
@@ -101,6 +100,8 @@ namespace KarpysDev.Script.Items
         {
             SaveUtils.WriteSave(saveName,data);
         }
+
+        public string GetSaveName => m_SaveName;
 
         public string[] FetchSaveData()
         {
