@@ -49,6 +49,11 @@ namespace KarpysDev.Script.Utils.Editor
 
             return newFieldValues;
         }
+
+        public static string ToPath(this DefaultAsset folder)
+        {
+            return AssetDatabase.GetAssetPath(folder);
+        }
         
     }
 }
