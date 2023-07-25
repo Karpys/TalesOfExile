@@ -7,7 +7,6 @@ namespace KarpysDev.Script.Entities
 {
     public class BoardEntityEventHandler : MonoBehaviour
     {
-        public Action<IntSocket> OnRequestBlockSpell = null;
         public Action OnDeath = null;
         //TriggerSpellData can be null
         public Action<BoardEntity,DamageSpellTrigger> OnGetHitFromSpell = null;

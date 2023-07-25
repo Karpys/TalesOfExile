@@ -80,18 +80,14 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
             if (m_Target != null)
             {
-                if (CanCastSpell())
+                if (!triggerAction && m_TriggerSelfBuffCount != 0)
                 {
-                
-                    if (!triggerAction && m_TriggerSelfBuffCount != 0)
-                    {
-                        triggerAction = SelfBuffAction();
-                    }
+                    triggerAction = SelfBuffAction();
+                }
 
-                    if (!triggerAction)
-                    {
-                        triggerAction = TriggerAction();
-                    }
+                if (!triggerAction)
+                {
+                    triggerAction = TriggerAction();
                 }
         
                 if (!triggerAction && m_AttachedEntity.EntityStats.RootLockCount <= 0)
@@ -99,13 +95,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
                     triggerAction = MovementAction();
                 }
             }
-        }
-
-        private bool CanCastSpell()
-        {
-            IntSocket blockSpellCount = new IntSocket(0);
-            m_AttachedEntity.EntityEvent.OnRequestBlockSpell?.Invoke(blockSpellCount);
-            return blockSpellCount.Value <= 0;
         }
 
         private bool SelfBuffAction()

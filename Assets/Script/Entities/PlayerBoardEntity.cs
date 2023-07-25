@@ -66,10 +66,16 @@ namespace KarpysDev.Script.Entities
             }*/
         }
 
+        private readonly List<TriggerSpellData> m_CachedUsableSpells = new List<TriggerSpellData>(SpellInterfaceController.SPELL_DISPLAY_COUNT);
         protected override List<TriggerSpellData> GetUsableSpells()
         {
-            List<TriggerSpellData> triggerSpellDatas = m_DisplaySpell.Where(s => s != null).ToList();
-            return triggerSpellDatas;
+            m_CachedUsableSpells.Clear();
+            for (int i = 0; i < SpellInterfaceController.SPELL_DISPLAY_COUNT; i++)
+            {
+                if(m_DisplaySpell[i] != null)
+                    m_CachedUsableSpells.Add(m_DisplaySpell[i]);
+            }
+            return m_CachedUsableSpells;
         }
 
         public override void ComputeAllSpells()
