@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    public class MissionManEntity : PnjEntity
+    public class MissionManBehaviour : PnjBehaviour
     {
         private MissionSelectionManager m_MissionSelectionManager = null;
 

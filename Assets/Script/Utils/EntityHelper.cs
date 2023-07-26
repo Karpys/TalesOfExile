@@ -29,7 +29,9 @@ namespace KarpysDev.Script.Widget
                 case EntityIAType.MonsterMapEntity:
                     return new MapEnemyEntityBehaviour();
                 case EntityIAType.MissionEntity:
-                    return new MissionManEntity();
+                    return new MissionManBehaviour();
+                case EntityIAType.VendingEntity:
+                    return new VendingManBehaviour();
                 default:
                     return new BaseEntityIA();
             }

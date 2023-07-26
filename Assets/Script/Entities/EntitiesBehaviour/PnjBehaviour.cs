@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.EntitiesBehaviour
 {
-    public abstract class PnjEntity : EntityBehaviour
+    public abstract class PnjBehaviour : EntityBehaviour
     {
         private Vector2Int[] m_CloseTiles = null;
 
@@ -46,7 +46,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
             }
         }
 
-        protected abstract void OnPlayerExit();
 
         private void UnSub()
         {
@@ -59,5 +58,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         }
 
         protected abstract void OnPlayerEnterEntity();
+        protected abstract void OnPlayerExit();
     }
 }

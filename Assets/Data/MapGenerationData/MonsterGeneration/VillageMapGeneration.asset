@@ -18,3 +18,8 @@ MonoBehaviour:
     IAType: 3
     EntityGroup: 0
     TargetGroup: 1
+  - EntityPrefab: {fileID: 8264974956200032469, guid: 1ded0616efc9bac4fa1837c61af591ce, type: 3}
+    EntityPosition: {x: 22, y: 18}
+    IAType: 4
+    EntityGroup: 0
+    TargetGroup: 1

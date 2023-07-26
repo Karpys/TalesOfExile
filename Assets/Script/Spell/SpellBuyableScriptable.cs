@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace KarpysDev.Script.Spell
 {
@@ -18,8 +19,6 @@ namespace KarpysDev.Script.Spell
             m_SpellData = spellData;
         }
     }
-
-
     public interface IBuyable
     {
         public float GetPrice();

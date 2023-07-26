@@ -50,5 +50,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         MonsterMapEntity = 1,
         BaseEntity = 2,
         MissionEntity = 3,
+        VendingEntity = 4,
     }
 }
