@@ -1,6 +1,5 @@
 ﻿namespace KarpysDev.Script.UI.Pointer
 {
-    //Obsolete ? Instead Directly Use a button Pointer 
     public class UIPointerController : UIPointer
     {
         private IUIPointerController m_Controller = null;
@@ -16,12 +15,13 @@
 
         protected override void OnExit()
         {
-            return;
+            m_Controller.OnPointerExit(this);
         }
     }
 
     public interface IUIPointerController
     {
         public void SetCurrentPointer(UIPointerController pointerController);
+        public void OnPointerExit(UIPointerController pointerController);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using KarpysDev.Script.UI;
 using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace KarpysDev.Script.Manager
 {
     public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
     {
+        [SerializeField] private SpellUIDisplayer m_SpellUIDisplayer = null;
         [SerializeField] private Vector2 m_ReferenceSize = Vector2.zero;
         private Vector2 m_ScreenSize = Vector2.zero;
         private UIPointer m_CurrentPointer = null;
@@ -47,6 +49,11 @@ namespace KarpysDev.Script.Manager
             posX = Mathf.Clamp(posX, (uiSize / 2 ) * m_WidthRatio, Screen.width - uiSize / 2*m_WidthRatio);
             Transform trans = uiTransform.transform;
             trans.position = new Vector3(posX, trans.position.y);
+        }
+
+        public SpellUIDisplayer GetSpellUIDisplayer()
+        {
+            return m_SpellUIDisplayer;
         }
     }
 

@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.UI;
+using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
     public class VendingBoardEntity : DefaultBoardEntity
     {
-        [SerializeField] private Canvas m_CanvasTransform = null;
+        [SerializeField] private Canvas_Shop m_ShopCanvas = null;
 
         public void Open()
         {
-            m_CanvasTransform.gameObject.SetActive(true);
+            m_ShopCanvas.Open();
         }
 
         public void Close()
         {
-            m_CanvasTransform.gameObject.SetActive(false);
+            m_ShopCanvas.Close();
         }
     }
 }

@@ -49,7 +49,7 @@ namespace KarpysDev.Script.Editor
                 return;
             SpellBuyableScriptable newBuyable = CreateInstance<SpellBuyableScriptable>();
             newBuyable.SetSpellData(scriptable);
-            string spellName = string.Concat(scriptable.SpellName.Where(c => !char.IsWhiteSpace(c)));
+            string spellName = string.Concat(scriptable.name.Where(c => !char.IsWhiteSpace(c)));
             AssetDatabase.CreateAsset(newBuyable,folderPath+"/"+"Buyable"+spellName+".asset");
         }
     }

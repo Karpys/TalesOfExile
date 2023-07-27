@@ -47,7 +47,7 @@ namespace KarpysDev.Script.UI
             m_SpellName.text = spellData.TriggerData.SpellName;
             m_SpellGroups.text = GetSpellGroups(spellData.Data.SpellGroups);
             m_SpellDescription.text = spellData.GetSpellDescription();
-            m_CooldownValue.text = spellData.TriggerData.m_BaseCooldown <= 0 ? "X" : spellData.TriggerData.m_BaseCooldown.ToString();
+            m_CooldownValue.text = spellData.TriggerData.m_BaseCooldown <= 0 ? NO_COOLDOWN_VALUE : spellData.TriggerData.m_BaseCooldown.ToString();
             
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_LayoutTransform);
             AdaptSize();
