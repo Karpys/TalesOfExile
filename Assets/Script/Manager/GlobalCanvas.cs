@@ -8,12 +8,14 @@ namespace KarpysDev.Script.Manager
     public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
     {
         [SerializeField] private SpellUIDisplayer m_SpellUIDisplayer = null;
+        [SerializeField] private GoldUIUpdater m_GoldUIUpdater = null;
         [SerializeField] private Vector2 m_ReferenceSize = Vector2.zero;
         private Vector2 m_ScreenSize = Vector2.zero;
         private UIPointer m_CurrentPointer = null;
         private UICanvasType m_CurrentCanvasType = UICanvasType.None;
     
         public UIPointer CurrentPointer => m_CurrentPointer;
+        public GoldUIUpdater GoldUIUpdater => m_GoldUIUpdater;
         public UICanvasType CanvasType => m_CurrentCanvasType;
         public Vector2 ScreenSize => m_ScreenSize;
 

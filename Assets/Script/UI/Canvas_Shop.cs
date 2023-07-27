@@ -3,6 +3,7 @@ using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;
 using KarpysDev.Script.Widget;
+using TMPro;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -13,6 +14,8 @@ namespace KarpysDev.Script.UI
         [SerializeField] private Transform m_GridLayoutTransform = null;
         [SerializeField] private Object[] m_IBuyableReference = null;
         [SerializeField] private UIBuyableHolder m_BuyableHolderPrefab = null;
+
+        [SerializeField] private TMP_Text m_GoldCountText = null;
 
         private bool m_HasInit = false;
         private UIBuyableHolder m_CurrentPointer = null;
@@ -28,6 +31,7 @@ namespace KarpysDev.Script.UI
             if (!m_HasInit)
                 Init();
             gameObject.SetActive(true);
+            GlobalCanvas.Instance.GoldUIUpdater.AddGoldDisplayer(m_GoldCountText);
         }
 
         private void Init()
@@ -54,6 +58,7 @@ namespace KarpysDev.Script.UI
         {
             GlobalCanvas.Instance.GetSpellUIDisplayer().HideSpell();
             gameObject.SetActive(false);
+            GlobalCanvas.Instance.GoldUIUpdater.RemoveGoldDisplayer(m_GoldCountText);
         }
 
         public void SetCurrentPointer(UIPointerController pointerController)

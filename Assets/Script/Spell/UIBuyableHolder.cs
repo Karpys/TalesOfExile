@@ -11,14 +11,14 @@ namespace KarpysDev.Script.Spell
         [SerializeField] private TMP_Text m_Text = null;
         private IUIBuyable m_Buyable = null;
 
-        private static string GOLD_ICON = "<sprite name=\"GoldIcon\">";
+        private static string GOLD_ICON = " <sprite name=\"GoldIcon\">";
         public IUIBuyable Buyable => m_Buyable;
 
         public void InitializeBuyableHolder(IUIBuyable buyable)
         {
             m_Buyable = buyable;
             m_IconHolder.sprite = buyable.GetIcon();
-            m_Text.text = m_Buyable.Price + " " + GOLD_ICON;
+            m_Text.text = m_Buyable.Price + GOLD_ICON;
         }
     }
 }

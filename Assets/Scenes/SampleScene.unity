@@ -2110,6 +2110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpellUIDisplayer: {fileID: 1134172563}
+  m_GoldUIUpdater: {fileID: 1501363784}
   m_ReferenceSize: {x: 1920, y: 1080}
 --- !u!1 &1081259846
 GameObject:
@@ -4391,6 +4392,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851847887500197559, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444221849600225639, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_fontSize
+      value: 14.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444221849600225639, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444221849600225639, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
+      propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7989773985509441298, guid: 92024f4841d6efc4ca9ea3a2aca125cb, type: 3}
