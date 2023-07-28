@@ -32,7 +32,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private void TriggerOnAutoAttack(CastInfo castInfo)
         {
-            SpellCastUtils.TriggerSpellAt(m_Trigger,m_Receiver.EntityPosition,m_Receiver.EntityPosition);
+            if (castInfo is DamageCastInfo damageCastInfo)
+            {
+                if(damageCastInfo.HitEntity.Count > 0)
+                    SpellCastUtils.TriggerSpellAt(m_Trigger,m_Receiver.EntityPosition,m_Receiver.EntityPosition);
+            }
         }
         
         protected override void UnApply()
