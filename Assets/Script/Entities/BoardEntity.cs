@@ -248,7 +248,7 @@ namespace KarpysDev.Script.Entities
             m_Buffs = GetComponent<EntityBuffs>();
         
             //Spells
-            RegisterStartSpells();
+            RegisterStartSpells(m_EntityData.m_BaseSpellInfos);
         
             //Entity Behaviour//
             InitializeEntityBehaviour(entityIa);
@@ -334,11 +334,11 @@ namespace KarpysDev.Script.Entities
             m_CanBehave = canBehave;
         }
     
-        private void RegisterStartSpells()
+        protected virtual void RegisterStartSpells(SpellInfo[] spellInfos)
         {
-            for (int i = 0; i < m_EntityData.m_BaseSpellInfos.Length; i++)
+            for (int i = 0; i < spellInfos.Length; i++)
             {
-                AddSpellToSpellList(m_EntityData.m_BaseSpellInfos[i]);
+                AddSpellToSpellList(spellInfos[i]);
             }
         }
 

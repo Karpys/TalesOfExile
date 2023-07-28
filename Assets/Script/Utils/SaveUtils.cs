@@ -100,6 +100,13 @@ namespace KarpysDev.Script.Utils
 
             return saveObjects;
         }
+
+        public static bool SaveExist(string saveName)
+        {
+            string savePath = GetSavePath(saveName);
+
+            return File.Exists(savePath);
+        }
     }
 
     public struct DefaultSave

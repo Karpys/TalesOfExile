@@ -17,6 +17,7 @@ namespace KarpysDev.Script.Entities
         [Header("Player")]
         [SerializeField] private PlayerInventory m_PlayerInventory = null;
         [SerializeField] private SpellDisplaySaver m_SpellDisplaySave = null;
+        [SerializeField] private SpellLearnedSaver m_SpellLearnedSave = null;
         [SerializeField] private Transform m_JumpTweenContainer = null;
         [SerializeField] private float m_MovementDuration = 0.1f;
 
@@ -47,6 +48,18 @@ namespace KarpysDev.Script.Entities
             
             ComputeAllSpells();
             UpdateSpellPriority();
+        }
+
+        protected override void RegisterStartSpells(SpellInfo[] spellInfos)
+        {
+            if (!m_SpellLearnedSave.SaveExist())
+            {
+                base.RegisterStartSpells(spellInfos);
+            }
+            else
+            {
+                base.RegisterStartSpells(m_SpellLearnedSave.LoadSpellLearned());
+            }
         }
 
         public void InitDisplaySpell()

@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using KarpysDev.Script.Entities;
+using KarpysDev.Script.Spell;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
     public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
     {
-        [SerializeField] private List<SpellInfo> m_SpellList = new List<SpellInfo>();
-        public Dictionary<string, SpellInfo> Spells = new Dictionary<string, SpellInfo>();
+        [SerializeField] private List<SpellDataScriptable> m_SpellList = new List<SpellDataScriptable>();
+        public Dictionary<string, SpellDataScriptable> Spells = new Dictionary<string, SpellDataScriptable>();
 
         private void Awake()
         {
-            foreach (SpellInfo spellData in m_SpellList)
+            foreach (SpellDataScriptable spellData in m_SpellList)
             {
-                Spells.Add(spellData.m_SpellData.SpellName,spellData);
+                Spells.Add(spellData.SpellName,spellData);
             }
         }
 
         public SpellInfo GetSpellViaKey(string spellKey,SpellLearnType spellLearnType)
         {
-            SpellInfo spellData = null;
-            Spells.TryGetValue(spellKey,out spellData);
+            Spells.TryGetValue(spellKey,out SpellDataScriptable spellData);
 
             if (spellData == null)
             {
@@ -28,7 +28,7 @@ namespace KarpysDev.Script.Manager.Library
                 return null;
             }
         
-            return new SpellInfo(spellData.m_SpellData,spellData.m_SpellPriority,spellLearnType);
+            return new SpellInfo(spellData,1,spellLearnType);
         }
     }
 }
