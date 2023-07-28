@@ -13,7 +13,9 @@ namespace KarpysDev.Script.Manager
         [SerializeField] private int m_InitialSize = 10;
 
         private GameObjectPool<GoldWorldHolder> m_GoldPool = null;
+        public static string GOLD_ICON = " <sprite name=\"GoldIcon\">";
 
+        public Action OnGoldUpdated = null;
         private void Awake()
         {
             m_GoldPool = new GameObjectPool<GoldWorldHolder>(m_GoldHolder,transform, m_InitialSize,OnNewGoldHolder);
@@ -37,10 +39,16 @@ namespace KarpysDev.Script.Manager
         public void ChangeGoldValue(float goldValue)
         {
             m_PlayerDataHolder.ChangeGoldValue(goldValue);
+            OnGoldUpdated?.Invoke();
         }
         public void Return(GoldWorldHolder goldHolder)
         {
             m_GoldPool.Return(goldHolder);
+        }
+
+        public bool CanBuy(float goldPrice)
+        {
+            return goldPrice <= m_PlayerDataHolder.PlayerData.GoldCount;
         }
     }
 }

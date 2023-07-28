@@ -17,7 +17,11 @@ namespace KarpysDev.Script.Spell
 
         public void OnBuy()
         {
-            Debug.Log("Youpiii");
+            GoldManager.Instance.ChangeGoldValue(-Price);
+            GameManager.Instance.PlayerEntity.AddSpellToSpellList(new SpellInfo(m_TriggerSpellData.TriggerData, 1,
+                SpellLearnType.Learned));
+            m_TriggerSpellData = null;
+            GameManager.Instance.PlayerEntity.UpdateSpellPriority();
         }
         
         public void DisplayBuyable()

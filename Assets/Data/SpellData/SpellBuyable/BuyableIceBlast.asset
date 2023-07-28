@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fbd2ceeff944f0c8cb8c9379209a4e7, type: 3}
-  m_Name: BuyableWeaponAttack
+  m_Name: BuyableIceBlast
   m_EditorClassIdentifier: 
-  m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
+  m_SpellData: {fileID: 11400000, guid: ca858707b9b59564ea61fb603231be44, type: 2}
   m_Price: 100

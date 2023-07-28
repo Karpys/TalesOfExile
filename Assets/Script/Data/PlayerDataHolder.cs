@@ -16,6 +16,8 @@ namespace Script.Data
         [SerializeField] private GoldUIUpdater m_GoldUIUpdater = null;
         private PlayerData m_PlayerData = null;
 
+        public PlayerData PlayerData => m_PlayerData;
+
         private void Awake()
         {
             GlobalSaver.AddSaver(this);

@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500 <sprite name="GoldIcon">
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b019acd0be7958444868549b472edef3, type: 2}
   m_sharedMaterial: {fileID: 4527394540854391676, guid: b019acd0be7958444868549b472edef3, type: 2}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.75
+  m_fontSize: 24
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 2259142388193003311}
   - component: {fileID: 2259142388193003308}
   m_Layer: 5
-  m_Name: Spell
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,6 +1069,9 @@ MonoBehaviour:
   m_IBuyableReference: []
   m_BuyableHolderPrefab: {fileID: 9213349880405851525, guid: 6ee9296909511e144974718d76683a37, type: 3}
   m_GoldCountText: {fileID: 4445393258926052496}
+  m_BuyableVisual: {fileID: 2259142388193003308}
+  m_BuyablePrice: {fileID: 4662870572433704811}
+  m_ShopButton: {fileID: 1314324196282948763}
 --- !u!1 &8398607600638986557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1123,7 @@ GameObject:
   - component: {fileID: 8647491760397586543}
   - component: {fileID: 7537241516702021007}
   - component: {fileID: 6722837797745376373}
+  - component: {fileID: 1314324196282948763}
   m_Layer: 0
   m_Name: ValidationButton
   m_TagString: Untagged
@@ -1185,6 +1189,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.5
+--- !u!114 &1314324196282948763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845148361070232745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d306933a844d15961b7058a7e03bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Shop: {fileID: 6478018575094365499}
+  m_BuyText: {fileID: 4537107038553499611}
+  m_ButtonImage: {fileID: 6722837797745376373}
+  m_AlphaOnInactive: 0.5
 --- !u!1001 &7209532729572156253
 PrefabInstance:
   m_ObjectHideFlags: 0

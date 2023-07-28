@@ -12,8 +12,6 @@ namespace KarpysDev.Script.UI.ItemContainer
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
         [SerializeField] private float m_DeleteTime = 0.5f;
 
-        private static string GOLD_ICON = " <sprite name=\"GoldIcon\">";
-        
         private float m_GoldValue = 0;
 
         private Clock m_ClearGoldItem = null;
@@ -30,7 +28,7 @@ namespace KarpysDev.Script.UI.ItemContainer
         public void UpdateGold()
         {
             m_GoldValue = GetGoldValue();
-            m_GoldText.text = m_GoldValue.ToString("0") + GOLD_ICON;
+            m_GoldText.text = m_GoldValue.ToString("0") + GoldManager.GOLD_ICON;
         }
 
         private void Update()

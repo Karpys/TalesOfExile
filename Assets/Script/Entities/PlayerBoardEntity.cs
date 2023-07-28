@@ -52,18 +52,6 @@ namespace KarpysDev.Script.Entities
         public void InitDisplaySpell()
         {
             m_DisplaySpell = m_SpellDisplaySave.LoadSpellDisplay();
-            //Todo: Use Save System//
-            /*int maxDisplay = m_DisplaySpell.Length;
-            int spellId = 0;
-
-            for (int i = 0; i < Spells.Count; i++)
-            {
-                m_DisplaySpell[spellId] = Spells[i];
-                spellId++;
-                
-                if(spellId == maxDisplay)
-                    break;
-            }*/
         }
 
         private readonly List<TriggerSpellData> m_CachedUsableSpells = new List<TriggerSpellData>(SpellInterfaceController.SPELL_DISPLAY_COUNT);
