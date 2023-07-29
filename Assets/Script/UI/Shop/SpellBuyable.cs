@@ -8,6 +8,7 @@ namespace KarpysDev.Script.Spell
     {
         private TriggerSpellData m_TriggerSpellData = null;
         public float Price { get; set; }
+        public string Id { get; set; }
         public Transform UIParent { get; set; }
 
         public Sprite GetIcon()

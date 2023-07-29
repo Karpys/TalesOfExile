@@ -2,9 +2,9 @@ Weapon Attack
 Regeneration Buff
 Rush
 Range Attack
-Regeneration Buff
-none
-none
+Skeleton Curse
+Curse Spreader
+Detection Mine
 none
 none
 none

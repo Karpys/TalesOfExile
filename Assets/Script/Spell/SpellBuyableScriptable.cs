@@ -22,6 +22,7 @@ namespace KarpysDev.Script.Spell
             SpellBuyable spellBuyable = new SpellBuyable();
             spellBuyable.UIParent = uiParent;
             spellBuyable.Price = m_Price;
+            spellBuyable.Id = Id;
             spellBuyable.InitializeSpell(new SpellInfo(m_SpellData,1,SpellLearnType.Learned));
             return spellBuyable;
         }
@@ -36,6 +37,7 @@ namespace KarpysDev.Script.Spell
     public interface IUIBuyable
     {
         public float Price { get; set;}
+        public string Id { get; set;}
 
         public Sprite GetIcon();
         public void OnBuy();

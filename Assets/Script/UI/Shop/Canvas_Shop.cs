@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;
+using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
 using TMPro;
 using UnityEngine;
@@ -12,7 +14,7 @@ using Object = UnityEngine.Object;
 
 namespace KarpysDev.Script.UI
 {
-    public class Canvas_Shop : MonoBehaviour,IUIPointerController
+    public class Canvas_Shop : MonoBehaviour,IUIPointerController,ISaver
     {
         [SerializeField] private Transform m_GridLayoutTransform = null;
         [SerializeField] private Object[] m_IBuyableReference = null;
@@ -26,6 +28,11 @@ namespace KarpysDev.Script.UI
         [Header("Button Buy")] 
         [SerializeField] private ShopBuyUIButtonPointer m_ShopButton = null;
 
+        [Header("Save Option")] 
+        [SerializeField] private TextAsset m_BaseSave = null;
+        [SerializeField] private string m_SaveName = String.Empty;
+        [SerializeField] private int m_ShopId = 0;
+
         private bool m_HasInit = false;
         private UIBuyableHolder m_CurrentPointer = null;
         private Clock m_BuyableDisplay = null;
@@ -33,6 +40,8 @@ namespace KarpysDev.Script.UI
         private UIBuyableHolder m_SelectedBuyableHolder = null;
 
         private List<UIBuyableHolder> m_BuyableHolders = new List<UIBuyableHolder>();
+        
+        private string m_SaveDatas = String.Empty;
         private void Update()
         {
             m_BuyableDisplay?.UpdateClock();
@@ -67,14 +76,8 @@ namespace KarpysDev.Script.UI
         {
             m_HasInit = true;
 
-            //Todo : Add a save system to the canvas shop using IBuyableDataId//
-            //For the moment just cheacking if a spells is in the learned list of the player//
-            List<string> spellsLearned = new List<string>();
-
-            for (int y = 0; y < GameManager.Instance.PlayerEntity.Spells.Count; y++)
-            {
-                spellsLearned.Add(GameManager.Instance.PlayerEntity.Spells[y].TriggerData.SpellName);
-            }
+            m_SaveDatas = SaveUtils.ReadData(GetSaveName, m_BaseSave)[m_ShopId];
+            string[] spellsLearned = m_SaveDatas.Split('|');
 
             for (int i = 0; i < m_IBuyableReference.Length; i++)
             {
@@ -164,9 +167,11 @@ namespace KarpysDev.Script.UI
         public void Buy()
         {
             //Buy current buyable//
+            UIBuyableHolder buyable = m_SelectedBuyableHolder;
             m_SelectedBuyableHolder.Buyable.OnBuy();
             RemoveBuyable(m_SelectedBuyableHolder);
             ClearAll();
+            UpdateSave(buyable.Buyable.Id);
         }
 
         private void ClearAll()
@@ -178,6 +183,25 @@ namespace KarpysDev.Script.UI
             m_BuyablePrice.text = String.Empty;
             m_BuyableVisual.color = Color.white.setAlpha(0);
             CheckButtonState();
+        }
+        public string GetSaveName => m_SaveName;
+        private void UpdateSave(string buyableId)
+        {
+            m_SaveDatas += buyableId + '|';
+            WriteSaveData(m_SaveName,FetchSaveData());
+        }
+        
+        public string[] FetchSaveData()
+        {
+            string[] shopSavedDatas = SaveUtils.ReadData(GetSaveName, m_BaseSave);
+
+            shopSavedDatas[m_ShopId] = m_SaveDatas;
+            return shopSavedDatas;
+        }
+        
+        public void WriteSaveData(string saveName, string[] data)
+        {
+            SaveUtils.WriteSave(saveName,data);
         }
     }
 }

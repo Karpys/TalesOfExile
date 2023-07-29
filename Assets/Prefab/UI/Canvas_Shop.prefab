@@ -1072,6 +1072,9 @@ MonoBehaviour:
   m_BuyableVisual: {fileID: 2259142388193003308}
   m_BuyablePrice: {fileID: 4662870572433704811}
   m_ShopButton: {fileID: 1314324196282948763}
+  m_BaseSave: {fileID: 4900000, guid: f53e8da47f620754a821b4ba29c49e9f, type: 3}
+  m_SaveName: ShopSave.txt
+  m_ShopId: 0
 --- !u!1 &8398607600638986557
 GameObject:
   m_ObjectHideFlags: 0
