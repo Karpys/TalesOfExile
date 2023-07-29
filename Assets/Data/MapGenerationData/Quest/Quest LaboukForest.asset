@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Quest LaboukForest
   m_EditorClassIdentifier: 
   m_QuestName: Labouk Forest
-  m_MalusMapModifier:
-    m_WeightElement: []
-  m_BonusMapModifier:
-    m_WeightElement: []
+  m_QuestPortalIcon: {fileID: 21300000, guid: 4a3893c5927ea274396fcc9a13d262a7, type: 3}
+  m_BonusMapModifier: {fileID: 11400000, guid: 6770d358e1115f341b787c2e9b1ccc24, type: 2}
+  m_MalusMapModifier: {fileID: 11400000, guid: 906959c718cc75641a07093ac3ff6eee, type: 2}
   m_MapGroup: {fileID: 11400000, guid: db2c6525fc5604314aee63874ae60263, type: 2}
   m_BaseGoldAmount: 450
   m_BaseExpAmount: 400
-  m_QuestPortalIcon: {fileID: 21300000, guid: 4a3893c5927ea274396fcc9a13d262a7, type: 3}

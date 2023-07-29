@@ -23,10 +23,6 @@ namespace KarpysDev.Script.UI
         [SerializeField] private Transform m_QuestDisplayerContainer = null;
         [SerializeField] private QuestDisplayer m_EasyQuestDisplayerPrefab = null;
         [SerializeField] private QuestDisplayer m_QuestDisplayerPrefab = null;
-        //Todo: Create Map Modifier Icon with SetIcon and percentage if is float percentage value
-        //Todo:and  on pointer up show description
-        //[SerializeField] private MapModifierIcon m_BonusMapModifierIcon = null;
-        //[SerializeField] private MapModifierIcon m_MalusMapModifierIcon = null;
         [Header("References")]
         [SerializeField] private QuestLibrary m_QuestLibrary = null;
         [SerializeField] private Vector2Int m_SpawnPortalOffset = Vector2Int.zero;

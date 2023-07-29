@@ -25,13 +25,12 @@ namespace KarpysDev.Script.Editor
             else
             {
                 position.height = EditorGUI.GetPropertyHeight(objectField);
-                EditorGUI.PropertyField(position, objectField, GUIContent.none, true);
+                EditorGUI.PropertyField(position, objectField, GUIContent.none,true);
                 
                 position.y += position.height;
                 position.height = 17;
-                EditorGUI.PropertyField(position, weightField, GUIContent.none, true);
+                EditorGUI.PropertyField(position, weightField,  GUIContent.none,true);
             }
-
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
