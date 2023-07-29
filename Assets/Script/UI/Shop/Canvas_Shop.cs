@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;
@@ -66,19 +67,23 @@ namespace KarpysDev.Script.UI
         {
             m_HasInit = true;
 
+            //Todo : Add a save system to the canvas shop using IBuyableDataId//
+            //For the moment just cheacking if a spells is in the learned list of the player//
+            List<string> spellsLearned = new List<string>();
+
+            for (int y = 0; y < GameManager.Instance.PlayerEntity.Spells.Count; y++)
+            {
+                spellsLearned.Add(GameManager.Instance.PlayerEntity.Spells[y].TriggerData.SpellName);
+            }
+
             for (int i = 0; i < m_IBuyableReference.Length; i++)
             {
-                //Todo: Already buy check//
-                if (m_IBuyableReference[i] is IBuyableData buyableData)
+                if (m_IBuyableReference[i] is IBuyableData buyableData && !spellsLearned.Contains(buyableData.Id))
                 {
                     UIBuyableHolder buyableHolder = Instantiate(m_BuyableHolderPrefab, m_GridLayoutTransform);
                     buyableHolder.InitializeBuyableHolder(buyableData.ToUIBuyable(buyableHolder.transform));
                     buyableHolder.AssignController(this);
                     m_BuyableHolders.Add(buyableHolder);
-                }
-                else
-                {
-                    Debug.Log("IBuyableData cast failed");
                 }
             }
         }

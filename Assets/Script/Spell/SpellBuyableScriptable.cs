@@ -9,7 +9,9 @@ namespace KarpysDev.Script.Spell
     {
         [SerializeField] private TriggerSpellDataScriptable m_SpellData = null;
         [SerializeField] private float m_Price = 100;
-        
+
+        public string Id => m_SpellData.SpellName;
+
         public void SetSpellData(TriggerSpellDataScriptable spellData)
         {
             m_SpellData = spellData;
@@ -27,6 +29,7 @@ namespace KarpysDev.Script.Spell
 
     public interface IBuyableData
     {
+        public string Id { get;}
         public IUIBuyable ToUIBuyable(Transform uiParent);
     }
     
