@@ -547,6 +547,7 @@ MonoBehaviour:
   m_MapData: {fileID: 1849714072}
   m_PlayerEntity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
   m_HubMap: {fileID: 11400000, guid: 61b388ca7c30f4646b59dd2af2f5fec3, type: 2}
+  m_QuestModifier: {fileID: 1999133335}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -2728,6 +2729,7 @@ Transform:
   - {fileID: 343337510}
   - {fileID: 1849714071}
   - {fileID: 101270389}
+  - {fileID: 1999133334}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3782,6 +3784,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpellInterface: {fileID: 474328537}
   m_SpellSelection: {fileID: 797148443}
+--- !u!1 &1999133333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999133334}
+  - component: {fileID: 1999133335}
+  m_Layer: 0
+  m_Name: QuestModifierManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1999133334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999133333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1362587457}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999133335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999133333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e3cfe0807f4844922f5bfe2515066d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032702936
 GameObject:
   m_ObjectHideFlags: 0

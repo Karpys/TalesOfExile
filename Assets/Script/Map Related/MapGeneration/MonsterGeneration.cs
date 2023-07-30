@@ -12,6 +12,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     {
         [SerializeField] private StaticWeightElementDraw<BoardEntity> m_WeightEnemies = null;
         [SerializeField] private float m_TargetEnemiesCount = 10;
+        [SerializeField] private bool m_ShouldInheriteQuestModifier = true; 
     
         public override void Generate(List<Tile> allowedTiles)
         {
@@ -24,7 +25,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 if (random <= monsterSpawnChance)
                 {
                     //Weight Ennemy
-                    EntityHelper.SpawnEntityOnMap(tile.TilePosition,m_WeightEnemies.Draw(),new MapEnemyEntityBehaviour(),EntityGroup.Enemy);
+                    EntityHelper.SpawnEntityOnMap(tile.TilePosition,m_WeightEnemies.Draw(),new MapEnemyEntityBehaviour(),EntityGroup.Enemy,EntityGroup.None,m_ShouldInheriteQuestModifier);
                 }
             }
         }

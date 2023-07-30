@@ -52,7 +52,7 @@ namespace KarpysDev.Script.Map_Related
             Jump(speed);
             Transform t = transform;
             t.parent = targetTransform;
-            m_MoveToTargetTween.SetStartValue(t.localPosition);
+            m_MoveToTargetTween.StartValue = t.localPosition;
         }
 
         private void Jump(float duration)

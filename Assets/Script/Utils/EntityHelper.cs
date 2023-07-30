@@ -6,6 +6,7 @@ using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.Map_Related.QuestRelated;
 using KarpysDev.Script.Utils;
 using UnityEngine;
 
@@ -37,13 +38,19 @@ namespace KarpysDev.Script.Widget
             }
         }
 
-        public static BoardEntity SpawnEntityOnMap(Vector2Int pos,BoardEntity entityPrefabBase,EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
+        public static BoardEntity SpawnEntityOnMap(Vector2Int pos, BoardEntity entityPrefabBase,
+            EntityBehaviour entityIa, EntityGroup entityGroup, EntityGroup targetEntityGroup = EntityGroup.None, bool inheritQuestModifier = false)
         {
             MapData mapData = MapData.Instance;
         
             BoardEntity boardEntity = GameObject.Instantiate(entityPrefabBase,mapData.transform);
             boardEntity.Place(pos.x,pos.y,mapData);
             boardEntity.EntityInitialization(entityIa,entityGroup,targetEntityGroup);
+
+            if (inheritQuestModifier)
+            {
+                QuestModifierManager.Instance.OnMapEntitySpawn?.Invoke(boardEntity);
+            }
             return boardEntity;
         }
 
@@ -52,7 +59,7 @@ namespace KarpysDev.Script.Widget
             foreach (EntitySpawn spawn in entitySpawn)
             {
                 SpawnEntityOnMap(spawn.EntityPosition, spawn.EntityPrefab, spawn.IAType.ToEntityIA(), spawn.EntityGroup,
-                    spawn.TargetGroup);
+                    spawn.TargetGroup,spawn.ShouldInheritQuestModifier);
             }
         }
     

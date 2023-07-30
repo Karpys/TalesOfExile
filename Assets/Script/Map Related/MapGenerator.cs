@@ -4,6 +4,7 @@ using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.Map_Related.QuestRelated;
 using KarpysDev.Script.UI;
 using KarpysDev.Script.Widget;
 using UnityEngine;
@@ -15,11 +16,12 @@ namespace KarpysDev.Script.Map_Related
         [SerializeField] private MapData m_MapData = null;
         [SerializeField] private PlayerBoardEntity m_PlayerEntity = null;
         [SerializeField] private MapGenerationData m_HubMap = null;
+        [SerializeField] private QuestModifierManager m_QuestModifier = null;
 
         private bool m_FirstGeneration = true;
         private int m_MapId = 0;
-        private MapGroup m_CurrentMapGroup = null;
-        public MapGenerationData CurrentMapData => m_CurrentMapGroup.MapGenerationData[m_MapId];
+        private Quest m_CurrentQuest = null;
+        public MapGenerationData CurrentMapData => m_CurrentQuest.MapGroup.MapGenerationData[m_MapId];
 
         public Action A_OnMapErased = null;
         public Action A_OnMapLoaded = null;
@@ -88,7 +90,7 @@ namespace KarpysDev.Script.Map_Related
         {
             m_MapId += 1;
 
-            if (m_MapId >= m_CurrentMapGroup.MapGenerationData.Length)
+            if (m_MapId >= m_CurrentQuest.MapGroup.MapGenerationData.Length)
             {
                 m_MapId = 0;
                 ReturnToHub();
@@ -96,7 +98,7 @@ namespace KarpysDev.Script.Map_Related
                 return;
             }
         
-            LoadMap(m_CurrentMapGroup.MapGenerationData[m_MapId]);
+            LoadMap(m_CurrentQuest.MapGroup.MapGenerationData[m_MapId]);
         }
 
         private void LoadMap(MapGenerationData generationData)
@@ -122,14 +124,15 @@ namespace KarpysDev.Script.Map_Related
             m_FirstGeneration = false;
         }
 
-        public void SetMapGroup(MapGroup mapGroup)
+        public void SetQuest(Quest quest)
         {
-            m_CurrentMapGroup = mapGroup;
+            m_CurrentQuest = quest;
             m_MapId = 0;
         }
 
-        public void LaunchMap()
+        public void LaunchQuest()
         {
+            m_QuestModifier.ApplyQuestModifier(m_CurrentQuest);
             LoadMap(CurrentMapData);
         }
 

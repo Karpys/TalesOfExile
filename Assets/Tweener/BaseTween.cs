@@ -8,7 +8,8 @@ namespace TweenCustom
     {
         //Set Values//
         protected Transform m_Target = null;
-        protected float m_Duration = 1; protected Vector3 m_EndValue = Vector3.zero;
+        protected float m_Duration = 1; 
+        protected Vector3 m_EndValue = Vector3.zero;
         protected Ease m_Ease = Ease.LINEAR;
         protected AnimationCurve m_AnimCurve = null;
         protected float m_Delay = 0; 
@@ -43,6 +44,16 @@ namespace TweenCustom
         public AnimationCurve curve
         {
             set => m_AnimCurve = value;
+        }
+
+        public Vector3 EndValue
+        {
+            set => m_EndValue = value;
+        }
+        
+        public Vector3 StartValue
+        {
+            set => m_StartValue = value;
         }
 
         
@@ -162,12 +173,14 @@ namespace TweenCustom
             }
         }
 
-        //TweenUtils//
-
-        public void SetStartValue(Vector3 newStartValue)
-        {
-            m_StartValue = newStartValue;
-        }
         public abstract void TweenRefreshStartValue();
+
+        public void Reset()
+        {
+            m_IsComplete = false;
+            m_HastStart = false;
+            m_Ratio = 0;
+            m_Timer = 0;
+        }
     }
 }

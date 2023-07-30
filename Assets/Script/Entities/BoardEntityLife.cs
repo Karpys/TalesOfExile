@@ -63,6 +63,12 @@ namespace KarpysDev.Script.Entities
             A_OnLifeUpdated?.Invoke(m_Life,m_MaxLife);
             UpdateLifeFill();
         }
+        
+        public void SetToMaxLife()
+        {
+            m_Life = m_MaxLife;
+            UpdateLifeFill();
+        }
 
         private void ApplyRegeneration()
         {
@@ -77,6 +83,7 @@ namespace KarpysDev.Script.Entities
             m_LifeRegeneration += value;
         }
 
+        private BaseTween m_CurrentTween = null;
         private void UpdateLifeFill()
         {
             float ratio = m_Life / m_MaxLife;
@@ -85,9 +92,31 @@ namespace KarpysDev.Script.Entities
             Vector3 targetScale = new Vector3(1, ratio, 1);
             m_LifeFill.transform.localScale = targetScale;
 
-
-            m_LifeDamageEffect.DoKill();
-            m_LifeDamageEffect.DoScale(targetScale, 0.25f).SetDelay(.5f).SetEase(Ease.EASE_OUT_SIN);
+            if (m_CurrentTween != null)
+            {
+                if (m_CurrentTween.IsComplete)
+                {
+                    //Reset
+                    m_CurrentTween.TweenRefreshStartValue();
+                    m_CurrentTween.EndValue = targetScale;
+                    m_CurrentTween.SetDelay(0.5f);
+                    m_CurrentTween.Reset();
+                    //Add
+                    TweenManager.Instance.AddTween(m_CurrentTween);
+                }
+                else
+                {
+                    //Reset
+                    m_CurrentTween.TweenRefreshStartValue();
+                    m_CurrentTween.EndValue = targetScale;
+                    m_CurrentTween.SetDelay(0.5f);
+                    m_CurrentTween.Reset();
+                }
+            }
+            else
+            {
+                m_CurrentTween = m_LifeDamageEffect.DoScale(targetScale, 0.25f).SetDelay(.5f).SetEase(Ease.EASE_OUT_SIN);
+            }
         }
     }
 }

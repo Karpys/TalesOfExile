@@ -21,12 +21,12 @@ MonoBehaviour:
         m_ModifierFactor: 1
     - m_Weight: 50
       m_Object:
-        m_QuestModifierType: 2
+        m_QuestModifierType: 1
         m_ModifierValue: 10
         m_ModifierFactor: 1
     - m_Weight: 50
       m_Object:
-        m_QuestModifierType: 2
+        m_QuestModifierType: 1
         m_ModifierValue: 10
         m_ModifierFactor: 1
     - m_Weight: 50

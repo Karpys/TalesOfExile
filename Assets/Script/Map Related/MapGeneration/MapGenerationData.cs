@@ -42,6 +42,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         public EntityIAType IAType;
         public EntityGroup EntityGroup;
         public EntityGroup TargetGroup;
+        public bool ShouldInheritQuestModifier;
     }
 
     public enum EntityIAType

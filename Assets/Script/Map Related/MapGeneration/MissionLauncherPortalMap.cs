@@ -21,7 +21,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         protected override void OnPlayerOnTile()
         {
             MissionSelectionManager.Instance.CloseAll();
-            MapGenerator.Instance.SetMapGroup(m_Quest.MapGroup);   
+            MapGenerator.Instance.SetQuest(m_Quest);   
             MissionSelectionManager.Instance.SetQuest(m_Quest);
             
             //PlayerAnimation
@@ -30,7 +30,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             playerEntity.VisualTransform.DoRotate(new Vector3(0, 0, 360), 0.5f);
             playerEntity.VisualTransform.DoScale(Vector3.zero, 0.5f).OnComplete(() =>
             {
-                MapGenerator.Instance.LaunchMap(); 
+                MapGenerator.Instance.LaunchQuest(); 
                 playerEntity.VisualTransform.DoRotate(new Vector3(0,0,-360), 0.5f);
                 playerEntity.VisualTransform.DoScale(Vector3.one, 0.5f).OnComplete(() =>
                 {
