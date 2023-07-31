@@ -178,7 +178,16 @@ namespace KarpysDev.Script.Utils
         
             ModifierPool targetPool = equipementItem.EquipementData.ModifierPool.m_ModifierPool;
 
-            Modifier[] modifiers = targetPool.Modifier.MultipleDraw(modifierCount).Select(m => m.RangeToModifier()).ToArray();
+            List<RangeModifier> rangeModifiers = targetPool.Modifier.MultipleDraw(modifierCount);
+
+            int rangeModifierCount = rangeModifiers.Count;
+            Modifier[] modifiers = new Modifier[rangeModifierCount];
+
+            for (int i = 0; i < rangeModifierCount; i++)
+            {
+                modifiers[i] = rangeModifiers[i].RangeToModifier();
+            }
+            
             equipementItem.SetAdditionalModifiers(modifiers);
         }
 

@@ -1099,6 +1099,7 @@ MonoBehaviour:
       m_Object: {fileID: 11400000, guid: 51627f0cbea9c244787ff293d817fd8c, type: 2}
     - m_Weight: 0.33
       m_Object: {fileID: 11400000, guid: 4479512d814d7f8438c466eba713bffc, type: 2}
+  m_DefaultIcon: {fileID: 21300000, guid: 54c1605022ea23242b060f03507a6461, type: 3}
 --- !u!1 &584535088
 GameObject:
   m_ObjectHideFlags: 0

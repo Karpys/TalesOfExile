@@ -35,6 +35,7 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
         //1 => 25 Malus Modifier
         IncreaseMonsterMaxLife = 1,
         IncreaseMonsterMonsterPhysicalResistance = 2,
+        IncreaseMonsterMonsterElementalResistance = 3,
         //26 => ++ Bonus Modifier//
         LootPercentage = 26,
         AddPlayerRegeneration = 27,

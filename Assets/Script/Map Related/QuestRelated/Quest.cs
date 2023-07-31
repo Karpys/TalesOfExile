@@ -34,8 +34,11 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
             m_QuestExpAmount = m_BaseQuestScriptableData.BaseExpAmount * QuestDifficultyPercent / 100;
 
             Vector2Int modifierCount = QuestLibrary.Instance.GetModifierCount(difficulty);
-            m_BonusModifier = questScriptable.BonusMapModifier.Draw(modifierCount.x).ToArray();
-            m_MalusModifier = questScriptable.MalusMapModifier.Draw(modifierCount.y).ToArray();
+
+            float diffucultyPercent = QuestLibrary.Instance.GetDifficultyPercennt(difficulty);
+                
+            m_BonusModifier = questScriptable.BonusMapModifier.Draw(modifierCount.x).ToQuestModifier(diffucultyPercent);
+            m_MalusModifier = questScriptable.MalusMapModifier.Draw(modifierCount.y).ToQuestModifier(diffucultyPercent);
         }
 
         public void PopLoot()

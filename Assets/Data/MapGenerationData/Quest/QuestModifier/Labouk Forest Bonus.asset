@@ -17,30 +17,24 @@ MonoBehaviour:
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 26
-        m_ModifierValue: 12
-        m_ModifierFactor: 1
+        m_ModifierValue: 10
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 27
-        m_ModifierValue: 5
-        m_ModifierFactor: 1
+        m_ModifierValue: 10
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 27
-        m_ModifierValue: 5
-        m_ModifierFactor: 1
+        m_ModifierValue: 10
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 27
-        m_ModifierValue: 5
-        m_ModifierFactor: 1
+        m_ModifierValue: 10
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 27
-        m_ModifierValue: 5
-        m_ModifierFactor: 1
+        m_ModifierValue: 10
     - m_Weight: 50
       m_Object:
         m_QuestModifierType: 27
-        m_ModifierValue: 5
-        m_ModifierFactor: 1
+        m_ModifierValue: 10

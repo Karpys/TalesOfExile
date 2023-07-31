@@ -7,19 +7,17 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
     {
         protected override SerializedProperty[] GetSerializedProperty(SerializedProperty property)
         {
-            SerializedProperty[] serializedProperties = new SerializedProperty[3];
+            SerializedProperty[] serializedProperties = new SerializedProperty[2];
             serializedProperties[0] = property.FindPropertyRelative("m_QuestModifierType");
             serializedProperties[1] = property.FindPropertyRelative("m_ModifierValue");
-            serializedProperties[2] = property.FindPropertyRelative("m_ModifierFactor");
             return serializedProperties;
         }
 
         protected override string[] GetLabelNames()
         {
-            string[] names = new string[3];
+            string[] names = new string[2];
             names[0] = "Modifier";
             names[1] = "Value";
-            names[2] = "Factor";
             return names;
         }
     }

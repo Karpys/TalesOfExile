@@ -515,8 +515,8 @@ MonoBehaviour:
   m_ExpAmount: {fileID: 5377308620077843167}
   m_BonusMapModifierTransform: {fileID: 7955102885653561246}
   m_MalusMapModifierTransform: {fileID: 8452934530802850730}
-  m_BonusMapModifierPrefab: {fileID: 4753568921086721473, guid: b6c9f803755ef374d83fd6a6fcec77b8, type: 3}
-  m_MalusMapModifierPrefab: {fileID: 3384434888624288604, guid: a38d4294811d06b43bd51c6f05588a77, type: 3}
+  m_BonusMapModifierPrefab: {fileID: 7691030383401981342, guid: b6c9f803755ef374d83fd6a6fcec77b8, type: 3}
+  m_MalusMapModifierPrefab: {fileID: 410948262883695363, guid: a38d4294811d06b43bd51c6f05588a77, type: 3}
 --- !u!1 &4319879974337304001
 GameObject:
   m_ObjectHideFlags: 0

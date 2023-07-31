@@ -14,8 +14,8 @@ namespace KarpysDev.Script.UI
         [Header("Header Map Modifier Part")]
         [SerializeField] private Transform m_BonusMapModifierTransform = null;
         [SerializeField] private Transform m_MalusMapModifierTransform = null;
-        [SerializeField] private GameObject m_BonusMapModifierPrefab = null;
-        [SerializeField] private GameObject m_MalusMapModifierPrefab = null;
+        [SerializeField] private QuestModifierUIHolder m_BonusMapModifierPrefab = null;
+        [SerializeField] private QuestModifierUIHolder m_MalusMapModifierPrefab = null;
         
         private Quest m_Quest = null;
         public Quest Quest => m_Quest;
@@ -33,12 +33,14 @@ namespace KarpysDev.Script.UI
             int i = 0;
             for (; i < quest.BonusModifier.Length; i++)
             {
-                Instantiate(m_BonusMapModifierPrefab, m_BonusMapModifierTransform);
+                QuestModifierUIHolder questModifierUI = Instantiate(m_BonusMapModifierPrefab, m_BonusMapModifierTransform);
+                questModifierUI.Init(quest.BonusModifier[i]);
             }
 
             for (i = 0; i < quest.MalusModifier.Length; i++)
             {
-                Instantiate(m_MalusMapModifierPrefab, m_MalusMapModifierTransform);
+                QuestModifierUIHolder questModifierUI = Instantiate(m_MalusMapModifierPrefab, m_MalusMapModifierTransform);
+                questModifierUI.Init(quest.MalusModifier[i]);
             }
         }
     }

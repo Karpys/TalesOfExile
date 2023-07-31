@@ -16,6 +16,9 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
         [Header("Tier Quest")]
         [SerializeField] private List<MultipleWeightElementDraw<QuestScriptable>> m_TierQuest = null;
 
+        [Header("Default Value")] 
+        [SerializeField] private Sprite m_DefaultIcon = null;
+        
         private Dictionary<Tier, MultipleWeightElementDraw<QuestScriptable>> m_TierQuestCollection = null;
 
         public void Awake()
@@ -54,7 +57,10 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
         }
         public Sprite GetIcon(QuestModifierType type)
         {
-            return m_MapModifierIconLibrary.GetViaKey(type);
+            Sprite icon = m_MapModifierIconLibrary.GetViaKey(type);
+            if (icon)
+                return icon;
+            return m_DefaultIcon;
         }
 
         public Color GetDifficultyColor(QuestDifficulty questDifficulty)

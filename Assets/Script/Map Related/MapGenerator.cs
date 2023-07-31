@@ -54,6 +54,7 @@ namespace KarpysDev.Script.Map_Related
 
         private void ReturnToHub()
         {
+            m_QuestModifier.Clear();
             LoadMap(m_HubMap);
         }
     

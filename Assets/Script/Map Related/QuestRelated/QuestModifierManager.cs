@@ -12,13 +12,18 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
             int i = 0;
             for (; i < quest.MalusModifier.Length; i++)
             {
-                QuestUtils.ApplyMapModifier(quest.MalusModifier[i],this);
+                QuestUtils.ApplyQuestModifier(quest.MalusModifier[i],this);
             }
 
             for (i = 0; i < quest.BonusModifier.Length; i++)
             {
-                QuestUtils.ApplyMapModifier(quest.BonusModifier[i],this);
+                QuestUtils.ApplyQuestModifier(quest.BonusModifier[i],this);
             }
+        }
+
+        public void Clear()
+        {
+            OnMapEntitySpawn = null;
         }
     }
 }
