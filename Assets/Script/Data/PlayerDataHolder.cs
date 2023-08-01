@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.UI;
@@ -67,7 +68,7 @@ namespace Script.Data
 
         public string[] GetSave()
         {
-            return new string[] {m_GoldCount+""};
+            return m_GoldCount.ToString(CultureInfo.InvariantCulture).ToSingleArray();
         }
 
         public static PlayerData FromSave(string[] saveData)

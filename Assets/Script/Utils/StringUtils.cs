@@ -75,6 +75,13 @@ namespace KarpysDev.Script.Utils
             }
         }
 
+        public static string[] ToSingleArray(this string value)
+        {
+            string[] array = new string[1];
+            array[0] = value;
+            return array;
+        }
+
         public static int ToInt(this string value)
         {
             return int.Parse(value);

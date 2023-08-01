@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
+using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -131,9 +132,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             if (m_DamageSources.TryGetValue(m_DamageSpellParams.InitialSourceDamage.DamageType,
                     out DamageSource initialDamageSource))
             {
-                string[] description = new string[1];
-                description[0] = initialDamageSource.ToDescription();
-                return description;
+                return initialDamageSource.ToDescription().ToSingleArray();
             }
 
             return Array.Empty<string>();

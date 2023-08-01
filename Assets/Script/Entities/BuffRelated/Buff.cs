@@ -159,9 +159,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         protected virtual string[] GetDescriptionDynamicValues()
         {
-            string[] dyValues = new string[1];
-            dyValues[0] = m_BuffValue+"";
-            return dyValues;
+            return m_BuffValue.ToString("0").ToSingleArray();
         }
 
         public virtual object[] GetArgs()
