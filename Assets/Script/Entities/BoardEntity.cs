@@ -40,6 +40,7 @@ namespace KarpysDev.Script.Entities
         public float FireDamageModifier = 0f;
         public float PhysicalDamageModifier = 0f;
         public float ElementalDamageModifier = 0f;
+        public float NatureDamageModifier = 0f;
         //Physical
         //Ect ect
     
@@ -55,6 +56,7 @@ namespace KarpysDev.Script.Entities
         public float FireDamageReduction = 0; 
         public float PhysicalDamageReduction = 0; 
         public float ElementalDamageReduction = 0;
+        public float NatureDamageReduction = 0;
 
         [Header("Misc")] 
         public int IsBowUser = 0;
@@ -86,6 +88,8 @@ namespace KarpysDev.Script.Entities
                     return PhysicalDamageModifier;
                 case SubDamageType.Elemental:
                     return ElementalDamageModifier;
+                case SubDamageType.Nature:
+                    return NatureDamageModifier;
                 default:
                     Debug.LogError("Sub Damage type not set up :" + subDamageType);
                     return 0;
@@ -129,6 +133,9 @@ namespace KarpysDev.Script.Entities
                     break;
                 case SubDamageType.Elemental:
                     percentageReduction = ElementalDamageReduction;
+                    break;
+                case SubDamageType.Nature:
+                    percentageReduction = NatureDamageReduction;
                     break;
                 default:
                     Debug.LogError("Sub Damage type not set up :" + subDamageType);

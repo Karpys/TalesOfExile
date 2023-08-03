@@ -1669,6 +1669,8 @@ MonoBehaviour:
     DamageColor: {r: 0.42830187, g: 0.7720427, b: 1, a: 1}
   - DamageType: 4
     DamageColor: {r: 1, g: 0.805034, b: 0.30566037, a: 1}
+  - DamageType: 5
+    DamageColor: {r: 0, g: 0.4528302, b: 0.04467331, a: 1}
 --- !u!1 &823985448
 GameObject:
   m_ObjectHideFlags: 0
