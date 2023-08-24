@@ -15,10 +15,6 @@ namespace KarpysDev.Script.Widget
 
         public Vector2Int MouseBoardPosition => m_MouseBoardPosition;
         public Vector3 MouseWorldPosition => m_MouseWorldPosition;
-        void Start()
-        {
-        
-        }
 
         // Update is called once per frame
         void Update()
