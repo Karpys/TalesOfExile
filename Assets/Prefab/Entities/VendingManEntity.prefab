@@ -32,6 +32,7 @@ MonoBehaviour:
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
       ElementalDamageModifier: 0
+      NatureDamageModifier: 0
       FlatMeleeDamageReduction: 0
       FlatProjectileDamageReduction: 0
       FlatSpellDamageReduction: 0
@@ -40,6 +41,7 @@ MonoBehaviour:
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
+      NatureDamageReduction: 0
       IsBowUser: 0
       RootLockCount: 0
       SpellLockCount: 0

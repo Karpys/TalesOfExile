@@ -188,7 +188,7 @@ namespace KarpysDev.Script.UI
         private void UpdateSave(string buyableId)
         {
             m_SaveDatas += buyableId + '|';
-            WriteSaveData(m_SaveName,FetchSaveData());
+            WriteSaveData(GetSaveName,FetchSaveData());
         }
         
         public string[] FetchSaveData()
@@ -201,7 +201,7 @@ namespace KarpysDev.Script.UI
         
         public void WriteSaveData(string saveName, string[] data)
         {
-            SaveUtils.WriteSave(saveName,data);
+            SaveUtils.QueueAsyncSave(saveName,data);
         }
     }
 }

@@ -6,3 +6,11 @@ Detection Mine
 Lightning Strike
 Rain Sword
 Knock Slam
+Leap Crash
+Meteor Blast
+Flame Burst Buff
+Regeneration Buff
+Rebound Arrow
+Rain Sword
+Skeleton Curse
+Ice Blast

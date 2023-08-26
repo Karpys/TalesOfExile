@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace KarpysDev.Script.Utils
@@ -9,17 +11,27 @@ namespace KarpysDev.Script.Utils
     {
         private const string SAVE_DIRECTORY = "/Save/";
 
-        public static string GetSaveDirectory()
+        private static string m_SaveDirectory = string.Empty;
+        
+        static SaveUtils()
+        {
+            m_AsyncSaveThread = new Thread(AsyncSave);
+            m_AsyncSaveThread.Start();
+            SetSaveDirectory();
+        }
+        
+        private static void SetSaveDirectory()
         {
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             {
-                return MobileSavePath();
+                m_SaveDirectory =  MobileSavePath();
             }
             else
             {
-                return ComputerSavePath();
+                m_SaveDirectory = ComputerSavePath();
             }
         }
+        
 
         private static string ComputerSavePath()
         {
@@ -49,15 +61,36 @@ namespace KarpysDev.Script.Utils
 
         public static void WriteSave(string saveName,string[] datas)
         {
-            string savePath = GetSaveDirectory() + saveName;
+            string savePath = m_SaveDirectory + saveName;
             File.WriteAllLines(savePath,datas);
             Debug.Log("File write at :" + savePath);
+        }
+        
+        private static Thread m_AsyncSaveThread = null;
+        private static Queue<SaveData> m_AsyncSaveDataQueue = new Queue<SaveData>();
+        
+        public static void QueueAsyncSave(string saveName, string[] data)
+        {
+            m_AsyncSaveDataQueue.Enqueue(new SaveData(saveName,data));   
+        }
+        private static void AsyncSave()
+        {
+            while (true)
+            {
+                if (m_AsyncSaveDataQueue.Count > 0)
+                {
+                    SaveData saveData = m_AsyncSaveDataQueue.Dequeue();
+                    string savePath = m_SaveDirectory + saveData.SaveName;
+                    File.WriteAllLines(savePath, saveData.SavaDatas);
+                    Debug.Log("File async write at :" + savePath);
+                }
+            }
+            
         }
     
         public static string GetSavePath(string saveName)
         {
-            string savePath = GetSaveDirectory() + saveName;
-
+            string savePath = m_SaveDirectory + saveName;
             return savePath;
         }
 
@@ -118,6 +151,18 @@ namespace KarpysDev.Script.Utils
         {
             DefaultSaveData = defaultSaveData;
             DefaultSaveSize = defaultSaveDataSize;
+        }
+    }
+
+    public struct SaveData
+    {
+        public string SaveName;
+        public string[] SavaDatas;
+
+        public SaveData(string saveName, string[] savaDatas)
+        {
+            SaveName = saveName;
+            SavaDatas = savaDatas;
         }
     }
 }
