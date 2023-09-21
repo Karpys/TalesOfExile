@@ -12,29 +12,26 @@ namespace KarpysDev.Script.UI.ItemContainer
         [SerializeField] private UISelectionFade m_ItemFade = null;
         [SerializeField] private GoldPopupItemUIHolder m_GoldPopupHolder = null;
         
+        
         private ItemUIHolder m_OnClickHolder = null;
         private ItemUIHolder m_OnMouseHolder = null;
-        
-        private ItemUIHolderV2 m_OnClickHolderV2 = null;
-        private ItemUIHolderV2 m_OnMouseHolderV2 = null;
 
         private bool m_DragBegin = false;
         public ItemUIHolder OnMouseHolder => m_OnMouseHolder;
-        public ItemUIHolderV2 OnMouseHolderV2 => m_OnMouseHolderV2;
         private void Update()
         {
             if (!m_DragBegin)
             {
-                if(m_OnMouseHolderV2 == null)
+                if(m_OnMouseHolder == null)
                     return;
             
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (m_OnMouseHolderV2.MouseOn && m_OnMouseHolderV2.AttachedItem != null)
+                    if (m_OnMouseHolder.MouseOn && m_OnMouseHolder.AttachedItem != null)
                     {
-                        Debug.Log("Select item : " + m_OnMouseHolderV2.AttachedItem.Data.ObjectName);
-                        m_OnClickHolderV2 = m_OnMouseHolderV2;
-                        m_ItemFade.Initialize(m_OnClickHolderV2.AttachedItem.Data.InUIVisual);
+                        Debug.Log("Select item : " + m_OnMouseHolder.AttachedItem.Data.ObjectName);
+                        m_OnClickHolder = m_OnMouseHolder;
+                        m_ItemFade.Initialize(m_OnClickHolder.AttachedItem.Data.InUIVisual);
                         m_DragBegin = true;
                     }
                 }
@@ -43,12 +40,12 @@ namespace KarpysDev.Script.UI.ItemContainer
             {
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (m_OnMouseHolderV2 != m_OnClickHolderV2 && m_OnMouseHolderV2.MouseOn)
+                    if (m_OnMouseHolder != m_OnClickHolder && m_OnMouseHolder.MouseOn)
                     {
-                        PerformHolderActionV2(m_OnClickHolderV2,m_OnMouseHolderV2);
+                        PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                         //PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                     }
-                    /*else if (m_OnClickHolder.MouseOn)
+                    else if (m_OnClickHolder.MouseOn)
                     {
                         //Perform Same Holder Action
                         PerformSameHolderAction(m_OnClickHolder);
@@ -56,7 +53,7 @@ namespace KarpysDev.Script.UI.ItemContainer
                     else
                     {
                         PerformSingleHolderAction(m_OnClickHolder);
-                    }*/
+                    }
 
                     m_DragBegin = false;
                     m_ItemFade.Clear();
@@ -64,30 +61,17 @@ namespace KarpysDev.Script.UI.ItemContainer
             }
         }
 
-        private void PerformSameHolderAction(ItemUIHolder holder)
+        private void PerformSameHolderAction(ItemUIHolder singleHolder)
         {
-            int holderActionType = (int) holder.HolderGroup;
-
-            if (holderActionType == 1)
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                //Todo : Add Input Shift Option Enable / Disable
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    if(m_GoldPopupHolder.IsOpen)
-                        DirectToGold(holder);
-                }
+                PerformHolderAction(singleHolder,m_GoldPopupHolder);
             }
         }
 
-        private void DirectToGold(ItemUIHolder holder)
-        {
-            SwapSellPopup(holder,m_PlayerInventoryUI.GoldPopupUIHolder);
-        }
-
-
         private void PerformSingleHolderAction(ItemUIHolder holder)
         {
-            int holderActionType = (int) holder.HolderGroup;
+            int holderActionType = (int) holder.ItemHolderGroupSource;
         
             if (holderActionType == 1)
             {
@@ -95,7 +79,7 @@ namespace KarpysDev.Script.UI.ItemContainer
             }
         }
 
-        private void PerformHolderActionV2(ItemUIHolderV2 holder1, ItemUIHolderV2 holder2)
+        private void PerformHolderAction(ItemUIHolder holder1, ItemUIHolder holder2)
         {
             Item item1 = holder1.AttachedItem;
             Item item2 = holder2.AttachedItem;
@@ -110,153 +94,21 @@ namespace KarpysDev.Script.UI.ItemContainer
                 holder1.TempReceiveItem(item2);
                 holder1.ApplyItem();
                 holder2.ApplyItem();
-                
-                Debug.Log("Apply Swap");
+                holder1.LateApply();
+                holder2.LateApply();
             }
         }
 
-        private void PerformHolderAction(ItemUIHolder holder1,ItemUIHolder holder2)
-        {
-            int holderActionType = (int)holder1.HolderGroup + (int)holder2.HolderGroup;
-
-            // Inventory + Inventory Context//
-            if (holderActionType == 2)
-            {
-                SwapInventoryHolder(holder1, holder2);
-            }
-            else if (holderActionType == 3)
-            {
-                EquipementToInventorySwap(holder1, holder2);
-            }
-            else if(holderActionType >= 5)
-            {
-                if (holder1.HolderGroup == ItemHolderGroup.SellPopup ||
-                    holder2.HolderGroup == ItemHolderGroup.SellPopup)
-                {
-                    if (holder1.HolderGroup == ItemHolderGroup.PlayerInventory ||
-                        holder2.HolderGroup == ItemHolderGroup.PlayerInventory)
-                    {
-                        SwapSellPopup(holder1, holder2);
-                    }
-                }
-                //Player inventory to stash context// 
-            }
-        }
-
-        private void SwapSellPopup(ItemUIHolder holder1, ItemUIHolder holder2)
+        /*private void SwapSellPopup(ItemUIHolder holder1, ItemUIHolder holder2)
         {
             m_PlayerInventoryUI.SwapInventoryHolderItem(holder1,holder2);
             m_PlayerInventoryUI.GoldPopupUIHolder.UpdateGold();
             m_PlayerInventoryUI.GoldPopupUIHolder.TryLaunchDelete();
-        }
+        }*/
 
-        private void SwapInventoryHolder(ItemUIHolder holder1, ItemUIHolder holder2)
+        public void SetCurrentMouseHolder(ItemUIHolder itemHolder)
         {
-            m_PlayerInventoryUI.SwapInventoryHolderItem(holder1,holder2);
-        }
-
-        private void EquipementToInventorySwap(ItemUIHolder holder1, ItemUIHolder holder2)
-        {
-            //Player equipement to inventory context//
-            ItemUIHolder inventoryHolder = holder1.HolderGroup == ItemHolderGroup.PlayerInventory ? holder1 : holder2;
-            ItemUIHolder equipementHolder = holder1.HolderGroup == ItemHolderGroup.PlayerEquipement ? holder1 : holder2;
-            
-            if (inventoryHolder.Item is EquipementItem itemToEquip)
-            {
-                //Equip the item and swap position with equipement existent One//
-                EquipementItemUIHolder equipementItemUIHolder = equipementHolder as EquipementItemUIHolder;
-
-                if(!CanPlaceEquipement(itemToEquip,equipementItemUIHolder.EquipementType))
-                    return;
-                
-                if (itemToEquip.EquipementData.EquipementType == EquipementType.Weapon)
-                {
-                    WeaponEquipement(equipementItemUIHolder,itemToEquip,inventoryHolder);
-                }
-                else
-                {
-                    NonEquipement(itemToEquip, equipementHolder,inventoryHolder);
-                }
-            }
-            else if(inventoryHolder.Item == null)
-            {
-                //UnEquip item and place to blank space//
-                ((EquipementItem)equipementHolder.Item).UnEquip(); 
-                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
-            }
-            
-            if(equipementHolder is WeaponEquipementUIHolder weaponHolder)
-                weaponHolder.UpdateFadeVisual();
-        }
-
-        private void NonEquipement(EquipementItem itemToEquip,ItemUIHolder equipementHolder,ItemUIHolder inventoryHolder)
-        {
-            itemToEquip.Equip();
-
-            if (equipementHolder.Item is EquipementItem itemEquiped)
-            {
-                itemEquiped.UnEquip();
-            }
-                
-            m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,equipementHolder);
-        }
-
-        private void WeaponEquipement(EquipementItemUIHolder equipementItemUIHolder, EquipementItem itemToEquip,ItemUIHolder inventoryHolder)
-        {
-            WeaponEquipementItemdata weaponData = itemToEquip.Data as WeaponEquipementItemdata;
-            WeaponEquipementUIHolder weaponHolder = equipementItemUIHolder as WeaponEquipementUIHolder;
-
-            if (weaponData.TwoHanded)
-            {
-                EquipementItemUIHolder[] weaponHolders = weaponHolder.GetWeaponEquiped();
-                ItemUIHolder[] freeHolder = GetFreeHolderInPlayerInventory();
-
-                if (weaponHolders.Length - 1 > freeHolder.Length)
-                    return;
-            
-                for (int i = 0; i < weaponHolders.Length; i++)
-                {
-                    weaponHolders[i].EquipementItem.UnEquip();
-                }
-
-                itemToEquip.Equip();
-                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,weaponHolder.GetMain());
-            
-                if (weaponHolders.Length == 2 || weaponHolder.GetSub().Item != null)
-                {
-                    m_PlayerInventoryUI.EquipementInventorySwap(freeHolder[0],weaponHolder.GetSub());
-                }
-            }
-            else
-            {
-                //Check de two handed//
-                if (weaponHolder.IsTwoHandedCurrentlyEquiped())
-                {
-                    //send back two handed and place this
-                    weaponHolder = weaponHolder.GetMain();
-                }
-            
-                itemToEquip.Equip();
-
-                weaponHolder.EquipementItem?.UnEquip();
-
-                m_PlayerInventoryUI.EquipementInventorySwap(inventoryHolder,weaponHolder);
-            }
-        }
-
-        private bool CanPlaceEquipement(EquipementItem equipementItem, EquipementType equipementType)
-        {
-            return equipementItem.EquipementData.EquipementType == equipementType;
-        }
-
-        public void SetCurrentMouseHolder(ItemUIHolderV2 itemHolder)
-        {
-            m_OnMouseHolderV2 = itemHolder;
-        }
-
-        private ItemUIHolder[] GetFreeHolderInPlayerInventory()
-        {
-            return m_PlayerInventoryUI.GetFreeHolderInPlayerInventory();
+            m_OnMouseHolder = itemHolder;
         }
     }
 }

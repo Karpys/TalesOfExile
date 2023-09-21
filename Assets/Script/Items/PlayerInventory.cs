@@ -17,8 +17,8 @@ namespace KarpysDev.Script.Items
         [SerializeField] private string m_SaveName = string.Empty;
         [SerializeField] private int m_InventoryItemCount = 0;
 
-        private ItemUIHolderV2[] m_Holders = null;
-        public PlayerEquipementHolderV2[] EquipementHolders => m_Equipement.Equipement;
+        private ItemUIHolder[] m_Holders = null;
+        public PlayerEquipementHolder[] EquipementHolders => m_Equipement.Equipement;
 
         private int EquipementLenght => EquipementHolders.Length + m_InventoryItemCount;
         private void Awake()
@@ -31,12 +31,12 @@ namespace KarpysDev.Script.Items
             InterpretSave();
         }
         
-        public void AssignInventoryHolders(ItemUIHolderV2[] holders)
+        public void AssignInventoryHolders(ItemUIHolder[] holders)
         {
             m_Holders = holders;
         }
 
-        public void AssignEquipementHolders(PlayerEquipementHolderV2[] holders)
+        public void AssignEquipementHolders(PlayerEquipementHolder[] holders)
         {
             m_Equipement.SetSaveEquipement(holders);
         }

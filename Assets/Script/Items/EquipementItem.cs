@@ -5,6 +5,7 @@ using KarpysDev.Script.Manager;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.UI;
 using KarpysDev.Script.UI.ItemContainer;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Utils;
 
 namespace KarpysDev.Script.Items
@@ -22,6 +23,8 @@ namespace KarpysDev.Script.Items
     
         public EquipementType Type => m_Type;
         public bool IsEquiped => m_IsEquiped;
+
+        public bool IsTwoHandedWeapon => Data is WeaponEquipementItemdata {TwoHanded: true};
 
         public EquipementItem(EquipementItemData data) : base(data)
         {
@@ -131,9 +134,6 @@ namespace KarpysDev.Script.Items
             //Base Constructor//
             m_Type = EquipementData.EquipementType;
             InitializeBaseModifier();
-        
-            /*if(m_IsEquiped)
-                Equip();*/
         }
         public override string GetSaveData()
         {

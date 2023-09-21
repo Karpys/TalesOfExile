@@ -1,5 +1,7 @@
 ﻿using System;
+using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Widget;
 using TMPro;
 using UnityEngine;
@@ -38,7 +40,7 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         private float GetGoldValue()
         {
-            if (Item != null)
+            if (AttachedItem != null)
             {
                 return 250f;
             }
@@ -50,20 +52,39 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         public void TryLaunchDelete()
         {
-            if(Item != null)
+            if(AttachedItem != null)
                 m_ClearGoldItem = new Clock(m_DeleteTime, ClearGoldItem);
+        }
+
+        protected override void OnItemSet(Item item)
+        {
+            base.OnItemSet(item);
+            UpdateGold();
+            TryLaunchDelete();
+        }
+
+        protected override void OnItemRemoved(Item item)
+        {
+            base.OnItemRemoved(item);
+            UpdateGold();
         }
 
         private void ClearGoldItem()
         {
-            if(Item == null)
+            if(AttachedItem == null)
                 return;
             
             Transform player = GameManager.Instance.PlayerEntity.transform;
             GoldManager.Instance.SpawnGoldAmount(player.position,player,5,250);
             SetItem(null);
-            m_PlayerInventoryUI.UpdateInventoryCollection(this);
-            UpdateGold();
+        }
+
+        public override bool CanReceiveItem(Item item, ItemHolderGroup holderSource)
+        {
+            if (holderSource != ItemHolderGroup.PlayerInventory)
+                return false;
+
+            return true;
         }
     }
 }

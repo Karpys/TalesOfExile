@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.UI;
-using KarpysDev.Script.UI.ItemContainer;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Utils;
 using UnityEngine;
 

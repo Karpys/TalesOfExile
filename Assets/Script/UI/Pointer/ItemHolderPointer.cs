@@ -9,7 +9,7 @@ namespace KarpysDev.Script.UI.Pointer
 {
     public class ItemHolderPointer : UIPointer
     {
-        [SerializeField] private ItemUIHolderV2 m_ItemHolder = null;
+        [SerializeField] private ItemUIHolder m_ItemHolder = null;
         [SerializeField] private EquipementItemDescriptionDisplayer m_EquipementDisplayer = null; 
         [SerializeField] private ItemDescriptionDisplayer m_ItemDisplayer = null; 
         [SerializeField] private float m_DisplayDuration = 1f;

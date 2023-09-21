@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using KarpysDev.Script.UI.ItemContainer;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI
@@ -38,7 +39,7 @@ namespace KarpysDev.Script.UI
             Clear();
        
         
-            List<ItemButtonUIParameters> buttonParameters = inventoryUI.Item.ButtonRequestOptionButton(inventoryUI);
+            List<ItemButtonUIParameters> buttonParameters = inventoryUI.AttachedItem.ButtonRequestOptionButton(inventoryUI);
 
             foreach (ItemButtonUIParameters buttonUIParameters in buttonParameters)
             {

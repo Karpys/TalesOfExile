@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI.ItemContainer.V2
 {
-    public class PlayerEquipementHolderV2 : ItemUIHolderV2
+    public class PlayerEquipementHolder : ItemUIHolder
     {
         [Header("Player Equipement Specifics")]
         [SerializeField] private Sprite m_ShadowSprite = null;
@@ -14,6 +14,7 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
         {
             base.DefaultDisplay();
             m_ItemVisual.sprite = m_ShadowSprite;
+            m_ItemVisual.color = Color.white;
         }
 
         public override bool CanReceiveItem(Item item, ItemHolderGroup holderSource)

@@ -1,10 +1,11 @@
 ﻿using KarpysDev.Script.Items;
+using KarpysDev.Script.Manager.Library;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KarpysDev.Script.UI.ItemContainer.V2
 {
-    public abstract class ItemUIHolderV2 : MonoBehaviour
+    public abstract class ItemUIHolder : MonoBehaviour
     {
         [SerializeField] private Sprite m_DefaultItemBorder = null;
         [SerializeField] private Sprite m_DefinedItemBorder = null;
@@ -15,12 +16,13 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
         [Header("Source")] 
         [SerializeField] private ItemHolderGroup m_HolderGroupSource = ItemHolderGroup.Stash;
         
-        private Item m_AttachedItem = null;
-        private Item m_TempItem = null;
+        protected Item m_AttachedItem = null;
+        protected Item m_TempItem = null;
         private bool m_MouseOn = false;
 
         public ItemHolderGroup ItemHolderGroupSource => m_HolderGroupSource;
         public Item AttachedItem => m_AttachedItem;
+        public Item TempItem => m_TempItem;
         public bool MouseOn
         {
             get => m_MouseOn;
@@ -41,10 +43,11 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
             m_ItemVisual.sprite = m_AttachedItem.Data.InUIVisual;
             m_ItemRarityBorder.sprite = m_DefinedItemBorder;
             
-            Debug.Log("Apply Item Visual");
+            RarityParameter rarityParameter = RarityLibrary.Instance.GetParametersViaKey(AttachedItem.Rarity);
+            m_ItemRarityBorder.color = rarityParameter.RarityColor;
         }
         
-        public void TempReceiveItem(Item item)
+        public virtual void TempReceiveItem(Item item)
         {
             m_TempItem = item;
         }
@@ -86,5 +89,18 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
         }
 
         public abstract bool CanReceiveItem(Item item, ItemHolderGroup holderSource);
+
+        public virtual void LateApply()
+        {
+            return;
+        }
+    }
+    
+    public enum ItemHolderGroup
+    {
+        PlayerInventory = 1,
+        PlayerEquipement = 2,
+        Stash = 4,
+        SellPopup = 5,
     }
 }

@@ -15,8 +15,8 @@ namespace KarpysDev.Script.UI.Pointer
         [Header("Arrow")] 
         [SerializeField] private RectTransform m_ArrowTransform = null;
 
-        [Header("Reference")]
-        [SerializeField] private GoldPopupItemUIHolder m_Holder = null;
+        //[Header("Reference")]
+        //[SerializeField] private GoldPopupItemUIHolder m_Holder = null;
 
         private bool m_IsOpen = false;
         public override void Trigger()
@@ -34,14 +34,14 @@ namespace KarpysDev.Script.UI.Pointer
         }
         private void Open()
         {
-            m_Holder.SetOpenState(true);
+            //m_Holder.SetOpenState(true);
             m_RectContainer.DoUIPosition(new Vector3(m_XPositionn.x, 0, 0), m_AppearDuration).SetCurve(m_Curve);
             m_ArrowTransform.DoRotate(new Vector3(0, 0, 0), m_AppearDuration).SetCurve(m_Curve);
         }
         
         private void Close()
         {
-            m_Holder.SetOpenState(false);
+            //m_Holder.SetOpenState(false);
             m_RectContainer.DoUIPosition(new Vector3(m_XPositionn.y, 0, 0), m_AppearDuration).SetCurve(m_Curve);
             m_ArrowTransform.DoRotate(new Vector3(0, 0, 180), m_AppearDuration).SetCurve(m_Curve);
         }
