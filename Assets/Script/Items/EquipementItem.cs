@@ -132,8 +132,8 @@ namespace KarpysDev.Script.Items
             m_Type = EquipementData.EquipementType;
             InitializeBaseModifier();
         
-            if(m_IsEquiped)
-                Equip();
+            /*if(m_IsEquiped)
+                Equip();*/
         }
         public override string GetSaveData()
         {

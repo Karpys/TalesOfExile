@@ -41,7 +41,7 @@ namespace KarpysDev.Script.UI
             m_InventoryContainer.transform.DoKill();
             m_InventoryContainer.gameObject.SetActive(true);
             m_InventoryContainer.transform.localScale = Vector3.zero;
-            m_PlayerInventoryUI.RefreshInventoryDisplay();
+            //m_PlayerInventoryUI.RefreshInventoryDisplay();
             m_InventoryContainer.transform.DoScale(new Vector3(1, 1, 1), 0.3f).SetEase(Ease.EASE_OUT_SIN).OnComplete(() =>
             {
                 //Equipement//

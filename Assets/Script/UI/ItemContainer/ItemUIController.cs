@@ -1,5 +1,6 @@
 using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Items;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.UI.Pointer;
 using UnityEngine;
 
@@ -10,25 +11,30 @@ namespace KarpysDev.Script.UI.ItemContainer
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;
         [SerializeField] private UISelectionFade m_ItemFade = null;
         [SerializeField] private GoldPopupItemUIHolder m_GoldPopupHolder = null;
+        
         private ItemUIHolder m_OnClickHolder = null;
         private ItemUIHolder m_OnMouseHolder = null;
+        
+        private ItemUIHolderV2 m_OnClickHolderV2 = null;
+        private ItemUIHolderV2 m_OnMouseHolderV2 = null;
 
         private bool m_DragBegin = false;
         public ItemUIHolder OnMouseHolder => m_OnMouseHolder;
+        public ItemUIHolderV2 OnMouseHolderV2 => m_OnMouseHolderV2;
         private void Update()
         {
             if (!m_DragBegin)
             {
-                if(m_OnMouseHolder == null)
+                if(m_OnMouseHolderV2 == null)
                     return;
             
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (m_OnMouseHolder.MouseOn && m_OnMouseHolder.Item != null)
+                    if (m_OnMouseHolderV2.MouseOn && m_OnMouseHolderV2.AttachedItem != null)
                     {
-                        Debug.Log("Select item : " + m_OnMouseHolder.Item.Data.ObjectName);
-                        m_OnClickHolder = m_OnMouseHolder;
-                        m_ItemFade.Initialize(m_OnClickHolder.Item.Data.InUIVisual);
+                        Debug.Log("Select item : " + m_OnMouseHolderV2.AttachedItem.Data.ObjectName);
+                        m_OnClickHolderV2 = m_OnMouseHolderV2;
+                        m_ItemFade.Initialize(m_OnClickHolderV2.AttachedItem.Data.InUIVisual);
                         m_DragBegin = true;
                     }
                 }
@@ -37,11 +43,12 @@ namespace KarpysDev.Script.UI.ItemContainer
             {
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (m_OnMouseHolder != m_OnClickHolder && m_OnMouseHolder.MouseOn)
+                    if (m_OnMouseHolderV2 != m_OnClickHolderV2 && m_OnMouseHolderV2.MouseOn)
                     {
-                        PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
+                        PerformHolderActionV2(m_OnClickHolderV2,m_OnMouseHolderV2);
+                        //PerformHolderAction(m_OnClickHolder,m_OnMouseHolder);
                     }
-                    else if (m_OnClickHolder.MouseOn)
+                    /*else if (m_OnClickHolder.MouseOn)
                     {
                         //Perform Same Holder Action
                         PerformSameHolderAction(m_OnClickHolder);
@@ -49,7 +56,7 @@ namespace KarpysDev.Script.UI.ItemContainer
                     else
                     {
                         PerformSingleHolderAction(m_OnClickHolder);
-                    }
+                    }*/
 
                     m_DragBegin = false;
                     m_ItemFade.Clear();
@@ -85,6 +92,26 @@ namespace KarpysDev.Script.UI.ItemContainer
             if (holderActionType == 1)
             {
                 m_PlayerInventoryUI.DropInventoryItem(m_OnClickHolder);
+            }
+        }
+
+        private void PerformHolderActionV2(ItemUIHolderV2 holder1, ItemUIHolderV2 holder2)
+        {
+            Item item1 = holder1.AttachedItem;
+            Item item2 = holder2.AttachedItem;
+
+            Debug.Log("Try Perform Holder Action");
+            Debug.Log("Holder 1 Can Receive Item : " +  holder1.CanReceiveItem(item2,holder2.ItemHolderGroupSource));
+            Debug.Log("Holder 2 Can Receive Item : " +  holder2.CanReceiveItem(item1,holder1.ItemHolderGroupSource));
+            
+            if (holder1.CanReceiveItem(item2,holder2.ItemHolderGroupSource) && holder2.CanReceiveItem(item1, holder1.ItemHolderGroupSource))
+            {
+                holder2.TempReceiveItem(item1);
+                holder1.TempReceiveItem(item2);
+                holder1.ApplyItem();
+                holder2.ApplyItem();
+                
+                Debug.Log("Apply Swap");
             }
         }
 
@@ -222,9 +249,9 @@ namespace KarpysDev.Script.UI.ItemContainer
             return equipementItem.EquipementData.EquipementType == equipementType;
         }
 
-        public void SetCurrentMouseHolder(ItemUIHolder itemHolder)
+        public void SetCurrentMouseHolder(ItemUIHolderV2 itemHolder)
         {
-            m_OnMouseHolder = itemHolder;
+            m_OnMouseHolderV2 = itemHolder;
         }
 
         private ItemUIHolder[] GetFreeHolderInPlayerInventory()

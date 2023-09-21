@@ -1,18 +1,18 @@
 Weapon Attack
 Regeneration Buff
 Rush
-Range Attack
-Sword Dance
-Detection Mine
-Lightning Strike
-Rain Sword
-Knock Slam
-Leap Crash
-Meteor Blast
-Flame Burst Buff
-Regeneration Buff
-Rebound Arrow
-Rain Sword
-Skeleton Curse
-Ice Blast
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
+none
 none

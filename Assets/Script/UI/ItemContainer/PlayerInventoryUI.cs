@@ -2,6 +2,7 @@ using System.Linq;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -12,11 +13,15 @@ namespace KarpysDev.Script.UI.ItemContainer
         [SerializeField] private Transform m_ItemGroup = null;
         [SerializeField] private int m_ItemCount = 0;
         [SerializeField] private ItemUIHolder m_ItemUIHolderPrefab = null;
+        [SerializeField] private ItemUIHolderV2 m_ItemUIHolderPrefabV2 = null;
 
         [Header("Equipement Holder")]
         [SerializeField] private ItemUIHolder[] m_EquipementHolder = null;
+        [SerializeField] private PlayerEquipementHolderV2[] m_EquipementHolderV2 = null;
         [SerializeField] private WeaponEquipementUIHolder m_MainWeaponEquipementUIHolder = null;
+
         private ItemUIHolder[] m_ItemHolders = null;
+        private ItemUIHolderV2[] m_ItemHoldersV2 = null;
         private PlayerInventory m_Inventory = null;
 
         [Header("Popup holders")]
@@ -26,60 +31,29 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         private void Awake()
         {
-            m_ItemHolders = new ItemUIHolder[m_ItemCount + 1];
+            m_ItemHoldersV2 = new ItemUIHolderV2[m_ItemCount];
         
             for (int i = 0; i < m_ItemCount; i++)
             {
-                ItemUIHolder itemHolder = Instantiate(m_ItemUIHolderPrefab, m_ItemGroup);
-                itemHolder.SetId(i);
-                itemHolder.SetGroup(ItemHolderGroup.PlayerInventory);
-                m_ItemHolders[i] = itemHolder;
+                ItemUIHolderV2 itemHolder = Instantiate(m_ItemUIHolderPrefabV2, m_ItemGroup);
+                //itemHolder.SetId(i);
+                m_ItemHoldersV2[i] = itemHolder;
             }
             
-            m_GoldPopupHolder.SetId(m_ItemCount);
-            m_ItemHolders[m_ItemCount] = m_GoldPopupHolder;
+            //m_GoldPopupHolder.SetId(m_ItemCount);
+            //m_ItemHolders[m_ItemCount] = m_GoldPopupHolder;
 
-            for (int i = 0; i < m_EquipementHolder.Length; i++)
+            /*for (int i = 0; i < m_EquipementHolder.Length; i++)
             {
                 m_EquipementHolder[i].SetId(i);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (m_Inventory)
-                m_Inventory.A_OnPickUp -= RefreshWhenOpen;
-        }
-
-        public void RefreshInventoryDisplay()
-        {
-            for (int i = 0; i < m_ItemHolders.Length; i++)
-            {
-                m_ItemHolders[i].SetItem(m_Inventory.Inventory[i]);
-            }
-
-            for (int i = 0; i < m_EquipementHolder.Length; i++)
-            {
-                m_EquipementHolder[i].SetItem(m_Inventory.Equipement[i]);
-            }
-            
-            m_MainWeaponEquipementUIHolder.UpdateFadeVisual();
-        }
-
-        private void RefreshWhenOpen()
-        {
-            if (!gameObject.activeInHierarchy)
-                return;
-            RefreshInventoryDisplay();
+            }*/
         }
 
         public void SetPlayerInventory(PlayerInventory inventory)
         {
-            if (m_Inventory)
-                m_Inventory.A_OnPickUp -= RefreshWhenOpen;
-        
             m_Inventory = inventory;
-            m_Inventory.A_OnPickUp += RefreshWhenOpen;
+            inventory.AssignInventoryHolders(m_ItemHoldersV2);
+            inventory.AssignEquipementHolders(m_EquipementHolderV2);
         }
     
         public void SwapInventoryHolderItem(ItemUIHolder holder1, ItemUIHolder holder2)
@@ -94,7 +68,7 @@ namespace KarpysDev.Script.UI.ItemContainer
 
         public void UpdateInventoryCollection(ItemUIHolder holder)
         {
-            m_Inventory.UpdateItem(holder.Item,holder.Id);
+            //m_Inventory.UpdateItem(holder.Item,holder.Id);
         }
 
         private void SetItemToTargetGroup(Item targetItem,ItemHolderGroup targetGroup, int targetId)
@@ -136,9 +110,9 @@ namespace KarpysDev.Script.UI.ItemContainer
             switch (targetGroup)
             {
                 case ItemHolderGroup.PlayerEquipement:
-                    return m_Inventory.Equipement;
+                    return null;
                 case ItemHolderGroup.PlayerInventory:
-                    return m_Inventory.Inventory;
+                    return null;
                 default:
                     return null;
             }

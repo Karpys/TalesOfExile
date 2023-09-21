@@ -1,6 +1,7 @@
 ﻿using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.UI.ItemContainer;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace KarpysDev.Script.UI.Pointer
 {
     public class ItemHolderPointer : UIPointer
     {
-        [SerializeField] private ItemUIHolder m_ItemHolder = null;
+        [SerializeField] private ItemUIHolderV2 m_ItemHolder = null;
         [SerializeField] private EquipementItemDescriptionDisplayer m_EquipementDisplayer = null; 
         [SerializeField] private ItemDescriptionDisplayer m_ItemDisplayer = null; 
         [SerializeField] private float m_DisplayDuration = 1f;
@@ -36,7 +37,7 @@ namespace KarpysDev.Script.UI.Pointer
             m_ItemHolder.MouseOn = true;
             ItemUIController.Instance.SetCurrentMouseHolder(m_ItemHolder);
         
-            if(m_ItemHolder.Item == null)
+            if(m_ItemHolder.AttachedItem == null)
                 return;
         
             m_EventClock = new Clock(m_DisplayDuration, DisplayItemDescription);
@@ -57,23 +58,23 @@ namespace KarpysDev.Script.UI.Pointer
 
         private void DisplayItemDescription()
         {
-            if(m_ItemHolder.Item == null)
+            if(m_ItemHolder.AttachedItem == null)
                 return;
         
-            switch (m_ItemHolder.Item.Data.ObjectType)
+            switch (m_ItemHolder.AttachedItem.Data.ObjectType)
             {
                 case ObjectType.DefaultObject:
                     m_Displayer = Instantiate(m_ItemDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
-                    m_Displayer.Initialize(m_ItemHolder.Item);
+                    m_Displayer.Initialize(m_ItemHolder.AttachedItem);
                     break;
                 case ObjectType.Equipement:
                     m_Displayer = Instantiate(m_EquipementDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
-                    m_Displayer.Initialize(m_ItemHolder.Item);
+                    m_Displayer.Initialize(m_ItemHolder.AttachedItem);
                     break;
                 default:
                     m_Displayer = Instantiate(m_ItemDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
-                    m_Displayer.Initialize(m_ItemHolder.Item);
-                    Debug.LogError("Display type displayer not implemented" + m_ItemHolder.Item.Data.ObjectType);
+                    m_Displayer.Initialize(m_ItemHolder.AttachedItem);
+                    Debug.LogError("Display type displayer not implemented" + m_ItemHolder.AttachedItem.Data.ObjectType);
                     break;
             }
         }

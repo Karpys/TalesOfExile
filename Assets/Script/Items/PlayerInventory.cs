@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Manager.Library;
+using KarpysDev.Script.UI.ItemContainer.V2;
 using KarpysDev.Script.Utils;
 using Script.Data;
 using UnityEngine;
@@ -16,22 +17,28 @@ namespace KarpysDev.Script.Items
         [SerializeField] private string m_SaveName = string.Empty;
         [SerializeField] private int m_InventoryItemCount = 0;
 
-        private Item[] m_PlayerInventory = null;
-        public Item[] Inventory => m_PlayerInventory;
-        public Item[] Equipement => m_Equipement.Equipement;
+        private ItemUIHolderV2[] m_Holders = null;
+        public PlayerEquipementHolderV2[] EquipementHolders => m_Equipement.Equipement;
 
-        public Action A_OnPickUp = null;
-
-        private int EquipementLenght => Equipement.Length + m_PlayerInventory.Length;
+        private int EquipementLenght => EquipementHolders.Length + m_InventoryItemCount;
         private void Awake()
         {
             GlobalSaver.AddSaver(this);
-            m_PlayerInventory = new Item[m_InventoryItemCount + 1];
         }
 
         public void Init()
         {
             InterpretSave();
+        }
+        
+        public void AssignInventoryHolders(ItemUIHolderV2[] holders)
+        {
+            m_Holders = holders;
+        }
+
+        public void AssignEquipementHolders(PlayerEquipementHolderV2[] holders)
+        {
+            m_Equipement.SetSaveEquipement(holders);
         }
 
         private void OnApplicationQuit()
@@ -50,11 +57,11 @@ namespace KarpysDev.Script.Items
             bool onPickUp = false;
             for (int i = 0; i < m_InventoryItemCount; i++)
             {
-                if (m_PlayerInventory[i] == null)
+                if (m_Holders[i].AttachedItem == null)
                 {
-                    m_PlayerInventory[i] = item;
+                    m_Holders[i].SetItem(item);
                     onPickUp = true;
-                    A_OnPickUp?.Invoke();
+                    //_OnPickUp?.Invoke();
                     break;
                 }
             } 
@@ -68,11 +75,6 @@ namespace KarpysDev.Script.Items
         {
             string colorCode = RarityLibrary.Instance.GetParametersViaKey(item.Rarity).RarityColor.ToColorString();
             Debug.Log(colorCode.ToColorTag()+ item.Data.ObjectName + " Item picked up : "+ item.Rarity + "</color>");
-        }
-
-        public void UpdateItem(Item item, int id)
-        {
-            m_PlayerInventory[id] = item;
         }
         //Save Part
         private void SaveInventory()
@@ -92,8 +94,18 @@ namespace KarpysDev.Script.Items
             string[] data = SaveUtils.ReadData(GetSaveName,m_BaseInventory);
             List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
         
-            m_PlayerInventory = saveObjects.GetRange(0,m_PlayerInventory.Length).ToArray();
-            m_Equipement.SetSaveEquipement(saveObjects.GetRange(m_PlayerInventory.Length,m_Equipement.Equipement.Length).ToArray());
+            Item[] initInventory = saveObjects.GetRange(0,m_InventoryItemCount).ToArray();
+            Item[] equipementInit = saveObjects.GetRange(initInventory.Length, m_Equipement.Equipement.Length).ToArray();
+            
+            for (int i = 0; i < m_Holders.Length; i++)
+            {
+                m_Holders[i].SetItem(initInventory[i]);
+            }
+
+            for (int i = 0; i < equipementInit.Length; i++)
+            {
+                m_Equipement.Equipement[i].SetItem(equipementInit[i]);
+            }
         }
     
         public void WriteSaveData(string saveName, string[] data)
@@ -107,11 +119,12 @@ namespace KarpysDev.Script.Items
         {
             string[] itemDataSaves = new string[EquipementLenght];
         
-            for (int i = 0; i < m_PlayerInventory.Length; i++)
+            for (int i = 0; i < m_Holders.Length; i++)
             {
-                if (m_PlayerInventory[i] != null)
+                if (m_Holders[i].AttachedItem != null)
                 {
-                    itemDataSaves[i] = m_PlayerInventory[i].GetSaveData();
+                    Debug.Log("Item To Save");
+                    itemDataSaves[i] = m_Holders[i].AttachedItem.GetSaveData();
                 }
                 else
                 {
@@ -119,15 +132,15 @@ namespace KarpysDev.Script.Items
                 }
             }
 
-            for (int i = 0; i < Equipement.Length; i++)
+            for (int i = 0; i < EquipementHolders.Length; i++)
             {
-                if (Equipement[i] != null)
+                if (EquipementHolders[i].AttachedItem != null)
                 {
-                    itemDataSaves[i + m_PlayerInventory.Length] = Equipement[i].GetSaveData();
+                    itemDataSaves[i + m_Holders.Length] = EquipementHolders[i].AttachedItem.GetSaveData();
                 }
                 else
                 {
-                    itemDataSaves[i + m_PlayerInventory.Length] = "none";
+                    itemDataSaves[i + m_Holders.Length] = "none";
                 }
             }
         
