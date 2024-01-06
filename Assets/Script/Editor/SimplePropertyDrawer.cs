@@ -46,7 +46,7 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
                     position.x += 100;
                     position.xMax -= 100;
                 }
-                EditorGUI.PropertyField(position, properties[i], label,true);
+                EditorGUI.PropertyField(position, properties[i], GUIContent.none,true);
                 position.y += position.height;
             }
         }
