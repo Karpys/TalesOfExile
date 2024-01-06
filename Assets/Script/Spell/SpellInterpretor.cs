@@ -12,6 +12,7 @@ namespace KarpysDev.Script.Spell
       [SerializeField] private GlobalCanvas m_GlobalCanvas = null;
       [SerializeField] private Color m_ActionColor = Color.white;
       [SerializeField] private Color m_DisplayColor = Color.white;
+      [SerializeField] private bool m_TryAutoCast = false;
    
       private bool Validation = false;
    
@@ -69,11 +70,14 @@ namespace KarpysDev.Script.Spell
                m_TilesSelection = ZoneTileManager.GetSelectionZone(selection.Zone, m_OriginTile, selection.Zone.Range,m_CastOriginTile);
             
                //Highlight Tiles//
-               Color tilesColor = GetColor(selection);
-               bool isDynamicSelection = IsDynamic(selection);
-               HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
+               if (!m_TryAutoCast)
+               {
+                  Color tilesColor = GetColor(selection);
+                  bool isDynamicSelection = IsDynamic(selection);
+                  HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
+               }
             
-               if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
+               if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation || m_TryAutoCast)
                {
                   if(IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
