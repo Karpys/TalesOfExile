@@ -1,13 +1,13 @@
 using System;
-using System.Collections;
 using KarpysDev.Script.Manager;
 using TMPro;
-using TweenCustom;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace KarpysDev.Script.Widget
 {
+    using KarpysUtils.TweenCustom;
+
     [Serializable]
     public struct TweenParam
     {

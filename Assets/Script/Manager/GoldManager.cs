@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class GoldManager : SingletonMonoBehavior<GoldManager>
     {
         [SerializeField] private PlayerDataHolder m_PlayerDataHolder = null;
@@ -20,7 +22,15 @@ namespace KarpysDev.Script.Manager
         {
             m_GoldPool = new GameObjectPool<GoldWorldHolder>(m_GoldHolder,transform, m_InitialSize,OnNewGoldHolder);
         }
-        
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                ChangeGoldValue(1000);
+            }
+        }
+
         private void OnNewGoldHolder(GoldWorldHolder goldWorldHolder)
         {
             goldWorldHolder.Initialize(this);

@@ -1,8 +1,9 @@
-﻿using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.Utils
 {
+    using KarpysUtils.TweenCustom;
+
     public static class SpriteUtils
     {
         public static void RotateTowardPoint(Vector3 originPosition,Vector3 point,Transform rotateVisual,float offset = 0)

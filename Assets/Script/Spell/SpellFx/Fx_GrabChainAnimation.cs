@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using KarpysDev.Script.Widget;
-using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_GrabChainAnimation : Fx_BurstAnimation
     {
         [SerializeField] private PointLineRenderer m_LineRenderer = null;

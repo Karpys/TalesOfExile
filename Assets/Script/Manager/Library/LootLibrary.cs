@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Utils;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     {
-        [SerializeField] private GenericLibrary<InventoryPoolObjectScriptable,ItemPoolType> m_PoolObjects = null;
+        [SerializeField] private Widget.GenericLibrary<InventoryPoolObjectScriptable,ItemPoolType> m_PoolObjects = null;
 
         private void Awake()
         {

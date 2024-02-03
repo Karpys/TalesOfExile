@@ -1,8 +1,9 @@
-﻿using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_MeteorBlast : Fx_BurstAnimation
     {
         [SerializeField] private Vector3 m_Offset = Vector3.zero;

@@ -23,5 +23,7 @@ MonoBehaviour:
       DamageType: 0
   m_TriggerClassName: WeaponDamageTrigger
   m_AdditionalParameters:
-  - Type: 1
-    Value: 100
+    m_ClassName: WeaponDamageTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

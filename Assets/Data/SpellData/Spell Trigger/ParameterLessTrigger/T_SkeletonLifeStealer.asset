@@ -23,7 +23,7 @@ MonoBehaviour:
       DamageType: 1
   m_TriggerClassName: SkeletonLifeStealerTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: OriginType CasterPosition
-  - Type: 1
-    Value: 0.4
+    m_ClassName: SkeletonLifeStealerTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

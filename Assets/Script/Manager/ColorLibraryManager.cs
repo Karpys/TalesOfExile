@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     [Serializable]
     public class DamageTypeColor
     {

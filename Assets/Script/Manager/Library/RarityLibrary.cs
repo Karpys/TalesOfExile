@@ -1,13 +1,14 @@
 using System;
 using KarpysDev.Script.Items;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class RarityLibrary : SingletonMonoBehavior<RarityLibrary>
     {
-        [SerializeField] private GenericLibrary<RarityParameter, Rarity> Library = null;
+        [SerializeField] private Widget.GenericLibrary<RarityParameter, Rarity> Library = null;
 
         private void Awake()
         {

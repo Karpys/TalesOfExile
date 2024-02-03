@@ -176,6 +176,7 @@ MonoBehaviour:
       FireDamageModifier: 0
       PhysicalDamageModifier: 0
       ElementalDamageModifier: 0
+      NatureDamageModifier: 0
       FlatMeleeDamageReduction: 0
       FlatProjectileDamageReduction: 0
       FlatSpellDamageReduction: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
       FireDamageReduction: 0
       PhysicalDamageReduction: 0
       ElementalDamageReduction: 0
+      NatureDamageReduction: 0
       IsBowUser: 0
       RootLockCount: 0
       SpellLockCount: 0
@@ -194,6 +196,20 @@ MonoBehaviour:
   m_SpellLearnedSave: {fileID: 3290419270510630779}
   m_JumpTweenContainer: {fileID: 1805600238328547132}
   m_MovementDuration: 0.1
+--- !u!114 &3290419270510630779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868885018205819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b4b4e65fbe4195907004336cd1c97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoardEntity: {fileID: 2318941865701268292}
+  m_SaveName: SpellLearned.txt
 --- !u!114 &6144839236201379988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,20 +225,6 @@ MonoBehaviour:
   m_Player: {fileID: 2318941865701268292}
   m_BaseSave: {fileID: 4900000, guid: debf5c08c1cab3e47894c5911fd4a630, type: 3}
   m_SaveName: DisplaySpell.txt
---- !u!114 &3290419270510630779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868885018205819403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b4b4e65fbe4195907004336cd1c97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BoardEntity: {fileID: 2318941865701268292}
-  m_SaveName: SpellLearned.txt
 --- !u!114 &6336160848901496929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +264,7 @@ GameObject:
   - component: {fileID: 7947935228300340734}
   - component: {fileID: 4332279557794149839}
   - component: {fileID: 7287228378006484638}
+  - component: {fileID: 7248609401751762451}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -334,6 +337,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9071852352984913702}
   m_Enabled: 1
+--- !u!114 &7248609401751762451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071852352984913702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d2bee830ef4e2e9de83c269b576c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PPU: 54
+  _Camera: {fileID: 4332279557794149839}
 --- !u!1001 &6695009946028233777
 PrefabInstance:
   m_ObjectHideFlags: 0

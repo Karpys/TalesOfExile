@@ -16,13 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   m_TriggerClassName: RegenerationBuffTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Buff
-  - Type: 3
-    Value: KarpysDev.Script.Manager.Library.BuffType RegenerationBuff
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BuffRelated.BuffCooldown Cooldown
-  - Type: 0
-    Value: 4
-  - Type: 1
-    Value: 25
+    m_ClassName: RegenerationBuffTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

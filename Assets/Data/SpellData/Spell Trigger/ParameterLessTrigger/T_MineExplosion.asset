@@ -22,4 +22,8 @@ MonoBehaviour:
       Damage: 50
       DamageType: 2
   m_TriggerClassName: MineSpellTrigger
-  m_AdditionalParameters: []
+  m_AdditionalParameters:
+    m_ClassName: MineSpellTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

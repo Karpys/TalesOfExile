@@ -16,5 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 4326325269582974500, guid: b37a328a16fb6b74d87612dfd7edece0, type: 3}
   m_TriggerClassName: GrabChainTrigger
   m_AdditionalParameters:
-  - Type: 0
-    Value: 2
+    m_ClassName: GrabChainTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

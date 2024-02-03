@@ -2,6 +2,8 @@
 
 namespace KarpysDev.Script.UI.UnityWorldDebug
 {
+    using KarpysUtils;
+
     public class GizmosViewerManager : SingletonMonoBehavior<GizmosViewerManager>
     {
         [SerializeField] private CubeViewer m_CubeViewer = null;

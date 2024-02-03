@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class MapCleaner:SingletonMonoBehavior<MapCleaner>
     {
         private Stack<IMapClean> m_ObjectToClean = new Stack<IMapClean>();

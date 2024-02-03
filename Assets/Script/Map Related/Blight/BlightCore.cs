@@ -7,12 +7,13 @@ using KarpysDev.Script.PathFinding.LinePath;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
-using TweenCustom;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KarpysDev.Script.Map_Related.Blight
 {
+    using KarpysUtils.TweenCustom;
+
     public class BlightCore : WorldTile,IMapClean
     {
         [SerializeField] private Zone m_OuterZoneSelection = null;

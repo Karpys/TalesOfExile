@@ -1,9 +1,10 @@
 using KarpysDev.Script.Utils;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_RockGround : Fx_BurstAnimation
     {
         [SerializeField] protected BaseTweenData m_ScaleParams;

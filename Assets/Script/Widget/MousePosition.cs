@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Widget
 {
+    using KarpysUtils;
+
     public class MousePosition : SingletonMonoBehavior<MousePosition>
     {
         // Start is called before the first frame update

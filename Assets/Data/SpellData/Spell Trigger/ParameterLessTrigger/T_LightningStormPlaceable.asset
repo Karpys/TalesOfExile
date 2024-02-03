@@ -16,9 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   m_TriggerClassName: CreateStormAreaPlaceableTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Manager.Library.PlaceableType LightningStormArea
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BehaveTiming Friendly
-  - Type: 0
-    Value: 6
+    m_ClassName: CreateStormAreaPlaceableTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

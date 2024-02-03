@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class ItemLibrary : SingletonMonoBehavior<ItemLibrary>
     {
         [SerializeField] private InventoryItemData[] m_BaseObjectScriptable = null;

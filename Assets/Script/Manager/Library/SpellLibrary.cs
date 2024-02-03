@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class SpellLibrary : SingletonMonoBehavior<SpellLibrary>
     {
         [SerializeField] private List<SpellDataScriptable> m_SpellList = new List<SpellDataScriptable>();

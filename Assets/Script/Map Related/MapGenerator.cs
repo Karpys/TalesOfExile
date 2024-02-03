@@ -11,6 +11,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
 {
+    using KarpysUtils;
+
     public class MapGenerator : SingletonMonoBehavior<MapGenerator>
     {
         [SerializeField] private MapData m_MapData = null;

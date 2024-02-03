@@ -1,8 +1,9 @@
-﻿using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_LineRendererAnimation : SpellAnimation
     {
         [SerializeField] private float m_AnimDuration = 0f;

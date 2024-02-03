@@ -1,9 +1,10 @@
 ﻿using KarpysDev.Script.Utils;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_ProjectileReturn : Fx_Projectile
     {
         protected override void Animate()

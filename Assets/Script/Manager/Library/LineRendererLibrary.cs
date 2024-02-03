@@ -1,13 +1,14 @@
 ﻿using System;
 using KarpysDev.Script.Spell.SpellFx;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class LineRendererLibrary: SingletonMonoBehavior<LineRendererLibrary>
     {
-        [SerializeField] private GenericLibrary<LineRendererParameters, LineRendererType> m_LineRendererLibrary = null;
+        [SerializeField] private Widget.GenericLibrary<LineRendererParameters, LineRendererType> m_LineRendererLibrary = null;
 
         private void Awake()
         {

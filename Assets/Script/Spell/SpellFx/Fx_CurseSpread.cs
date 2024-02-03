@@ -1,8 +1,9 @@
-﻿using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_CurseSpread : Fx_BurstAndFade
     {
         [Header("Rotation Param")]

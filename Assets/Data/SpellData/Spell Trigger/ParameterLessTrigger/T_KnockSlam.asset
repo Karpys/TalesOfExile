@@ -23,5 +23,7 @@ MonoBehaviour:
       DamageType: 0
   m_TriggerClassName: KnockBackTrigger
   m_AdditionalParameters:
-  - Type: 0
-    Value: 2
+    m_ClassName: KnockBackTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

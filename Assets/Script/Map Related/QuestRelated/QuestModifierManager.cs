@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.QuestRelated
 {
+    using KarpysUtils;
+
     public class QuestModifierManager : SingletonMonoBehavior<QuestModifierManager>
     {
         public Action<BoardEntity> OnMapEntitySpawn = null;

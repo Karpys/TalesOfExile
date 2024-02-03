@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class FloatingTextManager : SingletonMonoBehavior<FloatingTextManager>
     {
         [SerializeField] private FloatingTextBurst m_FloatingPrefab = null;

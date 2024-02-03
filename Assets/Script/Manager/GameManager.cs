@@ -9,6 +9,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class GameManager : SingletonMonoBehavior<GameManager>
     {
         [Header("UI reference")]

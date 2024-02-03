@@ -7,11 +7,13 @@ using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Spell.ParameterLessSpell;
 using KarpysDev.Script.UI;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
+    using KarpysUtils;
+    using KarpysUtils.TweenCustom;
+
     public class PlayerBoardEntity : BoardEntity,ISpellSet
     {
         [Header("Player")]

@@ -16,5 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   m_TriggerClassName: IceWallTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Manager.Library.TileType IceWall
+    m_ClassName: IceWallTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

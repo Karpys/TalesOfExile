@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class ButtonUIPointerManager : SingletonMonoBehavior<ButtonUIPointerManager>
     {
         private UIButtonPointer m_CurrentPointer = null;

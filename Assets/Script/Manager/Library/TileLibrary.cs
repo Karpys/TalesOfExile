@@ -1,13 +1,14 @@
 ﻿using System;
 using KarpysDev.Script.Map_Related;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class TileLibrary : SingletonMonoBehavior<TileLibrary>
     {
-        [SerializeField] private GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
+        [SerializeField] private Widget.GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
 
         private void Awake()
         {

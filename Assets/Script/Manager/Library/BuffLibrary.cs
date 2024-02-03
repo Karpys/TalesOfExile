@@ -1,14 +1,15 @@
 ﻿using System;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.BuffRelated;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class BuffLibrary : SingletonMonoBehavior<BuffLibrary>
     {
-        [SerializeField] private GenericLibrary<Buff, BuffType> Library = null;
+        [SerializeField] private Widget.GenericLibrary<Buff, BuffType> Library = null;
 
         private void Awake()
         {

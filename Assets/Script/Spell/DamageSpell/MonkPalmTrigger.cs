@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Widget;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using KarpysUtils.TweenCustom;
+
     public class MonkPalmTrigger : WeaponDamageTrigger
     {
         private int m_KnockDistance = 0;

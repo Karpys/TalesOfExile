@@ -1,9 +1,10 @@
 ﻿using KarpysDev.Script.UI.ItemContainer;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI
 {
+    using KarpysUtils.TweenCustom;
+
     public class Canvas_Inventory : MonoBehaviour
     {
         [SerializeField] private Transform m_InventoryContainer = null;

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Map_Related;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+    using KarpysUtils.TweenCustom;
+
     public class LootController : SingletonMonoBehavior<LootController>
     {
         [SerializeField] private ItemWorldHolder m_BaseInventoryHolder = null;

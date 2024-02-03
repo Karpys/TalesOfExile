@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI.ItemContainer
 {
+    using KarpysUtils;
+
     public class ItemUIController : SingletonMonoBehavior<ItemUIController>
     {
         [SerializeField] private PlayerInventoryUI m_PlayerInventoryUI = null;

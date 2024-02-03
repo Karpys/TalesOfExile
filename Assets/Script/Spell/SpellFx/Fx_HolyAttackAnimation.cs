@@ -1,9 +1,10 @@
 ﻿using KarpysDev.Script.Utils;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils.TweenCustom;
+
     public class Fx_HolyAttackAnimation : Fx_BurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Renderer = null;

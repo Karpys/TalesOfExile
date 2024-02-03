@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class GlobalCanvas : SingletonMonoBehavior<GlobalCanvas>
     {
         [SerializeField] private SpellUIDisplayer m_SpellUIDisplayer = null;

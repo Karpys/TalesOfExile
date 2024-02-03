@@ -21,7 +21,9 @@ MonoBehaviour:
     InitialSourceDamage:
       Damage: 0
       DamageType: 0
-  m_TriggerClassName: DoubleAutoTrigger
+  m_TriggerClassName: 
   m_AdditionalParameters:
-  - Type: 1
-    Value: 60
+    m_ClassName: DoubleAutoTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

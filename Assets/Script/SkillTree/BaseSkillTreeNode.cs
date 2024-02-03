@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using KarpysDev.Script.UI.Pointer;
-using TweenCustom;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KarpysDev.Script.SkillTree
 {
+    using KarpysUtils.TweenCustom;
+
     public abstract class BaseSkillTreeNode : UIPointer
     {
         [Header("Base Skill Tree Node")]

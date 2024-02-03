@@ -2,11 +2,12 @@
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Widget;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using KarpysUtils.TweenCustom;
+
     public class KnockBackTrigger : DamageSpellTrigger
     {
         private int m_RepulseForce = 2;

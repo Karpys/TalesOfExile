@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 584535088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4e39502ab39244ba7dabf5100e8e70, type: 3}
+  m_Script: {fileID: 11500000, guid: cb292f35b7fb94770b9fe33c4ab26161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &604204846
@@ -3999,6 +3999,7 @@ MonoBehaviour:
   m_GlobalCanvas: {fileID: 1072997887}
   m_ActionColor: {r: 0, g: 0.42352942, b: 0.15686275, a: 1}
   m_DisplayColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_TryAutoCast: 0
 --- !u!4 &2045092500
 Transform:
   m_ObjectHideFlags: 0

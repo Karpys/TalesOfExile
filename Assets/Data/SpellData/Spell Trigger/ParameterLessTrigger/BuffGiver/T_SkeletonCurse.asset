@@ -16,15 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   m_TriggerClassName: SkeletonCurseBuffGiverTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BuffRelated.BuffGroup Debuff
-  - Type: 3
-    Value: KarpysDev.Script.Manager.Library.BuffType SkeletonCurse
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BuffRelated.BuffCooldown Cooldown
-  - Type: 0
-    Value: 10
-  - Type: 1
-    Value: 25
-  - Type: 0
-    Value: 1
+    m_ClassName: SkeletonCurseBuffGiverTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

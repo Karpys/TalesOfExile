@@ -1,10 +1,11 @@
 ﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
 {
+    using KarpysUtils.TweenCustom;
+
     public class PortalMapTileReloader : MapTileReloader
     {
         protected override void OnPlayerOnTile()

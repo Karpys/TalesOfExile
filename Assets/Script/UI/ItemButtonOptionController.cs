@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI
 {
+    using KarpysUtils;
+
     public class ItemButtonOptionController : SingletonMonoBehavior<ItemButtonOptionController>
     {
         [SerializeField] private ItemButtonUI m_ButtonPrefab = null;

@@ -2,6 +2,8 @@
 
 namespace KarpysDev.Script.Manager
 {
+    using KarpysUtils;
+
     public class InputManager:SingletonMonoBehavior<InputManager>
     {
         [SerializeField] private float m_MouvementKeyHoldTimer = 0;

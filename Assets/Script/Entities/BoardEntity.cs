@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager;
@@ -8,11 +7,13 @@ using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Spell.DamageSpell;
 using KarpysDev.Script.Widget;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
+    using KarpysUtils;
+    using KarpysUtils.TweenCustom;
+
     [Serializable]
     public class EntityStats
     {
@@ -411,6 +412,7 @@ namespace KarpysDev.Script.Entities
 
         public virtual TriggerSpellData[] GetDisplaySpells()
         {
+            m_Spells.Count.Log("Spell Count");
             return m_Spells.ToArray();
         }
 

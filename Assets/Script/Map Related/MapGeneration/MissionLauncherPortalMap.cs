@@ -1,13 +1,13 @@
-﻿
-using KarpysDev.Script.Entities;
+﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related.QuestRelated;
 using KarpysDev.Script.UI;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
 {
+    using KarpysUtils.TweenCustom;
+
     public class MissionLauncherPortalMap : MapTileReloader
     {
         [SerializeField] private SpriteRenderer m_Visual = null;

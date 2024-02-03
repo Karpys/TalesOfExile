@@ -1,40 +1,46 @@
-using System;
-using KarpysDev.Script.Utils;
-using UnityEngine;
 
 namespace KarpysDev.Script.Spell
 {
+    using System;
+    using KarpysUtils;
+    using KarpysUtils.AutoFielder;
+    using UnityEngine;
+    using Object = UnityEngine.Object;
+
     [CreateAssetMenu(fileName = "ParameterLessTrigger", menuName = "Trigger/ParameterLessTrigger", order = 0)]
-    public class ParameterLessTrigger : BaseSpellTriggerScriptable
+    public class ParameterLessTrigger : BaseSpellTriggerScriptable,IFielder
     {
         [SerializeField] private string m_TriggerClassName = string.Empty;
-        #region Editor Use Only
-        [SerializeField] private FieldValue[] m_AdditionalParameters = Array.Empty<FieldValue>();
+        [SerializeField] private Fielder m_AdditionalParameters = null;
 
-        public string TriggerClassName => m_TriggerClassName;
-        public FieldValue[] AdditionalParameters
+        public Fielder Fielder => m_AdditionalParameters;
+        public Object TargetObject => this;
+        
+        private object[] m_FieldValues = null;
+        public void GenerateFields()
         {
-            set => m_AdditionalParameters = value;
-            get => m_AdditionalParameters;
+            m_FieldValues = m_AdditionalParameters.GetFields();
         }
-        #endregion
 
         //End editor
         public override BaseSpellTrigger SetUpTrigger()
         {
+            if(m_FieldValues == null)
+                GenerateFields();
+            
             string className = m_TriggerClassName;
             Type triggerClass = StringUtils.GetTypeViaClassName(className);
         
             if(triggerClass == null)
                 Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
         
-            object[] attributes = new object[m_AdditionalParameters.Length + 1];
+            object[] attributes = new object[m_FieldValues.Length + 1];
 
             attributes[0] = this;
 
-            for (int i = 0; i < m_AdditionalParameters.Length; i++)
+            for (int i = 0; i < m_FieldValues.Length; i++)
             {
-                attributes[i + 1] = m_AdditionalParameters[i].GetValue();
+                attributes[i + 1] = m_FieldValues[i];
             }
         
             return (BaseSpellTrigger)Activator.CreateInstance(triggerClass,attributes);

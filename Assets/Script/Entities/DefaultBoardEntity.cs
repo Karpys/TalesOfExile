@@ -1,7 +1,7 @@
-using TweenCustom;
-
 namespace KarpysDev.Script.Entities
 {
+    using KarpysUtils.TweenCustom;
+
     public class DefaultBoardEntity : BoardEntity
     {
         protected override void Movement()

@@ -1,11 +1,12 @@
 ﻿using System;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Widget;
-using TweenCustom;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
+    using KarpysUtils.TweenCustom;
+
     public class BoardEntityLife : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer m_LifeFill = null;

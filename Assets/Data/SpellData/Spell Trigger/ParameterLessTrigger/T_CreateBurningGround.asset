@@ -16,9 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   m_TriggerClassName: CreateSpellPlaceableTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: KarpysDev.Script.Manager.Library.PlaceableType BurningGround
-  - Type: 3
-    Value: KarpysDev.Script.Entities.BehaveTiming EndTurn
-  - Type: 0
-    Value: 5
+    m_ClassName: CreateSpellPlaceableTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

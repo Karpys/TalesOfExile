@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
 {
+    using KarpysUtils;
+
     public class MapData : SingletonMonoBehavior<MapData>
     {
         [SerializeField] private MapDataLibrary m_MapDataLibrary = null;

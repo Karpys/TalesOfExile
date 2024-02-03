@@ -23,7 +23,7 @@ MonoBehaviour:
       DamageType: 2
   m_TriggerClassName: FlameBurstTrigger
   m_AdditionalParameters:
-  - Type: 0
-    Value: 5
-  - Type: 1
-    Value: 10
+    m_ClassName: FlameBurstTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

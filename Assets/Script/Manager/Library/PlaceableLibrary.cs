@@ -1,12 +1,13 @@
 using KarpysDev.Script.Map_Related;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class PlaceableLibrary : SingletonMonoBehavior<PlaceableLibrary>
     {
-        [SerializeField] private GenericLibrary<MapPlaceable, PlaceableType> m_Library = null;
+        [SerializeField] private Widget.GenericLibrary<MapPlaceable, PlaceableType> m_Library = null;
 
         private void Start()
         {

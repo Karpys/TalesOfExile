@@ -23,5 +23,7 @@ MonoBehaviour:
       DamageType: 3
   m_TriggerClassName: ProjectileDamageTrigger
   m_AdditionalParameters:
-  - Type: 3
-    Value: OriginType FirstActionSelection
+    m_ClassName: ProjectileDamageTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

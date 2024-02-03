@@ -1,12 +1,13 @@
 ﻿using KarpysDev.Script.Entities;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager.Library
 {
+    using KarpysUtils;
+
     public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
     {
-        [SerializeField] private GenericLibrary<BoardEntity, EntityType> Library = null;
+        [SerializeField] private Widget.GenericLibrary<BoardEntity, EntityType> Library = null;
 
         private void Awake()
         {

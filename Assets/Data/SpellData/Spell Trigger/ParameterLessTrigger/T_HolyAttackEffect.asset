@@ -16,5 +16,7 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 7044295380949201269, guid: 4b5a2d4938fc5244e8d7b570c9e39e64, type: 3}
   m_TriggerClassName: HealSelectionSpellTrigger
   m_AdditionalParameters:
-  - Type: 1
-    Value: 25
+    m_ClassName: HealSelectionSpellTrigger
+    m_FieldValues: []
+    m_ConstructorId: 0
+    m_IgnoreParams: 1

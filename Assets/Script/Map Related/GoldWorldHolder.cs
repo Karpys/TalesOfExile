@@ -1,11 +1,11 @@
-﻿using System;
-using KarpysDev.Script.Manager;
-using TweenCustom;
+﻿using KarpysDev.Script.Manager;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace KarpysDev.Script.Map_Related
 {
+    using KarpysUtils.TweenCustom;
+
     public class GoldWorldHolder : MonoBehaviour
     {
         [SerializeField] private Transform m_JumpContainer = null;

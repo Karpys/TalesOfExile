@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
 {
+    using KarpysUtils;
+    using ColorExtensions = ColorExtensions;
+
     public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager>
     {
         // Start is called before the first frame update
@@ -72,7 +75,7 @@ namespace KarpysDev.Script.Map_Related
         public void DebugHighlight(Vector2Int position,float alpha = 1)
         {
             GameObject obj = Instantiate(m_HighlightTile, MapData.Instance.GetTilePosition(position), Quaternion.identity, transform);
-            obj.GetComponent<SpriteRenderer>().color = obj.GetComponent<SpriteRenderer>().color.setAlpha(alpha);
+            obj.GetComponent<SpriteRenderer>().color = ColorExtensions.setAlpha(obj.GetComponent<SpriteRenderer>().color, alpha);
         }
     }
 }

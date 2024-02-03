@@ -1,10 +1,9 @@
-﻿using KarpysDev.Script.Map_Related;
-using KarpysDev.Script.UI.ItemContainer;
-using TweenCustom;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace KarpysDev.Script.UI.Pointer
 {
+    using KarpysUtils.TweenCustom;
+
     public class GoldPopupButtonPointer : UIButtonPointer
     {
         [Header("Open/Close")]
