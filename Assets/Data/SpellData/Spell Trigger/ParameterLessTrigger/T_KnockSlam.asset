@@ -24,6 +24,9 @@ MonoBehaviour:
   m_TriggerClassName: KnockBackTrigger
   m_AdditionalParameters:
     m_ClassName: KnockBackTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 0
+      m_Value: 3
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

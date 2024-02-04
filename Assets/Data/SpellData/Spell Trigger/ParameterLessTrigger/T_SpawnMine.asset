@@ -17,6 +17,13 @@ MonoBehaviour:
   m_TriggerClassName: SpawnNoWalkableEntity
   m_AdditionalParameters:
     m_ClassName: SpawnNoWalkableEntity
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: Mine
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.EntityType, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 5
+      m_Value: True
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

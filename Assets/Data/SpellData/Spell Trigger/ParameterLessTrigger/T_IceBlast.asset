@@ -24,6 +24,10 @@ MonoBehaviour:
   m_TriggerClassName: ProjectileDamageTrigger
   m_AdditionalParameters:
     m_ClassName: ProjectileDamageTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: FirstActionSelection
+      m_AssemblyQualifiedName: OriginType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
     m_ConstructorId: 0
     m_IgnoreParams: 1

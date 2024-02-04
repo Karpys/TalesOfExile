@@ -24,6 +24,9 @@ MonoBehaviour:
   m_TriggerClassName: RushTrigger
   m_AdditionalParameters:
     m_ClassName: RushTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 1
+      m_Value: 100
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

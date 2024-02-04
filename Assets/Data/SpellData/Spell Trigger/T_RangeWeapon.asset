@@ -24,6 +24,13 @@ MonoBehaviour:
   m_TriggerClassName: ProjectileAutoTrigger
   m_AdditionalParameters:
     m_ClassName: ProjectileAutoTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: CasterPosition
+      m_AssemblyQualifiedName: OriginType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - m_FieldType: 1
+      m_Value: 100
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

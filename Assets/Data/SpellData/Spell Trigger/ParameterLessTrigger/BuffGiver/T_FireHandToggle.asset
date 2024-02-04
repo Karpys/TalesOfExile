@@ -17,6 +17,24 @@ MonoBehaviour:
   m_TriggerClassName: BuffGiverTrigger
   m_AdditionalParameters:
     m_ClassName: BuffGiverTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: Buff
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffGroup, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 3
+      m_Value: FireHandBuff
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.BuffType, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 3
+      m_Value: Toggle
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffCooldown,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 0
+      m_Value: 0
+      m_AssemblyQualifiedName: 
+    - m_FieldType: 1
+      m_Value: 25
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

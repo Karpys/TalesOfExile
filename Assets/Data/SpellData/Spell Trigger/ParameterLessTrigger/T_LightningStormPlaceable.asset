@@ -17,6 +17,17 @@ MonoBehaviour:
   m_TriggerClassName: CreateStormAreaPlaceableTrigger
   m_AdditionalParameters:
     m_ClassName: CreateStormAreaPlaceableTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: LightningStormArea
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.PlaceableType, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 3
+      m_Value: SameAsSource
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BehaveTiming, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 0
+      m_Value: 5
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1

@@ -17,6 +17,9 @@ MonoBehaviour:
   m_TriggerClassName: GrabChainTrigger
   m_AdditionalParameters:
     m_ClassName: GrabChainTrigger
-    m_FieldValues: []
+    m_FieldValues:
+    - m_FieldType: 0
+      m_Value: 2
+      m_AssemblyQualifiedName: 
     m_ConstructorId: 0
     m_IgnoreParams: 1
