@@ -7,12 +7,3 @@ Grab Chain
 Ice Blast
 Ice Split
 Rain Sword
-Range Attack
-none
-none
-none
-none
-none
-none
-none
-none

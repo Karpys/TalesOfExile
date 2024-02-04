@@ -1,3 +1,4 @@
+using KarpysDev.Script.Spell.SpellFx;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
@@ -19,9 +20,21 @@ namespace KarpysDev.Script.Spell.DamageSpell
         private Vector3 m_StartPosition = Vector3.zero;
         private Transform m_TargetTransform = null;
     
-        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateOnHitFx(Vector3 entityPosition, Transform transform)
         {
-            base.TriggerOnHitFx(entityPosition, transform,m_StartPosition,entityPosition,m_TargetTransform);
+            SpellAnimation spellAnim = base.CreateOnHitFx(entityPosition, transform);
+            if (spellAnim is IYoYoTransform yoyo)
+            {
+                yoyo.InitialPosition = m_StartPosition;
+                yoyo.GoToPosition = entityPosition;
+                yoyo.TransformToMove = m_TargetTransform;
+            }
+            else
+            {
+                Debug.LogError("Consider using a yoyo transform animation");                
+            }
+
+            return spellAnim;
         }
 
     

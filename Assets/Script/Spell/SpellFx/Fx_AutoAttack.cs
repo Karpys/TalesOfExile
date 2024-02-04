@@ -5,23 +5,26 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_AutoAttack : Fx_BurstAnimation
+    public class Fx_AutoAttack : Fx_BurstAnimation,IYoYoTransform
     {
         [SerializeField] private float m_AnimDuration = 0.1f;
         [SerializeField] private SpriteRenderer m_HitFx = null;
     
+        private Vector3 m_InitialPos = Vector3.zero;
+        private Vector3 m_GoToPosition = Vector3.zero;
+        private Transform m_TransformToMove = null;
+        
+        public Vector3 InitialPosition { set => m_InitialPos = value; }
+        public Vector3 GoToPosition { set => m_GoToPosition = value; }
+        public Transform TransformToMove { set => m_TransformToMove = value;}
         protected override void Animate()
         {
-            Vector3 startPosition = (Vector3)m_Datas[0];
-            Vector3 endPosition = (Vector3)m_Datas[1];
-            Transform targetTransform = (Transform)m_Datas[2];
-
-            Vector3 targetPosition = (endPosition + startPosition) / 2;
-            targetTransform.DoMove(targetPosition, m_AnimDuration / 2).OnComplete(() =>
+            Vector3 targetPosition = (m_GoToPosition + m_InitialPos) / 2;
+            m_TransformToMove.DoMove(targetPosition, m_AnimDuration / 2).OnComplete(() =>
             {
                 DisplayFx();
-                if(targetTransform)
-                    targetTransform.DoMove(startPosition, m_AnimDuration / 2); 
+                if(m_TransformToMove)
+                    m_TransformToMove.DoMove(m_InitialPos, m_AnimDuration / 2); 
             }).OnReferenceLose(DisplayFx);
         }
 
@@ -30,5 +33,12 @@ namespace KarpysDev.Script.Spell.SpellFx
             m_HitFx.gameObject.SetActive(true);
             m_HitFx.FadeAndDestroy(new Color(1,1,1,0),0.2f + m_AnimDuration/2,gameObject);
         }
+    }
+
+    public interface IYoYoTransform
+    {
+        Vector3 InitialPosition { set; }
+        Transform TransformToMove{ set; }
+        Vector3 GoToPosition { set; }
     }
 }

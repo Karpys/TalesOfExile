@@ -1,6 +1,7 @@
 ﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Spell.SpellFx;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -44,9 +45,22 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         private Transform m_EntityHit = null;
         
-        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateOnHitFx(Vector3 entityPosition, Transform transform)
         {
-            base.TriggerOnHitFx(entityPosition, transform, m_EntityHit.transform,m_AttachedTransform,m_TargetPosition);
+            SpellAnimation spellAnim = base.CreateOnHitFx(entityPosition, transform);
+
+            if (spellAnim is IPointAttach pointAttach)
+            {
+                pointAttach.CasterTransform = m_AttachedTransform;
+                pointAttach.TargetTransform = m_EntityHit.transform;
+                pointAttach.TargetPosition = m_TargetPosition;
+            }
+            else
+            {
+                Debug.LogError("Consider using a point attach spell animation");                
+            }
+
+            return spellAnim;
         }
         
     }

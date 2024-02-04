@@ -26,13 +26,13 @@ namespace KarpysDev.Script.Spell
                 if(TileHitAnimation.BaseSpellDelay > m_SpellAnimDelay)
                     m_SpellAnimDelay = TileHitAnimation.BaseSpellDelay;
 
-                TriggerTileHitFx(MapData.Instance.GetTilePosition(tilePosition),null);
+                CreateTileHitFx(MapData.Instance.GetTilePosition(tilePosition),null);
             }
         }
 
-        protected virtual void TriggerTileHitFx(Vector3 tilePosition,Transform transform, params object[] args)
+        protected virtual SpellAnimation CreateTileHitFx(Vector3 tilePosition,Transform transform)
         {
-            TileHitAnimation.TriggerFx(tilePosition,transform,args);
+            return TileHitAnimation.TriggerFx(tilePosition,transform);
         }
     
         protected virtual void EntityHit(BoardEntity entity, TriggerSpellData spellData,
@@ -43,13 +43,13 @@ namespace KarpysDev.Script.Spell
                 if(OnHitAnimation.BaseSpellDelay > m_SpellAnimDelay)
                     m_SpellAnimDelay = OnHitAnimation.BaseSpellDelay;
 
-                TriggerOnHitFx(entity.WorldPosition,null);
+                CreateOnHitFx(entity.WorldPosition,null);
             }
         }
 
-        protected virtual void TriggerOnHitFx(Vector3 entityPosition,Transform transform, params object[] args)
+        protected virtual SpellAnimation CreateOnHitFx(Vector3 entityPosition,Transform transform)
         {
-            OnHitAnimation.TriggerFx(entityPosition,transform,args);
+            return OnHitAnimation.TriggerFx(entityPosition,transform);
         }
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles,CastInfo castInfo,float efficiency = 1)

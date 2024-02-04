@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using KarpysDev.Script.Spell.SpellFx;
+using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
@@ -15,13 +16,15 @@ namespace KarpysDev.Script.Spell.DamageSpell
             base.CastSpell(spellData, spellTiles,mainCast,efficiency);
         }
 
-        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateOnHitFx(Vector3 entityPosition, Transform transform)
         {
             if (m_TriggerAnim == false)
             {
-                base.TriggerOnHitFx(entityPosition, transform, args);
                 m_TriggerAnim = true;
+                return base.CreateOnHitFx(entityPosition, transform);
             }
+
+            return null;
         }
     }
 }

@@ -8,25 +8,20 @@ namespace KarpysDev.Script.Spell.SpellFx
     {
         [SerializeField] protected float m_AnimationLockTime = 0.2f;
         public float BaseSpellDelay => GetAnimationDuration();
-        protected object[] m_Datas = null;
-    
-        public SpellAnimation TriggerFx(Vector3 position,Transform targetTransform = null,params object[] args)
+
+        public SpellAnimation TriggerFx(Vector3 position,Transform targetTransform = null)
         {
             SpellAnimation anim = null;
 
             if (targetTransform == null)
                 targetTransform = MapData.Instance.transform;
         
+            //To Optimize: Create a pool Fx Manager, not necessary for the moment
             anim = Instantiate(this,position,Quaternion.identity,targetTransform);
         
-            anim.SetArgs(args);
+            /*anim.SetArgs(args);*/
 
             return anim;
-        }
-
-        private void SetArgs(object[] args)
-        {
-            m_Datas = args;
         }
 
         protected virtual float GetAnimationDuration()

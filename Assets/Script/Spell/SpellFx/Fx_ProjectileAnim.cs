@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_Projectile : Fx_BurstAnimation
+    public class Fx_ProjectileAnim : Fx_BurstAnimation,IProjectileAnim
     {
         [SerializeField] protected SpriteRenderer m_Visual = null;
     
@@ -15,6 +15,9 @@ namespace KarpysDev.Script.Spell.SpellFx
         
         protected Vector3 m_StartPosition = Vector3.zero;
         protected Vector3 m_EndPosition = Vector3.zero;
+        
+        public Vector3 StartPosition {set => m_StartPosition = value;}
+        public Vector3 EndPosition {set => m_EndPosition = value;}
 
         protected override float GetAnimationDuration()
         {
@@ -23,18 +26,8 @@ namespace KarpysDev.Script.Spell.SpellFx
 
         protected override void Start()
         {
-            if (m_Datas.Length == 0)
-            {
-                Debug.LogError("Try Launch Fx with no start / end position data");
-                return;
-            }
-        
-            m_StartPosition = (Vector3)m_Datas[0];
-            m_EndPosition = (Vector3)m_Datas[1];
-        
             transform.position = m_StartPosition;
             SpriteUtils.RotateTowardPoint(m_StartPosition, m_EndPosition, m_Visual.transform,m_RotationOffset);
-        
             base.Start();
         }
 
@@ -45,5 +38,11 @@ namespace KarpysDev.Script.Spell.SpellFx
             float arrowSpeed = Vector3.Distance(m_StartPosition, m_EndPosition) * m_ProjectileDistanceTime.y / m_ProjectileDistanceTime.x;
             transform.DoMove(m_EndPosition, arrowSpeed).OnComplete(() => Destroy(gameObject));
         }
+    }
+
+    public interface IProjectileAnim
+    {
+        Vector3 StartPosition { set; }
+        Vector3 EndPosition { set; }
     }
 }

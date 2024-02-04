@@ -34,9 +34,10 @@ namespace KarpysDev.Script.Spell.DamageSpell
             base.TileHit(tilePosition, spellData);
         }
 
-        protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateTileHitFx(Vector3 tilePosition, Transform transform)
         {
             m_SpellAnimations.Add(TileHitAnimation.TriggerFx(tilePosition,m_AttachedSpell.AttachedEntity.transform) as Fx_SpellAnimationActivator);
+            return null;
         }
     
         protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData,

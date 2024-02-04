@@ -1,4 +1,5 @@
 using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Spell.SpellFx;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
@@ -33,14 +34,37 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
         }
 
-        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateOnHitFx(Vector3 entityPosition, Transform transform)
         {
-            base.TriggerOnHitFx(m_OriginPosition, transform,m_OriginPosition,entityPosition);
+            SpellAnimation spellAnim = base.CreateOnHitFx(m_OriginPosition, transform);
+
+            if (spellAnim is IProjectileAnim projectileAnim)
+            {
+                projectileAnim.StartPosition = m_OriginPosition;
+                projectileAnim.EndPosition = entityPosition;
+            }
+            else
+            {
+                Debug.LogError("Consider using a projectile animation");
+            }
+
+            return spellAnim;
         }
 
-        protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateTileHitFx(Vector3 tilePosition, Transform transform)
         {
-            base.TriggerTileHitFx(m_OriginPosition, transform, m_OriginPosition,tilePosition);
+            SpellAnimation spellAnim = base.CreateTileHitFx(m_OriginPosition, transform);
+
+            if (spellAnim is IProjectileAnim projectileAnim)
+            {
+                projectileAnim.StartPosition = m_OriginPosition;
+                projectileAnim.EndPosition = tilePosition;
+            }else
+            {
+                Debug.LogError("Consider using a projectile animation");
+            }
+
+            return spellAnim;
         }
     }
 }

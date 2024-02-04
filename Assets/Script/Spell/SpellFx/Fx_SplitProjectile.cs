@@ -6,28 +6,16 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_SplitProjectile : Fx_BurstAnimation
+    public class Fx_SplitProjectile : Fx_BurstAnimation,ISplitter
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
-        [SerializeField] private SpellAnimation m_ProjectileSplitAnimation = null;
+        [SerializeField] private Fx_ProjectileAnim projectileAnimSplitAnimation = null;
         [SerializeField] private Vector2 ProjectileSpeedReference = new Vector2(5, 0.2f);
        
-        private List<Vector3> m_Points = new List<Vector3>();
+        private Vector3[] m_Points = null;
 
-        protected override void Start()
-        {
-            if (m_Datas.Length == 0)
-            {
-                Debug.LogError("Try Launch Fx with no start / end position data");
-                return;
-            }
-        
-            transform.position = (Vector3)m_Datas[0];
-            m_Points = (List<Vector3>)m_Datas[1];
+        public Vector3[] SplitTargets {set => m_Points = value;}
 
-            base.Start();
-        }
-        
         protected override float GetAnimationDuration()
         {
             return ProjectileSpeedReference.y;
@@ -43,12 +31,19 @@ namespace KarpysDev.Script.Spell.SpellFx
 
         private void CreateSplit()
         {
-            for (int i = 1; i < m_Points.Count; i++)
+            for (int i = 1; i < m_Points.Length; i++)
             {
-                m_ProjectileSplitAnimation.TriggerFx(m_Points[0], null, m_Points[0], m_Points[i]);
+                Fx_ProjectileAnim anim = projectileAnimSplitAnimation.TriggerFx(m_Points[0], null) as Fx_ProjectileAnim;
+                anim.StartPosition = m_Points[0];
+                anim.EndPosition = m_Points[i];
             }
             
             Destroy(gameObject);
         }
+    }
+
+    public interface ISplitter
+    {
+        public Vector3[] SplitTargets { set; }
     }
 }

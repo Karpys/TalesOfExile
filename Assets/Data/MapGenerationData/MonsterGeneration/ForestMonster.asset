@@ -18,5 +18,5 @@ MonoBehaviour:
       m_Object: {fileID: -4592490546126341204, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
     - m_Weight: 10
       m_Object: {fileID: -2413995395981544658, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
-  m_TargetEnemiesCount: 1200
+  m_TargetEnemiesCount: 15
   m_ShouldInheriteQuestModifier: 1

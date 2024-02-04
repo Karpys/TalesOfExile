@@ -2,7 +2,7 @@
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_ProjectileReturnSkeletonHead : Fx_ProjectileReturn
+    public class Fx_ProjectileAnimReturnSkeletonHead : Fx_ProjectileAnimReturn
     {
         [SerializeField] private Color m_ReturnColor = Color.green;
 

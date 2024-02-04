@@ -1,4 +1,5 @@
 ﻿using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.Spell.SpellFx;
 using UnityEngine;
 
 namespace KarpysDev.Script.Spell
@@ -11,13 +12,13 @@ namespace KarpysDev.Script.Spell
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {     
-            base.TriggerTileHitFx(MapData.Instance.GetTilePosition(spellTiles.CenterOrigin), null, null);
+            base.CreateTileHitFx(MapData.Instance.GetTilePosition(spellTiles.CenterOrigin), null);
             base.Trigger(spellData, spellTiles, castInfo, efficiency);
         }
 
-        protected override void TriggerTileHitFx(Vector3 tilePosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateTileHitFx(Vector3 tilePosition, Transform transform)
         {
-            return;
+            return null;
         }
     }
 }

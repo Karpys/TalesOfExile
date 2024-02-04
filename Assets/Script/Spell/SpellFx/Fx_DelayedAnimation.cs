@@ -14,7 +14,7 @@ namespace KarpysDev.Script.Spell.SpellFx
             IEnumerator TriggerDelay()
             {
                 yield return new WaitForSeconds(m_DelayedTime);
-                m_Animation.TriggerFx(transform.position, null, m_Datas);
+                m_Animation.TriggerFx(transform.position, null);
                 Destroy(gameObject);
             }
         }

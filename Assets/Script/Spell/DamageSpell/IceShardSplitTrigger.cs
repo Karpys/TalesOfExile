@@ -2,6 +2,7 @@
 using System.Linq;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
+using KarpysDev.Script.Spell.SpellFx;
 using KarpysDev.Script.Utils;
 using UnityEngine;
 
@@ -33,13 +34,18 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
             if (OnHitAnimation)
             {
-                OnHitAnimation.TriggerFx(entity.WorldPosition, null, m_OriginPosition, entityStriked.Select(e => e.WorldPosition).ToList());
+                SpellAnimation spellAnimation = OnHitAnimation.TriggerFx(m_AttachedSpell.AttachedEntity.WorldPosition);
+
+                if (spellAnimation is ISplitter splitter)
+                {
+                    splitter.SplitTargets = entityStriked.Select(e => e.WorldPosition).ToArray();
+                }
             }
         }
 
-        protected override void TriggerOnHitFx(Vector3 entityPosition, Transform transform, params object[] args)
+        protected override SpellAnimation CreateOnHitFx(Vector3 entityPosition, Transform transform)
         {
-            return;
+            return null;
         }
     }
 }
