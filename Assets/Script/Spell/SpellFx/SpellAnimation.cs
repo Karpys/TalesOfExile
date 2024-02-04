@@ -11,17 +11,10 @@ namespace KarpysDev.Script.Spell.SpellFx
 
         public SpellAnimation TriggerFx(Vector3 position,Transform targetTransform = null)
         {
-            SpellAnimation anim = null;
-
             if (targetTransform == null)
                 targetTransform = MapData.Instance.transform;
-        
-            //To Optimize: Create a pool Fx Manager, not necessary for the moment
-            anim = Instantiate(this,position,Quaternion.identity,targetTransform);
-        
-            /*anim.SetArgs(args);*/
 
-            return anim;
+            return Instantiate(this,position,Quaternion.identity,targetTransform);;
         }
 
         protected virtual float GetAnimationDuration()
