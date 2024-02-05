@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public class AutoAttackTrigger : WeaponDamageTrigger
+    public class AutoAttackTrigger : DamageSpellTrigger
     {
-        public AutoAttackTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        public AutoAttackTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {
         }
-
+        
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
             m_StartPosition = spellData.AttachedEntity.WorldPosition;
@@ -36,7 +36,5 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
             return spellAnim;
         }
-
-    
     }
 }

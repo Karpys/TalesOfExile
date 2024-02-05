@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public class ReboundArrow : ProjectileAutoTrigger
+    public class ReboundArrow : ProjectileDamageTrigger
     {
         private Zone m_ZoneStrike = null;
         private int m_Rebound = 0;
 
-        public ReboundArrow(DamageSpellScriptable damageSpellData,OriginType originType, float baseWeaponDamageConvertion, ZoneType zoneType,
-            int zoneRange,int rebound) : base(damageSpellData, originType,baseWeaponDamageConvertion)
+        public ReboundArrow(DamageSpellScriptable damageSpellData,OriginType originType, ZoneType zoneType,
+            int zoneRange,int rebound) : base(damageSpellData, originType)
         {
             m_ZoneStrike = new Zone(zoneType, zoneRange);
             m_Rebound = rebound;

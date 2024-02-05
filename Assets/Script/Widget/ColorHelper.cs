@@ -11,13 +11,13 @@ namespace KarpysDev.Script.Widget
     {
         private static readonly Color MAX_LIFE_COLOR = new Color(0.098f,0.568f,0,1);
         private static readonly Color MIN_LIFE_COLOR = new Color(0.568f,0,0,1);
-        public static Color GetDamageBlendColor(Dictionary<SubDamageType, DamageSource> damageSources)
+        public static Color GetDamageBlendColor(List<DamageSource> damageSources)
         {
             Vector3 totalColor = Vector3.zero;
 
-            foreach (KeyValuePair<SubDamageType,DamageSource> damageSource in damageSources)
+            foreach (DamageSource damageSource in damageSources)
             {
-                Color color = ColorLibraryManager.Instance.GetDamageColor(damageSource.Key);
+                Color color = ColorLibraryManager.Instance.GetDamageColor(damageSource.DamageType);
                 totalColor.x += color.r;
                 totalColor.y += color.g;
                 totalColor.z += color.b;

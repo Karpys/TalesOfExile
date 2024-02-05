@@ -77,47 +77,40 @@ namespace KarpysDev.Script.Entities
         }
         public float GetDamageModifier(SubDamageType subDamageType)
         {
+            float damageModifier = 0;
             switch (subDamageType)
             {
                 case SubDamageType.Cold:
-                    return ColdDamageModifier;
+                    damageModifier += ColdDamageModifier;
+                    break;
                 case SubDamageType.Lightning:
-                    return LightningDamageModifier;
+                    damageModifier += LightningDamageModifier;
+                    break;
                 case SubDamageType.Fire:
-                    return FireDamageModifier;
+                    damageModifier += FireDamageModifier;
+                    break;
                 case SubDamageType.Physical:
-                    return PhysicalDamageModifier;
+                    damageModifier += PhysicalDamageModifier;
+                    break;
                 case SubDamageType.Elemental:
-                    return ElementalDamageModifier;
+                    damageModifier += ElementalDamageModifier;
+                    break;
                 case SubDamageType.Nature:
-                    return NatureDamageModifier;
+                    damageModifier += NatureDamageModifier;
+                    break;
                 default:
                     Debug.LogError("Sub Damage type not set up :" + subDamageType);
                     return 0;
             }
+
+            //Todo: Add Global Damage Modifier like All Damage//
+            return damageModifier;
         }
 
-        public Vector2 GetDamageReduction(MainDamageType mainDamageType,SubDamageType subDamageType)
+        public float GetPercentageDamageReduction(SubDamageType subDamageType)
         {
-            float flatReduction = 0;
             float percentageReduction = 0;
-
-            switch (mainDamageType)
-            {
-                case MainDamageType.Melee:
-                    flatReduction = FlatMeleeDamageReduction;
-                    break;
-                case MainDamageType.Spell:
-                    flatReduction = FlatSpellDamageReduction;
-                    break;
-                case MainDamageType.Projectile:
-                    flatReduction = FlatSpellDamageReduction;
-                    break;
-                default:
-                    Debug.LogError("Flat reduction has not been set up");
-                    break;
-            }
-
+            
             switch (subDamageType)
             {
                 case SubDamageType.Cold:
@@ -144,37 +137,22 @@ namespace KarpysDev.Script.Entities
             }
 
             percentageReduction = Mathf.Min(percentageReduction, 75f);
-            return new Vector2(flatReduction, percentageReduction);
+            return percentageReduction;
         }
     
-        public float GetMainTypeModifier(MainDamageType mainDamageType)
-        {
-            switch (mainDamageType)
-            {
-                case MainDamageType.Melee:
-                    return MeleeModifier;
-                case MainDamageType.Projectile:
-                    return ProjectileModifier;
-                case MainDamageType.Spell:
-                    return SpellModifier;
-                default:
-                    return 0;
-            }
-        }
-
-        public float GetDamageParametersModifier(DamageParameters damageSpellData,float bonusModifier = 0)
-        {
-            float modifier = bonusModifier;
-
-            foreach (SubDamageType subDamageType in damageSpellData.DamageType.SubDamageTypes)
-            {
-                modifier += GetDamageModifier(subDamageType);
-            }
-
-            modifier += GetMainTypeModifier(damageSpellData.DamageType.MainDamageType);
-
-            return (modifier + 100) / 100;
-        }
+        // public float GetDamageParametersModifier(DamageParameters damageSpellData,float bonusModifier = 0)
+        // {
+        //     float modifier = bonusModifier;
+        //
+        //     foreach (SubDamageType subDamageType in damageSpellData.DamageType.SubDamageTypes)
+        //     {
+        //         modifier += GetDamageModifier(subDamageType);
+        //     }
+        //
+        //     modifier += GetMainTypeModifier(damageSpellData.DamageType.MainDamageType);
+        //
+        //     return (modifier + 100) / 100;
+        // }
 
         public void AddStunLock(int stunLockState)
         {

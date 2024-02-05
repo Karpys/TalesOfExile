@@ -11,24 +11,38 @@ using UnityEngine;
 //The animation part can be move to BaseTargetEntitySpell//
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using KarpysUtils;
+
     public class DamageSpellTrigger : SelectionSpellTrigger
     {
-        protected DamageParameters m_DamageSpellParams = null;
+        protected List<DamageSource> m_BaseDamageSources = new List<DamageSource>();
+        // protected DamageParameters m_DamageSpellParams = null;
 
-        protected Dictionary<SubDamageType, DamageSource> m_DamageSources = new Dictionary<SubDamageType, DamageSource>();
+        protected List<DamageSource> m_ComputedDamageSources = new List<DamageSource>();
 
-        public Dictionary<SubDamageType, DamageSource> DamageSources => m_DamageSources;
+        public List<DamageSource> ComputedDamageSources => m_ComputedDamageSources;
 
         private bool m_DisplayDamage = false;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
         {
-            m_DamageSpellParams = new DamageParameters(damageSpellData.BaseDamageParameters);
+            if (damageSpellData.InitialBaseDamageSources == null)
+            {
+                return;
+            }
+            
+            m_BaseDamageSources = damageSpellData.InitialBaseDamageSources.Init();
+            //Todo: When level spell fetch change damage update this Dictionary//
         }
 
         public override void SetAttachedSpell(SpellData spellData, int priority)
         {
             base.SetAttachedSpell(spellData, priority);
             m_DisplayDamage = m_AttachedSpell.AttachedEntity.EntityGroup != EntityGroup.Enemy;
+
+            if (m_BaseDamageSources.Count == 0)
+            {
+                m_AttachedSpell.Data.SpellName.LogError("No Damage group source in spell");
+            }
         }
 
         #region ComputePart
@@ -37,7 +51,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         public override void ComputeSpellData(BoardEntity entity)
         {
-            m_DamageSources.Clear();
+            m_ComputedDamageSources.Clear();
 
             FloatSocket bonusDamage = new FloatSocket();
             entity.EntityEvent.OnRequestBonusSpellDamage?.Invoke(this,bonusDamage);
@@ -53,30 +67,28 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
         {
-            float damageModifier = DamageManager.GetDamageModifier(m_DamageSpellParams, entity.EntityStats, bonusModifier);
+            // float damageModifier = DamageManager.GetDamageModifier(m_DamageSpellParams, entity.EntityStats, bonusModifier);
         
-            foreach (DamageSource source in m_DamageSources.Values)
+            foreach (DamageSource source in m_ComputedDamageSources)
             {
-                var damageSource = source;
-                damageSource.Damage *= damageModifier;
+                float damageModifier = bonusModifier;
+                damageModifier += entity.EntityStats.GetDamageModifier(source.DamageType);
+                source.Damage *= (damageModifier + 100) / 100;
             }
         }
 
         public void AddDamageSource(DamageSource damageSource)
         {
-            if (m_DamageSources.TryGetValue(damageSource.DamageType, out var currentSource))
-            {
-                currentSource.Damage += damageSource.Damage;
-            }
-            else
-            {
-                m_DamageSources.Add(damageSource.DamageType,new DamageSource(damageSource));
-            }
+            m_ComputedDamageSources.Add(new DamageSource(damageSource));
         }
 
         protected virtual void ComputeSpellDamage(BoardEntity entity)
         {
-            AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
+            foreach (DamageSource baseDamageSource in m_BaseDamageSources)
+            {
+                AddDamageSource(baseDamageSource);
+            }
+            // AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
         }
 
         #endregion
@@ -92,12 +104,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected virtual float DamageEntityStep(BoardEntity entity,TriggerSpellData spellData)
         {
             float totalDamage = 0;
-            MainDamageType mainDamageType = m_DamageSpellParams.DamageType.MainDamageType;
             //Foreach Damage Sources//
-            foreach (DamageSource damageSource in m_DamageSources.Values)
+            foreach (DamageSource damageSource in m_ComputedDamageSources)
             {
                 totalDamage +=
-                    DamageManager.DamageStep(entity, damageSource, mainDamageType, spellData,m_DisplayDamage,m_SpellAnimDelay,m_SpellEfficiency); //DamageSource);
+                    DamageManager.DamageStep(entity, damageSource, spellData,m_DisplayDamage,m_SpellAnimDelay,m_SpellEfficiency); //DamageSource);
             }
             
             entity.EntityEvent.OnGetHitFromSpell?.Invoke(entity,this);
@@ -106,7 +117,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             /*Text Display */
             if (m_DisplayDamage && DamageManager.BlendDisplayDamage)
             {
-                FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage.ToString("0"),ColorHelper.GetDamageBlendColor(m_DamageSources),m_SpellAnimDelay);
+                FloatingTextManager.Instance.SpawnFloatingText(entity.WorldPosition,totalDamage.ToString("0"),ColorHelper.GetDamageBlendColor(m_ComputedDamageSources),m_SpellAnimDelay);
             }
 
             return totalDamage;
@@ -114,7 +125,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         public void SetInitialDamageSource(float initialDamageSource)
         {
-            m_DamageSpellParams.InitialSourceDamage.Damage = initialDamageSource;
+            if (m_BaseDamageSources.Count <= 0)
+            {
+                Debug.LogError("Try set initial damage without base initial damage");
+                return;
+            }
+            m_BaseDamageSources[0].Damage = initialDamageSource;
         }
 
         protected override CastInfo GetCastInfo(TriggerSpellData spellData,bool isMainCasted)
@@ -127,12 +143,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
             return null;
         }
 
+        //Todo: Rework with key type like &FirstFireDamage and an interpretor
         public override string[] GetDescriptionParts()
         {
-            if (m_DamageSources.TryGetValue(m_DamageSpellParams.InitialSourceDamage.DamageType,
-                    out DamageSource initialDamageSource))
+            if (m_ComputedDamageSources.Count > 0)
             {
-                return initialDamageSource.ToDescription().ToSingleArray();
+                return m_ComputedDamageSources[0].ToDescription().ToSingleArray();
             }
 
             return Array.Empty<string>();

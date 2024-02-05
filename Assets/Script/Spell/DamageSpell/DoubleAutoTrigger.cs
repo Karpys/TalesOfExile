@@ -6,7 +6,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     public class DoubleAutoTrigger : AutoAttackTrigger
     {
         private bool m_TriggerAnim = false;
-        public DoubleAutoTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        public DoubleAutoTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {}
 
         public override void CastSpell(TriggerSpellData spellData, SpellTiles spellTiles,bool mainCast = true, float efficiency = 1)

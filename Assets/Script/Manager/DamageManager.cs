@@ -8,15 +8,15 @@ namespace KarpysDev.Script.Manager
 {
     public static class DamageManager
     {
-        public static bool BlendDisplayDamage = true;
+        public static bool BlendDisplayDamage = false;
 
-        public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay,float efficiency)
+        public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay,float efficiency)
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
             //x => Flat / y => Percentage//
-            Vector2 damageReduction = damageTo.EntityStats.GetDamageReduction(mainDamageType, damageSource.DamageType);
-            mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage * efficiency - damageReduction.x) * (1 - damageReduction.y / 100);
+            float damageReduction = damageTo.EntityStats.GetPercentageDamageReduction(damageSource.DamageType);
+            mitigiedDamageSource.Damage = mitigiedDamageSource.Damage * efficiency * (1 - damageReduction/ 100);
         
             damageTo.EntityEvent.OnGetDamageFromSpell?.Invoke(triggerSpellData.AttachedEntity,mitigiedDamageSource,triggerSpellData);
             //DamageToOnDamageTaken//
@@ -40,13 +40,13 @@ namespace KarpysDev.Script.Manager
             return healValue;
         }
         
-        public static void DirectDamage(BoardEntity damageTo,DamageSource damageSource,MainDamageType mainDamageType,BoardEntity damagefrom = null,bool displayDamage = true, float displayDelay = 0)
+        public static void DirectDamage(BoardEntity damageTo,DamageSource damageSource,BoardEntity damagefrom = null,bool displayDamage = true, float displayDelay = 0)
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
             //x => Flat / y => Percentage//
-            Vector2 damageReduction = damageTo.EntityStats.GetDamageReduction(mainDamageType, damageSource.DamageType);
-            mitigiedDamageSource.Damage = (mitigiedDamageSource.Damage - damageReduction.x) * (1 - damageReduction.y / 100);
+            float damageReduction = damageTo.EntityStats.GetPercentageDamageReduction(damageSource.DamageType);
+            mitigiedDamageSource.Damage *= 1 - damageReduction/ 100;
         
             if (displayDamage)
             {
@@ -63,45 +63,42 @@ namespace KarpysDev.Script.Manager
             }
         }
 
-        public static float GetDamageModifier(DamageParameters damageParameters, EntityStats stats,float bonusModifier = 0)
-        {
-            float modifier = bonusModifier;
-
-            foreach (SubDamageType subDamageType in damageParameters.DamageType.SubDamageTypes)
-            {
-                modifier += stats.GetDamageModifier(subDamageType);
-            }
-
-            modifier += stats.GetMainTypeModifier(damageParameters.DamageType.MainDamageType);
-
-            return (modifier + 100) / 100;
-        }
+        // public static float GetDamageModifier(DamageParameters damageParameters, EntityStats stats,float bonusModifier = 0)
+        // {
+        //     float modifier = bonusModifier;
+        //
+        //     foreach (SubDamageType subDamageType in damageParameters.DamageType.SubDamageTypes)
+        //     {
+        //         modifier += stats.GetDamageModifier(subDamageType);
+        //     }
+        //
+        //     modifier += stats.GetMainTypeModifier(damageParameters.DamageType.MainDamageType);
+        //
+        //     return (modifier + 100) / 100;
+        // }
         
-        public static float GetDamageModifier(SubDamageType[] subDamage, EntityStats stats)
+        public static float GetDamageModifier(SubDamageType subDamage, EntityStats stats)
         {
             float modifier = 0;
 
-            foreach (SubDamageType subDamageType in subDamage)
-            {
-                modifier += stats.GetDamageModifier(subDamageType);
-            }
+            modifier += stats.GetDamageModifier(subDamage);
             
             return (modifier + 100) / 100;
         }
         
-        public static float GetDamageModifier(MainDamageType mainDamageType,SubDamageType[] subDamage, EntityStats stats)
-        {
-            float modifier = 0;
-
-            foreach (SubDamageType subDamageType in subDamage)
-            {
-                modifier += stats.GetDamageModifier(subDamageType);
-            }
-            
-            modifier += stats.GetMainTypeModifier(mainDamageType);
-            
-            return (modifier + 100) / 100;
-        }
+        // public static float GetDamageModifier(MainDamageType mainDamageType,SubDamageType[] subDamage, EntityStats stats)
+        // {
+        //     float modifier = 0;
+        //
+        //     foreach (SubDamageType subDamageType in subDamage)
+        //     {
+        //         modifier += stats.GetDamageModifier(subDamageType);
+        //     }
+        //     
+        //     modifier += stats.GetMainTypeModifier(mainDamageType);
+        //     
+        //     return (modifier + 100) / 100;
+        // }
 
         public static string ToDescription(this DamageSource damageSource)
         {

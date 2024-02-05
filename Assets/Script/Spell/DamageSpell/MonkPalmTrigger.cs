@@ -10,12 +10,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     using KarpysUtils.TweenCustom;
 
-    public class MonkPalmTrigger : WeaponDamageTrigger
+    public class MonkPalmTrigger : DamageSpellTrigger
     {
         private int m_KnockDistance = 0;
         private int m_StunDuration = 0;
 
-        public MonkPalmTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion,int knockDistance,int stunDuration) : base(damageSpellData, baseWeaponDamageConvertion)
+        public MonkPalmTrigger(DamageSpellScriptable damageSpellData,int knockDistance,int stunDuration) : base(damageSpellData)
         {
             m_KnockDistance = knockDistance;
             m_StunDuration = stunDuration;
@@ -76,10 +76,9 @@ namespace KarpysDev.Script.Spell.DamageSpell
         {
             string[] description = new string[2];
             
-            if (m_DamageSources.TryGetValue(m_DamageSpellParams.InitialSourceDamage.DamageType,
-                    out DamageSource initialDamageSource))
+            if (m_ComputedDamageSources.Count > 0)
             {
-                description[0] = initialDamageSource.ToDescription();
+                description[0] = m_ComputedDamageSources[0].ToDescription();
             }
 
             description[1] = m_KnockDistance.ToString();

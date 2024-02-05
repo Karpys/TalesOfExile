@@ -14,10 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
   OnHitAnimation: {fileID: 0}
-  BaseDamageParameters:
-    DamageType:
-      MainDamageType: 2
-      SubDamageTypes: 00000000
-    InitialSourceDamage:
-      Damage: 40
-      DamageType: 0
+  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}

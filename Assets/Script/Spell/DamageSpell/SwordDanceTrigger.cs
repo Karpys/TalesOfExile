@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public class SwordDanceTrigger : WeaponDamageTrigger
+    public class SwordDanceTrigger : DamageSpellTrigger
     {
-        public SwordDanceTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        public SwordDanceTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {}
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
