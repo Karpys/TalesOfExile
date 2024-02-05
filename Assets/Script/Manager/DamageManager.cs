@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Manager
 {
     public static class DamageManager
     {
-        public static bool BlendDisplayDamage = false;
+        public static bool BlendDisplayDamage = true;
 
         public static float DamageStep(BoardEntity damageTo,DamageSource damageSource,TriggerSpellData triggerSpellData,bool displayDamage, float displayDelay,float efficiency)
         {

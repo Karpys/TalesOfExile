@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_RockGround : Fx_BurstAnimation
+    public class FxRockGround : FxBurstAnimation
     {
         [SerializeField] protected BaseTweenData m_ScaleParams;
         [SerializeField] protected SpriteRenderer m_Sprite = null;

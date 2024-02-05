@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: GroupSource
   m_EditorClassIdentifier: 
   m_InitialBaseSources:
-  - Damage: 120
+  - Damage: 10
     DamageType: 2
-  - Damage: 100
+  - Damage: 10
     DamageType: 3
+  - Damage: 10
+    DamageType: 1
+  - Damage: 10
+    DamageType: 0
+  - Damage: 10
+    DamageType: 4
+  - Damage: 10
+    DamageType: 5

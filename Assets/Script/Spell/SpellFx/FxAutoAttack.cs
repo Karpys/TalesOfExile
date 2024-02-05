@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_AutoAttack : Fx_BurstAnimation,IYoYoTransform
+    public class FxAutoAttack : FxBurstAnimation,IYoYoTransform
     {
         [SerializeField] private float m_AnimDuration = 0.1f;
         [SerializeField] private SpriteRenderer m_HitFx = null;

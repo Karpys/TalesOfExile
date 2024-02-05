@@ -33,19 +33,19 @@ namespace KarpysDev.Script.Utils
                 {
                     targetPosition = previousPointPosition + normalizedDirection * j;
 
-                    Fx_LineRendererAnimation lineRenderer = null;
+                    FxLineRendererAnimation lineRenderer = null;
                 
                     if (j == needed)
                     {
-                        lineRenderer = lineParameters.EndAnimation.TriggerFx(targetPosition,mapDataTransform) as Fx_LineRendererAnimation;
+                        lineRenderer = lineParameters.EndAnimation.TriggerFx(targetPosition,mapDataTransform) as FxLineRendererAnimation;
                     }
                     else if(j == 0)
                     {
-                        lineRenderer = lineParameters.StartAnimation.TriggerFx(targetPosition,mapDataTransform) as Fx_LineRendererAnimation;
+                        lineRenderer = lineParameters.StartAnimation.TriggerFx(targetPosition,mapDataTransform) as FxLineRendererAnimation;
                     }
                     else
                     {
-                        lineRenderer = lineParameters.TrailAnimation.TriggerFx(targetPosition,mapDataTransform) as Fx_LineRendererAnimation;
+                        lineRenderer = lineParameters.TrailAnimation.TriggerFx(targetPosition,mapDataTransform) as FxLineRendererAnimation;
                     }
                 
                     lineRenderer.LaunchLineRendererAnim(lineDelay,lineDuration,lineAngle);

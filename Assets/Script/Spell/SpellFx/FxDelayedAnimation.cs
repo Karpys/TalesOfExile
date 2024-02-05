@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    public class Fx_DelayedAnimation : Fx_BurstAnimation
+    public class FxDelayedAnimation : FxBurstAnimation
     {
         [SerializeField] private SpellAnimation m_Animation = null;
         [SerializeField] private float m_DelayedTime = 0;

@@ -4,7 +4,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_CurseSpread : Fx_BurstAndFade
+    public class FxCurseSpread : FxBurstAndFade
     {
         [Header("Rotation Param")]
         [SerializeField] private float m_RotationDelay = 0;

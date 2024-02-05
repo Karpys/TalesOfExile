@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7044295380949201269}
   - component: {fileID: 903311706849542233}
   m_Layer: 0
-  m_Name: Fx_HolyAttack
+  m_Name: Fx_FireExplo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_AnimationLockTime: 0
   m_Renderer: {fileID: 903311706849542233}
   m_FadeDuration: 0.2
-  m_Ease: 0
+  m_Ease: 6
   m_TweenData:
     TargetTransform: {fileID: 9140524552017338543}
-    EndValue: {x: 2, y: 2, z: 2}
+    EndValue: {x: 3, y: 3, z: 3}
     Duration: 0.2
 --- !u!212 &903311706849542233
 SpriteRenderer:
@@ -92,8 +92,8 @@ SpriteRenderer:
   m_SortingLayerID: 455326569
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: cc90ad62fa9e5a4428d29f71cf9f5620, type: 3}
-  m_Color: {r: 1, g: 0.91818523, b: 0.3433962, a: 0.74509805}
+  m_Sprite: {fileID: 21300000, guid: f13c2bae6c1314b37ad809805dd000a6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

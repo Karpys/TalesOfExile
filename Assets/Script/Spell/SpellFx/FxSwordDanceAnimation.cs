@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_SwordDanceAnimation : Fx_BurstAnimation
+    public class FxSwordDanceAnimation : FxBurstAnimation
     {
         [SerializeField] private Transform m_RotationContainer = null;
         [SerializeField] private float m_RotationForce = 0;
