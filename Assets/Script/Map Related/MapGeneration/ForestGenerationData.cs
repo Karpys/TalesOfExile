@@ -62,9 +62,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 if (lastPivot)
                     x = m_Width - 1;
             
-                //TODO:Method in Path finding
-                PathFinding.PathFinding.NeighbourType = NeighbourType.Cross;
-
                 List<Vector2Int> path = null;
 
                 int loopCount = 0;
@@ -80,10 +77,8 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 path = new List<Vector2Int>();
                 path.Add(new Vector2Int(lastTile.XPos,lastTile.YPos));
                 PathFinding.PathFinding.maxIteration = 1000;
-                path.AddRange(PathFinding.PathFinding.FindPath(lastTile.TilePosition, m_Map.Tiles[x,y].TilePosition));
+                path.AddRange(PathFinding.PathFinding.FindPath(lastTile.TilePosition, m_Map.Tiles[x,y].TilePosition,NeighbourType.Cross));
                 PathFinding.PathFinding.maxIteration = PathFinding.PathFinding.BASE_MAX_ITERATION_COUNT;
-            
-                PathFinding.PathFinding.NeighbourType = NeighbourType.Square;
         
                 for (int j = 0; j < path.Count; j++)
                 {

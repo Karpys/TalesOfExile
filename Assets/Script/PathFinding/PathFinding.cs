@@ -14,7 +14,7 @@ namespace KarpysDev.Script.PathFinding
     public static class PathFinding
     {
         public static int BASE_MAX_ITERATION_COUNT = 100;
-        public static NeighbourType NeighbourType = NeighbourType.Square;
+        private static NeighbourType NeighbourType = NeighbourType.Square;
 
         private static TileHeap openSet = null;
         public static int maxIteration
@@ -36,8 +36,9 @@ namespace KarpysDev.Script.PathFinding
             openSet = new TileHeap(mapData.MaxSize);
         }
         
-        public static Tile FindClosestTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
+        public static Tile FindClosestTile(Vector2Int startPos, Vector2Int endPos, NeighbourType neighbourType,bool ignoreWall = false)
         {
+            NeighbourType = neighbourType;
             Tile tile = FindLastTile(startPos, endPos,ignoreWall);
             Tile currentTile = tile;
 
@@ -51,7 +52,7 @@ namespace KarpysDev.Script.PathFinding
             return currentTile;
         }
         
-        public static List<Tile> FindTilePath(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
+        private static List<Tile> FindTilePath(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
             Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
             Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
@@ -80,8 +81,9 @@ namespace KarpysDev.Script.PathFinding
         }
 
 
-        public static List<Vector2Int> FindPath(Vector2Int startPos, Vector2Int endPos, bool ignoreWall = false)
+        public static List<Vector2Int> FindPath(Vector2Int startPos, Vector2Int endPos,  NeighbourType neighbourType,bool ignoreWall = false)
         {
+            NeighbourType = neighbourType;
             List<Vector2Int> path = new List<Vector2Int>();
             List<Tile> tilePath = FindTilePath(startPos, endPos, ignoreWall);
 
@@ -97,7 +99,7 @@ namespace KarpysDev.Script.PathFinding
         }
         
         //Core//
-        public static Tile FindLastTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
+        private static Tile FindLastTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
             openSet.Clear();
             Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];

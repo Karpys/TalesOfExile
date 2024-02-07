@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.PathFinding;
 using KarpysDev.Script.PathFinding.LinePath;
@@ -78,9 +79,7 @@ namespace KarpysDev.Script.Map_Related
                     //Need to set the cast origin
                     if (castOrigin.HasValue)
                     {
-                        LinePath.NeighbourType = NeighbourType.Cross;
                         List<Vector2Int> playerToMouse = Bresenhams.GetPath(castOrigin.Value, selectionOrigin);
-                        LinePath.NeighbourType = NeighbourType.Square;
                         foreach (Vector2Int pathPoint in playerToMouse)
                         {
                             zones.Add(pathPoint);
@@ -177,6 +176,36 @@ namespace KarpysDev.Script.Map_Related
                         }
                     }
                 
+                    break;
+                case ZoneType.FixedLineRange:
+                    if (castOrigin.HasValue)
+                    {
+                        int squareRange = DistanceUtils.GetSquareDistance(castOrigin.Value, selectionOrigin);
+                        if (squareRange == range)
+                        {
+                            return LinePath.GetPathTile(castOrigin.Value,selectionOrigin,NeighbourType.Square);
+                        }else if (squareRange > range)
+                        {
+                            //Shrink bresenham//
+                            List<Vector2Int> line = LinePath.GetPathTile(castOrigin.Value, selectionOrigin,
+                                NeighbourType.Square);
+
+                            for (int i = 0; i < range; i++)
+                            {
+                                zones.Add(line[i]);
+                            }
+                        }
+                        else
+                        {
+                            //Expant point to the square range then bresenham
+                            Vector2Int projectionVec = (selectionOrigin - castOrigin.Value);
+                            projectionVec = projectionVec.Project(range);
+                            return LinePath.GetPathTile(castOrigin.Value,castOrigin.Value + projectionVec,NeighbourType.Square);
+                        }
+                    }else
+                    {
+                        Debug.LogError("Need a cast origin Position");
+                    }
                     break;
                 default:
                     Debug.LogError("Zone selection type not register");
