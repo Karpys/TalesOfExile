@@ -4,7 +4,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_LineRendererAnimation : SpellAnimation
+    public class FxLineRendererAnimation : SpellAnimation
     {
         [SerializeField] private float m_AnimDuration = 0f;
         [SerializeField] private SpriteRenderer m_Renderer = null;

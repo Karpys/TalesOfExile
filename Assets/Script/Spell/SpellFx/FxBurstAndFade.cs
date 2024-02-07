@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_BurstAndFade : Fx_BurstAnimation
+    public class FxBurstAndFade : FxBurstAnimation
     {
         [Header("Fade Parameter")]
         [SerializeField] protected SpriteRenderer m_Visual = null;

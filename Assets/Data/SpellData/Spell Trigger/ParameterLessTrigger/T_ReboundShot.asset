@@ -14,14 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 4753797944799751075, guid: eb27c26a567beff49954bc219704edfc, type: 3}
-  BaseDamageParameters:
-    DamageType:
-      MainDamageType: 1
-      SubDamageTypes: 00000000
-    InitialSourceDamage:
-      Damage: 10
-      DamageType: 0
-  m_TriggerClassName: ReboundArrow
+  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  m_TriggerClassName: 
   m_AdditionalParameters:
     m_ClassName: ReboundArrow
     m_FieldValues:
@@ -29,9 +23,6 @@ MonoBehaviour:
       m_Value: CasterPosition
       m_AssemblyQualifiedName: OriginType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-    - m_FieldType: 1
-      m_Value: 100
-      m_AssemblyQualifiedName: 
     - m_FieldType: 3
       m_Value: Circle
       m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, Assembly-CSharp,

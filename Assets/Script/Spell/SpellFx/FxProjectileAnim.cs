@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_ProjectileAnim : Fx_BurstAnimation,IProjectileAnim
+    public class FxProjectileAnim : FxBurstAnimation,IProjectileAnim
     {
         [SerializeField] protected SpriteRenderer m_Visual = null;
     

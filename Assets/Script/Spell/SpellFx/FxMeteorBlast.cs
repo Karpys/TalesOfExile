@@ -4,7 +4,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_MeteorBlast : Fx_BurstAnimation
+    public class FxMeteorBlast : FxBurstAnimation
     {
         [SerializeField] private Vector3 m_Offset = Vector3.zero;
         [SerializeField] private float m_MovementDuration = 0.2f;

@@ -4,7 +4,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_GrabChainAnimation : Fx_BurstAnimation,IPointAttach
+    public class FxGrabChainAnimation : FxBurstAnimation,IPointAttach
     {
         [SerializeField] private PointLineRenderer m_LineRenderer = null;
         [Header("Movement Parameters")]

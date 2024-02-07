@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  BaseDamageParameters:
-    DamageType:
-      MainDamageType: 2
-      SubDamageTypes: 0100000002000000
-    InitialSourceDamage:
-      Damage: 45
-      DamageType: 4
+  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: LightningSpellTrigger
   m_AdditionalParameters:
     m_ClassName: LightningSpellTrigger

@@ -12,15 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
   m_Name: T_IceSpear
   m_EditorClassIdentifier: 
-  OnTileHitAnimation: {fileID: 4454528519068613723, guid: 70fcc7a15ed234d4ab8653da2d48794f, type: 3}
+  OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  BaseDamageParameters:
-    DamageType:
-      MainDamageType: 2
-      SubDamageTypes: 03000000
-    InitialSourceDamage:
-      Damage: 45
-      DamageType: 3
+  CenterOriginAnimation: {fileID: 4454528519068613723, guid: 70fcc7a15ed234d4ab8653da2d48794f, type: 3}
+  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: IceSpearTrigger
   m_AdditionalParameters:
     m_ClassName: IceSpearTrigger

@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_ProjectileAnimReturn : Fx_ProjectileAnim
+    public class FxProjectileAnimReturn : FxProjectileAnim
     {
         protected override void Animate()
         {

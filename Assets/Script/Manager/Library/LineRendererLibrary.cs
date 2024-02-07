@@ -25,13 +25,13 @@ namespace KarpysDev.Script.Manager.Library
     [Serializable]
     public class LineRendererParameters
     {
-        [SerializeField] private Fx_LineRendererAnimation m_StartAnimation = null;
-        [SerializeField] private Fx_LineRendererAnimation m_TrailAnimation = null;
-        [SerializeField] private Fx_LineRendererAnimation m_EndAnimation = null;
+        [SerializeField] private FxLineRendererAnimation m_StartAnimation = null;
+        [SerializeField] private FxLineRendererAnimation m_TrailAnimation = null;
+        [SerializeField] private FxLineRendererAnimation m_EndAnimation = null;
 
-        public Fx_LineRendererAnimation StartAnimation => m_StartAnimation;
-        public Fx_LineRendererAnimation TrailAnimation => m_TrailAnimation;
-        public Fx_LineRendererAnimation EndAnimation => m_EndAnimation;
+        public FxLineRendererAnimation StartAnimation => m_StartAnimation;
+        public FxLineRendererAnimation TrailAnimation => m_TrailAnimation;
+        public FxLineRendererAnimation EndAnimation => m_EndAnimation;
     }
     public enum LineRendererType
     {

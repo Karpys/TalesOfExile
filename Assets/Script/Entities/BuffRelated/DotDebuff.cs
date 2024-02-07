@@ -10,8 +10,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
     {
         [Header("Dot Debuff")]
         [SerializeField] private SubDamageType m_BaseDamageType;
-        [SerializeField] private MainDamageType m_MainDamageType;
-        [SerializeField] private SubDamageType[] m_SubDamageType = Array.Empty<SubDamageType>(); 
         
         private DamageSource m_BaseDamageSource = null;
         private DamageSource m_ComputedDamageSource = null;
@@ -26,13 +24,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private float GetDamage()
         {
-            float damage = m_BaseDamageSource.Damage * DamageManager.GetDamageModifier(m_MainDamageType,m_SubDamageType, m_Caster.EntityStats); 
+            float damage = m_BaseDamageSource.Damage * DamageManager.GetDamageModifier(m_BaseDamageType, m_Caster.EntityStats); 
             return damage;
         }
 
         private void TakeDamage()
         {
-            DamageManager.DirectDamage(m_Receiver,m_ComputedDamageSource,m_MainDamageType,m_Caster);
+            DamageManager.DirectDamage(m_Receiver,m_ComputedDamageSource,m_Caster);
         }
 
         protected override void UnApply()

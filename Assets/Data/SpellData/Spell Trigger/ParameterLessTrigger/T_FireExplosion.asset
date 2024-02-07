@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f288249e9b044e29accebc3e29bc568, type: 3}
-  m_Name: T_RockSlam
+  m_Script: {fileID: 11500000, guid: 1aa68ebe261d4ecda0ccc1d688fb9704, type: 3}
+  m_Name: T_FireExplosion
   m_EditorClassIdentifier: 
-  OnTileHitAnimation: {fileID: 698710317684968788, guid: a7e81232b2e074b359550f45db2971cf, type: 3}
+  OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
+  CenterOriginAnimation: {fileID: 0}
   m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
-  m_TriggerClassName: WeaponDamageTrigger
-  m_AdditionalParameters:
-    m_ClassName: DamageSpellTrigger
-    m_FieldValues: []
-    m_ConstructorId: 0
-    m_IgnoreParams: 1

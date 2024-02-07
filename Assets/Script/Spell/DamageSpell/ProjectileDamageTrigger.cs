@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using KarpysUtils;
+
     public class ProjectileDamageTrigger : DamageSpellTrigger
     {
         protected OriginType m_OriginType = OriginType.CasterPosition;
@@ -59,6 +61,23 @@ namespace KarpysDev.Script.Spell.DamageSpell
             {
                 projectileAnim.StartPosition = m_OriginPosition;
                 projectileAnim.EndPosition = tilePosition;
+            }else
+            {
+                Debug.LogError("Consider using a projectile animation");
+            }
+
+            return spellAnim;
+        }
+
+        protected override SpellAnimation CreateOriginFx(Vector3 originPosition, Transform transform)
+        {
+            originPosition.Log("Projectile go to origin at");
+            SpellAnimation spellAnim = base.CreateOriginFx(m_OriginPosition, transform);
+
+            if (spellAnim is IProjectileAnim projectileAnim)
+            {
+                projectileAnim.StartPosition = m_OriginPosition;
+                projectileAnim.EndPosition = originPosition;
             }else
             {
                 Debug.LogError("Consider using a projectile animation");

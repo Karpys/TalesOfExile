@@ -11,14 +11,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
     {
         [Header("Fire Hand Buff")]
         [SerializeField] private SubDamageType m_BaseDamageType;
-        [SerializeField] private SubDamageType[] m_SubDamageType = Array.Empty<SubDamageType>();
 
         private DamageSource m_BaseDamageSource = null;
-        private DamageSource m_ScaleDamageSource = null;
+        private DamageSource m_ComputedDamage = null;
         protected override void Apply()
         {
             m_BaseDamageSource = new DamageSource(m_BuffValue, m_BaseDamageType);
-            m_ScaleDamageSource = new DamageSource(m_BaseDamageSource);
+            m_ComputedDamage = new DamageSource(m_BaseDamageSource);
             
             m_Receiver.EntityEvent.OnRequestAdditionalSpellSource += AddFireDamage;
             m_Receiver.ComputeAllSpells();
@@ -28,8 +27,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             if (spellTrigger.SpellData.Data.SpellGroups.Contains(SpellGroup.AutoAttack))
             {
-                m_ScaleDamageSource.Damage = m_BaseDamageSource.Damage * DamageManager.GetDamageModifier(m_SubDamageType, m_Receiver.EntityStats);
-                spellTrigger.AddDamageSource(m_ScaleDamageSource);
+                m_ComputedDamage.Damage = m_BaseDamageSource.Damage * DamageManager.GetDamageModifier(m_BaseDamageType, m_Receiver.EntityStats);
+                spellTrigger.AddDamageSource(m_ComputedDamage);
             }
         }
 

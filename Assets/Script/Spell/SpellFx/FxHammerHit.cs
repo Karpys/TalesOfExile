@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_HammerHit : Fx_BurstAnimation
+    public class FxHammerHit : FxBurstAnimation
     {
         [SerializeField] private SpriteRenderer m_Sprite = null;
         [SerializeField] private BaseTweenData m_ScaleTween;

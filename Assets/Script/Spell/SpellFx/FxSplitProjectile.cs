@@ -6,10 +6,10 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_SplitProjectile : Fx_BurstAnimation,ISplitter
+    public class FxSplitProjectile : FxBurstAnimation,ISplitter
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
-        [SerializeField] private Fx_ProjectileAnim projectileAnimSplitAnimation = null;
+        [SerializeField] private FxProjectileAnim projectileAnimSplitAnimation = null;
         [SerializeField] private Vector2 ProjectileSpeedReference = new Vector2(5, 0.2f);
        
         private Vector3[] m_Points = null;
@@ -33,7 +33,7 @@ namespace KarpysDev.Script.Spell.SpellFx
         {
             for (int i = 1; i < m_Points.Length; i++)
             {
-                Fx_ProjectileAnim anim = projectileAnimSplitAnimation.TriggerFx(m_Points[0], null) as Fx_ProjectileAnim;
+                FxProjectileAnim anim = projectileAnimSplitAnimation.TriggerFx(m_Points[0], null) as FxProjectileAnim;
                 anim.StartPosition = m_Points[0];
                 anim.EndPosition = m_Points[i];
             }

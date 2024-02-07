@@ -1,9 +1,11 @@
 Weapon Attack
 Regeneration Buff
 Rush
-Sword Dance
-Lightning Strike
-Grab Chain
-Ice Blast
+Ice Spear
 Ice Split
+Ice Blast
+Grab Chain
+Flame Burst
+Sword Dance
+Meteor Blast
 Rain Sword

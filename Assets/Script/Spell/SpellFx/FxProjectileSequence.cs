@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Spell.SpellFx
 {
     using KarpysUtils.TweenCustom;
 
-    public class Fx_ProjectileSequence : Fx_BurstAnimation,ISplitter
+    public class FxProjectileSequence : FxBurstAnimation,ISplitter
     {
         [SerializeField] private SpriteRenderer m_Visual = null;
         [SerializeField] private Vector2 ProjectileSpeedReference = new Vector2(5, 0.2f);

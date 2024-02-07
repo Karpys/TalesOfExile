@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
-    public class RushTrigger : WeaponDamageTrigger
+    public class RushTrigger : DamageSpellTrigger
     {
-        public RushTrigger(DamageSpellScriptable damageSpellData, float baseWeaponDamageConvertion) : base(damageSpellData, baseWeaponDamageConvertion)
+        public RushTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {
         }
 

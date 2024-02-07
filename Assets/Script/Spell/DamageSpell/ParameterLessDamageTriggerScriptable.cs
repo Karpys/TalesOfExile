@@ -5,7 +5,6 @@ using UnityEngine;
 namespace KarpysDev.Script.Spell.DamageSpell
 {
     using KarpysUtils.AutoFielder;
-    using FieldValue = Utils.FieldValue;
     using Object = UnityEngine.Object;
 
     [CreateAssetMenu(fileName = "ParameterLessDamageTrigger", menuName = "Trigger/ParameterLessDamageTrigger", order = 0)]

@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     public class MineSpellTrigger : DamageSpellTrigger
     {
         private bool m_HasTrigger = false;
-        private List<Fx_SpellAnimationActivator> m_SpellAnimations = new List<Fx_SpellAnimationActivator>(); 
+        private List<FxSpellAnimationActivator> m_SpellAnimations = new List<FxSpellAnimationActivator>(); 
 
         public MineSpellTrigger(DamageSpellScriptable damageSpellData) : base(damageSpellData)
         {}
@@ -36,7 +36,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
 
         protected override SpellAnimation CreateTileHitFx(Vector3 tilePosition, Transform transform)
         {
-            m_SpellAnimations.Add(TileHitAnimation.TriggerFx(tilePosition,m_AttachedSpell.AttachedEntity.transform) as Fx_SpellAnimationActivator);
+            m_SpellAnimations.Add(TileHitAnimation.TriggerFx(tilePosition,m_AttachedSpell.AttachedEntity.transform) as FxSpellAnimationActivator);
             return null;
         }
     
@@ -49,7 +49,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
     
         private void MineExplosion()
         {
-            foreach (Fx_SpellAnimationActivator activator in m_SpellAnimations)
+            foreach (FxSpellAnimationActivator activator in m_SpellAnimations)
             {
                 activator.Activate();
             }
