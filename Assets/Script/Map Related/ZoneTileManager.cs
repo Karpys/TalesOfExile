@@ -252,6 +252,11 @@ namespace KarpysDev.Script.Map_Related
                         return true;
                     }
                     return false;
+                case ZoneType.FixedLineRange:
+                    int squareDistance = DistanceUtils.GetSquareDistance(origin, castPosition);
+                    if (zoneSelection.Range  >= squareDistance)
+                        return true;
+                    return false;
                 default:
                 
                     Debug.LogError("Target selection display type has not been set up: " + zoneSelection.DisplayType);
