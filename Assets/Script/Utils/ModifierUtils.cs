@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EquipementRelated;
@@ -23,21 +24,17 @@ namespace KarpysDev.Script.Utils
             applyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
             {
                 //Damage type
-                {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier += m.FloatValue },
-                {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier += m.FloatValue },
-                {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier += m.FloatValue },
-                {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier += m.FloatValue},
-                {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier += m.FloatValue},
+                {ModifierType.UpCold, (m, e) => e.EntityStats.DamageTypeModifier.ChangeColdValue(m.FloatValue)},
+                {ModifierType.UpFire, (m, e) => e.EntityStats.DamageTypeModifier.ChangeFireValue(m.FloatValue)},
+                {ModifierType.UpPhysical, (m, e) => e.EntityStats.DamageTypeModifier.ChangePhysicalValue(m.FloatValue)},
+                {ModifierType.UpLightning, (m, e) => e.EntityStats.DamageTypeModifier.ChangeLightningValue(m.FloatValue)},
                 //GlobalDamage
-                {ModifierType.IncreaseProjectileDamage, (m, e) => e.EntityStats.ProjectileModifier += m.FloatValue},
-                {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier += m.FloatValue},
                 {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce += m.FloatValue },
                 //Resistance
-                {ModifierType.UpColdResistance,(m,e) => e.EntityStats.ColdDamageReduction += m.FloatValue},
-                {ModifierType.UpFireResistance,(m,e) => e.EntityStats.FireDamageReduction += m.FloatValue},
-                {ModifierType.UpPhysicalResistance,(m,e) => e.EntityStats.PhysicalDamageReduction += m.FloatValue},
-                {ModifierType.UpLightningResistance,(m,e) => e.EntityStats.LightningDamageReduction += m.FloatValue},
-                {ModifierType.UpElementResistance,(m,e) => e.EntityStats.ElementalDamageReduction += m.FloatValue},
+                {ModifierType.UpColdResistance,(m,e)=> e.EntityStats.DamageTypeReduction.ChangeColdValue(m.FloatValue)},          
+                {ModifierType.UpFireResistance,(m,e) => e.EntityStats.DamageTypeReduction.ChangeFireValue(m.FloatValue)},          
+                {ModifierType.UpPhysicalResistance,(m, e) => e.EntityStats.DamageTypeReduction.ChangePhysicalValue(m.FloatValue)},  
+                {ModifierType.UpLightningResistance, (m, e) => e.EntityStats.DamageTypeReduction.ChangeLightningValue(m.FloatValue)},
                 {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(m.FloatValue) },
                 //Misc
                 {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser += 1 },
@@ -62,21 +59,17 @@ namespace KarpysDev.Script.Utils
             unapplyActions = new Dictionary<ModifierType, Action<Modifier, BoardEntity>>()
             {
                 //Damage type
-                {ModifierType.UpCold, (m, e) => e.EntityStats.ColdDamageModifier -= m.FloatValue},
-                {ModifierType.UpFire, (m, e) => e.EntityStats.FireDamageModifier -= m.FloatValue},
-                {ModifierType.UpPhysical, (m, e) => e.EntityStats.PhysicalDamageModifier -= m.FloatValue},
-                {ModifierType.UpLightning, (m, e) => e.EntityStats.LightningDamageModifier -= m.FloatValue},
-                {ModifierType.UpElemental, (m, e) => e.EntityStats.ElementalDamageModifier -= m.FloatValue},
+                {ModifierType.UpCold, (m, e) => e.EntityStats.DamageTypeModifier.ChangeColdValue(-m.FloatValue)},
+                {ModifierType.UpFire, (m, e) => e.EntityStats.DamageTypeModifier.ChangeFireValue(-m.FloatValue)},
+                {ModifierType.UpPhysical, (m, e) => e.EntityStats.DamageTypeModifier.ChangePhysicalValue(-m.FloatValue)},
+                {ModifierType.UpLightning, (m, e) => e.EntityStats.DamageTypeModifier.ChangeLightningValue(-m.FloatValue)},
                 //Global Damage
-                {ModifierType.IncreaseProjectileDamage, (m, e) => e.EntityStats.ProjectileModifier -= m.FloatValue},
-                {ModifierType.IncreaseSpellDamage, (m, e) => e.EntityStats.SpellModifier -= m.FloatValue},
                 {ModifierType.IncreaseWeaponForce, (m, e) => e.EntityStats.WeaponForce -= m.FloatValue },
                 //Resistance
-                {ModifierType.UpColdResistance,(m,e) => e.EntityStats.ColdDamageReduction -= m.FloatValue},
-                {ModifierType.UpFireResistance,(m,e) => e.EntityStats.FireDamageReduction -= m.FloatValue},
-                {ModifierType.UpPhysicalResistance,(m,e) => e.EntityStats.PhysicalDamageReduction -= m.FloatValue},
-                {ModifierType.UpLightningResistance,(m,e) => e.EntityStats.LightningDamageReduction -= m.FloatValue},
-                {ModifierType.UpElementResistance,(m,e) => e.EntityStats.ElementalDamageReduction -= m.FloatValue},
+                {ModifierType.UpColdResistance,(m,e)=> e.EntityStats.DamageTypeReduction.ChangeColdValue(-m.FloatValue)},          
+                {ModifierType.UpFireResistance,(m,e) => e.EntityStats.DamageTypeReduction.ChangeFireValue(-m.FloatValue)},          
+                {ModifierType.UpPhysicalResistance,(m, e) => e.EntityStats.DamageTypeReduction.ChangePhysicalValue(-m.FloatValue)},  
+                {ModifierType.UpLightningResistance, (m, e) => e.EntityStats.DamageTypeReduction.ChangeLightningValue(-m.FloatValue)},
                 //Misc
                 {ModifierType.CanUseBowTalent, (m, e) => e.EntityStats.IsBowUser -= 1 },
                 {ModifierType.IncreaseMaxLife, (m, e) => e.Life.ChangeMaxLifeValue(-m.FloatValue)},
@@ -133,7 +126,7 @@ namespace KarpysDev.Script.Utils
             }
             else
             {
-                Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
+                modifier.Type.LogError("Has not been set up");
             }
         }
     

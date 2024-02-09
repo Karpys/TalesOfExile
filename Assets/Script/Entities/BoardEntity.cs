@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using KarpysDev.Script.DamgeType;
 using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell;
-using KarpysDev.Script.Spell.DamageSpell;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -20,55 +20,57 @@ namespace KarpysDev.Script.Entities
         private BoardEntity m_AttachedEntity = null;
         //All the EntitiesStats//
         [Header("IA Stats")]
-        public int CombatRange = 1;
+        [SerializeField] private int m_CombatRange = 1;
         [Header("Life Stats")]
-        public float MaxLife = 100f;
-        public float Life = 100f;
-        public float LifeRegeneration = 0;
+        [SerializeField] private float m_MaxLife = 100f;
+        [SerializeField] private float m_Life = 100f;
+        [SerializeField] private float m_LifeRegeneration = 0;
         //From Damage to move speed to base life ?//
         [Header("Damage Stats")]
-        public float WeaponForce = 20f;
-    
-        //MainTypeModifier//
-        [Header("Main Damage Modifier")]
-        public float MeleeModifier = 0f;
-        public float ProjectileModifier = 0f;
-        public float SpellModifier = 0f;
+        [SerializeField] private float m_WeaponForce = 20f;
+        
         //SubTypeModifier//
         [Header("Sub Damage Modifier")]
-        public float ColdDamageModifier = 0f;
-        public float LightningDamageModifier = 0f;
-        public float FireDamageModifier = 0f;
-        public float PhysicalDamageModifier = 0f;
-        public float ElementalDamageModifier = 0f;
-        public float NatureDamageModifier = 0f;
-        //Physical
-        //Ect ect
-    
-        //DEFENSE//
-        [Header("Flat Main Damage Type Reduction")]
-        public float FlatMeleeDamageReduction = 0;
-        public float FlatProjectileDamageReduction = 0;
-        public float FlatSpellDamageReduction = 0;
+        [SerializeField] private SubDamageTypeGroup m_DamageTypeModifier = null;
 
+        //DEFENSE//
         [Header("Sub DamageType Percentage Reduction")]
-        public float ColdDamageReduction = 0; 
-        public float LightningDamageReduction = 0; 
-        public float FireDamageReduction = 0; 
-        public float PhysicalDamageReduction = 0; 
-        public float ElementalDamageReduction = 0;
-        public float NatureDamageReduction = 0;
+        [SerializeField] private SubDamageTypeGroup m_DamageTypeReduction = null;
 
         [Header("Misc")] 
-        public int IsBowUser = 0;
+        [SerializeField] private int m_IsBowUser = 0;
         
         [Header("Crowd Control")]
-        public int RootLockCount = 0;
-        public int SpellLockCount = 0;
-        public int MeleeLockCount = 0;
-        public object Clone()
+        [SerializeField] private int m_RootLockCount = 0;
+        [SerializeField] private int m_SpellLockCount = 0;
+        [SerializeField] private int m_MeleeLockCount = 0;
+
+        #region Properties
+        public float MaxLife { get => m_MaxLife; set => m_MaxLife = value; }
+        public float Life { get => m_Life; set => m_Life = value; }
+        public float LifeRegeneration { get => m_LifeRegeneration; set => m_LifeRegeneration = value; }
+        public float WeaponForce { get => m_WeaponForce; set => m_WeaponForce = value; }
+        public int RootLockCount { get => m_RootLockCount; set => m_RootLockCount = value;}
+        public int SpellLockCount { get => m_SpellLockCount; set => m_SpellLockCount = value;}
+        public int MeleeLockCount { get => m_MeleeLockCount; set => m_MeleeLockCount = value;}
+        public int CombatRange { get => m_CombatRange; set => m_CombatRange = value;}
+        public int IsBowUser { get => m_IsBowUser; set => m_IsBowUser = value;}
+        public SubDamageTypeGroup DamageTypeModifier => m_DamageTypeModifier;
+        public SubDamageTypeGroup DamageTypeReduction => m_DamageTypeReduction;
+
+        #endregion
+        public EntityStats(EntityStats stats)
         {
-            return MemberwiseClone();
+            m_Life = stats.Life;
+            m_MaxLife = stats.MaxLife;
+            m_LifeRegeneration = stats.LifeRegeneration;
+            m_CombatRange = stats.CombatRange;
+            m_WeaponForce = stats.CombatRange;
+            m_RootLockCount = stats.RootLockCount;
+            m_MeleeLockCount = stats.MeleeLockCount;
+            m_SpellLockCount = stats.SpellLockCount;
+            m_DamageTypeModifier = new SubDamageTypeGroup(stats.DamageTypeModifier);
+            m_DamageTypeReduction = new SubDamageTypeGroup(stats.DamageTypeReduction);
         }
 
         public void SetEntity(BoardEntity entity)
@@ -77,88 +79,44 @@ namespace KarpysDev.Script.Entities
         }
         public float GetDamageModifier(SubDamageType subDamageType)
         {
-            float damageModifier = 0;
-            switch (subDamageType)
-            {
-                case SubDamageType.Cold:
-                    damageModifier += ColdDamageModifier;
-                    break;
-                case SubDamageType.Lightning:
-                    damageModifier += LightningDamageModifier;
-                    break;
-                case SubDamageType.Fire:
-                    damageModifier += FireDamageModifier;
-                    break;
-                case SubDamageType.Physical:
-                    damageModifier += PhysicalDamageModifier;
-                    break;
-                case SubDamageType.Elemental:
-                    damageModifier += ElementalDamageModifier;
-                    break;
-                case SubDamageType.Nature:
-                    damageModifier += NatureDamageModifier;
-                    break;
-                default:
-                    Debug.LogError("Sub Damage type not set up :" + subDamageType);
-                    return 0;
-            }
-
+            float damageModifier = m_DamageTypeModifier.GetTypeValue(subDamageType);
             //Todo: Add Global Damage Modifier like All Damage//
             return damageModifier;
         }
 
         public float GetPercentageDamageReduction(SubDamageType subDamageType)
         {
-            float percentageReduction = 0;
-            
-            switch (subDamageType)
-            {
-                case SubDamageType.Cold:
-                    percentageReduction = ColdDamageReduction;
-                    break;
-                case SubDamageType.Lightning:
-                    percentageReduction = LightningDamageReduction;
-                    break;
-                case SubDamageType.Fire:
-                    percentageReduction = FireDamageReduction;
-                    break;
-                case SubDamageType.Physical:
-                    percentageReduction = PhysicalDamageReduction;
-                    break;
-                case SubDamageType.Elemental:
-                    percentageReduction = ElementalDamageReduction;
-                    break;
-                case SubDamageType.Nature:
-                    percentageReduction = NatureDamageReduction;
-                    break;
-                default:
-                    Debug.LogError("Sub Damage type not set up :" + subDamageType);
-                    break;
-            }
-
+            float percentageReduction = m_DamageTypeReduction.GetTypeValue(subDamageType);
             percentageReduction = Mathf.Min(percentageReduction, 75f);
             return percentageReduction;
         }
-    
-        // public float GetDamageParametersModifier(DamageParameters damageSpellData,float bonusModifier = 0)
-        // {
-        //     float modifier = bonusModifier;
-        //
-        //     foreach (SubDamageType subDamageType in damageSpellData.DamageType.SubDamageTypes)
-        //     {
-        //         modifier += GetDamageModifier(subDamageType);
-        //     }
-        //
-        //     modifier += GetMainTypeModifier(damageSpellData.DamageType.MainDamageType);
-        //
-        //     return (modifier + 100) / 100;
-        // }
+        
+        public float GetDamagePenetration(SubDamageType subDamageType)
+        {
+            switch (subDamageType)
+            {
+                case SubDamageType.Physical:
+                    break;
+                case SubDamageType.Fire:
+                    break;
+                case SubDamageType.Cold:
+                    break;
+                case SubDamageType.Lightning:
+                    break;
+                case SubDamageType.Nature:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(subDamageType), subDamageType, null);
+            }
 
+            return 0;
+        }
+    
         public void AddStunLock(int stunLockState)
         {
-            RootLockCount += stunLockState;
-            MeleeLockCount += stunLockState;
-            SpellLockCount += stunLockState;
+            m_RootLockCount += stunLockState;
+            m_MeleeLockCount += stunLockState;
+            m_SpellLockCount += stunLockState;
         }
     }
 

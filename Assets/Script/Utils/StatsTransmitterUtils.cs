@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EquipementRelated;
+using KarpysDev.Script.Spell;
 
 namespace KarpysDev.Script.Utils
 {
@@ -13,10 +14,9 @@ namespace KarpysDev.Script.Utils
         {
             transmitterAction = new Dictionary<StatType, Action<EntityStats, Modifier, float>>()
             {
-                {StatType.PhysicalDamage, (s, m, v) => m.Transmut(ModifierType.UpPhysical, s.PhysicalDamageModifier * v)},
-                {StatType.ElementalDamage, (s, m, v) => m.Transmut(ModifierType.UpElemental, s.ElementalDamageModifier * v)},
-                {StatType.FireDamage, (s, m, v) => m.Transmut(ModifierType.UpFire, s.FireDamageModifier * v)},
-                {StatType.ColdDamage, (s, m, v) => m.Transmut(ModifierType.UpCold, s.ColdDamageModifier * v)},
+                {StatType.PhysicalDamage, (s, m, v) => m.Transmut(ModifierType.UpPhysical, s.DamageTypeModifier.GetTypeValue(SubDamageType.Physical) * v)},
+                {StatType.FireDamage, (s, m, v) => m.Transmut(ModifierType.UpFire, s.DamageTypeModifier.GetTypeValue(SubDamageType.Fire) * v)},
+                {StatType.ColdDamage, (s, m, v) => m.Transmut(ModifierType.UpCold, s.DamageTypeModifier.GetTypeValue(SubDamageType.Cold) * v)},
                 {StatType.WeaponForce, (s, m, v) => m.Transmut(ModifierType.IncreaseWeaponForce, s.WeaponForce * v)},
             };
         }

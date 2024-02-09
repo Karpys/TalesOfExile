@@ -37,6 +37,7 @@ namespace KarpysDev.Script.Entities
         }
     }
 
+    [System.Serializable]
     public class FloatSocket
     {
         private float m_Value = 0;

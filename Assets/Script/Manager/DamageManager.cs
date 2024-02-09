@@ -14,8 +14,7 @@ namespace KarpysDev.Script.Manager
         {
             DamageSource mitigiedDamageSource = new DamageSource(damageSource);
         
-            //x => Flat / y => Percentage//
-            float damageReduction = damageTo.EntityStats.GetPercentageDamageReduction(damageSource.DamageType);
+            float damageReduction = damageTo.EntityStats.GetPercentageDamageReduction(damageSource.DamageType) - damageTo.EntityStats.GetDamagePenetration(damageSource.DamageType);
             mitigiedDamageSource.Damage = mitigiedDamageSource.Damage * efficiency * (1 - damageReduction/ 100);
         
             damageTo.EntityEvent.OnGetDamageFromSpell?.Invoke(triggerSpellData.AttachedEntity,mitigiedDamageSource,triggerSpellData);
