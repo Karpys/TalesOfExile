@@ -18,14 +18,10 @@ namespace KarpysDev.Script.Entities
         public EntityGroup m_TargetEntityGroup = EntityGroup.Neutral;
         public EntityStats m_Stats = null;
         public SpellInfo[] m_BaseSpellInfos = null;
-        //Deep Copy => source : Good exemple with the difference between Deep and Shallow
-        //"https://www.geeksforgeeks.org/shallow-copy-and-deep-copy-in-c-sharp/"
-        //Struct idea for non complex classes ?
-        //"https://stackoverflow.com/questions/5359318/how-to-clone-objects"
         public BoardEntityData(BoardEntityData data)
         {
             m_EntityGroup = data.m_EntityGroup;
-            m_Stats = (EntityStats)data.m_Stats.Clone();
+            m_Stats = new EntityStats(data.m_Stats);
             m_BaseSpellInfos = data.m_BaseSpellInfos;
         }
     }

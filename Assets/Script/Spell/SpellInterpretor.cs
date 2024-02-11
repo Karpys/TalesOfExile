@@ -138,7 +138,7 @@ namespace KarpysDev.Script.Spell
 
       private bool IsDynamic(ZoneSelection zoneSelection)
       {
-         if (zoneSelection.Zone.DisplayType == ZoneType.PlayerToMouse || zoneSelection.Zone.DisplayType == ZoneType.Cone)
+         if (zoneSelection.Zone.DisplayType == ZoneType.PlayerToMouse || zoneSelection.Zone.DisplayType == ZoneType.Cone || zoneSelection.Zone.DisplayType == ZoneType.FixedLineRange)
             return true;
 
          return false;

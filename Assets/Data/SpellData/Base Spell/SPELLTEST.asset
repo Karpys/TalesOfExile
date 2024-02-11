@@ -17,30 +17,36 @@ MonoBehaviour:
   SpellGroups: 
   BaseDescription: Grab an entity close to you
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
-  m_SpellIcon: {fileID: 21300000, guid: 974b7e0184b5b174f84298ec10a57437, type: 3}
-  m_SpellTrigger: {fileID: 11400000, guid: fcba80bf292486c41a1404192f58520f, type: 2}
+  m_SpellIcon: {fileID: 21300000, guid: ac477e6e5f1f112469446085eac44417, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: fd2e8ea45660f0d41a738635808d6a01, type: 2}
   m_BaseCooldown: 8
   m_Selection:
-  - Origin: 0
-    Zone:
-      DisplayType: 0
-      Range: 6
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: 0
-    ActionSelection: 0
   - Origin: 1
     Zone:
-      DisplayType: 1
-      Range: 1
+      DisplayType: 7
+      Range: 3
     ValidationType:
       NeedValidation: 1
-      TargetZoneValidation: 0
+      TargetZoneValidation: -1
+    ActionSelection: 1
+  - Origin: 1
+    Zone:
+      DisplayType: 7
+      Range: 3
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: -1
+    ActionSelection: 1
+  - Origin: 1
+    Zone:
+      DisplayType: 7
+      Range: 3
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 3
+  SpellRestrictions: []
   AllowedCastZone:
     DisplayType: -1
     Range: 0

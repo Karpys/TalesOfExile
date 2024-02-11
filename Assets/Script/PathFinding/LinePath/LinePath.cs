@@ -7,7 +7,7 @@ namespace KarpysDev.Script.PathFinding.LinePath
 {
     public static class LinePath
     {
-        public static NeighbourType NeighbourType = NeighbourType.Square;
+        private static NeighbourType NeighbourType = NeighbourType.Square;
     
         public static List<Vector2Int> GetPathTile(Vector2Int from, Vector2Int to,NeighbourType neighbourType)
         {

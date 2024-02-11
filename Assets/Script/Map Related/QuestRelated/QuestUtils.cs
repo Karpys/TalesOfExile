@@ -20,18 +20,6 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
                         q.OnMapEntitySpawn += questMaxLifeModifier.Trigger;
                     }
                 },
-                {QuestModifierType.IncreaseMonsterMonsterElementalResistance, (m,q) =>
-                    {
-                        IncreaseElementalResistanceQuestModifier questMaxLifeModifier = new IncreaseElementalResistanceQuestModifier(m.FloatValue);
-                        q.OnMapEntitySpawn += questMaxLifeModifier.Trigger;
-                    }
-                },
-                {QuestModifierType.IncreaseMonsterMonsterPhysicalResistance, (m,q) =>
-                    {
-                        IncreasePhysicalResistanceQuestModifier questMaxLifeModifier = new IncreasePhysicalResistanceQuestModifier(m.FloatValue);
-                        q.OnMapEntitySpawn += questMaxLifeModifier.Trigger;
-                    }
-                },
             };
         }
 
@@ -79,36 +67,6 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
             float addLife = m_MaxLifePercentage * entity.Life.MaxLife / 100;
             entity.Life.ChangeMaxLifeValue(addLife);
             entity.Life.SetToMaxLife();
-        }
-    }
-    
-    public class IncreasePhysicalResistanceQuestModifier:EntityQuestModifierHolder
-    {
-        private float m_ResistancePercent = 0;
-        
-        public IncreasePhysicalResistanceQuestModifier(float resistancePercent)
-        {
-            m_ResistancePercent = resistancePercent;
-        }
-        
-        public override void Trigger(BoardEntity entity)
-        {
-            entity.EntityStats.PhysicalDamageReduction += m_ResistancePercent;
-        }
-    }
-    
-    public class IncreaseElementalResistanceQuestModifier:EntityQuestModifierHolder
-    {
-        private float m_ResistancePercent = 0;
-        
-        public IncreaseElementalResistanceQuestModifier(float resistancePercent)
-        {
-            m_ResistancePercent = resistancePercent;
-        }
-        
-        public override void Trigger(BoardEntity entity)
-        {
-            entity.EntityStats.ElementalDamageReduction += m_ResistancePercent;
         }
     }
 }

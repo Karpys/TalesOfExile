@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using KarpysDev.KarpysUtils;
+using KarpysDev.Script.Utils;
 using UnityEngine;
 
-public static class Vector3Extension
+public static class VectorExtensions
 {
     public static Vector2 xy(this Vector3 vec3)
     {
@@ -40,5 +43,19 @@ public static class Vector3Extension
         }
 
         return nextPosition;
+    }
+
+    public static Vector2Int Project(this Vector2Int vec, int targetRange)
+    {
+        int currentRange = DistanceUtils.GetSquareDistance(Vector2Int.zero, vec);
+
+        if (currentRange == 0)
+        {
+            vec.y = 1;
+            currentRange = 1;
+        }
+        float needed = (float)targetRange / currentRange;
+        vec = new Vector2Int(Mathf.CeilToInt(vec.x * needed),Mathf.CeilToInt(vec.y * needed));
+        return vec;
     }
 }

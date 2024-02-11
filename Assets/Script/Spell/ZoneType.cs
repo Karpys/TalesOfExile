@@ -10,5 +10,6 @@ namespace KarpysDev.Script.Spell
         OuterCircle,
         OuterSquare,
         Cone,
+        FixedLineRange,
     }
 }

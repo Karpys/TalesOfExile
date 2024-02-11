@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related;
+using KarpysDev.Script.PathFinding;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
@@ -135,7 +136,7 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
 
         protected virtual bool MovementAction()
         {
-            Tile closestTile = PathFinding.PathFinding.FindClosestTile(m_AttachedEntity.EntityPosition, m_Target.EntityPosition,false);
+            Tile closestTile = PathFinding.PathFinding.FindClosestTile(m_AttachedEntity.EntityPosition, m_Target.EntityPosition,NeighbourType.Square,false);
 
             int squareRange = DistanceUtils.GetSquareDistance(m_AttachedEntity.EntityPosition, m_Target.EntityPosition);
             
