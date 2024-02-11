@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 namespace KarpysDev.Script.UI
 {
+    using System;
+
     public enum LayoutType
     {
         Vertical,
@@ -28,6 +30,12 @@ namespace KarpysDev.Script.UI
         {
             if(m_AdaptOnStart)
                 AdaptSize();
+        }
+
+        private void OnValidate()
+        {
+            m_Content = GetComponent<RectTransform>();
+            AdaptSize();
         }
 
         public void AdaptSize()

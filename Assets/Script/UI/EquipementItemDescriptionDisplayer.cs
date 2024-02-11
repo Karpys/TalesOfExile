@@ -1,7 +1,6 @@
 ﻿using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Utils;
-using TMPro;
 using UnityEngine;
 
 namespace KarpysDev.Script.UI
@@ -10,7 +9,7 @@ namespace KarpysDev.Script.UI
     {
         [Header("Equipement Parameters")]
         [SerializeField] private AdaptUILayoutSize m_ModifierLayout = null;
-        [SerializeField] private TMP_Text m_ModifierTextPrefab = null; 
+        [SerializeField] private ModifierText m_ModifierTextPrefab = null; 
 
         public override void Initialize(Item item)
         {
@@ -19,8 +18,8 @@ namespace KarpysDev.Script.UI
 
             for (int i = 0; i < modifiers.Length; i++)
             {
-                TMP_Text modifierText = Instantiate(m_ModifierTextPrefab, m_ModifierLayout.transform);
-                modifierText.text = ModifierUtils.GetModifierDescription(modifiers[i]);
+                ModifierText modifierText = Instantiate(m_ModifierTextPrefab, m_ModifierLayout.transform);
+                modifierText.SetText(ModifierUtils.GetModifierDescription(modifiers[i]));
             }
         
             m_ModifierLayout.AdaptSize();

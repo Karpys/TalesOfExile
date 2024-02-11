@@ -2,6 +2,15 @@
 
 namespace KarpysDev.Script.UI
 {
+    using System;
+
+    public enum UpdateTiming
+    {
+        OnAwake,
+        OnStart,
+        Custom,
+    }
+
     public class AdaptUISize : MonoBehaviour
     {
         [SerializeField] private bool m_AdaptOnStart = true;
@@ -15,10 +24,17 @@ namespace KarpysDev.Script.UI
                 UpdateSize();
         }
 
+        private void OnValidate()
+        {
+            UpdateSize();
+        }
         public void UpdateSize()
         {
-            RectTransform self = GetComponent<RectTransform>();
+            RectTransform self = transform as RectTransform;
 
+            if(self == null)
+                return;
+            
             switch (m_AlignementType)
             {
                 case LayoutType.Both:

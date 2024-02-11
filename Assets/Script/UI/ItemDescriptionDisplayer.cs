@@ -23,7 +23,7 @@ namespace KarpysDev.Script.UI
         {
             m_NameText.text = item.Data.ObjectName;
             m_DescriptionText.text = item.Data.Description;
-            m_SizeFilter.SetLayoutVertical();
+            // m_SizeFilter.SetLayoutVertical();
         
             m_ContainerLayout.AdaptSize();
             m_SelfSize.UpdateSize();
