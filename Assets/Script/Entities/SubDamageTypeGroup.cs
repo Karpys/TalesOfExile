@@ -55,7 +55,6 @@ namespace KarpysDev.Script.DamgeType
         public void ChangePhysicalValue(float value)
         {
             m_Physical += value;
-            m_Physical.Log("New Physical value");
         }
 
         public void ChangeLightningValue(float value)

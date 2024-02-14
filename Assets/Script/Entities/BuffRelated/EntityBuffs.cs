@@ -28,8 +28,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public Buff AddToggle(Buff buff)
         {
             m_Buffs.Add(buff);
-            OnAddBuff?.Invoke(buff);
             buff.SetBuffCooldown(BuffCooldown.Toggle);
+            OnAddBuff?.Invoke(buff);
             buff.Apply();
             return buff;
         }
@@ -91,6 +91,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         
         public void TryRemovePassive(PassiveBuffType passiveBuffType,float buffValue)
         {
+            //Todo: Check stackable//
             for (int i = 0; i < m_Passive.Count; i++)
             {
                 if (m_Passive[i].PassiveBuffType == passiveBuffType)

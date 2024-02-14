@@ -12,9 +12,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected PassiveBuffType m_PassiveBuffType = PassiveBuffType.None;
         protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
         protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
-        protected bool m_StackablePassive = false;
 
-        protected BuffInfo m_BuffInfo;
         protected bool m_EnemyBuffIgnoreFirstCooldown = false;
 
         protected BoardEntity m_Caster = null;
@@ -28,8 +26,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public BuffGroup BuffGroup => m_BuffGroup;
         public float BuffValue => m_BuffValue;
         public int Cooldown => m_Cooldown;
-        public BuffInfo BuffInfo => m_BuffInfo;
         public PassiveBuffType PassiveBuffType => m_PassiveBuffType;
+        public BuffType BuffType => m_BuffType;
 
         public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType, int cooldown, float buffValue)
         {
@@ -114,9 +112,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
             UnApply();
         }
 
-        public string GetDescription()
+        public string GetDescription(string baseBuffDescription)
         {
-            return StringUtils.GetDescription(m_BuffInfo.BaseBuffDescription, GetDescriptionDynamicValues());
+            return StringUtils.GetDescription(baseBuffDescription, GetDescriptionDynamicValues());
         }
 
         protected virtual string[] GetDescriptionDynamicValues()

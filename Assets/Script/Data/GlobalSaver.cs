@@ -20,7 +20,7 @@ namespace Script.Data
             }
         }
 
-        private void SaveGame()
+        public static void SaveGame()
         {
             foreach (ISaver saver in m_Savers)
             {

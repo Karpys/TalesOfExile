@@ -71,6 +71,7 @@ namespace KarpysDev.Script.Entities
             m_SpellLockCount = stats.SpellLockCount;
             m_DamageTypeModifier = new SubDamageTypeGroup(stats.DamageTypeModifier);
             m_DamageTypeReduction = new SubDamageTypeGroup(stats.DamageTypeReduction);
+            m_IsBowUser = stats.IsBowUser;
         }
 
         public void SetEntity(BoardEntity entity)

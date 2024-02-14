@@ -3391,6 +3391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768161518}
+  - component: {fileID: 1768161519}
   m_Layer: 0
   m_Name: BuffLibrary
   m_TagString: Untagged
@@ -3412,6 +3413,30 @@ Transform:
   m_Father: {fileID: 313424675}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768161519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768161517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a0aedc94dc4a129f03d88adf8af327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RockThrowSpellInfo:
+    m_SpellData: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
+    m_SpellPriority: 0
+    m_SpellLearnType: 0
+  m_OnKillFlameSpellInfo:
+    m_SpellData: {fileID: 11400000, guid: f8c5ba15b5fc6874595058b4adda5883, type: 2}
+    m_SpellPriority: 0
+    m_SpellLearnType: 0
+  m_HolyAttackSpellInfo:
+    m_SpellData: {fileID: 11400000, guid: dea38528ca79dec4193c01beda1c520a, type: 2}
+    m_SpellPriority: 0
+    m_SpellLearnType: 0
 --- !u!1 &1817704154
 GameObject:
   m_ObjectHideFlags: 0

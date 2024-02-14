@@ -14,6 +14,8 @@ using Object = UnityEngine.Object;
 
 namespace KarpysDev.Script.UI
 {
+    using global::Script.Data;
+
     public class Canvas_Shop : MonoBehaviour,IUIPointerController,ISaver
     {
         [SerializeField] private Transform m_GridLayoutTransform = null;
@@ -109,6 +111,7 @@ namespace KarpysDev.Script.UI
             gameObject.SetActive(false);
             GlobalCanvas.Instance.GoldUIUpdater.RemoveGoldDisplayer(m_GoldCountText);
             ClearAll();
+            GlobalSaver.SaveGame();
         }
 
         public void SetCurrentPointer(UIPointerController pointerController)

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 namespace KarpysDev.Script.UI
 {
+    using Manager.Library;
+
     public class BuffUI : UIPointer
     {
         [SerializeField] private Image m_BuffVisual = null;
@@ -19,6 +21,7 @@ namespace KarpysDev.Script.UI
         
         private Buff m_AttachedBuff = null;
         private Clock m_DisplayerClock = null;
+        private BuffInfo m_BuffInfo;
 
         public Buff AttachedBuff => m_AttachedBuff;
 
@@ -31,7 +34,8 @@ namespace KarpysDev.Script.UI
         {
             m_Displayer = displayer;
             m_AttachedBuff = buff;
-            m_BuffVisual.sprite = buff.BuffInfo.BuffVisual;
+            m_BuffInfo = BuffLibrary.Instance.GetBuffInfoViaType(buff.BuffType);
+            m_BuffVisual.sprite = m_BuffInfo.BuffVisual;
             UpdateText();
         }
 
@@ -59,7 +63,7 @@ namespace KarpysDev.Script.UI
         private void DisplayBuffDescription()
         {
             m_InDisplay = true;
-            m_Displayer.Initialize(m_AttachedBuff,transform.position);
+            m_Displayer.Initialize(m_AttachedBuff,m_BuffInfo,transform.position);
         }
     }
 }

@@ -66,8 +66,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         protected virtual Buff BuffToAdd(BoardEntity caster,BoardEntity receiver)
         {
-            return new DotDebuff(caster, receiver, BuffType.BurnDotDebuff,m_BuffDuration, m_BuffValue,
-                SubDamageType.Fire); //Todo:BuffFactory.GetSimpleBuff(m_BuffType)//
+            return BuffLibrary.Instance.GetBuffViaBuffType(m_BuffType, caster, receiver, m_BuffDuration, m_BuffValue);
         }
 
         protected override EntityGroup GetEntityGroup(TriggerSpellData spellData)

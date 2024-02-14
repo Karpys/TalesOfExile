@@ -20,12 +20,12 @@ namespace KarpysDev.Script.UI
             m_TurnLeft.text = m_AttachedBuff.Cooldown + " turn left";
         }
 
-        public void Initialize(Buff attachedBuff,Vector3 position)
+        public void Initialize(Buff attachedBuff,BuffInfo buffInfo,Vector3 position)
         {
             transform.position = position;
             gameObject.SetActive(true);
-            m_BuffName.text = attachedBuff.BuffInfo.BuffName;
-            m_BuffDescription.text = attachedBuff.GetDescription();
+            m_BuffName.text = buffInfo.BuffName;
+            m_BuffDescription.text = attachedBuff.GetDescription(buffInfo.BaseBuffDescription);
             m_AttachedBuff = attachedBuff;
         }
 
