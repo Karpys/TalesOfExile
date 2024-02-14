@@ -22,6 +22,16 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             m_Buffs.Add(buff);
             OnAddBuff?.Invoke(buff);
+            buff.Apply();
+        }
+        
+        public Buff AddToggle(Buff buff)
+        {
+            m_Buffs.Add(buff);
+            OnAddBuff?.Invoke(buff);
+            buff.SetBuffCooldown(BuffCooldown.Toggle);
+            buff.Apply();
+            return buff;
         }
 
         public void RemoveBuff(Buff buff)
@@ -31,10 +41,25 @@ namespace KarpysDev.Script.Entities.BuffRelated
         
             OnRemoveBuff?.Invoke(buff);
         }
-        
-        public void AddPassive(Buff buff)
+
+        public void TryAddPassive(PassiveBuffType passiveBuffType, float value,out bool added)
         {
+            Buff passive = ContainPassiveOfType(passiveBuffType);
+            
+            if (passive != null)
+            {
+                passive.AddPassiveValue(value);
+                added = true;
+                return;
+            }
+
+            added = false;
+        }
+        public void AddPassive(Buff buff,PassiveBuffType passiveBuffType)
+        {
+            buff.SetPassiveBuffType(passiveBuffType);
             m_Passive.Add(buff);
+            buff.Apply();
         }
 
         public void RemovePassive(Buff buff)
@@ -43,7 +68,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
                 m_Passive.Remove(buff);
         }
         
-        private  void Start()
+        private void Start()
         {
             GameManager.Instance.A_OnEndTurn += ReduceAllCd;
         }
@@ -64,11 +89,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
             OnCdReduced?.Invoke();
         }
         
-        public void TryRemovePassive(BuffType buffType,float buffValue)
+        public void TryRemovePassive(PassiveBuffType passiveBuffType,float buffValue)
         {
             for (int i = 0; i < m_Passive.Count; i++)
             {
-                if (m_Passive[i].BuffType == buffType)
+                if (m_Passive[i].PassiveBuffType == passiveBuffType)
                 {
                     m_Passive[i].ReducePassiveValue(buffValue);
                     return;
@@ -76,9 +101,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
             }
         }
 
-        public Buff ContainPassiveOfType(BuffType buffType)
+        public Buff ContainPassiveOfType(PassiveBuffType buffType)
         {
-            return m_Passive.FirstOrDefault(b => b.BuffType == buffType);
+            return m_Passive.FirstOrDefault(b => b.PassiveBuffType == buffType);
         }
 
         public bool IsCursed()
@@ -91,20 +116,16 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
             return false;
         }
-
-        public BuffType[] GetCurseTypes()
-        {
-            return m_Buffs.Where(b => b.BuffGroup == BuffGroup.Curse).Select(b => b.BuffType).ToArray();
-        }
-
+        
         public List<BuffState> GetCurseStates()
         {
+            //Todo: Replace with ListOFBuff curses//
             List<BuffState> curseStates = new List<BuffState>();
             foreach (Buff buff in m_Buffs)
             {
                 if(buff.BuffGroup != BuffGroup.Curse)
                     continue;
-                curseStates.Add(new BuffState(buff.BuffType,buff.Cooldown,buff.BuffValue,buff.GetArgs()));
+                curseStates.Add(new BuffState(buff.Cooldown,buff.BuffValue));
             }
 
             return curseStates;
@@ -130,17 +151,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
     
     public struct BuffState
     {
-        public BuffType BuffType;
         public int Duration;
         public float Value;
-        public object[] AdditionalDatas;
 
-        public BuffState(BuffType buffType, int duration, float buffValue, object[] additionalDatas)
+        public BuffState(int duration, float buffValue)
         {
-            BuffType = buffType;
             Duration = duration;
             Value = buffValue;
-            AdditionalDatas = additionalDatas;
         }
     }
 }

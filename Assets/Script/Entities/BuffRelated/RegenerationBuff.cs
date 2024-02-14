@@ -2,9 +2,15 @@
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class RegenerationBuff : Buff
     {
-        protected override void Apply()
+        public RegenerationBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue) : base(caster, receiver, buffType,cooldown, buffValue)
+        {
+        }
+
+        public override void Apply()
         {
             GameManager.Instance.A_OnPreEndTurn += ApplyRegeneration;
             m_Receiver.EntityEvent.OnDeath += UnSub;

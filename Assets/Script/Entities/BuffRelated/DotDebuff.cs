@@ -6,14 +6,20 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class DotDebuff : Buff
     {
-        [Header("Dot Debuff")]
-        [SerializeField] private SubDamageType m_BaseDamageType;
-        
+        private SubDamageType m_BaseDamageType;
         private DamageSource m_BaseDamageSource = null;
         private DamageSource m_ComputedDamageSource = null;
-        protected override void Apply()
+        
+        public DotDebuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,int cooldown, float buffValue,SubDamageType dotDamageType) : base(caster, receiver,buffType, cooldown, buffValue)
+        {
+            m_BaseDamageType = dotDamageType;
+        }
+
+        public override void Apply()
         {
             m_BaseDamageSource = new DamageSource(m_BuffValue, m_BaseDamageType);
             m_ComputedDamageSource = new DamageSource(GetDamage(),m_BaseDamageSource.DamageType);

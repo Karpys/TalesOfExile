@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
+  CenterOriginAnimation: {fileID: 0}
   m_TriggerClassName: SkeletonCurseBuffGiverTrigger
   m_AdditionalParameters:
     m_ClassName: SkeletonCurseBuffGiverTrigger
@@ -24,7 +25,7 @@ MonoBehaviour:
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 3
       m_Value: SkeletonCurse
-      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.BuffType, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffType, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 3
       m_Value: Cooldown
@@ -34,7 +35,7 @@ MonoBehaviour:
       m_Value: 10
       m_AssemblyQualifiedName: 
     - m_FieldType: 1
-      m_Value: 15
+      m_Value: 25
       m_AssemblyQualifiedName: 
     - m_FieldType: 0
       m_Value: 3

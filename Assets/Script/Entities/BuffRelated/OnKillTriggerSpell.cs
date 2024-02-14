@@ -5,14 +5,21 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class OnKillTriggerSpell : Buff
     {
-        [SerializeField] private SpellInfo m_SpellInfo = null;
-        [SerializeField] private int m_MaxTriggerPerTurn = 300;
-    
+        private SpellInfo m_SpellInfo = null;
+        private int m_MaxTriggerPerTurn = 300;
         private TriggerSpellData m_TriggerSpellData = null;
         private int m_CurrentCount = 0;
-        protected override void Apply()
+        
+        public OnKillTriggerSpell(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,SpellInfo onKillTrigger) : base(caster, receiver, buffType,cooldown, buffValue)
+        {
+            m_SpellInfo = onKillTrigger;
+        }
+
+        public override void Apply()
         {
             m_TriggerSpellData = m_Receiver.RegisterSpell(m_SpellInfo);
         

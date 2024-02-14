@@ -14,7 +14,7 @@ namespace KarpysDev.Script.UI
 
         private void Update()
         {
-            if(!m_AttachedBuff)
+            if(m_AttachedBuff == null)
                 return;
 
             m_TurnLeft.text = m_AttachedBuff.Cooldown + " turn left";

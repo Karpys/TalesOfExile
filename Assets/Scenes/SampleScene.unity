@@ -3391,7 +3391,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768161518}
-  - component: {fileID: 1768161519}
   m_Layer: 0
   m_Name: BuffLibrary
   m_TagString: Untagged
@@ -3413,42 +3412,6 @@ Transform:
   m_Father: {fileID: 313424675}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1768161519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768161517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a0aedc94dc4a129f03d88adf8af327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Library:
-    m_Keys:
-    - Object: {fileID: 2312158413251994410, guid: 00cbfb186c5355a4094f91e6486d1318, type: 3}
-      Type: 1
-    - Object: {fileID: 4660877025933574833, guid: 03ba28ecb696b094b99d0f90746f7235, type: 3}
-      Type: 2
-    - Object: {fileID: 6665203865748588912, guid: 8507a27e52540cb4fba138afe76034bf, type: 3}
-      Type: 0
-    - Object: {fileID: 5730924036560442381, guid: c72cc454d6c10ca499e775ecc4136aba, type: 3}
-      Type: 101
-    - Object: {fileID: -2338606584451329593, guid: 3fc525be3987f0e4d9d34fae86e0ae72, type: 3}
-      Type: 201
-    - Object: {fileID: 7869612215995910445, guid: 2364e5596be0349e0bb09c9afca82722, type: 3}
-      Type: 3
-    - Object: {fileID: 6676662465223061898, guid: 2c815f381a0ac9c46abd1cd2680d1441, type: 3}
-      Type: 102
-    - Object: {fileID: 1295540597718710931, guid: d01880b815492174583ab9a582db0e1d, type: 3}
-      Type: 103
-    - Object: {fileID: 4338360265272663631, guid: 8f7da2afd02766048b982b1ec27eb001, type: 3}
-      Type: 4
-    - Object: {fileID: 9140112564068710815, guid: dff9ab61fa09b13499a2aab3643f0881, type: 3}
-      Type: 5
-    - Object: {fileID: 6337823219099685028, guid: 7297f60cb37bb464d86ea569d7efc73f, type: 3}
-      Type: 6
 --- !u!1 &1817704154
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class RockThrowBuff : Buff
     {
         [SerializeField] private SpellInfo m_SpellInfo = null;
@@ -14,7 +16,12 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private TriggerSpellData m_TriggerSpellData = null;
         private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
     
-        protected override void Apply()
+        public RockThrowBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,SpellInfo rockThrow) : base(caster, receiver,buffType, cooldown, buffValue)
+        {
+            m_SpellInfo = rockThrow;
+        }
+
+        public override void Apply()
         {
             m_TriggerSpellData = m_Receiver.RegisterSpell(m_SpellInfo);
         
@@ -74,6 +81,12 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected override void OnPassiveValueChanged()
         {
             ((DamageSpellTrigger)m_TriggerSpellData.SpellTrigger).SetInitialDamageSource(m_BuffValue);
+        }
+
+        public override void AddPassiveValue(float value)
+        {
+            base.AddPassiveValue(value);
+            m_Receiver.ComputeAllSpells();
         }
     }
 }

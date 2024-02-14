@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class FireHandBuff : Buff
     {
         [Header("Fire Hand Buff")]
@@ -14,7 +16,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private DamageSource m_BaseDamageSource = null;
         private DamageSource m_ComputedDamage = null;
-        protected override void Apply()
+        
+        public FireHandBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,int cooldown, float buffValue,SubDamageType baseDamageType) : base(caster, receiver, buffType,cooldown, buffValue)
+        {
+            m_BaseDamageType = baseDamageType;
+        }
+
+        public override void Apply()
         {
             m_BaseDamageSource = new DamageSource(m_BuffValue, m_BaseDamageType);
             m_ComputedDamage = new DamageSource(m_BaseDamageSource);

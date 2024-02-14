@@ -47,11 +47,13 @@ namespace KarpysDev.Script.Utils
                 },
                 {ModifierType.AddThrowRockPassif, (m, e) =>
                     {
-                        Buff buff = BuffLibrary.Instance.AddBuffToViaKey(BuffType.RockThrowBuff, e);
-                        buff.SetBuffCooldown(BuffCooldown.Passive);
-                        buff.SetBuffKey((int)BuffType.RockThrowBuff + " " + m.Value);
-                        buff.EnableVisual(false);
-                        buff.InitializeAsPassive(e, e,m.FloatValue);
+                        //Todo:Get spell info via spell info dictionary//
+                        e.Buffs.TryAddPassive(PassiveBuffType.RockThrowPassive,m.FloatValue,out bool added);
+
+                        if (!added)
+                        {
+                            e.Buffs.AddPassive(new RockThrowBuff(e, e, BuffType.RockThrowBuff,0,m.FloatValue,null),PassiveBuffType.RockThrowPassive);
+                        }
                     }
                 },
             };
@@ -88,7 +90,7 @@ namespace KarpysDev.Script.Utils
                 },
                 {ModifierType.AddThrowRockPassif, (m, e) =>
                     {
-                        e.Buffs.TryRemovePassive(BuffType.RockThrowBuff,m.FloatValue);
+                        e.Buffs.TryRemovePassive(PassiveBuffType.RockThrowPassive,m.FloatValue);
                     }
                 },
             };

@@ -6,18 +6,16 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
-    public abstract class Buff : MonoBehaviour
+    public abstract class Buff
     {
-        [SerializeField] protected Transform m_VisualTransform = null;
-        [SerializeField] protected BuffType m_BuffType = BuffType.None;
-        [SerializeField] protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
-        [SerializeField] protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
-        [SerializeField] protected bool m_StackablePassive = false;
+        protected BuffType m_BuffType = BuffType.None;
+        protected PassiveBuffType m_PassiveBuffType = PassiveBuffType.None;
+        protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
+        protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
+        protected bool m_StackablePassive = false;
 
-        [Header("Buff Info")] 
-        [SerializeField]protected BuffInfo m_BuffInfo;
-        [Header("Enemy Specific")]
-        [SerializeField] protected bool m_EnemyBuffIgnoreFirstCooldown = false;
+        protected BuffInfo m_BuffInfo;
+        protected bool m_EnemyBuffIgnoreFirstCooldown = false;
 
         protected BoardEntity m_Caster = null;
         protected BoardEntity m_Receiver = null;
@@ -25,29 +23,27 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected float m_BuffValue = 0;
 
         private bool m_IgnoreCooldownOnInit = false;
-        private string m_BuffKey = String.Empty;
 
         public BuffCooldown BuffCooldown => m_BuffCooldown;
-        public BuffType BuffType => m_BuffType;
         public BuffGroup BuffGroup => m_BuffGroup;
         public float BuffValue => m_BuffValue;
         public int Cooldown => m_Cooldown;
-        public string BuffKey => m_BuffKey;
         public BuffInfo BuffInfo => m_BuffInfo;
+        public PassiveBuffType PassiveBuffType => m_PassiveBuffType;
 
-        public virtual void InitializeAsBuff(BoardEntity caster,BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
+        public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType, int cooldown, float buffValue)
         {
             if (receiver.EntityGroup == EntityGroup.Enemy && m_EnemyBuffIgnoreFirstCooldown)
                 m_IgnoreCooldownOnInit = true;
-        
+
+            m_BuffType = buffType;
             m_Receiver = receiver;
             m_Caster = caster;
             m_Cooldown = cooldown;
             m_BuffValue = buffValue;
-            m_Receiver.Buffs.AddBuff(this);
-            Apply();
         }
-        protected abstract void Apply();
+
+        public abstract void Apply();
         protected abstract void UnApply();
 
         public void ReduceCooldown()
@@ -73,7 +69,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             m_Receiver.Buffs.RemoveBuff(this);
             UnApply();
-            Destroy(gameObject);
         }
 
         public void SetBuffCooldown(BuffCooldown cooldown)
@@ -81,52 +76,15 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_BuffCooldown = cooldown;
         }
 
-        public void SetBuffKey(string buffKey)
-        {
-            m_BuffKey = buffKey;
-        }
-
-        public void EnableVisual(bool enable)
-        {
-            if(m_VisualTransform)
-                m_VisualTransform.gameObject.SetActive(enable); 
-        }
-        
-        protected virtual Buff ContainPassiveCheck()
-        {
-            return m_Receiver.Buffs.ContainPassiveOfType(m_BuffType);
-        }
-
         protected virtual bool RemovePassiveCheck()
         {
             return m_BuffValue == 0;
         }
         
-        public virtual void InitializeAsPassive(BoardEntity caster,BoardEntity receiver,float buffValue,object[] args = null)
-        {
-            m_Receiver = receiver;
-            m_Caster = caster;
-            m_BuffValue = buffValue;
-            
-            //Si le caster a deja un passif de ce type => ajouter sa valeur a celle deja existante, sinon l'ajouter normalement ?
-            Buff passive = ContainPassiveCheck(); 
-            if (m_StackablePassive && passive)
-            {
-                passive.AddPassiveValue(buffValue);
-                Destroy(gameObject);
-            }
-            else
-            {
-                m_Receiver.Buffs.AddPassive(this);
-                Apply();
-            }
-        }
-
-        protected virtual void AddPassiveValue(float value)
+        public virtual void AddPassiveValue(float value)
         {
             m_BuffValue += value;
             OnPassiveValueChanged();
-            m_Receiver.ComputeAllSpells();
         }
         
         public virtual void ReducePassiveValue(float value)
@@ -142,6 +100,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_Receiver.ComputeAllSpells();
         }
 
+        public void SetPassiveBuffType(PassiveBuffType passiveBuffType)
+        {
+            m_PassiveBuffType = passiveBuffType;
+        }
+        
         protected virtual void OnPassiveValueChanged() 
         {}
 
@@ -149,7 +112,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             m_Receiver.Buffs.RemovePassive(this);
             UnApply();
-            Destroy(gameObject);
         }
 
         public string GetDescription()
@@ -160,11 +122,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected virtual string[] GetDescriptionDynamicValues()
         {
             return m_BuffValue.ToString("0").ToSingleArray();
-        }
-
-        public virtual object[] GetArgs()
-        {
-            return null;
         }
     }
 

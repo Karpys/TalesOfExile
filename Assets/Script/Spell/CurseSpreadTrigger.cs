@@ -29,13 +29,15 @@ namespace KarpysDev.Script.Spell
             List<BoardEntity> contactEntity = DistanceUtils.GetClosestEntityAround(m_ContactZone, targetEntities,
                 entity.EntityPosition, m_MaxSpreadUnit);
 
+            //Todo: GetCurses List<Buff> curses
             m_Curses = entity.Buffs.GetCurseStates();
 
             foreach (BoardEntity entityHit in contactEntity)
             {
                 foreach (BuffState buffState in m_Curses)
                 {
-                    entityHit.GiveBuff(buffState.BuffType, buffState.Duration, buffState.Value, spellData.AttachedEntity, buffState.AdditionalDatas);
+                    //Todo:Copy buff//
+                    // entityHit.Buffs.AddBuff(buffState.Buff.Copy());
                 }
                 
                 base.EntityHit(entityHit,spellData,spellOrigin,castInfo);

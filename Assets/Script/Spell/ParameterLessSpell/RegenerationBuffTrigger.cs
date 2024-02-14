@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
     public class RegenerationBuffTrigger : BuffGiverTrigger
     {
 
-        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup, BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue) : base(baseScriptable, buffGroup, buffType, buffCooldown, buffDuration, buffValue)
+        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue) : base(baseScriptable, buffGroup,buffType, buffCooldown, buffDuration, buffValue)
         {
         }
         protected override int GetSpellPriority()

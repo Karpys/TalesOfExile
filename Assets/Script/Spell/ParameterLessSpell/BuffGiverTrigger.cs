@@ -8,8 +8,6 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     public class BuffGiverTrigger : SelectionSpellTrigger
     {
-        protected object[] m_BuffArgs = null;
-
         private BuffGroup m_BuffGroup = BuffGroup.Buff;
         private BuffType m_BuffType = BuffType.None;
         private BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
@@ -51,19 +49,25 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             Vector2Int spellOrigin, CastInfo castInfo)
         {
             base.EntityHit(entity, spellData, spellOrigin,castInfo);
-            GiveBuff(spellData.AttachedEntity,entity,m_BuffArgs);
+            GiveBuff(spellData.AttachedEntity,entity);
         }
 
-        private void GiveBuff(BoardEntity caster,BoardEntity receiver,object[] args = null)
+        private void GiveBuff(BoardEntity caster,BoardEntity receiver)
         {
             if (m_BuffCooldown == BuffCooldown.Toggle)
             {
-                m_CurrentToggleBuff = receiver.GiveBuffToggle(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
+                m_CurrentToggleBuff = receiver.Buffs.AddToggle(BuffToAdd(caster, receiver));
             }
             else
             {
-                receiver.GiveBuff(m_BuffType, m_BuffDuration, m_BuffValue, caster, args);
+                receiver.Buffs.AddBuff(BuffToAdd(caster,receiver));
             }
+        }
+
+        protected virtual Buff BuffToAdd(BoardEntity caster,BoardEntity receiver)
+        {
+            return new DotDebuff(caster, receiver, BuffType.BurnDotDebuff,m_BuffDuration, m_BuffValue,
+                SubDamageType.Fire); //Todo:BuffFactory.GetSimpleBuff(m_BuffType)//
         }
 
         protected override EntityGroup GetEntityGroup(TriggerSpellData spellData)

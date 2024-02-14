@@ -4,12 +4,19 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Manager.Library;
+
     public class HolyAttackBuff : Buff
     {
-        [SerializeField] private SpellInfo m_OnAutoTrigger = null;
-
+        private SpellInfo m_OnAutoTrigger = null;
         private TriggerSpellData m_Trigger = null;
-        protected override void Apply()
+        
+        public HolyAttackBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,SpellInfo onAutoTrigger) : base(caster, receiver,buffType, cooldown, buffValue)
+        {
+            m_OnAutoTrigger = onAutoTrigger;
+        }
+
+        public override void Apply()
         {
             m_Trigger = m_Receiver.RegisterSpell(m_OnAutoTrigger);
 
@@ -38,7 +45,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
                     SpellCastUtils.TriggerSpellAt(m_Trigger,m_Receiver.EntityPosition,m_Receiver.EntityPosition);
             }
         }
-        
+
         protected override void UnApply()
         {
             m_Receiver.EntityEvent.OnRequestCastEvent -= AddAutoCast;

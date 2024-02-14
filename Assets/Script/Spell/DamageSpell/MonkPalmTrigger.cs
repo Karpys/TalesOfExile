@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using Entities.BuffRelated;
     using KarpysUtils.TweenCustom;
 
     public class MonkPalmTrigger : DamageSpellTrigger
@@ -50,13 +51,13 @@ namespace KarpysDev.Script.Spell.DamageSpell
                 }
                 else
                 {
-                    entity.GiveBuff(BuffType.StunDebuff, m_StunDuration, 1, m_AttachedSpell.AttachedEntity);
+                    entity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,entity,BuffType.StunDebuff,m_StunDuration,1));
                     base.EntityHit(entity, spellData,origin,castInfo);
                     
                     BoardEntity collideEntity = MapData.Instance.GetEntityAt(opposite, spellData.AttachedEntity.TargetEntityGroup);
                     if (collideEntity)
                     {
-                        collideEntity.GiveBuff(BuffType.StunDebuff, m_StunDuration, 1, m_AttachedSpell.AttachedEntity);
+                        collideEntity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,collideEntity,BuffType.StunDebuff,m_StunDuration,1));
                         base.EntityHit(collideEntity,spellData,origin,castInfo);    
                     }
                     

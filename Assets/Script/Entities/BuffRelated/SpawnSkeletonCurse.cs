@@ -11,20 +11,20 @@ namespace KarpysDev.Script.Entities.BuffRelated
     public class SpawnSkeletonCurse : Buff
     {
         private int m_SkeletonCount = 0;
-        protected override void Apply()
+        
+        public SpawnSkeletonCurse(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,int skeletonCount) : base(caster, receiver, buffType,cooldown, buffValue)
+        {
+            m_SkeletonCount = skeletonCount;
+        }
+
+        public override void Apply()
         {
             m_Receiver.EntityEvent.OnDeath += SpawnSkeleton;
         }
-    
+
         protected override void UnApply()
         {
             m_Receiver.EntityEvent.OnDeath -= SpawnSkeleton;
-        }
-
-        public override void InitializeAsBuff(BoardEntity caster, BoardEntity receiver, int cooldown, float buffValue, object[] args = null)
-        {
-            m_SkeletonCount = (int)args[0];
-            base.InitializeAsBuff(caster, receiver, cooldown, buffValue, args);
         }
 
         private void SpawnSkeleton()
@@ -46,13 +46,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
                 freeTile.RemoveAt(targetTile);
             }
         
-        }
-
-        public override object[] GetArgs()
-        {
-            object[] args = new object[1];
-            args[0] = m_SkeletonCount;
-            return args;
         }
     }
 }

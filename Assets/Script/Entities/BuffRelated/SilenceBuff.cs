@@ -1,8 +1,13 @@
 ﻿namespace KarpysDev.Script.Entities.BuffRelated
 {
+
     public class SilenceBuff : Buff
     {
-        protected override void Apply()
+        public SilenceBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,int cooldown, float buffValue) : base(caster, receiver, buffType,cooldown, buffValue)
+        {
+        }
+
+        public override void Apply()
         {
             m_Receiver.EntityStats.SpellLockCount += 1;
         }
