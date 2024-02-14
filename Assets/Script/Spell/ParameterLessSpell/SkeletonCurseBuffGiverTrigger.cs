@@ -1,5 +1,4 @@
 using KarpysDev.Script.Entities.BuffRelated;
-using KarpysDev.Script.Manager.Library;
 
 namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
@@ -15,7 +14,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         protected override Buff BuffToAdd(BoardEntity caster, BoardEntity receiver)
         {
-            return new SpawnSkeletonCurse(caster, receiver, BuffType.SkeletonCurse,m_BuffDuration, m_BuffValue, m_SkeletonSpawnCount);
+            return new SpawnSkeletonCurse(caster, receiver, BuffType.SkeletonCurse,m_BuffGroup,m_BuffDuration,m_BuffValue, m_SkeletonSpawnCount);
         }
     }
 }

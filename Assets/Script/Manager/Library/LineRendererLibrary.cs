@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class LineRendererLibrary: SingletonMonoBehavior<LineRendererLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<LineRendererParameters, LineRendererType> m_LineRendererLibrary = null;
+        [SerializeField] private GenericLibrary<LineRendererType,LineRendererParameters> m_LineRendererLibrary = null;
 
         private void Awake()
         {

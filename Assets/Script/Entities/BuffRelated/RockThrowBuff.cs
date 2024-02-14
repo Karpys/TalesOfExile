@@ -16,7 +16,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private TriggerSpellData m_TriggerSpellData = null;
         private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
     
-        public RockThrowBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,SpellInfo rockThrow) : base(caster, receiver,buffType, cooldown, buffValue)
+        public RockThrowBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue,SpellInfo rockThrow) : base(caster, receiver,buffType, buffGroup, cooldown, buffValue)
         {
             m_SpellInfo = rockThrow;
         }

@@ -19,10 +19,11 @@ MonoBehaviour:
   m_MapSprite: {fileID: 21300000, guid: 528c47bf59feab743848d188bbe6d62c, type: 3}
   m_ColorTileMap:
     m_Keys:
-    - Object: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
-      Type: {r: 0.14901961, g: 0.38431376, b: 0.2901961, a: 1}
-    - Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
-      Type: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
+    - Key: {r: 0.14901961, g: 0.38431376, b: 0.2901961, a: 1}
+      Object: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
+    - Key: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
+      Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+    m_ClearOnInit: 0
   m_MonsterGeneration: {fileID: 11400000, guid: 4aa23ea9f6e5d6f4b998ce0715541f55, type: 2}
   m_TreeChance: 10
   m_TreeTile: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}

@@ -3,7 +3,7 @@
 
     public class SilenceBuff : Buff
     {
-        public SilenceBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,int cooldown, float buffValue) : base(caster, receiver, buffType,cooldown, buffValue)
+        public SilenceBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
         {
         }
 

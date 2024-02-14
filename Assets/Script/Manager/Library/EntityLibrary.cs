@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class EntityLibrary : SingletonMonoBehavior<EntityLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<BoardEntity, EntityType> Library = null;
+        [SerializeField] private GenericLibrary<EntityType, BoardEntity> Library = null;
 
         private void Awake()
         {

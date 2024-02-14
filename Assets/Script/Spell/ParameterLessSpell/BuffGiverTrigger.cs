@@ -8,9 +8,9 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     public class BuffGiverTrigger : SelectionSpellTrigger
     {
-        private BuffGroup m_BuffGroup = BuffGroup.Buff;
         private BuffType m_BuffType = BuffType.None;
         private BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
+        protected BuffGroup m_BuffGroup = BuffGroup.Buff;
         protected int m_BuffDuration = 0;
         protected float m_BuffValue = 0;
 
@@ -66,7 +66,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         protected virtual Buff BuffToAdd(BoardEntity caster,BoardEntity receiver)
         {
-            return BuffLibrary.Instance.GetBuffViaBuffType(m_BuffType, caster, receiver, m_BuffDuration, m_BuffValue);
+            return BuffLibrary.Instance.GetBuffViaBuffType(m_BuffType, caster, receiver,m_BuffGroup, m_BuffDuration, m_BuffValue);
         }
 
         protected override EntityGroup GetEntityGroup(TriggerSpellData spellData)

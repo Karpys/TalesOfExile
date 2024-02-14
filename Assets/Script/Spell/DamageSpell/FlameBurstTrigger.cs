@@ -22,7 +22,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
         protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, Vector2Int origin, CastInfo castInfo)
         {
             base.EntityHit(entity, spellData, origin, castInfo);
-            entity.Buffs.AddBuff(new DotDebuff(m_AttachedSpell.AttachedEntity,entity,BuffType.BurnDotDebuff,m_BurnDuration,m_BurnValue,SubDamageType.Fire));
+            entity.Buffs.AddBuff(new DotDebuff(m_AttachedSpell.AttachedEntity,entity,BuffType.BurnDotDebuff,BuffGroup.Debuff,m_BurnDuration,m_BurnValue,SubDamageType.Fire));
         }
     }
 }

@@ -4,23 +4,26 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
 {
+    using KarpysUtils;
+    using ColorExtensions = ColorExtensions;
+
     [CreateAssetMenu(menuName = "Map/SpriteMap", fileName = "SpriteMap", order = 0)]
     public class SpriteMapGeneration : MapGenerationData
     {
         [Header("Sprite Map Data")]
         [SerializeField] private Sprite m_MapSprite = null;
-        [SerializeField] private GenericLibrary<WorldTile, Color> m_ColorTileMap = null;
+        [SerializeField] private GenericLibrary<Color,WorldTile> m_ColorTileMap = null;
 
         [SerializeField] private BaseMonsterGeneration m_MonsterGeneration = null;
         public Sprite MapSprite => m_MapSprite;
 
         public void GenerateLibrary(List<Color> colors)
         {
-            LibraryKey<WorldTile, Color>[] keys = new LibraryKey<WorldTile, Color>[colors.Count];
+            LibraryKey<Color,WorldTile>[] keys = new LibraryKey<Color,WorldTile>[colors.Count];
 
             for (int i = 0; i < colors.Count; i++)
             {
-                keys[i] = new LibraryKey<WorldTile, Color>(null, colors[i]);
+                keys[i] = new LibraryKey<Color,WorldTile>(colors[i],null);
             }
         
             m_ColorTileMap.SetKeys(keys);
@@ -62,7 +65,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                     //Dont know but this trick work, fine :/ //
                     foreach (KeyValuePair<Color,WorldTile> keyValuePair in m_ColorTileMap.Dictionary)
                     {
-                        if (tileColor.rgb() == keyValuePair.Key.rgb())
+                        if (ColorExtensions.rgb(tileColor) == ColorExtensions.rgb(keyValuePair.Key))
                         {
                             tile = keyValuePair.Value;
                             break;

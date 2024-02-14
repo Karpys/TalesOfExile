@@ -14,7 +14,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private DamageSource m_BaseDamageSource = null;
         private DamageSource m_ComputedDamageSource = null;
         
-        public DotDebuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,int cooldown, float buffValue,SubDamageType dotDamageType) : base(caster, receiver,buffType, cooldown, buffValue)
+        public DotDebuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue,SubDamageType dotDamageType) : base(caster, receiver,buffType, buffGroup, cooldown, buffValue)
         {
             m_BaseDamageType = dotDamageType;
         }

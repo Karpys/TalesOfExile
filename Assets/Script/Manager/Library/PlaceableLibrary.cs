@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class PlaceableLibrary : SingletonMonoBehavior<PlaceableLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<MapPlaceable, PlaceableType> m_Library = null;
+        [SerializeField] private GenericLibrary<PlaceableType,MapPlaceable> m_Library = null;
 
         private void Start()
         {

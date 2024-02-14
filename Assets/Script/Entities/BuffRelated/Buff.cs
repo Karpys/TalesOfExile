@@ -29,7 +29,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public PassiveBuffType PassiveBuffType => m_PassiveBuffType;
         public BuffType BuffType => m_BuffType;
 
-        public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType, int cooldown, float buffValue)
+        public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue)
         {
             if (receiver.EntityGroup == EntityGroup.Enemy && m_EnemyBuffIgnoreFirstCooldown)
                 m_IgnoreCooldownOnInit = true;
@@ -39,6 +39,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_Caster = caster;
             m_Cooldown = cooldown;
             m_BuffValue = buffValue;
+            m_BuffGroup = buffGroup;
         }
 
         public abstract void Apply();
@@ -124,11 +125,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
     }
 
     [Serializable]
-    public struct BuffInfo
+    public class BuffInfo
     {
-        public Sprite BuffVisual;
-        public string BuffName;
+        public Sprite BuffVisual = null;
+        public string BuffName = String.Empty;
         [Header("Spell Description (&0..&1) => place holder")]
-        public string BaseBuffDescription;
+        public string BaseBuffDescription = String.Empty;
     }
 }

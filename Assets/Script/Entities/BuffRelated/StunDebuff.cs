@@ -2,7 +2,7 @@
 {
     public class StunDebuff : Buff
     {
-        public StunDebuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,int cooldown, float buffValue) : base(caster, receiver, buffType,cooldown, buffValue)
+        public StunDebuff(BoardEntity caster, BoardEntity receiver, BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
         {
         }
 

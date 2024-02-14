@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class TileLibrary : SingletonMonoBehavior<TileLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<WorldTile, TileType> m_TileLibrary = null;
+        [SerializeField] private GenericLibrary<TileType, WorldTile> m_TileLibrary = null;
 
         private void Awake()
         {

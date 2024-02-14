@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private SpellInfo m_OnAutoTrigger = null;
         private TriggerSpellData m_Trigger = null;
         
-        public HolyAttackBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,SpellInfo onAutoTrigger) : base(caster, receiver,buffType, cooldown, buffValue)
+        public HolyAttackBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue,SpellInfo onAutoTrigger) : base(caster, receiver,buffType, buffGroup, cooldown, buffValue)
         {
             m_OnAutoTrigger = onAutoTrigger;
         }

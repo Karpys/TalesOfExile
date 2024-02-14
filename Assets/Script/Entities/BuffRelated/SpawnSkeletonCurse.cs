@@ -12,7 +12,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
     {
         private int m_SkeletonCount = 0;
         
-        public SpawnSkeletonCurse(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue,int skeletonCount) : base(caster, receiver, buffType,cooldown, buffValue)
+        public SpawnSkeletonCurse(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue,int skeletonCount) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
         {
             m_SkeletonCount = skeletonCount;
         }

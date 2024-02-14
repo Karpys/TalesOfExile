@@ -10,10 +10,10 @@ namespace KarpysDev.Script.Map_Related.QuestRelated
 
     public class QuestLibrary : SingletonMonoBehavior<QuestLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<Sprite, QuestModifierType> m_MapModifierIconLibrary = null;
-        [SerializeField] private Widget.GenericLibrary<float, QuestDifficulty> m_MapDifficultyLibrary = null;
-        [SerializeField] private Widget.GenericLibrary<Vector2Int, QuestDifficulty> m_MapModifierDrawerLibrary = null;
-        [SerializeField] private Widget.GenericLibrary<Color, QuestDifficulty> m_MapDifficultyColor = null;
+        [SerializeField] private GenericLibrary<QuestModifierType,Sprite> m_MapModifierIconLibrary = null;
+        [SerializeField] private GenericLibrary<QuestDifficulty,float> m_MapDifficultyLibrary = null;
+        [SerializeField] private GenericLibrary<QuestDifficulty,Vector2Int> m_MapModifierDrawerLibrary = null;
+        [SerializeField] private GenericLibrary<QuestDifficulty,Color> m_MapDifficultyColor = null;
         [Header("Tier Quest")]
         [SerializeField] private List<MultipleWeightElementDraw<QuestScriptable>> m_TierQuest = null;
 

@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class LootLibrary : SingletonMonoBehavior<LootLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<InventoryPoolObjectScriptable,ItemPoolType> m_PoolObjects = null;
+        [SerializeField] private GenericLibrary<ItemPoolType,InventoryPoolObjectScriptable> m_PoolObjects = null;
 
         private void Awake()
         {

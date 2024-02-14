@@ -19,14 +19,15 @@ MonoBehaviour:
   m_MapSprite: {fileID: 21300000, guid: ecd5c4daed523ab4aa4142fc912d7962, type: 3}
   m_ColorTileMap:
     m_Keys:
-    - Object: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
-      Type: {r: 0, g: 0, b: 0, a: 1}
-    - Object: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
-      Type: {r: 0.29411766, g: 0.41176474, b: 0.18431373, a: 1}
-    - Object: {fileID: 7124269101175009985, guid: bb54872bc6629f347a00894abf134a5c, type: 3}
-      Type: {r: 0.38823533, g: 0.60784316, b: 1, a: 1}
-    - Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
-      Type: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
-    - Object: {fileID: 7124269101175009985, guid: d81ac77cdc60372479bef146d5a3c6c9, type: 3}
-      Type: {r: 0.41176474, g: 0.4156863, b: 0.4156863, a: 1}
+    - Key: {r: 0, g: 0, b: 0, a: 1}
+      Object: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
+    - Key: {r: 0.29411766, g: 0.41176474, b: 0.18431373, a: 1}
+      Object: {fileID: 4277169104127877267, guid: c30ab5cd49ed9c64f9258d6091919a10, type: 3}
+    - Key: {r: 0.38823533, g: 0.60784316, b: 1, a: 1}
+      Object: {fileID: 7124269101175009985, guid: bb54872bc6629f347a00894abf134a5c, type: 3}
+    - Key: {r: 0.21568629, g: 0.5803922, b: 0.43137258, a: 1}
+      Object: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+    - Key: {r: 0.41176474, g: 0.4156863, b: 0.4156863, a: 1}
+      Object: {fileID: 7124269101175009985, guid: d81ac77cdc60372479bef146d5a3c6c9, type: 3}
+    m_ClearOnInit: 0
   m_MonsterGeneration: {fileID: 11400000, guid: 63d5adb4fe8973f4ca90ccc79ac90019, type: 2}

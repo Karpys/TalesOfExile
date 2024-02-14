@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Manager.Library
         [SerializeField] private SpellInfo m_RockThrowSpellInfo = null;
         [SerializeField] private SpellInfo m_OnKillFlameSpellInfo = null;
         [SerializeField] private SpellInfo m_HolyAttackSpellInfo = null;
-
+        [SerializeField] private BuffInfo m_DefaultBuffInfo = null;
         [SerializeField] private GenericLibrary<BuffType, BuffInfo> m_BuffInfoLibrary = null;
         public SpellInfo RockThrowSpellInfo => m_RockThrowSpellInfo;
         public SpellInfo OnKillFlameSpellInfo => m_OnKillFlameSpellInfo;
@@ -24,45 +24,39 @@ namespace KarpysDev.Script.Manager.Library
             m_BuffInfoLibrary.InitializeDictionary();
         }
 
-        public Buff GetBuffViaBuffType(BuffType type,BoardEntity caster,BoardEntity receiver,int duration,float value)
+        public Buff GetBuffViaBuffType(BuffType type,BoardEntity caster,BoardEntity receiver,BuffGroup buffGroup,int duration,float value)
         {
             switch (type)
             {
                 case BuffType.RegenerationBuff:
-                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, duration, value);
+                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff,buffGroup, duration, value,m_RockThrowSpellInfo);
                 case BuffType.RockThrowBuff:
-                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff, duration, value,m_RockThrowSpellInfo);
+                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value);
                 case BuffType.FireHandBuff:
-                    return new FireHandBuff(caster, receiver, BuffType.FireHandBuff, duration, value,
+                    return new FireHandBuff(caster, receiver, BuffType.FireHandBuff, buffGroup,duration, value,
                         SubDamageType.Fire);
                 case BuffType.OnKillFlameBurst:
-                    return new OnKillTriggerSpell(caster, receiver, BuffType.RegenerationBuff, duration, value,m_OnKillFlameSpellInfo);
+                    return new OnKillTriggerSpell(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,m_OnKillFlameSpellInfo);
                 case BuffType.IcePrisonBuff:
-                    return new IcePrisonBuff(caster, receiver, BuffType.RegenerationBuff, duration, value);
+                    return new IcePrisonBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, duration, value);
                 case BuffType.HolyAttack:
-                    return new HolyAttackBuff(caster, receiver, BuffType.RegenerationBuff, duration, value,m_HolyAttackSpellInfo);
+                    return new HolyAttackBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,m_HolyAttackSpellInfo);
                 case BuffType.SilenceDebuff:
-                    return new SilenceBuff(caster, receiver, BuffType.SilenceDebuff, duration, value);
+                    return new SilenceBuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value);
                 case BuffType.BurnDotDebuff:
-                    return new DotDebuff(caster, receiver, BuffType.SilenceDebuff, duration, value,SubDamageType.Fire);
+                    return new DotDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,SubDamageType.Fire);
                 case BuffType.StunDebuff:
-                    return new StunDebuff(caster, receiver, BuffType.SilenceDebuff, duration, value);
+                    return new StunDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value);
                 default:
                     Debug.LogError("Return default buff");
-                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, 0, 0);
+                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, 0, 0);
             }
         }
 
         public BuffInfo GetBuffInfoViaType(BuffType buffType)
         {
-            BuffInfo buffInfo = m_BuffInfoLibrary.GetViaKey(buffType);
-
-            if (buffInfo is )
-            {
-                buffType.LogError("Buff info has not been implemented");
-            }
-
-            return buffInfo;
+            BuffInfo info = m_BuffInfoLibrary.GetViaKey(buffType);
+            return info ?? m_DefaultBuffInfo;
         }
     }
 

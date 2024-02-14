@@ -8,7 +8,7 @@ namespace KarpysDev.Script.Manager.Library
 
     public class RarityLibrary : SingletonMonoBehavior<RarityLibrary>
     {
-        [SerializeField] private Widget.GenericLibrary<RarityParameter, Rarity> Library = null;
+        [SerializeField] private GenericLibrary<Rarity,RarityParameter> Library = null;
 
         private void Awake()
         {

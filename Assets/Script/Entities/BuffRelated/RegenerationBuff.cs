@@ -6,7 +6,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
     public class RegenerationBuff : Buff
     {
-        public RegenerationBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, int cooldown, float buffValue) : base(caster, receiver, buffType,cooldown, buffValue)
+        public RegenerationBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, BuffGroup buffGroup,int cooldown, float buffValue) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
         {
         }
 

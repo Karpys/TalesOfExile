@@ -52,7 +52,7 @@ namespace KarpysDev.Script.Utils
 
                         if (!added)
                         {
-                            e.Buffs.AddPassive(new RockThrowBuff(e, e, BuffType.RockThrowBuff,0,m.FloatValue,null),PassiveBuffType.RockThrowPassive);
+                            e.Buffs.AddPassive(new RockThrowBuff(e, e, BuffType.RockThrowBuff,BuffGroup.Buff,0,m.FloatValue,null),PassiveBuffType.RockThrowPassive);
                         }
                     }
                 },
