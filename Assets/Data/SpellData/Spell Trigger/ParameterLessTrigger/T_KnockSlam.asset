@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 9140524552017338541, guid: 82f032896e7d86a4b967fe391a122e40, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: KnockBackTrigger
   m_AdditionalParameters:
     m_ClassName: KnockBackTrigger

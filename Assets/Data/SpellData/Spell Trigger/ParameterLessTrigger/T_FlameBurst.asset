@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: -857462294725842901, guid: f264c4732d367d64487ef9869a015356, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: FlameBurstTrigger
   m_AdditionalParameters:
     m_ClassName: FlameBurstTrigger

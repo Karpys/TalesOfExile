@@ -5,8 +5,8 @@ namespace KarpysDev.Script.Spell.DamageSpell
     [CreateAssetMenu(fileName = "SpellDamage", menuName = "Trigger/Basic Damage", order = 0)]
     public class DamageSpellScriptable : BaseSpellTriggerScriptable
     {
-        [SerializeField] private SourceDamageGroupScriptable m_InitialBaseDamageSources = null;
-        public SourceDamageGroupScriptable InitialBaseDamageSources => m_InitialBaseDamageSources;
+        [SerializeField] private BaseSourceDamageGroup initialBaseDamageDefaultSources = null;
+        public BaseSourceDamageGroup InitialBaseDamageDefaultSources => initialBaseDamageDefaultSources;
     
         public override BaseSpellTrigger SetUpTrigger()
         {

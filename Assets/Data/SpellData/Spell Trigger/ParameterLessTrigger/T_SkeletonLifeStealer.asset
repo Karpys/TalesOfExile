@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 5476735992649530300, guid: 2aae68a80cddd7c4d922094a935e9584, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: SkeletonLifeStealerTrigger
   m_AdditionalParameters:
     m_ClassName: SkeletonLifeStealerTrigger

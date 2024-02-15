@@ -140,7 +140,7 @@ namespace KarpysDev.Script.Utils
             }
             else
             {
-                Debug.LogError("MODIFIER HAS NOT BEEN SET UP");
+                modifier.Type.Log("Modifier has not been set up");
             }
         }
 

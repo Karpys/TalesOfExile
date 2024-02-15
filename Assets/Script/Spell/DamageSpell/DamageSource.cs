@@ -2,6 +2,9 @@ using System;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using System.Collections.Generic;
+    using Entities;
+
     [Serializable]
     public class DamageSource
     {
@@ -19,5 +22,17 @@ namespace KarpysDev.Script.Spell.DamageSpell
             Damage = baseDamageSource.Damage;
             DamageType = baseDamageSource.DamageType;
         }
+
+        public virtual void ToDamageSource(List<DamageSource> source,BoardEntity entity,float bonusDamage)
+        {
+            source.Add(new DamageSource(this));
+        }
+    }
+
+    public enum WeaponTarget
+    {
+        AllWeapons,
+        MainWeapon,
+        OffWeapon,
     }
 }

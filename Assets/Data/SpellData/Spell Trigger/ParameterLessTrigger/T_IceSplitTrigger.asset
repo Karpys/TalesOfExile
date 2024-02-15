@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 1315964064108705742, guid: c6b5f2f309a3f4044b6e6da9aa2ab3e7, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: IceShardSplitTrigger
   m_AdditionalParameters:
     m_ClassName: IceShardSplitTrigger

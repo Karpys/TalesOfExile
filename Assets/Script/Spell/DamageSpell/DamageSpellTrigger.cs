@@ -25,12 +25,12 @@ namespace KarpysDev.Script.Spell.DamageSpell
         private bool m_DisplayDamage = false;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
         {
-            if (damageSpellData.InitialBaseDamageSources == null)
+            if (damageSpellData.InitialBaseDamageDefaultSources == null)
             {
                 return;
             }
             
-            m_BaseDamageSources = damageSpellData.InitialBaseDamageSources.Init();
+            m_BaseDamageSources = damageSpellData.InitialBaseDamageDefaultSources.Init();
             //Todo: When level spell fetch change damage update this Dictionary//
         }
 
@@ -56,7 +56,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             FloatSocket bonusDamage = new FloatSocket();
             entity.EntityEvent.OnRequestBonusSpellDamage?.Invoke(this,bonusDamage);
         
-            ComputeSpellDamage(entity);
+            ComputeSpellDamage(entity,bonusDamage.Value);
             ApplyDamageModifier(entity,bonusDamage.Value);
         
             //DESIGN CHOICE : Additional damage are added after the damage modifier are applied
@@ -68,7 +68,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
         private void ApplyDamageModifier(BoardEntity entity,float bonusModifier)
         {
             // float damageModifier = DamageManager.GetDamageModifier(m_DamageSpellParams, entity.EntityStats, bonusModifier);
-        
+            //Todo: Move into "ToDamageSource" => "ToComputedDamageSource" and remove this method//
             foreach (DamageSource source in m_ComputedDamageSources)
             {
                 float damageModifier = bonusModifier;
@@ -82,11 +82,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
             m_ComputedDamageSources.Add(new DamageSource(damageSource));
         }
 
-        protected virtual void ComputeSpellDamage(BoardEntity entity)
+        protected virtual void ComputeSpellDamage(BoardEntity entity,float bonusDamage)
         {
             foreach (DamageSource baseDamageSource in m_BaseDamageSources)
             {
-                AddDamageSource(baseDamageSource);
+                baseDamageSource.ToDamageSource(m_ComputedDamageSources,entity,bonusDamage);
             }
             // AddDamageSource(new DamageSource(m_DamageSpellParams.InitialSourceDamage));
         }

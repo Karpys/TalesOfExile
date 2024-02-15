@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 3908413993525435510, guid: ca025f6319c2ed9438a23d33a681d2f9, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
   m_TriggerClassName: AutoAttackTrigger
   m_AdditionalParameters:
     m_ClassName: AutoAttackTrigger

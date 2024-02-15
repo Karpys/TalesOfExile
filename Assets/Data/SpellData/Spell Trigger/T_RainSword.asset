@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 8421180664268563359, guid: 3bdfb86e4d881d84d926053a96534b90, type: 3}
   OnHitAnimation: {fileID: 0}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  CenterOriginAnimation: {fileID: 0}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: ee5e81fad029e489abd49cbd5e6aecd0, type: 2}
   m_TriggerClassName: WeaponDamageTrigger
   m_AdditionalParameters:
     m_ClassName: DamageSpellTrigger

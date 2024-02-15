@@ -4,11 +4,11 @@ namespace KarpysDev.Script.Spell.DamageSpell
     using UnityEngine;
 
     [CreateAssetMenu(fileName = "SourceDamageGroup", menuName = "Damage/Source Damage Group", order = 0)]
-    public class SourceDamageGroupScriptable : ScriptableObject
+    public class DefaultSourceDamageGroupScriptable : BaseSourceDamageGroup
     {
         [SerializeField] private DamageSource[] m_InitialBaseSources = null;
 
-        public List<DamageSource> Init()
+        public override List<DamageSource> Init()
         {
             List<DamageSource> damageSources = new List<DamageSource>();
 
