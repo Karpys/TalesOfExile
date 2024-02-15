@@ -69,12 +69,10 @@ namespace KarpysDev.Script.Manager.Library
                     itemDrawn.Add(item);
 
                     //Additional Modifier based on rarity drawn
-                    Debug.Log("Try set rarity");
-                    if (item.Data.ObjectType == ObjectType.Equipement && item.Data.Rarity == Rarity.Null)
+                    if (item.Data.ObjectType == ObjectType.Equipement || item.Data.ObjectType == ObjectType.Weapon && item.Data.Rarity == Rarity.Null)
                     {
                         Rarity rarityDrawn = m_RarityDraw.Draw();
                         ((EquipementItem)item).InitializeRarity(rarityDrawn,RarityLibrary.Instance.GetParametersViaKey(rarityDrawn));
-                    
                     }
                 }
             }

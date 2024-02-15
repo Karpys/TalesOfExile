@@ -29,9 +29,9 @@ namespace KarpysDev.Script.Manager.Library
             switch (type)
             {
                 case BuffType.RegenerationBuff:
-                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff,buffGroup, duration, value,m_RockThrowSpellInfo);
-                case BuffType.RockThrowBuff:
                     return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value);
+                case BuffType.RockThrowBuff:
+                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff,buffGroup, duration, value,m_RockThrowSpellInfo);
                 case BuffType.FireHandBuff:
                     return new FireHandBuff(caster, receiver, BuffType.FireHandBuff, buffGroup,duration, value,
                         SubDamageType.Fire);

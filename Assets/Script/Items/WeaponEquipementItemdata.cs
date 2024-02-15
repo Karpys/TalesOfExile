@@ -8,6 +8,16 @@ namespace KarpysDev.Script.Items
         [Header("Weapon Specific")]
         [SerializeField] private bool m_IsTwoHanded = false;
 
+        [SerializeField] private WeaponType m_WeaponType = WeaponType.Sword;
+
         public bool TwoHanded => m_IsTwoHanded;
+        public WeaponType WeaponType => m_WeaponType;
+    }
+
+    public enum WeaponType
+    {
+        Sword,
+        Bow,
+        Wand,
     }
 }

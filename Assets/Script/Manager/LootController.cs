@@ -25,6 +25,7 @@ namespace KarpysDev.Script.Manager
         
             foreach (Item inventoryObject in inventoryObjects)
             {
+                inventoryObject.Data.ObjectName.Log("Object name");
                 Tile targetTile = tiles[Random.Range(0, tilesCount - 1)];
                 SpawnLoot(inventoryObject,originTile,targetTile,delay);
                 delay += 0.1f;

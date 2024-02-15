@@ -13,6 +13,8 @@ namespace KarpysDev.Script.Utils
                     return new DefaultItem(itemData);
                 case ObjectType.Equipement:
                     return new EquipementItem(itemData as EquipementItemData);
+                case ObjectType.Weapon:
+                    return new WeaponItem(itemData as WeaponEquipementItemdata);
                 default:
                     Debug.LogError("Equipement Object Data type not set up" + itemData.ObjectType);
                     return null;

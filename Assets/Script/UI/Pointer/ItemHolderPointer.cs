@@ -71,6 +71,10 @@ namespace KarpysDev.Script.UI.Pointer
                     m_Displayer = Instantiate(m_EquipementDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
                     m_Displayer.Initialize(m_ItemHolder.AttachedItem);
                     break;
+                case ObjectType.Weapon:
+                    m_Displayer = Instantiate(m_EquipementDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
+                    m_Displayer.Initialize(m_ItemHolder.AttachedItem);
+                    break;
                 default:
                     m_Displayer = Instantiate(m_ItemDisplayer, transform.position, Quaternion.identity, GlobalCanvas.Instance.transform);
                     m_Displayer.Initialize(m_ItemHolder.AttachedItem);

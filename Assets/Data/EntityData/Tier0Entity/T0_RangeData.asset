@@ -16,7 +16,7 @@ MonoBehaviour:
     m_EntityGroup: 1
     m_TargetEntityGroup: 0
     m_Stats:
-      m_CombatRange: 5
+      m_CombatRange: 4
       m_MaxLife: 100
       m_Life: 100
       m_LifeRegeneration: 0
