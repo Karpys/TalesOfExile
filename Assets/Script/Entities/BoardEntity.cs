@@ -11,8 +11,10 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
+    using Items;
     using KarpysUtils;
     using KarpysUtils.TweenCustom;
+    using Spell.DamageSpell;
 
     [Serializable]
     public class EntityStats
@@ -28,7 +30,12 @@ namespace KarpysDev.Script.Entities
         //From Damage to move speed to base life ?//
         [Header("Damage Stats")]
         [SerializeField] private float m_WeaponForce = 20f;
-        
+
+        [Header("Weapon Damage Stats")] 
+        private List<WeaponItem> m_WeaponItems = new List<WeaponItem>();
+        private WeaponItem m_MainHandWeapon = null;
+        private WeaponItem m_OffHandWeapon = null;
+
         //SubTypeModifier//
         [Header("Sub Damage Modifier")]
         [SerializeField] private SubDamageTypeGroup m_DamageTypeModifier = null;
@@ -57,6 +64,9 @@ namespace KarpysDev.Script.Entities
         public int IsBowUser { get => m_IsBowUser; set => m_IsBowUser = value;}
         public SubDamageTypeGroup DamageTypeModifier => m_DamageTypeModifier;
         public SubDamageTypeGroup DamageTypeReduction => m_DamageTypeReduction;
+        public WeaponItem MainHandWeapon => m_MainHandWeapon;
+        public WeaponItem OffHandWeapon => m_OffHandWeapon;
+        public List<WeaponItem> WeaponItems => m_WeaponItems;
 
         #endregion
         public EntityStats(EntityStats stats)
@@ -119,6 +129,36 @@ namespace KarpysDev.Script.Entities
             m_MeleeLockCount += stunLockState;
             m_SpellLockCount += stunLockState;
         }
+
+        public void AddWeapon(WeaponItem weaponItem, WeaponTarget target)
+        {
+            switch (target)
+            {
+                case WeaponTarget.MainWeapon:
+                    m_MainHandWeapon = weaponItem;
+                    break;
+                case WeaponTarget.OffWeapon:
+                    m_OffHandWeapon = weaponItem;
+                    break;
+            }
+
+            m_WeaponItems.Add(weaponItem);
+        }
+
+        public void RemoveWeapon(WeaponItem weaponItem, WeaponTarget target)
+        {
+            switch (target)
+            {
+                case WeaponTarget.MainWeapon:
+                    m_MainHandWeapon = null;
+                    break;
+                case WeaponTarget.OffWeapon:
+                    m_OffHandWeapon = null;
+                    break;
+            }
+
+            m_WeaponItems.Remove(weaponItem);
+        }
     }
 
     public enum EntityGroup
@@ -173,7 +213,6 @@ namespace KarpysDev.Script.Entities
         //Need to be called when an entity is created//
         public virtual void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
         {
-        
             //Copy Base Entity Data
             m_EntityData = new BoardEntityData(m_EntityDataScriptable.m_EntityBaseData);
             m_EntityData.m_Stats.SetEntity(this);

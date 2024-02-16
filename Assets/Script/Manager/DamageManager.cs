@@ -101,7 +101,6 @@ namespace KarpysDev.Script.Manager
 
         public static string ToDescription(this DamageSource damageSource)
         {
-            //Todo: Add Damage color//
             string colorCode = damageSource.DamageType.ToColorString();
             return colorCode + damageSource.Damage.ToString("G") + " " + damageSource.DamageType + " damage" + "</color>";
         }

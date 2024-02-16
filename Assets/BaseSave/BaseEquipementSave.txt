@@ -48,10 +48,10 @@ none
 none
 none
 none
-WeaponItem 3 0 True null 0 0
+EquipementItem 3 0 True null
 none
 none
-EquipementItem 5 0 True null
+WeaponItem 5 0 True null 0 0 35
 none
 none
 EquipementItem 4 0 True null

@@ -1,5 +1,4 @@
-﻿using KarpysDev.Script.Items;
-using KarpysDev.Script.UI.ItemContainer.V2;
+﻿using KarpysDev.Script.UI.ItemContainer.V2;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities.EquipementRelated

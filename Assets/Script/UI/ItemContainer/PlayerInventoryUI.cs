@@ -8,6 +8,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI.ItemContainer
 {
+    using Entities;
+
     public class PlayerInventoryUI : MonoBehaviour
     {
         [SerializeField] private Transform m_ItemGroup = null;
@@ -45,11 +47,17 @@ namespace KarpysDev.Script.UI.ItemContainer
             }*/
         }
 
-        public void SetPlayerInventory(PlayerInventory inventory)
+        public void SetPlayerInventory(PlayerInventory inventory,BoardEntity player)
         {
+            foreach (PlayerEquipementHolder playerEquipementHolder in m_EquipementHolder)
+            {
+                playerEquipementHolder.AssignEntity(player);
+            }
+            
             m_Inventory = inventory;
             inventory.AssignInventoryHolders(m_ItemHolders);
             inventory.AssignEquipementHolders(m_EquipementHolder);
+            
         }
 
         private void SetItemToTargetGroup(Item targetItem,ItemHolderGroup targetGroup, int targetId)

@@ -1,8 +1,11 @@
-﻿using KarpysDev.Script.Items;
-using UnityEngine;
-
-namespace KarpysDev.Script.UI.ItemContainer.V2
+﻿namespace KarpysDev.Script.UI.ItemContainer.V2
 {
+    using Items;
+    using UnityEngine;
+    using KarpysUtils;
+    using Spell.DamageSpell;
+    using ColorExtensions = ColorExtensions;
+
     public class PlayerWeaponHolder : PlayerEquipementHolder
     {
         [Header("Player Weapon Specifics")] 
@@ -11,6 +14,7 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
         [SerializeField] private PlayerInventoryUI m_InventoryUI = null;
         [SerializeField] private PlayerWeaponHolder m_MainWeaponHolder = null;
         [SerializeField] private PlayerWeaponHolder m_SubWeaponHolder = null;
+        [SerializeField] private WeaponTarget m_WeaponTarget = WeaponTarget.MainWeapon;
 
         private bool m_NeedSwap = false;
         
@@ -68,7 +72,7 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
         private void ApplyShadow(Sprite itemShadowSprite)
         {
             m_ItemVisual.sprite = itemShadowSprite;
-            m_ItemVisual.color = Color.white.setAlpha(0.5f);
+            m_ItemVisual.color = ColorExtensions.setAlpha(Color.white, 0.5f);
         }
 
         public override void LateApply()
@@ -94,6 +98,22 @@ namespace KarpysDev.Script.UI.ItemContainer.V2
             base.TempReceiveItem(null);
             freeHolders[0].SetItem(AttachedItem);
             ApplyItem();
+        }
+
+        protected override void OnItemSet(Item item)
+        {
+            if (item is WeaponItem weaponItem)
+            {
+                weaponItem.EquipWeapon(m_AttachedEntity,m_WeaponTarget);
+            }
+        }
+
+        protected override void OnItemRemoved(Item item)
+        {
+            if (item is WeaponItem weaponItem)
+            {
+                weaponItem.UnEquipWeapon(m_AttachedEntity,m_WeaponTarget);
+            }
         }
     }
 }

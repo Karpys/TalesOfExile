@@ -97,7 +97,7 @@ namespace KarpysDev.Script.Manager
             }
             
             m_PlayerEntity = player;
-            m_PlayerInventoryUI.SetPlayerInventory(player.PlayerInventory);
+            m_PlayerInventoryUI.SetPlayerInventory(player.PlayerInventory,player);
             m_SkillTreeController.Initialize(player);
             m_CanvasSkillLearned.Initialize(player);
         }

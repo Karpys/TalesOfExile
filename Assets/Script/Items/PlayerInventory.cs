@@ -123,7 +123,6 @@ namespace KarpysDev.Script.Items
             {
                 if (m_Holders[i].AttachedItem != null)
                 {
-                    Debug.Log("Item To Save");
                     itemDataSaves[i] = m_Holders[i].AttachedItem.GetSaveData();
                 }
                 else

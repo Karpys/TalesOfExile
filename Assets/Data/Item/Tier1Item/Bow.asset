@@ -26,8 +26,8 @@ MonoBehaviour:
     Value: 0
   - Type: 51
     Value: Range Attack
-  - Type: 20
-    Value: 30
   m_ModifierPool: {fileID: 11400000, guid: 39bacd3760ac51b4aae78034321c5eda, type: 2}
   m_IsTwoHanded: 1
   m_WeaponType: 1
+  m_WeaponDamageType: 0
+  m_WeaponBaseFlatDamage: 30

@@ -21,9 +21,9 @@ MonoBehaviour:
   m_BaseRarity: -1
   m_EquipementType: 5
   m_EquipementTier: 0
-  m_EquipementBaseModifiers:
-  - Type: 20
-    Value: 35
+  m_EquipementBaseModifiers: []
   m_ModifierPool: {fileID: 11400000, guid: 6ddaec01f82e07c45bf634f65c0b16cf, type: 2}
   m_IsTwoHanded: 1
   m_WeaponType: 0
+  m_WeaponDamageType: 0
+  m_WeaponBaseFlatDamage: 35

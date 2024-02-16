@@ -10,6 +10,8 @@ using KarpysDev.Script.Utils;
 
 namespace KarpysDev.Script.Items
 {
+    using Entities;
+
     public class EquipementItem:Item
     {
         private EquipementType m_Type = EquipementType.Null;
@@ -35,7 +37,7 @@ namespace KarpysDev.Script.Items
         public override List<ItemButtonUIParameters> ButtonRequestOptionButton(ItemUIHolder inventoryUI)
         { 
             List<ItemButtonUIParameters> itemButtonParameters = base.ButtonRequestOptionButton(inventoryUI);
-            itemButtonParameters.Add(new ItemButtonUIParameters(Equip,"Equip"));
+            // itemButtonParameters.Add(new ItemButtonUIParameters(Equip,"Equip"));
             return itemButtonParameters;
         }
     
@@ -60,15 +62,15 @@ namespace KarpysDev.Script.Items
         #endregion
 
         #region Equip
-        public void Equip()
+        public void Equip(BoardEntity entity)
         {
-            EquipementUtils.Equip(this,GameManager.Instance.PlayerEntity);
+            EquipementUtils.Equip(this,entity);
             m_IsEquiped = true;
         }
 
-        public void UnEquip()
+        public void UnEquip(BoardEntity entity)
         {
-            EquipementUtils.UnEquip(this,GameManager.Instance.PlayerEntity);
+            EquipementUtils.UnEquip(this,entity);
             m_IsEquiped = false;
         }
         #endregion
