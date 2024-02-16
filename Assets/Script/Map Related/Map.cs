@@ -70,13 +70,13 @@ namespace KarpysDev.Script.Map_Related
         }
     
     
-        public VisualTile InsertVisualTile(VisualTile visual, WorldTile tile)
+        public VisualTile CreateVisualTile(VisualTile visual, WorldTile tile)
         {
             VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
                 Quaternion.identity, tile.transform);
             return visualTile;
         }
-    
+
         public WorldTile GetDefaultMapTile()
         {
             return MapGenerator.Instance.CurrentMapData.DefaultTile;

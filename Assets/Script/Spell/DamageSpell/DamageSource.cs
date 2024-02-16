@@ -34,5 +34,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
         AllWeapons,
         MainWeapon,
         OffWeapon,
+        Unarmed,
     }
 }

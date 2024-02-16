@@ -49,7 +49,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
 
             Tile lastTile = m_Map.Tiles[x, y];
             roadTiles.Add(lastTile);
-            roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
+            roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
         
             bool lastPivot = false;
 
@@ -84,7 +84,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 {
                     lastTile = m_Map.Tiles[path[j].x,path[j].y];
                     roadTiles.Add(lastTile);
-                    roadRenderers.Add(m_Map.InsertVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
+                    roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
                 }
             
             }

@@ -15,4 +15,4 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 8848733026966070198, guid: 82dc0c066a69659438fc8fd0145136e4, type: 3}
-  m_InitialBaseDamageSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: ee5e81fad029e489abd49cbd5e6aecd0, type: 2}

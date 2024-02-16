@@ -2170,6 +2170,8 @@ MonoBehaviour:
       Object: {fileID: -355267252009796637, guid: 187ad8571860e4e4fb2024e8c57b9ab7, type: 3}
     - Key: 1
       Object: {fileID: 8774724744677853576, guid: 7a0c3a191330fbe4e8ad9d66d866f702, type: 3}
+    - Key: 2
+      Object: {fileID: 1254923122045616436, guid: 3827912a04a834533bf0c83c027889a7, type: 3}
     m_ClearOnInit: 1
 --- !u!1001 &1134172561
 PrefabInstance:
@@ -2408,6 +2410,7 @@ Transform:
   - {fileID: 456935964}
   - {fileID: 1552589116}
   - {fileID: 365475249}
+  - {fileID: 1428622563}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2793,6 +2796,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GlobalCanvas: {fileID: 1072997886}
   m_SkillTree: {fileID: 2050905445}
+--- !u!1 &1428622562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428622563}
+  - component: {fileID: 1428622564}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428622563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428622562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1140441088}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428622564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428622562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946c00d65c1e41a8a3fb98405ea77b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GameManager: {fileID: 2034686307}
 --- !u!1 &1450611265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,7 +3595,9 @@ MonoBehaviour:
   m_TileLibrary:
     m_Keys:
     - Key: 1
-      Object: {fileID: 7124269101175009985, guid: c42f9d2416269b34baec42fbb918a886, type: 3}
+      Object: {fileID: 0}
+    - Key: 2
+      Object: {fileID: 0}
     m_ClearOnInit: 1
 --- !u!1 &1825918820
 GameObject:
@@ -3790,6 +3839,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acd84d7954bba4b38b1e9d3eaa5e1b4f, type: 2}
   - {fileID: 11400000, guid: 95c927aa183a7624389529d3d3e03890, type: 2}
   - {fileID: 11400000, guid: 51f5c57d2ba9e334ca0527812bf7d492, type: 2}
+  - {fileID: 11400000, guid: 6c4538281b7884e6fb84e4920c3db259, type: 2}
 --- !u!1 &1946549647
 GameObject:
   m_ObjectHideFlags: 0

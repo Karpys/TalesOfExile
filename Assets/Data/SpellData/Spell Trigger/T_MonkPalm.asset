@@ -15,13 +15,13 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 9140524552017338541, guid: 7aa250665202fa041adab3b1d0c026f2, type: 3}
   OnHitAnimation: {fileID: 4114339539992487337, guid: 46d65f9e3eb8dd84e8658fbf2154ed72, type: 3}
   CenterOriginAnimation: {fileID: 0}
-  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: a357acfbf1d8f4219babb96ec58c745b, type: 2}
   m_TriggerClassName: MonkPalmTrigger
   m_AdditionalParameters:
     m_ClassName: MonkPalmTrigger
     m_FieldValues:
     - m_FieldType: 0
-      m_Value: 100
+      m_Value: 4
       m_AssemblyQualifiedName: 
     - m_FieldType: 0
       m_Value: 3

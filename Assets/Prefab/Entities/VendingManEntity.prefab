@@ -19,33 +19,27 @@ MonoBehaviour:
     m_EntityGroup: 0
     m_TargetEntityGroup: 0
     m_Stats:
-      CombatRange: 1
-      MaxLife: 100
-      Life: 100
-      LifeRegeneration: 0
-      WeaponForce: 20
-      MeleeModifier: 0
-      ProjectileModifier: 0
-      SpellModifier: 0
-      ColdDamageModifier: 0
-      LightningDamageModifier: 0
-      FireDamageModifier: 0
-      PhysicalDamageModifier: 0
-      ElementalDamageModifier: 0
-      NatureDamageModifier: 0
-      FlatMeleeDamageReduction: 0
-      FlatProjectileDamageReduction: 0
-      FlatSpellDamageReduction: 0
-      ColdDamageReduction: 0
-      LightningDamageReduction: 0
-      FireDamageReduction: 0
-      PhysicalDamageReduction: 0
-      ElementalDamageReduction: 0
-      NatureDamageReduction: 0
-      IsBowUser: 0
-      RootLockCount: 0
-      SpellLockCount: 0
-      MeleeLockCount: 0
+      m_CombatRange: 0
+      m_MaxLife: 0
+      m_Life: 0
+      m_LifeRegeneration: 0
+      m_WeaponForce: 0
+      m_DamageTypeModifier:
+        m_Physical: 0
+        m_Cold: 0
+        m_Lightning: 0
+        m_Fire: 0
+        m_Nature: 0
+      m_DamageTypeReduction:
+        m_Physical: 0
+        m_Cold: 0
+        m_Lightning: 0
+        m_Fire: 0
+        m_Nature: 0
+      m_IsBowUser: 0
+      m_RootLockCount: 0
+      m_SpellLockCount: 0
+      m_MeleeLockCount: 0
     m_BaseSpellInfos: []
   m_ShopCanvas: {fileID: 8316638437771427149}
 --- !u!1 &3400312404597722597
@@ -360,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6478018575094365499, guid: fa205fbd162f5e049bbb1a9d94668acc, type: 3}
       propertyPath: m_IBuyableReference.Array.size
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 6478018575094365499, guid: fa205fbd162f5e049bbb1a9d94668acc, type: 3}
       propertyPath: m_IBuyableReference.Array.data[0]
@@ -469,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 6478018575094365499, guid: fa205fbd162f5e049bbb1a9d94668acc, type: 3}
       propertyPath: m_IBuyableReference.Array.data[26]
       value: 
-      objectReference: {fileID: 11400000, guid: 63e42e97382a13f458de759f65a1fce2, type: 2}
+      objectReference: {fileID: 11400000, guid: 73d880e22dbea4cf4a13d71c53fc287f, type: 2}
     - target: {fileID: 6478018575094365499, guid: fa205fbd162f5e049bbb1a9d94668acc, type: 3}
       propertyPath: m_IBuyableReference.Array.data[27]
       value: 

@@ -8,14 +8,14 @@ namespace KarpysDev.Script.Manager.Library
 
     public class TileLibrary : SingletonMonoBehavior<TileLibrary>
     {
-        [SerializeField] private GenericLibrary<TileType, WorldTile> m_TileLibrary = null;
+        [SerializeField] private GenericLibrary<TileType, VisualTile> m_TileLibrary = null;
 
         private void Awake()
         {
             m_TileLibrary.InitializeDictionary();
         }
 
-        public WorldTile GetTileViaKey(TileType type)
+        public VisualTile GetTileViaKey(TileType type)
         {
             return m_TileLibrary.GetViaKey(type);
         }
@@ -35,5 +35,6 @@ namespace KarpysDev.Script.Manager.Library
     {
         None,
         IceWall,
+        RockLifeWall,
     }
 }

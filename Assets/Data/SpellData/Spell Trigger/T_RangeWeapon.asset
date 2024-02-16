@@ -15,7 +15,7 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 4454528519068613723, guid: cacabcd2defb5d146bf62561ba2b1540, type: 3}
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 0}
-  initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
+  initialBaseDamageDefaultSources: {fileID: 11400000, guid: ee5e81fad029e489abd49cbd5e6aecd0, type: 2}
   m_TriggerClassName: ProjectileAutoTrigger
   m_AdditionalParameters:
     m_ClassName: ProjectileDamageTrigger

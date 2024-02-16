@@ -25,5 +25,6 @@ namespace KarpysDev.Script.Manager.Library
     {
         BurningGround,
         LightningStormArea,
+        RockTile,
     }
 }

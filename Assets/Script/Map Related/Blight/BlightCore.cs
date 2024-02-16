@@ -63,7 +63,7 @@ namespace KarpysDev.Script.Map_Related.Blight
 
                 foreach (WorldTile branchTile in branchPath)
                 {
-                    VisualTile branchVisual = map.InsertVisualTile(m_BranchTileSet.TilePrefab, branchTile); 
+                    VisualTile branchVisual = map.CreateVisualTile(m_BranchTileSet.TilePrefab, branchTile); 
                     branchRenderers.Add(branchVisual.Renderer);
                     m_BranchPathRenderers.Add(branchVisual);
                 }

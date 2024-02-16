@@ -51,13 +51,13 @@ namespace KarpysDev.Script.Spell.DamageSpell
                 }
                 else
                 {
-                    entity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,entity,BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,1));
+                    entity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,entity,BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,2));
                     base.EntityHit(entity, spellData,origin,castInfo);
                     
                     BoardEntity collideEntity = MapData.Instance.GetEntityAt(opposite, spellData.AttachedEntity.TargetEntityGroup);
                     if (collideEntity)
                     {
-                        collideEntity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,collideEntity,BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,1));
+                        collideEntity.Buffs.AddBuff(new StunDebuff(spellData.AttachedEntity,collideEntity,BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,2));
                         base.EntityHit(collideEntity,spellData,origin,castInfo);    
                     }
                     

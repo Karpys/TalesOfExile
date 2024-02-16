@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68dc5a7d2d864460b9b03dad25c86b89, type: 3}
-  m_Name: AllWeaponAttack
+  m_Script: {fileID: 11500000, guid: 4fbd2ceeff944f0c8cb8c9379209a4e7, type: 3}
+  m_Name: BuyableSpawnRockTile
   m_EditorClassIdentifier: 
-  m_InitialWeaponDamage:
-    Damage: 0
-    DamageType: -1
-    ConversionPercentage: 1
-    WeaponTarget: 0
+  m_SpellData: {fileID: 11400000, guid: 6c4538281b7884e6fb84e4920c3db259, type: 2}
+  m_Price: 100

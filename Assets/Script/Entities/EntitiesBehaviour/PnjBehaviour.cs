@@ -51,7 +51,6 @@ namespace KarpysDev.Script.Entities.EntitiesBehaviour
         {
             if (GameManager.Instance)
             {
-                Debug.Log("Unsub");   
                 GameManager.Instance.A_OnEndTurn -= CheckForPlayerPosition;
             }
             MapGenerator.Instance.A_OnMapErased -= UnSub;
