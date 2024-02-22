@@ -4,10 +4,9 @@ namespace KarpysDev.Script.Items
     using KarpysUtils;
     using Spell;
     using Spell.DamageSpell;
-    using UnityEngine;
     using StringUtils = Utils.StringUtils;
 
-    public class WeaponItem : EquipementItem
+    public class WeaponItem : EquipementItem,IWeapon
     {
         private WeaponType m_WeaponType = WeaponType.Sword;
         private SubDamageType m_WeaponDamageType = SubDamageType.Physical;
@@ -66,5 +65,11 @@ namespace KarpysDev.Script.Items
             entity.EntityStats.RemoveWeapon(this,target);
             UnEquip(entity);
         }
+    }
+
+    public interface IWeapon
+    {
+        public DamageSource GetWeaponDamage(BoardEntity entity);
+        public WeaponType WeaponType { get; }
     }
 }

@@ -32,9 +32,9 @@ namespace KarpysDev.Script.Entities
         [SerializeField] private float m_WeaponForce = 20f;
 
         [Header("Weapon Damage Stats")] 
-        private List<WeaponItem> m_WeaponItems = new List<WeaponItem>();
-        private WeaponItem m_MainHandWeapon = null;
-        private WeaponItem m_OffHandWeapon = null;
+        private List<IWeapon> m_WeaponItems = new List<IWeapon>();
+        private IWeapon m_MainHandWeapon = null;
+        private IWeapon m_OffHandWeapon = null;
 
         //SubTypeModifier//
         [Header("Sub Damage Modifier")]
@@ -64,9 +64,9 @@ namespace KarpysDev.Script.Entities
         public int IsBowUser { get => m_IsBowUser; set => m_IsBowUser = value;}
         public SubDamageTypeGroup DamageTypeModifier => m_DamageTypeModifier;
         public SubDamageTypeGroup DamageTypeReduction => m_DamageTypeReduction;
-        public WeaponItem MainHandWeapon => m_MainHandWeapon;
-        public WeaponItem OffHandWeapon => m_OffHandWeapon;
-        public List<WeaponItem> WeaponItems => m_WeaponItems;
+        public IWeapon MainHandWeapon => m_MainHandWeapon;
+        public IWeapon OffHandWeapon => m_OffHandWeapon;
+        public List<IWeapon> WeaponItems => m_WeaponItems;
 
         #endregion
         public EntityStats(EntityStats stats)
@@ -130,7 +130,7 @@ namespace KarpysDev.Script.Entities
             m_SpellLockCount += stunLockState;
         }
 
-        public void AddWeapon(WeaponItem weaponItem, WeaponTarget target)
+        public void AddWeapon(IWeapon weaponItem, WeaponTarget target)
         {
             switch (target)
             {
@@ -145,7 +145,7 @@ namespace KarpysDev.Script.Entities
             m_WeaponItems.Add(weaponItem);
         }
 
-        public void RemoveWeapon(WeaponItem weaponItem, WeaponTarget target)
+        public void RemoveWeapon(IWeapon weaponItem, WeaponTarget target)
         {
             switch (target)
             {
@@ -190,6 +190,8 @@ namespace KarpysDev.Script.Entities
         protected BoardEntityEventHandler m_EntityEvent = null;
         protected List<TriggerSpellData> m_Spells = new List<TriggerSpellData>();
 
+        public Action A_OnEntityInitialization = null;
+
         public MapData Map => m_TargetMap;
         public Vector2Int EntityPosition => new Vector2Int(m_XPosition, m_YPosition);
         public Vector3 WorldPosition => m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
@@ -231,6 +233,9 @@ namespace KarpysDev.Script.Entities
             //Buffs
             m_Buffs = GetComponent<EntityBuffs>();
         
+            //OnEntityInitilizationEnd
+            A_OnEntityInitialization?.Invoke();
+            
             //Spells
             RegisterStartSpells(m_EntityData.m_BaseSpellInfos);
         

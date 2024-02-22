@@ -28,9 +28,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             switch (WeaponTarget)
             {
                 case WeaponTarget.AllWeapons:
-                    List<WeaponItem> weaponItems = entity.EntityStats.WeaponItems;
-
-                    foreach (WeaponItem weaponItem in weaponItems)
+                    foreach (IWeapon weaponItem in entity.EntityStats.WeaponItems)
                     {
                         DamageSource weaponDamageSource = weaponItem.GetWeaponDamage(entity);
                         if (DamageType != SubDamageType.None)

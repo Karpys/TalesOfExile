@@ -50,32 +50,46 @@ MonoBehaviour:
     m_EntityGroup: 0
     m_TargetEntityGroup: 0
     m_Stats:
-      CombatRange: 1
-      MaxLife: 100
-      Life: 100
-      LifeRegeneration: 0
-      WeaponForce: 20
-      MeleeModifier: 0
-      ProjectileModifier: 0
-      SpellModifier: 0
-      ColdDamageModifier: 0
-      LightningDamageModifier: 0
-      FireDamageModifier: 0
-      PhysicalDamageModifier: 0
-      ElementalDamageModifier: 0
-      FlatMeleeDamageReduction: 0
-      FlatProjectileDamageReduction: 0
-      FlatSpellDamageReduction: 0
-      ColdDamageReduction: 0
-      LightningDamageReduction: 0
-      FireDamageReduction: 0
-      PhysicalDamageReduction: 0
-      ElementalDamageReduction: 0
-      IsBowUser: 0
-      RootLockCount: 0
-      SpellLockCount: 0
-      MeleeLockCount: 0
+      m_CombatRange: 0
+      m_MaxLife: 0
+      m_Life: 0
+      m_LifeRegeneration: 0
+      m_WeaponForce: 0
+      m_DamageTypeModifier:
+        m_Physical: 0
+        m_Cold: 0
+        m_Lightning: 0
+        m_Fire: 0
+        m_Nature: 0
+      m_DamageTypeReduction:
+        m_Physical: 0
+        m_Cold: 0
+        m_Lightning: 0
+        m_Fire: 0
+        m_Nature: 0
+      m_IsBowUser: 0
+      m_RootLockCount: 0
+      m_SpellLockCount: 0
+      m_MeleeLockCount: 0
     m_BaseSpellInfos: []
+--- !u!114 &2271360612695562264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481496948592758787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31fddb6c3c240999a48a75baf2d0161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DamageSource:
+    Damage: 25
+    DamageType: 0
+  m_WeaponTarget: 1
+  m_WeaponType: 0
+  m_BoardEntity: {fileID: -4592490546126341204}
 --- !u!114 &3618556183251360860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 455326569
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 562908e905cf3434fb339b4b14cc9ce0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
