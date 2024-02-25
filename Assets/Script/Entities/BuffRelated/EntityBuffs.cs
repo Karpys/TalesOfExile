@@ -18,9 +18,19 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         public List<Buff> Buffs => m_Buffs;
 
+        public bool TryAddBuff(BuffType buffType)
+        {
+            return true;
+        }
+
+        private BuffCategory[] m_TempCategories = new BuffCategory[1];
         public void AddBuff(Buff buff)
         {
             m_Buffs.Add(buff);
+
+            m_TempCategories[0] = BuffCategory.Flame;
+            buff.Caster.EntityEvent.OnBuffApplied(m_TempCategories,buff);
+            
             OnAddBuff?.Invoke(buff);
             buff.Apply();
         }
@@ -102,7 +112,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             }
         }
 
-        public Buff ContainPassiveOfType(PassiveBuffType buffType)
+        private Buff ContainPassiveOfType(PassiveBuffType buffType)
         {
             return m_Passive.FirstOrDefault(b => b.PassiveBuffType == buffType);
         }
@@ -160,5 +170,14 @@ namespace KarpysDev.Script.Entities.BuffRelated
             Duration = duration;
             Value = buffValue;
         }
+    }
+
+    public enum BuffCategory
+    {
+        Flame,
+        Magical,
+        Physical,
+        Stun,
+        KnockBack,
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
@@ -54,7 +55,6 @@ namespace KarpysDev.Script.Entities
             Life.SetToMaxLife();
             Life.A_OnLifeUpdated?.Invoke(Life.Life,Life.MaxLife);
         }
-
         protected override void RegisterStartSpells(SpellInfo[] spellInfos)
         {
             if (!m_SpellLearnedSave.SaveExist())

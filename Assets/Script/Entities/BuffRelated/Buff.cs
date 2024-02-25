@@ -24,10 +24,22 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         public BuffCooldown BuffCooldown => m_BuffCooldown;
         public BuffGroup BuffGroup => m_BuffGroup;
-        public float BuffValue => m_BuffValue;
-        public int Cooldown => m_Cooldown;
+        public float BuffValue
+        {
+            get => m_BuffValue;
+            set => m_BuffValue = value;
+        }
+
+        public int Cooldown
+        {
+            get => m_Cooldown;
+            set => m_Cooldown = value;
+        }
+
         public PassiveBuffType PassiveBuffType => m_PassiveBuffType;
         public BuffType BuffType => m_BuffType;
+        public BoardEntity Caster => m_Caster;
+        public BoardEntity Receiver => m_Receiver;
 
         public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue)
         {

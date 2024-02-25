@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Spell.DamageSpell;
 using UnityEngine;
@@ -19,6 +21,45 @@ namespace KarpysDev.Script.Entities
         public Action<BoardEntity> OnKill = null;
         public Action OnSpellRecompute = null;
         public Action OnBehave = null;
+        
+        //Buff
+        private Dictionary<BuffCategory, Action<Buff>> m_OnBuffAppliedModifications = new Dictionary<BuffCategory, Action<Buff>>(); 
+        private Action<Buff> m_OnBuffApplied = null;
+
+        public void OnBuffApplied(BuffCategory[] categories,Buff buff)
+        {
+            foreach (BuffCategory buffCategory in categories)
+            {
+                if(m_OnBuffAppliedModifications.TryGetValue(buffCategory,out var modif))
+                {
+                    modif?.Invoke(buff);
+                }
+            }
+        }
+        public void AddBuffAppliedCategoryModification(BuffCategory targetCategory,Action<Buff> buffModification)
+        {
+            if (m_OnBuffAppliedModifications.TryGetValue(targetCategory, out Action<Buff> modif))
+            {
+                modif += buffModification;
+            }
+            else
+            {
+                Action<Buff> actionModif = null;
+                actionModif += buffModification;
+                m_OnBuffAppliedModifications.Add(targetCategory,actionModif);
+            }
+        }
+        public void RemoveBuffAppliedCategoryModification(BuffCategory targetCategory,Action<Buff> buffModification)
+        {
+            if (m_OnBuffAppliedModifications.TryGetValue(targetCategory, out Action<Buff> modif))
+            {
+                modif -= buffModification;
+
+                if (modif.GetInvocationList().Length == 0)
+                    m_OnBuffAppliedModifications.Remove(targetCategory);
+            }
+        }
+        
     }
 
     public class IntSocket
