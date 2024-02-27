@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RegenerationBuff
   m_EditorClassIdentifier: 
   m_SpellName: Regeneration Buff
-  m_SpellType: 0
+  m_SpellType: 2
   m_SpellGroups: 
   m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}

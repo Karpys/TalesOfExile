@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: RockThrowBuff
   m_EditorClassIdentifier: 
   m_SpellName: Rock Throw Buff
-  m_SpellType: 0
-  m_SpellGroups: 
+  m_SpellType: 2
+  m_SpellGroups: 65000000
   m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 5c6a2344c7c7e41879fcd06a53ffe506, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 0fc271a9e46a51f49a5053d274b4cdec, type: 2}
   m_BaseCooldown: 10
+  m_LevelScalerScriptables: []
+  m_LevelMax: 10
   m_Selection:
   - Origin: 0
     Zone:

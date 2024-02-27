@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: OnKillFlameBurstBuff
   m_EditorClassIdentifier: 
   m_SpellName: On Kill Flame Burst
-  m_SpellType: 0
+  m_SpellType: 2
   m_SpellGroups: 
   m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: eeb2852edfc84a541bd52e22c474f47d, type: 2}
   m_BaseCooldown: 0
+  m_LevelScalerScriptables: []
+  m_LevelMax: 10
   m_Selection:
   - Origin: 0
     Zone:
