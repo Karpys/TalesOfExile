@@ -19,8 +19,9 @@ namespace KarpysDev.Script.Spell
         [SerializeField] private int m_BaseCooldown = 0;
 
         [Header("Spell Level Scaler")] 
-        // [SerializeField] private BaseSpellLevelScalerScriptable[] m_LevelScalerScriptables = null;
-    
+        [SerializeField] private BaseSpellLevelScalerScriptable[] m_LevelScalerScriptables = null;
+        [SerializeField] private int m_LevelMax = 10;
+        
         [Header("Spell Display In Game Option")]
         [SerializeField] private ZoneSelection[] m_Selection = null;
         [SerializeField] private int m_MainSelection = 0;
@@ -41,6 +42,8 @@ namespace KarpysDev.Script.Spell
         public BaseSpellTriggerScriptable SpellTrigger => m_SpellTrigger;
         public Sprite SpellIcon => m_SpellIcon;
         public Sprite SpellBorder => m_SpellIconBorder;
+        public int LevelMax => m_LevelMax;
+        public BaseSpellLevelScalerScriptable[] LevelScalerScriptables => m_LevelScalerScriptables;
     }
 
     [Serializable]

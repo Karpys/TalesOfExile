@@ -25,7 +25,7 @@ MonoBehaviour:
   - Type: 53
     Value: 0
   - Type: 51
-    Value: Range Attack
+    Value: Range Auto
   m_ModifierPool: {fileID: 11400000, guid: 39bacd3760ac51b4aae78034321c5eda, type: 2}
   m_IsTwoHanded: 1
   m_WeaponType: 1

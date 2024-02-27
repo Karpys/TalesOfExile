@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Utils;
 using Script.Data;
 using UnityEngine;
+using StringUtils = KarpysDev.Script.Utils.StringUtils;
 
 namespace KarpysDev.Script.Entities
 {
@@ -28,8 +30,11 @@ namespace KarpysDev.Script.Entities
 
             for (int i = 0; i < spells.Count; i++)
             {
-                if(spells[i].SpellLearnType == SpellLearnType.Learned)
-                    spellSave.Add(spells[i].TriggerData.SpellName);
+                if (spells[i].SpellLearnType == SpellLearnType.Learned)
+                {
+                    string spellSaveLine = spells[i].TriggerData.SpellName.Replace(" ","_") + " " + spells[i].SpellLevel;
+                    spellSave.Add(spellSaveLine);
+                }
             }
 
             return spellSave.ToArray();
@@ -52,7 +57,8 @@ namespace KarpysDev.Script.Entities
 
             for (int i = 0; i < spellLearned.Length; i++)
             {
-                infos[i] = SpellLibrary.Instance.GetSpellViaKey(spellLearned[i], SpellLearnType.Learned);
+                string[] lineSpellSplit = spellLearned[i].Split();
+                infos[i] = SpellLibrary.Instance.GetSpellViaKey(lineSpellSplit[0].Replace("_"," "),SpellLearnType.Learned,StringUtils.ToInt(lineSpellSplit[1]));
             }
 
             return infos;

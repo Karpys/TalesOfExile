@@ -40,4 +40,5 @@ MonoBehaviour:
     m_BaseSpellInfos:
     - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
       m_SpellPriority: 0
+      m_InitialSpellLevel: 0
       m_SpellLearnType: 0

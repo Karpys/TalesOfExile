@@ -30,7 +30,7 @@ namespace KarpysDev.Script.Spell
     
         public SpellData(SpellInfo baseSpellInfo,BoardEntity attachedEntity)
         {
-            m_Data = baseSpellInfo.m_SpellData;
+            m_Data = baseSpellInfo.SpellData;
             m_AttachedEntity = attachedEntity;
         }
     

@@ -20,17 +20,17 @@ namespace KarpysDev.Script.Manager.Library
             }
         }
 
-        public SpellInfo GetSpellViaKey(string spellKey,SpellLearnType spellLearnType)
+        public SpellInfo GetSpellViaKey(string spellKey, SpellLearnType spellLearnType, int spellLevel = 1)
         {
-            Spells.TryGetValue(spellKey,out SpellDataScriptable spellData);
+            Spells.TryGetValue(spellKey, out SpellDataScriptable spellData);
 
             if (spellData == null)
             {
                 Debug.LogError("Spell Key not found : " + spellKey);
                 return null;
             }
-        
-            return new SpellInfo(spellData,1,spellLearnType);
+
+            return new SpellInfo(spellData, 1, spellLevel, spellLearnType);
         }
     }
 }

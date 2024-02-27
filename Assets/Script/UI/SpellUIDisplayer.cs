@@ -25,18 +25,17 @@ namespace KarpysDev.Script.UI
         [SerializeField] private TMP_Text m_CooldownValue = null;
 
         private const string NO_COOLDOWN_VALUE = "X";
-        
+
+        #if UNITY_EDITOR
+        private void OnValidate()
+        {
+            AdaptSize();
+        }
+        #endif
+
         private void AdaptSize()
         {
             m_Container.sizeDelta = new Vector2(m_Container.sizeDelta.x, m_BaseHeight + m_LayoutTransform.sizeDelta.y);
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                AdaptSize();
-            }
         }
 
         public void DisplaySpell(TriggerSpellData spellData,Transform targetTransform)
@@ -47,7 +46,7 @@ namespace KarpysDev.Script.UI
             m_SpellName.text = spellData.TriggerData.SpellName;
             m_SpellGroups.text = GetSpellGroups(spellData.Data.SpellGroups);
             m_SpellDescription.text = spellData.GetSpellDescription();
-            m_CooldownValue.text = spellData.TriggerData.BaseCooldown <= 0 ? NO_COOLDOWN_VALUE : spellData.TriggerData.BaseCooldown.ToString();
+            m_CooldownValue.text = spellData.EffectiveCooldown <= 0 ? NO_COOLDOWN_VALUE : spellData.EffectiveCooldown.ToString();
             
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_LayoutTransform);
             AdaptSize();

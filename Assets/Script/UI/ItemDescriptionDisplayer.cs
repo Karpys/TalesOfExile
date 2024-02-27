@@ -13,7 +13,6 @@ namespace KarpysDev.Script.UI
         [SerializeField] private float m_ScrollTime = 0.5f;
         [SerializeField] private AdaptUISize m_SelfSize = null;
         [SerializeField] private AdaptUILayoutSize m_ContainerLayout = null;
-        [SerializeField] private ContentSizeFitter m_SizeFilter = null;
     
         [Header("Name and description")]
         [SerializeField] private TMP_Text m_NameText = null;

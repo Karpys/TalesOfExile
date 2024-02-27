@@ -23,7 +23,7 @@ namespace KarpysDev.Script.Spell
             spellBuyable.UIParent = uiParent;
             spellBuyable.Price = m_Price;
             spellBuyable.Id = Id;
-            spellBuyable.InitializeSpell(new SpellInfo(m_SpellData,1,SpellLearnType.Learned));
+            spellBuyable.InitializeSpell(new SpellInfo(m_SpellData,1, 0,SpellLearnType.Learned));
             return spellBuyable;
         }
     }

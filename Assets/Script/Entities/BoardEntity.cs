@@ -352,7 +352,7 @@ namespace KarpysDev.Script.Entities
 
         public virtual TriggerSpellData AddSpellToSpellList(SpellInfo spell)
         {
-            Debug.Log("Add spell : "  + spell.m_SpellData.SpellName);
+            Debug.Log("Add spell : "  + spell.SpellData.SpellName + " : Level : " + spell.InitialSpellLevel);
             TriggerSpellData spellAdded = RegisterSpell(spell);
             m_Spells.Add(spellAdded);
             return spellAdded;

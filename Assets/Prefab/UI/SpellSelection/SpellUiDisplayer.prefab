@@ -455,7 +455,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 237}
+  m_SizeDelta: {x: 200, y: 130}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2233904628649849818
 MonoBehaviour:
@@ -473,8 +473,6 @@ MonoBehaviour:
   m_DisplayContainer: {fileID: 7644087502266773603}
   m_BaseHeight: 130
   m_LayoutTransform: {fileID: 4548266297787883179}
-  m_LayoutGroup: {fileID: 7746412195110142393}
-  m_SizeFitter: {fileID: 514941166377183517}
   m_SpellIcon: {fileID: 7654099911182184823}
   m_SpellName: {fileID: 5020298904821146393}
   m_SpellGroups: {fileID: 6781264322899363250}

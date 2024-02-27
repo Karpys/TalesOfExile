@@ -19,7 +19,7 @@ namespace KarpysDev.Script.Spell
         public void OnBuy()
         {
             GoldManager.Instance.ChangeGoldValue(-Price);
-            GameManager.Instance.PlayerEntity.AddSpellToSpellList(new SpellInfo(m_TriggerSpellData.TriggerData, 1,
+            GameManager.Instance.PlayerEntity.AddSpellToSpellList(new SpellInfo(m_TriggerSpellData.TriggerData, 1, 0,
                 SpellLearnType.Learned));
             m_TriggerSpellData = null;
             GameManager.Instance.PlayerEntity.UpdateSpellPriority();

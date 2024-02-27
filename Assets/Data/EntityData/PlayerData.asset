@@ -40,13 +40,17 @@ MonoBehaviour:
     m_BaseSpellInfos:
     - m_SpellData: {fileID: 11400000, guid: 86b78601068e8e04cb7c4c0a9f4e87d3, type: 2}
       m_SpellPriority: 1
+      m_InitialSpellLevel: 0
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 88c376f86248c9c4da1e058c0d398641, type: 2}
       m_SpellPriority: 5
+      m_InitialSpellLevel: 0
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 1ab13ac0e7e12a24e9537068aec14725, type: 2}
       m_SpellPriority: 5
+      m_InitialSpellLevel: 5
       m_SpellLearnType: 0
     - m_SpellData: {fileID: 11400000, guid: 51f5c57d2ba9e334ca0527812bf7d492, type: 2}
       m_SpellPriority: 5
+      m_InitialSpellLevel: 0
       m_SpellLearnType: 0
