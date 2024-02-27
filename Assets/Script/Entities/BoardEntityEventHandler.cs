@@ -25,6 +25,7 @@ namespace KarpysDev.Script.Entities
         //Buff
         private Dictionary<BuffCategory, Action<Buff>> m_OnBuffAppliedModifications = new Dictionary<BuffCategory, Action<Buff>>(); 
         private Action<Buff> m_OnBuffApplied = null;
+        public Action<Buff> OnBuffReceived = null;
 
         public void OnBuffApplied(BuffCategory[] categories,Buff buff)
         {
@@ -59,7 +60,6 @@ namespace KarpysDev.Script.Entities
                     m_OnBuffAppliedModifications.Remove(targetCategory);
             }
         }
-        
     }
 
     public class IntSocket

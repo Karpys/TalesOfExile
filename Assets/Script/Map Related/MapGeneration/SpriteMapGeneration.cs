@@ -7,7 +7,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     using KarpysUtils;
     using ColorExtensions = ColorExtensions;
 
-    [CreateAssetMenu(menuName = "Map/SpriteMap", fileName = "SpriteMap", order = 0)]
+    [CreateAssetMenu(menuName = "Map/SpriteMap/Default Sprite Map", fileName = "SpriteMap", order = 0)]
     public class SpriteMapGeneration : MapGenerationData
     {
         [Header("Sprite Map Data")]

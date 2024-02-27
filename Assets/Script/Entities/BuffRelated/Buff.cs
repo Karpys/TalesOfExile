@@ -19,6 +19,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected BoardEntity m_Receiver = null;
         protected int m_Cooldown = 0;
         protected float m_BuffValue = 0;
+        protected bool m_IsActive = true;
 
         private bool m_IgnoreCooldownOnInit = false;
 
@@ -40,6 +41,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public BuffType BuffType => m_BuffType;
         public BoardEntity Caster => m_Caster;
         public BoardEntity Receiver => m_Receiver;
+        public bool Active
+        {
+            get => m_IsActive;
+            set => m_IsActive = value;
+        }
 
         public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue)
         {

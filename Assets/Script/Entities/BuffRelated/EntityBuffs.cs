@@ -31,8 +31,12 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_TempCategories[0] = BuffCategory.Flame;
             buff.Caster.EntityEvent.OnBuffApplied(m_TempCategories,buff);
             
-            OnAddBuff?.Invoke(buff);
-            buff.Apply();
+            if (buff.Active)
+            {
+                OnAddBuff?.Invoke(buff);
+                buff.Receiver.EntityEvent.OnBuffReceived?.Invoke(buff);
+                buff.Apply();
+            }
         }
         
         public Buff AddToggle(Buff buff)
