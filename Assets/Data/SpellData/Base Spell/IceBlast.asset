@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: IceBlast
   m_EditorClassIdentifier: 
-  SpellName: Ice Blast
-  SpellType: 0
-  SpellGroups: 15000000160000001900000033000000
-  BaseDescription: Launch a blast of icy shard dealing &0 damage
+  m_SpellName: Ice Blast
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 767fc4b70b0f9b94a9f8711ae9ecf164, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: a90367c607e2cb14989447ba2eac28e8, type: 2}
@@ -38,8 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

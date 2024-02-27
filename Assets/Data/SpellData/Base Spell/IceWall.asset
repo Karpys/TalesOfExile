@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: IceWall
   m_EditorClassIdentifier: 
-  SpellName: Ice Wall
-  SpellType: 0
-  SpellGroups: 
-  BaseDescription: 
+  m_SpellName: Ice Wall
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 295890e99efaa874caf2a066716bb71e, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 522f06d3583556842a0230c070145dc5, type: 2}
@@ -38,8 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

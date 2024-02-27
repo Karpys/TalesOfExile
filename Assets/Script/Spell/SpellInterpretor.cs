@@ -61,10 +61,10 @@ namespace KarpysDev.Script.Spell
       {
          if (m_CurrentSpell != null)
          {
-            if (m_CurrentSpellQueue < m_CurrentSpell.TriggerData.m_Selection.Length)
+            if (m_CurrentSpellQueue < m_CurrentSpell.TriggerData.Selection.Length)
             {
                //Get the current Zone Selection following the ZoneTileManager seleciton rules based on Zone Selection Class//
-               ZoneSelection selection = m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue];
+               ZoneSelection selection = m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue];
                m_OriginTile = GetOrigin(selection);
                m_CastOriginTile = m_CurrentSpell.AttachedEntity.EntityPosition;
                m_TilesSelection = ZoneTileManager.GetSelectionZone(selection.Zone, m_OriginTile, selection.Zone.Range,m_CastOriginTile);
@@ -77,7 +77,7 @@ namespace KarpysDev.Script.Spell
                   HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
                }
             
-               if (!m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.NeedValidation || m_TryAutoCast)
+               if (!m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ValidationType.NeedValidation || m_TryAutoCast)
                {
                   if(IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
@@ -109,7 +109,7 @@ namespace KarpysDev.Script.Spell
                return;
             }
 
-            if (m_CurrentSpellQueue >= m_CurrentSpell.TriggerData.m_Selection.Length)
+            if (m_CurrentSpellQueue >= m_CurrentSpell.TriggerData.Selection.Length)
             {
                CastSpell();
                return;
@@ -146,11 +146,11 @@ namespace KarpysDev.Script.Spell
 
       private bool CanValidate(Vector2Int validationOrigin)
       {
-         if (m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation == -1)
+         if (m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation == -1)
             return true;
 
          //if the origin is in the display list of the id => Valid current selection//
-         if (m_DisplayTiles[m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation].Contains(validationOrigin))
+         if (m_DisplayTiles[m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ValidationType.TargetZoneValidation].Contains(validationOrigin))
          {
             return true;
          }
@@ -241,7 +241,7 @@ namespace KarpysDev.Script.Spell
       private void FetchSelection()
       {
          //Add it to the action selection...Future use for spell trigger damage / effect//
-         if (m_CurrentSpell.TriggerData.m_Selection[m_CurrentSpellQueue].ActionSelection)
+         if (m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ActionSelection)
          {
             AddToActionTiles(m_TilesSelection);
             AddToOriginTiles(m_OriginTile);

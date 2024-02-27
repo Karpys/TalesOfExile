@@ -43,11 +43,11 @@ namespace KarpysDev.Script.UI
         {
             transform.position = targetTransform.position;
             m_DisplayContainer.gameObject.SetActive(true);
-            m_SpellIcon.sprite = spellData.TriggerData.m_SpellIcon;
+            m_SpellIcon.sprite = spellData.TriggerData.SpellIcon;
             m_SpellName.text = spellData.TriggerData.SpellName;
             m_SpellGroups.text = GetSpellGroups(spellData.Data.SpellGroups);
             m_SpellDescription.text = spellData.GetSpellDescription();
-            m_CooldownValue.text = spellData.TriggerData.m_BaseCooldown <= 0 ? NO_COOLDOWN_VALUE : spellData.TriggerData.m_BaseCooldown.ToString();
+            m_CooldownValue.text = spellData.TriggerData.BaseCooldown <= 0 ? NO_COOLDOWN_VALUE : spellData.TriggerData.BaseCooldown.ToString();
             
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_LayoutTransform);
             AdaptSize();

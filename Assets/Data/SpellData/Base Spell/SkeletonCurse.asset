@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SkeletonCurse
   m_EditorClassIdentifier: 
-  SpellName: Skeleton Curse
-  SpellType: 0
-  SpellGroups: 1500000067000000
-  BaseDescription: Curse an entity, if the entity dies spawn a skeleton at your side
+  m_SpellName: Skeleton Curse
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 3460c83ccb671454ebd062cb429a9b47, type: 2}
@@ -38,10 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 1
-    Type: 3
-  AllowedCastZone:
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
     DisplayType: 0
-    Range: 5
-  OriginSelection: 0
+    Range: 0
+  m_OriginSelection: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SkeletonLifeStealer
   m_EditorClassIdentifier: 
-  SpellName: Life Stealer
-  SpellType: 0
-  SpellGroups: 150000001600000033000000
-  BaseDescription: Deal &0.
+  m_SpellName: Skeleton Life Stealer
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: d5b05de8e275cc847a5c0061e185dbe6, type: 2}
@@ -38,10 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 4
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

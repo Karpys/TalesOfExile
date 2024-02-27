@@ -1,4 +1,4 @@
-Weapon Attack
+Auto Attack
 Regeneration Buff
 Rush
 none

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: HolyAttackEffect
   m_EditorClassIdentifier: 
-  SpellName: Holy Attack Effect
-  SpellType: 0
-  SpellGroups: 6600000015000000
-  BaseDescription: Heal by &0
+  m_SpellName: Holy Attack Effect
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 59cc18627eba0a84e992964af9e35f5b, type: 2}
@@ -30,10 +30,8 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 5
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

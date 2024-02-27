@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: SpawnDetectionMine
   m_EditorClassIdentifier: 
-  SpellName: Detection Mine
-  SpellType: 0
-  SpellGroups: 1500000018000000
-  BaseDescription: 
+  m_SpellName: Spawn Detection Mine
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: a97d86e35b1d4b244bbf998f51663011, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 8d31785fcff65ff4790366a17b456040, type: 2}
@@ -46,8 +46,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
     DisplayType: 0
-    Range: 5
-  OriginSelection: 2
+    Range: 0
+  m_OriginSelection: 0

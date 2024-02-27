@@ -25,9 +25,9 @@ namespace KarpysDev.Script.Spell
         public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
         {
             m_TriggerData = (TriggerSpellDataScriptable)m_Data;
-            m_BaseCooldown = TriggerData.m_BaseCooldown;
+            m_BaseCooldown = TriggerData.BaseCooldown;
             m_SpellLearnType = spellInfo.m_SpellLearnType;
-            SpellTrigger = TriggerData.m_SpellTrigger.SetUpTrigger();
+            SpellTrigger = TriggerData.SpellTrigger.SetUpTrigger();
             SpellTrigger.SetAttachedSpell(this,spellInfo.m_SpellPriority);
             SpellTrigger.ComputeSpellData(AttachedEntity);
             m_IsBuffToggle = TriggerData.SpellGroups.Contains(SpellGroup.BuffToggle);
@@ -41,10 +41,10 @@ namespace KarpysDev.Script.Spell
 
         public ZoneSelection GetMainSelection()
         {
-            if (TriggerData.m_Selection.Length == 0)
+            if (TriggerData.Selection.Length == 0)
                 return null;
         
-            return TriggerData.m_Selection[TriggerData.MainSelection];
+            return TriggerData.Selection[TriggerData.MainSelection];
         }
         
         public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool mainCast = true,float efficiency = 1,bool freeCast = false)

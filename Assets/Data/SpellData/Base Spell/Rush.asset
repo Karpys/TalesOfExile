@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: Rush
   m_EditorClassIdentifier: 
-  SpellName: Rush
-  SpellType: 0
-  SpellGroups: 0000000002000000
-  BaseDescription: Deal &0.
+  m_SpellName: Rush
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 178043513e6696541b993c61f952b1a5, type: 2}
@@ -38,12 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 5
-  - SelectionId: 1
-    Type: 1
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

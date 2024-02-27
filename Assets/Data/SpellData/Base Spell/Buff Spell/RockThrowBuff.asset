@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: RockThrowBuff
   m_EditorClassIdentifier: 
-  SpellName: Rock Grow Buff
-  SpellType: 2
-  SpellGroups: 660000001a000000
-  BaseDescription: Apply a buff where whenever you deal rock damage, deal &0 additional
-    physical damage. The buff last for &1 turn.
+  m_SpellName: Rock Throw Buff
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 5c6a2344c7c7e41879fcd06a53ffe506, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 0fc271a9e46a51f49a5053d274b4cdec, type: 2}
@@ -31,8 +30,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: 1
-    Range: 6
-  OriginSelection: 0
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
+    Range: 0
+  m_OriginSelection: 0

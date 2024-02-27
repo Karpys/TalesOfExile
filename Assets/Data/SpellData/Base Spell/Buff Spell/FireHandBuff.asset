@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: FireHandBuff
   m_EditorClassIdentifier: 
-  SpellName: Fire Hand Buff
-  SpellType: 2
-  SpellGroups: 650000001800000016000000
-  BaseDescription: 
+  m_SpellName: Fire Hand Buff
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: f81341cdfa41e491d98b24e2c1e1cd62, type: 2}
@@ -30,8 +30,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

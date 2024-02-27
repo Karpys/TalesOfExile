@@ -119,9 +119,9 @@ namespace KarpysDev.Script.Spell
             List<List<Vector2Int>> tilesActions = new List<List<Vector2Int>>();
             List<Vector2Int> originTiles = new List<Vector2Int>();
 
-            for (int i = 0; i < spellData.TriggerData.m_Selection.Length; i++)
+            for (int i = 0; i < spellData.TriggerData.Selection.Length; i++)
             {
-                ZoneSelection currentSelection = spellData.TriggerData.m_Selection[i];
+                ZoneSelection currentSelection = spellData.TriggerData.Selection[i];
             
                 if (currentSelection.ActionSelection)
                 {  

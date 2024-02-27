@@ -78,7 +78,7 @@ namespace KarpysDev.Script.UI
 
                 if (m_CurrentHolder && m_CurrentHolder.PointerUp)
                 {
-                    m_SpellItemFade.Initialize(m_CurrentHolder.TriggerSpellData.TriggerData.m_SpellIcon);
+                    m_SpellItemFade.Initialize(m_CurrentHolder.TriggerSpellData.TriggerData.SpellIcon);
                     m_SelectedSpell = m_CurrentHolder.TriggerSpellData;
                 }
             }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: RegenerationBuff
   m_EditorClassIdentifier: 
-  SpellName: Regeneration Buff
-  SpellType: 2
-  SpellGroups: 66000000
-  BaseDescription: Heal &0 hp during &1 turn.
+  m_SpellName: Regeneration Buff
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 522e464b535d1b64984977dd94f5afe0, type: 2}
@@ -30,8 +30,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

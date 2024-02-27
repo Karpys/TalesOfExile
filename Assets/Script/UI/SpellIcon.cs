@@ -87,8 +87,8 @@ namespace KarpysDev.Script.UI
             
             m_CurrentSpellData = spell;
             EnableIcon(true);
-            m_SpellIcon.sprite = spell.TriggerData.m_SpellIcon;
-            m_SpellIconBorder.sprite = spell.TriggerData.m_SpellIconBorder;
+            m_SpellIcon.sprite = spell.TriggerData.SpellIcon;
+            m_SpellIconBorder.sprite = spell.TriggerData.SpellBorder;
             UpdateCooldownVisual();
         }
 

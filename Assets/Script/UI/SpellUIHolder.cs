@@ -19,7 +19,7 @@ namespace KarpysDev.Script.UI
 
             if (triggerSpellData != null)
             {
-                m_HolderVisual.sprite = m_CurrentSpellData.TriggerData.m_SpellIcon;
+                m_HolderVisual.sprite = m_CurrentSpellData.TriggerData.SpellIcon;
             }
         }
 

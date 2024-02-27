@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: LesserLeap
   m_EditorClassIdentifier: 
-  SpellName: Lesser Leap
-  SpellType: 0
-  SpellGroups: 
-  BaseDescription: 
+  m_SpellName: Lesser Leap
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: c5f9064b0e8664ea4a3b2e769c816504, type: 2}
@@ -38,10 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 15
-  SpellRestrictions:
-  - SelectionId: 1
-    Type: 0
-  AllowedCastZone:
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
     DisplayType: 0
-    Range: 2
-  OriginSelection: 2
+    Range: 0
+  m_OriginSelection: 0

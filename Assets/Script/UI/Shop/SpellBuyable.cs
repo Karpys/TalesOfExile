@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Spell
 
         public Sprite GetIcon()
         {
-            return m_TriggerSpellData.TriggerData.m_SpellIcon;
+            return m_TriggerSpellData.TriggerData.SpellIcon;
         }
 
         public void OnBuy()

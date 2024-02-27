@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: RockSlam
   m_EditorClassIdentifier: 
-  SpellName: Rock Slam
-  SpellType: 0
-  SpellGroups: 00000000020000001a000000
-  BaseDescription: Deal &0.
+  m_SpellName: Rock Slam
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: ce67ec4c5bea931408f2b0378d4ed0ae, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 267716562f50341da98f63d7b2cf385b, type: 2}
@@ -30,8 +30,8 @@ MonoBehaviour:
       TargetZoneValidation: -1
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions: []
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

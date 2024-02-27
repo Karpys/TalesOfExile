@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: MonkPalm
   m_EditorClassIdentifier: 
-  SpellName: Monk Palm
-  SpellType: 0
-  SpellGroups: 0000000002000000
-  BaseDescription: Push an enemy &1 tiles away, if he collides a wall or an entity
-    deal 120% of your weapon damage (&0) and the entity cannot act this turn.
+  m_SpellName: Monk Palm
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 7fa9f74d5f7fbf54c8ee31b81b5ffdc1, type: 2}
@@ -39,10 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 0
-    Type: 5
-  AllowedCastZone:
-    DisplayType: -1
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
+    DisplayType: 0
     Range: 0
-  OriginSelection: 0
+  m_OriginSelection: 0

@@ -6,12 +6,17 @@ namespace KarpysDev.Script.Spell
     public abstract class SpellDataScriptable : ScriptableObject
     {
         [Header("Base Spell Data")]
-        public string SpellName = String.Empty;
-        public SpellType SpellType = SpellType.Trigger;
-        public SpellGroup[] SpellGroups = Array.Empty<SpellGroup>();
+        [SerializeField] private string m_SpellName = String.Empty;
+        [SerializeField] private SpellType m_SpellType = SpellType.Trigger;
+        [SerializeField] private SpellGroup[] m_SpellGroups = Array.Empty<SpellGroup>();
         
         [Header("Spell Description (&0..&1) => place holder")]
-        public string BaseDescription = String.Empty;
+        [SerializeField] private string m_BaseDescription = String.Empty;
+
+        public SpellGroup[] SpellGroups => m_SpellGroups;
+        public SpellType SpellType => m_SpellType;
+        public string SpellName => m_SpellName;
+        public string BaseDescription => m_BaseDescription;
     }
 
     public enum SpellType

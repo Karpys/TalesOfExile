@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
   m_Name: Balista
   m_EditorClassIdentifier: 
-  SpellName: Spawn Balista
-  SpellType: 0
-  SpellGroups: 
-  BaseDescription: 
+  m_SpellName: Balista
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
   m_SpellIconBorder: {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   m_SpellIcon: {fileID: 21300000, guid: 32e25172680b58b44a9d3232adf7a63c, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 2e11d91c872de684fbba6c40276d8f6e, type: 2}
@@ -38,10 +38,8 @@ MonoBehaviour:
       TargetZoneValidation: 0
     ActionSelection: 1
   m_MainSelection: 0
-  SpellRestrictions:
-  - SelectionId: 1
-    Type: 0
-  AllowedCastZone:
+  m_SpellRestrictions: []
+  m_AllowedCastZone:
     DisplayType: 0
-    Range: 6
-  OriginSelection: 2
+    Range: 0
+  m_OriginSelection: 0
