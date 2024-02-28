@@ -4025,7 +4025,7 @@ MonoBehaviour:
   m_SkillTreeController: {fileID: 1364678918}
   m_EntityInputMovement: {fileID: 34784935}
   m_RemoveDelay: 0
-  m_FriendlyBaseWaitTime: 1
+  m_FriendlyBaseWaitTime: 0.1
   FriendlyWaitTime: 0
   EnnemiesWaitTime: 0
 --- !u!1 &2039850532
