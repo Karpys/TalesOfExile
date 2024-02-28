@@ -2254,7 +2254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: c1b1aed50719bf8448ce542f5191a6d6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 237
+      value: 237.79001
       objectReference: {fileID: 0}
     - target: {fileID: 3258355740059536918, guid: c1b1aed50719bf8448ce542f5191a6d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3482,14 +3482,17 @@ MonoBehaviour:
   m_RockThrowSpellInfo:
     m_SpellData: {fileID: 11400000, guid: 66eaf71018e5c6d47979db5ae1a50de8, type: 2}
     m_SpellPriority: 0
+    m_InitialSpellLevel: 0
     m_SpellLearnType: 0
   m_OnKillFlameSpellInfo:
     m_SpellData: {fileID: 11400000, guid: f8c5ba15b5fc6874595058b4adda5883, type: 2}
     m_SpellPriority: 0
+    m_InitialSpellLevel: 0
     m_SpellLearnType: 0
   m_HolyAttackSpellInfo:
     m_SpellData: {fileID: 11400000, guid: dea38528ca79dec4193c01beda1c520a, type: 2}
     m_SpellPriority: 0
+    m_InitialSpellLevel: 0
     m_SpellLearnType: 0
   m_DefaultBuffInfo:
     BuffVisual: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
@@ -4022,7 +4025,7 @@ MonoBehaviour:
   m_SkillTreeController: {fileID: 1364678918}
   m_EntityInputMovement: {fileID: 34784935}
   m_RemoveDelay: 0
-  m_FriendlyBaseWaitTime: 0.1
+  m_FriendlyBaseWaitTime: 1
   FriendlyWaitTime: 0
   EnnemiesWaitTime: 0
 --- !u!1 &2039850532

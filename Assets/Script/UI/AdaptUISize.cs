@@ -26,7 +26,6 @@ namespace KarpysDev.Script.UI
 
         private void OnValidate()
         {
-            Debug.Log("On Validate");
             UpdateSize();
         }
         public void UpdateSize()

@@ -15,6 +15,7 @@ namespace KarpysDev.Script.Spell
       [SerializeField] private bool m_TryAutoCast = false;
    
       private bool Validation = false;
+      private bool m_HasFailedAutocast = false;
    
       private List<List<Vector2Int>> m_DisplayTiles = new List<List<Vector2Int>>();
       private List<List<Vector2Int>> m_ActionTiles = new List<List<Vector2Int>>();
@@ -29,7 +30,8 @@ namespace KarpysDev.Script.Spell
       private List<Vector2Int> m_TilesSelection = new List<Vector2Int>();
       //Can Launch Check uses
       private List<Vector2Int> m_ValidationOriginTile =  new List<Vector2Int>();
-   
+
+      public bool IsInAutoCast => m_TryAutoCast && !m_HasFailedAutocast;
       public void LaunchSpellQueue(TriggerSpellData spell,SpellIcon attachedSpellIcon)
       {
          ResetSpellQueue();
@@ -70,34 +72,43 @@ namespace KarpysDev.Script.Spell
                m_TilesSelection = ZoneTileManager.GetSelectionZone(selection.Zone, m_OriginTile, selection.Zone.Range,m_CastOriginTile);
             
                //Highlight Tiles//
-               if (!m_TryAutoCast)
+               if (!IsInAutoCast)
                {
                   Color tilesColor = GetColor(selection);
                   bool isDynamicSelection = IsDynamic(selection);
                   HighlightTilesManager.Instance.HighlightTiles(m_TilesSelection,tilesColor,isDynamicSelection);
                }
             
-               if (!m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ValidationType.NeedValidation || m_TryAutoCast)
+               if (!m_CurrentSpell.TriggerData.Selection[m_CurrentSpellQueue].ValidationType.NeedValidation)
                {
                   if(IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
-                     ResetSpellQueue();  
+                     ResetSpellQueue();
                      return;
                   }
                   else
                   {
                      FetchSelection();
                   }
-               }else if (Validation)
+               }else if (Validation || IsInAutoCast)
                {
                   if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
+                     Debug.Log("Fetch selection");
                      FetchSelection();
                      Validation = false;
                   }
                   else
                   {
                      Validation = false;
+                     Debug.Log("Validation False");
+                     
+                     if (IsInAutoCast)
+                     {
+                        m_HasFailedAutocast = true;
+                        Debug.Log("Soft Reset");
+                        SoftReset();
+                     }
                   }
                }
             }
@@ -116,7 +127,7 @@ namespace KarpysDev.Script.Spell
             }
          }
       }
-
+      
       private void CastSpell()
       {
          if (GameManager.Instance.CanPlay)
@@ -201,6 +212,18 @@ namespace KarpysDev.Script.Spell
       {
          Validation = false;
          m_CurrentSpell = null;
+         m_CurrentSpellQueue = 0;
+         m_ActionTiles.Clear();
+         m_OriginTiles.Clear();
+         m_DisplayTiles.Clear();
+         m_ValidationOriginTile.Clear();
+         HighlightTilesManager.Instance.ResetHighlighTilesAndLock();
+         m_HasFailedAutocast = false;
+      }
+
+      private void SoftReset()
+      {
+         Validation = false;
          m_CurrentSpellQueue = 0;
          m_ActionTiles.Clear();
          m_OriginTiles.Clear();
