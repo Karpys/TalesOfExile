@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {
+    using KarpysUtils;
     using KarpysUtils.TweenCustom;
 
     public class FxRockGround : FxBurstAnimation

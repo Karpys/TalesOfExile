@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bf0659c88b43be9e331cd2af4ec12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BaseInventoryHolder: {fileID: 6289081129931475772, guid: 67d901254053f8543829a35d6331cdbf, type: 3}
+  m_BaseInventoryHolder: {fileID: 9048717485468836047, guid: 67d901254053f8543829a35d6331cdbf, type: 3}
   m_YJumpForce: 1
   m_YJumpDuration: 0.25
   m_XMovementDuration: 0.25
