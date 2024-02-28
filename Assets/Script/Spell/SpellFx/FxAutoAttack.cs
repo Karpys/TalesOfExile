@@ -19,12 +19,12 @@ namespace KarpysDev.Script.Spell.SpellFx
         public Transform TransformToMove { set => m_TransformToMove = value;}
         protected override void Animate()
         {
-            Vector3 targetPosition = (m_GoToPosition + m_InitialPos) / 2;
-            m_TransformToMove.DoMove(targetPosition, m_AnimDuration / 2).OnComplete(() =>
+            Vector3 targetPosition = (m_GoToPosition - m_InitialPos) / 2;
+            m_TransformToMove.DoLocalMove(targetPosition, m_AnimDuration / 2).OnComplete(() =>
             {
                 DisplayFx();
                 if(m_TransformToMove)
-                    m_TransformToMove.DoMove(m_InitialPos, m_AnimDuration / 2); 
+                    m_TransformToMove.DoLocalMove(Vector3.zero, m_AnimDuration / 2); 
             }).OnReferenceLose(DisplayFx);
         }
 
