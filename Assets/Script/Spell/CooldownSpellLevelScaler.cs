@@ -15,7 +15,7 @@ namespace KarpysDev.Script.Spell
         
         public void Apply(TriggerSpellData triggerSpellData)
         {
-            int cdReductionValue = (int) Mathf.LerpUnclamped(m_BaseData.CooldownReductionMinMax.x,m_BaseData.CooldownReductionMinMax.y,m_BaseData.ScaleCurve.Evaluate(triggerSpellData.LevelRatio));
+            int cdReductionValue = m_BaseData.Evaluate(triggerSpellData.LevelRatio);
             if (cdReductionValue != m_LastCooldownValueApplied)
             {
                 triggerSpellData.ChangeCooldownReduction(-m_LastCooldownValueApplied);

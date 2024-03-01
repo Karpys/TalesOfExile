@@ -54,3 +54,7 @@ MonoBehaviour:
       m_SpellPriority: 5
       m_InitialSpellLevel: 0
       m_SpellLearnType: 0
+    - m_SpellData: {fileID: 11400000, guid: b9ec57937e8089f4fa01ed93d1a3c4d9, type: 2}
+      m_SpellPriority: 5
+      m_InitialSpellLevel: 5
+      m_SpellLearnType: 0

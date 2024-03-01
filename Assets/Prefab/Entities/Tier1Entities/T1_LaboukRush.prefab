@@ -72,6 +72,24 @@ MonoBehaviour:
       m_SpellLockCount: 0
       m_MeleeLockCount: 0
     m_BaseSpellInfos: []
+--- !u!114 &1320227030608836335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481496948592758787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31fddb6c3c240999a48a75baf2d0161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DamageSource:
+    m_Damage: 25
+    m_DamageType: 0
+  m_WeaponTarget: 1
+  m_WeaponType: 0
+  m_BoardEntity: {fileID: -1552969435183735199}
 --- !u!114 &6341128736352721077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,24 +110,6 @@ MonoBehaviour:
     DrawCount: 1
     DrawChance: 12
   m_ItemPoolType: 2
---- !u!114 &1320227030608836335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2481496948592758787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31fddb6c3c240999a48a75baf2d0161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DamageSource:
-    Damage: 25
-    DamageType: 0
-  m_WeaponTarget: 1
-  m_WeaponType: 0
-  m_BoardEntity: {fileID: -1552969435183735199}
 --- !u!1 &6165430051826993969
 GameObject:
   m_ObjectHideFlags: 0

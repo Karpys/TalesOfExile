@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2072107463
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4813,7 +4813,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340844535513894891}
-  - component: {fileID: 2312158413251994410}
   m_Layer: 0
   m_Name: RegenerationBuff
   m_TagString: Untagged
@@ -4836,25 +4835,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2312158413251994410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725818344753659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1eeb2d5e20149b9bf266ca766513c32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VisualTransform: {fileID: 6227236463798049032}
-  m_BuffType: 1
-  m_BuffGroup: 1
-  m_BuffCooldown: 0
-  m_StackablePassive: 0
-  m_BuffInfo:
-    BuffVisual: {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
-    BuffName: Regeneration
-    BaseBuffDescription: Regen &0 additional Hp each turn
-  m_EnemyBuffIgnoreFirstCooldown: 0

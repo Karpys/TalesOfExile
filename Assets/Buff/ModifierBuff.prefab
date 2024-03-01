@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340844535513894891}
-  - component: {fileID: 6665203865748588912}
   m_Layer: 0
   m_Name: ModifierBuff
   m_TagString: Untagged
@@ -32,25 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6665203865748588912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725818344753659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337e7b7689fd4c56930a98d40d1f2e06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VisualTransform: {fileID: 1121712694064174732}
-  m_BuffType: 0
-  m_BuffGroup: 1
-  m_BuffCooldown: 0
-  m_BuffInfo:
-    BuffVisual: {fileID: 21300000, guid: d70475cb759d1324ab1e6cfd33a1be91, type: 3}
-  m_EnemyBuffIgnoreFirstCooldown: 1
 --- !u!1 &7929470540732908950
 GameObject:
   m_ObjectHideFlags: 0

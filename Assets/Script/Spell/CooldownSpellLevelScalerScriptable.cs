@@ -8,12 +8,15 @@ namespace KarpysDev.Script.Spell
         [SerializeField] private AnimationCurve m_ScaleCurve = null;
         [SerializeField] private Vector2Int m_CooldownReductionMinMax = Vector2Int.zero;
 
-        public AnimationCurve ScaleCurve => m_ScaleCurve;
-        public Vector2Int CooldownReductionMinMax => m_CooldownReductionMinMax;
 
         public override ILevelScaler GetBaseSpellLevelScaler()
         {
             return new CooldownSpellLevelScaler(this);
+        }
+
+        public int Evaluate(float ratio)
+        {
+            return (int)Mathf.LerpUnclamped(m_CooldownReductionMinMax.x,m_CooldownReductionMinMax.y,m_ScaleCurve.Evaluate(ratio));
         }
     }
 }

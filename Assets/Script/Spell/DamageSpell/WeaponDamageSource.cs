@@ -36,6 +36,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                             weaponDamageSource.DamageType = DamageType;
                         }
                         weaponDamageSource.Damage *= ConversionPercentage;
+                        weaponDamageSource.Damage += m_Damage;
                         source.Add(weaponDamageSource);
                     }
                     return;
@@ -46,6 +47,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                         mainHandDamageSource.DamageType = DamageType;
                     }
                     mainHandDamageSource.Damage *= ConversionPercentage;
+                    mainHandDamageSource.Damage += m_Damage;
                     source.Add(mainHandDamageSource);
                     return;
                 case WeaponTarget.OffWeapon:
@@ -55,6 +57,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
                         offHandDamageSource.DamageType = DamageType;
                     }
                     offHandDamageSource.Damage *= ConversionPercentage;
+                    offHandDamageSource.Damage += m_Damage;
                     source.Add(offHandDamageSource);
                     return;
                 default:

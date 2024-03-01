@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340844535513894891}
-  - component: {fileID: 6676662465223061898}
   m_Layer: 0
   m_Name: BurnDebuff
   m_TagString: Untagged
@@ -32,31 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6676662465223061898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725818344753659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9307cf306a57469c9061f483c0a51579, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VisualTransform: {fileID: 6544991054406067750}
-  m_BuffType: 102
-  m_BuffGroup: 2
-  m_BuffCooldown: 0
-  m_StackablePassive: 0
-  m_BuffInfo:
-    BuffVisual: {fileID: 21300000, guid: 99f05108c699d8d40b0a2c25fb08e837, type: 3}
-    BuffName: Burn Debuff
-    BaseBuffDescription: Inflict &0 fire damage each turn.
-  m_EnemyBuffIgnoreFirstCooldown: 0
-  m_BaseDamageType: 2
-  m_MainDamageType: 2
-  m_SubDamageType: 0200000001000000
 --- !u!1 &8845506095320913217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,7 +4808,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2072107463
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

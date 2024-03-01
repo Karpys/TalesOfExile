@@ -85,8 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DamageSource:
-    Damage: 15
-    DamageType: 0
+    m_Damage: 20
+    m_DamageType: 0
   m_WeaponTarget: 1
   m_WeaponType: 0
   m_BoardEntity: {fileID: -4592490546126341204}

@@ -4777,7 +4777,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2072107463
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4813,7 +4813,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1340844535513894891}
-  - component: {fileID: 7869612215995910445}
   m_Layer: 0
   m_Name: FireHandBuff
   m_TagString: Untagged
@@ -4836,27 +4835,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7869612215995910445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7725818344753659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3c1266789d4004ab8d3cafe6d261ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VisualTransform: {fileID: 6227236463798049032}
-  m_BuffType: 3
-  m_BuffGroup: 1
-  m_BuffCooldown: 0
-  m_StackablePassive: 0
-  m_BuffInfo:
-    BuffVisual: {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
-    BuffName: 
-    BaseBuffDescription: 
-  m_EnemyBuffIgnoreFirstCooldown: 1
-  m_BaseDamageType: 2
-  m_SubDamageType: 02000000

@@ -20,6 +20,9 @@ MonoBehaviour:
   m_SpellIcon: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
   m_SpellTrigger: {fileID: 11400000, guid: 7fa9f74d5f7fbf54c8ee31b81b5ffdc1, type: 2}
   m_BaseCooldown: 6
+  m_LevelScalerScriptables:
+  - {fileID: 11400000, guid: 1a55d6061a4634634b82fe438316186f, type: 2}
+  m_LevelMax: 10
   m_Selection:
   - Origin: 0
     Zone:

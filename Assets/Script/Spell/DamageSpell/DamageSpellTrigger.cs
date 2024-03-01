@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
 {
     using KarpysUtils;
 
-    public class DamageSpellTrigger : SelectionSpellTrigger
+    public class DamageSpellTrigger : SelectionSpellTrigger,IDamageProvider
     {
         protected List<DamageSource> m_BaseDamageSources = new List<DamageSource>();
         // protected DamageParameters m_DamageSpellParams = null;
@@ -23,6 +23,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
         public List<DamageSource> ComputedDamageSources => m_ComputedDamageSources;
 
         private bool m_DisplayDamage = false;
+        public List<DamageSource> DamageSources => m_BaseDamageSources;
         public DamageSpellTrigger(DamageSpellScriptable damageSpellData):base(damageSpellData)
         {
             if (damageSpellData.InitialBaseDamageDefaultSources == null)
@@ -73,7 +74,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             {
                 float damageModifier = bonusModifier;
                 damageModifier += entity.EntityStats.GetDamageModifier(source.DamageType);
-                source.Damage *= (damageModifier + 100) / 100;
+                source.PercentAmplifyBy(damageModifier);
             }
         }
 
