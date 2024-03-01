@@ -1,5 +1,6 @@
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using System;
     using System.Collections.Generic;
     using Entities;
     using Items;

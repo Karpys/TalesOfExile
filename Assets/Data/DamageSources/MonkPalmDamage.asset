@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MonkPalmDamage
   m_EditorClassIdentifier: 
   m_InitialWeaponDamage:
-    m_Damage: 20
+    m_Damage: 0
     m_DamageType: 0
     ConversionPercentage: 1
     WeaponTarget: 0

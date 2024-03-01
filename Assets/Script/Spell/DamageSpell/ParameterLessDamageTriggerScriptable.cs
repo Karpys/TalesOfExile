@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Spell.DamageSpell
 {
+    using KarpysUtils;
     using KarpysUtils.AutoFielder;
     using Object = UnityEngine.Object;
 

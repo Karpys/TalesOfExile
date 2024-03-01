@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponDamageSource
   m_EditorClassIdentifier: 
   m_InitialWeaponDamage:
-    Damage: 0
-    DamageType: -1
+    m_Damage: 0
+    m_DamageType: -1
     ConversionPercentage: 1
     WeaponTarget: 0

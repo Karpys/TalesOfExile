@@ -125,7 +125,7 @@ namespace KarpysDev.Script.Utils
                     continue;
                 }
             
-                Type classType = StringUtils.GetTypeViaClassName(objectData.Split()[0]);
+                Type classType = KarpysUtils.StringUtils.GetTypeViaClassName(objectData.Split()[0]);
                 object[] container = new object[1];
                 container[0] = objectData.Split();
                 saveObjects.Add((T)Activator.CreateInstance(classType,container));
