@@ -35,7 +35,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             //Todo: When level spell fetch change damage update this Dictionary//
         }
 
-        public override void SetAttachedSpell(SpellData spellData, int priority)
+        public override void SetAttachedSpell(TriggerSpellData spellData, int priority)
         {
             base.SetAttachedSpell(spellData, priority);
             m_DisplayDamage = m_AttachedSpell.AttachedEntity.EntityGroup != EntityGroup.Enemy;

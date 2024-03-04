@@ -61,6 +61,14 @@ namespace KarpysDev.Script.Spell.DamageSpell
                     offHandDamageSource.Damage += m_Damage;
                     source.Add(offHandDamageSource);
                     return;
+                case WeaponTarget.Unarmed:
+                    DamageSource unarmedSource = new DamageSource(entity.EntityStats.UnarmedDamage, SubDamageType.Physical);
+                    if (DamageType != SubDamageType.None)
+                    {
+                        unarmedSource.DamageType = DamageType;
+                    }
+                    source.Add(unarmedSource);
+                    return;
                 default:
                     return;
             }

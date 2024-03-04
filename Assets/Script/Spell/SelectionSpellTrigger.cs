@@ -65,7 +65,7 @@ namespace KarpysDev.Script.Spell
             return OnHitAnimation.TriggerFx(entityPosition,transform);
         }
         
-        protected virtual void CenterOriginFx(Vector2Int originPosition)
+        protected void CenterOriginFx(Vector2Int originPosition)
         {
             if (ShouldTriggerOriginAnimation)
             {

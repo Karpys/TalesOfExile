@@ -9,19 +9,19 @@ namespace KarpysDev.Script.Spell
         protected float m_SpellAnimDelay = 0;
         protected int m_SpellPriority = 0;
 
-        protected SpellData m_AttachedSpell = null;
+        protected TriggerSpellData m_AttachedSpell = null;
         protected float m_SpellEfficiency = 1;
         
         public Action<CastInfo> OnCastSpell = null;
         
         public int SpellPriority => GetSpellPriority();
-        public SpellData SpellData => m_AttachedSpell;
+        public TriggerSpellData SpellData => m_AttachedSpell;
         protected virtual int GetSpellPriority()
         {
             return m_SpellPriority;
         }
     
-        public virtual void SetAttachedSpell(SpellData spellData,int priority)
+        public virtual void SetAttachedSpell(TriggerSpellData spellData,int priority)
         {
             m_SpellPriority = priority;
             m_AttachedSpell = spellData;

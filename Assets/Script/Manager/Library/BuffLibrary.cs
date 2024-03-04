@@ -47,6 +47,8 @@ namespace KarpysDev.Script.Manager.Library
                     return new DotDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,SubDamageType.Fire);
                 case BuffType.StunDebuff:
                     return new StunDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value);
+                case BuffType.RootDebuff:
+                    return new RootDebuff(caster, receiver, BuffType.RootDebuff, buffGroup, duration, value);
                 default:
                     Debug.LogError("Return default buff");
                     return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, 0, 0);

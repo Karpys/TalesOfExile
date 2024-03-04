@@ -94,19 +94,16 @@ namespace KarpysDev.Script.Spell
                {
                   if (CanValidate(m_OriginTile) && !IsRestricted(m_OriginTile,m_CurrentSpellQueue))
                   {
-                     Debug.Log("Fetch selection");
                      FetchSelection();
                      Validation = false;
                   }
                   else
                   {
                      Validation = false;
-                     Debug.Log("Validation False");
                      
                      if (IsInAutoCast)
                      {
                         m_HasFailedAutocast = true;
-                        Debug.Log("Soft Reset");
                         SoftReset();
                      }
                   }

@@ -78,6 +78,17 @@ namespace KarpysDev.Script.Spell
             return TriggerData.Selection[TriggerData.MainSelection];
         }
         
+        public int GetFirstActionSelectionSize()
+        {
+            foreach (ZoneSelection zoneSelection in TriggerData.Selection)
+            {
+                if (zoneSelection.ActionSelection)
+                    return zoneSelection.Zone.Range;
+            }
+
+            return 1;
+        }
+        
         public void Cast(TriggerSpellData spellData, SpellTiles spellTiles,bool mainCast = true,float efficiency = 1,bool freeCast = false)
         {
             SpellTrigger.CastSpell(spellData,spellTiles,mainCast,efficiency);

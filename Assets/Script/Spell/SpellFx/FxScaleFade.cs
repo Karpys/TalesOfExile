@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Spell.SpellFx
         [SerializeField] private SpriteRenderer m_Renderer = null;
         [SerializeField] private float m_FadeDuration = 0.2f;
         [SerializeField] private Ease m_Ease = Ease.LINEAR;
-        [SerializeField] private BaseTweenData m_TweenData;
+        [SerializeField] protected BaseTweenData m_TweenData;
         protected override void Animate()
         {
             transform.DoScale(m_TweenData).OnComplete(() =>

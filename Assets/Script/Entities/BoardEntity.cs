@@ -30,6 +30,7 @@ namespace KarpysDev.Script.Entities
         //From Damage to move speed to base life ?//
         [Header("Damage Stats")]
         [SerializeField] private float m_WeaponForce = 20f;
+        [SerializeField] private float m_UnarmedDamage = 20f;
 
         [Header("Weapon Damage Stats")] 
         private List<IWeapon> m_WeaponItems = new List<IWeapon>();
@@ -67,6 +68,7 @@ namespace KarpysDev.Script.Entities
         public IWeapon MainHandWeapon => m_MainHandWeapon;
         public IWeapon OffHandWeapon => m_OffHandWeapon;
         public List<IWeapon> WeaponItems => m_WeaponItems;
+        public float UnarmedDamage => m_UnarmedDamage;
 
         #endregion
         public EntityStats(EntityStats stats)
@@ -82,6 +84,7 @@ namespace KarpysDev.Script.Entities
             m_DamageTypeModifier = new SubDamageTypeGroup(stats.DamageTypeModifier);
             m_DamageTypeReduction = new SubDamageTypeGroup(stats.DamageTypeReduction);
             m_IsBowUser = stats.IsBowUser;
+            m_UnarmedDamage = stats.UnarmedDamage;
         }
 
         public void SetEntity(BoardEntity entity)

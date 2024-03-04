@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca3fdf594d947869713a63953c0ff32, type: 3}
+  m_Name: DivinePalm
+  m_EditorClassIdentifier: 
+  m_SpellName: Divine Palm
+  m_SpellType: 0
+  m_SpellGroups: 
+  m_BaseDescription: 
+  m_SpellIconBorder: {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
+  m_SpellIcon: {fileID: 21300000, guid: 3cbb5c5b0e5e6a443be2cdbdcc84267a, type: 3}
+  m_SpellTrigger: {fileID: 11400000, guid: 181b7aef8dce9e745829483152637d28, type: 2}
+  m_BaseCooldown: 0
+  m_LevelScalerScriptables: []
+  m_LevelMax: 10
+  m_Selection:
+  - Origin: 0
+    Zone:
+      DisplayType: 0
+      Range: 4
+    ValidationType:
+      NeedValidation: 0
+      TargetZoneValidation: 0
+    ActionSelection: 0
+  - Origin: 1
+    Zone:
+      DisplayType: 1
+      Range: 2
+    ValidationType:
+      NeedValidation: 1
+      TargetZoneValidation: 0
+    ActionSelection: 1
+  m_MainSelection: 0
+  m_SpellRestrictions:
+  - SelectionId: 0
+    Type: 4
+  m_AllowedCastZone:
+    DisplayType: 0
+    Range: 4
+  m_OriginSelection: 0

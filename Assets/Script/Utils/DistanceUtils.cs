@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.Spell;
@@ -63,6 +64,12 @@ namespace KarpysDev.Script.Utils
             }
 
             return contactEntity;
+        }
+
+        public static int ToGameSize(this int selectionSize)
+        {
+            int newSize = 1 + (selectionSize * 2);
+            return newSize;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         SilenceDebuff = 101,
         BurnDotDebuff = 102,
         StunDebuff = 103,
+        RootDebuff = 104,
         //Mark / Misc// 201 +//
         SkeletonCurse = 201,
     }
