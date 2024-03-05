@@ -13,17 +13,19 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         protected BuffGroup m_BuffGroup = BuffGroup.Buff;
         protected int m_BuffDuration = 0;
         protected float m_BuffValue = 0;
+        private VisualEffectType m_VisualEffectType = VisualEffectType.None;
 
         private Buff m_CurrentToggleBuff = null;
 
         public Buff CurrentToggleBuff => m_CurrentToggleBuff;
-        public BuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable,BuffGroup buffGroup,BuffType buffType,BuffCooldown buffCooldown,int buffDuration,float buffValue) : base(baseScriptable)
+        public BuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable,BuffGroup buffGroup,BuffType buffType,BuffCooldown buffCooldown,int buffDuration,float buffValue,VisualEffectType visualEffectType) : base(baseScriptable)
         {
             m_BuffGroup = buffGroup;
             m_BuffCooldown = buffCooldown;
             m_BuffType = buffType;
             m_BuffDuration = buffDuration;
             m_BuffValue = buffValue;
+            m_VisualEffectType = visualEffectType;
         }
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
@@ -54,13 +56,14 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 
         private void GiveBuff(BoardEntity caster,BoardEntity receiver)
         {
+            Buff buffToAdd = BuffToAdd(caster, receiver);
             if (m_BuffCooldown == BuffCooldown.Toggle)
             {
-                m_CurrentToggleBuff = receiver.Buffs.AddToggle(BuffToAdd(caster, receiver));
+                m_CurrentToggleBuff = receiver.Buffs.AddToggle(buffToAdd);
             }
             else
             {
-                receiver.Buffs.AddBuff(BuffToAdd(caster,receiver));
+                receiver.Buffs.AddBuff(buffToAdd,m_VisualEffectType);
             }
         }
 

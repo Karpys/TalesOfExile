@@ -512,6 +512,7 @@ Transform:
   - {fileID: 1081259847}
   - {fileID: 809050817}
   - {fileID: 574708887}
+  - {fileID: 1133514240}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2172,6 +2173,60 @@ MonoBehaviour:
       Object: {fileID: 8774724744677853576, guid: 7a0c3a191330fbe4e8ad9d66d866f702, type: 3}
     - Key: 2
       Object: {fileID: 1254923122045616436, guid: 3827912a04a834533bf0c83c027889a7, type: 3}
+    m_ClearOnInit: 1
+--- !u!1 &1133514239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133514240}
+  - component: {fileID: 1133514241}
+  m_Layer: 0
+  m_Name: VisualEffectLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133514240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133514239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 313424675}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133514241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133514239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a932f062224a66819731f9ad25b4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_VisualEffectLibrary:
+    m_Keys:
+    - Key: 0
+      Object: {fileID: 1340844535513894891, guid: 2c815f381a0ac9c46abd1cd2680d1441, type: 3}
+    - Key: 1
+      Object: {fileID: 1340844535513894891, guid: 00cbfb186c5355a4094f91e6486d1318, type: 3}
+    - Key: 2
+      Object: {fileID: 1340844535513894891, guid: d01880b815492174583ab9a582db0e1d, type: 3}
+    - Key: 3
+      Object: {fileID: 1340844535513894891, guid: 3fc525be3987f0e4d9d34fae86e0ae72, type: 3}
     m_ClearOnInit: 1
 --- !u!1001 &1134172561
 PrefabInstance:

@@ -37,5 +37,9 @@ MonoBehaviour:
     - m_FieldType: 1
       m_Value: 25
       m_AssemblyQualifiedName: 
+    - m_FieldType: 3
+      m_Value: RegenerationLeaf
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.VisualEffectType,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_ConstructorId: 0
     m_IgnoreParams: 1

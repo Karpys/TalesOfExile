@@ -83,9 +83,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
             ((DamageSpellTrigger)m_TriggerSpellData.SpellTrigger).SetInitialDamageSource(m_BuffValue);
         }
 
-        public override void AddPassiveValue(float value)
+        public override void AddBuffValue(float value)
         {
-            base.AddPassiveValue(value);
+            base.AddBuffValue(value);
             m_Receiver.ComputeAllSpells();
         }
     }

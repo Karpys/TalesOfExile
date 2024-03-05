@@ -3,11 +3,12 @@ using KarpysDev.Script.Entities.BuffRelated;
 namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     using Entities;
+    using Manager.Library;
 
     public class SkeletonCurseBuffGiverTrigger : BuffGiverTrigger
     {
         private int m_SkeletonSpawnCount = 0;
-        public SkeletonCurseBuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown,int buffDuration, float skeletonLifeTurn,int skeletonSpawnCount) : base(baseScriptable, buffGroup, buffType,buffCooldown, buffDuration, skeletonLifeTurn)
+        public SkeletonCurseBuffGiverTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown,int buffDuration, float skeletonLifeTurn,VisualEffectType visualEffectType,int skeletonSpawnCount) : base(baseScriptable, buffGroup, buffType,buffCooldown, buffDuration,skeletonLifeTurn,visualEffectType)
         {
             m_SkeletonSpawnCount = skeletonSpawnCount;
         }

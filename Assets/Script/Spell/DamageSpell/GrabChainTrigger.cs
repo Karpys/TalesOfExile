@@ -42,7 +42,7 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
             
             base.EntityHit(entity, spellData, origin, castInfo);
-            entity.Buffs.AddBuff(new StunDebuff(m_AttachedSpell.AttachedEntity, entity, BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,1));
+            entity.Buffs.AddBuff(new StunDebuff(m_AttachedSpell.AttachedEntity, entity, BuffType.StunDebuff,BuffGroup.Debuff,m_StunDuration,1),VisualEffectType.StunStars);
         }
 
         private Transform m_EntityHit = null;

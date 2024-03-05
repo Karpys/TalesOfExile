@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
+    using Object = UnityEngine.Object;
+
     public abstract class Buff
     {
         protected BuffType m_BuffType = BuffType.None;
@@ -14,6 +16,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
 
         protected bool m_EnemyBuffIgnoreFirstCooldown = false;
+        private Transform m_VisualEffect = null;
 
         protected BoardEntity m_Caster = null;
         protected BoardEntity m_Receiver = null;
@@ -60,6 +63,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_BuffGroup = buffGroup;
         }
 
+        public void AttachVisual(Transform visual)
+        {
+            visual.parent = m_Receiver.VisualTransform;
+            visual.transform.localPosition = Vector3.zero;
+            m_VisualEffect = visual;
+        }
+        
         public abstract void Apply();
         protected abstract void UnApply();
 
@@ -84,6 +94,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         public void RemoveBuff()
         {
+            if (m_VisualEffect != null)
+            {
+                Object.Destroy(m_VisualEffect.gameObject);
+            }
+            
             m_Receiver.Buffs.RemoveBuff(this);
             UnApply();
         }
@@ -98,13 +113,13 @@ namespace KarpysDev.Script.Entities.BuffRelated
             return m_BuffValue == 0;
         }
         
-        public virtual void AddPassiveValue(float value)
+        public virtual void AddBuffValue(float value)
         {
             m_BuffValue += value;
             OnPassiveValueChanged();
         }
         
-        public virtual void ReducePassiveValue(float value)
+        public virtual void ReduceBuffValue(float value)
         {
             m_BuffValue -= value;
 

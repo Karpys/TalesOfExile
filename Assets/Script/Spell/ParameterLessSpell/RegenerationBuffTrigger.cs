@@ -6,8 +6,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     public class RegenerationBuffTrigger : BuffGiverTrigger
     {
-
-        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue) : base(baseScriptable, buffGroup,buffType, buffCooldown, buffDuration, buffValue)
+        public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue,VisualEffectType visualEffectType) : base(baseScriptable, buffGroup,buffType, buffCooldown, buffDuration, buffValue,visualEffectType)
         {
         }
         protected override int GetSpellPriority()
@@ -18,7 +17,5 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         
             return 0;
         }
-
-        
     }
 }

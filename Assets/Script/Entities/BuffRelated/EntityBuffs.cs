@@ -24,7 +24,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         }
 
         private BuffCategory[] m_TempCategories = new BuffCategory[1];
-        public void AddBuff(Buff buff)
+        public void AddBuff(Buff buff,VisualEffectType visualEffectType = VisualEffectType.None)
         {
             m_Buffs.Add(buff);
 
@@ -36,6 +36,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
                 OnAddBuff?.Invoke(buff);
                 buff.Receiver.EntityEvent.OnBuffReceived?.Invoke(buff);
                 buff.Apply();
+
+                if (visualEffectType != VisualEffectType.None)
+                    buff.AttachVisual(VisualEffectLibrary.Instance.GetVisualEffect(visualEffectType));
             }
         }
         
@@ -62,7 +65,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             
             if (passive != null)
             {
-                passive.AddPassiveValue(value);
+                passive.AddBuffValue(value);
                 added = true;
                 return;
             }
@@ -110,7 +113,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             {
                 if (m_Passive[i].PassiveBuffType == passiveBuffType)
                 {
-                    m_Passive[i].ReducePassiveValue(buffValue);
+                    m_Passive[i].ReduceBuffValue(buffValue);
                     return;
                 }
             }
