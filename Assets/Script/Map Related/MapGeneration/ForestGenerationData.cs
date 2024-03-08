@@ -117,7 +117,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             {
                 bool reachable = false;
             
-                List<Tile> neighours = TileHelper.GetNeighbours(tiles[i], NeighbourType.Cross, m_MapData);
+                List<Tile> neighours = TileHelper.GetNeighboursTile(tiles[i], NeighbourType.Cross, m_MapData);
             
                 foreach(Tile neighbour in neighours)
                 {

@@ -2,6 +2,7 @@
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.PathFinding;
+using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
 using UnityEngine;
 
@@ -80,8 +81,11 @@ namespace KarpysDev.Script.Spell
 
                     if (target == null)
                         return true;
-                
-                    List<Tile> neighbours = TileHelper.GetNeighbours(MapData.Instance.Map.Tiles[targetPosition.x, targetPosition.y],NeighbourType.Square, MapData.Instance);
+
+                    if (!MapData.Instance.Map.InMapBounds(targetPosition))
+                        return true;
+
+                    List<Tile> neighbours = TileHelper.GetNeighboursTile(MapData.Instance.Map.Tiles[targetPosition.x, targetPosition.y],NeighbourType.Square, MapData.Instance);
                 
                     foreach (Tile neighbour in neighbours)
                     {
@@ -91,6 +95,10 @@ namespace KarpysDev.Script.Spell
                     return true;
                 case SpellRestrictionType.IsBowUser:
                     return spellData.AttachedEntity.EntityStats.IsBowUser == 0;
+                case SpellRestrictionType.ClosestOfOriginFreeOrAlreadyOnClosest:
+                    if (DistanceUtils.GetSquareDistance(targetPosition, spellData.AttachedEntity.EntityPosition) == 1)
+                        return false;
+                    return !TileHelper.IsClosestAroundWalkable(targetPosition,spellData.AttachedEntity.WorldPosition);
                 default:
                     Debug.LogError("Spell Restriction type has not been set up");
                     return false;

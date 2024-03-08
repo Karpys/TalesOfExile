@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.PathFinding;
 using KarpysDev.Script.PathFinding.LinePath;
@@ -17,28 +18,56 @@ namespace KarpysDev.Script.Widget
             new Vector2Int(0, -1),
             new Vector2Int(-1, 0),
         };
+        
+        private static Vector2Int[] SquareCheck = new Vector2Int[]
+        {
+            new Vector2Int(0, 1),
+            new Vector2Int(1, 0),
+            new Vector2Int(0, -1),
+            new Vector2Int(-1, 0),
+            new Vector2Int(-1, -1),
+            new Vector2Int(-1, 1),
+            new Vector2Int(1, 1),
+            new Vector2Int(1, -1),
+        };
+
     
-        public static Vector2Int 
-            GetOppositePosition(Vector2Int pivotPos, Vector2Int oppositeBasePos)
+        public static Vector2Int GetOppositePosition(Vector2Int pivotPos, Vector2Int oppositeBasePos)
         {
             Vector2Int pivoToOppo = new Vector2Int(oppositeBasePos.x - pivotPos.x, oppositeBasePos.y - pivotPos.y);
             return pivotPos - pivoToOppo;
         }
     
-        public static List<Tile> GetNeighbours(Tile tile,NeighbourType type,MapData mapData)
+        public static List<Tile> GetNeighboursTile(Tile tile,NeighbourType type,MapData mapData)
         {
             List<Tile> neighbours = new List<Tile>();
 
             if (type == NeighbourType.Square)
             {
-                GetSquareNeighbours(tile,neighbours,mapData);
+                GetSquareNeighboursTile(tile,neighbours,mapData);
             }else if (type == NeighbourType.Cross)
             {
-                GetCrossNeighbours(tile,neighbours,mapData);
+                GetCrossNeighboursTile(tile,neighbours,mapData);
             }
         
             return neighbours;
         }
+        
+        public static List<Vector2Int> GetMapNeighbours(Vector2Int originPosition,NeighbourType type,MapData mapData)
+        {
+            List<Vector2Int> neighbours = new List<Vector2Int>();
+
+            if (type == NeighbourType.Square)
+            {
+                GetMapSquareNeighbours(originPosition,neighbours,mapData);
+            }else if (type == NeighbourType.Cross)
+            {
+                GetMapCrossNeighbours(originPosition,neighbours,mapData);
+            }
+        
+            return neighbours;
+        }
+        
     
         public static List<Tile> GetNeighboursWalkable(Tile tile,NeighbourType type,MapData mapData)
         {
@@ -46,10 +75,10 @@ namespace KarpysDev.Script.Widget
 
             if (type == NeighbourType.Square)
             {
-                GetSquareNeighbours(tile,neighbours,mapData);
+                GetSquareNeighboursTile(tile,neighbours,mapData);
             }else if (type == NeighbourType.Cross)
             {
-                GetCrossNeighbours(tile,neighbours,mapData);
+                GetCrossNeighboursTile(tile,neighbours,mapData);
             }
 
             neighbours = neighbours.Where(n => n.Walkable).ToList();
@@ -59,7 +88,7 @@ namespace KarpysDev.Script.Widget
 
         public static Tile GetFreeClosestAround(Tile aroundTile,Vector3 entityWorldPosition)
         {
-            List<Tile> neighbours = GetNeighbours(aroundTile,NeighbourType.Square, MapData.Instance);
+            List<Tile> neighbours = GetNeighboursTile(aroundTile,NeighbourType.Square, MapData.Instance);
 
             for (int i = neighbours.Count - 1; i >= 0; i--)
             {
@@ -92,50 +121,77 @@ namespace KarpysDev.Script.Widget
 
             return closest;
         }
-
-        private static void GetCrossNeighbours(Tile tile, List<Tile> neighbours,MapData mapData)
+        
+        public static bool IsClosestAroundWalkable(Vector2Int position,Vector3 entityWorldPosition)
         {
-            for (int x = -1; x <= 1; x++)
-            {
-                if(x == 0)
-                    continue;
+            List<Vector2Int> neighbours = GetMapNeighbours(position,NeighbourType.Square, MapData.Instance);
             
-                int checkX = tile.XPos + x;
-                if (checkX >= 0 && checkX < mapData.Map.Width)
+            Vector2Int closest = neighbours[0];
+            float minDistance = Vector3.Distance(MapData.Instance.GetTilePosition(closest),
+                entityWorldPosition);
+        
+            for(int i = 1; i < neighbours.Count; i++)
+            {
+                float distance = Vector3.Distance(MapData.Instance.GetTilePosition(neighbours[i]),entityWorldPosition);
+
+                if (distance < minDistance)
                 {
-                    neighbours.Add(mapData.Map.Tiles[checkX,tile.YPos]);
+                    minDistance = distance;
+                    closest = neighbours[i];
                 }
             }
-        
-            for (int y = -1; y <= 1; y++)
+
+            return MapData.Instance.IsWalkable(closest);
+        }
+
+        private static void GetCrossNeighboursTile(Tile tile, List<Tile> neighbours,MapData mapData)
+        {
+            foreach (Vector2Int position in DirectionalCheck)
             {
-                if(y == 0)
-                    continue;
-            
-                int checkY = tile.YPos + y;
-                if (checkY >= 0 && checkY < mapData.Map.Height)
+                Vector2Int check = new Vector2Int(position.x + tile.XPos, position.y + tile.YPos);
+
+                if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
                 {
-                    neighbours.Add(mapData.Map.Tiles[tile.XPos,checkY]);
+                    neighbours.Add(mapData.Map.Tiles[check.x,check.y]);
                 }
             }
         }
 
-        private static void GetSquareNeighbours(Tile tile, List<Tile> neighbours,MapData mapData)
+        private static void GetSquareNeighboursTile(Tile tile, List<Tile> neighbours,MapData mapData)
         {
-            for (int x = -1; x <= 1; x++)
+            foreach (Vector2Int position in SquareCheck)
             {
-                for (int y = -1; y <= 1; y++)
+                Vector2Int check = new Vector2Int(position.x + tile.XPos, position.y + tile.YPos);
+
+                if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
                 {
-                    if(x == 0 && y == 0)
-                        continue;
+                    neighbours.Add(mapData.Map.Tiles[check.x,check.y]);
+                }
+            }
+        }
+        
+        private static void GetMapCrossNeighbours(Vector2Int originPosition, List<Vector2Int> neighbours,MapData mapData)
+        {
+            foreach (Vector2Int position in DirectionalCheck)
+            {
+                Vector2Int check = new Vector2Int(position.x + originPosition.x, position.y + originPosition.y);
 
-                    int checkX = tile.XPos + x;
-                    int checkY = tile.YPos + y;
+                if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
+                {
+                    neighbours.Add(check);
+                }
+            }
+        }
+        
+        private static void GetMapSquareNeighbours(Vector2Int originPosition, List<Vector2Int> neighbours,MapData mapData)
+        {
+            foreach (Vector2Int position in SquareCheck)
+            {
+                Vector2Int check = new Vector2Int(position.x + originPosition.x, position.y + originPosition.y);
 
-                    if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
-                    {
-                        neighbours.Add(mapData.Map.Tiles[checkX,checkY]); 
-                    }
+                if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
+                {
+                    neighbours.Add(check);
                 }
             }
         }

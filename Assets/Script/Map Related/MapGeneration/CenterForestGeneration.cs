@@ -49,7 +49,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             List<Vector2Int> playerPortalPath = LinePath.GetPathTile(m_StartPos, randomPos, NeighbourType.Cross);
 
 
-            List<Tile> tiles = TileHelper.GetNeighbours(MapData.Instance.GetTile(randomPos), NeighbourType.Square, MapData.Instance);
+            List<Tile> tiles = TileHelper.GetNeighboursTile(MapData.Instance.GetTile(randomPos), NeighbourType.Square, MapData.Instance);
 
             foreach (Tile tile in tiles)
             {

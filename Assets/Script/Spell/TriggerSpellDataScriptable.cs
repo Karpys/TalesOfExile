@@ -62,6 +62,7 @@ namespace KarpysDev.Script.Spell
         CanLaunchSpell,
         CanUseMeleeSpell,
         OriginOnEntityCursed,
+        ClosestOfOriginFreeOrAlreadyOnClosest,
         //CanMove,
     }
 

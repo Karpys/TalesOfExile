@@ -315,6 +315,11 @@ namespace KarpysDev.Script.Entities
             m_TargetMap.Map.EntitiesTile[m_XPosition,m_YPosition] = null;
             m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
         }
+
+        public void SimulateMovement()
+        {
+            Movement();
+        }
         protected virtual void Movement()
         {
             transform.position = m_TargetMap.GetTilePosition(m_XPosition, m_YPosition);
