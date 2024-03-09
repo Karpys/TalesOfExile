@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: fa3b6f5cc7b269549bf74283eeb79354, type: 3}
+    - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
+    - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
+    - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
+    totalSpriteSurfaceArea: 266557
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9b7862307abbff6488c78e7dae2d0f21, type: 3}
+  - {fileID: 21300000, guid: 34775b40e051ce0429e3b50a79a00bbc, type: 3}
+  - {fileID: 21300000, guid: 232f5b408eb291d40afad0117ad8f8d5, type: 3}
+  - {fileID: 21300000, guid: 54c1605022ea23242b060f03507a6461, type: 3}
+  - {fileID: 21300000, guid: a1aa7580f493a0d4880af6fa4d8f2359, type: 3}
+  - {fileID: 21300000, guid: 974b7e0184b5b174f84298ec10a57437, type: 3}
+  - {fileID: 21300000, guid: 6a797c11c7999b8498539f4bfe53f660, type: 3}
+  - {fileID: 21300000, guid: 3818f2a100d371e4d88f55321374d4f8, type: 3}
+  - {fileID: 21300000, guid: 8049d4d10e29f8b4483ad9e21727723f, type: 3}
+  - {fileID: 21300000, guid: 59249812e4ecd114d8b10d0cad13a5c2, type: 3}
+  - {fileID: 21300000, guid: aa8f986207d989c4aa56d3c1b8f39e68, type: 3}
+  - {fileID: 21300000, guid: cc90ad62fa9e5a4428d29f71cf9f5620, type: 3}
+  - {fileID: 21300000, guid: f2cc9372024a71a498c432e7e7c413a4, type: 3}
+  - {fileID: 21300000, guid: 164cd0d2ffc923e4a897487c9549eac8, type: 3}
+  - {fileID: 21300000, guid: 18af7913c3bfbc240aec4074c1c26a02, type: 3}
+  - {fileID: 21300000, guid: 71b09d6372871bb4b9e7a3bc36952ada, type: 3}
+  - {fileID: 21300000, guid: 94056f63c48484c3dbce39eb9ad0daff, type: 3}
+  - {fileID: 21300000, guid: a97d86e35b1d4b244bbf998f51663011, type: 3}
+  - {fileID: 21300000, guid: ea8c6f0423899764da26e74263f11e2d, type: 3}
+  - {fileID: 21300000, guid: 6c2afb3415fde234888de8658de2011a, type: 3}
+  - {fileID: 21300000, guid: 5c6a2344c7c7e41879fcd06a53ffe506, type: 3}
+  - {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  - {fileID: 21300000, guid: 76df4d9460af24d578027a7da7b2d14c, type: 3}
+  - {fileID: 21300000, guid: a5c485c434d3b1549a828cd02d4a5e3f, type: 3}
+  - {fileID: 21300000, guid: 0ff2113555acbd347a906056da6b43a0, type: 3}
+  - {fileID: 21300000, guid: 1ce7cd455d1a44944ac529d4f12f41f2, type: 3}
+  - {fileID: 21300000, guid: 018b18a5f26590c4c834cca50e3d7a61, type: 3}
+  - {fileID: 21300000, guid: dbf01aa5d893e5947a2b7894f6e7868e, type: 3}
+  - {fileID: 21300000, guid: fbf51bf550310d7459aedc738e5efdd9, type: 3}
+  - {fileID: 21300000, guid: ced333460f7a94adc8edc62522a56036, type: 3}
+  - {fileID: 21300000, guid: f80f0e66960381047804130ce0027878, type: 3}
+  - {fileID: 21300000, guid: d1f16fc6c5438824e98b0dee436438e4, type: 3}
+  - {fileID: 21300000, guid: 7199e227d180b3046a1cb5740eae2679, type: 3}
+  - {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
+  - {fileID: 21300000, guid: ad29a157f6033e745ad3ad10ca54ae9e, type: 3}
+  - {fileID: 21300000, guid: fe502567565ab0b489499f19a4516ec6, type: 3}
+  - {fileID: 21300000, guid: d218d3b73ef23ae4ebf5b49caf90bc4b, type: 3}
+  - {fileID: 21300000, guid: 767fc4b70b0f9b94a9f8711ae9ecf164, type: 3}
+  - {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
+  - {fileID: 21300000, guid: 99f05108c699d8d40b0a2c25fb08e837, type: 3}
+  - {fileID: 21300000, guid: 8729e038aed74f14e85714d8ca54becf, type: 3}
+  - {fileID: 21300000, guid: 23269968c58e0374dafd199a5f30c519, type: 3}
+  - {fileID: 21300000, guid: d4f7bd688975c4045959a84418200256, type: 3}
+  - {fileID: 21300000, guid: 047905c8e0475d3488f560edf65ca449, type: 3}
+  - {fileID: 21300000, guid: ae20f2f80bd376049a1df3c06541fc81, type: 3}
+  - {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
+  - {fileID: 21300000, guid: 7dca3739760493c42b34c395ee710a55, type: 3}
+  - {fileID: 21300000, guid: 6dbce669734acd245a062cc5a0807892, type: 3}
+  - {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
+  - {fileID: 21300000, guid: b3dd01d97b7d28d4fb6e74648dda1401, type: 3}
+  - {fileID: 21300000, guid: c8cd381a7a977e0419ef0776287fb180, type: 3}
+  - {fileID: 21300000, guid: e97f364aac8e6ae41a601ed216ffb448, type: 3}
+  - {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
+  - {fileID: 21300000, guid: 1cdaf6aa36597044c98e6644e5c9001d, type: 3}
+  - {fileID: 21300000, guid: 01fe39aac503c5a4d9dd41aff0cec590, type: 3}
+  - {fileID: 21300000, guid: fad6f4ea5a0b47e4d8b74d4883284bfa, type: 3}
+  - {fileID: 21300000, guid: 9dcd17ea17f2c354aa9f06ee60479d05, type: 3}
+  - {fileID: 21300000, guid: 3cbb5c5b0e5e6a443be2cdbdcc84267a, type: 3}
+  - {fileID: 21300000, guid: a2f2779bd64e0634cac78caaa5af4813, type: 3}
+  - {fileID: 21300000, guid: d70475cb759d1324ab1e6cfd33a1be91, type: 3}
+  - {fileID: 21300000, guid: d7805cfb4885be04191b73aa7a0aa80e, type: 3}
+  - {fileID: 21300000, guid: ce67ec4c5bea931408f2b0378d4ed0ae, type: 3}
+  - {fileID: 21300000, guid: 6b6cc9cca4d5f504b84f0e5f2697bc20, type: 3}
+  - {fileID: 21300000, guid: 974855fcbab60dd468eaa02643186d43, type: 3}
+  - {fileID: 21300000, guid: ca5a6b0df52a51542a0c1695ee6ee723, type: 3}
+  - {fileID: 21300000, guid: 0463b71d1faaeb14fbc726c5ef2565b7, type: 3}
+  - {fileID: 21300000, guid: 2f2d9f3d4762b65448eb4d075fd46730, type: 3}
+  - {fileID: 21300000, guid: 389b615d7ecece64ca65cf180fcd5536, type: 3}
+  - {fileID: 21300000, guid: 43bc8ead5de531249b72ad61cacfa394, type: 3}
+  - {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
+  - {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}
+  - {fileID: 21300000, guid: f13c2bae6c1314b37ad809805dd000a6, type: 3}
+  - {fileID: 21300000, guid: a2f2920ff87e5284b9bccffd02762c85, type: 3}
+  - {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ArrowIcon
+  - SPR_Fx_GlacialHammer
+  - SPR_CurseCircle
+  - NotImplemented
+  - InvetoryBackground
+  - SPR_FX_Chain
+  - UiBorder
+  - SPR_EndLighning
+  - SPR_CurseCircleViolet
+  - UIBorderWhite
+  - EquipementSocketBorder
+  - SPR_InerCircle
+  - UiBorderBlank
+  - RectShape
+  - GoldIcon
+  - BootsShadow
+  - LifeFill
+  - LandMineIcon
+  - SpellKeyBackground
+  - NullSpellSelection
+  - SPR_Rock
+  - SPR_Fx_HammerHit
+  - WhiteBackground
+  - UICircle
+  - CapShadow
+  - UILowerCircle
+  - EquipementSocket
+  - CircleBackground
+  - SPR_EndLighningV2
+  - LifeBarBorder
+  - SPR_LandMine
+  - SwordDanceIcon
+  - Separation
+  - RegenerationIcon
+  - CircleSocket
+  - RectBackground
+  - SPR_StartIcon
+  - IceBlast
+  - SPR_Flame
+  - SPR_FlameV2
+  - UIArrow
+  - SpellBackground
+  - SPR_Meteor
+  - ClockIcon
+  - UIRect
+  - ExpSocket
+  - SPR_OuterCircle
+  - SPR_Arrow
+  - BlueBackground
+  - SPR_Sword
+  - SPR_RegenerationEffect
+  - Carreblanc
+  - SkeletonHeadCurse
+  - SwordShadow
+  - SPR_FX_Lighning
+  - RedBackground
+  - GloveShadow
+  - SPR_Palm
+  - GlacialHammer
+  - NotImplementedShadow
+  - UiBorderBlankWhite
+  - SPR_RockMultiple
+  - SPR_IceSplit
+  - SPR_IceParticle
+  - SPR_MultiSword
+  - CharacterUIBorder
+  - IceSplitIcon
+  - PetQuiPue
+  - LvlDisplayUI
+  - LifeSocket
+  - RushIcon
+  - SPR_FireExplosion
+  - CharacterPreviewUI
+  - GreenBackground
+  m_RenderDataMap: {}
+  m_Tag: UIAtlas
+  m_IsVariant: 0
