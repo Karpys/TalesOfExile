@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
     - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
     - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
-    totalSpriteSurfaceArea: 266557
+    totalSpriteSurfaceArea: 467967
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -85,6 +85,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ced333460f7a94adc8edc62522a56036, type: 3}
   - {fileID: 21300000, guid: f80f0e66960381047804130ce0027878, type: 3}
   - {fileID: 21300000, guid: d1f16fc6c5438824e98b0dee436438e4, type: 3}
+  - {fileID: 21300000, guid: cdc8ecd6143c62e4d957a05e0856a6f7, type: 3}
   - {fileID: 21300000, guid: 7199e227d180b3046a1cb5740eae2679, type: 3}
   - {fileID: 21300000, guid: 30b87137aade6d740bdf0a1eb79420e2, type: 3}
   - {fileID: 21300000, guid: ad29a157f6033e745ad3ad10ca54ae9e, type: 3}
@@ -160,6 +161,7 @@ SpriteAtlas:
   - LifeBarBorder
   - SPR_LandMine
   - SwordDanceIcon
+  - SPR_Impact
   - Separation
   - RegenerationIcon
   - CircleSocket
