@@ -33,6 +33,8 @@ namespace KarpysDev.Script.Widget
                     return new MissionManBehaviour();
                 case EntityIAType.VendingEntity:
                     return new VendingManBehaviour();
+                case EntityIAType.Dummy:
+                    return new DummyBehaviour();
                 default:
                     return new BaseEntityIA();
             }

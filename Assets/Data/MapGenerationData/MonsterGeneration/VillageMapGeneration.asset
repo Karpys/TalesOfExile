@@ -18,8 +18,16 @@ MonoBehaviour:
     IAType: 3
     EntityGroup: 0
     TargetGroup: 1
+    ShouldInheritQuestModifier: 0
   - EntityPrefab: {fileID: 8264974956200032469, guid: 1ded0616efc9bac4fa1837c61af591ce, type: 3}
     EntityPosition: {x: 22, y: 18}
     IAType: 4
     EntityGroup: 0
     TargetGroup: 1
+    ShouldInheritQuestModifier: 0
+  - EntityPrefab: {fileID: -4592490546126341204, guid: 33a4b691fbc8878499b50ff53a9e9072, type: 3}
+    EntityPosition: {x: 15, y: 12}
+    IAType: 5
+    EntityGroup: 1
+    TargetGroup: 0
+    ShouldInheritQuestModifier: 0
