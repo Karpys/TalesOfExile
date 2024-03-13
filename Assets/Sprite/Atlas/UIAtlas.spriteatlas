@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
     - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
     - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
-    totalSpriteSurfaceArea: 467967
+    totalSpriteSurfaceArea: 484351
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -101,6 +101,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ae20f2f80bd376049a1df3c06541fc81, type: 3}
   - {fileID: 21300000, guid: 80b9cd297b2ef8d46a0800b97cd2b15c, type: 3}
   - {fileID: 21300000, guid: 7dca3739760493c42b34c395ee710a55, type: 3}
+  - {fileID: 21300000, guid: e788d059bacbc9b498a712649ce28fdf, type: 3}
   - {fileID: 21300000, guid: 6dbce669734acd245a062cc5a0807892, type: 3}
   - {fileID: 21300000, guid: 2fe118996eb06544cb20f4adde3d547e, type: 3}
   - {fileID: 21300000, guid: b3dd01d97b7d28d4fb6e74648dda1401, type: 3}
@@ -177,6 +178,7 @@ SpriteAtlas:
   - UIRect
   - ExpSocket
   - SPR_OuterCircle
+  - SPR_Unarmed
   - SPR_Arrow
   - BlueBackground
   - SPR_Sword

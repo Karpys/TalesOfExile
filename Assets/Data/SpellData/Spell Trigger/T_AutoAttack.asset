@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T_AutoAttack
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
-  OnHitAnimation: {fileID: 3908413993525435510, guid: ca025f6319c2ed9438a23d33a681d2f9, type: 3}
+  OnHitAnimation: {fileID: 884655369063471991, guid: 30022f6b0d30c4845b9d4444fd630875, type: 3}
   CenterOriginAnimation: {fileID: 0}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: ee5e81fad029e489abd49cbd5e6aecd0, type: 2}
   m_TriggerClassName: AutoAttackTrigger
