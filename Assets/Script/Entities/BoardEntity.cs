@@ -423,13 +423,13 @@ namespace KarpysDev.Script.Entities
         }
         public void TakeDamage(float value)
         {
-            m_EntityLife.ChangeLifeValue(-value);
+            m_EntityLife.TakeDamage(value);
         }
         
         public void TakeDamage(float value,BoardEntity damageFrom)
         {
             m_LastGetHit = damageFrom;
-            m_EntityLife.ChangeLifeValue(-value);
+            m_EntityLife.TakeDamage(value);
         }
 
         public virtual void TriggerDeath()

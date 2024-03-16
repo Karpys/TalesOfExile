@@ -53,7 +53,7 @@ namespace KarpysDev.Script.Entities
             UpdateSpellPriority();
             
             Life.SetToMaxLife();
-            Life.A_OnLifeUpdated?.Invoke(Life.Life,Life.MaxLife);
+            // Life.LifeDisplayer.UpdateLifeDisplay();
         }
         protected override void RegisterStartSpells(SpellInfo[] spellInfos)
         {
