@@ -52,5 +52,6 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         BaseEntity = 2,
         MissionEntity = 3,
         VendingEntity = 4,
+        Dummy = 5,
     }
 }

@@ -9,6 +9,11 @@ namespace KarpysDev.Script.Spell.SpellFx
         [SerializeField] private float m_MoveDuration = 0.1f;
         [SerializeField] private SpriteRenderer m_Hit1 = null;
         [SerializeField] private SpriteRenderer m_Hit2 = null;
+        [SerializeField] private Vector2 m_RotRange = Vector2.zero;
+        [Header("Scale")] 
+        [SerializeField] private Vector3 m_ScaleOvershoot = Vector3.zero;
+        [SerializeField] private float m_ScaleDuration = 0f;
+        [SerializeField] private Ease m_ScaleEase = Ease.LINEAR;
         [Header("Display")]
         [SerializeField] private Ease m_EaseDisplay = Ease.LINEAR;
         [SerializeField] private float m_Delay = 0.1f;
@@ -44,6 +49,12 @@ namespace KarpysDev.Script.Spell.SpellFx
 
         private void DisplayHit(SpriteRenderer targetRenderer,float delay,bool destroy)
         {
+            Transform t = targetRenderer.transform;
+            
+            t.localScale = m_ScaleOvershoot;
+            t.eulerAngles = new Vector3(0, 0, Random.Range(m_RotRange.x, m_RotRange.y));
+            t.DoScale(Vector3.one * .65f, m_ScaleDuration).SetEase(m_ScaleEase).SetDelay(delay);
+            
             if (destroy)
             {
                 targetRenderer.DoColor(Color.white, m_HitDisplay).SetDelay(delay).SetEase(m_EaseDisplay).OnComplete(() =>

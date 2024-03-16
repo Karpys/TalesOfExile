@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288951481488561924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.195, y: 0.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.18, y: 0.09, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_Children: []
   m_Father: {fileID: 9140524552017338543}
   m_RootOrder: 1
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2072107463
   m_SortingLayer: 8
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_SortingOrder: -3
+  m_Sprite: {fileID: 21300000, guid: e788d059bacbc9b498a712649ce28fdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,8 +107,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120274718742154910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.207, y: -0.098, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.125, y: -0.157, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_Children: []
   m_Father: {fileID: 9140524552017338543}
   m_RootOrder: 0
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 2072107463
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 871d8064e8b2a7245b0e5e907af173bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e788d059bacbc9b498a712649ce28fdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -209,13 +209,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5913950d6a044114ad11f47b3f3f48e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AnimationLockTime: 0.2
+  m_AnimationLockTime: 0.1
   m_MoveDuration: 0.1
   m_Hit1: {fileID: 1119914872239381813}
   m_Hit2: {fileID: 254651636763302354}
+  m_RotRange: {x: -25, y: 25}
+  m_ScaleOvershoot: {x: 1.2, y: 1.2, z: 1.2}
+  m_ScaleDuration: 0.1
+  m_ScaleEase: 0
   m_EaseDisplay: 5
   m_Delay: 0.1
-  m_HitDisplay: 0.1
+  m_HitDisplay: 0.05
   m_FadeColor: {r: 1, g: 1, b: 1, a: 0}
-  m_FadeDuration: 0.1
-  m_FadeEase: 5
+  m_FadeDuration: 0.35
+  m_FadeEase: 0
