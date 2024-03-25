@@ -27,8 +27,8 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             m_Map.Height = m_Height;
             m_Map.Width = m_Width;
 
-            m_Map.Tiles = new Tile[m_Width,m_Height];
-        
+            m_Map.Tiles = Tile.Init(m_Width, m_Height);
+            
             return new GenerationMapInfo(m_SpawnPosition);
         }
 

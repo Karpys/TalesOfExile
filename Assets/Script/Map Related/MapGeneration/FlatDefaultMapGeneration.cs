@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             {
                 for (int y = 0; y < m_Height; y++)
                 {
-                    m_Map.Tiles[x, y] = new Tile(x,y);
+                    m_Map.Tiles[x][y] = new Tile(x,y);
                     m_Map.PlaceTileAt(m_BaseTile, x, y);
                     OnGenerateBaseTile(x,y);
                 }

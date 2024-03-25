@@ -18,7 +18,7 @@ namespace KarpysDev.Script.Map_Related
         public int MaxSize => m_Map.Height * m_Map.Width;
         public bool IsWalkable(int x, int y)
         {
-            if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x,y].Walkable)
+            if (x >= 0 && x < m_Map.Width && y >= 0 && y < m_Map.Height && m_Map.Tiles[x][y].Walkable)
             {
                 return true;
             }
@@ -45,7 +45,7 @@ namespace KarpysDev.Script.Map_Related
             if (!Map.InMapBounds(pos))
                 return null;
         
-            return Map.Tiles[pos.x, pos.y];
+            return Map.Tiles[pos.x][pos.y];
         }
 
         public Vector2Int GetControlledEntityPosition()
@@ -58,7 +58,7 @@ namespace KarpysDev.Script.Map_Related
             if (!m_Map.InMapBounds(entityPos))
                 return null;
             
-            BoardEntity entityAt = m_Map.EntitiesTile[entityPos.x,entityPos.y];
+            BoardEntity entityAt = m_Map.EntitiesTile[entityPos.x][entityPos.y];
             
             if (targetEntityGroup == EntityGroup.All || entityAt && entityAt.EntityGroup == targetEntityGroup)
                 return entityAt;

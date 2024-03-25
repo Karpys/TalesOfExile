@@ -50,14 +50,19 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             List<Tile> tiles = new List<Tile>();
 
-            foreach (Tile tile in m_MapData.Map.Tiles)
+            for (int x = 0; x < m_MapData.Map.Width; x++)
             {
-                if(tile.TilePosition.x >= m_SpawnPosition.x - m_BlockMonsterSpawn.x && tile.TilePosition.x <= m_SpawnPosition.x + m_BlockMonsterSpawn.x
-                   && tile.TilePosition.y >= m_SpawnPosition.y - m_BlockMonsterSpawn.y && tile.TilePosition.y <= m_SpawnPosition.y + m_BlockMonsterSpawn.y)
-                    continue;
+                for (int y = 0; y < m_MapData.Map.Height; y++)
+                {
+                    Tile tile = m_MapData.Map.Tiles[x][y];
+                    
+                    if(tile.TilePosition.x >= m_SpawnPosition.x - m_BlockMonsterSpawn.x && tile.TilePosition.x <= m_SpawnPosition.x + m_BlockMonsterSpawn.x
+                       && tile.TilePosition.y >= m_SpawnPosition.y - m_BlockMonsterSpawn.y && tile.TilePosition.y <= m_SpawnPosition.y + m_BlockMonsterSpawn.y)
+                        continue;
             
-                if(tile.Walkable)
-                    tiles.Add(tile);
+                    if(tile.Walkable)
+                        tiles.Add(tile);
+                }
             }
 
             m_MonsterGeneration.Generate(tiles);

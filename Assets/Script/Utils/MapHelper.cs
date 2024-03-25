@@ -20,12 +20,18 @@ namespace KarpysDev.Script.Utils
 
         public static void InsertMapInsideMap(Map originalMap, Map insertMap, Vector2Int insertOriginPosition)
         {
-            foreach (Tile mapTile in insertMap.Tiles)
+            
+            for (int x = 0; x < insertMap.Width; x++)
             {
-                if(!mapTile.WorldTile)
-                    continue;
+                for (int y = 0; y < insertMap.Height; y++)
+                {
+                    Tile tile = insertMap.Tiles[x][y];
+                    
+                    if(!tile.WorldTile)
+                        continue;
 
-                originalMap.TryInsertWorldTileAt(mapTile.WorldTile, mapTile.TilePosition + insertOriginPosition);
+                    originalMap.TryInsertWorldTileAt(tile.WorldTile, tile.TilePosition + insertOriginPosition);
+                }
             }
         }
 

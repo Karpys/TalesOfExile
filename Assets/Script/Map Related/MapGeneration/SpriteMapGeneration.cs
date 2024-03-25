@@ -57,7 +57,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             {
                 for (int y = 0; y < m_Height; y++)
                 {
-                    m_Map.Tiles[x, y] = new Tile(x,y);
+                    m_Map.Tiles[x][y] = new Tile(x,y);
                     Color tileColor = tex.GetPixel(x, y);
                     WorldTile tile = null;
 
@@ -91,10 +91,14 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             List<Tile> tiles = new List<Tile>();
             
-            foreach (Tile tile in m_MapData.Map.Tiles)
+            for (int x = 0; x < m_MapData.Map.Width; x++)
             {
-                if(tile.Walkable)
-                    tiles.Add(tile);
+                for (int y = 0; y < m_MapData.Map.Height; y++)
+                {
+                    Tile tile = m_MapData.Map.Tiles[x][y];
+                    if(tile.Walkable)
+                        tiles.Add(tile);
+                }
             }
 
             return tiles;

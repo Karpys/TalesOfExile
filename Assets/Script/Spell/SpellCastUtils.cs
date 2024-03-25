@@ -85,7 +85,7 @@ namespace KarpysDev.Script.Spell
                     if (!MapData.Instance.Map.InMapBounds(targetPosition))
                         return true;
 
-                    List<Tile> neighbours = TileHelper.GetNeighboursTile(MapData.Instance.Map.Tiles[targetPosition.x, targetPosition.y],NeighbourType.Square, MapData.Instance);
+                    List<Tile> neighbours = TileHelper.GetNeighboursTile(MapData.Instance.Map.Tiles[targetPosition.x][targetPosition.y],NeighbourType.Square, MapData.Instance);
                 
                     foreach (Tile neighbour in neighbours)
                     {

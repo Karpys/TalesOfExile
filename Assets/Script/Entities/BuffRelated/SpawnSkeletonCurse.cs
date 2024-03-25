@@ -29,7 +29,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private void SpawnSkeleton()
         {
-            List<Tile> freeTile = TileHelper.GetNeighboursWalkable(MapData.Instance.Map.Tiles[m_Receiver.EntityPosition.x, m_Receiver.EntityPosition.y], NeighbourType.Square, MapData.Instance);
+            List<Tile> freeTile = TileHelper.GetNeighboursWalkable(MapData.Instance.Map.Tiles[m_Receiver.EntityPosition.x][m_Receiver.EntityPosition.y], NeighbourType.Square, MapData.Instance);
             freeTile.Add(MapData.Instance.GetTile(m_Receiver.EntityPosition));
 
             for (int i = 0; i < m_SkeletonCount; i++)

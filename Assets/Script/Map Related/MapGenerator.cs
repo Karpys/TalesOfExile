@@ -81,11 +81,14 @@ namespace KarpysDev.Script.Map_Related
                 entity[min].ForceDeath();
             }
 
-            foreach (Tile tile in m_MapData.Map.Tiles)
+            for (int x = 0; x < m_MapData.Map.Width; x++)
             {
-                Destroy(tile.WorldTile.gameObject);
+                for (int y = 0; y < m_MapData.Map.Height; y++)
+                {
+                    Destroy(m_MapData.Map.Tiles[x][y].WorldTile.gameObject);
+                }
             }
-            
+
             A_OnMapErased?.Invoke();
         }
 

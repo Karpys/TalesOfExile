@@ -9,32 +9,34 @@ namespace KarpysDev.Script.Map_Related
     {
         public int Height = 0;
         public int Width = 0;
-        public Tile[,] Tiles = null;
-        public BoardEntity[,] EntitiesTile = null;
+        public Tile[][] Tiles = null;
+        public BoardEntity[][] EntitiesTile = null;
     
         public Map(int width, int height)
         {
             Height = height;
             Width = width;
-            Tiles = new Tile[Width,Height];
-            EntitiesTile = new BoardEntity[Width, Height];
-        
+            Tiles = Tile.Init(width, height);
+            EntitiesTile = new BoardEntity[Width][];
+
             for (int x = 0; x < Width; x++)
             {
+                EntitiesTile[x] = new BoardEntity[height];
+
                 for (int y = 0; y < Height; y++)
                 {
-                    Tiles[x, y] = new Tile(x,y);
+                    Tiles[x][y] = new Tile(x,y);
                 }
             }
         }
     
         public WorldTile PlaceTileAt(WorldTile tilePrefab, int x, int y)
         {
-            if(Tiles[x,y].WorldTile)
-                GameObject.Destroy(Tiles[x,y].WorldTile.gameObject);
+            if(Tiles[x][y].WorldTile)
+                GameObject.Destroy(Tiles[x][y].WorldTile.gameObject);
         
             WorldTile worldTile = GameObject.Instantiate(tilePrefab, MapData.Instance.GetTilePosition(x, y), Quaternion.identity, MapData.Instance.transform);
-            worldTile.SetTile(Tiles[x,y]);
+            worldTile.SetTile(Tiles[x][y]);
             return worldTile;
         }
 
@@ -53,10 +55,10 @@ namespace KarpysDev.Script.Map_Related
     
         private WorldTile InsertWorldTileAt(WorldTile worldTile, int x,int y)
         {
-            if(Tiles[x,y].WorldTile)
-                GameObject.Destroy(Tiles[x,y].WorldTile.gameObject);
+            if(Tiles[x][y].WorldTile)
+                GameObject.Destroy(Tiles[x][y].WorldTile.gameObject);
 
-            worldTile.SetTile(Tiles[x,y]);
+            worldTile.SetTile(Tiles[x][y]);
             worldTile.transform.position = MapData.Instance.GetTilePosition(x, y);
             return worldTile;
         }

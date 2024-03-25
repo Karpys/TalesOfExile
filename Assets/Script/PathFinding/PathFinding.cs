@@ -54,8 +54,8 @@ namespace KarpysDev.Script.PathFinding
         
         private static List<Tile> FindTilePath(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
-            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
+            Tile startTile = mapData.Map.Tiles[startPos.x][startPos.y];
+            Tile playerTile = mapData.Map.Tiles[endPos.x][endPos.y];
 
             Tile lastTile = FindLastTile(startPos, endPos,ignoreWall);
             
@@ -102,8 +102,8 @@ namespace KarpysDev.Script.PathFinding
         private static Tile FindLastTile(Vector2Int startPos, Vector2Int endPos,bool ignoreWall = false)
         {
             openSet.Clear();
-            Tile startTile = mapData.Map.Tiles[startPos.x, startPos.y];
-            Tile playerTile = mapData.Map.Tiles[endPos.x, endPos.y];
+            Tile startTile = mapData.Map.Tiles[startPos.x][startPos.y];
+            Tile playerTile = mapData.Map.Tiles[endPos.x][endPos.y];
         
             int iterationCount = 0;
 
@@ -234,7 +234,7 @@ namespace KarpysDev.Script.PathFinding
                 int checkX = tile.XPos + x;
                 if (checkX >= 0 && checkX < mapData.Map.Width)
                 {
-                    NeightboursTiles[id] = mapData.Map.Tiles[checkX, tile.YPos];
+                    NeightboursTiles[id] = mapData.Map.Tiles[checkX][tile.YPos];
                     id++;
                 }
             }
@@ -247,7 +247,7 @@ namespace KarpysDev.Script.PathFinding
                 int checkY = tile.YPos + y;
                 if (checkY >= 0 && checkY < mapData.Map.Height)
                 {
-                    NeightboursTiles[id] = mapData.Map.Tiles[tile.XPos, checkY];
+                    NeightboursTiles[id] = mapData.Map.Tiles[tile.XPos][checkY];
                     id++;
                 }
             }
@@ -270,7 +270,7 @@ namespace KarpysDev.Script.PathFinding
 
                     if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
                     {
-                        NeightboursTiles[id] = mapData.Map.Tiles[checkX, checkY];
+                        NeightboursTiles[id] = mapData.Map.Tiles[checkX][checkY];
                         id++;
                     }
                 }
