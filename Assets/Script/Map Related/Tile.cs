@@ -59,5 +59,17 @@ namespace KarpysDev.Script.Map_Related
 
             return -compare;
         }
+
+        public static Tile[][] Init(int width,int height)
+        {
+            Tile[][] tiles = new Tile[width][];
+
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                tiles[i] = new Tile[height];
+            }
+
+            return tiles;
+        }
     }
 }

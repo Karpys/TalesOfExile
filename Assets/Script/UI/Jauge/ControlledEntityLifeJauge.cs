@@ -1,40 +1,84 @@
-﻿using KarpysDev.Script.Entities;
-using KarpysDev.Script.Manager;
-using TMPro;
-using UnityEngine;
-
-namespace KarpysDev.Script.UI.Jauge
+﻿namespace KarpysDev.Script.UI.Jauge
 {
-    public class ControlledEntityLifeJauge : BaseJauge
+    using UnityEngine.UI;
+    using Entities;
+    using Manager;
+    using TMPro;
+    using UnityEngine;
+
+    public class ControlledEntityLifeJauge : MonoBehaviour,ILifeDisplayer
     {
+        [SerializeField] private Image m_LifeJauge = null;
         [SerializeField] private TMP_Text m_LifeText = null;
-        private BoardEntity m_CurrentEntity = null;
+        [SerializeField] private Image m_ShieldJauge = null;
+        [SerializeField] private Transform m_ShieldContainer = null;
+        [SerializeField] private TMP_Text m_ShieldText = null;
+        
+        private BoardEntityLife m_EntityLife = null;
+        public BoardEntityLife EntityLife => m_EntityLife;
+
         private void Awake()
         {
             GameManager.Instance.A_OnControlledEntityChange += SetLifeListenerToNewEntity;
         }
 
-        private void OnDestroy()
+        private void UpdateFill(float currentLife, float maxLife,Image targetJauge)
         {
-            if(m_CurrentEntity)
-                m_CurrentEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
+            targetJauge.fillAmount = currentLife / maxLife;
         }
-
+        
         private void SetLifeListenerToNewEntity(BoardEntity oldEntity,BoardEntity newEntity)
         {
-            if(oldEntity)
-                oldEntity.Life.A_OnLifeUpdated -= UpdateJaugeFillValue;
+            if (oldEntity)
+            {
+                oldEntity.Life.DefaultDisplay();
+            }
             
-            m_CurrentEntity = newEntity;
-            m_CurrentEntity.Life.A_OnLifeUpdated += UpdateJaugeFillValue;
-            
-            UpdateJaugeFillValue(m_CurrentEntity.Life.Life,m_CurrentEntity.Life.MaxLife);
+            m_EntityLife = newEntity.Life;
+            newEntity.Life.SetLifeDisplayer(this);
+            UpdateLifeDisplay();
         }
 
-        protected override void UpdateJaugeFillValue(float currentValue, float maxValue)
+        private void UpdateLifeFill(float currentLife, float maxLife)
         {
-            base.UpdateJaugeFillValue(currentValue, maxValue);
-            m_LifeText.text = currentValue.ToString("0") + " / " + maxValue.ToString("0");
+            UpdateFill(currentLife,maxLife,m_LifeJauge);
+            m_LifeText.text = currentLife.ToString("0") + " / " + maxLife.ToString("0");
+        }
+        
+        private void UpdateShieldFill(float currentShield, float maxShield)
+        {
+            UpdateFill(currentShield,maxShield,m_ShieldJauge);
+            m_ShieldText.text = currentShield.ToString("0") + " / " + maxShield.ToString("0");
+        }
+
+        public void EnableDisplay()
+        {
+            return;
+        }
+
+        public void DisableDisplay()
+        {
+            return;
+        }
+
+        public void UpdateLifeDisplay()
+        {
+            UpdateLifeFill(m_EntityLife.Life,m_EntityLife.MaxLife);
+        }
+
+        public void UpdateShieldDisplay()
+        {
+            UpdateShieldFill(m_EntityLife.CurrentShield,m_EntityLife.MaxShield);
+        }
+
+        public void EnableShieldDisplay()
+        {
+            m_ShieldContainer.gameObject.SetActive(true);
+        }
+
+        public void HideShieldDisplay()
+        {
+            m_ShieldContainer.gameObject.SetActive(false);
         }
     }
 }

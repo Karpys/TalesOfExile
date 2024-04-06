@@ -47,7 +47,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             List<Tile> roadTiles = new List<Tile>();
             List<SpriteRenderer> roadRenderers = new List<SpriteRenderer>();
 
-            Tile lastTile = m_Map.Tiles[x, y];
+            Tile lastTile = m_Map.Tiles[x][y];
             roadTiles.Add(lastTile);
             roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
         
@@ -77,12 +77,12 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 path = new List<Vector2Int>();
                 path.Add(new Vector2Int(lastTile.XPos,lastTile.YPos));
                 PathFinding.PathFinding.maxIteration = 1000;
-                path.AddRange(PathFinding.PathFinding.FindPath(lastTile.TilePosition, m_Map.Tiles[x,y].TilePosition,NeighbourType.Cross));
+                path.AddRange(PathFinding.PathFinding.FindPath(lastTile.TilePosition, m_Map.Tiles[x][y].TilePosition,NeighbourType.Cross));
                 PathFinding.PathFinding.maxIteration = PathFinding.PathFinding.BASE_MAX_ITERATION_COUNT;
         
                 for (int j = 0; j < path.Count; j++)
                 {
-                    lastTile = m_Map.Tiles[path[j].x,path[j].y];
+                    lastTile = m_Map.Tiles[path[j].x][path[j].y];
                     roadTiles.Add(lastTile);
                     roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
                 }
@@ -97,15 +97,20 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         {
             List<Tile> tiles = new List<Tile>();
 
-            foreach (Tile tile in m_MapData.Map.Tiles)
+            for (int x = 0; x < m_MapData.Map.Width; x++)
             {
-                if(tile.XPos < 9)
-                    continue;
+                for (int y = 0; y < m_MapData.Map.Height; y++)
+                {
+                    Tile tile = m_MapData.Map.Tiles[x][y];
+                    
+                    if(tile.XPos < 9)
+                        continue;
             
-                if(tile.Walkable)
-                    tiles.Add(tile);
+                    if(tile.Walkable)
+                        tiles.Add(tile);
+                }
             }
-
+            
             m_MonsterGeneration.Generate(tiles);
         }
 

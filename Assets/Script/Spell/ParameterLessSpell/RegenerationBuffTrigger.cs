@@ -9,6 +9,12 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         public RegenerationBuffTrigger(BaseSpellTriggerScriptable baseScriptable, BuffGroup buffGroup,BuffType buffType, BuffCooldown buffCooldown, int buffDuration, float buffValue,VisualEffectType visualEffectType) : base(baseScriptable, buffGroup,buffType, buffCooldown, buffDuration, buffValue,visualEffectType)
         {
         }
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
+        {
+            spellData.AttachedEntity.Life.AddShield(50);
+        }
+
         protected override int GetSpellPriority()
         {
             BoardEntity entity = m_AttachedSpell.AttachedEntity;

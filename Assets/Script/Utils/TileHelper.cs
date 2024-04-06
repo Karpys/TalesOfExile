@@ -152,7 +152,7 @@ namespace KarpysDev.Script.Widget
 
                 if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
                 {
-                    neighbours.Add(mapData.Map.Tiles[check.x,check.y]);
+                    neighbours.Add(mapData.Map.Tiles[check.x][check.y]);
                 }
             }
         }
@@ -165,7 +165,7 @@ namespace KarpysDev.Script.Widget
 
                 if (check.x >= 0 && check.x < mapData.Map.Width && check.y >= 0 && check.y < mapData.Map.Height)
                 {
-                    neighbours.Add(mapData.Map.Tiles[check.x,check.y]);
+                    neighbours.Add(mapData.Map.Tiles[check.x][check.y]);
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace KarpysDev.Script.Widget
             
                 if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
                 {
-                    if (tiles.Contains(mapData.Map.Tiles[checkX, checkY]))
+                    if (tiles.Contains(mapData.Map.Tiles[checkX][checkY]))
                     {
                         bitMask += "1";
                         continue;

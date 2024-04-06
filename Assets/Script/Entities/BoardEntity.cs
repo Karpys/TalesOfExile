@@ -283,8 +283,8 @@ namespace KarpysDev.Script.Entities
 
         public virtual void MoveTo(int x, int y, bool movement = true)
         {
-            m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
-            m_TargetMap.Map.EntitiesTile[m_XPosition, m_YPosition] = null;
+            m_TargetMap.Map.Tiles[m_XPosition][m_YPosition].Walkable = true;
+            m_TargetMap.Map.EntitiesTile[m_XPosition][m_YPosition] = null;
             m_XPosition = x;
             m_YPosition = y;
             OnNewPosition(EntityPosition);
@@ -295,8 +295,8 @@ namespace KarpysDev.Script.Entities
 
         protected virtual void OnNewPosition(Vector2Int position)
         {
-            m_TargetMap.Map.Tiles[position.x,position.y].Walkable = false;
-            m_TargetMap.Map.EntitiesTile[position.x, position.y] = this;
+            m_TargetMap.Map.Tiles[position.x][position.y].Walkable = false;
+            m_TargetMap.Map.EntitiesTile[position.x][position.y] = this;
         }
     
         public void MoveTo(Vector2Int pos,bool movement = true)
@@ -312,8 +312,8 @@ namespace KarpysDev.Script.Entities
     
         protected virtual void RemoveFromBoard()
         {
-            m_TargetMap.Map.EntitiesTile[m_XPosition,m_YPosition] = null;
-            m_TargetMap.Map.Tiles[m_XPosition, m_YPosition].Walkable = true;
+            m_TargetMap.Map.EntitiesTile[m_XPosition][m_YPosition] = null;
+            m_TargetMap.Map.Tiles[m_XPosition][m_YPosition].Walkable = true;
         }
 
         public void SimulateMovement()
@@ -423,13 +423,13 @@ namespace KarpysDev.Script.Entities
         }
         public void TakeDamage(float value)
         {
-            m_EntityLife.ChangeLifeValue(-value);
+            m_EntityLife.TakeDamage(value);
         }
         
         public void TakeDamage(float value,BoardEntity damageFrom)
         {
             m_LastGetHit = damageFrom;
-            m_EntityLife.ChangeLifeValue(-value);
+            m_EntityLife.TakeDamage(value);
         }
 
         public virtual void TriggerDeath()
