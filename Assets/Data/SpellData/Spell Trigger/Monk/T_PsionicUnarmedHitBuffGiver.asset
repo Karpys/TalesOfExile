@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 852c3f8fb48b4f71b0380feaf82975c4, type: 3}
+  m_Name: T_PsionicUnarmedHitBuffGiver
+  m_EditorClassIdentifier: 
+  OnTileHitAnimation: {fileID: 0}
+  OnHitAnimation: {fileID: 0}
+  CenterOriginAnimation: {fileID: 0}
+  m_TriggerClassName: PsionicBuffGiver
+  m_AdditionalParameters:
+    m_ClassName: PsionicBuffGiver
+    m_FieldValues:
+    - m_FieldType: 3
+      m_Value: Buff
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffGroup, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 3
+      m_Value: PsionicUnarmedHit
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffType, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 3
+      m_Value: Toggle
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffCooldown,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 0
+      m_Value: 1
+      m_AssemblyQualifiedName: 
+    - m_FieldType: 1
+      m_Value: 1
+      m_AssemblyQualifiedName: 
+    - m_FieldType: 3
+      m_Value: None
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.VisualEffectType,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 0
+      m_Value: 2
+      m_AssemblyQualifiedName: 
+    - m_FieldType: 3
+      m_Value: Circle
+      m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - m_FieldType: 0
+      m_Value: 5
+      m_AssemblyQualifiedName: 
+    m_ConstructorId: 0
+    m_IgnoreParams: 1
