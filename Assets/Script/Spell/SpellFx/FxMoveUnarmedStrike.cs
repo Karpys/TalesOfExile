@@ -1,11 +1,12 @@
+﻿using KarpysDev.KarpysUtils.TweenCustom;
+using KarpysDev.Script.Utils;
+using UnityEngine;
+
 namespace KarpysDev.Script.Spell.SpellFx
 {
-    using KarpysUtils.TweenCustom;
-    using UnityEngine;
-    using Utils;
-
-    public class FxUnarmedStrike : FxBurstAnimation
+    public class FxMoveUnarmedStrike : FxBurstAnimation,IYoYoTransform
     {
+        [SerializeField] private float m_MoveDuration = 0.1f;
         [SerializeField] private SpriteRenderer m_Hit1 = null;
         [SerializeField] private SpriteRenderer m_Hit2 = null;
         [SerializeField] private Vector2 m_RotRange = Vector2.zero;
@@ -22,9 +23,22 @@ namespace KarpysDev.Script.Spell.SpellFx
         [SerializeField] protected float m_FadeDuration = 0.2f;
         [SerializeField] private Ease m_FadeEase = Ease.LINEAR;
         
+        private Vector3 m_InitialPos = Vector3.zero;
+        private Vector3 m_GoToPosition = Vector3.zero;
+        private Transform m_TransformToMove = null;
+        
+        public Vector3 InitialPosition { set => m_InitialPos = value; }
+        public Vector3 GoToPosition { set => m_GoToPosition = value; }
+        public Transform TransformToMove { set => m_TransformToMove = value;}
         protected override void Animate()
         {
-            DisplayFx();
+            Vector3 targetPosition = (m_GoToPosition - m_InitialPos) / 2;
+            m_TransformToMove.DoLocalMove(targetPosition, m_MoveDuration / 2).OnComplete(() =>
+            {
+                DisplayFx();
+                if(m_TransformToMove)
+                    m_TransformToMove.DoLocalMove(Vector3.zero, m_MoveDuration / 2); 
+            }).OnReferenceLose(DisplayFx);
         }
 
         private void DisplayFx()

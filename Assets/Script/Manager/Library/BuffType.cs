@@ -11,6 +11,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         OnKillFlameBurst = 4,
         IcePrisonBuff = 5,
         HolyAttack = 6,
+        PsionicUnarmedHit = 7,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
         BurnDotDebuff = 102,

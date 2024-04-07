@@ -6,7 +6,8 @@
         AutoAttack = 0,
         RangeAttack = 1,
         Physical = 2,
-        
+        UnarmedHit = 3,
+
         //Elemental / Spell Group 21 -50//
         Spell = 21,
         Elemental = 22,
@@ -21,7 +22,6 @@
         Buff = 102,
         Curse = 103,
         Debuff = 104,
-        
     }
 
     public static class SpellGroupExtensions

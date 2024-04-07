@@ -65,6 +65,29 @@ namespace KarpysDev.Script.Utils
 
             return contactEntity;
         }
+        
+        public static List<Vector2Int> GetContactAround(Zone contactZone, List<BoardEntity> entities, Vector2Int originPosition, int maxContactCount,bool ignoreOrigin)
+        {
+            List<Vector2Int> contactEntity = new List<Vector2Int>();
+
+
+            foreach (BoardEntity entity in entities)
+            {
+                if (maxContactCount == 0)
+                    return contactEntity;
+                
+                if(ignoreOrigin && entity.EntityPosition == originPosition)
+                    continue;
+
+                if (ZoneTileManager.IsInRange(originPosition, entity.EntityPosition, contactZone))
+                {
+                    contactEntity.Add(entity.EntityPosition);
+                    maxContactCount--;
+                }
+            }
+           
+            return contactEntity;
+        }
 
         public static int ToGameSize(this int selectionSize)
         {

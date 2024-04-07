@@ -13,11 +13,13 @@ namespace KarpysDev.Script.Manager.Library
         [SerializeField] private SpellInfo m_RockThrowSpellInfo = null;
         [SerializeField] private SpellInfo m_OnKillFlameSpellInfo = null;
         [SerializeField] private SpellInfo m_HolyAttackSpellInfo = null;
+        [SerializeField] private SpellInfo m_UnarmedPsionicHitSpellInfo = null;
         [SerializeField] private BuffInfo m_DefaultBuffInfo = null;
         [SerializeField] private GenericLibrary<BuffType, BuffInfo> m_BuffInfoLibrary = null;
         public SpellInfo RockThrowSpellInfo => m_RockThrowSpellInfo;
         public SpellInfo OnKillFlameSpellInfo => m_OnKillFlameSpellInfo;
         public SpellInfo HolyAttackSpellInfo => m_HolyAttackSpellInfo;
+        public SpellInfo UnarmedPsionicHitSpellInfo => m_UnarmedPsionicHitSpellInfo;
 
         private void Awake()
         {

@@ -7,12 +7,9 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
-    using Manager.Library;
-
     public class RockThrowBuff : Buff
     {
-        [SerializeField] private SpellInfo m_SpellInfo = null;
-    
+        private SpellInfo m_SpellInfo = null;
         private TriggerSpellData m_TriggerSpellData = null;
         private List<Vector2Int> m_RockReceiver = new List<Vector2Int>();
     
@@ -58,7 +55,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
             for (int i = 0; i < m_RockReceiver.Count; i++)
             {
                 Vector2Int receiver = m_RockReceiver[i];
-            
                 SpellCastUtils.TriggerSpellAt(m_TriggerSpellData, receiver,m_Receiver.EntityPosition);
             }
 

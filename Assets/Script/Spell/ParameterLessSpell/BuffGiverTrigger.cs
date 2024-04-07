@@ -8,8 +8,8 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
 {
     public class BuffGiverTrigger : SelectionSpellTrigger
     {
-        private BuffType m_BuffType = BuffType.None;
-        private BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
+        protected BuffType m_BuffType = BuffType.None;
+        protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
         protected BuffGroup m_BuffGroup = BuffGroup.Buff;
         protected int m_BuffDuration = 0;
         protected float m_BuffValue = 0;
