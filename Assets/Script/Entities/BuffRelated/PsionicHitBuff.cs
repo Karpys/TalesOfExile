@@ -15,7 +15,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private TriggerSpellData m_TriggerSpellData = null;
         private List<Vector2Int> m_HitReceivers = new List<Vector2Int>();
         
-        public PsionicHitBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType, BuffGroup buffGroup, int cooldown, float buffValue,SpellInfo spellInfo,int hitCount,ZoneType zoneType,int range) : base(caster, receiver, buffType, buffGroup, cooldown, buffValue)
+        public PsionicHitBuff(BoardEntity caster, BoardEntity receiver, BuffType buffType, BuffGroup buffGroup, int cooldown, float buffValue, BuffCategory[] categories, bool ignoreFirstBehaveTurn
+            ,SpellInfo spellInfo,int hitCount,ZoneType zoneType,int range) : base(caster, receiver, buffType, buffGroup, cooldown, buffValue, categories,ignoreFirstBehaveTurn)
         {
             m_SpellInfo = spellInfo;
             m_Zone = new Zone(zoneType, range);

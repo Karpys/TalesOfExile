@@ -10,7 +10,6 @@ namespace KarpysDev.Script.Spell
     [CreateAssetMenu(fileName = "ParameterLessTrigger", menuName = "Trigger/ParameterLessTrigger", order = 0)]
     public class ParameterLessTrigger : BaseSpellTriggerScriptable,IFielder
     {
-        [SerializeField] private string m_TriggerClassName = string.Empty;
         [SerializeField] private Fielder m_AdditionalParameters = null;
 
         public Fielder Fielder => m_AdditionalParameters;
@@ -28,11 +27,11 @@ namespace KarpysDev.Script.Spell
             if(m_FieldValues == null)
                 GenerateFields();
             
-            string className = m_TriggerClassName;
+            string className = m_AdditionalParameters.ClassName;
             Type triggerClass = StringUtils.GetTypeViaClassName(className);
         
             if(triggerClass == null)
-                Debug.LogError("The class : " + m_TriggerClassName + " is not recognized");
+                Debug.LogError("The class : " + m_AdditionalParameters.ClassName + " is not recognized");
         
             object[] attributes = new object[m_FieldValues.Length + 1];
 

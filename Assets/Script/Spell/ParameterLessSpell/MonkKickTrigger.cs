@@ -25,7 +25,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
             if (!MapData.Instance.IsWalkable(oppositionPosition))
             {
                 entity.Buffs.AddBuff(new StunDebuff(m_AttachedSpell.AttachedEntity, entity, BuffType.StunDebuff,
-                    BuffGroup.Debuff, m_StunDuration, 1), VisualEffectType.StunStars);
+                    BuffGroup.Debuff, m_StunDuration, 1,BuffConst.Stun,false), VisualEffectType.StunStars);
             }
         }
     }

@@ -6,7 +6,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
     public class RegenerationBuff : Buff
     {
-        public RegenerationBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, BuffGroup buffGroup,int cooldown, float buffValue) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
+        public RegenerationBuff(BoardEntity caster, BoardEntity receiver,BuffType buffType, BuffGroup buffGroup,int cooldown, float buffValue, BuffCategory[] categories, bool ignoreFirstBehaveTurn) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue, categories,ignoreFirstBehaveTurn)
         {
         }
 
@@ -14,7 +14,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             GameManager.Instance.A_OnPreEndTurn += ApplyRegeneration;
             m_Receiver.EntityEvent.OnDeath += UnSub;
-            //m_Receiver.Life.AddRegeneration(m_BuffValue);
+            m_Receiver.Life.AddRegeneration(m_BuffValue);
         }
 
         private void ApplyRegeneration()
@@ -27,7 +27,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             UnSub();
             m_Receiver.EntityEvent.OnDeath -= UnSub;
-            //m_Receiver.Life.AddRegeneration(-m_BuffValue);
+            m_Receiver.Life.AddRegeneration(-m_BuffValue);
         }
         
         private void UnSub()

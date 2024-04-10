@@ -23,13 +23,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
             return true;
         }
 
-        private BuffCategory[] m_TempCategories = new BuffCategory[1];
         public void AddBuff(Buff buff,VisualEffectType visualEffectType = VisualEffectType.None)
         {
             m_Buffs.Add(buff);
 
-            m_TempCategories[0] = BuffCategory.Flame;
-            buff.Caster.EntityEvent.OnBuffApplied(m_TempCategories,buff);
+            buff.Caster.EntityEvent.OnBuffApplied(buff.BuffCategories,buff);
             
             if (buff.Active)
             {
@@ -181,6 +179,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
     public enum BuffCategory
     {
+        None,
         Flame,
         Magical,
         Physical,

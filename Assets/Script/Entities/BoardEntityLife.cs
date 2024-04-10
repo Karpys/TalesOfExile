@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
+    using KarpysUtils;
     using Object = UnityEngine.Object;
 
     public class BoardEntityLife : MonoBehaviour
@@ -14,7 +15,8 @@ namespace KarpysDev.Script.Entities
         private float m_MaxLife = 100f;
         private float m_Life = 100f;
         private float m_LifeRegeneration = 0;
-        
+
+        private int m_TimeShield = 0;
         private float m_MaxShield = 0f;
         private float m_CurrentShield = 0f;
     
@@ -23,6 +25,7 @@ namespace KarpysDev.Script.Entities
         public float MaxLife => m_MaxLife;
         public float MaxShield => m_MaxShield;
         public float CurrentShield => m_CurrentShield;
+        public int TimeShield => m_TimeShield;
 
         private void Awake()
         {
@@ -74,11 +77,12 @@ namespace KarpysDev.Script.Entities
                 
                 if (m_CurrentShield <= 0)
                 {
+                    m_CurrentShield = 0;
                     m_MaxShield = 0;
+                    m_TimeShield = 0;
                     m_LifeDisplayer.HideShieldDisplay();
                 }
             }
-            
             ChangeLifeValue(-value);
         }
         public void ChangeLifeValue(float value)
@@ -88,7 +92,6 @@ namespace KarpysDev.Script.Entities
                 m_Life = m_MaxLife;
         
             m_LifeDisplayer.UpdateLifeDisplay();
-            
             
             if (m_Life <= 0)
                 m_Entity.TriggerDeath();
@@ -106,8 +109,23 @@ namespace KarpysDev.Script.Entities
             m_LifeDisplayer.UpdateLifeDisplay();
         }
 
+        private void ClearShield()
+        {
+            m_CurrentShield = 0;
+            m_MaxShield = 0;
+            m_LifeDisplayer.HideShieldDisplay();
+        }
+
         private void ApplyRegeneration()
         {
+            if (m_TimeShield > 0)
+            {
+                m_TimeShield--;
+
+                if (m_TimeShield == 0)
+                    ClearShield();
+            }
+            
             if(m_LifeRegeneration == 0)
                 return;
         
@@ -119,8 +137,10 @@ namespace KarpysDev.Script.Entities
             m_LifeRegeneration += value;
         }
 
-        public void AddShield(float value)
+        public void AddShield(float value,int timeShield)
         {
+            if (timeShield > m_TimeShield)
+                m_TimeShield = timeShield;
             m_CurrentShield += value;
             m_MaxShield += value;
             m_LifeDisplayer.EnableShieldDisplay();

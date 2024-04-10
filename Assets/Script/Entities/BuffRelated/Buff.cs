@@ -14,8 +14,8 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected PassiveBuffType m_PassiveBuffType = PassiveBuffType.None;
         protected BuffGroup m_BuffGroup = BuffGroup.Neutral;
         protected BuffCooldown m_BuffCooldown = BuffCooldown.Cooldown;
+        protected BuffCategory[] m_BuffCategories = null;
 
-        protected bool m_EnemyBuffIgnoreFirstCooldown = false;
         private Transform m_VisualEffect = null;
 
         protected BoardEntity m_Caster = null;
@@ -24,10 +24,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
         protected float m_BuffValue = 0;
         protected bool m_IsActive = true;
 
-        private bool m_IgnoreCooldownOnInit = false;
+        protected bool m_IgnoreFirstBehaveTurn = false;
 
         public BuffCooldown BuffCooldown => m_BuffCooldown;
         public BuffGroup BuffGroup => m_BuffGroup;
+        public BuffCategory[] BuffCategories => m_BuffCategories;
         public float BuffValue
         {
             get => m_BuffValue;
@@ -50,10 +51,11 @@ namespace KarpysDev.Script.Entities.BuffRelated
             set => m_IsActive = value;
         }
 
-        public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown, float buffValue)
+        public Buff(BoardEntity caster,BoardEntity receiver,BuffType buffType,BuffGroup buffGroup, int cooldown,
+        float buffValue,BuffCategory[] categories,bool ignoreFirstBehaveTurn)
         {
-            if (receiver.EntityGroup == EntityGroup.Enemy && m_EnemyBuffIgnoreFirstCooldown)
-                m_IgnoreCooldownOnInit = true;
+            if (receiver.EntityGroup != EntityGroup.Friendly && ignoreFirstBehaveTurn)
+                m_IgnoreFirstBehaveTurn = true;
 
             m_BuffType = buffType;
             m_Receiver = receiver;
@@ -61,6 +63,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
             m_Cooldown = cooldown;
             m_BuffValue = buffValue;
             m_BuffGroup = buffGroup;
+            m_BuffCategories = categories;
         }
 
         public void AttachVisual(Transform visual)
@@ -75,9 +78,9 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         public void ReduceCooldown()
         {
-            if (m_IgnoreCooldownOnInit)
+            if (m_IgnoreFirstBehaveTurn)
             {
-                m_IgnoreCooldownOnInit = false;
+                m_IgnoreFirstBehaveTurn = false;
                 return;
             }
         

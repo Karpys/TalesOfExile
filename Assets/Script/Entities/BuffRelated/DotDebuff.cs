@@ -14,13 +14,14 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private DamageSource m_BaseDamageSource = null;
         private DamageSource m_ComputedDamageSource = null;
         
-        public DotDebuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue,SubDamageType dotDamageType) : base(caster, receiver,buffType, buffGroup, cooldown, buffValue)
+        public DotDebuff(BoardEntity caster, BoardEntity receiver,BuffType buffType,BuffGroup buffGroup,int cooldown, float buffValue,BuffCategory[] categories,bool ignoreFirstBehaveTurn,SubDamageType dotDamageType) : base(caster, receiver,buffType, buffGroup, cooldown, buffValue, categories,ignoreFirstBehaveTurn)
         {
             m_BaseDamageType = dotDamageType;
         }
 
         public override void Apply()
         {
+            Debug.Log("On Apply");
             m_BaseDamageSource = new DamageSource(m_BuffValue, m_BaseDamageType);
             m_ComputedDamageSource = new DamageSource(GetDamage(),m_BaseDamageSource.DamageType);
 
@@ -36,6 +37,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
 
         private void TakeDamage()
         {
+            Debug.Log("Direct Damage");
             DamageManager.DirectDamage(m_Receiver,m_ComputedDamageSource,m_Caster);
         }
 

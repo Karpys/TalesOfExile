@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
     - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
     - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
-    totalSpriteSurfaceArea: 484351
+    totalSpriteSurfaceArea: 549887
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -114,6 +114,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9dcd17ea17f2c354aa9f06ee60479d05, type: 3}
   - {fileID: 21300000, guid: 3cbb5c5b0e5e6a443be2cdbdcc84267a, type: 3}
   - {fileID: 21300000, guid: a2f2779bd64e0634cac78caaa5af4813, type: 3}
+  - {fileID: 21300000, guid: f62de4ab5ba0f4a43b7051badd6936c2, type: 3}
   - {fileID: 21300000, guid: d70475cb759d1324ab1e6cfd33a1be91, type: 3}
   - {fileID: 21300000, guid: d7805cfb4885be04191b73aa7a0aa80e, type: 3}
   - {fileID: 21300000, guid: ce67ec4c5bea931408f2b0378d4ed0ae, type: 3}
@@ -191,6 +192,7 @@ SpriteAtlas:
   - GloveShadow
   - SPR_Palm
   - GlacialHammer
+  - SPR_CircleImpact
   - NotImplementedShadow
   - UiBorderBlankWhite
   - SPR_RockMultiple

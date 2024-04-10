@@ -31,29 +31,29 @@ namespace KarpysDev.Script.Manager.Library
             switch (type)
             {
                 case BuffType.RegenerationBuff:
-                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value);
+                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,BuffConst.NotImplemented,false);
                 case BuffType.RockThrowBuff:
-                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff,buffGroup, duration, value,m_RockThrowSpellInfo);
+                    return new RockThrowBuff(caster, receiver, BuffType.RockThrowBuff,buffGroup, duration, value,BuffConst.NotImplemented,false,m_RockThrowSpellInfo);
                 case BuffType.FireHandBuff:
-                    return new FireHandBuff(caster, receiver, BuffType.FireHandBuff, buffGroup,duration, value,
+                    return new FireHandBuff(caster, receiver, BuffType.FireHandBuff, buffGroup,duration, value,BuffConst.NotImplemented,false,
                         SubDamageType.Fire);
                 case BuffType.OnKillFlameBurst:
-                    return new OnKillTriggerSpell(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,m_OnKillFlameSpellInfo);
+                    return new OnKillTriggerSpell(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,BuffConst.NotImplemented,false,m_OnKillFlameSpellInfo);
                 case BuffType.IcePrisonBuff:
-                    return new IcePrisonBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, duration, value);
+                    return new IcePrisonBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, duration, value,BuffConst.NotImplemented,false);
                 case BuffType.HolyAttack:
-                    return new HolyAttackBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,m_HolyAttackSpellInfo);
+                    return new HolyAttackBuff(caster, receiver, BuffType.RegenerationBuff, buffGroup,duration, value,BuffConst.NotImplemented,false,m_HolyAttackSpellInfo);
                 case BuffType.SilenceDebuff:
-                    return new SilenceBuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value);
+                    return new SilenceBuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,BuffConst.NotImplemented,false);
                 case BuffType.BurnDotDebuff:
-                    return new DotDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,SubDamageType.Fire);
+                    return new DotDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,BuffConst.NotImplemented,false,SubDamageType.Fire);
                 case BuffType.StunDebuff:
-                    return new StunDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value);
+                    return new StunDebuff(caster, receiver, BuffType.SilenceDebuff, buffGroup,duration, value,BuffConst.NotImplemented,false);
                 case BuffType.RootDebuff:
-                    return new RootDebuff(caster, receiver, BuffType.RootDebuff, buffGroup, duration, value);
+                    return new RootDebuff(caster, receiver, BuffType.RootDebuff, buffGroup, duration, value,BuffConst.NotImplemented,false);
                 default:
                     Debug.LogError("Return default buff");
-                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, 0, 0);
+                    return new RegenerationBuff(caster, receiver, BuffType.RegenerationBuff,buffGroup, 0, 0,BuffConst.NotImplemented,false);
             }
         }
 

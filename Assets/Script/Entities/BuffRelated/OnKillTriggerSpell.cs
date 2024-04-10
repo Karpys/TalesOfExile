@@ -14,7 +14,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         private TriggerSpellData m_TriggerSpellData = null;
         private int m_CurrentCount = 0;
         
-        public OnKillTriggerSpell(BoardEntity caster, BoardEntity receiver,BuffType buffType, BuffGroup buffGroup,int cooldown, float buffValue,SpellInfo onKillTrigger) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue)
+        public OnKillTriggerSpell(BoardEntity caster, BoardEntity receiver,BuffType buffType, BuffGroup buffGroup,int cooldown, float buffValue, BuffCategory[] categories, bool ignoreFirstBehaveTurn, SpellInfo onKillTrigger) : base(caster, receiver, buffType, buffGroup,cooldown, buffValue, categories,ignoreFirstBehaveTurn)
         {
             m_SpellInfo = onKillTrigger;
         }

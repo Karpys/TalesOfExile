@@ -29,6 +29,9 @@ namespace KarpysDev.Script.Entities
 
         public void OnBuffApplied(BuffCategory[] categories,Buff buff)
         {
+            if(categories == null)
+                return;
+            
             foreach (BuffCategory buffCategory in categories)
             {
                 if(m_OnBuffAppliedModifications.TryGetValue(buffCategory,out var modif))
@@ -42,6 +45,7 @@ namespace KarpysDev.Script.Entities
             if (m_OnBuffAppliedModifications.TryGetValue(targetCategory, out Action<Buff> modif))
             {
                 modif += buffModification;
+                m_OnBuffAppliedModifications[targetCategory] = modif;
             }
             else
             {

@@ -19,6 +19,7 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         protected override Buff BuffToAdd(BoardEntity caster, BoardEntity receiver)
         {
             return new PsionicHitBuff(caster, receiver, m_BuffType, m_BuffGroup, m_BuffDuration, m_BuffValue,
+                BuffConst.NotImplemented, false,
                 BuffLibrary.Instance.UnarmedPsionicHitSpellInfo
                 , m_HitCount, m_ZoneType, m_Range);
         }

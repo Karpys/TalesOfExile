@@ -12,6 +12,7 @@ namespace KarpysDev.Script.Entities.BuffRelated
         IcePrisonBuff = 5,
         HolyAttack = 6,
         PsionicUnarmedHit = 7,
+        MonkShieldStun = 8,
         //Debuff// 101 => 200//
         SilenceDebuff = 101,
         BurnDotDebuff = 102,

@@ -10,11 +10,6 @@ namespace KarpysDev.Script.Spell.ParameterLessSpell
         {
         }
 
-        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
-        {
-            spellData.AttachedEntity.Life.AddShield(50);
-        }
-
         protected override int GetSpellPriority()
         {
             BoardEntity entity = m_AttachedSpell.AttachedEntity;

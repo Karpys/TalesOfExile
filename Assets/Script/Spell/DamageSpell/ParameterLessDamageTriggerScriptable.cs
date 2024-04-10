@@ -11,7 +11,6 @@ namespace KarpysDev.Script.Spell.DamageSpell
     [CreateAssetMenu(fileName = "ParameterLessDamageTrigger", menuName = "Trigger/ParameterLessDamageTrigger", order = 0)]
     public class ParameterLessDamageTriggerScriptable : DamageSpellScriptable,IFielder
     {
-        [SerializeField] private string m_TriggerClassName = string.Empty;
         [SerializeField] private Fielder m_AdditionalParameters = null;
 
         public Fielder Fielder => m_AdditionalParameters;
