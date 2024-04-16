@@ -1,7 +1,4 @@
-﻿using KarpysDev.KarpysUtils;
-using UnityEngine;
-
-namespace KarpysDev.Script.Spell
+﻿namespace KarpysDev.Script.Spell
 {
     public class CooldownSpellLevelScaler : ILevelScaler
     {

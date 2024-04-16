@@ -1,17 +1,29 @@
-﻿using KarpysDev.Script.Entities;
-using KarpysDev.Script.Entities.BuffRelated;
-using KarpysDev.Script.Manager.Library;
-using KarpysDev.Script.Spell.SpellFx;
-using UnityEngine;
-
-namespace KarpysDev.Script.Spell.DamageSpell
+﻿namespace KarpysDev.Script.Spell.DamageSpell
 {
-    public class DivinePalmTrigger : DamageSpellTrigger
+    using Entities;
+    using Entities.BuffRelated;
+    using Manager.Library;
+    using Map_Related;
+    using SpellFx;
+    using UnityEngine;
+
+    public class DivinePalmTrigger : DamageSpellTrigger,IActivator
     {
         private int m_RootDuration = 0;
+        private bool m_ActiveMovement = false;
         public DivinePalmTrigger(DamageSpellScriptable damageSpellData,int rootDuration) : base(damageSpellData)
         {
             m_RootDuration = rootDuration;
+        }
+
+        protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
+        {
+            if (m_ActiveMovement && MapData.Instance.IsWalkable(spellTiles.FirstOrigin))
+            {
+                spellData.AttachedEntity.MoveTo(spellTiles.FirstOrigin);
+            }
+            
+            base.Trigger(spellData, spellTiles, castInfo, efficiency);
         }
 
         protected override void EntityHit(BoardEntity entity, TriggerSpellData spellData, Vector2Int origin, CastInfo castInfo)
@@ -32,6 +44,16 @@ namespace KarpysDev.Script.Spell.DamageSpell
             }
 
             return anim;
+        }
+
+        public void Enable()
+        {
+            m_ActiveMovement = true;
+        }
+
+        public void Disable()
+        {
+            m_ActiveMovement = false;
         }
     }
 }
