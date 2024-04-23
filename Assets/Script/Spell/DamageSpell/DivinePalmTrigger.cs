@@ -2,15 +2,22 @@
 {
     using Entities;
     using Entities.BuffRelated;
+    using KarpysUtils;
     using Manager.Library;
     using Map_Related;
+    using SpellConfig;
     using SpellFx;
     using UnityEngine;
 
-    public class DivinePalmTrigger : DamageSpellTrigger,IActivator
+    public class DivinePalmTrigger : DamageSpellTrigger,IActivator,IConfig
     {
         private int m_RootDuration = 0;
         private bool m_ActiveMovement = false;
+
+        public bool MoveAtOrigin => m_ActiveMovement && m_ShouldMoveAtOrigin;
+        public bool CanDisplayConfig => m_ActiveMovement;
+        private bool m_ShouldMoveAtOrigin = false;
+        
         public DivinePalmTrigger(DamageSpellScriptable damageSpellData,int rootDuration) : base(damageSpellData)
         {
             m_RootDuration = rootDuration;
@@ -18,7 +25,7 @@
 
         protected override void Trigger(TriggerSpellData spellData, SpellTiles spellTiles, CastInfo castInfo, float efficiency = 1)
         {
-            if (m_ActiveMovement && MapData.Instance.IsWalkable(spellTiles.FirstOrigin))
+            if (MoveAtOrigin && MapData.Instance.IsWalkable(spellTiles.FirstOrigin))
             {
                 spellData.AttachedEntity.MoveTo(spellTiles.FirstOrigin);
             }
@@ -54,6 +61,11 @@
         public void Disable()
         {
             m_ActiveMovement = false;
+        }
+        
+        public void DisplayConfig(ConfigMonitor monitor)
+        {
+            monitor.DisplayBool(value => m_ShouldMoveAtOrigin = value,m_ShouldMoveAtOrigin,"Always move at origin");
         }
     }
 }

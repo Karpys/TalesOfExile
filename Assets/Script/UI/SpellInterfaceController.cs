@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.UI
 {
+    using Spell.SpellConfig;
+
     public class SpellInterfaceController : UIPointer
     {
         //UI Part//
@@ -15,6 +17,9 @@ namespace KarpysDev.Script.UI
         [SerializeField] private RectTransform m_SpellLayout = null;
         [SerializeField] private SpellInterpretor m_Interpretor = null;
         [SerializeField] private SpellUIDisplayer m_SpellDisplayer = null;
+        
+        [Header("Config")] 
+        [SerializeField] private ConfigMonitor m_ConfigMonitor = null;
     
         private SpellIcon[] m_IconsHolder;
 
@@ -60,9 +65,17 @@ namespace KarpysDev.Script.UI
                 }
             }
             
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (m_CurrentPointer.PointerUp && m_CurrentPointer.SpellData is {SpellTrigger: IConfig spellConfig})
+                {
+                    DisplaySpellConfig(spellConfig);
+                }
+            }
+            
             m_DisplaySpellClock?.UpdateClock();
         }
-        
+
         public void SetSpellIcons(BoardEntity entity)
         {
             TriggerSpellData[] spellsToDisplay = entity.GetDisplaySpells();
@@ -105,8 +118,11 @@ namespace KarpysDev.Script.UI
         }
         private void DisplaySpell()
         {
-            if(m_CurrentPointer.SpellData != null)
+            if (m_CurrentPointer.SpellData != null)
+            {
+                m_ConfigMonitor.Hide();
                 m_SpellDisplayer.DisplaySpell(m_CurrentPointer.SpellData,m_CurrentPointer.transform);
+            }
         }
 
         public void HideSpell()
@@ -122,6 +138,14 @@ namespace KarpysDev.Script.UI
 
         protected override void OnExit()
         {
+        }
+        
+        private void DisplaySpellConfig(IConfig config)
+        {
+            if(!config.CanDisplayConfig)
+                return;
+            HideSpell();
+            m_ConfigMonitor.Display(config,m_CurrentPointer.transform.position);
         }
     }
 }
