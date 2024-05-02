@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 7044295380949201269, guid: 4b5a2d4938fc5244e8d7b570c9e39e64, type: 3}
-  m_TriggerClassName: HealSelectionSpellTrigger
+  CenterOriginAnimation: {fileID: 0}
   m_AdditionalParameters:
     m_ClassName: HealSelectionSpellTrigger
     m_FieldValues:

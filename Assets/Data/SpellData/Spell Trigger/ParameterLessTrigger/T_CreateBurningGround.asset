@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  m_TriggerClassName: CreateSpellPlaceableTrigger
+  CenterOriginAnimation: {fileID: 0}
   m_AdditionalParameters:
     m_ClassName: CreateSpellPlaceableTrigger
     m_FieldValues:
     - m_FieldType: 3
       m_Value: BurningGround
-      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.PlaceableType, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.PlaceableType, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 3
       m_Value: SameAsSource
-      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BehaveTiming, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BehaveTiming, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 5

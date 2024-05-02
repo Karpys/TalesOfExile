@@ -16,14 +16,13 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 0}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: 54a552e2612974caf8530935d6d9055b, type: 2}
-  m_TriggerClassName: LightningSpellTrigger
   m_AdditionalParameters:
     m_ClassName: LightningSpellTrigger
     m_FieldValues:
     - m_FieldType: 3
       m_Value: Circle
-      m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, TOEAsmdef, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 5
       m_AssemblyQualifiedName: 

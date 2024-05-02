@@ -16,7 +16,6 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 9140524552017338541, guid: 7aa250665202fa041adab3b1d0c026f2, type: 3}
   CenterOriginAnimation: {fileID: 0}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: 212022b8b9b362b40b8a1c6fbf0f9a62, type: 2}
-  m_TriggerClassName: MonkKickTrigger
   m_AdditionalParameters:
     m_ClassName: MonkKickTrigger
     m_FieldValues:

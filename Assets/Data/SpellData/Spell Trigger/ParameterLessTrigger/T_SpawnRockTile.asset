@@ -15,13 +15,12 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 0}
-  m_TriggerClassName: CreateLifePlaceableTrigger
   m_AdditionalParameters:
     m_ClassName: CreateLifePlaceableTrigger
     m_FieldValues:
     - m_FieldType: 3
       m_Value: RockTile
-      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.PlaceableType, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.PlaceableType, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 10

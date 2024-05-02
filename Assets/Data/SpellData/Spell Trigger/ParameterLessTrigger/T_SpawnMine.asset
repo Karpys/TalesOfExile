@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  m_TriggerClassName: SpawnNoWalkableEntity
+  CenterOriginAnimation: {fileID: 0}
   m_AdditionalParameters:
     m_ClassName: SpawnNoWalkableEntity
     m_FieldValues:
     - m_FieldType: 3
       m_Value: Mine
-      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.EntityType, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.EntityType, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 5
       m_Value: True

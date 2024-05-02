@@ -16,7 +16,6 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 4114339539992487337, guid: 46d65f9e3eb8dd84e8658fbf2154ed72, type: 3}
   CenterOriginAnimation: {fileID: 0}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: a357acfbf1d8f4219babb96ec58c745b, type: 2}
-  m_TriggerClassName: MonkPalmTrigger
   m_AdditionalParameters:
     m_ClassName: MonkPalmTrigger
     m_FieldValues:
