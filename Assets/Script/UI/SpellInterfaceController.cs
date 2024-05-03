@@ -17,9 +17,6 @@ namespace KarpysDev.Script.UI
         [SerializeField] private RectTransform m_SpellLayout = null;
         [SerializeField] private SpellInterpretor m_Interpretor = null;
         [SerializeField] private SpellUIDisplayer m_SpellDisplayer = null;
-        
-        [Header("Config")] 
-        [SerializeField] private ConfigMonitor m_ConfigMonitor = null;
     
         private SpellIcon[] m_IconsHolder;
 
@@ -64,15 +61,7 @@ namespace KarpysDev.Script.UI
                     HideSpell();
                 }
             }
-            
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                if (m_CurrentPointer.PointerUp && m_CurrentPointer.SpellData is {SpellTrigger: IConfig spellConfig})
-                {
-                    DisplaySpellConfig(spellConfig);
-                }
-            }
-            
+
             m_DisplaySpellClock?.UpdateClock();
         }
 
@@ -120,8 +109,7 @@ namespace KarpysDev.Script.UI
         {
             if (m_CurrentPointer.SpellData != null)
             {
-                m_ConfigMonitor.Hide();
-                m_SpellDisplayer.DisplaySpell(m_CurrentPointer.SpellData,m_CurrentPointer.transform);
+                m_SpellDisplayer.DisplaySpell(m_CurrentPointer.SpellData,m_CurrentPointer.transform,true);
             }
         }
 
@@ -138,14 +126,6 @@ namespace KarpysDev.Script.UI
 
         protected override void OnExit()
         {
-        }
-        
-        private void DisplaySpellConfig(IConfig config)
-        {
-            if(!config.CanDisplayConfig)
-                return;
-            HideSpell();
-            m_ConfigMonitor.Display(config,m_CurrentPointer.transform.position);
         }
     }
 }
