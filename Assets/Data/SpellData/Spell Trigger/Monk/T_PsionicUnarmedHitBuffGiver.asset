@@ -15,22 +15,21 @@ MonoBehaviour:
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 0}
-  m_TriggerClassName: PsionicBuffGiver
   m_AdditionalParameters:
     m_ClassName: PsionicBuffGiver
     m_FieldValues:
     - m_FieldType: 3
       m_Value: Buff
-      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffGroup, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffGroup, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 3
       m_Value: PsionicUnarmedHit
-      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffType, Assembly-CSharp,
+      m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffType, TOEAsmdef,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 3
       m_Value: Toggle
       m_AssemblyQualifiedName: KarpysDev.Script.Entities.BuffRelated.BuffCooldown,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        TOEAsmdef, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 1
       m_AssemblyQualifiedName: 
@@ -40,14 +39,14 @@ MonoBehaviour:
     - m_FieldType: 3
       m_Value: None
       m_AssemblyQualifiedName: KarpysDev.Script.Manager.Library.VisualEffectType,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        TOEAsmdef, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 2
       m_AssemblyQualifiedName: 
     - m_FieldType: 3
       m_Value: Circle
-      m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      m_AssemblyQualifiedName: KarpysDev.Script.Spell.ZoneType, TOEAsmdef, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     - m_FieldType: 0
       m_Value: 5
       m_AssemblyQualifiedName: 

@@ -16,7 +16,6 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 0}
   CenterOriginAnimation: {fileID: 7044295380949201269, guid: 6d74ca1e4ac121b4d993e912c63b18b5, type: 3}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: 212022b8b9b362b40b8a1c6fbf0f9a62, type: 2}
-  m_TriggerClassName: DivinePalmTrigger
   m_AdditionalParameters:
     m_ClassName: DivinePalmTrigger
     m_FieldValues:

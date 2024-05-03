@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  m_TriggerClassName: SpawnBalistaTrigger
+  CenterOriginAnimation: {fileID: 0}
   m_AdditionalParameters:
     m_ClassName: SpawnBalistaTrigger
     m_FieldValues: []

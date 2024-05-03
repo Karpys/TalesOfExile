@@ -16,7 +16,6 @@ MonoBehaviour:
   OnHitAnimation: {fileID: 5744646097958742058, guid: 7a4b87b1dab45134eac2dd650caa4d03, type: 3}
   CenterOriginAnimation: {fileID: 0}
   initialBaseDamageDefaultSources: {fileID: 11400000, guid: ee5e81fad029e489abd49cbd5e6aecd0, type: 2}
-  m_TriggerClassName: AutoAttackTrigger
   m_AdditionalParameters:
     m_ClassName: AutoAttackTrigger
     m_FieldValues: []

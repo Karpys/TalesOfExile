@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnTileHitAnimation: {fileID: 0}
   OnHitAnimation: {fileID: 0}
-  m_TriggerClassName: JumpTrigger
+  CenterOriginAnimation: {fileID: 0}
   m_AdditionalParameters:
     m_ClassName: JumpTrigger
     m_FieldValues: []
