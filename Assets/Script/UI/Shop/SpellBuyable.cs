@@ -28,7 +28,7 @@ namespace KarpysDev.Script.Spell
         public void DisplayBuyable()
         {
             m_TriggerSpellData.SpellTrigger.ComputeSpellData(GameManager.Instance.PlayerEntity);
-            GlobalCanvas.Instance.GetSpellUIDisplayer().DisplaySpell(m_TriggerSpellData,UIParent);
+            GlobalCanvas.Instance.GetSpellUIDisplayer().DisplaySpell(m_TriggerSpellData,UIParent,false);
         }
 
         public void HideBuyable()

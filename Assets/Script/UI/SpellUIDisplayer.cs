@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 namespace KarpysDev.Script.UI
 {
+    using Spell.SpellConfig;
+
     public class SpellUIDisplayer : MonoBehaviour
     {
         [SerializeField] private RectTransform m_Container = null;
@@ -24,6 +26,13 @@ namespace KarpysDev.Script.UI
         [SerializeField] private TMP_Text m_SpellDescription = null;
         [SerializeField] private TMP_Text m_CooldownValue = null;
 
+        [Header("Config")] [SerializeField]
+        private ConfigMonitor m_ConfigMonitor = null;
+
+        private TriggerSpellData m_CurrentTriggerSpellData = null;
+        private bool m_InDisplay = false;
+        private bool m_CanDisplayConfig = false;
+        
         private const string NO_COOLDOWN_VALUE = "X";
 
         #if UNITY_EDITOR
@@ -33,13 +42,26 @@ namespace KarpysDev.Script.UI
         }
         #endif
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (m_InDisplay && m_CurrentTriggerSpellData is {SpellTrigger: IConfig {CanDisplayConfig: true} config})
+                {
+                    m_ConfigMonitor.Display(config);
+                }
+            }
+        }
+
         private void AdaptSize()
         {
             m_Container.sizeDelta = new Vector2(m_Container.sizeDelta.x, m_BaseHeight + m_LayoutTransform.sizeDelta.y);
         }
 
-        public void DisplaySpell(TriggerSpellData spellData,Transform targetTransform)
+        public void DisplaySpell(TriggerSpellData spellData,Transform targetTransform,bool canDisplayConfig)
         {
+            m_InDisplay = true;
+            m_CanDisplayConfig = canDisplayConfig;
             transform.position = targetTransform.position;
             m_DisplayContainer.gameObject.SetActive(true);
             m_SpellIcon.sprite = spellData.TriggerData.SpellIcon;
@@ -51,10 +73,14 @@ namespace KarpysDev.Script.UI
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_LayoutTransform);
             AdaptSize();
             GlobalCanvas.Instance.ClampX((RectTransform)transform);
+
+            m_CurrentTriggerSpellData = spellData;
         }
 
         public void HideSpell()
         {
+            m_InDisplay = false;
+            m_CurrentTriggerSpellData = null;
             m_DisplayContainer.gameObject.SetActive(false);
         }
 

@@ -5,7 +5,7 @@ namespace KarpysDev.Script.Spell.SpellConfig
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class TestBoolDisplayer : MonoBehaviour
+    public class BoolConfigDisplayer : MonoBehaviour
     {
         [SerializeField] private TMP_Text m_TextMessage = null;
         [SerializeField] private Toggle m_Toggle = null;
