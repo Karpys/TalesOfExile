@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
     - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
     - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
-    totalSpriteSurfaceArea: 549887
+    totalSpriteSurfaceArea: 553983
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -128,6 +128,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fdb570dd970463d4ebb5b464357f4234, type: 3}
   - {fileID: 21300000, guid: 2af4ab7e1074ba34299967f23f7b2de0, type: 3}
   - {fileID: 21300000, guid: f13c2bae6c1314b37ad809805dd000a6, type: 3}
+  - {fileID: 21300000, guid: d449ddde7183d6f40a88411e7f2194d3, type: 3}
   - {fileID: 21300000, guid: a2f2920ff87e5284b9bccffd02762c85, type: 3}
   - {fileID: 21300000, guid: c484b2ff94c957e4f8e1efd53efa6143, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -206,6 +207,7 @@ SpriteAtlas:
   - LifeSocket
   - RushIcon
   - SPR_FireExplosion
+  - UIConnector
   - CharacterPreviewUI
   - GreenBackground
   m_RenderDataMap: {}
