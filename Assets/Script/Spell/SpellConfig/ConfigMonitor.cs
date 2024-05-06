@@ -14,6 +14,9 @@ namespace KarpysDev.Script.Spell.SpellConfig
         [SerializeField] private BoolConfigDisplayer boolConfigConfig = null;
 
         private List<GameObject> m_CurrentConfigs = new List<GameObject>();
+        private bool m_IsInDisplay = false;
+        public bool IsInDisplay => m_IsInDisplay;
+
         public void DisplayBool(Action<bool> onBoolValueChanged,bool currentValue,string message)
         {
             BoolConfigDisplayer boolConfigDisplayer = Instantiate(boolConfigConfig, m_ConfigLayout);
@@ -23,6 +26,7 @@ namespace KarpysDev.Script.Spell.SpellConfig
 
         public void Display(IConfig config)
         {
+            m_IsInDisplay = true;
             StartDisplay();
             config.DisplayConfig(this);
             EndDisplay();
@@ -31,6 +35,7 @@ namespace KarpysDev.Script.Spell.SpellConfig
         public void Hide()
         {
             m_Container.gameObject.SetActive(false);
+            m_IsInDisplay = false;
         }
 
         private void ClearOld()

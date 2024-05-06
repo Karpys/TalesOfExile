@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using KarpysDev.Script.Manager;
+﻿using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using TMPro;
 using UnityEngine;
@@ -30,6 +27,7 @@ namespace KarpysDev.Script.UI
         private ConfigMonitor m_ConfigMonitor = null;
 
         private TriggerSpellData m_CurrentTriggerSpellData = null;
+        private TriggerSpellData m_LastDisplaySpellData = null;
         private bool m_InDisplay = false;
         private bool m_CanDisplayConfig = false;
         
@@ -44,11 +42,15 @@ namespace KarpysDev.Script.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.V))
             {
-                if (m_InDisplay && m_CurrentTriggerSpellData is {SpellTrigger: IConfig {CanDisplayConfig: true} config})
+                if (m_ConfigMonitor.IsInDisplay && m_LastDisplaySpellData == m_CurrentTriggerSpellData)
+                {
+                    m_ConfigMonitor.Hide();
+                }else if (m_InDisplay && m_CurrentTriggerSpellData is {SpellTrigger: IConfig {CanDisplayConfig: true} config} && m_CanDisplayConfig)
                 {
                     m_ConfigMonitor.Display(config);
+                    m_LastDisplaySpellData = m_CurrentTriggerSpellData;
                 }
             }
         }
@@ -81,6 +83,7 @@ namespace KarpysDev.Script.UI
         {
             m_InDisplay = false;
             m_CurrentTriggerSpellData = null;
+            m_LastDisplaySpellData = null;
             m_DisplayContainer.gameObject.SetActive(false);
         }
 

@@ -32,7 +32,7 @@ namespace KarpysDev.Script.Entities
             {
                 if (spells[i].SpellLearnType == SpellLearnType.Learned)
                 {
-                    string spellSaveLine = spells[i].TriggerData.SpellName.Replace(" ","_") + " " + spells[i].SpellLevel;
+                    string spellSaveLine = spells[i].TriggerData.SpellName.Replace(" ","_") + " " + spells[i].Level;
                     spellSave.Add(spellSaveLine);
                 }
             }

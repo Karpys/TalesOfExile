@@ -34,7 +34,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _CircleCount: 2.91
-    - _Decal: 3.03
+    - _Decal: 0.01
     - _InnerCircle: 1
     - _NoiseDecalOffset: 0
     - _NoiseDecalValue: 0

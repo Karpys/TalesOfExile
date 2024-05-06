@@ -18,7 +18,7 @@ namespace KarpysDev.Script.UI.Pointer
         //[SerializeField] private GoldPopupItemUIHolder m_Holder = null;
 
         private bool m_IsOpen = false;
-        public override void Trigger()
+        public override void OnLeftClick()
         {
             if (m_IsOpen)
             {
@@ -31,6 +31,12 @@ namespace KarpysDev.Script.UI.Pointer
 
             m_IsOpen = !m_IsOpen;
         }
+
+        public override void OnRightClick()
+        {
+            return;
+        }
+
         private void Open()
         {
             //m_Holder.SetOpenState(true);

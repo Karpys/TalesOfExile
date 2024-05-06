@@ -84,6 +84,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1089765163012203776}
+  - component: {fileID: 4230788389283511807}
+  - component: {fileID: 5254247582304679703}
   m_Layer: 5
   m_Name: SpellContainer
   m_TagString: Untagged
@@ -115,6 +117,37 @@ RectTransform:
   m_AnchoredPosition: {x: -480, y: 226}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4230788389283511807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260926533004484037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06dfb6e4e564286abda1a9395feabeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpellInfo:
+    m_SpellData: {fileID: 11400000, guid: 0be5d5bbe90ef6a45b91e15b6b02a7ed, type: 2}
+    m_SpellPriority: 0
+    m_InitialSpellLevel: 0
+    m_SpellLearnType: 0
+  m_SpellLevel: {fileID: 4663909843997702274}
+--- !u!114 &5254247582304679703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260926533004484037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1cd6129fe14799bb6e51322d5f7502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpellContainer: {fileID: 4230788389283511807}
 --- !u!1 &1467045028637202247
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 16 / 16
+  m_text: 0 / 16
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b019acd0be7958444868549b472edef3, type: 2}
   m_sharedMaterial: {fileID: 4527394540854391676, guid: b019acd0be7958444868549b472edef3, type: 2}
@@ -389,7 +422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 287d149a09cf40748910ec8dd16cde3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cbb5c5b0e5e6a443be2cdbdcc84267a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -20,7 +20,13 @@ namespace KarpysDev.Script.Manager
             if (Input.GetMouseButtonDown(0))
             {
                 if(m_CurrentPointer != null && m_CurrentPointer.PointerUp)
-                    m_CurrentPointer.Trigger();
+                    m_CurrentPointer.OnLeftClick();
+            }
+            
+            if (Input.GetMouseButtonDown(1))
+            {
+                if(m_CurrentPointer != null && m_CurrentPointer.PointerUp)
+                    m_CurrentPointer.OnRightClick();
             }
         }
     }

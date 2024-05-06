@@ -16,9 +16,14 @@ namespace KarpysDev.Script.UI.Pointer
             m_TierText.text = "T" + (int) m_Tier;
         }
 
-        public override void Trigger()
+        public override void OnLeftClick()
         {
             MissionSelectionManager.Instance.DisplayCurrentTier(m_Tier);
+        }
+        
+        public override void OnRightClick()
+        {
+            return;
         }
     }
 }

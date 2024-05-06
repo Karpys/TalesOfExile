@@ -7,6 +7,7 @@ using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;
 using KarpysDev.Script.Utils;
 using KarpysDev.Script.Widget;
+using Script.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,6 @@ using Object = UnityEngine.Object;
 
 namespace KarpysDev.Script.UI
 {
-    using global::Script.Data;
 
     public class Canvas_Shop : MonoBehaviour,IUIPointerController,ISaver
     {

@@ -12,11 +12,16 @@ namespace KarpysDev.Script.UI.Pointer
         [SerializeField] private float m_AlphaOnInactive = 0.5f;
 
         private bool m_IsActive = true;
-        public override void Trigger()
+        public override void OnLeftClick()
         {
             if(!m_IsActive)
                 return;
             m_Shop.Buy();
+        }
+
+        public override void OnRightClick()
+        {
+            return;
         }
 
         public void SetState(bool active)

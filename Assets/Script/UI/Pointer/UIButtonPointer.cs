@@ -22,6 +22,7 @@ namespace KarpysDev.Script.UI.Pointer
             m_PointerUp = false;
         }
 
-        public abstract void Trigger();
+        public abstract void OnLeftClick();
+        public abstract void OnRightClick();
     }
 }

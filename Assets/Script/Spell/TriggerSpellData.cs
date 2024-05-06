@@ -1,7 +1,8 @@
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Entities;
-using KarpysDev.Script.Utils;
 using UnityEngine;
+using StringUtils = KarpysDev.Script.Utils.StringUtils;
 
 namespace KarpysDev.Script.Spell
 {
@@ -16,7 +17,7 @@ namespace KarpysDev.Script.Spell
         private int m_CurrentCooldown = 0;
         private int m_CooldownReduction = 0;
         //Spell Level//
-        private int m_SpellLevel = 1;
+        private int m_Level = 1;
         private ILevelScaler[] m_LevelScalers = null;
     
         //Intern Params//
@@ -27,20 +28,23 @@ namespace KarpysDev.Script.Spell
         public int EffectiveCooldown => Mathf.Max(0,m_BaseCooldown - m_CooldownReduction);
         public bool IsBuffToggle => m_IsBuffToggle;
         public SpellLearnType SpellLearnType => m_SpellLearnType;
-        public int SpellLevel => m_SpellLevel;
-        public float LevelRatio => (float)m_SpellLevel / (m_TriggerData.LevelMax);
+        public int Level => m_Level;
+        public int LevelMax => TriggerData.LevelMax;
+        public float LevelRatio => (float)m_Level / (m_TriggerData.LevelMax);
+        public int SpellLevelShown => Level + 1;
+        public int MaxSpellLevelShown => TriggerData.LevelMax + 1;
         
         public TriggerSpellData(SpellInfo baseSpellInfo, BoardEntity attachedEntity) : base(baseSpellInfo, attachedEntity) {}
 
         public override SpellData Initialize(SpellInfo spellInfo, BoardEntity attachedEntity)
         {
-            m_SpellLevel = spellInfo.InitialSpellLevel;
+            m_Level = spellInfo.InitialSpellLevel;
             m_TriggerData = (TriggerSpellDataScriptable)m_Data;
             m_SpellLearnType = spellInfo.SpellLearnType;
             AssignLevelScaler();
             SpellTrigger = TriggerData.SpellTrigger.SetUpTrigger();
             SpellTrigger.SetAttachedSpell(this,spellInfo.SpellPriority);
-            m_IsBuffToggle = TriggerData.SpellGroups.Contains(SpellGroup.BuffToggle);
+            m_IsBuffToggle = Enumerable.Contains(TriggerData.SpellGroups, SpellGroup.BuffToggle);
             ApplyLevel();
             m_BaseCooldown = m_TriggerData.BaseCooldown;
             SpellTrigger.ComputeSpellData(AttachedEntity);
@@ -64,7 +68,14 @@ namespace KarpysDev.Script.Spell
                 levelScaler.Apply(this);
             }
         }
-        
+
+        public void ChangeLevel(int level)
+        {
+            m_Level += level;
+            ApplyLevel();
+            TriggerData.SpellName.Log("New Level : " + Level);
+        }
+
         public override object Clone()
         {
             return MemberwiseClone();
