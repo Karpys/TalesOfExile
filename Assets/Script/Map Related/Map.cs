@@ -72,10 +72,13 @@ namespace KarpysDev.Script.Map_Related
         }
     
     
-        public VisualTile CreateVisualTile(VisualTile visual, WorldTile tile)
+        public VisualTile CreateVisualTile(VisualTile visual, WorldTile tile,bool applyVisualTileColorToMinimap)
         {
             VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
                 Quaternion.identity, tile.transform);
+
+            if (applyVisualTileColorToMinimap)
+                tile.MinimapColor = visualTile.MinimapColor;
             return visualTile;
         }
 
