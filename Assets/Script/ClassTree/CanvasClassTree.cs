@@ -31,14 +31,15 @@ namespace KarpysDev.Script.ClassTree
 
         private void Open()
         {
-            m_ClassContainer.DoScale(Vector3.one,m_OpenTime).SetEase(Ease.EASE_OUT_BACK).OnComplete(() => m_ScrollRect.enabled = true);
+            //m_SpellTreeContainer.anchoredPosition = new Vector2(0, m_SpellTreeContainer.anchoredPosition.y);
+            m_ClassContainer.DoScale(Vector3.one, m_OpenTime).SetEase(Ease.EASE_OUT_BACK).OnComplete(() => m_ScrollRect.enabled = true);
             m_Controller.Initialize();
             m_IsOpen = true;
         }
 
         public void Close()
         {
-            m_ClassContainer.DoScale(Vector3.zero,m_OpenTime).SetEase(Ease.EASE_IN_BACK);
+            m_ClassContainer.DoScale(Vector3.zero, m_OpenTime).SetEase(Ease.EASE_IN_BACK);
             m_ScrollRect.enabled = false;
             m_IsOpen = false;
         }
