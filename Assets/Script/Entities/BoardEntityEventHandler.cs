@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities
 {
-    public class BoardEntityEventHandler : MonoBehaviour
+    public class BoardEntityEventHandler
     {
         public Action OnDeath = null;
         //TriggerSpellData can be null

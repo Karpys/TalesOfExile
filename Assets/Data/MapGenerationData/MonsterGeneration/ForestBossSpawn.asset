@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32eea09fb05c4f8bada5e07a093495b7, type: 3}
-  m_Name: ForestBossSpawnerGeneration
+  m_Name: ForestBossSpawn
   m_EditorClassIdentifier: 
   m_EntitySpawns:
-  - EntityPrefab: {fileID: -2413995395981544658, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
+  - EntityPrefab: {fileID: 1928077985366989603, guid: e8d411c205ea3d04f9536fcc6ace0641, type: 3}
     EntityPosition: {x: 26, y: 16}
     IAType: 1
     EntityGroup: 1
     TargetGroup: 0
-  - EntityPrefab: {fileID: -4592490546126341204, guid: 9f22fac0b2876de44a0d11d0c305e766, type: 3}
+    ShouldInheritQuestModifier: 0
+  - EntityPrefab: {fileID: 1928077985366989603, guid: ad03a5805393bd74282cf9721cf023e9, type: 3}
     EntityPosition: {x: 24, y: 17}
     IAType: 1
     EntityGroup: 1
     TargetGroup: 0
-  - EntityPrefab: {fileID: -4592490546126341204, guid: 9f22fac0b2876de44a0d11d0c305e766, type: 3}
+    ShouldInheritQuestModifier: 0
+  - EntityPrefab: {fileID: 1928077985366989603, guid: ad03a5805393bd74282cf9721cf023e9, type: 3}
     EntityPosition: {x: 24, y: 15}
     IAType: 1
     EntityGroup: 1
     TargetGroup: 0
+    ShouldInheritQuestModifier: 0
