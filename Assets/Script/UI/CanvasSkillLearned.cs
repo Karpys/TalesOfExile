@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Widget;
@@ -28,7 +29,6 @@ namespace KarpysDev.Script.UI
         private SpellUIHolder m_CurrentHolder = null;
         private TriggerSpellData m_SelectedSpell = null;
         private bool m_IsActive = false;
-
 
         private Clock m_DisplaySpellClock = null; 
         public void Initialize(PlayerBoardEntity player)

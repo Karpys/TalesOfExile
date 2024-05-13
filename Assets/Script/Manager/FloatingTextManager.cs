@@ -1,6 +1,5 @@
-﻿using System;
+﻿using KarpysDev.KarpysUtils.ObjectPooling;
 using KarpysDev.Script.Widget;
-using KarpysDev.Script.Widget.ObjectPooling;
 using UnityEngine;
 
 namespace KarpysDev.Script.Manager

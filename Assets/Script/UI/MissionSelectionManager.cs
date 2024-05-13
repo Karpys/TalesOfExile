@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KarpysDev.KarpysUtils.WeightElementDraw;
 using KarpysDev.Script.Manager.Library;
 using KarpysDev.Script.Map_Related.MapGeneration;
 using KarpysDev.Script.Map_Related.QuestRelated;
@@ -18,9 +19,9 @@ namespace KarpysDev.Script.UI
         [SerializeField] private MapTierUIPointer m_MapTierPointerPrefab = null;
         [SerializeField] private Transform m_MapTierLayout = null;
         [Header("Quest Diffuculty Draw")]
-        [SerializeField] private StaticWeightElementDraw<QuestDifficulty> m_MapDifficulty0 = null;
-        [SerializeField] private StaticWeightElementDraw<QuestDifficulty> m_MapDifficulty1 = null;
-        [SerializeField] private StaticWeightElementDraw<QuestDifficulty> m_MapDifficulty2 = null;
+        [SerializeField] private WeightElementDraw<QuestDifficulty> m_MapDifficulty0 = null;
+        [SerializeField] private WeightElementDraw<QuestDifficulty> m_MapDifficulty1 = null;
+        [SerializeField] private WeightElementDraw<QuestDifficulty> m_MapDifficulty2 = null;
         [Header("Quest Displayer")]
         [SerializeField] private Transform m_QuestDisplayerContainer = null;
         [SerializeField] private QuestDisplayer m_EasyQuestDisplayerPrefab = null;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using KarpysDev.KarpysUtils;
+using UnityEngine;
 
 namespace KarpysDev.Script.Spell.SpellFx
 {

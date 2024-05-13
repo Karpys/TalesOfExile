@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KarpysDev.KarpysUtils.WeightElementDraw;
 using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Utils;
@@ -10,7 +11,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     [CreateAssetMenu(fileName = "MonsterGeneration", menuName = "Monster/ClassicGeneration", order = 0)]
     public class MonsterGeneration : BaseMonsterGeneration
     {
-        [SerializeField] private StaticWeightElementDraw<BoardEntity> m_WeightEnemies = null;
+        [SerializeField] private WeightElementDraw<BoardEntity> m_WeightEnemies = null;
         [SerializeField] private float m_TargetEnemiesCount = 10;
         [SerializeField] private bool m_ShouldInheriteQuestModifier = true; 
     

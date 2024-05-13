@@ -1,4 +1,5 @@
-﻿using KarpysDev.Script.Entities;
+﻿using KarpysDev.KarpysUtils;
+using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.UI.Pointer;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
@@ -83,7 +84,7 @@ namespace KarpysDev.Script.UI
 
             for (int i = 0; i < m_IBuyableReference.Length; i++)
             {
-                if (m_IBuyableReference[i] is IBuyableData buyableData && !spellsLearned.Contains(buyableData.Id))
+                if (m_IBuyableReference[i] is IBuyableData buyableData && !Enumerable.Contains(spellsLearned, buyableData.Id))
                 {
                     UIBuyableHolder buyableHolder = Instantiate(m_BuyableHolderPrefab, m_GridLayoutTransform);
                     buyableHolder.InitializeBuyableHolder(buyableData.ToUIBuyable(buyableHolder.transform));

@@ -1,4 +1,5 @@
 ﻿using System;
+using KarpysDev.KarpysUtils.WeightElementDraw;
 using KarpysDev.Script.Entities.EquipementRelated;
 using KarpysDev.Script.Utils;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace KarpysDev.Script.Manager.Library
     [Serializable]
     public class ModifierPool
     {
-        [SerializeField] private MultipleWeightElementDraw<RangeModifier> m_Modifiers = new MultipleWeightElementDraw<RangeModifier>();
+        [SerializeField] private MultipleWeightElementDraw<RangeModifier> m_Modifiers = null;
         public  MultipleWeightElementDraw<RangeModifier>  Modifier => m_Modifiers;
     }
 

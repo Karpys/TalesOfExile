@@ -4,7 +4,6 @@ using UnityEngine;
 namespace KarpysDev.Script.Map_Related
 {
     using KarpysUtils;
-    using ColorExtensions = ColorExtensions;
 
     public class HighlightTilesManager : SingletonMonoBehavior<HighlightTilesManager>
     {

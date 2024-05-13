@@ -1,19 +1,20 @@
-﻿using KarpysDev.Script.Widget.DebugMenu;
+﻿using KarpysDev.KarpysUtils;
+using KarpysDev.Script.Widget.DebugMenu;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace KarpysDev.Script.Map_Related.Minimap
 {
-    public class MinimapRenderer : MonoBehaviour
+    public class MinimapRenderer : SingletonMonoBehavior<MinimapRenderer>
     {
         [SerializeField] private Image m_RenderImage = null;
         [SerializeField] private Color m_DefaultColor = Color.black;
         [SerializeField] private float m_ScaleFactor = 1;
         private void Awake()
         {
-            DebugMenu.Instance.AddDebugButton(Render,"Render Minimap");
+            DebugMenu.Instance.AddDebugButton(InitialRender,"Render Minimap");
         }
-        public void Render()
+        private void InitialRender()
         {
             Map map = MapData.Instance.Map;
             Texture2D minimapTexture = new Texture2D(map.Width, map.Height);
@@ -32,6 +33,11 @@ namespace KarpysDev.Script.Map_Related.Minimap
             Sprite sprite = Sprite.Create(minimapTexture,new Rect(Vector2.zero, new Vector2(map.Width,map.Height)),Vector2.one * .5f);
             m_RenderImage.rectTransform.sizeDelta = new Vector2(map.Width * m_ScaleFactor, map.Height * m_ScaleFactor);
             m_RenderImage.sprite = sprite;
+        }
+
+        public void AddDynamicTile(Vector2Int position, Color tileColor)
+        {
+            
         }
     }
 }
