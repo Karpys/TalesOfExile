@@ -10,6 +10,8 @@ namespace KarpysDev.Script.Entities
     public class BoardEntityEventHandler
     {
         public Action OnDeath = null;
+        //Used in non-combat event
+        public Action OnTriggerDeath = null;
         //TriggerSpellData can be null
         public Action<BoardEntity,DamageSpellTrigger> OnGetHitFromSpell = null;
         public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFromSpell = null;

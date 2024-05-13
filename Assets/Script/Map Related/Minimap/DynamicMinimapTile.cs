@@ -5,9 +5,9 @@ namespace KarpysDev.Script.Map_Related.Minimap
 {
     public class DynamicMinimapTile : Image
     {
-        private GameObjectPool<DynamicMinimapTile> m_InitialPool = null;
+        private IReturnable<DynamicMinimapTile> m_InitialPool = null;
 
-        public void Initialize(GameObjectPool<DynamicMinimapTile> initialPool)
+        public void Initialize(IReturnable<DynamicMinimapTile> initialPool)
         {
             m_InitialPool = initialPool;
         }

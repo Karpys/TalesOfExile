@@ -441,6 +441,7 @@ namespace KarpysDev.Script.Entities
             GameManager.Instance.UnRegisterEntity(this);
         
             RemoveFromBoard();
+            m_EntityEvent.OnTriggerDeath?.Invoke();
             m_EntityEvent.OnDeath?.Invoke();
 
             if (m_LastGetHit)

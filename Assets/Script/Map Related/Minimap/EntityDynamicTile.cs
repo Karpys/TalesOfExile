@@ -15,7 +15,8 @@ namespace KarpysDev.Script.Map_Related.Minimap
 
         private void CreateTile()
         {
-            MinimapRenderer.Instance.AddDynamicTile(m_Entity.EntityPosition, m_Color);
+            DynamicMinimapTile dynamicTile = MinimapRenderer.Instance.AddDynamicTile(m_Entity.EntityPosition, m_Color);
+            m_Entity.EntityEvent.OnTriggerDeath += dynamicTile.Return;
         }
     }
 }

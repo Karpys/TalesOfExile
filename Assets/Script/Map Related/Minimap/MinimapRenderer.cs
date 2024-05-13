@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace KarpysDev.Script.Map_Related.Minimap
 {
-    public class MinimapRenderer : SingletonMonoBehavior<MinimapRenderer>
+    public class MinimapRenderer : SingletonMonoBehavior<MinimapRenderer>,IReturnable<DynamicMinimapTile>
     {
         [SerializeField] private Image m_RenderImage = null;
         [SerializeField] private Transform m_DynamicTileParent = null;
@@ -25,7 +25,7 @@ namespace KarpysDev.Script.Map_Related.Minimap
         private void OnAddNewDynamicTile(DynamicMinimapTile newTile)
         {
             newTile.rectTransform.sizeDelta = new Vector2(m_ScaleFactor, m_ScaleFactor);
-            newTile.Initialize(m_DynamicPool);
+            newTile.Initialize(this);
         }
         
         private void InitialRender()
@@ -55,6 +55,11 @@ namespace KarpysDev.Script.Map_Related.Minimap
             tile.rectTransform.anchoredPosition = new Vector2(position.x * m_ScaleFactor, position.y * m_ScaleFactor);
             tile.color = tileColor;
             return tile;
+        }
+
+        public void Return(DynamicMinimapTile obj)
+        {
+            m_DynamicPool.Return(obj);
         }
     }
 }
