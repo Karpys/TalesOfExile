@@ -1097,6 +1097,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3193358412302421339, guid: 9aabbd54eca2f1e42a0bd288824ecf69, type: 3}
+      propertyPath: m_ScaleFactor
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3193358412302421342, guid: 9aabbd54eca2f1e42a0bd288824ecf69, type: 3}
       propertyPath: m_Name
       value: CNV_Minimap

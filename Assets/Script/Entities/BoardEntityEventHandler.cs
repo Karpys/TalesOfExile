@@ -62,7 +62,7 @@ namespace KarpysDev.Script.Entities
             {
                 modif -= buffModification;
 
-                if (modif.GetInvocationList().Length == 0)
+                if (modif == null || modif.GetInvocationList().Length == 0)
                     m_OnBuffAppliedModifications.Remove(targetCategory);
             }
         }
