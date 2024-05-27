@@ -554,6 +554,7 @@ MonoBehaviour:
   m_PlayerEntity: {fileID: 2318941865701268292, guid: 778a1e90942aeda49ba56eccf329a254, type: 3}
   m_HubMap: {fileID: 11400000, guid: 61b388ca7c30f4646b59dd2af2f5fec3, type: 2}
   m_QuestModifier: {fileID: 1999133335}
+  m_TileSetManager: {fileID: 2130945679}
 --- !u!4 &343337510
 Transform:
   m_ObjectHideFlags: 0
@@ -2940,6 +2941,7 @@ Transform:
   - {fileID: 1849714071}
   - {fileID: 101270389}
   - {fileID: 1999133334}
+  - {fileID: 2130945678}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3894,7 +3896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3891a0edbfe2425ab69659dffa8e4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MapDataLibrary: {fileID: 101270388}
 --- !u!1001 &1893234217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4341,6 +4342,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff11e75b8843f9899b0bb54e467a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2130945677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130945678}
+  - component: {fileID: 2130945679}
+  m_Layer: 0
+  m_Name: TileSetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130945678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130945677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1362587457}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130945679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130945677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab088e4e92dc44b991b83e2034dad315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TileSetLibrary:
+    m_Keys:
+    - Key: 0
+      Object:
+        m_TileMap:
+        - {fileID: 5878180710631057457, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 819606075882862715, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 6749920003845400946, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: -1178394037009073972, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: -1605521334551586601, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: -7066563355074774793, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 1578733945627522183, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 8635360567473066797, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 4113654784460481839, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 8053787194054494296, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 603732638179215726, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 7501918994072104481, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: -2702959597068775684, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 8415648880683189281, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 8553087812322520743, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+        - {fileID: 6585557202405382515, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
+    m_ClearOnInit: 1
 --- !u!1001 &677717746953639951
 PrefabInstance:
   m_ObjectHideFlags: 0

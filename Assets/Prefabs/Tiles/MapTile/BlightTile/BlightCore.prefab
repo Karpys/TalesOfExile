@@ -280,33 +280,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Walkable: 0
+  m_MinimapColor: {r: 0.24225649, g: 0.10012461, b: 0.4716981, a: 1}
   m_OuterZoneSelection:
-    Origin: 0
     DisplayType: 4
     Range: 20
-    ValidationType:
-      NeedValidation: 0
-      TargetZoneValidation: -1
-    ActionSelection: 0
-  m_BranchTileSet:
-    m_TileMap:
-    - {fileID: 5878180710631057457, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 819606075882862715, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 6749920003845400946, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: -1178394037009073972, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: -1605521334551586601, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: -7066563355074774793, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 1578733945627522183, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 8635360567473066797, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 4113654784460481839, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 8053787194054494296, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 603732638179215726, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 7501918994072104481, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: -2702959597068775684, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 8415648880683189281, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 8553087812322520743, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    - {fileID: 6585557202405382515, guid: 49a4da8085080204db2878f4c46f3c9d, type: 3}
-    m_TilePrefab: {fileID: 3883403197821595345, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}
+  _branchTile: {fileID: 3509620923720814852, guid: 41d2b8bd6e1534145a2414b8754e0cbd, type: 3}
   m_BranchCount: 2
   m_BlightSpawner: {fileID: 1860958626234145663, guid: 8eff3233f79c2d54ca9ac0e98a797b6c, type: 3}
   m_BlightPopup: {fileID: 906123569922711807}
@@ -381,7 +359,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1065810381
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 295890e99efaa874caf2a066716bb71e, type: 3}
   m_Color: {r: 0.5638363, g: 0.17693128, b: 0.6603774, a: 1}

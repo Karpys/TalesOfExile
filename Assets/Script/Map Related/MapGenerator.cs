@@ -115,6 +115,7 @@ namespace KarpysDev.Script.Map_Related
             EraseMap();
             GenerationMapInfo info = generationData.Generate(m_MapData);
             PlacePlayerEntity(info.StartPosition);
+            m_TileSetManager.ApplyTileSet();
             A_OnMapLoaded?.Invoke();
             MinimapRenderer.Instance.Rebuild();
         }

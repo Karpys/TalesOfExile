@@ -37,13 +37,10 @@ namespace KarpysDev.Script.Widget
             foreach(KeyValuePair<TileSetType, List<IVisualTile>> tiles in m_CurrentTileMap)
             {
                 TileSet tileSet = m_TileSetLibrary.GetViaKey(tiles.Key);
-                int count = tiles.Value.Count;
-                
-                for (int i = 0; i < count; i++)
-                {
-                    TileHelper.GenerateTileSet(tiles.Value,tileSet.TileMap);
-                }
+                TileHelper.GenerateTileSet(tiles.Value,tileSet.TileMap);
             }
+            
+            m_CurrentTileMap.Clear();
         }
     }
 }
