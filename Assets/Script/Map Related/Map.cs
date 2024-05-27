@@ -1,6 +1,4 @@
-﻿
-
-using KarpysDev.Script.Entities;
+﻿using KarpysDev.Script.Entities;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
@@ -76,6 +74,7 @@ namespace KarpysDev.Script.Map_Related
         {
             VisualTile visualTile = GameObject.Instantiate(visual, MapData.Instance.GetTilePosition(tile.Tile.TilePosition),
                 Quaternion.identity, tile.transform);
+            visualTile.Place(tile.Tile.TilePosition);
             return visualTile;
         }
 

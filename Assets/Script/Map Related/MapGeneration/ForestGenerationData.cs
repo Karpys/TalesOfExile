@@ -13,7 +13,7 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     public class ForestGenerationData : FlatDefaultMapGeneration
     {
         [SerializeField] List<FloatPercentageSlider> m_RoadPivots = new List<FloatPercentageSlider>();
-        [SerializeField] private TileSet m_RoadTileSet = null;
+        [SerializeField] VisualTile m_RoadTile = null;
         [Range(0,100)]
         [SerializeField] private float m_TreeChance = 10;
         [SerializeField] private WorldTile m_TreeTile = null;
@@ -45,11 +45,10 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         public void GenerateRoad(int x,int y)
         {
             List<Tile> roadTiles = new List<Tile>();
-            List<SpriteRenderer> roadRenderers = new List<SpriteRenderer>();
 
             Tile lastTile = m_Map.Tiles[x][y];
             roadTiles.Add(lastTile);
-            roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
+            m_Map.CreateVisualTile(m_RoadTile, lastTile.WorldTile);
         
             bool lastPivot = false;
 
@@ -84,13 +83,12 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                 {
                     lastTile = m_Map.Tiles[path[j].x][path[j].y];
                     roadTiles.Add(lastTile);
-                    roadRenderers.Add(m_Map.CreateVisualTile(m_RoadTileSet.TilePrefab, lastTile.WorldTile).Renderer);
+                    m_Map.CreateVisualTile(m_RoadTile, lastTile.WorldTile);
                 }
             
             }
         
             MapDataLibrary.Instance.AddReloaderAt(lastTile.TilePosition);
-            TileHelper.GenerateTileSet(roadTiles,roadRenderers,m_RoadTileSet.TileMap,m_MapData);
         }
 
         private void MonsterGeneration()
@@ -160,12 +158,10 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
     }
 
     [Serializable]
-    public class TileSet
+    public struct TileSet
     {
-        [SerializeField] private Sprite[] m_TileMap = new Sprite[0];
-        [SerializeField] private VisualTile m_TilePrefab = null;
+        [SerializeField] private Sprite[] m_TileMap;
 
-        public VisualTile TilePrefab => m_TilePrefab;
         public Sprite[] TileMap => m_TileMap;
     }
 }

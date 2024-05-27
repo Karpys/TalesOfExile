@@ -19,6 +19,7 @@ namespace KarpysDev.Script.Map_Related
         [SerializeField] private PlayerBoardEntity m_PlayerEntity = null;
         [SerializeField] private MapGenerationData m_HubMap = null;
         [SerializeField] private QuestModifierManager m_QuestModifier = null;
+        [SerializeField] private TileSetManager m_TileSetManager = null;
 
         private bool m_FirstGeneration = true;
         private int m_MapId = 0;

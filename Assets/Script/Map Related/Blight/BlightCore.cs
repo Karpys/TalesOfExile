@@ -17,7 +17,7 @@ namespace KarpysDev.Script.Map_Related.Blight
     public class BlightCore : WorldTile,IMapClean
     {
         [SerializeField] private Zone m_OuterZoneSelection = null;
-        [SerializeField] private TileSet m_BranchTileSet = null;
+        [SerializeField] private VisualTile _branchTile = null;
         [SerializeField] private int m_BranchCount = 1;
         [SerializeField] private BlightSpawner m_BlightSpawner = null;
         [SerializeField] private Transform m_BlightPopup = null;
@@ -49,7 +49,6 @@ namespace KarpysDev.Script.Map_Related.Blight
         {
             List<Vector2Int> m_outerSelection = ZoneTileManager.GetSelectionZone(m_OuterZoneSelection, m_AttachedTile.TilePosition, m_OuterZoneSelection.Range);
             List<WorldTile> branchTiles = new List<WorldTile>();
-            List<SpriteRenderer> branchRenderers = new List<SpriteRenderer>();
             m_Spawners = new BlightSpawner[m_BranchCount];
 
             for (int i = 0; i < m_BranchCount; i++)
@@ -63,9 +62,7 @@ namespace KarpysDev.Script.Map_Related.Blight
 
                 foreach (WorldTile branchTile in branchPath)
                 {
-                    VisualTile branchVisual = map.CreateVisualTile(m_BranchTileSet.TilePrefab, branchTile); 
-                    branchRenderers.Add(branchVisual.Renderer);
-                    m_BranchPathRenderers.Add(branchVisual);
+                    map.CreateVisualTile(_branchTile, branchTile); 
                 }
             
                 InsertBranchExtremity(branchPath,i,map);
@@ -73,8 +70,6 @@ namespace KarpysDev.Script.Map_Related.Blight
                 m_outerSelection.Remove(outerPosition);
                 branchTiles.AddRange(branchPath);
             }
-        
-            TileHelper.GenerateTileSet(branchTiles.ToTile(),branchRenderers,m_BranchTileSet.TileMap,MapData.Instance);
         }
 
         private void InsertBranchExtremity(List<WorldTile> branchPath,int id,Map map)

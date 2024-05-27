@@ -107,6 +107,7 @@ namespace KarpysDev.Script.Utils
                     data[i] = data[i].TrimEnd('\r');
                 }
 
+                DirectoryCheck(savePath.ToDirectory());
                 File.WriteAllLines(savePath,data);
             }
         
@@ -139,6 +140,19 @@ namespace KarpysDev.Script.Utils
             string savePath = GetSavePath(saveName);
 
             return File.Exists(savePath);
+        }
+
+        private static string ToDirectory(this string filePath)
+        {
+            return Path.GetDirectoryName(filePath);
+        }
+
+        public static void DirectoryCheck(string directoryPath)
+        {
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
         }
     }
 

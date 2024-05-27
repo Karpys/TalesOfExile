@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using KarpysDev.Script.Entities;
+﻿using KarpysDev.Script.Entities;
 using KarpysDev.Script.Manager;
 using UnityEngine;
 
@@ -10,7 +8,6 @@ namespace KarpysDev.Script.Map_Related
 
     public class MapData : SingletonMonoBehavior<MapData>
     {
-        [SerializeField] private MapDataLibrary m_MapDataLibrary = null;
         private Map m_Map = null;
 
         public Map Map => m_Map;

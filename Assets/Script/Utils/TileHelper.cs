@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using KarpysDev.KarpysUtils;
 using KarpysDev.Script.Map_Related;
 using KarpysDev.Script.PathFinding;
 using KarpysDev.Script.PathFinding.LinePath;
@@ -220,38 +219,42 @@ namespace KarpysDev.Script.Widget
             return oppositePosition;
         }
 
-        private static int GetBitMaskingValue(Tile tile,List<Tile> tiles,MapData mapData)
+        private static int GetBitMaskingValue(Vector2Int origin,List<Vector2Int> other)
         {
             string bitMask = "";
         
             for (int i = DirectionalCheck.Length - 1; i >= 0; i--)
             {
-                int checkX = tile.XPos + DirectionalCheck[i].x;
-                int checkY = tile.YPos + DirectionalCheck[i].y;
-            
-                if (checkX >= 0 && checkX < mapData.Map.Width && checkY >= 0 && checkY < mapData.Map.Height)
-                {
-                    if (tiles.Contains(mapData.Map.Tiles[checkX][checkY]))
-                    {
-                        bitMask += "1";
-                        continue;
-                    }
-                }
+                int checkX = origin.x + DirectionalCheck[i].x;
+                int checkY = origin.y + DirectionalCheck[i].y;
 
-                bitMask += "0";
+                if (other.Contains(new Vector2Int(checkX, checkY)))
+                {
+                    bitMask += "1";
+                }
+                else
+                {
+                    bitMask += "0";
+                }
             }
             return Convert.ToInt32(bitMask, 2);
         }
 
-        public static void GenerateTileSet(List<Tile> tiles,List<SpriteRenderer> renderers,Sprite[] tileMap,MapData mapData)
+        public static void GenerateTileSet(ICollection<IVisualTile> tiles,Sprite[] tileMap)
         {
-            for (int i = 0; i < tiles.Count; i++)
+            List<Vector2Int> tilePositions = new List<Vector2Int>();
+
+            foreach (IVisualTile tile in tiles)
             {
-                Tile tile = tiles[i];
-                renderers[i].sprite = tileMap[GetBitMaskingValue(tile, tiles, mapData)];
+                tilePositions.Add(tile.Position);
+            }
+
+            foreach (IVisualTile tile in tiles)
+            {
+                tile.ApplySprite(tileMap[GetBitMaskingValue(tile.Position, tilePositions)]);
             }
         }
-    
+
         public static List<Vector2Int> ToPath(this List<Tile> tiles)
         {
             List<Vector2Int> path = new List<Vector2Int>();

@@ -1,4 +1,4 @@
-﻿using KarpysDev.Script.PathFinding;
+﻿using KarpysDev.Script.Map_Related;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
