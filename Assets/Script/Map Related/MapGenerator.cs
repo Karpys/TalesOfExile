@@ -4,6 +4,7 @@ using KarpysDev.Script.Entities;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Map_Related.MapGeneration;
+using KarpysDev.Script.Map_Related.Minimap;
 using KarpysDev.Script.Map_Related.QuestRelated;
 using KarpysDev.Script.UI;
 using KarpysDev.Script.Widget;
@@ -115,6 +116,7 @@ namespace KarpysDev.Script.Map_Related
             GenerationMapInfo info = generationData.Generate(m_MapData);
             PlacePlayerEntity(info.StartPosition);
             A_OnMapLoaded?.Invoke();
+            MinimapRenderer.Instance.Rebuild();
         }
 
         private void PlacePlayerEntity(Vector2Int position)

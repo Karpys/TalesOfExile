@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Walkable: 0
+  m_MinimapColor: {r: 0.40943396, g: 0.63483053, b: 1, a: 1}
 --- !u!114 &622182372551526754
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -124,6 +124,18 @@ PrefabInstance:
       propertyPath: m_Walkable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      propertyPath: m_MinimapColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      propertyPath: m_MinimapColor.g
+      value: 0.3207547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124269101175009985, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
+      propertyPath: m_MinimapColor.r
+      value: 0.016240759
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d3762cc1acdea408b3d5a9c8f74d56, type: 3}
 --- !u!114 &4277169104127877267 stripped

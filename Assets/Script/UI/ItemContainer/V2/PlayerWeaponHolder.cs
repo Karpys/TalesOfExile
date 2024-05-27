@@ -4,8 +4,6 @@
     using UnityEngine;
     using KarpysUtils;
     using Spell.DamageSpell;
-    using ColorExtensions = ColorExtensions;
-
     public class PlayerWeaponHolder : PlayerEquipementHolder
     {
         [Header("Player Weapon Specifics")] 

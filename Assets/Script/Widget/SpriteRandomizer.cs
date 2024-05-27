@@ -1,4 +1,4 @@
-using KarpysDev.Script.Utils;
+using KarpysDev.KarpysUtils.WeightElementDraw;
 using UnityEngine;
 
 namespace KarpysDev.Script.Widget

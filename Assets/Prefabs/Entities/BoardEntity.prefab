@@ -91,9 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068509225359419660}
-  - component: {fileID: 7272982574942465325}
   - component: {fileID: -7181156257391147878}
-  - component: {fileID: 3586934930628379362}
   - component: {fileID: 8395281927415102299}
   m_Layer: 0
   m_Name: BoardEntity
@@ -117,18 +115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7272982574942465325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980381498483754554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5019f57c38426ca02c072f3b3ab88a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-7181156257391147878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,18 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeDisplayerReference: {fileID: 8395281927415102299}
---- !u!114 &3586934930628379362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980381498483754554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79c39f5c2d94320b07fedc3d565ed22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8395281927415102299
 MonoBehaviour:
   m_ObjectHideFlags: 0

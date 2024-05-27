@@ -10,7 +10,11 @@ namespace KarpysDev.Script.Map_Related
         protected Tile m_AttachedTile = null;
 
         public Tile Tile => m_AttachedTile;
-        public Color MinimapColor => m_MinimapColor;
+        public Color MinimapColor
+        {
+            get => m_MinimapColor;
+            set => m_MinimapColor = value;
+        }
 
         public void SetTile(Tile tile)
         {

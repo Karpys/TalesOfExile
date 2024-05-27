@@ -47,7 +47,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 0324488f0b1a5594c89b86f120302d57, type: 3}
     - {fileID: 102900000, guid: 5b14d9dfc7e133340ad20b156077638e, type: 3}
     - {fileID: 102900000, guid: 77ff862c865143c468449dfa4ca88d22, type: 3}
-    totalSpriteSurfaceArea: 562687
+    totalSpriteSurfaceArea: 562688
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -95,6 +95,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d218d3b73ef23ae4ebf5b49caf90bc4b, type: 3}
   - {fileID: 21300000, guid: 767fc4b70b0f9b94a9f8711ae9ecf164, type: 3}
   - {fileID: 21300000, guid: 922102c71076a904b8f4878ef1a7fd2f, type: 3}
+  - {fileID: 21300000, guid: 9e2ca0f7a5c1d0a4683130d8d8914de8, type: 3}
   - {fileID: 21300000, guid: 99f05108c699d8d40b0a2c25fb08e837, type: 3}
   - {fileID: 21300000, guid: 8729e038aed74f14e85714d8ca54becf, type: 3}
   - {fileID: 21300000, guid: 23269968c58e0374dafd199a5f30c519, type: 3}
@@ -177,6 +178,7 @@ SpriteAtlas:
   - SPR_StartIcon
   - IceBlast
   - SPR_Flame
+  - WhiteSquare
   - SPR_FlameV2
   - UIArrow
   - SpellBackground

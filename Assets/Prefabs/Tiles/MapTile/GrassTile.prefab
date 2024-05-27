@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Walkable: 1
+  m_MinimapColor: {r: 0.35686275, g: 0.5137255, b: 0.20784315, a: 1}
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

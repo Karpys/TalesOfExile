@@ -190,7 +190,7 @@ namespace KarpysDev.Script.Entities
         protected MapData m_TargetMap = null;
         protected EntityBuffs m_Buffs = null;
         protected BoardEntityLife m_EntityLife = null;
-        protected BoardEntityEventHandler m_EntityEvent = null;
+        protected BoardEntityEventHandler m_EntityEvent = new BoardEntityEventHandler();
         protected List<TriggerSpellData> m_Spells = new List<TriggerSpellData>();
 
         public Action A_OnEntityInitialization = null;
@@ -225,20 +225,17 @@ namespace KarpysDev.Script.Entities
             m_EntityData.m_TargetEntityGroup = targetEntityGroup == EntityGroup.None
                 ? EntityHelper.GetInverseEntityGroup(entityGroup)
                 : targetEntityGroup;
-        
-            //Event//
-            m_EntityEvent = GetComponent<BoardEntityEventHandler>();
-        
+
             //Life
             m_EntityLife = GetComponent<BoardEntityLife>();
             m_EntityLife.Initialize(m_EntityData.m_Stats.MaxLife, m_EntityData.m_Stats.Life,m_EntityData.m_Stats.LifeRegeneration,this);
 
-            //Buffs
-            m_Buffs = GetComponent<EntityBuffs>();
-        
+            //Buff
+            m_Buffs = new EntityBuffs();
+            
             //OnEntityInitilizationEnd
             A_OnEntityInitialization?.Invoke();
-            
+            A_OnEntityInitialization = null;
             //Spells
             RegisterStartSpells(m_EntityData.m_BaseSpellInfos);
         
@@ -444,6 +441,7 @@ namespace KarpysDev.Script.Entities
             GameManager.Instance.UnRegisterEntity(this);
         
             RemoveFromBoard();
+            m_EntityEvent.OnTriggerDeath?.Invoke();
             m_EntityEvent.OnDeath?.Invoke();
 
             if (m_LastGetHit)

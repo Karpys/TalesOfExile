@@ -15,8 +15,8 @@ MonoBehaviour:
   m_WeightEnemies:
     m_WeightElement:
     - m_Weight: 90
-      m_Object: {fileID: -4592490546126341204, guid: 2a41c0ca5577c83409f3cd6e95dd2b70, type: 3}
+      m_Object: {fileID: 1928077985366989603, guid: d35f375163a46ec4286d89a1bb8e4166, type: 3}
     - m_Weight: 10
-      m_Object: {fileID: -2413995395981544658, guid: e422a4d7a6f22b142817513d3fcc4705, type: 3}
+      m_Object: {fileID: 1928077985366989603, guid: e8d411c205ea3d04f9536fcc6ace0641, type: 3}
   m_TargetEnemiesCount: 15
   m_ShouldInheriteQuestModifier: 1

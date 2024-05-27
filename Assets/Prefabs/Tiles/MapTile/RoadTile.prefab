@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Renderer: {fileID: 5264811421815135885}
+  m_MinimapColor: {r: 0.85098046, g: 0.6117647, b: 0.40000004, a: 1}
 --- !u!1 &5697238311064083276
 GameObject:
   m_ObjectHideFlags: 0

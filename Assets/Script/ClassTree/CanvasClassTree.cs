@@ -31,7 +31,6 @@ namespace KarpysDev.Script.ClassTree
 
         private void Open()
         {
-            //m_SpellTreeContainer.anchoredPosition = new Vector2(0, m_SpellTreeContainer.anchoredPosition.y);
             m_ClassContainer.DoScale(Vector3.one, m_OpenTime).SetEase(Ease.EASE_OUT_BACK).OnComplete(() => m_ScrollRect.enabled = true);
             m_Controller.Initialize();
             m_IsOpen = true;

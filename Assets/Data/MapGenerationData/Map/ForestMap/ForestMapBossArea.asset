@@ -32,4 +32,4 @@ MonoBehaviour:
     - Key: {r: 0.9843138, g: 0.9490197, b: 0.21176472, a: 1}
       Object: {fileID: 2029071479458439158, guid: ecfd2a0d2cac747449f7ada00bf5b637, type: 3}
     m_ClearOnInit: 0
-  m_MonsterGeneration: {fileID: 11400000, guid: 522bc79dbbe3d94439d437e45a75fe02, type: 2}
+  m_MonsterGeneration: {fileID: 11400000, guid: 079a5ad169fb54246a209ca3c7f3380f, type: 2}

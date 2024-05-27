@@ -62,7 +62,7 @@ namespace KarpysDev.Script.Map_Related.Blight
 
                 foreach (WorldTile branchTile in branchPath)
                 {
-                    map.CreateVisualTile(_branchTile, branchTile); 
+                    map.CreateVisualTile(_branchTile, branchTile,true); 
                 }
             
                 InsertBranchExtremity(branchPath,i,map);

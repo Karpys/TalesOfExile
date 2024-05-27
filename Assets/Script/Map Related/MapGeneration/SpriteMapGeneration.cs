@@ -5,7 +5,6 @@ using UnityEngine;
 namespace KarpysDev.Script.Map_Related.MapGeneration
 {
     using KarpysUtils;
-    using ColorExtensions = ColorExtensions;
 
     [CreateAssetMenu(menuName = "Map/SpriteMap/Default Sprite Map", fileName = "SpriteMap", order = 0)]
     public class SpriteMapGeneration : MapGenerationData

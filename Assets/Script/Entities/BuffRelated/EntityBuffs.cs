@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Entities.BuffRelated
 {
-    public class EntityBuffs : MonoBehaviour
+    public class EntityBuffs
     {
         private List<Buff> m_Buffs = new List<Buff>();
         private List<Buff> m_Passive = new List<Buff>();
@@ -17,6 +17,20 @@ namespace KarpysDev.Script.Entities.BuffRelated
         public Action OnCdReduced = null;
 
         public List<Buff> Buffs => m_Buffs;
+        
+        public EntityBuffs()
+        {
+            GameManager.Instance.A_OnEndTurn += ReduceAllCd;
+        }
+
+        ~EntityBuffs()
+        {
+            if (GameManager.Instance)
+            {
+                Debug.Log("Finaliseur");
+                GameManager.Instance.A_OnEndTurn -= ReduceAllCd;
+            }
+        }
 
         public bool TryAddBuff(BuffType buffType)
         {
@@ -81,17 +95,6 @@ namespace KarpysDev.Script.Entities.BuffRelated
         {
             if (m_Passive.Contains(buff))
                 m_Passive.Remove(buff);
-        }
-        
-        private void Start()
-        {
-            GameManager.Instance.A_OnEndTurn += ReduceAllCd;
-        }
-
-        private void OnDestroy()
-        {
-            if(GameManager.Instance)
-                GameManager.Instance.A_OnEndTurn -= ReduceAllCd;
         }
 
         private void ReduceAllCd()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KarpysDev.KarpysUtils.WeightElementDraw;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Utils;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace KarpysDev.Script.Manager.Library
     [Serializable]
     public class InventoryPoolObject
     {
-        [SerializeField] private StaticWeightElementDraw<InventoryItemData> m_ObjectDataPool = null;
+        [SerializeField] private WeightElementDraw<InventoryItemData> m_ObjectDataPool = null;
         [SerializeField] private WeightElementDraw<Rarity> m_RarityDraw = null;
         public List<Item> Draw(ItemDraw itemDraw)
         {
