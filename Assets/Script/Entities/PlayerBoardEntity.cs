@@ -27,6 +27,7 @@ namespace KarpysDev.Script.Entities
         public PlayerInventory PlayerInventory => m_PlayerInventory;
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
+        private float m_TotalExperience = 0;
 
         public TriggerSpellData[] DisplaySpell => m_DisplaySpell;
         public Action A_OnSpellCollectionChanged = null;
@@ -224,6 +225,13 @@ namespace KarpysDev.Script.Entities
             spellData?.SpellTrigger.ComputeSpellData(this);
             UpdateSpellPriority();
             
+        }
+        
+        //Experience//
+        public override void ReceiveExp(float expAmount)
+        {
+            base.ReceiveExp(expAmount);
+            m_TotalExperience += expAmount;
         }
     }
 

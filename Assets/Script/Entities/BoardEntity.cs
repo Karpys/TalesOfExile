@@ -15,6 +15,7 @@ namespace KarpysDev.Script.Entities
     using KarpysUtils;
     using KarpysUtils.TweenCustom;
     using Spell.DamageSpell;
+    using UnityEngine.Serialization;
 
     [Serializable]
     public class EntityStats
@@ -47,6 +48,7 @@ namespace KarpysDev.Script.Entities
 
         [Header("Misc")] 
         [SerializeField] private int m_IsBowUser = 0;
+        [SerializeField] private float m_BaseExperienceAmount = 0;
         
         [Header("Crowd Control")]
         [SerializeField] private int m_RootLockCount = 0;
@@ -63,6 +65,7 @@ namespace KarpysDev.Script.Entities
         public int MeleeLockCount { get => m_MeleeLockCount; set => m_MeleeLockCount = value;}
         public int CombatRange { get => m_CombatRange; set => m_CombatRange = value;}
         public int IsBowUser { get => m_IsBowUser; set => m_IsBowUser = value;}
+        public float ExperienceAmount { get => m_BaseExperienceAmount; set => m_BaseExperienceAmount = value;}
         public SubDamageTypeGroup DamageTypeModifier => m_DamageTypeModifier;
         public SubDamageTypeGroup DamageTypeReduction => m_DamageTypeReduction;
         public IWeapon MainHandWeapon => m_MainHandWeapon;
@@ -85,6 +88,7 @@ namespace KarpysDev.Script.Entities
             m_DamageTypeReduction = new SubDamageTypeGroup(stats.DamageTypeReduction);
             m_IsBowUser = stats.IsBowUser;
             m_UnarmedDamage = stats.UnarmedDamage;
+            m_BaseExperienceAmount = stats.ExperienceAmount;
         }
 
         public void SetEntity(BoardEntity entity)
@@ -179,20 +183,8 @@ namespace KarpysDev.Script.Entities
         [SerializeField] protected Transform m_VisualTransform = null;
         [SerializeField] protected bool m_Targetable = true;
         // [SerializeField] protected AddDamageModifier m_TestModifier = null;
-        protected bool m_CanBehave = true;
-        protected bool m_IsDead = false;
-        protected int m_YPosition = 0;
-        protected int m_XPosition = 0;
-    
-        protected EntityBehaviour m_EntityBehaviour = null;
         [SerializeField] protected BoardEntityData m_EntityData = null;
-    
-        protected MapData m_TargetMap = null;
-        protected EntityBuffs m_Buffs = null;
-        protected BoardEntityLife m_EntityLife = null;
-        protected BoardEntityEventHandler m_EntityEvent = new BoardEntityEventHandler();
-        protected List<TriggerSpellData> m_Spells = new List<TriggerSpellData>();
-
+        
         public Action A_OnEntityInitialization = null;
 
         public MapData Map => m_TargetMap;
@@ -211,9 +203,24 @@ namespace KarpysDev.Script.Entities
     
         //Property//
         public bool Targetable => m_Targetable;
-        
+        public BoardEntity LastGetHit => m_LastGetHit;
+
         //Private Field//
+        protected MapData m_TargetMap = null;
+        protected EntityBuffs m_Buffs = null;
+        protected BoardEntityLife m_EntityLife = null;
+        protected BoardEntityEventHandler m_EntityEvent = new BoardEntityEventHandler();
+        protected List<TriggerSpellData> m_Spells = new List<TriggerSpellData>();
+        
+        protected bool m_CanBehave = true;
+        protected bool m_IsDead = false;
+        protected int m_YPosition = 0;
+        protected int m_XPosition = 0;
+    
+        protected EntityBehaviour m_EntityBehaviour = null;
+        
         private BoardEntity m_LastGetHit = null;
+        private IExperienceGiver m_ExperienceGiver = null;
 
         //Need to be called when an entity is created//
         public virtual void EntityInitialization(EntityBehaviour entityIa,EntityGroup entityGroup,EntityGroup targetEntityGroup = EntityGroup.None)
@@ -241,6 +248,7 @@ namespace KarpysDev.Script.Entities
         
             //Entity Behaviour//
             InitializeEntityBehaviour(entityIa);
+            SetExperienceGiver(new DefaultExperienceGiver());
         
             //Entity Registration//
             RegisterEntity();
@@ -260,8 +268,6 @@ namespace KarpysDev.Script.Entities
         {
             GameManager.Instance.RegisterEntity(this);
         }
-    
-    
         //Board Related
         public virtual void EntityAction()
         {
@@ -436,11 +442,7 @@ namespace KarpysDev.Script.Entities
         
             m_IsDead = true;
         
-            if(m_EntityData.m_EntityGroup == EntityGroup.Enemy)
-                GameManager.Instance.UnRegisterActiveEnemy(this);
-            GameManager.Instance.UnRegisterEntity(this);
-        
-            RemoveFromBoard();
+            ClearFromMap();
             m_EntityEvent.OnTriggerDeath?.Invoke();
             m_EntityEvent.OnDeath?.Invoke();
 
@@ -460,9 +462,34 @@ namespace KarpysDev.Script.Entities
             TriggerDeath();
         }
 
-        public virtual float GetMainWeaponDamage()
+        //Map Related
+        private void ClearFromMap()
         {
-            return EntityStats.WeaponForce;
+            if(m_EntityData.m_EntityGroup == EntityGroup.Enemy)
+                GameManager.Instance.UnRegisterActiveEnemy(this);
+            GameManager.Instance.UnRegisterEntity(this);
+        
+            RemoveFromBoard();
+        }
+
+        public void ForceClearFromMap()
+        {
+            ClearFromMap();
+            Destroy(gameObject);
+        }
+
+        //Experience//
+        public void SetExperienceGiver(IExperienceGiver experienceGiver)
+        {
+            m_ExperienceGiver = experienceGiver;
+        }
+        private void GiveExperience(BoardEntity receiver)
+        {
+            m_ExperienceGiver.GiveExperience(receiver,EntityStats.ExperienceAmount);
+        }
+        public virtual void ReceiveExp(float expAmount)
+        {
+            return;   
         }
     }
 }

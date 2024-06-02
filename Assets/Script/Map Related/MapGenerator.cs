@@ -80,7 +80,7 @@ namespace KarpysDev.Script.Map_Related
                     continue;
                 }
             
-                entity[min].ForceDeath();
+                entity[min].ForceClearFromMap();
             }
 
             for (int x = 0; x < m_MapData.Map.Width; x++)
