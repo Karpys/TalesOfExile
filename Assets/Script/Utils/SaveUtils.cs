@@ -114,6 +114,20 @@ namespace KarpysDev.Script.Utils
             return File.ReadAllLines(savePath);
         }
 
+        public static string ReadJson(string saveName,string defaultSave)
+        {
+            string savePath = GetSavePath(saveName);
+        
+            if (!File.Exists(savePath))
+            {
+                string data = defaultSave;
+                DirectoryCheck(savePath.ToDirectory());
+                File.WriteAllLines(savePath,data.ToSingleArray());
+            }
+        
+            return File.ReadAllLines(savePath)[0];
+        }
+
         public static List<T> InterpretSave<T>(string[] data)
         {
             List<T> saveObjects = new List<T>();

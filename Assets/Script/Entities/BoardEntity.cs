@@ -449,6 +449,7 @@ namespace KarpysDev.Script.Entities
             if (m_LastGetHit)
             {
                 m_LastGetHit.m_EntityEvent.OnKill?.Invoke(this);
+                GiveExperience(m_LastGetHit);
             }
         
             Destroy(gameObject);

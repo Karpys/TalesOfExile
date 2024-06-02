@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using KarpysDev.Script.Entities.BuffRelated;
 using KarpysDev.Script.Entities.EntitiesBehaviour;
 using KarpysDev.Script.Items;
 using KarpysDev.Script.Manager;
 using KarpysDev.Script.Spell;
 using KarpysDev.Script.Spell.ParameterLessSpell;
 using KarpysDev.Script.UI;
+using KarpysDev.Script.Utils;
+using Script.Data;
 using UnityEngine;
 
 namespace KarpysDev.Script.Entities
@@ -15,7 +15,7 @@ namespace KarpysDev.Script.Entities
     using KarpysUtils;
     using KarpysUtils.TweenCustom;
 
-    public class PlayerBoardEntity : BoardEntity,ISpellSet
+    public class PlayerBoardEntity : BoardEntity,ISpellSet,ISaver
     {
         [Header("Player")]
         [SerializeField] private PlayerInventory m_PlayerInventory = null;
@@ -24,13 +24,17 @@ namespace KarpysDev.Script.Entities
         [SerializeField] private Transform m_JumpTweenContainer = null;
         [SerializeField] private float m_MovementDuration = 0.1f;
 
+        [Header("Save")]
+        [SerializeField] private string m_PlayerSaveDataName = String.Empty;
+        
+        private PlayerSaveData m_PlayerSaveData = null;
+        public TriggerSpellData[] DisplaySpell => m_DisplaySpell;
         public PlayerInventory PlayerInventory => m_PlayerInventory;
+        public Action A_OnSpellCollectionChanged = null;
+        public string GetSaveName => m_PlayerSaveDataName;
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
         private float m_TotalExperience = 0;
-
-        public TriggerSpellData[] DisplaySpell => m_DisplaySpell;
-        public Action A_OnSpellCollectionChanged = null;
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
@@ -42,20 +46,39 @@ namespace KarpysDev.Script.Entities
         public override void EntityInitialization(EntityBehaviour entityIa, EntityGroup entityGroup,
             EntityGroup targetEntityGroup = EntityGroup.None)
         {
+            //Save
+            GlobalSaver.AddSaver(this);
+            m_PlayerSaveData = GetPlayerSave();
+            ApplySave(m_PlayerSaveData);
+            //Base
             base.EntityInitialization(entityIa, entityGroup, targetEntityGroup);
             m_PlayerInventory.Init();
             //Init Skill Tree
             InitDisplaySpell();
             
+            //Spells
             if(this == GameManager.Instance.ControlledEntity)
                 GameManager.Instance.RefreshTargetEntitySkills();
             
             ComputeAllSpells();
             UpdateSpellPriority();
             
+            //Life
             Life.SetToMaxLife();
             // Life.LifeDisplayer.UpdateLifeDisplay();
         }
+
+        private void ApplySave(PlayerSaveData playerSave)
+        {
+            m_TotalExperience = playerSave.TotalExperience;
+        }
+
+        private PlayerSaveData GetPlayerSave()
+        {
+            string playerSave = SaveUtils.ReadJson(m_PlayerSaveDataName,"{}");
+            return JsonUtility.FromJson<PlayerSaveData>(playerSave);
+        }
+
         protected override void RegisterStartSpells(SpellInfo[] spellInfos)
         {
             if (!m_SpellLearnedSave.SaveExist())
@@ -232,6 +255,18 @@ namespace KarpysDev.Script.Entities
         {
             base.ReceiveExp(expAmount);
             m_TotalExperience += expAmount;
+        }
+
+        //Save
+        public string[] FetchSaveData()
+        {
+            PlayerSaveData playerSaveData = new PlayerSaveData(m_TotalExperience);
+            return JsonUtility.ToJson(playerSaveData).ToSingleArray();
+        }
+
+        public void WriteSaveData(string saveName, string[] data)
+        {
+            SaveUtils.WriteSave(saveName,data);
         }
     }
 

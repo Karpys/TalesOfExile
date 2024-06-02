@@ -182,6 +182,7 @@ MonoBehaviour:
         m_Fire: 0
         m_Nature: 0
       m_IsBowUser: 0
+      m_BaseExperienceAmount: 0
       m_RootLockCount: 0
       m_SpellLockCount: 0
       m_MeleeLockCount: 0
@@ -191,6 +192,22 @@ MonoBehaviour:
   m_SpellLearnedSave: {fileID: 3290419270510630779}
   m_JumpTweenContainer: {fileID: 1805600238328547132}
   m_MovementDuration: 0.1
+  m_DefaultPlayerDataSave: {fileID: 4900000, guid: fd49a2f07fc795c40a5676fc6d186eab, type: 3}
+  m_PlayerSaveDataName: PlayerDataSave.json
+--- !u!114 &3110132562352686648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868885018205819403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c227bf5e984a9e8d4256ad15c082ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Entity: {fileID: 2318941865701268292}
+  m_Color: {r: 0, g: 0.21960784, b: 0.65882355, a: 1}
 --- !u!114 &3290419270510630779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,20 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7032f85e0bec46a5b02aa309f3a4c7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3110132562352686648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868885018205819403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c227bf5e984a9e8d4256ad15c082ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Entity: {fileID: 2318941865701268292}
-  m_Color: {r: 0, g: 0.21960784, b: 0.65882355, a: 1}
 --- !u!1 &9071852352984913702
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,10 +77,4 @@ namespace Script.Data
             return new PlayerData(goldCount);
         }
     }
-
-    interface IJsonSavable<T>
-    {
-        public string ToJson();
-        public T FromJson(string json);
-    }
 }
