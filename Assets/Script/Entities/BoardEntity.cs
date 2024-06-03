@@ -48,7 +48,7 @@ namespace KarpysDev.Script.Entities
 
         [Header("Misc")] 
         [SerializeField] private int m_IsBowUser = 0;
-        [SerializeField] private float m_BaseExperienceAmount = 0;
+        [SerializeField] private float m_BaseExperienceAmount = 100;
         
         [Header("Crowd Control")]
         [SerializeField] private int m_RootLockCount = 0;

@@ -18,6 +18,12 @@ namespace KarpysDev.Script.UI
                 return;
 
             m_TurnLeft.text = m_AttachedBuff.Cooldown + " turn left";
+            
+            
+            if (m_AttachedBuff.Cooldown <= 0)
+            {
+                Hide();
+            }
         }
 
         public void Initialize(Buff attachedBuff,BuffInfo buffInfo,Vector3 position)

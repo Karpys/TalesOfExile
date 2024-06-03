@@ -21,6 +21,7 @@ MonoBehaviour:
       m_Life: 100
       m_LifeRegeneration: 0
       m_WeaponForce: 0
+      m_UnarmedDamage: 0
       m_DamageTypeModifier:
         m_Physical: 0
         m_Cold: 0
@@ -34,6 +35,7 @@ MonoBehaviour:
         m_Fire: 0
         m_Nature: 0
       m_IsBowUser: 0
+      m_BaseExperienceAmount: 100
       m_RootLockCount: 0
       m_SpellLockCount: 0
       m_MeleeLockCount: 0

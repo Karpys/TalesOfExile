@@ -2,10 +2,12 @@
 {
     public class PlayerSaveData
     {
-        public float TotalExperience = 0;
-        public PlayerSaveData(float totalExperience)
+        public int CharacterLevel = 0;
+        public float LevelExperience = 0;
+        public PlayerSaveData(int characterLevel,float levelExperience)
         {
-            TotalExperience = totalExperience;
+            CharacterLevel = characterLevel;
+            LevelExperience = levelExperience;
         }
     }
 }

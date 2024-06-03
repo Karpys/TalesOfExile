@@ -15,7 +15,7 @@ namespace KarpysDev.Script.Entities
     using KarpysUtils;
     using KarpysUtils.TweenCustom;
 
-    public class PlayerBoardEntity : BoardEntity,ISpellSet,ISaver
+    public class PlayerBoardEntity : BoardEntity,ISpellSet,ISaver,IExperience
     {
         [Header("Player")]
         [SerializeField] private PlayerInventory m_PlayerInventory = null;
@@ -26,15 +26,17 @@ namespace KarpysDev.Script.Entities
 
         [Header("Save")]
         [SerializeField] private string m_PlayerSaveDataName = String.Empty;
-        
+
+        private CharacterLevelController m_PlayerExperienceController = null;
         private PlayerSaveData m_PlayerSaveData = null;
         public TriggerSpellData[] DisplaySpell => m_DisplaySpell;
         public PlayerInventory PlayerInventory => m_PlayerInventory;
         public Action A_OnSpellCollectionChanged = null;
         public string GetSaveName => m_PlayerSaveDataName;
+        public int Level => m_PlayerExperienceController.Level;
+        public float LevelExperienceRatio => m_PlayerExperienceController.ExperienceRatio;
 
         private TriggerSpellData[] m_DisplaySpell = new TriggerSpellData[SpellInterfaceController.SPELL_DISPLAY_COUNT];
-        private float m_TotalExperience = 0;
         protected override void RegisterEntity()
         {
             base.RegisterEntity();
@@ -70,7 +72,7 @@ namespace KarpysDev.Script.Entities
 
         private void ApplySave(PlayerSaveData playerSave)
         {
-            m_TotalExperience = playerSave.TotalExperience;
+            m_PlayerExperienceController = new CharacterLevelController(playerSave.CharacterLevel, playerSave.LevelExperience);
         }
 
         private PlayerSaveData GetPlayerSave()
@@ -254,13 +256,13 @@ namespace KarpysDev.Script.Entities
         public override void ReceiveExp(float expAmount)
         {
             base.ReceiveExp(expAmount);
-            m_TotalExperience += expAmount;
+            m_PlayerExperienceController.GainExperience(expAmount);
         }
 
         //Save
         public string[] FetchSaveData()
         {
-            PlayerSaveData playerSaveData = new PlayerSaveData(m_TotalExperience);
+            PlayerSaveData playerSaveData = new PlayerSaveData(m_PlayerExperienceController.Level,m_PlayerExperienceController.Experience);
             return JsonUtility.ToJson(playerSaveData).ToSingleArray();
         }
 
