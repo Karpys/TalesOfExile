@@ -43,7 +43,7 @@ namespace KarpysDev.Script.Items
         //Save Part//
         public virtual string GetSaveData()
         {
-            return GetType() + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
+            return (int)m_Data.ObjectType + " " + m_Data.UniqueId + " " + (int)Rarity + " ";
         }
     }
     public interface ISaver

@@ -29,9 +29,9 @@ namespace KarpysDev.Script.Items
 
     public enum ObjectType
     {
-        DefaultObject,
-        Equipement,
-        Weapon,
+        DefaultObject = 0,
+        Equipement = 1,
+        Weapon = 2,
     }
 
     public enum Rarity

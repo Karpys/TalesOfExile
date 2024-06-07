@@ -19,7 +19,7 @@ namespace KarpysDev.Script.Map_Related.Minimap
         {
             DynamicMinimapTile dynamicTile = MinimapRenderer.Instance.AddDynamicTile(this,m_Entity.EntityPosition, m_Color);
             m_DynamicMinimapTile = dynamicTile;
-            m_Entity.EntityEvent.OnTriggerDeath += dynamicTile.Return;
+            m_Entity.EntityEvent.OnRemoveFromMap += dynamicTile.Return;
         }
 
         public Vector2 Position => m_Entity.EntityPosition;

@@ -84,7 +84,7 @@ namespace KarpysDev.Script.Items
         
         private void ClearPlayerInventory()
         {
-            string[] data = Enumerable.Repeat("none",EquipementLenght).ToArray();
+            string[] data = Enumerable.Repeat("",EquipementLenght).ToArray();
             SaveUtils.WriteSave(m_SaveName,data);
             InterpretSave();
         }
@@ -92,10 +92,12 @@ namespace KarpysDev.Script.Items
         private void InterpretSave()
         {
             string[] data = SaveUtils.ReadData(GetSaveName,m_BaseInventory);
-            List<Item> saveObjects = SaveUtils.InterpretSave<Item>(data);
-        
-            Item[] initInventory = saveObjects.GetRange(0,m_InventoryItemCount).ToArray();
-            Item[] equipementInit = saveObjects.GetRange(initInventory.Length, m_Equipement.Equipement.Length).ToArray();
+            Item[] saveObjects = SaveUtils.InventorySaveDataToItems(data);
+
+            Item[] initInventory = new Item[m_InventoryItemCount];
+            Array.Copy(saveObjects, 0, initInventory, 0,m_InventoryItemCount);
+            Item[] equipementInit = new Item[m_Equipement.Equipement.Length];
+            Array.Copy(saveObjects, initInventory.Length, equipementInit, 0,m_Equipement.Equipement.Length);
             
             for (int i = 0; i < m_Holders.Length; i++)
             {
@@ -107,11 +109,11 @@ namespace KarpysDev.Script.Items
                 m_Equipement.Equipement[i].SetItem(equipementInit[i]);
             }
         }
-    
         public void WriteSaveData(string saveName, string[] data)
         {
             SaveUtils.WriteSave(saveName,data);
         }
+        
 
         public string GetSaveName => m_SaveName;
 
@@ -127,7 +129,7 @@ namespace KarpysDev.Script.Items
                 }
                 else
                 {
-                    itemDataSaves[i] = "none";
+                    itemDataSaves[i] = "";
                 }
             }
 
@@ -139,7 +141,7 @@ namespace KarpysDev.Script.Items
                 }
                 else
                 {
-                    itemDataSaves[i + m_Holders.Length] = "none";
+                    itemDataSaves[i + m_Holders.Length] = "";
                 }
             }
         

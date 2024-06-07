@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Entities
     {
         public Action OnDeath = null;
         //Used in non-combat event
-        public Action OnTriggerDeath = null;
+        public Action OnRemoveFromMap = null;
         //TriggerSpellData can be null
         public Action<BoardEntity,DamageSpellTrigger> OnGetHitFromSpell = null;
         public Action<BoardEntity,DamageSource,TriggerSpellData> OnGetDamageFromSpell = null;

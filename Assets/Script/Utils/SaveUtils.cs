@@ -7,6 +7,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Utils
 {
+    using Items;
+
     public static class SaveUtils
     {
         private const string SAVE_DIRECTORY = "/Save/";
@@ -128,27 +130,6 @@ namespace KarpysDev.Script.Utils
             return File.ReadAllLines(savePath)[0];
         }
 
-        public static List<T> InterpretSave<T>(string[] data)
-        {
-            List<T> saveObjects = new List<T>();
-        
-            foreach (string objectData in data)
-            {
-                if (objectData == "none")
-                {
-                    saveObjects.Add(default);
-                    continue;
-                }
-            
-                Type classType = KarpysUtils.StringUtils.GetTypeViaClassName(objectData.Split()[0]);
-                object[] container = new object[1];
-                container[0] = objectData.Split();
-                saveObjects.Add((T)Activator.CreateInstance(classType,container));
-            }
-
-            return saveObjects;
-        }
-
         public static bool SaveExist(string saveName)
         {
             string savePath = GetSavePath(saveName);
@@ -166,6 +147,44 @@ namespace KarpysDev.Script.Utils
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
+            }
+        }
+        
+        public static Item[] InventorySaveDataToItems(string[] data)
+        {
+            Item[] items = new Item[data.Length];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                items[i] = DataToItem(data[i]);
+            }
+
+            return items;
+        }
+
+        private static Item DataToItem(string data)
+        {
+            if (data == "")
+            {
+                return null;
+            }
+            else
+            {
+                string[] itemDataSplit = data.Split();
+                ObjectType objectType = (ObjectType) itemDataSplit[0].ToInt();
+
+                switch (objectType)
+                {
+                    case ObjectType.DefaultObject:
+                        return new DefaultItem(itemDataSplit);
+                    case ObjectType.Equipement:
+                        return new EquipementItem(itemDataSplit);
+                    case ObjectType.Weapon:
+                        return new WeaponItem(itemDataSplit);
+                    default:
+                        Debug.LogError("Missing object type for current item data :" + data);
+                        return new DefaultItem(itemDataSplit);
+                }
             }
         }
     }

@@ -443,7 +443,6 @@ namespace KarpysDev.Script.Entities
             m_IsDead = true;
         
             ClearFromMap();
-            m_EntityEvent.OnTriggerDeath?.Invoke();
             m_EntityEvent.OnDeath?.Invoke();
 
             if (m_LastGetHit)
@@ -469,7 +468,7 @@ namespace KarpysDev.Script.Entities
             if(m_EntityData.m_EntityGroup == EntityGroup.Enemy)
                 GameManager.Instance.UnRegisterActiveEnemy(this);
             GameManager.Instance.UnRegisterEntity(this);
-        
+            m_EntityEvent.OnRemoveFromMap?.Invoke();
             RemoveFromBoard();
         }
 
