@@ -11,7 +11,7 @@ namespace KarpysDev.Script.Utils
         public static void LinePointsRenderer(List<Vector2Int> points, LineRendererType lineRendererType, float lineDuration,float additionalFadeDelay)
         {
             LineRendererParameters lineParameters = LineRendererLibrary.Instance.GetViaKey(lineRendererType);
-            Transform mapDataTransform = MapData.Instance.transform;
+            Transform mapDataTransform = MapData.Instance.TileHolder;
             float lineDelay = 0f;
 
             Vector2 previousPointPosition = points[0];

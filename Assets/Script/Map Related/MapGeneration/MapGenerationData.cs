@@ -32,6 +32,19 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             return new GenerationMapInfo(m_SpawnPosition);
         }
 
+        public virtual GenerationMapInfo GenerateInEditor(MapData mapData)
+        {
+            m_MapData = mapData;
+            m_Map = new Map(m_Width, m_Height);
+            mapData.SetMap(m_Map);
+        
+            m_Map.Height = m_Height;
+            m_Map.Width = m_Width;
+
+            m_Map.Tiles = Tile.Init(m_Width, m_Height);
+            
+            return new GenerationMapInfo(m_SpawnPosition);
+        }
     }
 
     [Serializable]

@@ -33,7 +33,7 @@ namespace KarpysDev.Script.Map_Related
             if(Tiles[x][y].WorldTile)
                 GameObject.Destroy(Tiles[x][y].WorldTile.gameObject);
         
-            WorldTile worldTile = GameObject.Instantiate(tilePrefab, MapData.Instance.GetTilePosition(x, y), Quaternion.identity, MapData.Instance.transform);
+            WorldTile worldTile = GameObject.Instantiate(tilePrefab, MapData.Instance.GetTilePosition(x, y), Quaternion.identity, MapData.Instance.TileHolder);
             worldTile.SetTile(Tiles[x][y]);
             return worldTile;
         }

@@ -48,6 +48,20 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             return new GenerationMapInfo(m_SpawnPosition);
         }
 
+        public override GenerationMapInfo GenerateInEditor(MapData mapData)
+        {
+            InitColorLibrary();
+        
+            m_Width = m_MapSprite.texture.width;
+            m_Height = m_MapSprite.texture.height;
+            
+            base.GenerateInEditor(mapData);
+            
+            GenerateTiles();
+            
+            return new GenerationMapInfo(m_SpawnPosition);
+        }
+
         protected virtual void GenerateTiles()
         {
             Texture2D tex = m_MapSprite.texture;

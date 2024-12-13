@@ -12,7 +12,7 @@ namespace KarpysDev.Script.Spell.SpellFx
         public SpellAnimation TriggerFx(Vector3 position,Transform targetTransform = null)
         {
             if (targetTransform == null)
-                targetTransform = MapData.Instance.transform;
+                targetTransform = MapData.Instance.TileHolder;
 
             return Instantiate(this,position,Quaternion.identity,targetTransform);;
         }
