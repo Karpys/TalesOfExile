@@ -12,7 +12,12 @@ namespace KarpysDev.Script.Map_Related
 
         private Map m_Map = null;
 
-        public Transform TileHolder => m_TileHolder;
+        public Transform TileHolder
+        {
+            get => m_TileHolder;
+            set => m_TileHolder = value;
+        }
+
         public Map Map => m_Map;
 
         public int MaxSize => m_Map.Height * m_Map.Width;

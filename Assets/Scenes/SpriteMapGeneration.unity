@@ -280,7 +280,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MapData: {fileID: 2062527698}
-  m_MapGenerationData: {fileID: 11400000, guid: ba16ffc95741134478ccf7b2cfc117a6, type: 2}
+  m_MapGenerationData: {fileID: 11400000, guid: 61b388ca7c30f4646b59dd2af2f5fec3, type: 2}
+  m_DefaultMapDataParent: {fileID: 1124463807}
+  m_DefaultMapDataHolder: {fileID: 8058470566784646625, guid: 469f7d5ebb3e24b8b8c3194107c1961c, type: 3}
 --- !u!1 &2062527697
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3891a0edbfe2425ab69659dffa8e4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TileHolder: {fileID: 1124463807}
+  m_TileHolder: {fileID: 0}
 --- !u!4 &2062527699
 Transform:
   m_ObjectHideFlags: 0

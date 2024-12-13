@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2defc564510043358be10faeb9b600de, type: 3}
   m_Name: PrefabMapTest
   m_EditorClassIdentifier: 
-  m_Width: 50
-  m_Height: 50
+  m_Width: 30
+  m_Height: 30
   m_BaseTile: {fileID: 7124269101175009985, guid: 78db362050af4734e970afd1cf9062a6, type: 3}
-  m_SpawnPosition: {x: 1, y: 1}
-  m_Map: {fileID: 0}
+  m_SpawnPosition: {x: 15, y: 15}
+  m_MapDataHolder: {fileID: 7348616456449003475, guid: 81e3fc48f54e64489b27e2c4d7b1fd27, type: 3}
