@@ -34,7 +34,7 @@ namespace KarpysDev.Script.Manager
     
         public void SpawnLoot(Item inventoryItem,Tile originTile,Tile targetTile,float delay = 0f)
         {
-            ItemWorldHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.transform);
+            ItemWorldHolder worldHolder = Instantiate(m_BaseInventoryHolder,originTile.WorldTile.transform.position,Quaternion.identity,MapData.Instance.TileHolder);
         
             worldHolder.InitializeHolder(inventoryItem,targetTile.TilePosition);
             LootJumpTo(worldHolder,targetTile,delay);

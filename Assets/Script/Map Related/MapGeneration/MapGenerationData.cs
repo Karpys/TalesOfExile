@@ -17,6 +17,8 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         protected Map m_Map = null;
     
         public WorldTile DefaultTile => m_BaseTile;
+        public int Width => m_Width;
+        public int Height => m_Height;
 
         public virtual GenerationMapInfo Generate(MapData mapData)
         {
@@ -26,12 +28,21 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
         
             m_Map.Height = m_Height;
             m_Map.Width = m_Width;
-
-            m_Map.Tiles = Tile.Init(m_Width, m_Height);
             
             return new GenerationMapInfo(m_SpawnPosition);
         }
 
+        public virtual GenerationMapInfoEditor GenerateInEditor(MapData mapData)
+        {
+            m_MapData = mapData;
+            m_Map = new Map(m_Width, m_Height);
+            mapData.SetMap(m_Map);
+        
+            m_Map.Height = m_Height;
+            m_Map.Width = m_Width;
+
+            return new GenerationMapInfoEditor(m_SpawnPosition,null);
+        }
     }
 
     [Serializable]

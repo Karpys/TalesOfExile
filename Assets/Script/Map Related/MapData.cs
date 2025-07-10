@@ -8,7 +8,15 @@ namespace KarpysDev.Script.Map_Related
 
     public class MapData : SingletonMonoBehavior<MapData>
     {
+        [SerializeField] private Transform m_TileHolder = null;
+
         private Map m_Map = null;
+
+        public Transform TileHolder
+        {
+            get => m_TileHolder;
+            set => m_TileHolder = value;
+        }
 
         public Map Map => m_Map;
 

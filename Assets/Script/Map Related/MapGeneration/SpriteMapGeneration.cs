@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using KarpysDev.Script.Widget;
 using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related.MapGeneration
@@ -48,6 +47,19 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
             return new GenerationMapInfo(m_SpawnPosition);
         }
 
+        public override GenerationMapInfoEditor GenerateInEditor(MapData mapData)
+        {
+            InitColorLibrary();
+        
+            m_Width = m_MapSprite.texture.width;
+            m_Height = m_MapSprite.texture.height;
+            
+            base.GenerateInEditor(mapData);
+
+            List<WorldTile> worldTiles = GenerateTilesEditor();
+            return new GenerationMapInfoEditor(m_SpawnPosition,worldTiles);
+        }
+
         protected virtual void GenerateTiles()
         {
             Texture2D tex = m_MapSprite.texture;
@@ -71,11 +83,46 @@ namespace KarpysDev.Script.Map_Related.MapGeneration
                         }
                     }
 
-                
-                    if(tile)
-                        m_Map.PlaceTileAt(tile, x, y);
+
+                    if (tile)
+                     m_Map.PlaceTileAt(tile, x, y);
                 }
             }
+        }
+        
+        protected virtual List<WorldTile> GenerateTilesEditor()
+        {
+            List<WorldTile> worldTiles = new List<WorldTile>();
+            Texture2D tex = m_MapSprite.texture;
+        
+            for (int x = 0; x < m_Width; x++)
+            {
+                for (int y = 0; y < m_Height; y++)
+                {
+                    m_Map.Tiles[x][y] = new Tile(x,y);
+                    Color tileColor = tex.GetPixel(x, y);
+                    WorldTile tile = null;
+
+                    foreach (KeyValuePair<Color,WorldTile> keyValuePair in m_ColorTileMap.Dictionary)
+                    {
+                        if (ColorExtensions.rgb(tileColor) == ColorExtensions.rgb(keyValuePair.Key))
+                        {
+                            tile = keyValuePair.Value;
+                            break;
+                        }
+                    }
+
+
+                    if (tile)
+                    {
+                        WorldTile wordTile = m_Map.PlaceTileAt(tile, x, y);
+                        wordTile.name = wordTile.name.Replace("(Clone)", "") + " x : " + x + " y : " + y;
+                        worldTiles.Add(wordTile);
+                    }
+                }
+            }
+
+            return worldTiles;
         }
 
         private void MonsterGeneration()

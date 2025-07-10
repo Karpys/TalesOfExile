@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace KarpysDev.Script.Map_Related
 {
+    using KarpysUtils;
+
     public class Map
     {
         public int Height = 0;
@@ -33,7 +35,7 @@ namespace KarpysDev.Script.Map_Related
             if(Tiles[x][y].WorldTile)
                 GameObject.Destroy(Tiles[x][y].WorldTile.gameObject);
         
-            WorldTile worldTile = GameObject.Instantiate(tilePrefab, MapData.Instance.GetTilePosition(x, y), Quaternion.identity, MapData.Instance.transform);
+            WorldTile worldTile = GameObject.Instantiate(tilePrefab, MapData.Instance.GetTilePosition(x, y), Quaternion.identity, MapData.Instance.TileHolder);
             worldTile.SetTile(Tiles[x][y]);
             return worldTile;
         }
@@ -59,6 +61,13 @@ namespace KarpysDev.Script.Map_Related
             worldTile.SetTile(Tiles[x][y]);
             worldTile.transform.position = MapData.Instance.GetTilePosition(x, y);
             return worldTile;
+        }
+
+        public void AssignWorldTile(WorldTile worldTile, int x, int y,bool eraseOld = true)
+        {
+            if (eraseOld && Tiles[x][y].WorldTile)
+                GameObject.Destroy(Tiles[x][y].WorldTile.gameObject);
+            worldTile.SetTile(Tiles[x][y]);
         }
 
         public WorldTile TryInsertWorldTileAt(WorldTile worldTile, Vector2Int pos)

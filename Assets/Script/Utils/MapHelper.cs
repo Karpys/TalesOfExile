@@ -37,7 +37,7 @@ namespace KarpysDev.Script.Utils
 
         public static MapPlaceable InsertMapPlaceable(PlaceableType placeableType)
         {
-            return GameObject.Instantiate(PlaceableLibrary.Instance.GetViaKey(placeableType), MapData.Instance.transform);
+            return GameObject.Instantiate(PlaceableLibrary.Instance.GetViaKey(placeableType), MapData.Instance.TileHolder);
         }
     }
 }
