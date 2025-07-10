@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 455326569
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 64e102a294c2833479f8dd74316ad200, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1f4ffb0fc73cb54db34fc555207708e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,7 +192,6 @@ MonoBehaviour:
   m_SpellLearnedSave: {fileID: 3290419270510630779}
   m_JumpTweenContainer: {fileID: 1805600238328547132}
   m_MovementDuration: 0.1
-  m_DefaultPlayerDataSave: {fileID: 4900000, guid: fd49a2f07fc795c40a5676fc6d186eab, type: 3}
   m_PlayerSaveDataName: PlayerDataSave.json
 --- !u!114 &3110132562352686648
 MonoBehaviour:
